@@ -1082,14 +1082,26 @@
 <div class="frequency-tools frequency-tools-pro">
 <select aria-label="اختيار القمر" id="frequencySatellite">
 <option value="all">كل الأقمار</option>
-<option value="Nilesat">نايل سات</option>
-<option value="Arabsat">عرب سات</option>
-<option value="Badr">بدر سات</option>
+<option value="Nilesat">نايل سات / يوتلسات 7W-8W</option>
+<option value="Arabsat">عرب سات / بدر 26E</option>
+<option value="Es'hailSat">سهيل سات 25.5E</option>
+<option value="Hot Bird">هوت بيرد 13E</option>
+<option value="Eutelsat 16E">يوتلسات 16E</option>
+<option value="Eutelsat 9E">يوتلسات 9E</option>
+<option value="Türksat">تركسات 42E</option>
+<option value="Yahsat">ياه سات 52.5E</option>
+<option value="Hellas Sat">هيلاس سات 39E</option>
+<option value="Eutelsat 36E">يوتلسات 36E</option>
+<option value="Astra">أسترا 19.2E / 28.2E</option>
+<option value="Amos">أموس 4W</option>
+<option value="Intelsat">إنتلسات 68.5E</option>
+<option value="Azerspace">أذر سبيس 46E</option>
 </select>
 <input aria-label="بحث ذكي في الترددات" autocomplete="off" id="frequencySearch" inputmode="search" placeholder="" value="" type="search"/>
 <button class="frequency-clear-btn" onclick="clearFrequencySearch()" type="button">مسح</button>
 </div>
 <div aria-live="polite" class="station-search-results" id="stationSearchResults"></div>
+<div class="frequency-live-note" id="frequencyLiveStatus">يتم تحميل أحدث تحديث للترددات من النظام اليومي. إذا تعذر التحميل سيبقى البحث يعمل من النسخة الاحتياطية داخل الموقع.</div>
 <div class="frequency-count-note" id="frequencyCountNote"><strong>166</strong> تردد متاح للبحث.</div>
 <div class="frequency-file-summary satellite-summary">
 <div><strong>60</strong><span>7W نايل سات / يوتلسات</span><small>تمت إعادة بنائها من المصادر الحديثة</small></div>
@@ -1193,7 +1205,38 @@ window.embeddedFrequencyBackup = [{"satellite":"7.1W / 7W","orbit":"7w","channel
 (function(){
 'use strict';
 
-const DATA = Array.isArray(window.embeddedFrequencyBackup) ? window.embeddedFrequencyBackup : [];
+let DATA = Array.isArray(window.embeddedFrequencyBackup) ? window.embeddedFrequencyBackup : [];
+window.frequencyDataStatus = { source: 'embedded-backup', updatedAt: null, count: DATA.length };
+async function loadLiveFrequencyData(){
+  const status = document.getElementById('frequencyLiveStatus');
+  try {
+    if (status) status.textContent = 'جاري تحميل أحدث قاعدة ترددات يومية...';
+    const response = await fetch('/.netlify/functions/frequency-data', { cache: 'no-store' });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+    const payload = await response.json();
+    if (payload && Array.isArray(payload.items) && payload.items.length) {
+      DATA = payload.items;
+      window.embeddedFrequencyBackup = DATA;
+      window.frequencyDataStatus = {
+        source: payload.servedFrom || payload.mode || 'live',
+        updatedAt: payload.updatedAt || null,
+        count: DATA.length,
+        changes: payload.changes || null
+      };
+      if (status) {
+        const when = payload.updatedAt ? new Date(payload.updatedAt).toLocaleString('ar-JO') : 'غير معروف';
+        status.textContent = 'آخر تحديث للترددات: ' + when + ' · المصدر: ' + (payload.servedFrom || payload.mode || 'النظام اليومي') + ' · العدد: ' + DATA.length;
+      }
+      return true;
+    }
+    throw new Error('Empty frequency payload');
+  } catch (error) {
+    console.warn('Using embedded frequency backup', error);
+    window.frequencyDataStatus = { source: 'embedded-backup', updatedAt: null, count: DATA.length, error: String(error && error.message || error) };
+    if (status) status.textContent = 'تعذر تحميل التحديث اليومي الآن؛ يعمل البحث من النسخة الاحتياطية داخل الموقع. العدد: ' + DATA.length;
+    return false;
+  }
+}
 let exactPackageMode = null;
 let frequencyRenderFrame = 0;
 let frequencySearchTimer = 0;
@@ -1710,9 +1753,22 @@ function satelliteAllowed(item, selected) {
   const group = normalizeText(item.satelliteGroup || '');
   const sat = normalizeText(item.satellite || '');
   const orbit = normalizeText(item.orbit || '');
+  const blob = [group, sat, orbit].join(' ');
   if (s === 'all') return true;
   if (s === 'nilesat') return group.includes('nilesat') || sat.includes('nilesat') || orbit.includes('7w') || orbit.includes('8w');
   if (s === 'arabsat' || s === 'badr') return group.includes('arabsat') || group.includes('badr') || sat.includes('arabsat') || sat.includes('badr') || orbit.includes('26e');
+  if (s.includes('eshail')) return blob.includes('eshail') || blob.includes('es hail') || orbit.includes('25') || orbit.includes('26e');
+  if (s.includes('hot bird')) return blob.includes('hot') || orbit.includes('13e');
+  if (s.includes('turksat')) return blob.includes('turksat') || blob.includes('turk') || orbit.includes('42e');
+  if (s.includes('yahsat')) return blob.includes('yahsat') || orbit.includes('52');
+  if (s.includes('hellas')) return blob.includes('hellas') || orbit.includes('39e');
+  if (s.includes('eutelsat 16')) return blob.includes('eutelsat 16') || orbit.includes('16e');
+  if (s.includes('eutelsat 9')) return blob.includes('eutelsat 9') || orbit.includes('9e');
+  if (s.includes('eutelsat 36')) return blob.includes('eutelsat 36') || orbit.includes('36e');
+  if (s.includes('astra')) return blob.includes('astra') || orbit.includes('19') || orbit.includes('28');
+  if (s.includes('amos')) return blob.includes('amos') || orbit.includes('4w');
+  if (s.includes('intelsat')) return blob.includes('intelsat') || orbit.includes('68');
+  if (s.includes('azerspace')) return blob.includes('azer') || orbit.includes('46e');
   return group.includes(s) || sat.includes(s) || orbit.includes(s);
 }
 
@@ -1721,7 +1777,14 @@ function satelliteLabel(value) {
   const n = normalizeText(v);
   if (n.includes('nilesat') || n.includes('7w') || n.includes('8w')) return 'نايل سات';
   if (n.includes('arabsat') || n.includes('badr') || n.includes('26e')) return 'عربسات / بدر';
-  if (n.includes('25e')) return 'سهيل سات';
+  if (n.includes('eshail') || n.includes('25e')) return 'سهيل سات';
+  if (n.includes('hot bird') || n.includes('13e')) return 'هوت بيرد';
+  if (n.includes('turksat') || n.includes('turk') || n.includes('42e')) return 'تركسات';
+  if (n.includes('yahsat') || n.includes('52')) return 'ياه سات';
+  if (n.includes('hellas') || n.includes('39e')) return 'هيلاس سات';
+  if (n.includes('astra')) return 'أسترا';
+  if (n.includes('amos')) return 'أموس';
+  if (n.includes('intelsat')) return 'إنتلسات';
   return v || '-';
 }
 
@@ -2147,21 +2210,23 @@ function hideFrequencySuggestions(){const box=document.getElementById('frequency
 function renderFrequencySuggestions(){hideFrequencySuggestions();}
 window.applyFrequencySuggestion=function(value){const input=document.getElementById('frequencySearch');if(input){input.value=String(value || '');input.focus();}exactPackageMode=null;hideFrequencySuggestions();frequencyVisibleLimit=FREQUENCY_SEARCH_LIMIT;window.renderFrequencies();};
 function initFrequencyFeature(){if(initFrequencyFeature.done)return;initFrequencyFeature.done=true;
-  buildAutomaticFrequencyFilters();
-  // Warm up cached channel lists once so typing stays responsive.
-  DATA.forEach(splitChannels);
-  const input = document.getElementById('frequencySearch');
-  if (input) {
-    input.value = '';
-    input.defaultValue = '';
-    input.setAttribute('placeholder', '');
-    input.setAttribute('autocomplete', 'off');
-    input.addEventListener('input', function(){ exactPackageMode = null; scheduleFrequencySearch(); });
-    input.addEventListener('keydown', function(e){ if (e.key === 'Escape') hideFrequencySuggestions(); });
-  }
-  const sat = document.getElementById('frequencySatellite');
-  if (sat) sat.addEventListener('change', function(){ frequencyVisibleLimit = FREQUENCY_INITIAL_LIMIT; window.renderFrequencies(); });
-  setTimeout(function(){ window.renderFrequencies(); }, 0);
+  Promise.resolve(loadLiveFrequencyData()).finally(function(){
+    buildAutomaticFrequencyFilters();
+    // Warm up cached channel lists once so typing stays responsive.
+    DATA.forEach(splitChannels);
+    const input = document.getElementById('frequencySearch');
+    if (input) {
+      input.value = '';
+      input.defaultValue = '';
+      input.setAttribute('placeholder', '');
+      input.setAttribute('autocomplete', 'off');
+      input.addEventListener('input', function(){ exactPackageMode = null; scheduleFrequencySearch(); });
+      input.addEventListener('keydown', function(e){ if (e.key === 'Escape') hideFrequencySuggestions(); });
+    }
+    const sat = document.getElementById('frequencySatellite');
+    if (sat) sat.addEventListener('change', function(){ frequencyVisibleLimit = FREQUENCY_INITIAL_LIMIT; window.renderFrequencies(); });
+    setTimeout(function(){ window.renderFrequencies(); }, 0);
+  });
 }
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initFrequencyFeature);}else{initFrequencyFeature();}
 })();

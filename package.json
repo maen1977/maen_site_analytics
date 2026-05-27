@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Anonymous 24-hour visitor analytics for Maen Hanouneh website on Netlify.",
+  "description": "Anonymous visitor analytics and daily frequency update monitor for Maen Hanouneh website on Netlify.",
   "scripts": {
     "dev": "netlify dev",
-    "check": "node --check netlify/functions/track-visit.mjs && node --check netlify/functions/analytics-report.mjs && node --check netlify/functions/daily-report.mjs && node --check netlify/functions/send-test-email.mjs"
+    "check": "node --check netlify/functions/track-visit.mjs && node --check netlify/functions/analytics-report.mjs && node --check netlify/functions/daily-report.mjs && node --check netlify/functions/send-test-email.mjs && node --check netlify/functions/frequency-data.mjs && node --check netlify/functions/update-frequencies.mjs && node --check netlify/functions/run-frequency-update.mjs && node --check netlify/functions/frequency-update-report.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "latest",
