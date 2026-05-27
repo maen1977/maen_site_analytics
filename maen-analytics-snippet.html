@@ -1,0 +1,59 @@
+<!-- MAEN_ANONYMOUS_ANALYTICS_2026_05_27 -->
+<script>
+(function () {
+  "use strict";
+  var endpoint = "/.netlify/functions/track-visit";
+
+  try {
+    var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.msDoNotTrack === "1";
+    if (dnt) return;
+
+    var visitorKey = "maen_anon_visitor_id";
+    var visitorId = localStorage.getItem(visitorKey);
+    if (!visitorId) {
+      visitorId = "v_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 14);
+      localStorage.setItem(visitorKey, visitorId);
+    }
+
+    var sessionKey = "maen_anon_session";
+    var now = Date.now();
+    var session;
+    try { session = JSON.parse(sessionStorage.getItem(sessionKey) || "null"); } catch (e) { session = null; }
+    if (!session || !session.id || (now - (session.ts || 0)) > 30 * 60 * 1000) {
+      session = { id: "s_" + now.toString(36) + "_" + Math.random().toString(36).slice(2, 12), ts: now };
+    } else {
+      session.ts = now;
+    }
+    sessionStorage.setItem(sessionKey, JSON.stringify(session));
+
+    var payload = {
+      visitorId: visitorId,
+      sessionId: session.id,
+      page: location.pathname + location.search + location.hash,
+      title: document.title || "",
+      device: window.matchMedia && window.matchMedia("(max-width: 900px)").matches ? "mobile" : "desktop",
+      lang: document.documentElement.getAttribute("lang") || navigator.language || "ar",
+      referrer: document.referrer || "",
+      timezone: (Intl.DateTimeFormat().resolvedOptions().timeZone || ""),
+      screen: (screen && screen.width && screen.height) ? (screen.width + "x" + screen.height) : "",
+      ts: new Date().toISOString()
+    };
+
+    var body = JSON.stringify(payload);
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(endpoint, new Blob([body], { type: "application/json" }));
+    } else {
+      fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: body,
+        keepalive: true,
+        credentials: "omit"
+      }).catch(function () {});
+    }
+  } catch (e) {
+    // Silent by design: analytics must never break the customer-facing site.
+  }
+})();
+</script>
+<!-- /MAEN_ANONYMOUS_ANALYTICS_2026_05_27 -->

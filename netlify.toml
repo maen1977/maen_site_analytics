@@ -1,0 +1,19 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+[build.environment]
+  ANALYTICS_SALT = "maen_salt_QdR6giPgFL34jkQupY84s4gtNyFxYTAQk2HetFjXMv"
+  ANALYTICS_ADMIN_TOKEN = "maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT"
+  ANALYTICS_TIMEZONE = "Asia/Amman"
+  REPORT_EMAIL = "maenish@gmail.com"
+  REPORT_FROM = "Maen Analytics <onboarding@resend.dev>"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Runs daily at 21:05 UTC, roughly 00:05 in Jordan when the timezone is UTC+3.
+# The function itself uses ANALYTICS_TIMEZONE to decide which local day to report.
+[functions."daily-report"]
+  schedule = "5 21 * * *"

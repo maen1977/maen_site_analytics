@@ -1,0 +1,23 @@
+إعداد إرسال التقرير اليومي على الإيميل
+
+تمت إضافة إرسال الإيميل داخل الكود بالكامل.
+إيميل الاستلام مضبوط على:
+
+maenish@gmail.com
+
+المتبقي فقط بعد الرفع على Netlify:
+1) افتح لوحة Netlify للموقع.
+2) ادخل إلى Site configuration ثم Environment variables.
+3) أضف هذا المتغير:
+
+RESEND_API_KEY=ضع_مفتاح_Resend_هنا
+
+4) بعد الحفظ، اعمل Deploy جديد أو Trigger deploy.
+5) جرّب الإرسال من هذا الرابط بعد استبدال YOUR-SITE باسم موقعك:
+
+https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+لو ظهر في نتيجة الاختبار sent: true فكل شيء يعمل.
+لو لم يصل الإيميل، افحص Inbox و Spam، وتأكد أن REPORT_FROM موثق داخل Resend إذا استخدمت بريدًا غير onboarding@resend.dev.
+
+التقرير المجدول سيعمل يوميًا حسب netlify.toml.

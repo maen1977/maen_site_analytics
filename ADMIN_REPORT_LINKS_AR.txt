@@ -1,0 +1,24 @@
+معلومات التقرير الخاصة — لا ترفع هذا الملف داخل مجلد public
+
+رابط التقرير بعد نشر الموقع على Netlify:
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+تقرير أمس:
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+تقرير JSON:
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?format=json&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+رابط اختبار إرسال التقرير إلى الإيميل بعد إضافة RESEND_API_KEY:
+https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+إيميل استلام التقرير مضبوط في الحزمة على:
+maenish@gmail.com
+
+كلمة سر التقرير / التوكن:
+maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+ملاحظة مهمة:
+كود إرسال الإيميل مضاف بالكامل، و REPORT_EMAIL مضاف.
+حتى يبدأ الإرسال فعليًا يجب إضافة RESEND_API_KEY في Netlify Environment Variables.
+لا تضع مفتاح Resend داخل public أو داخل HTML.
