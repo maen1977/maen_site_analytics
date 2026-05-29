@@ -1,9 +1,9 @@
-إعداد إرسال التقرير اليومي على الإيميل
+إعداد إرسال التقرير الأسبوعي على الإيميل
 
 تمت إضافة إرسال الإيميل داخل الكود بالكامل.
 إيميل الاستلام مضبوط على:
 
-maenish@gmail.com
+maenish_ai@proton.me
 
 المتبقي فقط بعد الرفع على Netlify:
 1) افتح لوحة Netlify للموقع.
@@ -20,4 +20,4 @@ https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admi
 لو ظهر في نتيجة الاختبار sent: true فكل شيء يعمل.
 لو لم يصل الإيميل، افحص Inbox و Spam، وتأكد أن REPORT_FROM موثق داخل Resend إذا استخدمت بريدًا غير onboarding@resend.dev.
 
-التقرير المجدول سيعمل يوميًا حسب netlify.toml.
+التقرير المجدول سيعمل أسبوعيًا حسب netlify.toml.

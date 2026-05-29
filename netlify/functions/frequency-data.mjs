@@ -1,4 +1,4 @@
-import { FREQUENCY_DATA_KEY, getFrequencyStore, jsonResponse, readBaselineData, readSources, JORDAN_MENA_SATELLITES } from "./_frequency-utils.mjs";
+import { FREQUENCY_DATA_KEY, FREQUENCY_DATA_VERSION, getFrequencyStore, jsonResponse, readBaselineData, readSources, JORDAN_MENA_SATELLITES } from "./_frequency-utils.mjs";
 
 export default async function handler(req) {
   try {
@@ -9,7 +9,7 @@ export default async function handler(req) {
     }
     const store = getFrequencyStore();
     const live = await store.get(FREQUENCY_DATA_KEY, { type: "json", consistency: "strong" });
-    if (live && Array.isArray(live.items) && live.items.length) {
+    if (live && Array.isArray(live.items) && live.items.length && live.version === FREQUENCY_DATA_VERSION) {
       return jsonResponse({ ...live, satellites: JORDAN_MENA_SATELLITES, servedFrom: "netlify-blobs" });
     }
     const baseline = await readBaselineData();

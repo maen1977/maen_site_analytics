@@ -3,7 +3,10 @@
 رابط التقرير بعد نشر الموقع على Netlify:
 https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
 
-تقرير أمس:
+تقرير أسبوعي لآخر 7 أيام:
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+تقرير أمس، عند الحاجة:
 https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
 
 تقرير JSON:
@@ -13,7 +16,7 @@ https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?format=json&to
 https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
 
 إيميل استلام التقرير مضبوط في الحزمة على:
-maenish@gmail.com
+maenish_ai@proton.me
 
 كلمة سر التقرير / التوكن:
 maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT

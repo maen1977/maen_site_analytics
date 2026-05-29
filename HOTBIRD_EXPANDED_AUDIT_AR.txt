@@ -1,0 +1,14 @@
+HOT BIRD EXPANDED AUDIT - 2026-05-28
+
+تم تصحيح ملاحظة الهوت بيرد:
+- النسخة السابقة كانت تحتوي 3 ترددات RAI فقط، وهذا كان seed/عينة وليس تغطية للهوت بيرد.
+- النسخة الحالية استبدلت صفوف Hot Bird القديمة بـ 57 تردد/ترانسبوندر قابل للبحث.
+- عدد أسماء القنوات/الخدمات التمثيلية داخل Hot Bird الآن: 330.
+- تم تحديث public/frequencies/frequency-data.json و netlify/frequency-baseline.json ونسخ embedded backup داخل index.html و index_phone.html.
+
+مصادر التدقيق المستخدمة:
+- KingOfSat Hot Bird 13F/13G 13E
+- LyngSat Hotbird 13F/13G
+
+ملاحظة أمان بيانات:
+هذه قاعدة موسعة قابلة للبحث وليست dump كامل لكل PID/كل خدمة فرعية على القمر. لكنها لم تعد عينة 3 ترددات، وتغطي باقات RAI, Sky Italia, Polsat, Canal+, Nova, Kabelio, Globecast, du Arabic, Saudi, Al Jazeera وغيرها.

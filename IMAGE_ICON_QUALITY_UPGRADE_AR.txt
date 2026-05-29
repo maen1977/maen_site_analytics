@@ -1,0 +1,50 @@
+تقرير رفع جودة الصور والأيقونات داخل الموقع
+===========================================
+
+تم العمل على الواجهة والصور فقط. لم يتم تعديل داتا الترددات أو روابط السوفتوير أو محتوى الأقسام.
+
+عدد الصور/الخلفيات المضمّنة التي تم استخراجها وتحويلها إلى ملفات HQ قابلة للكاش: 32
+المجلد الجديد: public/assets/images-hq/
+مجلد أيقونات الموقع الجديد: public/assets/icons/
+
+التحسينات المنفذة:
+- استخراج الصور من Base64 داخل HTML إلى ملفات WebP/SVG عالية الجودة.
+- إعادة معالجة الصور بحدة/تباين خفيفين بدون تغيير محتوى الصور.
+- ترقية الشعارات الصغيرة إلى مقاس Retina عالي قبل الحفظ.
+- استبدال الإيموجي في أزرار الواجهة بأيقونات SVG حادة لا تتبكسل.
+- إضافة favicon و Apple touch icon بجودة عالية.
+- تحسين CSS عرض الصور داخل الكروت واللايت بوكس.
+
+تفصيل الصور:
+01. معن حنونة للستلايت | (1536, 1536) -> (1536, 1536) | 24.4KB -> 234.6KB | assets/images-hq/01-maen-hanouneh-satellite-fbae01986e.webp
+02. hero-background | (942, 1536) -> (942, 1536) | 94.7KB -> 164.9KB | assets/images-hq/02-hero-background-47fbc1b324.webp
+03. Spider T700 Elite 5G | (1536, 1536) -> (1536, 1536) | 179.8KB -> 1811.6KB | assets/images-hq/03-spider-t700-elite-5g-71d9dcbf06.webp
+04. Spider V300 Pro Gold 5G | (1536, 1536) -> (1536, 1536) | 179.6KB -> 1552.1KB | assets/images-hq/04-spider-v300-pro-gold-5g-e51ad5d94d.webp
+05. Majestic M900 Plus 5G | (983, 1536) -> (983, 1536) | 82.1KB -> 192.7KB | assets/images-hq/05-majestic-m900-plus-5g-b78b5d6a0c.webp
+06. Majestic M880 Eagle | (983, 1536) -> (983, 1536) | 72.7KB -> 175.8KB | assets/images-hq/06-majestic-m880-eagle-29298b5c8b.webp
+07. Majestic M990 Black Edition 5G | (967, 1536) -> (967, 1536) | 90.4KB -> 214.7KB | assets/images-hq/07-majestic-m990-black-edition-5g-f01a16789c.webp
+08. Gazal 66 Turbo | (1229, 1536) -> (1229, 1536) | 149.8KB -> 333.7KB | assets/images-hq/08-gazal-66-turbo-64e5b84087.webp
+09. Gazal 701 Titanium Forever | (1536, 1536) -> (1536, 1536) | 174.2KB -> 377.0KB | assets/images-hq/09-gazal-701-titanium-forever-a79db45aa0.webp
+10. Majestic M500 Gold | (1536, 1536) -> (1536, 1536) | 106.4KB -> 241.9KB | assets/images-hq/10-majestic-m500-gold-8070a78aeb.webp
+11. Gazal 7100 M Royal 5G | (1229, 1536) -> (1229, 1536) | 169.4KB -> 366.7KB | assets/images-hq/11-gazal-7100-m-royal-5g-00088c35c8.webp
+12. Gazal 8080 Turbo | (1223, 1536) -> (1223, 1536) | 111.5KB -> 252.1KB | assets/images-hq/12-gazal-8080-turbo-896ecceef2.webp
+13. لاقط غزال G1 | (1229, 1536) -> (1229, 1536) | 119.0KB -> 267.4KB | assets/images-hq/13-lnb-gazal-g1-c9cbe690d5.webp
+14. لاقط غزال KL-212A | (1229, 1536) -> (1229, 1536) | 121.3KB -> 252.9KB | assets/images-hq/14-lnb-gazal-kl-212a-f52b90760d.webp
+15. لاقط Gazal Super KL-415A | (1229, 1536) -> (1229, 1536) | 120.6KB -> 264.8KB | assets/images-hq/15-lnb-gazal-super-kl-415a-22cedf0e72.webp
+16. لاقط غزال Super KL-812A | (1152, 1536) -> (1152, 1536) | 147.8KB -> 309.2KB | assets/images-hq/16-lnb-gazal-super-kl-812a-5cc724876d.webp
+17. دايزك غزال سوبر KL-41C | (1229, 1536) -> (1229, 1536) | 145.8KB -> 325.3KB | assets/images-hq/17-diseqc-gazal-kl-41c-97efeefc8e.webp
+18. طبق استقبال Gazal 4K | (1229, 1536) -> (1229, 1536) | 133.2KB -> 245.7KB | assets/images-hq/18-dish-gazal-4k-04442276f3.webp
+19. صورة من أعمال التركيب والصيانة رقم 1 | (1152, 1536) -> (1152, 1536) | 132.9KB -> 307.4KB | assets/images-hq/19-work-works-install-maintenance-1-1e2b4a8874.webp
+20. صورة من أعمال التركيب والصيانة رقم 2 | (1152, 1536) -> (1152, 1536) | 110.9KB -> 249.2KB | assets/images-hq/20-work-works-install-maintenance-2-3f6cd5bffc.webp
+21. صورة من أعمال التركيب والصيانة رقم 3 | (1152, 1536) -> (1152, 1536) | 57.4KB -> 144.7KB | assets/images-hq/21-work-works-install-maintenance-3-0ce0ecd1d8.webp
+22. صورة من أعمال التركيب والصيانة رقم 4 | (1152, 1536) -> (1152, 1536) | 56.8KB -> 145.9KB | assets/images-hq/22-work-works-install-maintenance-4-2f40ea6b98.webp
+23. صورة من أعمال التركيب والصيانة رقم 5 | (1152, 1536) -> (1152, 1536) | 64.8KB -> 158.8KB | assets/images-hq/23-work-works-install-maintenance-5-92ecde9560.webp
+24. صورة من أعمال التركيب والصيانة رقم 6 | (1152, 1536) -> (1152, 1536) | 134.2KB -> 308.3KB | assets/images-hq/24-work-works-install-maintenance-6-4ccdf0e80f.webp
+25. صورة من أعمال التركيب والصيانة رقم 7 | (1152, 1536) -> (1152, 1536) | 137.0KB -> 305.3KB | assets/images-hq/25-work-works-install-maintenance-7-8a0a6e1ab5.webp
+26. صورة من أعمال التركيب والصيانة رقم 8 | (1152, 1536) -> (1152, 1536) | 113.6KB -> 264.1KB | assets/images-hq/26-work-works-install-maintenance-8-3ba4d31d93.webp
+27. صورة من أعمال التركيب والصيانة رقم 9 | (1152, 1536) -> (1152, 1536) | 208.4KB -> 443.6KB | assets/images-hq/27-work-works-install-maintenance-9-b6577e8dbd.webp
+28. صورة من أعمال التركيب والصيانة رقم 10 | (1152, 1536) -> (1152, 1536) | 287.4KB -> 588.0KB | assets/images-hq/28-work-works-install-maintenance-10-f7b6dad90e.webp
+29. Spider Sat logo | (225, 225) -> (1024, 1024) | 4.5KB -> 203.7KB | assets/images-hq/29-spider-sat-logo-ad2aca20f3.webp
+30. Gazal Receiver logo | (225, 225) -> (1024, 1024) | 3.1KB -> 233.0KB | assets/images-hq/30-gazal-receiver-logo-7256fe1b72.webp
+31. Infinity SAT logo | (1280, 720) -> (1280, 720) | 23.9KB -> 196.8KB | assets/images-hq/31-infinity-sat-logo-06b0af5779.webp
+32. image-32 | ('svg', 'svg') -> ('svg', 'svg') | 0.3KB -> 0.3KB | assets/images-hq/32-image-32-e0425f2812.svg

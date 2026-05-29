@@ -7,7 +7,7 @@ import {
 } from "./_analytics-utils.mjs";
 
 export default async function handler(req) {
-  // Netlify scheduled functions run in UTC, while the report date is calculated in ANALYTICS_TIMEZONE.
+  // Manual fallback: the scheduled email report now uses weekly-report.mjs. This still generates yesterday's one-day report if opened manually.
   const date = previousLocalDateKey(new Date());
   const summary = await aggregateDate(date);
   await saveReport(summary);

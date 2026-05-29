@@ -173,10 +173,64 @@ export async function aggregateDate(dateKey) {
   };
 }
 
+export async function aggregateDateRange(startDateKey, endDateKey) {
+  const visitors = new Set();
+  const sessions = new Set();
+  const device = {};
+  const pages = {};
+  const referrers = {};
+  const hours = {};
+  const languages = {};
+  const dates = [];
+  let totalPageviews = 0;
+
+  for (let dateKey = startDateKey; dateKey <= endDateKey; dateKey = shiftDateKey(dateKey, 1)) {
+    dates.push(dateKey);
+    const records = await listRecordsForDate(dateKey);
+    totalPageviews += records.length;
+    for (const r of records) {
+      if (r.visitorHash) visitors.add(r.visitorHash);
+      if (r.sessionHash) sessions.add(r.sessionHash);
+      const d = safeText(r.device || r.uaDevice || "unknown", 40) || "unknown";
+      const p = safePage(r.page || "/");
+      const ref = safeText(r.referrerHost || "direct", 120) || "direct";
+      const h = String(r.localHour || "00").padStart(2, "0").slice(0, 2);
+      const lang = safeText(r.lang || "unknown", 30) || "unknown";
+      device[d] = (device[d] || 0) + 1;
+      pages[p] = (pages[p] || 0) + 1;
+      referrers[ref] = (referrers[ref] || 0) + 1;
+      hours[h] = (hours[h] || 0) + 1;
+      languages[lang] = (languages[lang] || 0) + 1;
+    }
+  }
+
+  const periodLabel = `${startDateKey} إلى ${endDateKey}`;
+  return {
+    date: periodLabel,
+    period: "week",
+    periodKey: `week-${startDateKey}_${endDateKey}`,
+    periodLabel,
+    startDate: startDateKey,
+    endDate: endDateKey,
+    dates,
+    generatedAt: new Date().toISOString(),
+    timezone: analyticsTimezone(),
+    totalPageviews,
+    uniqueVisitors: visitors.size,
+    sessions: sessions.size,
+    devices: topEntries(device),
+    topPages: topEntries(pages),
+    referrers: topEntries(referrers),
+    hours: topEntries(hours, 24),
+    languages: topEntries(languages),
+    note: "تقرير أسبوعي يجمع آخر 7 أيام حسب توقيت الموقع. الأرقام مجهولة وتعتمد على معرف محلي مجهول داخل المتصفح. قد تختلف قليلًا إذا حذف الزائر بيانات المتصفح أو استخدم أكثر من جهاز."
+  };
+}
+
 export function reportText(summary) {
   const lines = [];
-  lines.push("تقرير زيارات موقع معن حنونة للستلايت");
-  lines.push(`التاريخ: ${summary.date}`);
+  lines.push(summary.period === "week" ? "تقرير زيارات أسبوعي لموقع معن حنونة للستلايت" : "تقرير زيارات موقع معن حنونة للستلايت");
+  lines.push(`${summary.period === "week" ? "الفترة" : "التاريخ"}: ${summary.periodLabel || summary.date}`);
   lines.push(`المنطقة الزمنية: ${summary.timezone}`);
   lines.push("");
   lines.push(`إجمالي فتح الصفحات: ${summary.totalPageviews}`);
@@ -221,13 +275,13 @@ export function reportHtml(summary) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تقرير زيارات ${escapeHtml(summary.date)}</title>
+<title>تقرير زيارات ${escapeHtml(summary.periodLabel || summary.date)}</title>
 <style>
 body{margin:0;background:#f8f5ed;color:#111;font-family:Tahoma,Arial,sans-serif;line-height:1.7}.wrap{max-width:980px;margin:auto;padding:28px}.card,section{background:#fff;border-radius:22px;box-shadow:0 14px 38px rgba(0,0,0,.08);padding:22px;margin:0 0 18px}h1{margin:0 0 8px;font-size:28px}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.kpi{background:#111;color:#fff;border-radius:18px;padding:18px}.kpi b{font-size:28px;display:block;color:#ffd23f}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #eee;padding:10px;text-align:right}th{background:#fafafa}@media(max-width:720px){.kpis{grid-template-columns:1fr}.wrap{padding:14px}}
 </style>
 </head>
 <body><main class="wrap">
-<div class="card"><h1>تقرير زيارات موقع معن حنونة للستلايت</h1><p>التاريخ: <b>${escapeHtml(summary.date)}</b> — المنطقة الزمنية: <b>${escapeHtml(summary.timezone)}</b></p><p>${escapeHtml(summary.note)}</p></div>
+<div class="card"><h1>${summary.period === "week" ? "تقرير زيارات أسبوعي لموقع معن حنونة للستلايت" : "تقرير زيارات موقع معن حنونة للستلايت"}</h1><p>${summary.period === "week" ? "الفترة" : "التاريخ"}: <b>${escapeHtml(summary.periodLabel || summary.date)}</b> — المنطقة الزمنية: <b>${escapeHtml(summary.timezone)}</b></p><p>${escapeHtml(summary.note)}</p></div>
 <div class="kpis"><div class="kpi">فتح الصفحات<b>${summary.totalPageviews}</b></div><div class="kpi">الزوار التقريبيون<b>${summary.uniqueVisitors}</b></div><div class="kpi">الجلسات<b>${summary.sessions}</b></div></div>
 ${table("حسب الجهاز", summary.devices)}
 ${table("أكثر الصفحات زيارة", summary.topPages)}
@@ -239,7 +293,7 @@ ${table("اللغات", summary.languages)}
 
 export async function saveReport(summary) {
   const store = getStoreSafe();
-  await store.setJSON(`reports/${summary.date}.json`, summary);
+  await store.setJSON(`reports/${summary.periodKey || summary.date}.json`, summary);
 }
 
 export async function sendEmailReport(summary) {
@@ -250,7 +304,7 @@ export async function sendEmailReport(summary) {
     return { sent: false, reason: "RESEND_API_KEY or REPORT_EMAIL is not configured" };
   }
 
-  const subject = `تقرير زيارات موقع معن حنونة - ${summary.date}`;
+  const subject = `${summary.period === "week" ? "تقرير زيارات أسبوعي" : "تقرير زيارات موقع معن حنونة"} - ${summary.periodLabel || summary.date}`;
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {

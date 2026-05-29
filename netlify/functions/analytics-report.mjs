@@ -1,5 +1,6 @@
 import {
   aggregateDate,
+  aggregateDateRange,
   jsonResponse,
   localDateKey,
   previousLocalDateKey,
@@ -34,7 +35,10 @@ export default async function handler(req) {
 
   const url = new URL(req.url);
   const date = resolveDate(req);
-  const summary = await aggregateDate(date);
+  const period = url.searchParams.get("period") || "day";
+  const summary = period === "week"
+    ? await aggregateDateRange(shiftDateKey(date, -6), date)
+    : await aggregateDate(date);
   const format = url.searchParams.get("format") || "html";
 
   if (format === "json") return jsonResponse(summary);

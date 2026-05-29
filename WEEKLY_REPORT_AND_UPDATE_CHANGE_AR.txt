@@ -1,0 +1,28 @@
+تعديل الجدولة إلى أسبوعي - 2026-05-28
+
+تم تعديل التقارير والتحديثات من يومي إلى أسبوعي:
+
+1) تقرير الزيارات
+- أضيف ملف `netlify/functions/weekly-report.mjs`.
+- التقرير المجدول صار يجمع آخر 7 أيام كاملة، وليس يومًا واحدًا فقط.
+- الجدولة: كل أحد 21:05 UTC، تقريبًا الاثنين 00:05 بتوقيت الأردن عند UTC+3.
+- الرابط اليدوي للتقرير الأسبوعي:
+  /.netlify/functions/analytics-report?period=week&token=YOUR_TOKEN
+
+2) تحديث الترددات
+- تم تعديل `netlify/functions/update-frequencies.mjs` إلى جدولة أسبوعية.
+- الجدولة: كل أحد 20:30 UTC، تقريبًا الأحد 23:30 بتوقيت الأردن عند UTC+3.
+- التحديث اليدوي عبر `run-frequency-update` ما زال متاحًا بأي وقت.
+
+3) الملفات المعدلة
+- netlify.toml
+- netlify/functions/weekly-report.mjs
+- netlify/functions/update-frequencies.mjs
+- netlify/functions/_analytics-utils.mjs
+- netlify/functions/_frequency-utils.mjs
+- netlify/functions/analytics-report.mjs
+- README_AR.md
+- FREQUENCY_UPDATE_SETUP_AR.md
+- EMAIL_REPORT_SETUP_AR.txt
+- ADMIN_REPORT_LINKS_AR.txt
+- package.json

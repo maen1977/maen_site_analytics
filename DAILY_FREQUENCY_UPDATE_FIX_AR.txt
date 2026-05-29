@@ -1,0 +1,24 @@
+إصلاح التحديث الأسبوعي للترددات - 2026-05-28
+
+المشكلة التي وُجدت:
+1) الجدولة موجودة فعلًا في netlify.toml على update-frequencies كل يوم الساعة 20:30 UTC، تقريبًا 23:30 بتوقيت الأردن.
+2) لكن الكود كان يفحص كل مصادر الترددات بالتسلسل واحدًا واحدًا. ومع وجود 35 مصدرًا وحد Netlify Scheduled Functions القصير، قد تنتهي الوظيفة قبل فحص كل الأقمار.
+3) كذلك مصادر baseline-refresh للأقمار غير الرسمية كانت تُستخدم كمرجع/تدقيق فقط تقريبًا، وليست تحديثًا تلقائيًا كاملًا.
+
+ما تم تعديله:
+- جعل فحص المصادر يعمل بالتوازي مع حد آمن بدل التسلسل.
+- تقليل مهلة المصدر الافتراضية إلى 8 ثوانٍ حتى لا يعلق التحديث الأسبوعي.
+- اعتماد مصادر baseline-refresh الموثوقة ضمن التحديث التلقائي لكل الأقمار.
+- إضافة export const config = { schedule: "30 20 * * *" } داخل update-frequencies.mjs بجانب netlify.toml.
+- تحديث ملاحظة التقرير اليومي لتوضيح آلية العمل.
+
+بعد النشر:
+- يجب أن تظهر دالة update-frequencies في Netlify وعليها Scheduled badge.
+- يمكن تشغيل التحديث يدويًا من:
+  /.netlify/functions/run-frequency-update?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+- تقرير آخر تحديث من:
+  /.netlify/functions/frequency-update-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+
+
+ملاحظة لاحقة 2026-05-28:
+تم استبدال الجدولة اليومية بجدولة أسبوعية بناءً على الطلب. الملف التاريخي يشرح إصلاح آلية التحديث، أما الجدولة الحالية فهي أسبوعية في netlify.toml و update-frequencies.mjs.

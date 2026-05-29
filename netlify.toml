@@ -14,12 +14,12 @@
   node_bundler = "esbuild"
   included_files = ["netlify/frequency-sources.json", "netlify/frequency-baseline.json"]
 
-# Runs daily at 21:05 UTC, roughly 00:05 in Jordan when the timezone is UTC+3.
-# The function itself uses ANALYTICS_TIMEZONE to decide which local day to report.
-[functions."daily-report"]
-  schedule = "5 21 * * *"
+# Runs weekly every Sunday at 21:05 UTC, roughly Monday 00:05 in Jordan when the timezone is UTC+3.
+# The report covers the last complete 7 local dates.
+[functions."weekly-report"]
+  schedule = "5 21 * * 0"
 
-# Runs daily at 20:30 UTC, roughly 23:30 in Jordan when the timezone is UTC+3.
-# This updates the frequency database before the visitor analytics email runs.
+# Runs weekly every Sunday at 20:30 UTC, roughly 23:30 in Jordan when the timezone is UTC+3.
+# This updates the frequency database before the weekly visitor analytics email runs.
 [functions."update-frequencies"]
-  schedule = "30 20 * * *"
+  schedule = "30 20 * * 0"

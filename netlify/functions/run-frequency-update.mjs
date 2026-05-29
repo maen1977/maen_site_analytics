@@ -5,5 +5,5 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const sendEmail = url.searchParams.get("email") !== "0";
   const { payload, report, email } = await runFrequencyUpdate({ sendEmail });
-  return jsonResponse({ ok: true, updatedAt: payload.updatedAt, count: payload.count, changes: payload.changes, sourceResults: payload.sourceResults, reviewedOnly: payload.reviewedOnly.slice(0, 20), report, email });
+  return jsonResponse({ ok: true, updatedAt: payload.updatedAt, count: payload.count, groupCounts: payload.groupCounts, changes: payload.changes, sourceResults: payload.sourceResults, reviewedOnly: payload.reviewedOnly.slice(0, 20), report, email });
 }

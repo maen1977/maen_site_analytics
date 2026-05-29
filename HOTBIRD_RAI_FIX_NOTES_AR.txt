@@ -1,0 +1,14 @@
+تم إصلاح مشكلة ظهور Hot Bird فارغاً في قسم الترددات.
+
+ما الذي تغير؟
+- أُضيفت 3 ترددات مراجعة يدوية لقنوات RAI على Hot Bird 13E:
+  1) 10992 V 27500 2/3 DVB-S: Rai Yoyo, Rai Radio 2 Visual, Rai Storia, Rai Scuola, Rai Premium
+  2) 11013 H 29900 3/4 DVB-S2 8PSK: Rai News 24, Rai Gulp, Rai Sport, Rai 5
+  3) 11766 V 29900 3/4 DVB-S2 8PSK: Rai 1 HD, Rai 2 HD, Rai 3 HD, Rai 4 HD, Rai Movie HD
+- تم تحديث النسخة المضمنة داخل index.html و index_phone.html.
+- تم تحديث public/frequencies/frequency-data.json و netlify/frequency-baseline.json.
+- تم تحسين مصدر LyngSat إلى الصفحة الجامعة Hotbird 13F/13G.
+
+اختبار سريع بعد النشر:
+افتح #frequencies > اختار هوت بيرد 13E > ابحث عن rai
+المفروض تظهر نتائج RAI مباشرة.
