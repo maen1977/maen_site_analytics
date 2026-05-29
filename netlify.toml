@@ -1,25 +1,27 @@
 [build]
   publish = "public"
-  functions = "netlify/functions"
 
-[build.environment]
-  ANALYTICS_SALT = "maen_salt_QdR6giPgFL34jkQupY84s4gtNyFxYTAQk2HetFjXMv"
-  ANALYTICS_ADMIN_TOKEN = "maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT"
-  ANALYTICS_TIMEZONE = "Asia/Amman"
-  REPORT_EMAIL = "maenish_ai@proton.me"
-  REPORT_FROM = "Maen Analytics <onboarding@resend.dev>"
+# Netlify is now a static hosting target only.
+# Daily frequency updates and email reports run from GitHub Actions.
+# Visitor tracking is sent to Cloudflare Pages Function /api/track-visit.
 
-[functions]
-  directory = "netlify/functions"
-  node_bundler = "esbuild"
-  included_files = ["netlify/frequency-sources.json", "netlify/frequency-baseline.json"]
+# Static API compatibility for the website's frequency data.
+[[redirects]]
+  from = "/api/frequency-data"
+  to = "/frequencies/frequency-data.json"
+  status = 200
+  force = true
 
-# Runs weekly every Sunday at 21:05 UTC, roughly Monday 00:05 in Jordan when the timezone is UTC+3.
-# The report covers the last complete 7 local dates.
-[functions."weekly-report"]
-  schedule = "5 21 * * 0"
+# Optional compatibility: if an older cached page posts to Netlify /api/track-visit,
+# proxy it to the Cloudflare tracking endpoint instead of running Netlify Functions.
+[[redirects]]
+  from = "/api/track-visit"
+  to = "https://maensat.pages.dev/api/track-visit"
+  status = 200
+  force = true
 
-# Runs weekly every Sunday at 20:30 UTC, roughly 23:30 in Jordan when the timezone is UTC+3.
-# This updates the frequency database before the weekly visitor analytics email runs.
-[functions."update-frequencies"]
-  schedule = "30 20 * * 0"
+[[redirects]]
+  from = "/api/submit-report"
+  to = "https://maensat.pages.dev/api/submit-report"
+  status = 200
+  force = true

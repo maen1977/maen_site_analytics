@@ -1,0 +1,19 @@
+# Example only. Cloudflare Pages Git deployments normally configure bindings from the Dashboard.
+# In the hosting-first setup, Cloudflare Pages hosts the site and only runs /api/track-visit.
+name = "maensat-pages"
+compatibility_date = "2026-05-29"
+pages_build_output_dir = "public"
+
+[vars]
+ANALYTICS_TIMEZONE = "Asia/Amman"
+# Optional: restrict browser tracking requests to your domains.
+# ALLOWED_ORIGIN = "https://maensat.pages.dev"
+
+# Put real secrets in Cloudflare Dashboard, not in Git:
+# ANALYTICS_SALT
+
+# D1 binding required for /api/track-visit:
+# [[d1_databases]]
+# binding = "MAEN_DB"
+# database_name = "maen_analytics"
+# database_id = "replace-with-your-d1-database-id"

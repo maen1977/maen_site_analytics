@@ -1,0 +1,21 @@
+{
+  "region": "MENA / Middle East",
+  "official_sources": [
+    { "name": "Nilesat Channel Search", "type": "satellite-operator", "trust": "official", "url": "https://nilesat.org/channels/" },
+    { "name": "Arabsat Channels", "type": "satellite-operator", "trust": "official", "url": "https://www.arabsat.com/arabsat-channels/" },
+    { "name": "Es'hailSat Channels", "type": "satellite-operator", "trust": "official", "url": "https://www.eshailsat.qa/channels/" },
+    { "name": "Eutelsat News", "type": "satellite-operator-news", "trust": "official", "url": "https://www.mynewsdesk.com/eutelsat/latest_news" },
+    { "name": "beIN Frequencies", "type": "official-channel-frequency", "trust": "official", "url": "https://www.bein.com/en/frequencies/" }
+  ],
+  "comparison_sources": [
+    { "name": "LyngSat", "type": "comparison", "trust": "high-comparison", "url": "https://www.lyngsat.com/" },
+    { "name": "KingOfSat", "type": "comparison", "trust": "comparison", "url": "https://www.kingofsat.net/" },
+    { "name": "FlySat Middle East", "type": "comparison", "trust": "comparison", "url": "https://www.flysat.com/en/regions/middle-east" }
+  ],
+  "publishing_rules": [
+    "Official source wins over comparison sources.",
+    "Sports/free-to-air claims require official source or manual review.",
+    "Visitor reports are displayed only after review or as anonymous counts in the daily email.",
+    "No illegal IPTV links, credentials, playlists, or access instructions are published."
+  ]
+}

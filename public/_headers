@@ -1,0 +1,26 @@
+# Cache rules for Cloudflare Pages and Netlify
+# Keep optimized images cached for repeat visitors. Filenames include hashes, so this is safe.
+/assets/images-optimized/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/images-hq/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Frequency data changes daily through GitHub Actions, so keep it fresh.
+/frequencies/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/updates/*
+  Cache-Control: public, max-age=300, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600

@@ -2057,7 +2057,7 @@ function renderStationCards(rows, mode) {
   const displayedEntries = entries.slice(0, STATION_CARD_LIMIT);
   const cards = displayedEntries.map(e => '<article class="station-card station-frequency-card">' +
     logoHtml(e.name) + '<div class="station-info"><h3>' + esc(e.name) + '</h3><div class="station-meta station-frequency-meta">' +
-    [meta('القمر:', satelliteLabel(e.item.satelliteGroup || '')), meta('المدار:', satelliteLabel(e.item.orbit || e.item.satellite || '')), meta('التردد:', e.item.frequency), meta('الاستقطاب:', e.item.pol), meta('SR:', e.item.sr), meta('النظام:', [e.item.system,e.item.mod].filter(Boolean).join(' / '))].join('') +
+    [meta('القمر:', satelliteLabel(e.item.satelliteGroup || '')), meta('المدار:', satelliteLabel(e.item.orbit || e.item.satellite || '')), meta('التردد:', e.item.frequency), meta('الاستقطاب:', e.item.pol), meta('SR:', e.item.sr), meta('FEC:', e.item.fec), meta('النظام:', [e.item.system,e.item.mod].filter(Boolean).join(' / '))].join('') +
     '</div></div></article>').join('');
   const titles = { frequency:'نتائج التردد', package:'فلتر باقة دقيق', namedChannel:'نتائج اسم القناة', category:(mode.category === 'christian' ? 'القنوات المسيحية المطابقة' : 'نتائج التصنيف'), country:'نتائج الدولة', countryCategory:'نتائج الدولة والتصنيف', countryPackage:'نتائج الدولة والباقة', free:'نتائج البحث' };
   container.innerHTML = '<div class="station-results-head"><strong>' + esc(titles[mode.type] || 'نتائج البحث') + '</strong><div class="station-results-head-side"><span>' + entries.length + ' قناة</span></div></div><div class="station-results-grid">' + cards + '</div>';

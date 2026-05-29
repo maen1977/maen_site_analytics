@@ -24,7 +24,7 @@ async function loadLiveFrequencyData(){
   const status = document.getElementById('frequencyLiveStatus');
   try {
     if (status) status.hidden = true;
-    const response = await fetch('/.netlify/functions/frequency-data', { cache: 'no-store' });
+    const response = await fetch('/frequencies/frequency-data.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('HTTP ' + response.status);
     const payload = await response.json();
     if (payload && Array.isArray(payload.items) && payload.items.length) {
@@ -479,9 +479,9 @@ function splitChannels(item) {
 // Per-channel encryption / FTA status helpers.
 // Keeps original frequency data intact: status is read from channelEncryption when present, otherwise inferred conservatively.
 const ENCRYPTION_STATUS_META = {
-  free: { label: 'مفتوحة / FTA', shortLabel: 'مفتوحة', icon: '🔓', note: 'تعمل على الرسيفر العادي بدون اشتراك عادةً.' },
-  encrypted: { label: 'مشفرة', shortLabel: 'مشفرة', icon: '🔒', note: 'لا تعمل على الرسيفر العادي إلا باشتراك/بطاقة أو نظام تشفير مناسب.' },
-  unknown: { label: 'غير مؤكد', shortLabel: 'غير مؤكد', icon: '؟', note: 'لم يتم تأكيد حالة التشفير من الداتا الحالية، لذلك لم نخمّن.' }
+  free: { label: 'مفتوحة / FTA', shortLabel: 'مفتوحة', icon: '🔓', note: '' },
+  encrypted: { label: 'مشفرة', shortLabel: 'مشفرة', icon: '🔒', note: '' },
+  unknown: { label: 'غير مؤكد', shortLabel: 'غير مؤكد', icon: '؟', note: '' }
 };
 const ENCRYPTION_PAY_PACKAGE_MARKERS = ['osn','bein','be in','polsat box','canal+','canal plus','canal+/polsat','canal+ polska','sky italia','sky deutschland','sky uk','nova greece','cosmote','vivacom','digitalb','tring','a1 croatia','a1 bulgaria','total tv','united media','telekom srbija','max tv','antik sat','afn europe','m7 / european','m7','nordic / baltic','d-smart','d smart','german private hd','orange romania','bulsatcom','trikolor','dstv','south asia entertainment','bis/polsat','bis / polsat','polsat','paramount','warner bros. discovery / tivùsat','warner bros discovery','tvn / nova','tvn warner','ukraine package','romanian hd package','kabelio','srg ssr','srg/ssr'];
 const ENCRYPTION_FREE_PACKAGE_MARKERS = ['fta','free to air','freesat','trt national package','turkish national fta','turkish news package','turkish music / regional','anatolia regional package','snrt morocco','dubai racing','saudi broadcasting authority','telespazio','arqiva','eutelsat / international','european fta / news','india fta / news','news / international','african religious package','israeli fta / radio','east europe fta','eutelsat 16a fta radios','azerspace international','azerspace regional','قنوات مسيحية','balkan fta / feeds','trt','turkish national','azer','russia / eurasia sports','international services','cctv/cgtn','cctv','cgtn'];
@@ -1224,8 +1224,8 @@ function renderStationCards(rows, mode) {
   function meta(label, value){ return '<span><em>'+esc(label)+'</em><strong>'+esc(value || '-')+'</strong></span>'; }
   const displayedEntries = entries.slice(0, STATION_CARD_LIMIT);
   const cards = displayedEntries.map(e => '<article class="station-card station-frequency-card">' +
-    logoHtml(e.name) + '<div class="station-info"><h3>' + esc(e.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(e.name, e.item) + '<span class="station-encryption-note">' + esc(getChannelEncryptionStatus(e.name, e.item).note) + '</span></div><div class="station-meta station-frequency-meta">' +
-    [meta('القمر:', satelliteLabel(e.item.satelliteGroup || '')), meta('الساتلايت:', physicalSatelliteLabel(e.item)), meta('المدار:', e.item.orbitalSlot || e.item.orbit || '-'), meta('التردد:', e.item.frequency), meta('الاستقطاب:', e.item.pol), meta('SR:', e.item.sr), meta('النظام:', [e.item.system,e.item.mod].filter(Boolean).join(' / '))].join('') +
+    logoHtml(e.name) + '<div class="station-info"><h3>' + esc(e.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(e.name, e.item) + '</div><div class="station-meta station-frequency-meta">' +
+    [meta('القمر:', satelliteLabel(e.item.satelliteGroup || '')), meta('المدار:', e.item.orbitalSlot || e.item.orbit || '-'), meta('التردد:', e.item.frequency), meta('الاستقطاب:', e.item.pol), meta('SR:', e.item.sr), meta('FEC:', e.item.fec), meta('النظام:', [e.item.system,e.item.mod].filter(Boolean).join(' / '))].join('') +
     '</div></div></article>').join('');
   const titles = { frequency:'نتائج التردد', package:'فلتر باقة دقيق', namedChannel:'نتائج اسم القناة', category:(mode.category === 'christian' ? 'القنوات المسيحية المطابقة' : 'نتائج التصنيف'), country:'نتائج الدولة', countryCategory:'نتائج الدولة والتصنيف', countryPackage:'نتائج الدولة والباقة', free:'نتائج البحث' };
   const serviceFilter = getFrequencyServiceFilter();
@@ -2186,7 +2186,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 
 (function () {
   "use strict";
-  var endpoint = "/.netlify/functions/track-visit";
+  var endpoint = window.MAEN_ANALYTICS_ENDPOINT || "https://maensat.pages.dev/api/track-visit";
 
   try {
     var dnt = navigator.doNotTrack === "1" || window.doNotTrack === "1" || navigator.msDoNotTrack === "1";
