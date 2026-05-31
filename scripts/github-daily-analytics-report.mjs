@@ -68,21 +68,6 @@ function visitDigest(row) {
   };
 }
 
-function visitorReportDigest(row) {
-  return {
-    time: safeText(row.ts, 30),
-    hour: safeText(row.local_hour || row.localHour || '', 8),
-    type: safeText(row.type || 'بلاغ', 40),
-    title: safeText(row.title || '', 180),
-    details: safeText(row.details || '', 700),
-    page: safePage(row.page || '/#updates'),
-    referrer: safeText(row.referrer_host || row.referrerHost || 'direct', 120),
-    country: safeText(row.country || 'unknown', 40),
-    region: safeText(row.region || '', 80),
-    city: safeText(row.city || '', 80),
-    status: safeText(row.status || 'new', 40)
-  };
-}
 
 function aggregateRows(rows, dateKey, timezone) {
   const visitors = new Set();
@@ -178,24 +163,10 @@ async function main() {
       throw error;
     }
   }
-  let visitorReports = [];
-  try {
-    visitorReports = await d1Query(`SELECT id, ts, local_date, local_hour, type, title, details, page, referrer_host, country, region, city, status FROM visitor_reports WHERE local_date = ? ORDER BY ts ASC`, [dateKey]);
-  } catch (error) {
-    const message = String(error && error.message || error).toLowerCase();
-    if (message.includes('no such table') || message.includes('visitor_reports')) {
-      console.warn('[analytics] visitor_reports table is not ready yet; continuing without visitor reports.');
-      visitorReports = [];
-    } else {
-      throw error;
-    }
-  }
   const summary = aggregateRows(rows, dateKey, timezone);
-  summary.visitorReports = visitorReports.slice(-50).reverse().map(visitorReportDigest);
-  summary.visitorReportCount = visitorReports.length;
   const email = await sendResend(summary);
-  console.log(`[analytics] Rows: ${rows.length}; visitor reports: ${visitorReports.length}; email: ${JSON.stringify(email)}`);
-  console.log(JSON.stringify({ ok: true, date: dateKey, totalPageviews: summary.totalPageviews, uniqueVisitors: summary.uniqueVisitors, visitorReportCount: summary.visitorReportCount, email }, null, 2));
+  console.log(`[analytics] Rows: ${rows.length}; email: ${JSON.stringify(email)}`);
+  console.log(JSON.stringify({ ok: true, date: dateKey, totalPageviews: summary.totalPageviews, uniqueVisitors: summary.uniqueVisitors, email }, null, 2));
 }
 
 main().catch(error => {

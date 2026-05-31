@@ -66,7 +66,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/frequencies/frequency-data.json public/frequencies/latest-frequency-update-report.json public/updates/latest-updates.json public/updates/manual-updates.json public/sitemap.xml public/robots.txt public/site.webmanifest public/updates.html public/frequencies.html public/maintenance.html public/devices.html netlify/frequency-baseline.json
+          git add public/frequencies/frequency-data.json public/frequencies/frequency-data.v*.json public/frequencies/frequency-manifest.json public/frequencies/search-index.json public/frequencies/latest-frequency-update-report.json public/updates/latest-updates.json public/updates/manual-updates.json public/sitemap.xml public/robots.txt public/site.webmanifest public/updates.html public/frequencies.html public/maintenance.html public/devices.html netlify/frequency-baseline.json
           if git diff --cached --quiet; then
             echo "No frequency changes to commit."
           else

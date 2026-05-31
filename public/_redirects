@@ -6,5 +6,4 @@
 # Cloudflare Pages still exposes only the lightweight visitor tracking endpoint.
 /.netlify/functions/track-visit /api/track-visit 200
 
-/api/submit-report https://maensat.pages.dev/api/submit-report 200
-/.netlify/functions/submit-report https://maensat.pages.dev/api/submit-report 200
+/api/search-feedback https://maensat.pages.dev/api/search-feedback 200

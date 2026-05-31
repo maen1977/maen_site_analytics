@@ -42,23 +42,25 @@ CREATE TABLE IF NOT EXISTS frequency_cache (
   updated_at TEXT NOT NULL
 );
 
--- Visitor reports submitted from the "آخر التحديثات" page.
-CREATE TABLE IF NOT EXISTS visitor_reports (
+
+-- Aggregated failed search terms. One row per local day + query + satellite + service filter.
+-- This avoids writing every keystroke and keeps Cloudflare D1 usage friendly for the free plan.
+CREATE TABLE IF NOT EXISTS failed_searches_daily (
   id TEXT PRIMARY KEY,
-  ts TEXT NOT NULL,
   local_date TEXT NOT NULL,
   local_hour TEXT,
-  type TEXT,
-  title TEXT,
-  details TEXT,
-  contact_hash TEXT,
+  query TEXT NOT NULL,
+  query_hash TEXT NOT NULL,
+  mode TEXT,
+  satellite TEXT,
+  service_filter TEXT,
   page TEXT,
   referrer_host TEXT,
   country TEXT,
-  region TEXT,
-  city TEXT,
-  status TEXT DEFAULT 'new'
+  hits INTEGER DEFAULT 1,
+  first_seen TEXT NOT NULL,
+  last_seen TEXT NOT NULL
 );
 
-CREATE INDEX IF NOT EXISTS idx_visitor_reports_local_date ON visitor_reports(local_date);
-CREATE INDEX IF NOT EXISTS idx_visitor_reports_status ON visitor_reports(status);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_failed_searches_daily_unique ON failed_searches_daily(local_date, query_hash, satellite, service_filter);
+CREATE INDEX IF NOT EXISTS idx_failed_searches_daily_date ON failed_searches_daily(local_date);

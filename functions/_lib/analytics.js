@@ -407,13 +407,6 @@ export function reportText(summary) {
     lines.push(`- ${v.time} | زائر ${v.visitor || "-"} | ${v.country}${v.city ? " / " + v.city : ""} | ${v.device} | ${v.page} | مصدر: ${v.referrer}`);
   }
   lines.push("");
-  if ((summary.visitorReports || []).length) {
-    lines.push("بلاغات الزوار لهذا اليوم:");
-    for (const r of summary.visitorReports.slice(0, 20)) {
-      lines.push(`- ${r.time || ""} | ${r.type || "بلاغ"} | ${r.title || "-"} | ${r.country || ""}${r.city ? " / " + r.city : ""} | ${r.details || ""}`);
-    }
-    lines.push("");
-  }
   lines.push("أكثر الساعات نشاطًا:");
   for (const item of summary.hours.slice(0, 8)) lines.push(`- الساعة ${item.name}: ${item.count}`);
   lines.push("");
@@ -444,12 +437,6 @@ function visitsTable(visits = []) {
   return `<section><h2>آخر الزيارات المسجلة</h2><table><thead><tr><th>الوقت</th><th>الزائر</th><th>الموقع التقريبي</th><th>الجهاز</th><th>الصفحة</th><th>المصدر</th></tr></thead><tbody>${body}</tbody></table></section>`;
 }
 
-function visitorReportsTable(reports = []) {
-  const body = reports.length
-    ? reports.slice(0, 30).map((r) => `<tr><td>${escapeHtml(r.time)}</td><td>${escapeHtml(r.type)}</td><td>${escapeHtml(r.title)}</td><td>${escapeHtml(r.details)}</td><td>${escapeHtml([r.country, r.city].filter(Boolean).join(" / "))}</td><td>${escapeHtml(r.page)}</td></tr>`).join("")
-    : `<tr><td colspan="6">لا توجد بلاغات زوار لهذا اليوم</td></tr>`;
-  return `<section><h2>بلاغات الزوار والملاحظات</h2><table><thead><tr><th>الوقت</th><th>النوع</th><th>العنوان</th><th>التفاصيل</th><th>الموقع التقريبي</th><th>الصفحة</th></tr></thead><tbody>${body}</tbody></table></section>`;
-}
 
 export function reportHtml(summary) {
   return `<!doctype html>
@@ -471,7 +458,6 @@ ${table("حسب الجهاز", summary.devices || [])}
 ${table("أكثر الصفحات زيارة", summary.topPages || [])}
 ${table("مصادر الزيارة", summary.referrers || [])}
 ${visitsTable(summary.latestVisits || [])}
-${visitorReportsTable(summary.visitorReports || [])}
 ${table("الساعات الأكثر نشاطًا", summary.hours || [])}
 ${table("اللغات", summary.languages || [])}
 ${table("مراكز Cloudflare", summary.cloudflareDatacenters || [])}

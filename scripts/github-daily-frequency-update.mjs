@@ -4,6 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { generateLatestUpdates } from './generate-latest-updates.mjs';
+import { spawnSync } from 'node:child_process';
 
 import {
   EXPECTED_SOURCE_SERVICE_COUNTS,
@@ -99,6 +100,8 @@ async function main() {
   report.staticDataPath = 'public/frequencies/frequency-data.json';
 
   await writeJson(dataPath, payload);
+  const assets = spawnSync(process.execPath, [path.join(root, 'scripts', 'generate-frequency-assets.mjs')], { stdio: 'inherit' });
+  if (assets.status !== 0) throw new Error('Failed to generate versioned frequency assets');
   // Keep Netlify fallback/baseline synced even though Netlify is now static-hosting only.
   await writeJson(netlifyBaselinePath, payload);
   await writeJson(latestReportPath, report);

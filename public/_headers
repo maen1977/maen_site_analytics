@@ -9,9 +9,18 @@
 /assets/icons/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Frequency data changes daily through GitHub Actions, so keep it fresh.
-/frequencies/*
+# Frequency data changes daily through GitHub Actions. The tiny manifest is refreshed often; versioned JSON can be cached longer.
+/frequencies/frequency-manifest.json
   Cache-Control: public, max-age=300, must-revalidate
+
+/frequencies/search-index.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/frequencies/frequency-data.v*.json
+  Cache-Control: public, max-age=31536000, immutable
+
+/frequencies/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
