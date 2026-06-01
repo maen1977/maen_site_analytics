@@ -21,22 +21,10 @@ function safeText(value, max = 240) {
 }
 
 function slug(value) {
-  return safeText(value, 120).toLowerCase().replace(/[^a-z0-9\u0600-\u06ff]+/gi, '-').replace(/^-+|-+$/g, '') || 'update';
+  return safeText(value, 120).toLowerCase().replace(/[^a-z0-9\u0600-\u06ff]+/gi, '-').replace(/^-+|-+$/g, '') || 'news';
 }
 
-function groupCounts(items = []) {
-  const map = new Map();
-  for (const item of items) {
-    const key = item.satelliteGroup || item.satellite || 'غير محدد';
-    const row = map.get(key) || { satellite: key, frequencies: 0, services: 0 };
-    row.frequencies += 1;
-    row.services += Number(item.channelCount || (Array.isArray(item.channels) ? item.channels.length : (item.channel ? String(item.channel).split('،').length : 1)) || 1);
-    map.set(key, row);
-  }
-  return [...map.values()].sort((a, b) => b.frequencies - a.frequencies || String(a.satellite).localeCompare(String(b.satellite))).slice(0, 12);
-}
-
-function makeItem({ category = 'alert', title, summary, date, important = false, satellite = '', frequency = '', oldFrequency = '', polarity = '', symbolRate = '', status = '', sources = [], tags = [] }) {
+function makeItem({ category = 'channels', title, summary, date, important = false, satellite = '', frequency = '', oldFrequency = '', polarity = '', symbolRate = '', status = '', sources = [], tags = [] }) {
   const stamp = date || new Date().toISOString();
   return {
     id: `${stamp.slice(0, 10)}-${category}-${slug(title)}`,
@@ -56,6 +44,12 @@ function makeItem({ category = 'alert', title, summary, date, important = false,
   };
 }
 
+function isPublicNews(item = {}) {
+  const text = [item.title, item.summary, item.status, ...(item.tags || []), ...(item.sources || []).map(s => typeof s === 'string' ? s : s?.name || '')].join(' ');
+  const hidden = ['كاش', 'أداء', 'سرعة الصفحة', 'استضافة', 'خفيف', 'خفيفة', 'سياسة نشر', 'سياسة تحريرية', 'منع تكرار', 'جودة النتائج', 'تحسين واجهة', 'Cloudflare', 'Netlify', 'GitHub', 'JSON'];
+  return !hidden.some(word => text.includes(word));
+}
+
 export async function generateLatestUpdates(options = {}) {
   const now = new Date().toISOString();
   const payload = options.frequencyPayload || await readJsonOptional(frequencyPath, { items: [], updatedAt: now, count: 0 });
@@ -64,81 +58,60 @@ export async function generateLatestUpdates(options = {}) {
   const items = [];
 
   const changes = report?.changes || payload?.changes || {};
-  const hasReport = Boolean(report || payload?.changes);
-  if (hasReport) {
+  const changeCount = Number(changes.added || 0) + Number(changes.updated || 0) + Number(changes.removed || payload.removedCount || 0);
+  if (report || payload?.updatedAt) {
     items.push(makeItem({
       category: 'frequency',
-      important: true,
+      important: changeCount > 0,
       date: report?.generatedAt || payload?.updatedAt || now,
-      title: 'تلميح الترددات: آخر فحص جاهز',
-      summary: `الخلاصة: تمت مراجعة قاعدة الترددات اليوم. إضافات جديدة: ${changes.added || 0}، تعديلات على ترددات موجودة: ${changes.updated || 0}، ترددات حُذفت/أُخفيت: ${changes.removed || payload.removedCount || 0}، منها بإجماع الإغلاق: ${changes.closedConsensusRemoved || 0}، وأسماء قنوات حُذفت بسبب الإغلاق: ${changes.closedConsensusChannelNamesRemoved || 0}.`,
-      status: 'قاعدة الترددات محدثة',
-      sources: ['نظام التحديث اليومي', 'مصادر رسمية ومصادر مقارنة'],
-      tags: ['ترددات', 'تحديث يومي', 'الشرق الأوسط']
-    }));
-  } else {
-    items.push(makeItem({
-      category: 'frequency',
-      important: true,
-      date: payload.updatedAt || now,
-      title: 'تلميح سريع: قاعدة الترددات جاهزة للبحث',
-      summary: `الخلاصة: يتوفر حاليًا ${payload.count || (payload.items || []).length || 0} ترددًا وباقة ضمن أقمار الشرق الأوسط. يمكنك البحث باسم القناة أو رقم التردد أو اسم القمر.`,
-      status: 'جاهزة للاستخدام',
-      sources: ['قاعدة الترددات'],
-      tags: ['ترددات', 'بحث']
+      title: changeCount > 0 ? 'تحديث جديد على قاعدة الترددات' : 'قاعدة الترددات جاهزة للبحث',
+      summary: changeCount > 0
+        ? `تمت مراجعة قاعدة الترددات. الإضافات الجديدة: ${changes.added || 0}، التعديلات: ${changes.updated || 0}، والترددات المحذوفة أو المخفية: ${changes.removed || payload.removedCount || 0}.`
+        : `تتوفر قاعدة الترددات للبحث باسم القناة أو رقم التردد أو اسم القمر، بعدد يقارب ${payload.count || (payload.items || []).length || 0} ترددًا وباقة.`,
+      status: 'معلومة منشورة',
+      sources: ['فريق المتابعة'],
+      tags: ['ترددات', 'أخبار']
     }));
   }
 
-  const counts = payload.groupCounts || groupCounts(payload.items || []);
-  for (const g of counts.slice(0, 5)) {
-    items.push(makeItem({
-      category: 'satellite',
-      date: payload.updatedAt || now,
-      title: `تلميح قمر: ${g.satelliteGroup || g.satellite || 'قمر'} — ${g.frequencies || 0} ترددًا متاحًا`,
-      summary: `الخلاصة: يتضمن هذا القمر أو المجموعة حوالي ${g.frequencies || 0} ترددًا و ${g.services || 0} قناة/خدمة قابلة للبحث.`,
-      satellite: g.satelliteGroup || g.satellite,
-      status: 'متوفر في البحث',
-      sources: ['قاعدة الترددات المحلية'],
-      tags: ['أقمار', 'ترددات']
-    }));
-  }
-
-  for (const removed of (report?.removedItems || payload.removedItems || []).slice(0, 12)) {
+  for (const removed of (report?.removedItems || payload.removedItems || []).slice(0, 8)) {
     items.push(makeItem({
       category: 'alert',
       important: true,
       date: removed.removedAt || report?.generatedAt || now,
-      title: removed.removedReason === 'closed-by-source-consensus' ? 'انتبه: تردد حُذف لأنه مغلق' : 'تلميح مراجعة: تردد يحتاج تأكد',
+      title: removed.removedReason === 'closed-by-source-consensus' ? 'إغلاق تردد من نتائج البحث' : 'تردد بحاجة إلى مراجعة',
       summary: removed.removedReason === 'closed-by-source-consensus'
-        ? `الخلاصة: تم حذف هذا التردد من نتائج البحث لأن أكثر من مصدر موثوق أشار إلى إغلاقه، ولا يوجد مصدر حالي مستقل يؤكد أنه ما زال يعمل.`
-        : `الخلاصة: هذا التردد لم يظهر في آخر فحص للمصادر، لذلك تم وضعه كتنبيه للمراجعة قبل عرضه كبيان مؤكد.`,
+        ? 'تم حذف هذا التردد من نتائج البحث بعد ظهوره كمغلق في أكثر من مصدر موثوق، حتى لا تظهر للمستخدمين معلومات غير دقيقة.'
+        : 'هذا التردد لم يظهر بوضوح في آخر مراجعة للمصادر، لذلك تم وضعه للمراجعة قبل عرضه كمعلومة مؤكدة.',
       satellite: [removed.satelliteGroup, removed.orbitalSlot].filter(Boolean).join(' / '),
       oldFrequency: removed.frequency,
       polarity: removed.pol,
       symbolRate: removed.sr,
       status: removed.removedReason === 'closed-by-source-consensus' ? 'محذوف من البحث' : 'قيد المراجعة',
-      sources: removed.closedSources || ['تقرير المقارنة اليومي'],
-      tags: removed.removedReason === 'closed-by-source-consensus' ? ['تردد مغلق', 'حُذف تلقائيًا'] : ['تردد متوقف', 'تنبيه']
+      sources: ['فريق المتابعة'],
+      tags: ['ترددات', 'تنبيه']
     }));
   }
 
   const allowedManualCategories = new Set(['frequency', 'satellite', 'channels', 'sports', 'alert']);
   for (const item of (manual.items || [])) {
-    if (item && item.title && allowedManualCategories.has(item.category)) items.push(makeItem(item));
+    if (item && item.title && allowedManualCategories.has(item.category) && isPublicNews(item)) {
+      items.push(makeItem(item));
+    }
   }
 
   const unique = new Map();
   for (const item of items) if (!unique.has(item.id)) unique.set(item.id, item);
-  const finalItems = [...unique.values()].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 80);
+  const finalItems = [...unique.values()].sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 30);
   const out = {
     ok: true,
     generatedAt: now,
-    mode: 'daily-static-hints',
+    mode: 'daily-static-news',
     region: 'MENA / الشرق الأوسط',
     count: finalItems.length,
     categories: ['frequency', 'satellite', 'channels', 'sports', 'alert'],
-    presentation: 'hints-feed',
-    editorialPolicy: 'المصادر الرسمية أولًا، ثم مصادر مقارنة. تعرض الصفحة التحديثات على شكل تلميحات مختصرة، ولا تُنشر أخبار الرياضة وحقوق البث كحقيقة إلا من مصدر رسمي أو بعد مراجعة يدوية. لا يتم نشر روابط أو سيرفرات غير مرخصة.',
+    presentation: 'news-feed',
+    editorialPolicy: 'تعرض الصفحة المعلومات المختصرة كأخبار فقط: عنوان، تاريخ، وخلاصة. لا يتم نشر روابط أو بيانات غير مرخصة.',
     items: finalItems
   };
   await mkdir(updatesDir, { recursive: true });

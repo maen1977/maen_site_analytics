@@ -6,8 +6,6 @@ name: Maen daily automation
     - cron: '30 20 * * *'
     # 21:05 UTC = 00:05 Jordan in summer time. Sends yesterday's visitor analytics report.
     - cron: '5 21 * * *'
-    # 21:45 UTC = 00:45 Jordan in summer time. Updates service knowledge index and daily report.
-    - cron: '45 21 * * *'
   workflow_dispatch:
     inputs:
       task:
@@ -19,7 +17,6 @@ name: Maen daily automation
           - both
           - frequencies
           - analytics
-          - service
       report_date:
         description: 'Optional analytics local date YYYY-MM-DD'
         required: false
@@ -101,37 +98,3 @@ jobs:
           ANALYTICS_TIMEZONE: ${{ vars.ANALYTICS_TIMEZONE || 'Asia/Amman' }}
           REPORT_DATE: ${{ inputs.report_date || '' }}
         run: node scripts/github-daily-analytics-report.mjs
-
-
-  service-knowledge-update:
-    name: Update service knowledge and report
-    runs-on: ubuntu-latest
-    if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.task == 'both' || inputs.task == 'service')) || (github.event_name == 'schedule' && github.event.schedule == '45 21 * * *') }}
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Build service knowledge index and report
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          ANALYTICS_TIMEZONE: ${{ vars.ANALYTICS_TIMEZONE || 'Asia/Amman' }}
-        run: node scripts/github-daily-service-update.mjs
-
-      - name: Commit service knowledge updates
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/service/index public/service/reports/daily-service-report.json public/service/reports/daily-service-report.md public/service/review/suggested-knowledge.json public/service/review/pending-ai-answers.json public/service/cache/approved-answers.json
-          if git diff --cached --quiet; then
-            echo "No service knowledge changes to commit."
-          else
-            git commit -m "Daily service knowledge update"
-            git push
-          fi
