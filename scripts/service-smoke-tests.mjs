@@ -12,8 +12,8 @@ function score(q, a) {
   return s;
 }
 const index = JSON.parse(await readFile('public/service/index/service-search-index.json', 'utf8'));
-assert.ok(index.count > 80, 'service index should contain a large starter knowledge base');
-for (const q of ['كيف أشبك ريسيفر سبايدر على النت', 'يوتيوب معلق على شاشة سامسونج', 'كيف أنزل شاهد على شاشة G-Guard', 'لا توجد إشارة no signal', 'تحديث سوفتوير ريسيفر تايجر']) {
+assert.ok(index.count > 17000, 'service index should contain the hyper expanded internal-first knowledge base');
+for (const q of ['كيف أشبك ريسيفر سبايدر على النت', 'يوتيوب معلق على شاشة سامسونج', 'كيف أنزل شاهد على شاشة G-Guard', 'لا توجد إشارة no signal', 'تحديث سوفتوير ريسيفر تايجر', 'كيف أنزل اليوتيوب على G Guard', 'شاشة ماجيك شاهد مش موجود', 'ريسيفر انفينتي iptv يقطع', 'كيف اعرف موديل شاشة جنرال فيو', 'قطعة واي فاي لا تظهر على ريسيفر غزال', 'HDMI لا يعمل على شاشة Magic', 'توصيل ساوندبار ARC على شاشة LG', 'تفعيل اشتراك رسمي على ريسيفر ماجستيك', 'ذاكرة شاشة TCL ممتلئة', 'تثبيت شاهد على Google TV', 'لا يوجد Google Play على شاشة G-Guard', 'نتفليكس كود خطأ على Hisense', 'Smart Hub لا يفتح على سامسونج', 'Server Expired على ريسيفر Starsat', 'DiSEqC غلط على جيون', 'YouTube شاشة سوداء على TCL', 'AirPlay لا يظهر على LG']) {
   const best = [...index.articles].sort((a, b) => score(q, b) - score(q, a))[0];
   assert.ok(score(q, best) > 0, `query should match: ${q}`);
 }

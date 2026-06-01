@@ -139,7 +139,7 @@ export async function buildServiceKnowledgeIndex() {
     generatedAt: new Date().toISOString(),
     mode: 'internal-knowledge-first',
     region: 'Jordan / Middle East',
-    aiPolicy: 'AI is used only when internal knowledge and approved cache cannot answer confidently.',
+    aiPolicy: 'AI fallback is disabled by default; internal knowledge, approved cache, and clarification questions are used first.',
     safetyPolicy: 'No illegal decryption, piracy, unsafe electrical repair, or unverified firmware instructions.',
     count: finalArticles.length,
     categoryCounts,

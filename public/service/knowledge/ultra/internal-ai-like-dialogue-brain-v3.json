@@ -1,0 +1,388 @@
+{
+  "items": [
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-tv-app-install-تثبيت-تطبيق-على-شاشة-غير-معروفة",
+          "intent": "tv_app_install",
+          "title": "تثبيت تطبيق على شاشة غير معروفة",
+          "summary": "عندما لا يذكر المستخدم النظام أو الموديل.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "tv_app_install",
+            "تطبيق",
+            "تنزيل",
+            "شاشة",
+            "متجر"
+          ],
+          "steps": [
+            "اسأل عن الموديل الكامل أو اسم المتجر الظاهر.",
+            "إذا ظهر Google Play فالخطوات Android/Google TV.",
+            "إذا Smart Hub فالخطوات Samsung Tizen.",
+            "إذا LG Content Store فالخطوات webOS.",
+            "إذا VIDAA Store فالخطوات VIDAA.",
+            "إذا لا يوجد متجر حقيقي فاقترح جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tv_app_install",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-receiver-internet-unknown-ريسيفر-لا-يتصل-بالإنترنت",
+          "intent": "receiver_internet_unknown",
+          "title": "ريسيفر لا يتصل بالإنترنت",
+          "summary": "تشخيص عام لأي ريسيفر.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "receiver_internet_unknown",
+            "ريسيفر",
+            "نت",
+            "واي فاي",
+            "lan"
+          ],
+          "steps": [
+            "حدد هل الاتصال Wi‑Fi أم LAN.",
+            "افحص التاريخ والوقت.",
+            "أعد تشغيل الراوتر والجهاز.",
+            "جرب هوتسبوت الهاتف لعزل مشكلة الراوتر.",
+            "إذا Wi‑Fi USB لا تظهر، تحقق من توافق القطعة."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "receiver_internet_unknown",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-no-signal-full-لا-توجد-إشارة-في-منظومة-الدش",
+          "intent": "no_signal_full",
+          "title": "لا توجد إشارة في منظومة الدش",
+          "summary": "تشخيص الرسيفر والطبق والكابل.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "no_signal_full",
+            "لا توجد إشارة",
+            "no signal",
+            "دش"
+          ],
+          "steps": [
+            "افصل بين No Signal من التلفزيون وNo Signal من الرسيفر.",
+            "إذا التلفزيون يقول No Signal، افحص HDMI/Input.",
+            "إذا الرسيفر يقول لا توجد إشارة، افحص LNB Power والكابل والقمر.",
+            "إذا القوة موجودة والجودة صفر، يحتاج ضبط طبق أو تردد صحيح."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "no_signal_full",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-iptv-quality-iptv-يقطع-على-أي-جهاز",
+          "intent": "iptv_quality",
+          "title": "IPTV يقطع على أي جهاز",
+          "summary": "تشخيص التقطيع.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "iptv_quality",
+            "iptv",
+            "تقطيع",
+            "يقطع"
+          ],
+          "steps": [
+            "اختبر السرعة قرب الجهاز.",
+            "استخدم LAN أو 5GHz قريب.",
+            "امسح Cache للتطبيق.",
+            "جرب جودة أقل.",
+            "إذا التقطيع في خدمة واحدة فقط فالمصدر من الخدمة."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv_quality",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-safe-firmware-سوفتوير-وتحديث-آمن",
+          "intent": "safe_firmware",
+          "title": "سوفتوير وتحديث آمن",
+          "summary": "قاعدة عامة للتحديثات.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "safe_firmware",
+            "سوفتوير",
+            "تحديث",
+            "firmware"
+          ],
+          "steps": [
+            "لا تحدث دون موديل كامل.",
+            "استخدم مصدر رسمي ومطابق.",
+            "اعمل Backup إن أمكن.",
+            "لا تفصل الكهرباء.",
+            "إذا علق الجهاز، لا تجرب ملفات عشوائية؛ يحتاج فني."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "safe_firmware",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-remote-all-تشخيص-الريموت-لأي-جهاز",
+          "intent": "remote_all",
+          "title": "تشخيص الريموت لأي جهاز",
+          "summary": "ريموت لا يستجيب.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "remote_all",
+            "ريموت",
+            "remote"
+          ],
+          "steps": [
+            "غيّر البطاريات.",
+            "اختبر IR بكاميرا الهاتف للريموت العادي.",
+            "للبلوتوث أعد الاقتران من الإعدادات.",
+            "افحص هل الجهاز يستجيب من الأزرار أو تطبيق الهاتف."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "remote_all",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-hdmi-all-hdmi-والصورة",
+          "intent": "hdmi_all",
+          "title": "HDMI والصورة",
+          "summary": "لا صورة أو دقة غير مناسبة.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "hdmi_all",
+            "hdmi",
+            "لا صورة",
+            "source"
+          ],
+          "steps": [
+            "اختر مصدر الإدخال الصحيح.",
+            "جرب كابل ومنفذ آخر.",
+            "خفض دقة الجهاز الخارجي.",
+            "اختبر الجهاز على شاشة ثانية لعزل المشكلة."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "hdmi_all",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-app-crash-all-تطبيق-يعلق-على-أي-نظام",
+          "intent": "app_crash_all",
+          "title": "تطبيق يعلق على أي نظام",
+          "summary": "خطوات عامة قبل تحديد النظام.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "app_crash_all",
+            "تطبيق يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق وأعد تشغيل الجهاز.",
+            "امسح Cache إن كان النظام يسمح.",
+            "حدث التطبيق والنظام.",
+            "افحص الوقت والإنترنت.",
+            "إذا الموديل قديم قد يكون الدعم توقف."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_crash_all",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    },
+    {
+      "brand": "Internal Assistant Brain",
+      "nameAr": "المساعد الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "مساعد داخلي",
+        "تشخيص ذكي",
+        "AI داخلي",
+        "فني ذكي"
+      ],
+      "topics": [
+        {
+          "id": "ultra-internal-assistant-brain-model-request-طلب-الموديل-بطريقة-بسيطة",
+          "intent": "model_request",
+          "title": "طلب الموديل بطريقة بسيطة",
+          "summary": "عندما تكون الخطوات تختلف حسب الموديل.",
+          "keywords": [
+            "Internal Assistant Brain",
+            "المساعد الداخلي",
+            "model_request",
+            "موديل",
+            "نظام"
+          ],
+          "steps": [
+            "للتلفزيون: الإعدادات ← الدعم/النظام ← حول التلفزيون أو الملصق الخلفي.",
+            "للريسيفر: Menu ← Information / STB Info.",
+            "اكتب الموديل كما هو مع الأرقام والحروف.",
+            "بعد الموديل أقدر أحدد النظام والخطوات بدقة."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "model_request",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-ai-like-brain-v3"
+          ]
+        }
+      ]
+    }
+  ]
+}

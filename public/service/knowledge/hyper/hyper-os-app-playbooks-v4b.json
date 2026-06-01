@@ -1,0 +1,3236 @@
+{
+  "items": [
+    {
+      "brand": "Google TV",
+      "nameAr": "جوجل تي في",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Google TV",
+        "جوجل تي في",
+        "Google Play"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Google TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-google-tv-youtube-install-on-google-tv-3c359eb4",
+          "intent": "youtube_install_on_google-tv",
+          "title": "تثبيت YouTube على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع YouTube على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "youtube_install_on_google-tv",
+            "YouTube",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-netflix-install-on-google-tv-c85cc13d",
+          "intent": "netflix_install_on_google-tv",
+          "title": "تثبيت Netflix على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Netflix على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "netflix_install_on_google-tv",
+            "Netflix",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-shahid-install-on-google-tv-1b7d1d44",
+          "intent": "shahid_install_on_google-tv",
+          "title": "تثبيت Shahid على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Shahid على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "shahid_install_on_google-tv",
+            "Shahid",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-tod-install-on-google-tv-e886df2d",
+          "intent": "tod_install_on_google-tv",
+          "title": "تثبيت TOD على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع TOD على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "tod_install_on_google-tv",
+            "TOD",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-osn-install-on-google-tv-d001c3f5",
+          "intent": "osn_install_on_google-tv",
+          "title": "تثبيت OSN+ على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع OSN+ على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "osn_install_on_google-tv",
+            "OSN+",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-starzplay-install-on-google-tv-bb3ac197",
+          "intent": "starzplay_install_on_google-tv",
+          "title": "تثبيت StarzPlay على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع StarzPlay على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "starzplay_install_on_google-tv",
+            "StarzPlay",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-prime-video-install-on-google-tv-45154b92",
+          "intent": "prime-video_install_on_google-tv",
+          "title": "تثبيت Prime Video على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Prime Video على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "prime-video_install_on_google-tv",
+            "Prime Video",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-disney-install-on-google-tv-351a15b5",
+          "intent": "disney_install_on_google-tv",
+          "title": "تثبيت Disney+ على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Disney+ على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "disney_install_on_google-tv",
+            "Disney+",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-iptv-player-install-on-google-tv-18b078fe",
+          "intent": "iptv-player_install_on_google-tv",
+          "title": "تثبيت IPTV Player على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع IPTV Player على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "iptv-player_install_on_google-tv",
+            "IPTV Player",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-vlc-install-on-google-tv-0203742d",
+          "intent": "vlc_install_on_google-tv",
+          "title": "تثبيت VLC على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع VLC على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "vlc_install_on_google-tv",
+            "VLC",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-browser-install-on-google-tv-ca8129ee",
+          "intent": "browser_install_on_google-tv",
+          "title": "تثبيت Browser على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Browser على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "browser_install_on_google-tv",
+            "Browser",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-google-tv-screen-mirroring-install-on-google-tv-67398574",
+          "intent": "screen-mirroring_install_on_google-tv",
+          "title": "تثبيت Screen Mirroring على نظام جوجل تي في",
+          "summary": "طريقة التعامل مع Screen Mirroring على Google TV.",
+          "keywords": [
+            "Google TV",
+            "جوجل تي في",
+            "screen-mirroring_install_on_google-tv",
+            "Screen Mirroring",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_google-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Android TV",
+      "nameAr": "أندرويد تي في",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Android TV",
+        "أندرويد تي في",
+        "Google Play"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-android-tv-youtube-install-on-android-tv-220ad91a",
+          "intent": "youtube_install_on_android-tv",
+          "title": "تثبيت YouTube على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع YouTube على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "youtube_install_on_android-tv",
+            "YouTube",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-netflix-install-on-android-tv-0f291ee8",
+          "intent": "netflix_install_on_android-tv",
+          "title": "تثبيت Netflix على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Netflix على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "netflix_install_on_android-tv",
+            "Netflix",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-shahid-install-on-android-tv-eab8430d",
+          "intent": "shahid_install_on_android-tv",
+          "title": "تثبيت Shahid على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Shahid على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "shahid_install_on_android-tv",
+            "Shahid",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-tod-install-on-android-tv-ef1789cd",
+          "intent": "tod_install_on_android-tv",
+          "title": "تثبيت TOD على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع TOD على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "tod_install_on_android-tv",
+            "TOD",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-osn-install-on-android-tv-13a0cf36",
+          "intent": "osn_install_on_android-tv",
+          "title": "تثبيت OSN+ على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع OSN+ على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "osn_install_on_android-tv",
+            "OSN+",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-starzplay-install-on-android-tv-a5f2b09f",
+          "intent": "starzplay_install_on_android-tv",
+          "title": "تثبيت StarzPlay على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع StarzPlay على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "starzplay_install_on_android-tv",
+            "StarzPlay",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-prime-video-install-on-android-tv-6300a857",
+          "intent": "prime-video_install_on_android-tv",
+          "title": "تثبيت Prime Video على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Prime Video على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "prime-video_install_on_android-tv",
+            "Prime Video",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-disney-install-on-android-tv-492fa887",
+          "intent": "disney_install_on_android-tv",
+          "title": "تثبيت Disney+ على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Disney+ على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "disney_install_on_android-tv",
+            "Disney+",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-iptv-player-install-on-android-tv-5e8b4fc9",
+          "intent": "iptv-player_install_on_android-tv",
+          "title": "تثبيت IPTV Player على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع IPTV Player على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "iptv-player_install_on_android-tv",
+            "IPTV Player",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-vlc-install-on-android-tv-5190e563",
+          "intent": "vlc_install_on_android-tv",
+          "title": "تثبيت VLC على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع VLC على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "vlc_install_on_android-tv",
+            "VLC",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-browser-install-on-android-tv-b8a22f00",
+          "intent": "browser_install_on_android-tv",
+          "title": "تثبيت Browser على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Browser على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "browser_install_on_android-tv",
+            "Browser",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-android-tv-screen-mirroring-install-on-android-tv-a3807cb4",
+          "intent": "screen-mirroring_install_on_android-tv",
+          "title": "تثبيت Screen Mirroring على نظام أندرويد تي في",
+          "summary": "طريقة التعامل مع Screen Mirroring على Android TV.",
+          "keywords": [
+            "Android TV",
+            "أندرويد تي في",
+            "screen-mirroring_install_on_android-tv",
+            "Screen Mirroring",
+            "Google Play",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Google Play أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_android-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Tizen",
+      "nameAr": "تايزن",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Tizen",
+        "تايزن",
+        "Samsung Smart Hub"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Tizen"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-tizen-youtube-install-on-tizen-941bf6b9",
+          "intent": "youtube_install_on_tizen",
+          "title": "تثبيت YouTube على نظام تايزن",
+          "summary": "طريقة التعامل مع YouTube على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "youtube_install_on_tizen",
+            "YouTube",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-netflix-install-on-tizen-d8e259fd",
+          "intent": "netflix_install_on_tizen",
+          "title": "تثبيت Netflix على نظام تايزن",
+          "summary": "طريقة التعامل مع Netflix على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "netflix_install_on_tizen",
+            "Netflix",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-shahid-install-on-tizen-229ea9a9",
+          "intent": "shahid_install_on_tizen",
+          "title": "تثبيت Shahid على نظام تايزن",
+          "summary": "طريقة التعامل مع Shahid على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "shahid_install_on_tizen",
+            "Shahid",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-tod-install-on-tizen-ddbd509c",
+          "intent": "tod_install_on_tizen",
+          "title": "تثبيت TOD على نظام تايزن",
+          "summary": "طريقة التعامل مع TOD على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "tod_install_on_tizen",
+            "TOD",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-osn-install-on-tizen-ad945933",
+          "intent": "osn_install_on_tizen",
+          "title": "تثبيت OSN+ على نظام تايزن",
+          "summary": "طريقة التعامل مع OSN+ على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "osn_install_on_tizen",
+            "OSN+",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-starzplay-install-on-tizen-6d119732",
+          "intent": "starzplay_install_on_tizen",
+          "title": "تثبيت StarzPlay على نظام تايزن",
+          "summary": "طريقة التعامل مع StarzPlay على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "starzplay_install_on_tizen",
+            "StarzPlay",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-prime-video-install-on-tizen-b339bc21",
+          "intent": "prime-video_install_on_tizen",
+          "title": "تثبيت Prime Video على نظام تايزن",
+          "summary": "طريقة التعامل مع Prime Video على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "prime-video_install_on_tizen",
+            "Prime Video",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-disney-install-on-tizen-363f7637",
+          "intent": "disney_install_on_tizen",
+          "title": "تثبيت Disney+ على نظام تايزن",
+          "summary": "طريقة التعامل مع Disney+ على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "disney_install_on_tizen",
+            "Disney+",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-iptv-player-install-on-tizen-d5516f9d",
+          "intent": "iptv-player_install_on_tizen",
+          "title": "تثبيت IPTV Player على نظام تايزن",
+          "summary": "طريقة التعامل مع IPTV Player على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "iptv-player_install_on_tizen",
+            "IPTV Player",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-vlc-install-on-tizen-ae56bdd5",
+          "intent": "vlc_install_on_tizen",
+          "title": "تثبيت VLC على نظام تايزن",
+          "summary": "طريقة التعامل مع VLC على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "vlc_install_on_tizen",
+            "VLC",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-browser-install-on-tizen-93f011b3",
+          "intent": "browser_install_on_tizen",
+          "title": "تثبيت Browser على نظام تايزن",
+          "summary": "طريقة التعامل مع Browser على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "browser_install_on_tizen",
+            "Browser",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-tizen-screen-mirroring-install-on-tizen-8759bd1f",
+          "intent": "screen-mirroring_install_on_tizen",
+          "title": "تثبيت Screen Mirroring على نظام تايزن",
+          "summary": "طريقة التعامل مع Screen Mirroring على Tizen.",
+          "keywords": [
+            "Tizen",
+            "تايزن",
+            "screen-mirroring_install_on_tizen",
+            "Screen Mirroring",
+            "Samsung Smart Hub",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Samsung Smart Hub أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_tizen",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "webOS",
+      "nameAr": "ويب أو إس",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "webOS",
+        "ويب أو إس",
+        "LG Content Store"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-webos-youtube-install-on-webos-6f5b9efa",
+          "intent": "youtube_install_on_webos",
+          "title": "تثبيت YouTube على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع YouTube على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "youtube_install_on_webos",
+            "YouTube",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-netflix-install-on-webos-db2ec703",
+          "intent": "netflix_install_on_webos",
+          "title": "تثبيت Netflix على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Netflix على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "netflix_install_on_webos",
+            "Netflix",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-shahid-install-on-webos-df8bfa20",
+          "intent": "shahid_install_on_webos",
+          "title": "تثبيت Shahid على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Shahid على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "shahid_install_on_webos",
+            "Shahid",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-tod-install-on-webos-fa625cc4",
+          "intent": "tod_install_on_webos",
+          "title": "تثبيت TOD على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع TOD على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "tod_install_on_webos",
+            "TOD",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-osn-install-on-webos-feb22ecf",
+          "intent": "osn_install_on_webos",
+          "title": "تثبيت OSN+ على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع OSN+ على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "osn_install_on_webos",
+            "OSN+",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-starzplay-install-on-webos-939e315f",
+          "intent": "starzplay_install_on_webos",
+          "title": "تثبيت StarzPlay على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع StarzPlay على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "starzplay_install_on_webos",
+            "StarzPlay",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-prime-video-install-on-webos-8c37b0cc",
+          "intent": "prime-video_install_on_webos",
+          "title": "تثبيت Prime Video على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Prime Video على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "prime-video_install_on_webos",
+            "Prime Video",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-disney-install-on-webos-5f6d534f",
+          "intent": "disney_install_on_webos",
+          "title": "تثبيت Disney+ على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Disney+ على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "disney_install_on_webos",
+            "Disney+",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-iptv-player-install-on-webos-3dd00d3c",
+          "intent": "iptv-player_install_on_webos",
+          "title": "تثبيت IPTV Player على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع IPTV Player على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "iptv-player_install_on_webos",
+            "IPTV Player",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-vlc-install-on-webos-69b9cd88",
+          "intent": "vlc_install_on_webos",
+          "title": "تثبيت VLC على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع VLC على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "vlc_install_on_webos",
+            "VLC",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-browser-install-on-webos-39b1ac7d",
+          "intent": "browser_install_on_webos",
+          "title": "تثبيت Browser على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Browser على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "browser_install_on_webos",
+            "Browser",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-webos-screen-mirroring-install-on-webos-682e7670",
+          "intent": "screen-mirroring_install_on_webos",
+          "title": "تثبيت Screen Mirroring على نظام ويب أو إس",
+          "summary": "طريقة التعامل مع Screen Mirroring على webOS.",
+          "keywords": [
+            "webOS",
+            "ويب أو إس",
+            "screen-mirroring_install_on_webos",
+            "Screen Mirroring",
+            "LG Content Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح LG Content Store أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_webos",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "VIDAA",
+      "nameAr": "فايدا",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "VIDAA",
+        "فايدا",
+        "VIDAA Store"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-vidaa-youtube-install-on-vidaa-2ea8177c",
+          "intent": "youtube_install_on_vidaa",
+          "title": "تثبيت YouTube على نظام فايدا",
+          "summary": "طريقة التعامل مع YouTube على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "youtube_install_on_vidaa",
+            "YouTube",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-netflix-install-on-vidaa-1fa241fc",
+          "intent": "netflix_install_on_vidaa",
+          "title": "تثبيت Netflix على نظام فايدا",
+          "summary": "طريقة التعامل مع Netflix على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "netflix_install_on_vidaa",
+            "Netflix",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-shahid-install-on-vidaa-10dc6e7f",
+          "intent": "shahid_install_on_vidaa",
+          "title": "تثبيت Shahid على نظام فايدا",
+          "summary": "طريقة التعامل مع Shahid على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "shahid_install_on_vidaa",
+            "Shahid",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-tod-install-on-vidaa-5eff5053",
+          "intent": "tod_install_on_vidaa",
+          "title": "تثبيت TOD على نظام فايدا",
+          "summary": "طريقة التعامل مع TOD على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "tod_install_on_vidaa",
+            "TOD",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-osn-install-on-vidaa-8650840c",
+          "intent": "osn_install_on_vidaa",
+          "title": "تثبيت OSN+ على نظام فايدا",
+          "summary": "طريقة التعامل مع OSN+ على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "osn_install_on_vidaa",
+            "OSN+",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-starzplay-install-on-vidaa-d84c20fd",
+          "intent": "starzplay_install_on_vidaa",
+          "title": "تثبيت StarzPlay على نظام فايدا",
+          "summary": "طريقة التعامل مع StarzPlay على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "starzplay_install_on_vidaa",
+            "StarzPlay",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-prime-video-install-on-vidaa-8d77422a",
+          "intent": "prime-video_install_on_vidaa",
+          "title": "تثبيت Prime Video على نظام فايدا",
+          "summary": "طريقة التعامل مع Prime Video على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "prime-video_install_on_vidaa",
+            "Prime Video",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-disney-install-on-vidaa-0e1a5712",
+          "intent": "disney_install_on_vidaa",
+          "title": "تثبيت Disney+ على نظام فايدا",
+          "summary": "طريقة التعامل مع Disney+ على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "disney_install_on_vidaa",
+            "Disney+",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-iptv-player-install-on-vidaa-a05fe2ca",
+          "intent": "iptv-player_install_on_vidaa",
+          "title": "تثبيت IPTV Player على نظام فايدا",
+          "summary": "طريقة التعامل مع IPTV Player على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "iptv-player_install_on_vidaa",
+            "IPTV Player",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-vlc-install-on-vidaa-7c3dab43",
+          "intent": "vlc_install_on_vidaa",
+          "title": "تثبيت VLC على نظام فايدا",
+          "summary": "طريقة التعامل مع VLC على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "vlc_install_on_vidaa",
+            "VLC",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-browser-install-on-vidaa-5ea91b12",
+          "intent": "browser_install_on_vidaa",
+          "title": "تثبيت Browser على نظام فايدا",
+          "summary": "طريقة التعامل مع Browser على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "browser_install_on_vidaa",
+            "Browser",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-vidaa-screen-mirroring-install-on-vidaa-2d661636",
+          "intent": "screen-mirroring_install_on_vidaa",
+          "title": "تثبيت Screen Mirroring على نظام فايدا",
+          "summary": "طريقة التعامل مع Screen Mirroring على VIDAA.",
+          "keywords": [
+            "VIDAA",
+            "فايدا",
+            "screen-mirroring_install_on_vidaa",
+            "Screen Mirroring",
+            "VIDAA Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح VIDAA Store أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_vidaa",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Fire TV",
+      "nameAr": "فاير تي في",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Fire TV",
+        "فاير تي في",
+        "Amazon Appstore"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Fire TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-fire-tv-youtube-install-on-fire-tv-9db1dbb9",
+          "intent": "youtube_install_on_fire-tv",
+          "title": "تثبيت YouTube على نظام فاير تي في",
+          "summary": "طريقة التعامل مع YouTube على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "youtube_install_on_fire-tv",
+            "YouTube",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-netflix-install-on-fire-tv-9a792fb0",
+          "intent": "netflix_install_on_fire-tv",
+          "title": "تثبيت Netflix على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Netflix على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "netflix_install_on_fire-tv",
+            "Netflix",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-shahid-install-on-fire-tv-011dd3db",
+          "intent": "shahid_install_on_fire-tv",
+          "title": "تثبيت Shahid على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Shahid على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "shahid_install_on_fire-tv",
+            "Shahid",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-tod-install-on-fire-tv-f5a78ce2",
+          "intent": "tod_install_on_fire-tv",
+          "title": "تثبيت TOD على نظام فاير تي في",
+          "summary": "طريقة التعامل مع TOD على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "tod_install_on_fire-tv",
+            "TOD",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-osn-install-on-fire-tv-68858ce1",
+          "intent": "osn_install_on_fire-tv",
+          "title": "تثبيت OSN+ على نظام فاير تي في",
+          "summary": "طريقة التعامل مع OSN+ على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "osn_install_on_fire-tv",
+            "OSN+",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-starzplay-install-on-fire-tv-b85d1faa",
+          "intent": "starzplay_install_on_fire-tv",
+          "title": "تثبيت StarzPlay على نظام فاير تي في",
+          "summary": "طريقة التعامل مع StarzPlay على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "starzplay_install_on_fire-tv",
+            "StarzPlay",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-prime-video-install-on-fire-tv-26205680",
+          "intent": "prime-video_install_on_fire-tv",
+          "title": "تثبيت Prime Video على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Prime Video على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "prime-video_install_on_fire-tv",
+            "Prime Video",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-disney-install-on-fire-tv-1d70dc4a",
+          "intent": "disney_install_on_fire-tv",
+          "title": "تثبيت Disney+ على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Disney+ على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "disney_install_on_fire-tv",
+            "Disney+",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-iptv-player-install-on-fire-tv-ccc86d23",
+          "intent": "iptv-player_install_on_fire-tv",
+          "title": "تثبيت IPTV Player على نظام فاير تي في",
+          "summary": "طريقة التعامل مع IPTV Player على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "iptv-player_install_on_fire-tv",
+            "IPTV Player",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-vlc-install-on-fire-tv-2d604e5b",
+          "intent": "vlc_install_on_fire-tv",
+          "title": "تثبيت VLC على نظام فاير تي في",
+          "summary": "طريقة التعامل مع VLC على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "vlc_install_on_fire-tv",
+            "VLC",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-browser-install-on-fire-tv-84594cbb",
+          "intent": "browser_install_on_fire-tv",
+          "title": "تثبيت Browser على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Browser على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "browser_install_on_fire-tv",
+            "Browser",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-fire-tv-screen-mirroring-install-on-fire-tv-11602dfe",
+          "intent": "screen-mirroring_install_on_fire-tv",
+          "title": "تثبيت Screen Mirroring على نظام فاير تي في",
+          "summary": "طريقة التعامل مع Screen Mirroring على Fire TV.",
+          "keywords": [
+            "Fire TV",
+            "فاير تي في",
+            "screen-mirroring_install_on_fire-tv",
+            "Screen Mirroring",
+            "Amazon Appstore",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Amazon Appstore أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_fire-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Roku TV",
+      "nameAr": "روكو",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Roku TV",
+        "روكو",
+        "Roku Channel Store"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Roku TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-roku-tv-youtube-install-on-roku-tv-07c6b975",
+          "intent": "youtube_install_on_roku-tv",
+          "title": "تثبيت YouTube على نظام روكو",
+          "summary": "طريقة التعامل مع YouTube على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "youtube_install_on_roku-tv",
+            "YouTube",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-netflix-install-on-roku-tv-a465f706",
+          "intent": "netflix_install_on_roku-tv",
+          "title": "تثبيت Netflix على نظام روكو",
+          "summary": "طريقة التعامل مع Netflix على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "netflix_install_on_roku-tv",
+            "Netflix",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-shahid-install-on-roku-tv-b7812daf",
+          "intent": "shahid_install_on_roku-tv",
+          "title": "تثبيت Shahid على نظام روكو",
+          "summary": "طريقة التعامل مع Shahid على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "shahid_install_on_roku-tv",
+            "Shahid",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-tod-install-on-roku-tv-0af1522b",
+          "intent": "tod_install_on_roku-tv",
+          "title": "تثبيت TOD على نظام روكو",
+          "summary": "طريقة التعامل مع TOD على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "tod_install_on_roku-tv",
+            "TOD",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-osn-install-on-roku-tv-d8e77b31",
+          "intent": "osn_install_on_roku-tv",
+          "title": "تثبيت OSN+ على نظام روكو",
+          "summary": "طريقة التعامل مع OSN+ على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "osn_install_on_roku-tv",
+            "OSN+",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-starzplay-install-on-roku-tv-45431227",
+          "intent": "starzplay_install_on_roku-tv",
+          "title": "تثبيت StarzPlay على نظام روكو",
+          "summary": "طريقة التعامل مع StarzPlay على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "starzplay_install_on_roku-tv",
+            "StarzPlay",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-prime-video-install-on-roku-tv-3e8d8b2f",
+          "intent": "prime-video_install_on_roku-tv",
+          "title": "تثبيت Prime Video على نظام روكو",
+          "summary": "طريقة التعامل مع Prime Video على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "prime-video_install_on_roku-tv",
+            "Prime Video",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-disney-install-on-roku-tv-ef5d444a",
+          "intent": "disney_install_on_roku-tv",
+          "title": "تثبيت Disney+ على نظام روكو",
+          "summary": "طريقة التعامل مع Disney+ على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "disney_install_on_roku-tv",
+            "Disney+",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-iptv-player-install-on-roku-tv-aefe736d",
+          "intent": "iptv-player_install_on_roku-tv",
+          "title": "تثبيت IPTV Player على نظام روكو",
+          "summary": "طريقة التعامل مع IPTV Player على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "iptv-player_install_on_roku-tv",
+            "IPTV Player",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-vlc-install-on-roku-tv-d2356289",
+          "intent": "vlc_install_on_roku-tv",
+          "title": "تثبيت VLC على نظام روكو",
+          "summary": "طريقة التعامل مع VLC على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "vlc_install_on_roku-tv",
+            "VLC",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-browser-install-on-roku-tv-7e252774",
+          "intent": "browser_install_on_roku-tv",
+          "title": "تثبيت Browser على نظام روكو",
+          "summary": "طريقة التعامل مع Browser على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "browser_install_on_roku-tv",
+            "Browser",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-roku-tv-screen-mirroring-install-on-roku-tv-2b031ea5",
+          "intent": "screen-mirroring_install_on_roku-tv",
+          "title": "تثبيت Screen Mirroring على نظام روكو",
+          "summary": "طريقة التعامل مع Screen Mirroring على Roku TV.",
+          "keywords": [
+            "Roku TV",
+            "روكو",
+            "screen-mirroring_install_on_roku-tv",
+            "Screen Mirroring",
+            "Roku Channel Store",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح Roku Channel Store أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_roku-tv",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Smart OS",
+      "nameAr": "نظام سمارت خاص",
+      "category": "os-system",
+      "market": [
+        "Jordan",
+        "Middle East"
+      ],
+      "aliases": [
+        "Smart OS",
+        "نظام سمارت خاص",
+        "المتجر المدمج"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Smart OS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-scenario-os-system-smart-os-youtube-install-on-smart-os-d1a073ca",
+          "intent": "youtube_install_on_smart-os",
+          "title": "تثبيت YouTube على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع YouTube على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "youtube_install_on_smart-os",
+            "YouTube",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن YouTube.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "youtube_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-netflix-install-on-smart-os-fd2ac2f4",
+          "intent": "netflix_install_on_smart-os",
+          "title": "تثبيت Netflix على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Netflix على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "netflix_install_on_smart-os",
+            "Netflix",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Netflix.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "netflix_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-shahid-install-on-smart-os-b791b2c2",
+          "intent": "shahid_install_on_smart-os",
+          "title": "تثبيت Shahid على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Shahid على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "shahid_install_on_smart-os",
+            "Shahid",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Shahid.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "shahid_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-tod-install-on-smart-os-437cc119",
+          "intent": "tod_install_on_smart-os",
+          "title": "تثبيت TOD على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع TOD على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "tod_install_on_smart-os",
+            "TOD",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن TOD.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "tod_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-osn-install-on-smart-os-d193f624",
+          "intent": "osn_install_on_smart-os",
+          "title": "تثبيت OSN+ على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع OSN+ على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "osn_install_on_smart-os",
+            "OSN+",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن OSN+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "osn_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-starzplay-install-on-smart-os-d43e092f",
+          "intent": "starzplay_install_on_smart-os",
+          "title": "تثبيت StarzPlay على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع StarzPlay على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "starzplay_install_on_smart-os",
+            "StarzPlay",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن StarzPlay.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "starzplay_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-prime-video-install-on-smart-os-67a6f907",
+          "intent": "prime-video_install_on_smart-os",
+          "title": "تثبيت Prime Video على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Prime Video على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "prime-video_install_on_smart-os",
+            "Prime Video",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Prime Video.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "prime-video_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-disney-install-on-smart-os-7be2cdcb",
+          "intent": "disney_install_on_smart-os",
+          "title": "تثبيت Disney+ على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Disney+ على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "disney_install_on_smart-os",
+            "Disney+",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Disney+.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "disney_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-iptv-player-install-on-smart-os-96013c2c",
+          "intent": "iptv-player_install_on_smart-os",
+          "title": "تثبيت IPTV Player على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع IPTV Player على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "iptv-player_install_on_smart-os",
+            "IPTV Player",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن IPTV Player.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "iptv-player_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-vlc-install-on-smart-os-6cde47dc",
+          "intent": "vlc_install_on_smart-os",
+          "title": "تثبيت VLC على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع VLC على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "vlc_install_on_smart-os",
+            "VLC",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن VLC.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "vlc_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-browser-install-on-smart-os-6a9a2d78",
+          "intent": "browser_install_on_smart-os",
+          "title": "تثبيت Browser على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Browser على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "browser_install_on_smart-os",
+            "Browser",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Browser.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "browser_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-scenario-os-system-smart-os-screen-mirroring-install-on-smart-os-9319186c",
+          "intent": "screen-mirroring_install_on_smart-os",
+          "title": "تثبيت Screen Mirroring على نظام نظام سمارت خاص",
+          "summary": "طريقة التعامل مع Screen Mirroring على Smart OS.",
+          "keywords": [
+            "Smart OS",
+            "نظام سمارت خاص",
+            "screen-mirroring_install_on_smart-os",
+            "Screen Mirroring",
+            "المتجر المدمج",
+            "تطبيق",
+            "تنزيل"
+          ],
+          "steps": [
+            "افتح المتجر المدمج أو متجر النظام.",
+            "ابحث عن Screen Mirroring.",
+            "ثبّت أو حدّث التطبيق إن كان متاحًا.",
+            "إذا التطبيق غير موجود، تحقق من البلد وإصدار النظام والموديل.",
+            "إذا النظام لا يدعم التطبيق استخدم جهاز بث خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "screen-mirroring_install_on_smart-os",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-scenario-playbooks-v4b"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    }
+  ]
+}

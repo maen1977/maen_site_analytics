@@ -2,7 +2,7 @@
 (function(){
   'use strict';
   var state={items:[],category:'all',query:'',sort:'newest',loaded:false,loading:false,visible:9,error:false,generatedAt:''};
-  var labels={all:'كل التلميحات',frequency:'ترددات',satellite:'أقمار',channels:'قنوات',sports:'رياضة',alert:'تنبيه'};
+  var labels={all:'كل التحديثات',frequency:'ترددات',satellite:'أقمار',channels:'قنوات',sports:'رياضة',alert:'تنبيه'};
   var shortLabels={all:'الكل',frequency:'تردد',satellite:'قمر',channels:'قناة',sports:'رياضة',alert:'تنبيه'};
   var icons={frequency:'📡',satellite:'🛰️',channels:'📺',sports:'⚽',alert:'⚠️'};
   var priority={alert:6,frequency:5,sports:4,channels:3,satellite:2};
@@ -64,12 +64,12 @@
   }
   function makeHintTitle(item){
     var title=cleanLabel(item.title||'تحديث جديد');
-    if(/^تلميح|^انتبه|^ملاحظة/.test(title))return title;
-    if(item.category==='frequency')return 'تلميح ترددات: '+title;
-    if(item.category==='satellite')return 'تلميح قمر: '+title;
-    if(item.category==='sports')return 'تلميح رياضي: '+title;
-    if(item.category==='channels')return 'تلميح قنوات: '+title;
-    return item.important?'انتبه: '+title:'تلميح سريع: '+title;
+    if(/^تحديث|^انتبه|^ملاحظة/.test(title))return title;
+    if(item.category==='frequency')return 'تحديث ترددات: '+title;
+    if(item.category==='satellite')return 'تحديث قمر: '+title;
+    if(item.category==='sports')return 'تحديث رياضي: '+title;
+    if(item.category==='channels')return 'تحديث قنوات: '+title;
+    return item.important?'انتبه: '+title:'تحديث سريع: '+title;
   }
   function makeHintSummary(item){
     var summary=cleanLabel(item.summary||'');
@@ -144,15 +144,15 @@
     if(freq)freq.textContent=state.loaded?String(state.items.filter(function(x){return x.category==='frequency';}).length):(state.loading?'...':'—');
     if(updated){updated.textContent=state.loaded&&newest?relativeDate(newest):(state.loading?'جارٍ التحميل':'عند الفتح');updated.title=state.loaded&&newest?dateText(newest):'';}
     var pulse=$('updatesLastPulse');
-    if(pulse){pulse.textContent=state.loaded&&newest?'آخر تلميح: '+relativeDate(newest):(state.loading?'جارٍ تجهيز التلميحات...':'بانتظار فتح القسم');}
+    if(pulse){pulse.textContent=state.loaded&&newest?'آخر تحديث: '+relativeDate(newest):(state.loading?'جارٍ تجهيز التحديثات...':'بانتظار فتح القسم');}
   }
   function renderTicker(){
     var ticker=$('updatesTickerTrack'); if(!ticker)return;
-    if(state.loading&&!state.items.length){ticker.innerHTML='<span>جارٍ تحميل تلميحات اليوم...</span>';return;}
+    if(state.loading&&!state.items.length){ticker.innerHTML='<span>جارٍ تحميل تحديثات اليوم...</span>';return;}
     var list=sortedItems(state.items).slice(0,7);
-    if(!list.length){ticker.innerHTML='<span>لا توجد تلميحات منشورة حاليًا.</span>';return;}
+    if(!list.length){ticker.innerHTML='<span>لا توجد تحديثات منشورة حاليًا.</span>';return;}
     ticker.innerHTML=list.map(function(item){
-      var cat=shortLabels[item.category]||'تلميح';
+      var cat=shortLabels[item.category]||'تحديث';
       var freq=frequencyText(item);
       return '<button type="button" data-ticker-filter="'+esc(item.category)+'"><strong>'+esc(cat)+'</strong><span>'+esc(item.title)+'</span>'+(freq?'<em>'+esc(freq)+'</em>':'')+'</button>';
     }).join('');
@@ -164,12 +164,12 @@
     var featured=sorted.find(function(x){return x.important;})||sorted[0];
     if(!featured){box.hidden=true;return;}
     box.hidden=false;
-    var cat=shortLabels[featured.category]||'تلميح';
+    var cat=shortLabels[featured.category]||'تحديث';
     var fc=$('updatesFeaturedCategory'),ft=$('updatesFeaturedTitle'),fs=$('updatesFeaturedSummary'),fm=$('updatesFeaturedMeta'),fa=$('updatesFeaturedAction');
-    if(fc)fc.textContent='أهم تلميح الآن / '+cat;
-    if(ft)ft.textContent=featured.title||'تلميح جديد';
+    if(fc)fc.textContent='أهم تحديث الآن / '+cat;
+    if(ft)ft.textContent=featured.title||'تحديث جديد';
     if(fs)fs.textContent=featured.summary||'';
-    if(fm)fm.innerHTML=detailsHtml(featured) || '<span class="update-detail-chip"><b>الخلاصة</b><em>تلميح موثّق من آخر فحص</em></span>';
+    if(fm)fm.innerHTML=detailsHtml(featured) || '<span class="update-detail-chip"><b>الخلاصة</b><em>تحديث موثّق من آخر فحص</em></span>';
     if(fa){
       var freq=frequencyText(featured);
       fa.innerHTML=freq?'<button type="button" class="update-copy-btn" data-copy-frequency="'+esc(freq)+'">نسخ التردد</button>':'<button type="button" onclick="showPage(\'frequencies\')">افتح قاعدة الترددات</button>';
@@ -178,7 +178,7 @@
     if(stats){
       var c=categoryCounts();
       stats.innerHTML=''
-        +'<div><strong>'+esc(c.frequency||0)+'</strong><span>تلميحات تردد</span></div>'
+        +'<div><strong>'+esc(c.frequency||0)+'</strong><span>تحديثات تردد</span></div>'
         +'<div><strong>'+esc(c.alert||0)+'</strong><span>تنبيهات</span></div>'
         +'<div><strong>'+esc(c.sports||0)+'</strong><span>رياضة</span></div>'
         +'<div><strong>'+esc(c.channels||0)+'</strong><span>قنوات</span></div>';
@@ -195,7 +195,7 @@
       +'<div class="update-feed-marker"><span>'+esc(icons[cat]||'💡')+'</span></div>'
       +'<div class="update-feed-body">'
       +'<div class="meta"><span class="update-badge '+esc(cat)+'">'+esc(badge)+'</span><span class="update-date" title="'+esc(dateText(item.date||item.updatedAt))+'">'+esc(relativeDate(item.date||item.updatedAt))+'</span>'+(item.important?'<span class="update-verified">مهم</span>':'')+'</div>'
-      +'<div class="update-hint-lead">'+esc(hintLead[cat]||'تلميح')+'</div>'
+      +'<div class="update-hint-lead">'+esc(hintLead[cat]||'تحديث')+'</div>'
       +'<h3>'+esc(item.title)+'</h3>'
       +'<p>'+esc(item.summary)+'</p>'
       +(freq?'<div class="update-frequency-line"><b>استخدم هذا</b><strong>'+esc(freq)+'</strong></div>':'')
@@ -211,12 +211,12 @@
   }
   function renderSummary(filtered,total){
     var el=$('updatesActiveSummary'); if(!el)return;
-    if(state.loading){el.innerHTML='<strong>جارٍ التحميل</strong><span>يتم تحويل آخر التحديثات إلى تلميحات مختصرة بدون تشغيل قاعدة بيانات إضافية.</span>';return;}
-    if(state.error){el.innerHTML='<strong>تنبيه مؤقت</strong><span>تعذر تحميل التلميحات، لكن الموقع وبحث الترددات يعملان بشكل طبيعي.</span>';return;}
-    var label=labels[state.category]||'كل التلميحات';
+    if(state.loading){el.innerHTML='<strong>جارٍ التحميل</strong><span>يتم تحويل آخر التحديثات إلى تحديثات مختصرة بدون تشغيل قاعدة بيانات إضافية.</span>';return;}
+    if(state.error){el.innerHTML='<strong>تنبيه مؤقت</strong><span>تعذر تحميل التحديثات، لكن الموقع وبحث الترددات يعملان بشكل طبيعي.</span>';return;}
+    var label=labels[state.category]||'كل التحديثات';
     var q=state.query?(' / بحث: '+esc(state.query.trim())):'';
-    el.innerHTML='<strong>'+esc(label)+'</strong><span>يعرض '+esc(Math.min(filtered,state.visible))+' من '+esc(filtered)+' تلميح'+esc(q)+'.</span>';
-    if(total===0)el.innerHTML='<strong>لا توجد تلميحات</strong><span>سيظهر هنا أي تغيير جديد بعد الفحص اليومي.</span>';
+    el.innerHTML='<strong>'+esc(label)+'</strong><span>يعرض '+esc(Math.min(filtered,state.visible))+' من '+esc(filtered)+' تحديث'+esc(q)+'.</span>';
+    if(total===0)el.innerHTML='<strong>لا توجد تحديثات</strong><span>سيظهر هنا أي تغيير جديد بعد الفحص اليومي.</span>';
   }
   function render(){
     var grid=$('updatesGrid'),empty=$('updatesEmpty'),more=$('updatesLoadMore');
@@ -231,13 +231,13 @@
     grid.innerHTML=shown.map(renderCard).join('');
     if(empty){
       empty.innerHTML=state.query||state.category!=='all'
-        ? 'لا توجد تلميحات مطابقة. جرّب اسم القمر، رقم التردد، أو امسح الفلتر الحالي.'
-        : 'لا توجد تلميحات جديدة حاليًا. آخر فحص تم بنجاح، وسيتم عرض أي تغييرات جديدة فور توفرها.';
+        ? 'لا توجد تحديثات مطابقة. جرّب اسم القمر، رقم التردد، أو امسح الفلتر الحالي.'
+        : 'لا توجد تحديثات جديدة حاليًا. آخر فحص تم بنجاح، وسيتم عرض أي تغييرات جديدة فور توفرها.';
       empty.classList.toggle('active',state.loaded&&!filtered.length);
     }
     if(more){
       more.hidden=!(filtered.length>state.visible);
-      more.textContent='عرض تلميحات أكثر ('+(filtered.length-state.visible)+')';
+      more.textContent='عرض تحديثات أكثر ('+(filtered.length-state.visible)+')';
     }
     renderSummary(filtered.length,state.items.length);
   }
@@ -273,7 +273,7 @@
       state.loaded=true;
     }catch(e){
       state.error=true;
-      state.items=cleanItems([{category:'alert',important:true,date:new Date().toISOString(),title:'التلميحات غير متاحة مؤقتًا',summary:'الموقع يعمل بشكل طبيعي، وسيتم عرض آخر تلميحات الترددات والقنوات فور عودة ملف التحديثات.',status:'تنبيه مؤقت',sources:['إدارة الموقع'],tags:['تنبيه']}]);
+      state.items=cleanItems([{category:'alert',important:true,date:new Date().toISOString(),title:'التحديثات غير متاحة مؤقتًا',summary:'الموقع يعمل بشكل طبيعي، وسيتم عرض آخر تحديثات الترددات والقنوات فور عودة ملف التحديثات.',status:'تنبيه مؤقت',sources:['إدارة الموقع'],tags:['تنبيه']}]);
       state.loaded=true;
     }finally{
       state.loading=false;render();

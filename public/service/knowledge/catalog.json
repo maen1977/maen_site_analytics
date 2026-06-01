@@ -1,10 +1,10 @@
 {
   "ok": true,
-  "version": "2026.06-service-foundation",
+  "version": "2026.06-service-hyper-internal-assistant-v4",
   "region": "Jordan / Middle East",
   "policy": {
     "primarySource": "internal_knowledge_first",
-    "aiUsage": "only_when_internal_answer_is_missing_or_weak",
+    "aiUsage": "disabled_by_default_and_only_when_explicitly_enabled_after_internal_knowledge_fails",
     "adminPage": false,
     "unsafeContent": "no illegal decryption, no piracy, no dangerous electrical repair steps",
     "reviewMode": "AI answers are cached for review before becoming official knowledge"
@@ -23,12 +23,17 @@
     "Geant Official": "https://geant.dz/"
   },
   "counts": {
-    "receiverBrands": 29,
-    "tvBrands": 32,
-    "androidIptvBoxes": 11,
-    "apps": 19,
-    "networkTopics": 6,
-    "commonErrors": 8,
-    "osSystems": 8
-  }
+    "receiverBrandsExpanded": 42,
+    "tvBrandsExpanded": 39,
+    "androidIptvBoxesExpanded": 15,
+    "appsExpanded": 20,
+    "generatedInternalPlaybooks": 1929,
+    "megaReceiverBrandsV2": 54,
+    "megaTvBrandsV2": 49,
+    "megaAndroidIptvDevicesV2": 23,
+    "megaAppsV2": 29
+  },
+  "notes": "Expanded with hyper internal service knowledge for TVs, receivers, Android/IPTV boxes, apps, network, signal and safe diagnostics. External AI remains a last-resort option only.",
+  "mode": "internal-ai-like-chat-first-ai-fallback-last",
+  "lastExpandedAt": "2026-06-01"
 }

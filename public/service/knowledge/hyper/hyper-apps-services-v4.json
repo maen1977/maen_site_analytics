@@ -1,0 +1,5335 @@
+{
+  "items": [
+    {
+      "brand": "YouTube",
+      "nameAr": "يوتيوب",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "YouTube",
+        "يوتيوب",
+        "youtube",
+        "يوتوب"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA",
+        "Roku",
+        "Fire TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-youtube-install-app-c98175ac",
+          "intent": "install_app",
+          "title": "تثبيت يوتيوب من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-youtube-app-not-found-b20906bc",
+          "intent": "app_not_found",
+          "title": "يوتيوب غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-youtube-app-freeze-a8eeb2ba",
+          "intent": "app_freeze",
+          "title": "يوتيوب يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-youtube-login-problem-afdd8dbd",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في يوتيوب",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-youtube-audio-video-problem-000c2448",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في يوتيوب",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-youtube-storage-full-0df71240",
+          "intent": "storage_full",
+          "title": "يوتيوب لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "YouTube",
+            "يوتيوب",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Netflix",
+      "nameAr": "نتفليكس",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Netflix",
+        "نتفليكس",
+        "netflix",
+        "نتفلكس"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA",
+        "Roku",
+        "Fire TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-netflix-install-app-d007e8b6",
+          "intent": "install_app",
+          "title": "تثبيت نتفليكس من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-netflix-app-not-found-092505e4",
+          "intent": "app_not_found",
+          "title": "نتفليكس غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-netflix-app-freeze-a9f20cb2",
+          "intent": "app_freeze",
+          "title": "نتفليكس يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-netflix-login-problem-79974323",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في نتفليكس",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-netflix-audio-video-problem-4c244f82",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في نتفليكس",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-netflix-storage-full-70ef4236",
+          "intent": "storage_full",
+          "title": "نتفليكس لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Netflix",
+            "نتفليكس",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Shahid",
+      "nameAr": "شاهد",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Shahid",
+        "شاهد",
+        "shahid",
+        "شاهد vip"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-shahid-install-app-23f884ea",
+          "intent": "install_app",
+          "title": "تثبيت شاهد من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-shahid-app-not-found-6a8a31c2",
+          "intent": "app_not_found",
+          "title": "شاهد غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-shahid-app-freeze-26d6e963",
+          "intent": "app_freeze",
+          "title": "شاهد يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-shahid-login-problem-317b14c7",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في شاهد",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-shahid-audio-video-problem-430ed1b2",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في شاهد",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-shahid-storage-full-f69b26e7",
+          "intent": "storage_full",
+          "title": "شاهد لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Shahid",
+            "شاهد",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "TOD",
+      "nameAr": "تود",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "TOD",
+        "تود",
+        "tod tv",
+        "beIN TOD"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-tod-install-app-b2a6e3d6",
+          "intent": "install_app",
+          "title": "تثبيت تود من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tod-app-not-found-d06aed57",
+          "intent": "app_not_found",
+          "title": "تود غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tod-app-freeze-04160410",
+          "intent": "app_freeze",
+          "title": "تود يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tod-login-problem-e8f599a2",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في تود",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tod-audio-video-problem-23588eeb",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في تود",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tod-storage-full-ed5a0bce",
+          "intent": "storage_full",
+          "title": "تود لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "TOD",
+            "تود",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "OSN+",
+      "nameAr": "أو إس إن",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "OSN+",
+        "أو إس إن",
+        "osn",
+        "osn plus",
+        "او اس ان"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-osn-install-app-ad44a7a5",
+          "intent": "install_app",
+          "title": "تثبيت أو إس إن من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-osn-app-not-found-3b67b146",
+          "intent": "app_not_found",
+          "title": "أو إس إن غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-osn-app-freeze-06c5db85",
+          "intent": "app_freeze",
+          "title": "أو إس إن يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-osn-login-problem-dbd35c45",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في أو إس إن",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-osn-audio-video-problem-b0670fef",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في أو إس إن",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-osn-storage-full-8f10e440",
+          "intent": "storage_full",
+          "title": "أو إس إن لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "OSN+",
+            "أو إس إن",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "StarzPlay",
+      "nameAr": "ستارز بلاي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "StarzPlay",
+        "ستارز بلاي",
+        "starz",
+        "starzplay"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-starzplay-install-app-89164d9c",
+          "intent": "install_app",
+          "title": "تثبيت ستارز بلاي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-starzplay-app-not-found-ff2bd3cd",
+          "intent": "app_not_found",
+          "title": "ستارز بلاي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-starzplay-app-freeze-f799d610",
+          "intent": "app_freeze",
+          "title": "ستارز بلاي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-starzplay-login-problem-fce43d7e",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في ستارز بلاي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-starzplay-audio-video-problem-0c4d3a8e",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في ستارز بلاي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-starzplay-storage-full-751b8e50",
+          "intent": "storage_full",
+          "title": "ستارز بلاي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "StarzPlay",
+            "ستارز بلاي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Amazon Prime Video",
+      "nameAr": "برايم فيديو",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Amazon Prime Video",
+        "برايم فيديو",
+        "prime video",
+        "amazon prime"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-amazon-prime-video-install-app-3d2e86aa",
+          "intent": "install_app",
+          "title": "تثبيت برايم فيديو من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-amazon-prime-video-app-not-found-ccd63a07",
+          "intent": "app_not_found",
+          "title": "برايم فيديو غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-amazon-prime-video-app-freeze-4739a855",
+          "intent": "app_freeze",
+          "title": "برايم فيديو يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-amazon-prime-video-login-problem-195115f3",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في برايم فيديو",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-amazon-prime-video-audio-video-problem-562fc091",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في برايم فيديو",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-amazon-prime-video-storage-full-889d6e40",
+          "intent": "storage_full",
+          "title": "برايم فيديو لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Amazon Prime Video",
+            "برايم فيديو",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Disney+",
+      "nameAr": "ديزني بلس",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Disney+",
+        "ديزني بلس",
+        "disney plus",
+        "ديزني"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-disney-install-app-2609030f",
+          "intent": "install_app",
+          "title": "تثبيت ديزني بلس من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-disney-app-not-found-288c9d54",
+          "intent": "app_not_found",
+          "title": "ديزني بلس غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-disney-app-freeze-56839299",
+          "intent": "app_freeze",
+          "title": "ديزني بلس يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-disney-login-problem-c10a818b",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في ديزني بلس",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-disney-audio-video-problem-fa049e07",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في ديزني بلس",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-disney-storage-full-451d9c41",
+          "intent": "storage_full",
+          "title": "ديزني بلس لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Disney+",
+            "ديزني بلس",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Apple TV",
+      "nameAr": "آبل تي في",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Apple TV",
+        "آبل تي في",
+        "apple tv plus",
+        "appletv"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "Apple tvOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-apple-tv-install-app-fc3f5970",
+          "intent": "install_app",
+          "title": "تثبيت آبل تي في من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-apple-tv-app-not-found-8a1c4f80",
+          "intent": "app_not_found",
+          "title": "آبل تي في غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-apple-tv-app-freeze-6513b0f9",
+          "intent": "app_freeze",
+          "title": "آبل تي في يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-apple-tv-login-problem-365d5632",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في آبل تي في",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-apple-tv-audio-video-problem-6d502d41",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في آبل تي في",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-apple-tv-storage-full-f0fb4cfa",
+          "intent": "storage_full",
+          "title": "آبل تي في لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Apple TV",
+            "آبل تي في",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "IPTV Player",
+      "nameAr": "مشغل IPTV",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "IPTV Player",
+        "مشغل IPTV",
+        "iptv",
+        "m3u",
+        "xtream"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-iptv-player-install-app-5b383c20",
+          "intent": "install_app",
+          "title": "تثبيت مشغل IPTV من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-iptv-player-app-not-found-1389fd0b",
+          "intent": "app_not_found",
+          "title": "مشغل IPTV غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-iptv-player-app-freeze-980ba5df",
+          "intent": "app_freeze",
+          "title": "مشغل IPTV يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-iptv-player-login-problem-5e1ad167",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في مشغل IPTV",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-iptv-player-audio-video-problem-093da5b2",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في مشغل IPTV",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-iptv-player-storage-full-39e8a933",
+          "intent": "storage_full",
+          "title": "مشغل IPTV لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "IPTV Player",
+            "مشغل IPTV",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "TiviMate",
+      "nameAr": "تيفي ميت",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "TiviMate",
+        "تيفي ميت",
+        "tivimate"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-tivimate-install-app-7cf70b47",
+          "intent": "install_app",
+          "title": "تثبيت تيفي ميت من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tivimate-app-not-found-90ebd565",
+          "intent": "app_not_found",
+          "title": "تيفي ميت غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tivimate-app-freeze-e4100368",
+          "intent": "app_freeze",
+          "title": "تيفي ميت يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tivimate-login-problem-84be9cd6",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في تيفي ميت",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tivimate-audio-video-problem-f7f351b3",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في تيفي ميت",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-tivimate-storage-full-8ee92a96",
+          "intent": "storage_full",
+          "title": "تيفي ميت لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "TiviMate",
+            "تيفي ميت",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "OTT Navigator",
+      "nameAr": "أوتي تي نافيجيتور",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "OTT Navigator",
+        "أوتي تي نافيجيتور",
+        "ott navigator"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-ott-navigator-install-app-04b16d4f",
+          "intent": "install_app",
+          "title": "تثبيت أوتي تي نافيجيتور من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-ott-navigator-app-not-found-fd590afd",
+          "intent": "app_not_found",
+          "title": "أوتي تي نافيجيتور غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-ott-navigator-app-freeze-10b4e9f2",
+          "intent": "app_freeze",
+          "title": "أوتي تي نافيجيتور يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-ott-navigator-login-problem-d6010830",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في أوتي تي نافيجيتور",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-ott-navigator-audio-video-problem-0abc6d36",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في أوتي تي نافيجيتور",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-ott-navigator-storage-full-893bee9c",
+          "intent": "storage_full",
+          "title": "أوتي تي نافيجيتور لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "OTT Navigator",
+            "أوتي تي نافيجيتور",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "XCIPTV",
+      "nameAr": "إكس سي IPTV",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "XCIPTV",
+        "إكس سي IPTV",
+        "xciptv"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-xciptv-install-app-edf97773",
+          "intent": "install_app",
+          "title": "تثبيت إكس سي IPTV من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-xciptv-app-not-found-ae7b4f9f",
+          "intent": "app_not_found",
+          "title": "إكس سي IPTV غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-xciptv-app-freeze-fcbb9736",
+          "intent": "app_freeze",
+          "title": "إكس سي IPTV يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-xciptv-login-problem-72883bcb",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في إكس سي IPTV",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-xciptv-audio-video-problem-01255b29",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في إكس سي IPTV",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-xciptv-storage-full-0a50c097",
+          "intent": "storage_full",
+          "title": "إكس سي IPTV لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "XCIPTV",
+            "إكس سي IPTV",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Smart IPTV",
+      "nameAr": "سمارت IPTV",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Smart IPTV",
+        "سمارت IPTV",
+        "siptv",
+        "smart iptv"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Tizen",
+        "webOS",
+        "Android TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-smart-iptv-install-app-a23b7cb7",
+          "intent": "install_app",
+          "title": "تثبيت سمارت IPTV من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-smart-iptv-app-not-found-5b3b72a6",
+          "intent": "app_not_found",
+          "title": "سمارت IPTV غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-smart-iptv-app-freeze-d0a61a17",
+          "intent": "app_freeze",
+          "title": "سمارت IPTV يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-smart-iptv-login-problem-f36a0d48",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في سمارت IPTV",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-smart-iptv-audio-video-problem-bf0f3b1e",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في سمارت IPTV",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-smart-iptv-storage-full-d1f7c216",
+          "intent": "storage_full",
+          "title": "سمارت IPTV لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Smart IPTV",
+            "سمارت IPTV",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "VLC",
+      "nameAr": "في إل سي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "VLC",
+        "في إل سي",
+        "vlc player"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-vlc-install-app-869af6b5",
+          "intent": "install_app",
+          "title": "تثبيت في إل سي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vlc-app-not-found-8f85a234",
+          "intent": "app_not_found",
+          "title": "في إل سي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vlc-app-freeze-32de8fe1",
+          "intent": "app_freeze",
+          "title": "في إل سي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vlc-login-problem-5103dbd3",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في في إل سي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vlc-audio-video-problem-71c725a8",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في في إل سي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vlc-storage-full-ca10ccd8",
+          "intent": "storage_full",
+          "title": "في إل سي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "VLC",
+            "في إل سي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Kodi",
+      "nameAr": "كودي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Kodi",
+        "كودي",
+        "kodi"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-kodi-install-app-26c2292a",
+          "intent": "install_app",
+          "title": "تثبيت كودي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-kodi-app-not-found-09b4c11a",
+          "intent": "app_not_found",
+          "title": "كودي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-kodi-app-freeze-40682721",
+          "intent": "app_freeze",
+          "title": "كودي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-kodi-login-problem-d7c5d900",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في كودي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-kodi-audio-video-problem-dd3ea209",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في كودي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-kodi-storage-full-6813d360",
+          "intent": "storage_full",
+          "title": "كودي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Kodi",
+            "كودي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Google Play Store",
+      "nameAr": "جوجل بلاي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Google Play Store",
+        "جوجل بلاي",
+        "play store",
+        "google play"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-google-play-store-install-app-85d8576f",
+          "intent": "install_app",
+          "title": "تثبيت جوجل بلاي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-google-play-store-app-not-found-de2fb767",
+          "intent": "app_not_found",
+          "title": "جوجل بلاي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-google-play-store-app-freeze-6466a0d2",
+          "intent": "app_freeze",
+          "title": "جوجل بلاي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-google-play-store-login-problem-4d6871cc",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في جوجل بلاي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-google-play-store-audio-video-problem-1d3def53",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في جوجل بلاي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-google-play-store-storage-full-83cea7d2",
+          "intent": "storage_full",
+          "title": "جوجل بلاي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Google Play Store",
+            "جوجل بلاي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Samsung Smart Hub",
+      "nameAr": "سمارت هب",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Samsung Smart Hub",
+        "سمارت هب",
+        "smart hub",
+        "samsung apps"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Tizen"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-samsung-smart-hub-install-app-f593a2b7",
+          "intent": "install_app",
+          "title": "تثبيت سمارت هب من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-samsung-smart-hub-app-not-found-8ad156ce",
+          "intent": "app_not_found",
+          "title": "سمارت هب غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-samsung-smart-hub-app-freeze-dd1bbc0f",
+          "intent": "app_freeze",
+          "title": "سمارت هب يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-samsung-smart-hub-login-problem-85d9c952",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في سمارت هب",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-samsung-smart-hub-audio-video-problem-b6592725",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في سمارت هب",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-samsung-smart-hub-storage-full-951e38d6",
+          "intent": "storage_full",
+          "title": "سمارت هب لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Samsung Smart Hub",
+            "سمارت هب",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "LG Content Store",
+      "nameAr": "متجر LG",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "LG Content Store",
+        "متجر LG",
+        "lg content store",
+        "lg apps"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-lg-content-store-install-app-abdf3b0d",
+          "intent": "install_app",
+          "title": "تثبيت متجر LG من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-lg-content-store-app-not-found-0d399ea7",
+          "intent": "app_not_found",
+          "title": "متجر LG غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-lg-content-store-app-freeze-0772dae9",
+          "intent": "app_freeze",
+          "title": "متجر LG يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-lg-content-store-login-problem-3a3e3cc9",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في متجر LG",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-lg-content-store-audio-video-problem-8456d2e3",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في متجر LG",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-lg-content-store-storage-full-e730178c",
+          "intent": "storage_full",
+          "title": "متجر LG لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "LG Content Store",
+            "متجر LG",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "VIDAA Store",
+      "nameAr": "متجر VIDAA",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "VIDAA Store",
+        "متجر VIDAA",
+        "vidaa apps"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-vidaa-store-install-app-770c2bed",
+          "intent": "install_app",
+          "title": "تثبيت متجر VIDAA من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vidaa-store-app-not-found-fb7bc92d",
+          "intent": "app_not_found",
+          "title": "متجر VIDAA غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vidaa-store-app-freeze-d739c45c",
+          "intent": "app_freeze",
+          "title": "متجر VIDAA يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vidaa-store-login-problem-eab3f617",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في متجر VIDAA",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vidaa-store-audio-video-problem-eb3d336a",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في متجر VIDAA",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-vidaa-store-storage-full-e1eda842",
+          "intent": "storage_full",
+          "title": "متجر VIDAA لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "VIDAA Store",
+            "متجر VIDAA",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Browser",
+      "nameAr": "المتصفح",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Browser",
+        "المتصفح",
+        "browser",
+        "متصفح"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-browser-install-app-69902309",
+          "intent": "install_app",
+          "title": "تثبيت المتصفح من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-browser-app-not-found-f904f9dc",
+          "intent": "app_not_found",
+          "title": "المتصفح غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-browser-app-freeze-39ce972d",
+          "intent": "app_freeze",
+          "title": "المتصفح يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-browser-login-problem-1a839fd8",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في المتصفح",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-browser-audio-video-problem-2a6f1c0e",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في المتصفح",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-browser-storage-full-02de1f5a",
+          "intent": "storage_full",
+          "title": "المتصفح لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Browser",
+            "المتصفح",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Screen Mirroring",
+      "nameAr": "مشاركة الشاشة",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Screen Mirroring",
+        "مشاركة الشاشة",
+        "cast",
+        "airplay",
+        "mirroring"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS",
+        "VIDAA"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-screen-mirroring-install-app-f1b13b2c",
+          "intent": "install_app",
+          "title": "تثبيت مشاركة الشاشة من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-screen-mirroring-app-not-found-1c44e8f1",
+          "intent": "app_not_found",
+          "title": "مشاركة الشاشة غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-screen-mirroring-app-freeze-944ade3d",
+          "intent": "app_freeze",
+          "title": "مشاركة الشاشة يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-screen-mirroring-login-problem-0962c1e5",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في مشاركة الشاشة",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-screen-mirroring-audio-video-problem-192c4d58",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في مشاركة الشاشة",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-screen-mirroring-storage-full-e143b720",
+          "intent": "storage_full",
+          "title": "مشاركة الشاشة لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Screen Mirroring",
+            "مشاركة الشاشة",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Spotify",
+      "nameAr": "سبوتيفاي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Spotify",
+        "سبوتيفاي",
+        "spotify"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-spotify-install-app-cbdbbbbd",
+          "intent": "install_app",
+          "title": "تثبيت سبوتيفاي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-spotify-app-not-found-a403f4f6",
+          "intent": "app_not_found",
+          "title": "سبوتيفاي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-spotify-app-freeze-6d16b7bd",
+          "intent": "app_freeze",
+          "title": "سبوتيفاي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-spotify-login-problem-3bbf52d8",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في سبوتيفاي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-spotify-audio-video-problem-f1f56361",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في سبوتيفاي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-spotify-storage-full-f0f87225",
+          "intent": "storage_full",
+          "title": "سبوتيفاي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Spotify",
+            "سبوتيفاي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Anghami",
+      "nameAr": "أنغامي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Anghami",
+        "أنغامي",
+        "anghami"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-anghami-install-app-a7f4e443",
+          "intent": "install_app",
+          "title": "تثبيت أنغامي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-anghami-app-not-found-ddef58e9",
+          "intent": "app_not_found",
+          "title": "أنغامي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-anghami-app-freeze-ba55fdba",
+          "intent": "app_freeze",
+          "title": "أنغامي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-anghami-login-problem-5879d12e",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في أنغامي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-anghami-audio-video-problem-9138f97b",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في أنغامي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-anghami-storage-full-6151e937",
+          "intent": "storage_full",
+          "title": "أنغامي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Anghami",
+            "أنغامي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Plex",
+      "nameAr": "بليكس",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Plex",
+        "بليكس",
+        "plex"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Tizen",
+        "webOS"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-plex-install-app-6c37152c",
+          "intent": "install_app",
+          "title": "تثبيت بليكس من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-plex-app-not-found-df426a69",
+          "intent": "app_not_found",
+          "title": "بليكس غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-plex-app-freeze-717bfb3d",
+          "intent": "app_freeze",
+          "title": "بليكس يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-plex-login-problem-50e9c613",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في بليكس",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-plex-audio-video-problem-0992f3b1",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في بليكس",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-plex-storage-full-2d21efaf",
+          "intent": "storage_full",
+          "title": "بليكس لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Plex",
+            "بليكس",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Jellyfin",
+      "nameAr": "جيليفن",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Jellyfin",
+        "جيليفن",
+        "jellyfin"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-jellyfin-install-app-b871eea6",
+          "intent": "install_app",
+          "title": "تثبيت جيليفن من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-jellyfin-app-not-found-07d81ebf",
+          "intent": "app_not_found",
+          "title": "جيليفن غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-jellyfin-app-freeze-81b0512a",
+          "intent": "app_freeze",
+          "title": "جيليفن يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-jellyfin-login-problem-2da20fb3",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في جيليفن",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-jellyfin-audio-video-problem-1ff6b519",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في جيليفن",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-jellyfin-storage-full-46a42d24",
+          "intent": "storage_full",
+          "title": "جيليفن لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Jellyfin",
+            "جيليفن",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    },
+    {
+      "brand": "Emby",
+      "nameAr": "إمبي",
+      "category": "app",
+      "market": [
+        "Jordan",
+        "Middle East",
+        "GCC",
+        "Levant",
+        "Egypt",
+        "North Africa"
+      ],
+      "aliases": [
+        "Emby",
+        "إمبي",
+        "emby"
+      ],
+      "knownModels": [],
+      "possibleOperatingSystems": [
+        "Android TV",
+        "Google TV",
+        "Android Box"
+      ],
+      "topics": [
+        {
+          "id": "hyper-app-emby-install-app-3ea87dcc",
+          "intent": "install_app",
+          "title": "تثبيت إمبي من المتجر الرسمي",
+          "summary": "تثبيت التطبيق من المسار الصحيح.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "install_app",
+            "install",
+            "تنزيل",
+            "تثبيت"
+          ],
+          "steps": [
+            "افتح المتجر الرسمي المناسب للنظام.",
+            "ابحث عن التطبيق باسمه.",
+            "اضغط Install/تثبيت أو Update/تحديث.",
+            "إذا لم يظهر، تحقق من البلد وإصدار النظام."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "install_app",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-emby-app-not-found-f6f55ac9",
+          "intent": "app_not_found",
+          "title": "إمبي غير موجود في المتجر",
+          "summary": "أسباب اختفاء التطبيق.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "app_not_found",
+            "not found",
+            "غير موجود",
+            "لا يظهر"
+          ],
+          "steps": [
+            "حدّث نظام الجهاز.",
+            "افحص البلد/المنطقة والحساب.",
+            "تأكد أن جهازك يدعم التطبيق.",
+            "إذا الموديل قديم استخدم جهاز خارجي رسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [
+            "app_not_found",
+            "exact_model_needed"
+          ],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-emby-app-freeze-9bf92372",
+          "intent": "app_freeze",
+          "title": "إمبي يعلق أو لا يفتح",
+          "summary": "حل تعليق التطبيق.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "app_freeze",
+            "يعلق",
+            "crash",
+            "freeze"
+          ],
+          "steps": [
+            "أغلق التطبيق إجباريًا.",
+            "امسح الكاش أو أعد التثبيت.",
+            "صحح التاريخ والوقت.",
+            "اختبر الإنترنت عبر هوتسبوت أو LAN."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-emby-login-problem-de475437",
+          "intent": "login_problem",
+          "title": "مشكلة تسجيل الدخول في إمبي",
+          "summary": "حل مشاكل الحساب والكود.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "login_problem",
+            "login",
+            "تسجيل دخول",
+            "رمز",
+            "كود"
+          ],
+          "steps": [
+            "تأكد من البريد وكلمة المرور.",
+            "جرب تسجيل الدخول من الهاتف للتأكد من الحساب.",
+            "صحح الوقت والمنطقة.",
+            "إذا يظهر كود خطأ اكتبه كما هو."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-emby-audio-video-problem-b4ec72c2",
+          "intent": "audio_video_problem",
+          "title": "مشكلة صوت أو صورة في إمبي",
+          "summary": "تقطيع/تأخير/عدم تطابق.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "audio_video_problem",
+            "صوت",
+            "صورة",
+            "audio",
+            "video"
+          ],
+          "steps": [
+            "حدّث التطبيق.",
+            "جرّب جودة أقل.",
+            "أعد تشغيل الجهاز والراوتر.",
+            "إذا المشكلة على التطبيق فقط، انتظر تحديثًا أو تواصل مع الدعم الرسمي."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        },
+        {
+          "id": "hyper-app-emby-storage-full-82a300d8",
+          "intent": "storage_full",
+          "title": "إمبي لا يثبت بسبب الذاكرة",
+          "summary": "حل مشكلة المساحة.",
+          "keywords": [
+            "Emby",
+            "إمبي",
+            "storage_full",
+            "ذاكرة",
+            "مساحة",
+            "storage"
+          ],
+          "steps": [
+            "احذف تطبيقات غير مستخدمة.",
+            "امسح الكاش.",
+            "أعد تشغيل الجهاز.",
+            "إذا التخزين محدود جدًا استخدم جهاز أحدث."
+          ],
+          "safe": true,
+          "needsModelWhen": [],
+          "whenToCallTechnician": [],
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ],
+          "updatedAt": "2026-06-01"
+        }
+      ]
+    }
+  ]
+}

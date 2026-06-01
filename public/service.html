@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>خدمة وصيانة ذكية | معن حنونة للستلايت</title>
+<title>خدمة وصيانة | معن حنونة للستلايت</title>
 <meta name="description" content="مساعد خدمة وصيانة ذكي للشاشات والريسيفرات وأجهزة IPTV في الأردن والشرق الأوسط، يعتمد على داتا داخلية أولًا ويستخدم الذكاء الاصطناعي للضرورة فقط.">
 <link rel="canonical" href="https://maensat.pages.dev/service.html">
 <link rel="stylesheet" href="/assets/service.css">
@@ -11,20 +11,36 @@
 <body>
 <main class="service-shell">
   <nav class="service-top" aria-label="روابط الموقع">
-    <a class="brand" href="/"><span class="brand-badge">📡</span><span><strong>معن حنونة للستلايت</strong><span>خدمة وصيانة ذكية بدون صفحة أدمن</span></span></a>
-    <div class="top-links"><a href="/">الرئيسية</a><a href="/frequencies.html">الترددات</a><a href="/updates.html">التلميحات</a><a class="primary" href="/service.html">خدمة وصيانة</a></div>
+    <a class="brand" href="/"><span class="brand-badge">📡</span><span><strong>معن حنونة للستلايت</strong><span>خدمة وصيانة بدون صفحة أدمن</span></span></a>
+    <div class="top-links"><a href="/">الرئيسية</a><a href="/frequencies.html">الترددات</a><a href="/updates.html">آخر التحديثات</a><a class="primary" href="/service.html">خدمة وصيانة</a></div>
   </nav>
   <section class="hero">
-    <span class="kicker">داتا داخلية أولًا · AI للضرورة فقط · تقرير GitHub يومي</span>
+    <span class="kicker">مساعد داخلي فائق · داتا موسعة · AI خارجي آخر حل فقط · تقرير GitHub يومي</span>
     <h1>مساعد خدمة وصيانة للشاشات والريسيفرات</h1>
-    <p>اسأل عن ريسيفر سبايدر أو تايجر أو ماجستيك، شاشة Samsung أو LG أو G‑Guard، تطبيق YouTube أو Shahid، مشاكل IPTV والإنترنت والإشارة. المساعد يبحث أولًا في قاعدة المعرفة المخزنة على GitHub، وإذا احتاج AI يستخدمه كاحتياط فقط.</p>
+    <p>اسأل عن ريسيفر سبايدر أو تايجر أو ماجستيك، شاشة Samsung أو LG أو G‑Guard، تطبيق YouTube أو Shahid، مشاكل IPTV والإنترنت والإشارة. المساعد يرد داخل نفس المحادثة كأنه فني محترف: يشخّص الجهاز والموديل والنظام والمتجر والتطبيق والشبكة، يربط أكثر من مادة داخلية معًا، ويكمل بأسئلة متابعة ذكية قبل التفكير بأي AI خارجي.</p>
     <div class="stats"><div class="stat"><strong id="statArticles">...</strong><span>حل ومقال داخلي</span></div><div class="stat"><strong id="statBrands">...</strong><span>علامة وجهاز</span></div><div class="stat"><strong id="statCats">...</strong><span>تصنيف خدمة</span></div><div class="stat"><strong>24h</strong><span>تحديث وتقرير GitHub</span></div></div>
   </section>
   <section class="service-grid">
-    <div class="panel question-box">
-      <label for="question">اكتب سؤال العميل أو المشكلة</label>
-      <textarea id="question" class="question-input" placeholder="مثال: شاشة G-Guard كيف أنزل يوتيوب؟ أو: ريسيفر سبايدر مش راضي يشبك على الواي فاي"></textarea>
-      <div class="controls"><button id="askBtn" type="button">اسأل المساعد</button><button id="clearBtn" type="button" class="secondary">مسح</button></div>
+    <div class="panel question-box chat-panel">
+      <div class="chat-heading">
+        <div>
+          <span class="chat-kicker">محادثة مباشرة</span>
+          <h2>اسأل المساعد كأنك تحكي مع فني</h2>
+        </div>
+        <span id="assistantMode" class="assistant-mode">الداتا الداخلية أولًا</span>
+      </div>
+      <div id="chatLog" class="chat-log" aria-live="polite">
+        <div class="msg assistant-msg">
+          <div class="avatar">🛠️</div>
+          <div class="bubble">
+            <strong>أهلًا، أنا مساعد الخدمة والصيانة.</strong>
+            <p>اكتب نوع الجهاز والمشكلة. إذا احتجت الموديل بسألك عنه، وبحدد النظام المناسب للشاشة أو الريسيفر قبل ما أعطيك الخطوات.</p>
+          </div>
+        </div>
+      </div>
+      <label for="question">اكتب رسالتك هنا</label>
+      <textarea id="question" class="question-input" placeholder="مثال: كيف أنزل يوتيوب على شاشة G-Guard؟ أو: ريسيفر سبايدر مش راضي يشبك على الواي فاي"></textarea>
+      <div class="controls"><button id="askBtn" type="button">إرسال للمساعد</button><button id="clearBtn" type="button" class="secondary">بدء محادثة جديدة</button></div>
       <div class="chips" aria-label="أمثلة سريعة">
         <button class="chip" data-example="كيف أشبك ريسيفر سبايدر على النت؟">سبايدر والنت</button>
         <button class="chip" data-example="يوتيوب معلق على شاشة سامسونج شو الحل؟">يوتيوب سامسونج</button>
@@ -32,15 +48,13 @@
         <button class="chip" data-example="ريسيفر تايجر IPTV يقطع كثير">IPTV يقطع</button>
         <button class="chip" data-example="لا توجد إشارة no signal على الرسيفر">No Signal</button>
       </div>
-      <div id="results"></div>
-      <div id="answer" class="answer"></div>
     </div>
     <aside class="panel">
       <h2 class="side-title">كيف يشتغل القسم؟</h2>
       <div class="side-list">
-        <div class="side-item"><strong>1. الداتا الداخلية</strong><span>الجواب يطلع من ملفات GitHub أولًا، وليس من AI مباشرة.</span></div>
-        <div class="side-item"><strong>2. الموديل يحدد النظام</strong><span>لو المستخدم لا يعرف نظام الشاشة، نطلب الموديل ونحدد Google TV أو Android TV أو Tizen أو webOS أو VIDAA.</span></div>
-        <div class="side-item"><strong>3. AI عند الحاجة فقط</strong><span>إذا الداتا ناقصة، يستخدم AI كاحتياط، والجواب يدخل للمراجعة اليومية.</span></div>
+        <div class="side-item"><strong>1. عقل داخلي موسع</strong><span>الجواب يطلع من فهرس GitHub الداخلي أولًا، مع تشخيص يشبه AI لكن بدون استهلاك خارجي.</span></div>
+        <div class="side-item"><strong>2. الموديل والمتجر يحددان المسار</strong><span>لو المستخدم لا يعرف النظام، نسأله عن الموديل أو المتجر الظاهر ونستنتج Google TV أو Android TV أو Tizen أو webOS أو VIDAA أو Smart OS.</span></div>
+        <div class="side-item"><strong>3. AI خارجي للضرورة القصوى فقط</strong><span>الافتراضي أن يظل داخليًا. لا يستخدم AI خارجي إلا إذا تم تفعيله وكان السؤال غير قابل للحل من الداتا أو الأسئلة المتابعة.</span></div>
         <div class="side-item"><strong>4. لا Admin</strong><span>التقارير والمراجعة كلها داخل GitHub.</span></div>
       </div>
       <a class="report-link" href="/service/reports/daily-service-report.md">فتح تقرير الخدمة اليومي</a>
@@ -49,7 +63,7 @@
   <section class="knowledge-section">
     <article class="knowledge-card"><h3>ريسيفرات الشرق الأوسط</h3><p>Spider، Tiger، Starsat، Geant، Majestic، Ghazal، Infinity، Senator، Icone، Forever والمزيد.</p></article>
     <article class="knowledge-card"><h3>الشاشات والأنظمة</h3><p>Samsung Tizen، LG webOS، Google TV، Android TV، VIDAA، وشاشات G‑Guard وMagic وGeneral View.</p></article>
-    <article class="knowledge-card"><h3>تطبيقات وشبكات</h3><p>YouTube، Netflix، Shahid، TOD، IPTV، Wi‑Fi، LAN، DNS، No Signal، HDMI، الريموت والتحديثات.</p></article>
+    <article class="knowledge-card"><h3>تطبيقات وشبكات وتشخيص</h3><p>YouTube، Netflix، Shahid، TOD، IPTV، Wi‑Fi، LAN، DNS، No Signal، HDMI، ARC، Bluetooth، الريموت والتحديثات.</p></article>
   </section>
   <p class="footer-note">تنبيه: الخدمة تقدم خطوات آمنة وقانونية فقط. لا تقدم تعليمات كسر تشفير أو فتح قنوات مدفوعة بدون اشتراك أو فتح أجهزة كهربائية لغير الفنيين.</p>
 </main>

@@ -1,24 +1,31 @@
 {
   "ok": true,
-  "generatedAt": "2026-06-01T13:12:38.469Z",
+  "generatedAt": "2026-06-01T14:42:45.080Z",
   "date": "2026-06-01",
   "mode": "github-daily-service-knowledge-update",
   "adminPage": false,
   "index": {
-    "articles": 228,
+    "articles": 17501,
     "categories": {
+      "app": 1095,
+      "android-receiver-iptv-box": 1315,
+      "receiver": 7836,
       "common-error": 8,
+      "tv": 7116,
       "network": 6,
-      "app": 19,
-      "receiver": 87,
-      "tv": 96,
+      "diagnostic-flow": 20,
+      "os-system": 96,
+      "approved-answer": 6,
       "safe-repair": 1,
-      "android-receiver-iptv-box": 11
+      "support": 1,
+      "signal": 1
     },
-    "brands": 89
+    "brands": 331
   },
   "cache": {
-    "approvedAnswers": 0,
+    "approvedAnswers": 6,
+    "autoApprovedToday": 0,
+    "blockedAutoApproval": 0,
     "pendingAiAnswers": 0,
     "unansweredQuestions": 0
   },
@@ -33,7 +40,8 @@
   },
   "actions": [
     "تم بناء فهرس خدمة وصيانة الداخلي من ملفات GitHub.",
-    "تم تحديث ملف الاقتراحات للمراجعة بدون صفحة أدمن.",
-    "لم يتم اعتماد أجوبة AI تلقائيًا كداتا رسمية؛ تدخل للمراجعة أولًا."
+    "تم اعتماد أجوبة AI الآمنة تلقائيًا داخل cache/approved-answers.json حتى لا يعاد استخدام AI لنفس السؤال.",
+    "تم منع أي جواب حساس أو غير قانوني أو خطر من الاعتماد الآلي ووضعه في ملف الاقتراحات للمراجعة.",
+    "لا توجد صفحة أدمن؛ GitHub يعمل التحديث والاعتماد والتقرير يوميًا."
   ]
 }

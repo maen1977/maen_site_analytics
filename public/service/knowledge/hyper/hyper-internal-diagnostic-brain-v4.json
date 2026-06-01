@@ -1,0 +1,146 @@
+{
+  "items": [
+    {
+      "brand": "Internal Diagnostic Brain",
+      "nameAr": "عقل التشخيص الداخلي",
+      "category": "diagnostic-flow",
+      "aliases": [
+        "تشخيص داخلي",
+        "مساعد الصيانة",
+        "internal brain"
+      ],
+      "topics": [
+        {
+          "id": "hyper-flow-universal_triage",
+          "intent": "universal_triage",
+          "title": "تشخيص سريع لأي مشكلة",
+          "summary": "ابدأ من نوع الجهاز ثم الموديل ثم الرسالة الظاهرة.",
+          "keywords": [
+            "تشخيص",
+            "مشكلة",
+            "لا يعمل",
+            "universal_triage"
+          ],
+          "steps": [
+            "حدد نوع الجهاز: شاشة، ريسيفر، Android Box، تطبيق.",
+            "اسأل عن الماركة والموديل.",
+            "اسأل: هل المشكلة بدأت بعد تحديث/تطبيق/انقطاع كهرباء؟",
+            "ابدأ بالخطوات الآمنة: إعادة تشغيل، كابل/شبكة، تحديث رسمي."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        },
+        {
+          "id": "hyper-flow-tv_app_install_decision",
+          "intent": "tv_app_install_decision",
+          "title": "قرار تنزيل تطبيق على شاشة",
+          "summary": "التطبيقات تعتمد على نظام الشاشة لا الاسم التجاري فقط.",
+          "keywords": [
+            "تطبيق شاشة",
+            "متجر",
+            "يوتيوب",
+            "tv_app_install_decision"
+          ],
+          "steps": [
+            "إذا يوجد Google Play فالمسار Android/Google TV.",
+            "إذا يوجد Smart Hub فالمسار Samsung Tizen.",
+            "إذا يوجد LG Content Store فالمسار webOS.",
+            "إذا المتجر محدود/غير معروف، اطلب الموديل واقترح جهاز خارجي رسمي عند عدم الدعم."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        },
+        {
+          "id": "hyper-flow-receiver_internet_decision",
+          "intent": "receiver_internet_decision",
+          "title": "قرار الإنترنت في الريسيفر",
+          "summary": "فصل مشكلة الراوتر عن الريسيفر.",
+          "keywords": [
+            "ريسيفر نت",
+            "واي فاي",
+            "server",
+            "receiver_internet_decision"
+          ],
+          "steps": [
+            "جرّب LAN أو هوتسبوت الهاتف.",
+            "صحح التاريخ والوقت.",
+            "إذا متصل ولا خدمة، افحص الاشتراك الرسمي أو الخدمة.",
+            "لا تعطي بيانات سيرفرات غير قانونية."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        },
+        {
+          "id": "hyper-flow-no_signal_splitter",
+          "intent": "no_signal_splitter",
+          "title": "تقسيم No Signal",
+          "summary": "تمييز No Signal التلفزيون من No Signal القناة.",
+          "keywords": [
+            "no signal",
+            "لا توجد اشارة",
+            "no_signal_splitter"
+          ],
+          "steps": [
+            "إذا تظهر على شاشة التلفزيون قبل دخول قائمة الريسيفر فهي HDMI/Source.",
+            "إذا تظهر داخل القناة مع وجود قوائم الريسيفر فهي دش/تردد.",
+            "افحص HDMI أولًا ثم LNB والقمر."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        },
+        {
+          "id": "hyper-flow-firmware_safety_gate",
+          "intent": "firmware_safety_gate",
+          "title": "بوابة أمان السوفتوير",
+          "summary": "لا تحديث بدون موديل مؤكد.",
+          "keywords": [
+            "سوفتوير",
+            "firmware",
+            "تحديث",
+            "firmware_safety_gate"
+          ],
+          "steps": [
+            "اطلب الموديل الكامل قبل أي ملف.",
+            "اسم الملف يجب أن يطابق الموديل والهاردوير.",
+            "لا تستخدم ملفات من جروبات أو مصادر مجهولة.",
+            "إذا الجهاز عالق بعد تحديث يحتاج فني أو ملف رسمي صحيح."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        },
+        {
+          "id": "hyper-flow-iptv_legal_quality_gate",
+          "intent": "iptv_legal_quality_gate",
+          "title": "تحسين IPTV قانوني",
+          "summary": "حل التقطيع بدون طرق مخالفة.",
+          "keywords": [
+            "iptv",
+            "تقطيع",
+            "iptv_legal_quality_gate"
+          ],
+          "steps": [
+            "استخدم LAN.",
+            "اختبر سرعة وثبات الإنترنت.",
+            "خفف الجودة.",
+            "تأكد أن الاشتراك رسمي.",
+            "إذا التقطيع من مزود واحد فالمشكلة غالبًا من المزود."
+          ],
+          "safe": true,
+          "sources": [
+            "internal-hyper-service-knowledge-v4"
+          ]
+        }
+      ]
+    }
+  ]
+}
