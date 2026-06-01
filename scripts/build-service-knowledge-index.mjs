@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readdir, readFile, writeFile, mkdir, stat } from 'node:fs/promises';
+import { readdir, readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import crypto from 'node:crypto';
@@ -10,7 +10,10 @@ const root = path.resolve(__dirname, '..');
 const knowledgeDir = path.join(root, 'public', 'service', 'knowledge');
 const cacheDir = path.join(root, 'public', 'service', 'cache');
 const outDir = path.join(root, 'public', 'service', 'index');
-const outFile = path.join(outDir, 'service-search-index.json');
+const manifestFile = path.join(outDir, 'service-index-manifest.json');
+const legacyFile = path.join(outDir, 'service-search-index.json');
+const shardsDir = path.join(outDir, 'shards');
+const MAX_SHARD_BYTES = Number(process.env.SERVICE_INDEX_MAX_SHARD_BYTES || 5 * 1024 * 1024);
 
 export function normalizeArabic(value = '') {
   return String(value ?? '')
@@ -72,14 +75,10 @@ function articleFromTopic(topic, parent = {}, file = '') {
     appStore: parent.appStore || topic.appStore || '',
     knownModels: safeArray(parent.knownModels).concat(safeArray(parent.modelFamilies)),
     keywords: [...new Set(keywords.filter(Boolean).map(String))].slice(0, 80),
-    tokens: tokenize(text),
-    normalizedText: normalizeArabic(text),
+    // Keep the public index compact for Cloudflare Pages' 25 MiB per-file limit.
+    // Search text/tokens are computed at runtime from title/summary/steps/keywords.
     safe: topic.safe !== false,
-    needsModelWhen: safeArray(topic.needsModelWhen),
-    whenToCallTechnician: safeArray(topic.whenToCallTechnician),
-    sources: safeArray(topic.sources || parent.sources),
-    sourceFile: path.relative(root, file).replace(/\\/g, '/'),
-    updatedAt: new Date().toISOString()
+    whenToCallTechnician: safeArray(topic.whenToCallTechnician).slice(0, 3)
   };
 }
 
@@ -134,24 +133,80 @@ export async function buildServiceKnowledgeIndex() {
   const finalArticles = [...unique.values()].sort((a, b) => String(a.title).localeCompare(String(b.title), 'ar'));
   const categoryCounts = finalArticles.reduce((acc, a) => { acc[a.category] = (acc[a.category] || 0) + 1; return acc; }, {});
   const brandCounts = finalArticles.reduce((acc, a) => { if (a.brand) acc[a.brand] = (acc[a.brand] || 0) + 1; return acc; }, {});
-  const payload = {
+  const basePayload = {
     ok: true,
     generatedAt: new Date().toISOString(),
-    mode: 'internal-knowledge-first',
+    mode: 'internal-knowledge-first-sharded',
+    sharded: true,
+    version: 2,
     region: 'Jordan / Middle East',
     aiPolicy: 'AI fallback is disabled by default; internal knowledge, approved cache, and clarification questions are used first.',
     safetyPolicy: 'No illegal decryption, piracy, unsafe electrical repair, or unverified firmware instructions.',
     count: finalArticles.length,
     categoryCounts,
     brandCounts,
-    dictionaries,
-    articles: finalArticles
+    dictionaries
   };
+
+  function slugCategory(value = 'misc') {
+    return String(value || 'misc')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'misc';
+  }
+
+  function shardArticlesByCategory(articles) {
+    const groups = new Map();
+    for (const article of articles) {
+      const category = slugCategory(article.category || article.deviceType || 'misc');
+      if (!groups.has(category)) groups.set(category, []);
+      groups.get(category).push(article);
+    }
+    return [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
+  }
+
   await mkdir(outDir, { recursive: true });
-  await writeFile(outFile, JSON.stringify(payload, null, 2) + '\n', 'utf8');
+  await rm(shardsDir, { recursive: true, force: true });
+  await mkdir(shardsDir, { recursive: true });
+
+  const shards = [];
+  for (const [category, group] of shardArticlesByCategory(finalArticles)) {
+    let chunk = [];
+    let chunkBytes = 0;
+    let part = 1;
+    for (const article of group) {
+      const articleBytes = Buffer.byteLength(JSON.stringify(article), 'utf8') + 2;
+      if (chunk.length && chunkBytes + articleBytes > MAX_SHARD_BYTES) {
+        const shardKey = `${category}-${String(part).padStart(3, '0')}`;
+        const file = `shards/${shardKey}.json`;
+        const payload = { ok: true, generatedAt: basePayload.generatedAt, shardKey, category, part, count: chunk.length, articles: chunk };
+        const json = JSON.stringify(payload) + '\n';
+        await writeFile(path.join(outDir, file), json, 'utf8');
+        shards.push({ key: shardKey, category, file, count: chunk.length, bytes: Buffer.byteLength(json, 'utf8') });
+        part += 1;
+        chunk = [];
+        chunkBytes = 0;
+      }
+      chunk.push(article);
+      chunkBytes += articleBytes;
+    }
+    if (chunk.length) {
+      const shardKey = `${category}-${String(part).padStart(3, '0')}`;
+      const file = `shards/${shardKey}.json`;
+      const payload = { ok: true, generatedAt: basePayload.generatedAt, shardKey, category, part, count: chunk.length, articles: chunk };
+      const json = JSON.stringify(payload) + '\n';
+      await writeFile(path.join(outDir, file), json, 'utf8');
+      shards.push({ key: shardKey, category, file, count: chunk.length, bytes: Buffer.byteLength(json, 'utf8') });
+    }
+  }
+
+  const payload = { ...basePayload, shards, shardCount: shards.length, maxShardBytes: MAX_SHARD_BYTES };
+  await writeFile(manifestFile, JSON.stringify(payload) + '\n', 'utf8');
+  // Tiny backward-compatible pointer. The real index is sharded to avoid Cloudflare Pages' 25 MiB asset limit.
+  await writeFile(legacyFile, JSON.stringify({ ok: true, sharded: true, manifest: 'service-index-manifest.json', generatedAt: payload.generatedAt, count: payload.count, shardCount: payload.shardCount }) + '\n', 'utf8');
   return payload;
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  buildServiceKnowledgeIndex().then(out => console.log(JSON.stringify({ ok: true, count: out.count, file: 'public/service/index/service-search-index.json' }, null, 2))).catch(error => { console.error(error); process.exit(1); });
+  buildServiceKnowledgeIndex().then(out => console.log(JSON.stringify({ ok: true, count: out.count, file: 'public/service/index/service-index-manifest.json', shards: out.shardCount }, null, 2))).catch(error => { console.error(error); process.exit(1); });
 }

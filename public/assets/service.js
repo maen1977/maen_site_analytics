@@ -1,5 +1,5 @@
 (() => {
-  const state = { index: null, articles: [], messages: [], lastContext: [], memory: { deviceType: '', brand: '', brandAr: '', app: '', intent: '', osHint: '', models: [], storeHint: '', connection: '', symptom: '', severity: '', tried: [], signals: [] }, internalMisses: 0, lastDiagnosis: null };
+  const state = { index: null, articles: [], messages: [], lastContext: [], loadedShards: new Set(), loadedCategories: new Set(), allShardsLoaded: false, memory: { deviceType: '', brand: '', brandAr: '', app: '', intent: '', osHint: '', models: [], storeHint: '', connection: '', symptom: '', severity: '', tried: [], signals: [] }, internalMisses: 0, lastDiagnosis: null };
   const $ = (s) => document.querySelector(s);
 
   function normalizeArabic(value = '') {
@@ -463,11 +463,65 @@
     return boost;
   }
 
+  function shardCategoriesForAnalysis(analysis = {}) {
+    const cats = new Set(['diagnostic-flow', 'common-error', 'network', 'safe-repair', 'support', 'signal', 'approved-answer']);
+    if (analysis.deviceType === 'receiver') cats.add('receiver');
+    if (analysis.deviceType === 'tv') { cats.add('tv'); cats.add('os-system'); cats.add('app'); }
+    if (analysis.deviceType === 'android-receiver-iptv-box') { cats.add('android-receiver-iptv-box'); cats.add('app'); cats.add('network'); }
+    if (analysis.app || /^install_|app_|clear_cache|update_app|login_problem|storage_full|country_region_tv|screen_cast/.test(analysis.intent || '')) { cats.add('app'); cats.add('os-system'); cats.add('tv'); }
+    if (/wifi|lan|hotspot|internet|dns|date_time/.test(analysis.intent || '')) cats.add('network');
+    if (/no_signal|weak_signal|channel_scan|transponder|diseqc|lnb|motor/.test(analysis.intent || '')) { cats.add('receiver'); cats.add('signal'); }
+    if (/hdmi|arc|sound|bluetooth|remote|black_screen|power|firmware|factory|boot|restart/.test(analysis.intent || '')) { cats.add('common-error'); cats.add('safe-repair'); cats.add('tv'); cats.add('receiver'); }
+    if (!analysis.deviceType && !analysis.app && (!analysis.intent || analysis.intent === 'unknown')) {
+      ['receiver', 'tv', 'android-receiver-iptv-box', 'app', 'os-system'].forEach(c => cats.add(c));
+    }
+    return [...cats];
+  }
+
+  function shardFilesForCategories(categories = []) {
+    const wanted = new Set(categories);
+    return (state.index?.shards || []).filter(s => wanted.has(s.category)).map(s => s.file);
+  }
+
+  async function loadShardFiles(files = []) {
+    const needed = files.filter(Boolean).filter(file => !state.loadedShards.has(file));
+    if (!needed.length) return;
+    const loaded = await Promise.all(needed.map(async file => {
+      const res = await fetch(`/service/index/${file}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`تعذر تحميل جزء من قاعدة المعرفة: ${file}`);
+      return { file, payload: await res.json() };
+    }));
+    const byId = new Map(state.articles.map(a => [a.id, a]));
+    for (const { file, payload } of loaded) {
+      for (const article of (payload.articles || [])) byId.set(article.id, article);
+      state.loadedShards.add(file);
+      if (payload.category) state.loadedCategories.add(payload.category);
+    }
+    state.articles = [...byId.values()];
+  }
+
+  async function ensureArticlesForQuestion(question, options = {}) {
+    if (!state.index) await loadIndex();
+    if (!state.index?.sharded) return;
+    if (options.all) {
+      await loadShardFiles((state.index.shards || []).map(s => s.file));
+      state.allShardsLoaded = true;
+      return;
+    }
+    const analysis = analyzeQuestion(question);
+    const files = shardFilesForCategories(shardCategoriesForAnalysis(analysis));
+    await loadShardFiles(files);
+  }
+
   async function loadIndex() {
-    const res = await fetch('/service/index/service-search-index.json', { cache: 'no-store' });
+    let res = await fetch('/service/index/service-index-manifest.json', { cache: 'no-store' });
+    if (!res.ok) res = await fetch('/service/index/service-search-index.json', { cache: 'no-store' });
     if (!res.ok) throw new Error('تعذر تحميل قاعدة المعرفة');
     state.index = await res.json();
     state.articles = state.index.articles || [];
+    state.loadedShards = new Set();
+    state.loadedCategories = new Set();
+    state.allShardsLoaded = !state.index.sharded;
     $('#statArticles').textContent = state.index.count || state.articles.length;
     $('#statBrands').textContent = Object.keys(state.index.brandCounts || {}).length;
     $('#statCats').textContent = Object.keys(state.index.categoryCounts || {}).length;
@@ -698,9 +752,15 @@
     setTyping(true);
 
     try {
-      const results = bestResults(q, 10);
+      await ensureArticlesForQuestion(q);
+      let results = bestResults(q, 10);
+      let topScore = results[0]?.score || 0;
+      if (topScore < 5 && state.index?.sharded && !state.allShardsLoaded) {
+        await ensureArticlesForQuestion(q, { all: true });
+        results = bestResults(q, 10);
+        topScore = results[0]?.score || 0;
+      }
       state.lastContext = results.map(x => x.article);
-      const topScore = results[0]?.score || 0;
       let reply;
       if (topScore >= 8) {
         state.internalMisses = 0;

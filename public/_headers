@@ -35,7 +35,13 @@
   Cache-Control: public, max-age=3600
 
 # Service knowledge files update through GitHub Actions daily.
+/service/index/service-index-manifest.json
+  Cache-Control: public, max-age=300, must-revalidate
+
 /service/index/service-search-index.json
+  Cache-Control: public, max-age=300, must-revalidate
+
+/service/index/shards/*
   Cache-Control: public, max-age=300, must-revalidate
 
 /service/knowledge/*

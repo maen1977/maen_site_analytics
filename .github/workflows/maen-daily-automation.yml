@@ -128,7 +128,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/service/index/service-search-index.json public/service/reports/daily-service-report.json public/service/reports/daily-service-report.md public/service/review/suggested-knowledge.json public/service/review/pending-ai-answers.json public/service/cache/approved-answers.json
+          git add public/service/index public/service/reports/daily-service-report.json public/service/reports/daily-service-report.md public/service/review/suggested-knowledge.json public/service/review/pending-ai-answers.json public/service/cache/approved-answers.json
           if git diff --cached --quiet; then
             echo "No service knowledge changes to commit."
           else

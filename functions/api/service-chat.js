@@ -5,7 +5,9 @@ function normalizeArabic(value = "") {
 }
 function tokens(q = "") { return normalizeArabic(q).split(" ").filter(t => t.length > 1); }
 function scoreArticle(q, article) {
-  const ts = tokens(q); let score = 0; const text = article.normalizedText || ""; const at = new Set(article.tokens || []);
+  const ts = tokens(q); let score = 0;
+  const text = article.normalizedText || normalizeArabic([article.title, article.summary, (article.steps || []).join(" "), (article.keywords || []).join(" "), (article.knownModels || []).join(" "), (article.operatingSystems || []).join(" ")].join(" "));
+  const at = new Set(article.tokens || []);
   for (const t of ts) { if (at.has(t)) score += 8; else if (text.includes(t)) score += 4; for (const kw of (article.keywords || [])) if (normalizeArabic(kw).includes(t)) score += 3; }
   const nq = normalizeArabic(q);
   if (article.brand && nq.includes(normalizeArabic(article.brand))) score += 24;
@@ -53,11 +55,26 @@ function intentBoost(nq, article) {
     }
   return boost;
 }
-async function loadIndex(request, env) {
-  const url = new URL("/service/index/service-search-index.json", request.url);
+async function fetchAssetJson(request, env, path) {
+  const url = new URL(path, request.url);
   const res = env.ASSETS && typeof env.ASSETS.fetch === "function" ? await env.ASSETS.fetch(url) : await fetch(url);
-  if (!res.ok) throw new Error("Knowledge index unavailable");
+  if (!res.ok) throw new Error(`Knowledge asset unavailable: ${path}`);
   return await res.json();
+}
+async function loadIndex(request, env) {
+  let manifest;
+  try {
+    manifest = await fetchAssetJson(request, env, "/service/index/service-index-manifest.json");
+  } catch {
+    const legacy = await fetchAssetJson(request, env, "/service/index/service-search-index.json");
+    if (!legacy.sharded) return legacy;
+    manifest = await fetchAssetJson(request, env, "/service/index/" + (legacy.manifest || "service-index-manifest.json"));
+  }
+  if (!manifest.sharded) return manifest;
+  const shards = await Promise.all((manifest.shards || []).map(async shard => fetchAssetJson(request, env, "/service/index/" + shard.file)));
+  const articles = [];
+  for (const shard of shards) articles.push(...(shard.articles || []));
+  return { ...manifest, articles };
 }
 function safeHistory(history = []) {
   if (!Array.isArray(history)) return [];
