@@ -1,0 +1,134 @@
+{
+  "items": [
+    {
+      "name": "Samsung Tizen",
+      "aliases": [
+        "tizen",
+        "تايزن",
+        "سامسونج سمارت هب",
+        "smart hub"
+      ],
+      "appStore": "Samsung Smart Hub / Apps",
+      "installSteps": [
+        "اضغط زر Home من الريموت.",
+        "افتح Apps أو البحث.",
+        "ابحث عن اسم التطبيق ثم اختر Install.",
+        "إذا التطبيق غير ظاهر، افحص تحديث النظام والمنطقة والدعم حسب موديل الشاشة."
+      ],
+      "modelHint": "موديلات Samsung غالبًا تبدأ UA/UN/QN/UE وتستخدم Tizen في الشاشات الذكية الحديثة."
+    },
+    {
+      "name": "LG webOS",
+      "aliases": [
+        "webos",
+        "ويب او اس",
+        "ويب أو إس",
+        "lg content store"
+      ],
+      "appStore": "LG Content Store / Apps",
+      "installSteps": [
+        "اضغط زر Home.",
+        "افتح LG Content Store أو Apps.",
+        "اضغط البحث واكتب اسم التطبيق.",
+        "اختر Install، ثم افتح التطبيق من الشريط الرئيسي."
+      ],
+      "modelHint": "موديلات LG OLED/NanoCell/QNED/UQ/UR غالبًا تستخدم webOS."
+    },
+    {
+      "name": "Google TV",
+      "aliases": [
+        "google tv",
+        "جوجل تي في",
+        "googletv"
+      ],
+      "appStore": "Google Play عبر تبويب Apps",
+      "installSteps": [
+        "من الشاشة الرئيسية افتح تبويب Apps.",
+        "ابحث عن التطبيق أو افتح Google Play.",
+        "اختر Install واتبع التعليمات.",
+        "إذا لم يظهر التطبيق فهو غالبًا غير متوافق مع هذا التلفزيون أو المنطقة."
+      ],
+      "modelHint": "يظهر غالبًا في TCL/Sony/Hisense/G-Guard/Magic/General View وبعض أجهزة Android Box الحديثة."
+    },
+    {
+      "name": "Android TV",
+      "aliases": [
+        "android tv",
+        "اندرويد تي في",
+        "أندرويد تي في"
+      ],
+      "appStore": "Google Play Store",
+      "installSteps": [
+        "افتح Google Play Store أو Apps.",
+        "ابحث عن التطبيق.",
+        "اختر Install.",
+        "لو المتجر غير ظاهر، افتح Settings > Apps أو تأكد من حساب Google والإنترنت."
+      ],
+      "modelHint": "ينتشر في شاشات TCL/Sony/Sharp/Skyworth/Xiaomi وبعض ماركات السوق المحلي."
+    },
+    {
+      "name": "VIDAA",
+      "aliases": [
+        "vidaa",
+        "vida",
+        "فيدا",
+        "هايسنس فيدا"
+      ],
+      "appStore": "VIDAA App Store",
+      "installSteps": [
+        "افتح My Apps أو App Store.",
+        "ابحث عن التطبيق.",
+        "اختر Install أو Add.",
+        "إذا التطبيق غير موجود، افحص تحديث النظام أو استخدم جهاز خارجي قانوني."
+      ],
+      "modelHint": "ينتشر في Hisense وبعض Toshiba حسب السوق."
+    },
+    {
+      "name": "Roku TV",
+      "aliases": [
+        "roku",
+        "روكو"
+      ],
+      "appStore": "Roku Channel Store",
+      "installSteps": [
+        "اضغط Home.",
+        "افتح Streaming Channels.",
+        "ابحث عن التطبيق ثم Add Channel.",
+        "إذا غير متاح، افحص المنطقة وحساب Roku."
+      ],
+      "modelHint": "قد يظهر في بعض TCL/JVC/Toshiba حسب السوق."
+    },
+    {
+      "name": "Fire TV",
+      "aliases": [
+        "fire tv",
+        "فاير تي في"
+      ],
+      "appStore": "Amazon Appstore",
+      "installSteps": [
+        "افتح Find أو Appstore.",
+        "ابحث عن التطبيق.",
+        "اختر Get أو Download.",
+        "تجنب تثبيت ملفات من مصادر غير موثوقة."
+      ],
+      "modelHint": "موجود في بعض أجهزة Fire TV وبعض موديلات Toshiba/Panasonic حسب السوق."
+    },
+    {
+      "name": "Smart OS خاص",
+      "aliases": [
+        "smart os",
+        "نظام خاص",
+        "لينكس سمارت",
+        "linux smart"
+      ],
+      "appStore": "متجر محدود أو تطبيقات مثبتة مسبقًا",
+      "installSteps": [
+        "افتح قائمة التطبيقات أو App Store إن وجد.",
+        "ابحث عن التطبيق المطلوب.",
+        "إذا لا يوجد متجر أو التطبيق غير متاح، حدّث النظام إن وجد.",
+        "إذا بقي غير متاح، الحل العملي جهاز Android TV Box/Chromecast قانوني."
+      ],
+      "modelHint": "ينتشر في بعض الشاشات الاقتصادية أو القديمة."
+    }
+  ]
+}

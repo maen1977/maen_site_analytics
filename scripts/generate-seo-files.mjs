@@ -15,7 +15,8 @@ const pages = [
   { file: 'frequencies.html', title: 'بحث ترددات القنوات', hash: '#frequencies', priority: '0.9', changefreq: 'daily', desc: 'بحث سريع في ترددات نايل سات وعرب سات وأقمار الشرق الأوسط.' },
   { file: 'updates.html', title: 'آخر تحديثات الترددات والقنوات', hash: '#updates', priority: '0.9', changefreq: 'daily', desc: 'آخر تحديثات الترددات والمحطات والأقمار والقنوات الرياضية المجانية المعلنة للشرق الأوسط.' },
   { file: 'maintenance.html', title: 'خدمات تركيب وصيانة الستلايت', hash: '#maintenance', priority: '0.8', changefreq: 'weekly', desc: 'خدمات تركيب وصيانة وبرمجة الستلايت والأطباق واللواقط.' },
-  { file: 'devices.html', title: 'أجهزة رسيفر ولواقط', hash: '#devices', priority: '0.8', changefreq: 'weekly', desc: 'أجهزة رسيفر ولواقط وقطع ستلايت متوفرة مع تواصل مباشر.' }
+  { file: 'devices.html', title: 'أجهزة رسيفر ولواقط', hash: '#devices', priority: '0.8', changefreq: 'weekly', desc: 'أجهزة رسيفر ولواقط وقطع ستلايت متوفرة مع تواصل مباشر.' },
+  { file: 'service.html', title: 'خدمة وصيانة ذكية', hash: '', priority: '0.9', changefreq: 'daily', desc: 'مساعد خدمة وصيانة ذكي للشاشات والريسيفرات وأجهزة IPTV في الأردن والشرق الأوسط.', standalone: true }
 ];
 
 function esc(v) { return String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
@@ -42,7 +43,7 @@ async function main() {
   const urls = pages.map(p => `  <url><loc>${baseUrl}/${p.file === 'index.html' ? '' : p.file}</loc><lastmod>${now}</lastmod><changefreq>${p.changefreq}</changefreq><priority>${p.priority}</priority></url>`).join('\n');
   await writeFile(path.join(publicDir, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`, 'utf8');
   await writeFile(path.join(publicDir, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${baseUrl}/sitemap.xml\n`, 'utf8');
-  for (const p of pages.filter(p => p.file !== 'index.html')) await writeFile(path.join(publicDir, p.file), landingPage(p), 'utf8');
+  for (const p of pages.filter(p => p.file !== 'index.html' && !p.standalone)) await writeFile(path.join(publicDir, p.file), landingPage(p), 'utf8');
   await writeFile(path.join(publicDir, 'site.webmanifest'), JSON.stringify({
     name: 'معن حنونة للستلايت', short_name: 'MaenSat', lang: 'ar', dir: 'rtl', start_url: '/', display: 'standalone', background_color: '#f8f5ed', theme_color: '#ffd23f', description: pages[0].desc
   }, null, 2) + '\n', 'utf8');

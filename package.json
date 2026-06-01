@@ -7,15 +7,18 @@
   "scripts": {
     "dev": "netlify dev",
     "check": "npm run check:github && npm run check:cloudflare && npm run check:client",
-    "check:cloudflare": "node --check functions/_lib/analytics.js && node --check functions/_lib/frequency-utils.js && node --check functions/api/track-visit.js && node --check functions/api/search-feedback.js",
+    "check:cloudflare": "node --check functions/_lib/analytics.js && node --check functions/_lib/frequency-utils.js && node --check functions/api/track-visit.js && node --check functions/api/search-feedback.js && node --check functions/api/service-chat.js",
     "github:update-frequencies": "node scripts/github-daily-frequency-update.mjs",
     "github:analytics-report": "node scripts/github-daily-analytics-report.mjs",
-    "check:github": "node --check scripts/github-daily-frequency-update.mjs && node --check scripts/github-daily-analytics-report.mjs && node --check scripts/generate-latest-updates.mjs && node --check scripts/generate-seo-files.mjs && node --check scripts/generate-frequency-assets.mjs && node --check scripts/search-smoke-tests.mjs",
+    "check:github": "node --check scripts/github-daily-frequency-update.mjs && node --check scripts/github-daily-analytics-report.mjs && node --check scripts/generate-latest-updates.mjs && node --check scripts/generate-seo-files.mjs && node --check scripts/generate-frequency-assets.mjs && node --check scripts/search-smoke-tests.mjs && node --check scripts/build-service-knowledge-index.mjs && node --check scripts/github-daily-service-update.mjs && node --check scripts/service-smoke-tests.mjs",
     "github:latest-updates": "node scripts/generate-latest-updates.mjs",
     "github:seo": "node scripts/generate-seo-files.mjs",
-    "build:static": "node scripts/generate-latest-updates.mjs && node scripts/generate-seo-files.mjs && node scripts/generate-frequency-assets.mjs",
-    "check:client": "node --check public/assets/updates.js && node --check scripts/search-smoke-tests.mjs",
-    "github:frequency-assets": "node scripts/generate-frequency-assets.mjs"
+    "build:static": "node scripts/generate-latest-updates.mjs && node scripts/generate-seo-files.mjs && node scripts/generate-frequency-assets.mjs && node scripts/build-service-knowledge-index.mjs && node scripts/github-daily-service-update.mjs",
+    "check:client": "node --check public/assets/updates.js && node --check scripts/search-smoke-tests.mjs && node --check public/assets/service.js && node scripts/service-smoke-tests.mjs",
+    "github:frequency-assets": "node scripts/generate-frequency-assets.mjs",
+    "github:service-update": "node scripts/github-daily-service-update.mjs",
+    "build:service": "node scripts/build-service-knowledge-index.mjs",
+    "service:smoke": "node scripts/service-smoke-tests.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "10.7.9",

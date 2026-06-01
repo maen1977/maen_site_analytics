@@ -1,0 +1,844 @@
+{
+  "items": [
+    {
+      "app": "YouTube",
+      "nameAr": "يوتيوب",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "youtube",
+        "يوتيوب",
+        "يوتوب"
+      ],
+      "commonIssues": [
+        "تعليق التطبيق",
+        "عدم ظهور التطبيق",
+        "شاشة سوداء",
+        "تسجيل دخول"
+      ],
+      "topics": [
+        {
+          "id": "app-youtube",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق يوتيوب / YouTube",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح يوتيوب حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "youtube",
+            "يوتيوب",
+            "يوتوب",
+            "تعليق التطبيق",
+            "عدم ظهور التطبيق",
+            "شاشة سوداء",
+            "تسجيل دخول",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "افتح متجر النظام وابحث عن YouTube.",
+            "إذا كان مثبتًا وعلق، اعمل تحديث للتطبيق ثم أعد تشغيل الجهاز.",
+            "إذا لا يظهر في المتجر، قد يكون الموديل قديمًا أو النظام لا يدعمه."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Netflix",
+      "nameAr": "نتفليكس",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "netflix",
+        "نتفليكس",
+        "نيتفليكس"
+      ],
+      "commonIssues": [
+        "خطأ تسجيل الدخول",
+        "عدم توافق",
+        "الصورة لا تعمل"
+      ],
+      "topics": [
+        {
+          "id": "app-netflix",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق نتفليكس / Netflix",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح نتفليكس حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "netflix",
+            "نتفليكس",
+            "نيتفليكس",
+            "خطأ تسجيل الدخول",
+            "عدم توافق",
+            "الصورة لا تعمل",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "افتح متجر النظام وابحث عن Netflix.",
+            "تأكد أن الجهاز معتمد للتطبيق، خاصة أجهزة Android Box والريسيفرات.",
+            "إذا يعطي خطأ، افحص التاريخ والوقت والإنترنت ثم سجل خروج/دخول."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Shahid",
+      "nameAr": "شاهد",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "shahid",
+        "شاهد",
+        "شاهد vip"
+      ],
+      "commonIssues": [
+        "التطبيق غير موجود",
+        "تسجيل الدخول",
+        "تقطيع"
+      ],
+      "topics": [
+        {
+          "id": "app-shahid",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق شاهد / Shahid",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح شاهد حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "shahid",
+            "شاهد",
+            "شاهد vip",
+            "التطبيق غير موجود",
+            "تسجيل الدخول",
+            "تقطيع",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "افتح متجر النظام وابحث عن Shahid.",
+            "إذا التطبيق غير موجود، افحص بلد المتجر وتحديث النظام.",
+            "إذا الجهاز لا يدعم، استخدم جهاز خارجي رسمي يدعم التطبيق."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "TOD",
+      "nameAr": "تود",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "tod",
+        "تود",
+        "بي ان تود"
+      ],
+      "commonIssues": [
+        "تقطيع بث مباشر",
+        "تسجيل دخول",
+        "عدم توافق"
+      ],
+      "topics": [
+        {
+          "id": "app-tod",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق تود / TOD",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح تود حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "tod",
+            "تود",
+            "بي ان تود",
+            "تقطيع بث مباشر",
+            "تسجيل دخول",
+            "عدم توافق",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن TOD في متجر الجهاز.",
+            "تأكد من أن الجهاز والمنطقة مدعومان.",
+            "للمباريات والبث المباشر تحتاج إنترنت ثابت وحساب رسمي."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "OSN+",
+      "nameAr": "أو إس إن بلس",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "osn",
+        "osn+",
+        "او اس ان",
+        "أو إس إن"
+      ],
+      "commonIssues": [
+        "تسجيل دخول",
+        "عدم ظهور التطبيق"
+      ],
+      "topics": [
+        {
+          "id": "app-osnplus",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق أو إس إن بلس / OSN+",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح أو إس إن بلس حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "osn",
+            "osn+",
+            "او اس ان",
+            "أو إس إن",
+            "تسجيل دخول",
+            "عدم ظهور التطبيق",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن OSN+ في المتجر.",
+            "حدّث التطبيق والنظام إذا ظهرت أخطاء.",
+            "إذا غير متاح، استخدم جهاز مدعوم رسميًا."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "StarzPlay",
+      "nameAr": "ستارزبلاي",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "starzplay",
+        "starz play",
+        "ستارزبلاي"
+      ],
+      "commonIssues": [
+        "التطبيق يعلق",
+        "تسجيل دخول"
+      ],
+      "topics": [
+        {
+          "id": "app-starzplay",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق ستارزبلاي / StarzPlay",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح ستارزبلاي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "starzplay",
+            "starz play",
+            "ستارزبلاي",
+            "التطبيق يعلق",
+            "تسجيل دخول",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن StarzPlay في متجر الجهاز.",
+            "تأكد من دعم البلد والموديل.",
+            "جرّب إعادة تثبيت التطبيق عند التعليق."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Amazon Prime Video",
+      "nameAr": "برايم فيديو",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "prime video",
+        "amazon prime",
+        "برايم فيديو"
+      ],
+      "commonIssues": [
+        "عدم ظهور",
+        "تسجيل دخول"
+      ],
+      "topics": [
+        {
+          "id": "app-amazon-prime-video",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق برايم فيديو / Amazon Prime Video",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح برايم فيديو حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "prime video",
+            "amazon prime",
+            "برايم فيديو",
+            "عدم ظهور",
+            "تسجيل دخول",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن Prime Video في متجر الجهاز.",
+            "تأكد من تحديث نظام الشاشة.",
+            "إذا التطبيق لا يظهر على موديل قديم، استخدم جهاز Streaming خارجي."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Disney+",
+      "nameAr": "ديزني بلس",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "disney",
+        "disney+",
+        "ديزني"
+      ],
+      "commonIssues": [
+        "غير متاح",
+        "تسجيل الدخول"
+      ],
+      "topics": [
+        {
+          "id": "app-disneyplus",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق ديزني بلس / Disney+",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح ديزني بلس حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "disney",
+            "disney+",
+            "ديزني",
+            "غير متاح",
+            "تسجيل الدخول",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن Disney+ في متجر النظام.",
+            "تأكد من توفر التطبيق في بلدك وموديل الجهاز.",
+            "إذا لا يعمل، افحص التاريخ والوقت وحساب المتجر."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Apple TV",
+      "nameAr": "آبل تي في",
+      "category": "app",
+      "type": "video",
+      "aliases": [
+        "apple tv",
+        "ابل تي في",
+        "آبل تي في"
+      ],
+      "commonIssues": [
+        "عدم ظهور التطبيق"
+      ],
+      "topics": [
+        {
+          "id": "app-apple-tv",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق آبل تي في / Apple TV",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح آبل تي في حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "apple tv",
+            "ابل تي في",
+            "آبل تي في",
+            "عدم ظهور التطبيق",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ابحث عن Apple TV في متجر الشاشة.",
+            "بعض الشاشات القديمة لا تدعمه.",
+            "استخدم AirPlay أو جهاز خارجي إذا لم يكن مدعومًا."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Google Play Store",
+      "nameAr": "متجر جوجل بلاي",
+      "category": "app",
+      "type": "store",
+      "aliases": [
+        "google play",
+        "play store",
+        "جوجل بلاي",
+        "متجر بلاي"
+      ],
+      "commonIssues": [
+        "المتجر غير موجود"
+      ],
+      "topics": [
+        {
+          "id": "app-google-play-store",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق متجر جوجل بلاي / Google Play Store",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح متجر جوجل بلاي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "google play",
+            "play store",
+            "جوجل بلاي",
+            "متجر بلاي",
+            "المتجر غير موجود",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "متاح على Android TV وGoogle TV فقط غالبًا.",
+            "إذا غير ظاهر، افتح Apps أو Settings > Apps.",
+            "لو النظام ليس Android/Google TV فلن يظهر Google Play."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Samsung Smart Hub",
+      "nameAr": "سامسونج سمارت هب",
+      "category": "app",
+      "type": "store",
+      "aliases": [
+        "smart hub",
+        "samsung apps",
+        "سمارت هب"
+      ],
+      "commonIssues": [
+        "المتجر لا يفتح",
+        "التطبيقات لا تعمل"
+      ],
+      "topics": [
+        {
+          "id": "app-samsung-smart-hub",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق سامسونج سمارت هب / Samsung Smart Hub",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح سامسونج سمارت هب حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "smart hub",
+            "samsung apps",
+            "سمارت هب",
+            "المتجر لا يفتح",
+            "التطبيقات لا تعمل",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "اضغط Home وافتح Apps.",
+            "تأكد من اتصال الإنترنت وحساب Samsung إن طلب.",
+            "عند مشاكل كثيرة جرّب Reset Smart Hub."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "LG Content Store",
+      "nameAr": "متجر إل جي",
+      "category": "app",
+      "type": "store",
+      "aliases": [
+        "lg content store",
+        "lg apps",
+        "متجر ال جي"
+      ],
+      "commonIssues": [
+        "المتجر لا يفتح",
+        "التطبيق غير موجود"
+      ],
+      "topics": [
+        {
+          "id": "app-lg-content-store",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق متجر إل جي / LG Content Store",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح متجر إل جي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "lg content store",
+            "lg apps",
+            "متجر ال جي",
+            "المتجر لا يفتح",
+            "التطبيق غير موجود",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "اضغط Home وافتح LG Content Store أو Apps.",
+            "ابحث عن التطبيق.",
+            "سجل دخول LG إذا طلب النظام."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "IPTV Player",
+      "nameAr": "مشغل IPTV",
+      "category": "app",
+      "type": "player",
+      "aliases": [
+        "iptv",
+        "ip tv",
+        "اي بي تي في",
+        "آي بي تي في"
+      ],
+      "commonIssues": [
+        "تقطيع",
+        "لا يفتح",
+        "صوت بدون صورة"
+      ],
+      "topics": [
+        {
+          "id": "app-iptv-player",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق مشغل IPTV / IPTV Player",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح مشغل IPTV حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "iptv",
+            "ip tv",
+            "اي بي تي في",
+            "آي بي تي في",
+            "تقطيع",
+            "لا يفتح",
+            "صوت بدون صورة",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "استخدم تطبيقًا قانونيًا من متجر الجهاز.",
+            "أدخل رابط أو حساب اشتراك رسمي فقط.",
+            "للتقطيع افحص سرعة الإنترنت وDNS والسيرفر الرسمي."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "VLC",
+      "nameAr": "في إل سي",
+      "category": "app",
+      "type": "player",
+      "aliases": [
+        "vlc",
+        "في ال سي"
+      ],
+      "commonIssues": [
+        "تشغيل ملفات",
+        "ترجمة"
+      ],
+      "topics": [
+        {
+          "id": "app-vlc",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق في إل سي / VLC",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح في إل سي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "vlc",
+            "في ال سي",
+            "تشغيل ملفات",
+            "ترجمة",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ثبته من متجر النظام إذا متاح.",
+            "استخدمه للملفات المحلية أو روابط قانونية.",
+            "إذا الصوت أو الترجمة لا تعمل، جرّب تغيير إعدادات الصوت/الترميز."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Kodi",
+      "nameAr": "كودي",
+      "category": "app",
+      "type": "player",
+      "aliases": [
+        "kodi",
+        "كودي"
+      ],
+      "commonIssues": [
+        "إضافات",
+        "تشغيل وسائط"
+      ],
+      "topics": [
+        {
+          "id": "app-kodi",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق كودي / Kodi",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح كودي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "kodi",
+            "كودي",
+            "إضافات",
+            "تشغيل وسائط",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "ثبته من متجر Google Play على Android/Google TV إذا متاح.",
+            "استخدم الإضافات القانونية فقط.",
+            "لا ننصح بإضافات مجهولة أو غير مرخصة."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Screen Mirroring",
+      "nameAr": "انعكاس الشاشة",
+      "category": "app",
+      "type": "casting",
+      "aliases": [
+        "screen mirroring",
+        "miracast",
+        "انعكاس الشاشة",
+        "مشاركة الشاشة"
+      ],
+      "commonIssues": [
+        "الهاتف لا يرى التلفزيون"
+      ],
+      "topics": [
+        {
+          "id": "app-screen-mirroring",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق انعكاس الشاشة / Screen Mirroring",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح انعكاس الشاشة حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "screen mirroring",
+            "miracast",
+            "انعكاس الشاشة",
+            "مشاركة الشاشة",
+            "الهاتف لا يرى التلفزيون",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "افتح Cast أو Screen Mirroring من الهاتف.",
+            "اجعل الهاتف والتلفزيون على نفس شبكة Wi‑Fi.",
+            "فعّل Screen Mirroring من التلفزيون إن احتاج."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "AirPlay",
+      "nameAr": "إيربلاي",
+      "category": "app",
+      "type": "casting",
+      "aliases": [
+        "airplay",
+        "ايربلاي",
+        "إيربلاي"
+      ],
+      "commonIssues": [
+        "الآيفون لا يتصل"
+      ],
+      "topics": [
+        {
+          "id": "app-airplay",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق إيربلاي / AirPlay",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح إيربلاي حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "airplay",
+            "ايربلاي",
+            "إيربلاي",
+            "الآيفون لا يتصل",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "تأكد أن التلفزيون يدعم AirPlay.",
+            "اجعل iPhone والتلفزيون على نفس الشبكة.",
+            "فعّل AirPlay من إعدادات التلفزيون."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "Chromecast",
+      "nameAr": "كرومكاست",
+      "category": "app",
+      "type": "casting",
+      "aliases": [
+        "chromecast",
+        "cast",
+        "كرومكاست",
+        "كاست"
+      ],
+      "commonIssues": [
+        "الجهاز لا يظهر"
+      ],
+      "topics": [
+        {
+          "id": "app-chromecast",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق كرومكاست / Chromecast",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح كرومكاست حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "chromecast",
+            "cast",
+            "كرومكاست",
+            "كاست",
+            "الجهاز لا يظهر",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "اجعل الهاتف والجهاز على نفس الشبكة.",
+            "افتح تطبيقًا يدعم Cast واضغط أيقونة الإرسال.",
+            "إذا لا يظهر الجهاز، أعد تشغيل الراوتر والجهاز."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    },
+    {
+      "app": "DLNA",
+      "nameAr": "دي إل إن إيه",
+      "category": "app",
+      "type": "casting",
+      "aliases": [
+        "dlna",
+        "دي ال ان ايه"
+      ],
+      "commonIssues": [
+        "مشاركة ملفات"
+      ],
+      "topics": [
+        {
+          "id": "app-dlna",
+          "intent": "app_install_or_fix",
+          "title": "تثبيت أو إصلاح تطبيق دي إل إن إيه / DLNA",
+          "summary": "إرشادات عامة لتثبيت أو إصلاح دي إل إن إيه حسب نظام الشاشة أو جهاز Android/Google TV.",
+          "keywords": [
+            "dlna",
+            "دي ال ان ايه",
+            "مشاركة ملفات",
+            "تثبيت",
+            "تنزيل",
+            "مشاكل",
+            "لا يعمل",
+            "يعلق"
+          ],
+          "steps": [
+            "فعّل DLNA/Media Sharing من الراوتر أو الجهاز.",
+            "استخدم تطبيق وسائط يدعم DLNA.",
+            "تأكد من نفس الشبكة وعدم عزل الأجهزة في الراوتر."
+          ],
+          "safe": true,
+          "sources": [
+            "official-app-store-guidance"
+          ]
+        }
+      ]
+    }
+  ]
+}
