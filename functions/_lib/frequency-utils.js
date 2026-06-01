@@ -647,6 +647,212 @@ export function channelSet(item) {
   )];
 }
 
+
+function normalizeChannelIdentity(value = "") {
+  return safeText(value, 140)
+    .toLowerCase()
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/[إأآا]/g, "ا")
+    .replace(/[ى]/g, "ي")
+    .replace(/[ؤ]/g, "و")
+    .replace(/[ئ]/g, "ي")
+    .replace(/[ة]/g, "ه")
+    .replace(/&/g, " and ")
+    .replace(/\b(?:tv|channel|channels|hd|sd|uhd|4k|mpeg|dvb|new|old|feed)\b/g, " ")
+    .replace(/\b(?:قناة|قناه|قنوات|اتش\s*دي|اس\s*دي|جديد|قديم|اختبار|تجريبي)\b/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function channelIdentityTokens(value = "") {
+  const stop = new Set(["al", "el", "the", "and", "و", "ال", "على", "في", "من"]);
+  return normalizeChannelIdentity(value).split(" ").filter(t => t.length > 1 && !stop.has(t));
+}
+
+function channelNamesOverlap(a = "", b = "") {
+  const na = normalizeChannelIdentity(a);
+  const nb = normalizeChannelIdentity(b);
+  if (!na || !nb) return false;
+  if (na === nb) return true;
+  if ((na.length >= 5 && nb.includes(na)) || (nb.length >= 5 && na.includes(nb))) return true;
+  const ta = channelIdentityTokens(na);
+  const tb = channelIdentityTokens(nb);
+  if (!ta.length || !tb.length) return false;
+  const setB = new Set(tb);
+  const shared = ta.filter(t => setB.has(t)).length;
+  return shared >= 1 && shared / Math.min(ta.length, tb.length) >= 0.67;
+}
+
+function closureTransponderKey(item = {}) {
+  const meta = hydrateFrequencyItem(item || {});
+  return [
+    normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit),
+    normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || ""),
+    normalizeSatelliteName(meta.satelliteName || meta.satellite || meta.satelliteGroup || "").toLowerCase(),
+    normalizeFrequency(meta.frequency || ""),
+    normalizePol(meta.pol || "") || meta.pol || "",
+    normalizeSr(meta.sr || "") || ""
+  ].join("|");
+}
+
+function closureBaseKey(item = {}) {
+  const meta = hydrateFrequencyItem(item || {});
+  return [
+    normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit),
+    normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || ""),
+    normalizeFrequency(meta.frequency || "")
+  ].join("|");
+}
+
+function sourceIdentity(value = {}) {
+  return safeText(value.id || value.sourceId || value.source || value.name || value.sourceUrl || "unknown-source", 120).toLowerCase();
+}
+
+function uniqueBySource(items = []) {
+  const seen = new Set();
+  const out = [];
+  for (const item of items) {
+    const id = sourceIdentity(item);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push(item);
+  }
+  return out;
+}
+
+const CLOSED_SIGNAL_RE = /(\bclosed\b|\bceased\b|\bstopped\b|\bshutdown\b|\bshut\s*down\b|\bterminated\b|\bdiscontinued\b|\binactive\b|\bremoved\b|\bdeleted\b|\bleft\b|\bno\s+longer\b|\boff[-\s]?air\b|\bnot\s+broadcasting\b|\btransmission\s+stopped\b|\bservice\s+ended\b|مغلق|اغلق|أغلق|اغلقت|أغلقت|متوقف|توقف|توقفت|اوقفت|أوقفت|اوقف|أوقف|حذف|حذفت|محذوف|ازيل|أزيل|لم\s+تعد|لم\s+يعد|انتهى|انتهت|توقف\s+البث|ايقاف\s+البث|إيقاف\s+البث)/i;
+
+function looksLikeClosedSignal(text = "") {
+  return CLOSED_SIGNAL_RE.test(String(text || ""));
+}
+
+function bestClosedChannelName(lines = [], center = 0, windowText = "") {
+  const bad = /^(frequency|polarization|pol|sr|fec|system|modulation|satellite|transponder|beam|coverage|source|updated|closed|ceased|stopped|removed|deleted|inactive|no longer|off air|مغلق|متوقف|محذوف|توقف البث)$/i;
+  const candidates = [];
+  const pushCandidate = (value = "") => {
+    const cleaned = safeText(value, 120)
+      .replace(CLOSED_SIGNAL_RE, " ")
+      .replace(/\b(?:has|have|is|are|was|were|been|now|on|at|closed|ceased|stopped|removed|deleted|inactive|left|no\s+longer|off[-\s]?air|broadcasting|transmission|service|frequency|freq)\b/ig, " ")
+      .replace(/\b(?:تم|لقد|اصبح|أصبح|على|عند|بث|البث|تردد)\b/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (cleaned && cleaned.length >= 2 && cleaned.length <= 90 && !bad.test(cleaned) && !/^[\W\d_]+$/u.test(cleaned)) candidates.push(cleaned);
+  };
+  for (let i = Math.max(0, center - 6); i <= Math.min(lines.length - 1, center + 4); i++) {
+    const raw = stripChannelLineNoise(lines[i] || "");
+    if (!raw || raw.length < 2 || bad.test(raw)) continue;
+    const beforeFreq = raw.split(/\b\d{4,5}\b/)[0];
+    if (looksLikeClosedSignal(raw) && beforeFreq && beforeFreq !== raw) pushCandidate(beforeFreq);
+    if (/^\d{4,5}\b/.test(raw) || /\b(?:mhz|sr|fec|dvb|symbol|frequency|polarity)\b/i.test(raw)) continue;
+    pushCandidate(raw);
+  }
+  const compactWindow = safeText(windowText, 260);
+  const beforeWindowFreq = compactWindow.split(/\b\d{4,5}\b/)[0];
+  if (beforeWindowFreq && beforeWindowFreq !== compactWindow) pushCandidate(beforeWindowFreq);
+  const fromText = compactWindow
+    .replace(/\b\d{4,5}\b/g, " ")
+    .replace(/\b(?:H|V|L|R)\b/g, " ")
+    .replace(/\b(?:SR|FEC|DVB|MHz|closed|ceased|stopped|removed|deleted|inactive|left|no\s+longer|off[-\s]?air)\b/ig, " ")
+    .replace(CLOSED_SIGNAL_RE, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  pushCandidate(fromText);
+  return candidates.sort((a, b) => a.length - b.length)[0] || "";
+}
+
+export function extractClosedCandidatesFromHtml(html, source = {}) {
+  const lines = htmlToLines(html);
+  const closed = [];
+  const seen = new Set();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i] || "";
+    const around = lines.slice(Math.max(0, i - 4), Math.min(lines.length, i + 5)).join(" | ");
+    if (!looksLikeClosedSignal(line) && !looksLikeClosedSignal(around)) continue;
+    const freq = normalizeFrequency(around);
+    if (!freq) continue;
+    const pol = normalizePol(around);
+    const sr = normalizeSr(around);
+    const channel = bestClosedChannelName(lines, i, around);
+    const item = {
+      ...candidateBase(source, source.satelliteGroup),
+      frequency: freq,
+      pol,
+      sr,
+      channel,
+      channels: channel ? [channel] : [],
+      source: source.name,
+      sourceId: source.id,
+      sourceUrl: source.url,
+      sourceAuditUrl: source.url,
+      authority: source.authority || "reference",
+      trust: source.trust || "reference",
+      updatePolicy: "closed-signal",
+      lastCheckedAt: new Date().toISOString(),
+      confidence: source.authority === "official" || source.trust === "official" ? 96 : 76,
+      closedSignal: true,
+      closedReason: safeText(line || around, 220)
+    };
+    const key = [closureTransponderKey(item), normalizeChannelIdentity(channel), sourceIdentity(item)].join("|");
+    if (!seen.has(key)) {
+      seen.add(key);
+      closed.push(item);
+    }
+  }
+  return closed;
+}
+
+function buildClosedConsensus(closedCandidates = [], candidateGroups = new Map()) {
+  const groups = new Map();
+  for (const raw of closedCandidates || []) {
+    if (!raw || !normalizeFrequency(raw.frequency || "")) continue;
+    const item = hydrateFrequencyItem(raw);
+    item.frequency = normalizeFrequency(item.frequency);
+    item.pol = normalizePol(item.pol) || item.pol || "";
+    item.sr = normalizeSr(item.sr || "") || "";
+    // Use a base key so pages that say "Channel X on 11766 closed" still match
+    // even when that closure note omits polarity or symbol rate.
+    const key = closureBaseKey(item);
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(item);
+  }
+
+  const activeByBaseKey = new Map();
+  for (const group of candidateGroups.values()) {
+    for (const candidate of group || []) {
+      const baseKey = closureBaseKey(candidate);
+      if (!activeByBaseKey.has(baseKey)) activeByBaseKey.set(baseKey, []);
+      activeByBaseKey.get(baseKey).push(candidate);
+    }
+  }
+
+  const minSources = Math.max(1, Number(envValue("FREQUENCY_CLOSED_MIN_SOURCES") || 2));
+  const minSourcesOfficial = Math.max(1, Number(envValue("FREQUENCY_CLOSED_MIN_SOURCES_OFFICIAL") || 1));
+  const consensus = new Map();
+  for (const [key, rawGroup] of groups) {
+    const group = uniqueBySource(rawGroup);
+    const active = activeByBaseKey.get(key) || [];
+    const officialClosure = group.some(x => x.authority === "official" || x.trust === "official");
+    const activeSources = new Set(active.map(sourceIdentity));
+    const closedSources = new Set(group.map(sourceIdentity));
+    const activeOutsideClosedSources = [...activeSources].some(src => !closedSources.has(src));
+    const sourceThresholdMet = group.length >= minSources || (officialClosure && group.length >= minSourcesOfficial);
+    if (!sourceThresholdMet) continue;
+    consensus.set(key, {
+      key,
+      closedSources: group,
+      activeCandidates: active,
+      hasIndependentActiveConfirmation: activeOutsideClosedSources,
+      channelNames: [...new Set(group.flatMap(channelSet))],
+      sourceCount: group.length,
+      officialClosure,
+      hasExactTuning: group.some(x => Boolean(normalizePol(x.pol || "") || normalizeSr(x.sr || ""))),
+      sampleReason: group.find(x => x.closedReason)?.closedReason || "closed-consensus"
+    });
+  }
+  return consensus;
+}
+
 export function dedupeItems(items = []) {
   const map = new Map();
   for (const raw of items) {
@@ -695,8 +901,12 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     reviewedOnly: 0,
     channelNamesAdded: 0,
     channelNamesRemoved: 0,
+    closedConsensusRemoved: 0,
+    closedConsensusChannelNamesRemoved: 0,
+    closedConsensusReviewed: 0,
     removalSkippedReason: ""
   };
+  const closedConsensus = buildClosedConsensus(options.closedCandidates || [], candidateGroups);
   const reviewedOnly = [];
   const removedItems = [];
   for (const [key, group] of candidateGroups) {
@@ -766,6 +976,90 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       : "الحذف التلقائي للترددات الغائبة متوقف عبر FREQUENCY_REMOVE_MISSING=0.";
   }
 
+  const closedRemovalEnabled = String(envValue("FREQUENCY_REMOVE_CLOSED_CONSENSUS") || "1") !== "0";
+  if (closedRemovalEnabled && closedConsensus.size) {
+    const nextValues = [];
+    for (const item of values) {
+      const key = closureBaseKey(item);
+      const closed = closedConsensus.get(key);
+      if (!closed || item.forceKeep === true || item.keep === true || item.updatePolicy === "manual-keep") {
+        nextValues.push(item);
+        continue;
+      }
+      const activeNames = [...new Set((closed.activeCandidates || []).flatMap(channelSet))];
+      const closedNames = [...new Set(closed.channelNames || [])];
+      const activeSameChannel = closedNames.length && activeNames.some(active => closedNames.some(closedName => channelNamesOverlap(active, closedName)));
+      if (closed.hasIndependentActiveConfirmation || activeSameChannel) {
+        reviewedOnly.push({
+          ...item,
+          reviewReason: "Closed signal exists, but an independent/current source still lists the same transponder or channel",
+          closedSourceCount: closed.sourceCount,
+          closedSources: closed.closedSources.map(s => s.source || s.sourceId || s.name).filter(Boolean).slice(0, 8),
+          closedReason: closed.sampleReason
+        });
+        changes.closedConsensusReviewed += 1;
+        nextValues.push(item);
+        continue;
+      }
+
+      if (!(closed.channelNames || []).length && !closed.hasExactTuning) {
+        reviewedOnly.push({
+          ...item,
+          reviewReason: "Closed signal found without channel name or full tuning details; kept for manual review",
+          closedSourceCount: closed.sourceCount,
+          closedSources: closed.closedSources.map(s => s.source || s.sourceId || s.name).filter(Boolean).slice(0, 8),
+          closedReason: closed.sampleReason
+        });
+        changes.closedConsensusReviewed += 1;
+        nextValues.push(item);
+        continue;
+      }
+
+      const existingChannels = channelSet(item);
+      let removedChannelNames = [];
+      let remainingChannels = existingChannels;
+      if (closedNames.length && existingChannels.length) {
+        removedChannelNames = existingChannels.filter(name => closedNames.some(closedName => channelNamesOverlap(name, closedName)));
+        remainingChannels = existingChannels.filter(name => !closedNames.some(closedName => channelNamesOverlap(name, closedName)));
+        if (!removedChannelNames.length) {
+          nextValues.push(item);
+          continue;
+        }
+      }
+
+      if (remainingChannels.length && removedChannelNames.length) {
+        item.channels = remainingChannels;
+        item.channel = remainingChannels.slice(0, 18).join("، ") + (remainingChannels.length > 18 ? ` + ${remainingChannels.length - 18} قناة أخرى` : "");
+        item.channelCount = remainingChannels.length;
+        item.closedConsensusLastAppliedAt = now;
+        item.closedConsensusRemovedChannels = removedChannelNames;
+        changes.channelNamesRemoved += removedChannelNames.length;
+        changes.closedConsensusChannelNamesRemoved += removedChannelNames.length;
+        nextValues.push(item);
+        continue;
+      }
+
+      removedItems.push({
+        satelliteGroup: item.satelliteGroup || item.satellite || "",
+        orbitalSlot: item.orbitalSlot || item.orbit || "",
+        satelliteName: item.satelliteName || item.satellite || "",
+        frequency: item.frequency,
+        pol: item.pol,
+        sr: item.sr,
+        channel: removedChannelNames.length ? removedChannelNames.join("، ") : item.channel,
+        channelCount: item.channelCount,
+        removedAt: now,
+        removedReason: "closed-by-source-consensus",
+        closedSourceCount: closed.sourceCount,
+        closedSources: closed.closedSources.map(s => s.source || s.sourceId || s.name).filter(Boolean).slice(0, 8),
+        closedReason: closed.sampleReason
+      });
+      changes.removed += 1;
+      changes.closedConsensusRemoved += 1;
+    }
+    values = nextValues;
+  }
+
   const items = values.sort((a, b) => {
     const sa = String(a.satelliteGroup || a.satellite || "").localeCompare(String(b.satelliteGroup || b.satellite || ""));
     if (sa) return sa;
@@ -775,14 +1069,14 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     if (na) return na;
     return Number(a.frequency || 0) - Number(b.frequency || 0) || String(a.pol || "").localeCompare(String(b.pol || ""));
   });
-  return { items, reviewedOnly, removedItems, changes, sourceCount: sources.length, checkedAt: now, successfulSourceCount, candidateCount: candidateGroups.size };
+  return { items, reviewedOnly, removedItems, changes, sourceCount: sources.length, checkedAt: now, successfulSourceCount, candidateCount: candidateGroups.size, closedCandidateCount: (options.closedCandidates || []).length, closedConsensusCount: closedConsensus.size };
 }
 
 export async function fetchSourceCandidates(source) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), Number(envValue("FREQUENCY_FETCH_TIMEOUT_MS") || 4500));
   try {
-    if (source.mode === "coverage-only") return { source, ok: true, candidates: [], coverageOnly: true };
+    if (source.mode === "coverage-only") return { source, ok: true, candidates: [], closedCandidates: [], coverageOnly: true };
     const response = await fetch(source.url, {
       signal: controller.signal,
       headers: {
@@ -792,9 +1086,10 @@ export async function fetchSourceCandidates(source) {
     });
     const text = await response.text();
     const candidates = response.ok ? extractCandidatesFromHtml(text, source) : [];
-    return { source, ok: response.ok, status: response.status, candidates, bytes: text.length };
+    const closedCandidates = response.ok ? extractClosedCandidatesFromHtml(text, source) : [];
+    return { source, ok: response.ok, status: response.status, candidates, closedCandidates, bytes: text.length };
   } catch (error) {
-    return { source, ok: false, error: String(error && error.message || error), candidates: [] };
+    return { source, ok: false, error: String(error && error.message || error), candidates: [], closedCandidates: [] };
   } finally {
     clearTimeout(timeout);
   }
@@ -815,7 +1110,8 @@ export async function mapWithConcurrency(items, limit, mapper) {
           source: list[index] || {},
           ok: false,
           error: String(error && error.message || error),
-          candidates: []
+          candidates: [],
+          closedCandidates: []
         };
       }
     }
@@ -876,8 +1172,9 @@ export async function runFrequencyUpdate({ sendEmail = true } = {}) {
     fetchSourceCandidates
   );
   const candidates = sourceResults.flatMap(r => r.candidates || []);
+  const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
-  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount });
+  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates });
   const payload = {
     ok: true,
     mode: "live",
@@ -886,6 +1183,8 @@ export async function runFrequencyUpdate({ sendEmail = true } = {}) {
     count: merged.items.length,
     removedCount: (merged.removedItems || []).length,
     candidateCount: merged.candidateCount || candidates.length,
+    closedCandidateCount: merged.closedCandidateCount || closedCandidates.length,
+    closedConsensusCount: merged.closedConsensusCount || 0,
     successfulSourceCount,
     groupCounts: buildGroupCounts(merged.items),
     satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
@@ -900,12 +1199,13 @@ export async function runFrequencyUpdate({ sendEmail = true } = {}) {
       ok: r.ok,
       status: r.status || null,
       candidates: (r.candidates || []).length,
+      closedCandidates: (r.closedCandidates || []).length,
       coverageOnly: Boolean(r.coverageOnly),
       error: r.error || null
     })),
     changes: merged.changes,
     satellites: JORDAN_MENA_SATELLITES,
-    note: "Daily Cloudflare update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, and removes rows missing from the daily source scan when coverage is sufficient. Multiple real satellites at the same orbital position are kept separate by orbitalSlot + satelliteName + satelliteIdentityKey."
+    note: "Daily Cloudflare update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, and removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Multiple real satellites at the same orbital position are kept separate by orbitalSlot + satelliteName + satelliteIdentityKey."
   };
   const store = getFrequencyStore();
   await store.setJSON(FREQUENCY_DATA_KEY, payload);
@@ -942,6 +1242,8 @@ export function buildFrequencyReport(payload) {
     totalFrequencies: payload.count,
     removedCount: payload.removedCount || (payload.removedItems || []).length || 0,
     candidateCount: payload.candidateCount || 0,
+    closedCandidateCount: payload.closedCandidateCount || 0,
+    closedConsensusCount: payload.closedConsensusCount || 0,
     successfulSourceCount: payload.successfulSourceCount || 0,
     sourcesChecked: checked,
     sourcesFailed: failed.length,
@@ -976,7 +1278,10 @@ export function frequencyReportText(report) {
   lines.push(`مصادر فشلت: ${report.sourcesFailed}`);
   lines.push(`ترددات/بيانات تم تحديثها: ${report.changes.updated}`);
   lines.push(`ترددات أضيفت تلقائيًا: ${report.changes.added}`);
-  lines.push(`ترددات حُذفت لأنها لم تعد ظاهرة في الفحص اليومي: ${report.changes.removed || report.removedCount || 0}`);
+  lines.push(`ترددات حُذفت لأنها لم تعد ظاهرة في الفحص اليومي أو تأكد إغلاقها: ${report.changes.removed || report.removedCount || 0}`);
+  lines.push(`إشارات إغلاق رصدها الفحص: ${report.closedCandidateCount || 0}`);
+  lines.push(`ترددات حُذفت بسبب إجماع مصادر على الإغلاق: ${report.changes.closedConsensusRemoved || 0}`);
+  lines.push(`أسماء محطات حُذفت من ترددات قائمة بسبب الإغلاق: ${report.changes.closedConsensusChannelNamesRemoved || 0}`);
   lines.push(`أسماء محطات أضيفت: ${report.changes.channelNamesAdded}`);
   lines.push(`أسماء محطات حُذفت من ترددات قائمة: ${report.changes.channelNamesRemoved || 0}`);
   lines.push(`عناصر للمراجعة فقط: ${report.reviewedOnlyCount}`);
@@ -1005,9 +1310,13 @@ export function frequencyReportHtml(report) {
     ["مصادر فشلت", report.sourcesFailed],
     ["مصادر ناجحة", report.successfulSourceCount],
     ["مرشحات يومية", report.candidateCount],
+    ["إشارات إغلاق", report.closedCandidateCount || 0],
+    ["إجماعات إغلاق", report.closedConsensusCount || 0],
     ["تحديثات", report.changes.updated],
     ["إضافات تلقائية", report.changes.added],
     ["ترددات حُذفت", report.changes.removed || report.removedCount || 0],
+    ["حذف بإجماع الإغلاق", report.changes.closedConsensusRemoved || 0],
+    ["محطات حُذفت بسبب الإغلاق", report.changes.closedConsensusChannelNamesRemoved || 0],
     ["أسماء محطات أضيفت", report.changes.channelNamesAdded],
     ["أسماء محطات حُذفت", report.changes.channelNamesRemoved || 0],
     ["للمراجعة فقط", report.reviewedOnlyCount]

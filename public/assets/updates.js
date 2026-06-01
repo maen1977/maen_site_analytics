@@ -1,10 +1,12 @@
-/* MAEN_UPDATES_PRO_FEED_V3_CREDIT_SAFE_2026_05_30 */
+/* MAEN_UPDATES_HINTS_FEED_V1_2026_06_01 */
 (function(){
   'use strict';
-  var state={items:[],category:'all',query:'',sort:'newest',loaded:false,loading:false,visible:8,error:false,generatedAt:''};
-  var labels={all:'الكل',frequency:'تردد',satellite:'قمر',channels:'قناة',sports:'رياضة',alert:'تنبيه'};
-  var icons={frequency:'تردد',satellite:'قمر',channels:'قناة',sports:'رياضة',alert:'!'};
+  var state={items:[],category:'all',query:'',sort:'newest',loaded:false,loading:false,visible:9,error:false,generatedAt:''};
+  var labels={all:'كل التلميحات',frequency:'ترددات',satellite:'أقمار',channels:'قنوات',sports:'رياضة',alert:'تنبيه'};
+  var shortLabels={all:'الكل',frequency:'تردد',satellite:'قمر',channels:'قناة',sports:'رياضة',alert:'تنبيه'};
+  var icons={frequency:'📡',satellite:'🛰️',channels:'📺',sports:'⚽',alert:'⚠️'};
   var priority={alert:6,frequency:5,sports:4,channels:3,satellite:2};
+  var hintLead={frequency:'استخدمه في البحث',satellite:'راجع القمر',channels:'معلومة قناة',sports:'تنبيه رياضي',alert:'انتبه'};
   function $(id){return document.getElementById(id);}
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
   function norm(v){return String(v||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[ؤ]/g,'و').replace(/[ئ]/g,'ي').replace(/[\u064b-\u065f]/g,'').replace(/[^a-z0-9\u0600-\u06ff]+/g,' ').replace(/\s+/g,' ').trim();}
@@ -43,7 +45,7 @@
     return html;
   }
   function sourceTags(sources){
-    return (sources||[]).slice(0,4).map(function(s){
+    return (sources||[]).slice(0,3).map(function(s){
       if(s&&typeof s==='object'&&s.url){
         return '<a class="update-source" href="'+esc(s.url)+'" target="_blank" rel="noopener nofollow">'+esc(s.name||'مصدر')+'</a>';
       }
@@ -52,23 +54,41 @@
     }).join('');
   }
   function tagsHtml(tags){
-    return (tags||[]).slice(0,6).map(function(t){return '<span>'+esc(t)+'</span>';}).join('');
+    return (tags||[]).slice(0,5).map(function(t){return '<span>'+esc(t)+'</span>';}).join('');
   }
   function itemSearchText(item){
     return norm([item.title,item.summary,item.satellite,item.frequency,item.oldFrequency,item.polarity,item.symbolRate,item.status,(item.tags||[]).join(' '),(item.sources||[]).map(function(s){return typeof s==='string'?s:(s&&s.name)||'';}).join(' ')].join(' '));
+  }
+  function cleanLabel(text){
+    return String(text||'').replace(/GitHub Actions/gi,'نظام التحديث اليومي').replace(/Cloudflare|Netlify|JSON|frequency-data\.json/gi,'').replace(/داخل محرك البحث/g,'').replace(/\s{2,}/g,' ').trim();
+  }
+  function makeHintTitle(item){
+    var title=cleanLabel(item.title||'تحديث جديد');
+    if(/^تلميح|^انتبه|^ملاحظة/.test(title))return title;
+    if(item.category==='frequency')return 'تلميح ترددات: '+title;
+    if(item.category==='satellite')return 'تلميح قمر: '+title;
+    if(item.category==='sports')return 'تلميح رياضي: '+title;
+    if(item.category==='channels')return 'تلميح قنوات: '+title;
+    return item.important?'انتبه: '+title:'تلميح سريع: '+title;
+  }
+  function makeHintSummary(item){
+    var summary=cleanLabel(item.summary||'');
+    summary=summary.replace(/عند توفر مصادر كافية/g,'حسب توفر المصادر الموثوقة');
+    if(!summary)return 'تحديث مختصر من نظام الفحص اليومي. افتح قاعدة الترددات إذا كنت تريد التأكد من النتيجة الحالية.';
+    return summary;
   }
   function cleanItems(items){
     var seen={};
     return (items||[]).filter(function(item){return item&&item.title;}).map(function(item,index){
       var copy=Object.assign({},item);
-      copy.id=String(copy.id||('update-'+index+'-'+Date.now()));
+      copy.id=String(copy.id||('hint-'+index+'-'+Date.now()));
       copy.category=labels[copy.category]?copy.category:'alert';
-      copy.title=String(copy.title||'تحديث جديد').replace(/GitHub Actions|Cloudflare|Netlify|JSON|frequency-data\.json/gi,'').replace(/داخل محرك البحث/g,'').replace(/\s{2,}/g,' ').trim()||'تحديث جديد';
-      copy.summary=String(copy.summary||'').replace(/GitHub Actions/gi,'نظام التحديث اليومي').replace(/Cloudflare|Netlify|JSON|frequency-data\.json/gi,'').replace(/داخل محرك البحث/g,'').replace(/عند توفر مصادر كافية/g,'حسب توفر المصادر الموثوقة').replace(/\s{2,}/g,' ').trim();
-      copy.status=String(copy.status||'').replace(/GitHub Actions/gi,'تحديث يومي').replace(/Cloudflare|Netlify|JSON|frequency-data\.json/gi,'').trim();
+      copy.title=makeHintTitle(copy).slice(0,190);
+      copy.summary=makeHintSummary(copy).slice(0,680);
+      copy.status=cleanLabel(copy.status||'');
       copy.sources=(copy.sources||[]).map(function(s){
         if(typeof s!=='string')return s;
-        return s.replace(/GitHub Actions/gi,'نظام التحديث اليومي').replace(/frequency-data\.json/gi,'قاعدة الترددات').replace(/Cloudflare|Netlify|JSON/gi,'').trim();
+        return cleanLabel(s).replace(/قاعدة الترددات\.json/gi,'قاعدة الترددات');
       }).filter(Boolean);
       copy.date=copy.date||copy.updatedAt||new Date().toISOString();
       copy._time=dateValue(copy.date);
@@ -124,15 +144,15 @@
     if(freq)freq.textContent=state.loaded?String(state.items.filter(function(x){return x.category==='frequency';}).length):(state.loading?'...':'—');
     if(updated){updated.textContent=state.loaded&&newest?relativeDate(newest):(state.loading?'جارٍ التحميل':'عند الفتح');updated.title=state.loaded&&newest?dateText(newest):'';}
     var pulse=$('updatesLastPulse');
-    if(pulse){pulse.textContent=state.loaded&&newest?'آخر رصد: '+relativeDate(newest):(state.loading?'جارٍ رصد التحديثات...':'بانتظار فتح القسم');}
+    if(pulse){pulse.textContent=state.loaded&&newest?'آخر تلميح: '+relativeDate(newest):(state.loading?'جارٍ تجهيز التلميحات...':'بانتظار فتح القسم');}
   }
   function renderTicker(){
     var ticker=$('updatesTickerTrack'); if(!ticker)return;
-    if(state.loading&&!state.items.length){ticker.innerHTML='<span>جارٍ تحميل موجز التحديثات...</span>';return;}
-    var list=sortedItems(state.items).slice(0,6);
-    if(!list.length){ticker.innerHTML='<span>لا توجد تحديثات منشورة حاليًا.</span>';return;}
+    if(state.loading&&!state.items.length){ticker.innerHTML='<span>جارٍ تحميل تلميحات اليوم...</span>';return;}
+    var list=sortedItems(state.items).slice(0,7);
+    if(!list.length){ticker.innerHTML='<span>لا توجد تلميحات منشورة حاليًا.</span>';return;}
     ticker.innerHTML=list.map(function(item){
-      var cat=labels[item.category]||'تحديث';
+      var cat=shortLabels[item.category]||'تلميح';
       var freq=frequencyText(item);
       return '<button type="button" data-ticker-filter="'+esc(item.category)+'"><strong>'+esc(cat)+'</strong><span>'+esc(item.title)+'</span>'+(freq?'<em>'+esc(freq)+'</em>':'')+'</button>';
     }).join('');
@@ -140,43 +160,45 @@
   function renderSpotlight(){
     var box=$('updatesSpotlight'); if(!box)return;
     if(!state.loaded||!state.items.length){box.hidden=true;return;}
-    var featured=sortedItems(state.items).find(function(x){return x.important;})||sortedItems(state.items)[0];
+    var sorted=sortedItems(state.items);
+    var featured=sorted.find(function(x){return x.important;})||sorted[0];
     if(!featured){box.hidden=true;return;}
     box.hidden=false;
-    var cat=labels[featured.category]||'تحديث';
+    var cat=shortLabels[featured.category]||'تلميح';
     var fc=$('updatesFeaturedCategory'),ft=$('updatesFeaturedTitle'),fs=$('updatesFeaturedSummary'),fm=$('updatesFeaturedMeta'),fa=$('updatesFeaturedAction');
-    if(fc)fc.textContent=cat+' / '+dateText(featured.date).split('،')[0];
-    if(ft)ft.textContent=featured.title||'تحديث جديد';
+    if(fc)fc.textContent='أهم تلميح الآن / '+cat;
+    if(ft)ft.textContent=featured.title||'تلميح جديد';
     if(fs)fs.textContent=featured.summary||'';
-    if(fm)fm.innerHTML=detailsHtml(featured) || '<span class="update-detail-chip"><b>الحالة</b><em>تحديث موثّق</em></span>';
+    if(fm)fm.innerHTML=detailsHtml(featured) || '<span class="update-detail-chip"><b>الخلاصة</b><em>تلميح موثّق من آخر فحص</em></span>';
     if(fa){
       var freq=frequencyText(featured);
-      fa.innerHTML=freq?'<button type="button" class="update-copy-btn" data-copy-frequency="'+esc(freq)+'">نسخ تردد التحديث</button>':'<button type="button" onclick="showPage(\'frequencies\')">افتح قاعدة الترددات</button>';
+      fa.innerHTML=freq?'<button type="button" class="update-copy-btn" data-copy-frequency="'+esc(freq)+'">نسخ التردد</button>':'<button type="button" onclick="showPage(\'frequencies\')">افتح قاعدة الترددات</button>';
     }
     var stats=$('updatesQuickStats');
     if(stats){
       var c=categoryCounts();
       stats.innerHTML=''
-        +'<div><strong>'+esc(c.frequency||0)+'</strong><span>تغييرات تردد</span></div>'
-        +'<div><strong>'+esc(c.alert||0)+'</strong><span>تنبيهات مهمة</span></div>'
-        +'<div><strong>'+esc(c.sports||0)+'</strong><span>متابعة رياضية</span></div>'
-        +'<div><strong>'+esc(c.channels||0)+'</strong><span>تحديثات قنوات</span></div>';
+        +'<div><strong>'+esc(c.frequency||0)+'</strong><span>تلميحات تردد</span></div>'
+        +'<div><strong>'+esc(c.alert||0)+'</strong><span>تنبيهات</span></div>'
+        +'<div><strong>'+esc(c.sports||0)+'</strong><span>رياضة</span></div>'
+        +'<div><strong>'+esc(c.channels||0)+'</strong><span>قنوات</span></div>';
     }
   }
   function renderCard(item,index){
     var cat=item.category||'alert';
-    var badge=labels[cat]||cat;
+    var badge=shortLabels[cat]||cat;
     var freq=frequencyText(item);
     var copyButton=freq?'<button type="button" class="update-copy-btn" data-copy-frequency="'+esc(freq)+'">نسخ التردد</button>':'';
-    var openButton=item.category==='frequency'?'<button type="button" onclick="showPage(\'frequencies\')">فتح البحث</button>':'';
+    var openButton=item.category==='frequency'?'<button type="button" onclick="showPage(\'frequencies\')">جرّبه بالبحث</button>':'';
     var details=detailsHtml(item);
-    return '<article class="update-card update-feed-item category-'+esc(cat)+' '+(item.important?'important':'')+'" data-update-index="'+esc(index+1)+'">'
-      +'<div class="update-feed-marker"><span>'+esc(icons[cat]||'UPD')+'</span></div>'
+    return '<article class="update-card update-hint-card category-'+esc(cat)+' '+(item.important?'important':'')+'" data-update-index="'+esc(index+1)+'">'
+      +'<div class="update-feed-marker"><span>'+esc(icons[cat]||'💡')+'</span></div>'
       +'<div class="update-feed-body">'
       +'<div class="meta"><span class="update-badge '+esc(cat)+'">'+esc(badge)+'</span><span class="update-date" title="'+esc(dateText(item.date||item.updatedAt))+'">'+esc(relativeDate(item.date||item.updatedAt))+'</span>'+(item.important?'<span class="update-verified">مهم</span>':'')+'</div>'
+      +'<div class="update-hint-lead">'+esc(hintLead[cat]||'تلميح')+'</div>'
       +'<h3>'+esc(item.title)+'</h3>'
       +'<p>'+esc(item.summary)+'</p>'
-      +(freq?'<div class="update-frequency-line"><b>التردد</b><strong>'+esc(freq)+'</strong></div>':'')
+      +(freq?'<div class="update-frequency-line"><b>استخدم هذا</b><strong>'+esc(freq)+'</strong></div>':'')
       +(details?'<div class="update-details">'+details+'</div>':'')
       +(item.tags&&item.tags.length?'<div class="update-tags">'+tagsHtml(item.tags)+'</div>':'')
       +'<div class="update-card-footer"><div class="update-sources">'+sourceTags(item.sources)+'</div><div class="update-card-actions">'+copyButton+openButton+'</div></div>'
@@ -184,17 +206,17 @@
   }
   function renderSkeleton(){
     var grid=$('updatesGrid'); if(!grid)return;
-    grid.innerHTML=[1,2,3,4].map(function(){return '<article class="update-card update-feed-item update-skeleton"><div class="update-feed-marker"><span></span></div><div class="update-feed-body"><div></div><h3></h3><p></p><p></p></div></article>';}).join('');
+    grid.innerHTML=[1,2,3,4,5,6].map(function(){return '<article class="update-card update-hint-card update-skeleton"><div class="update-feed-marker"><span></span></div><div class="update-feed-body"><div></div><h3></h3><p></p><p></p></div></article>';}).join('');
     var empty=$('updatesEmpty'); if(empty)empty.classList.remove('active');
   }
   function renderSummary(filtered,total){
     var el=$('updatesActiveSummary'); if(!el)return;
-    if(state.loading){el.innerHTML='<strong>جارٍ التحميل</strong><span>يتم جلب ملف تحديثات ثابت وقابل للكاش، بدون تشغيل قاعدة بيانات أو كريدت إضافي.</span>';return;}
-    if(state.error){el.innerHTML='<strong>تنبيه مؤقت</strong><span>تعذر تحميل ملف التحديثات، لكن الموقع وبحث الترددات يعملان بشكل طبيعي.</span>';return;}
-    var label=labels[state.category]||'الكل';
+    if(state.loading){el.innerHTML='<strong>جارٍ التحميل</strong><span>يتم تحويل آخر التحديثات إلى تلميحات مختصرة بدون تشغيل قاعدة بيانات إضافية.</span>';return;}
+    if(state.error){el.innerHTML='<strong>تنبيه مؤقت</strong><span>تعذر تحميل التلميحات، لكن الموقع وبحث الترددات يعملان بشكل طبيعي.</span>';return;}
+    var label=labels[state.category]||'كل التلميحات';
     var q=state.query?(' / بحث: '+esc(state.query.trim())):'';
-    el.innerHTML='<strong>'+esc(label)+'</strong><span>يعرض '+esc(Math.min(filtered,state.visible))+' من '+esc(filtered)+' تحديث'+esc(q)+'.</span>';
-    if(total===0)el.innerHTML='<strong>لا توجد تحديثات</strong><span>سيظهر هنا أي تغيير جديد بعد التوليد اليومي.</span>';
+    el.innerHTML='<strong>'+esc(label)+'</strong><span>يعرض '+esc(Math.min(filtered,state.visible))+' من '+esc(filtered)+' تلميح'+esc(q)+'.</span>';
+    if(total===0)el.innerHTML='<strong>لا توجد تلميحات</strong><span>سيظهر هنا أي تغيير جديد بعد الفحص اليومي.</span>';
   }
   function render(){
     var grid=$('updatesGrid'),empty=$('updatesEmpty'),more=$('updatesLoadMore');
@@ -209,17 +231,17 @@
     grid.innerHTML=shown.map(renderCard).join('');
     if(empty){
       empty.innerHTML=state.query||state.category!=='all'
-        ? 'لا توجد تحديثات مطابقة. جرّب اسم القمر، رقم التردد، أو امسح الفلتر الحالي.'
-        : 'لا توجد تحديثات جديدة حاليًا. آخر فحص تم بنجاح، وسيتم عرض أي تغييرات جديدة فور توفرها.';
+        ? 'لا توجد تلميحات مطابقة. جرّب اسم القمر، رقم التردد، أو امسح الفلتر الحالي.'
+        : 'لا توجد تلميحات جديدة حاليًا. آخر فحص تم بنجاح، وسيتم عرض أي تغييرات جديدة فور توفرها.';
       empty.classList.toggle('active',state.loaded&&!filtered.length);
     }
     if(more){
       more.hidden=!(filtered.length>state.visible);
-      more.textContent='عرض المزيد من التحديثات ('+(filtered.length-state.visible)+')';
+      more.textContent='عرض تلميحات أكثر ('+(filtered.length-state.visible)+')';
     }
     renderSummary(filtered.length,state.items.length);
   }
-  function setFilter(cat){state.category=cat||'all';state.visible=8;render();}
+  function setFilter(cat){state.category=cat||'all';state.visible=9;render();}
   function setupCopyButtons(){
     document.addEventListener('click',function(ev){
       var btn=ev.target.closest('[data-copy-frequency]');
@@ -251,7 +273,7 @@
       state.loaded=true;
     }catch(e){
       state.error=true;
-      state.items=cleanItems([{category:'alert',important:true,date:new Date().toISOString(),title:'آخر التحديثات غير متاحة مؤقتًا',summary:'الموقع يعمل بشكل طبيعي، وسيتم عرض آخر تغييرات الترددات والقنوات فور عودة ملف التحديثات.',status:'تنبيه مؤقت',sources:['إدارة الموقع'],tags:['تنبيه']}]);
+      state.items=cleanItems([{category:'alert',important:true,date:new Date().toISOString(),title:'التلميحات غير متاحة مؤقتًا',summary:'الموقع يعمل بشكل طبيعي، وسيتم عرض آخر تلميحات الترددات والقنوات فور عودة ملف التحديثات.',status:'تنبيه مؤقت',sources:['إدارة الموقع'],tags:['تنبيه']}]);
       state.loaded=true;
     }finally{
       state.loading=false;render();
@@ -284,11 +306,11 @@
   function boot(){
     document.querySelectorAll('[data-updates-filter]').forEach(function(btn){btn.addEventListener('click',function(){setFilter(btn.getAttribute('data-updates-filter')||'all');});});
     var search=$('updatesSearch');
-    if(search)search.addEventListener('input',function(){state.query=search.value;state.visible=8;render();});
+    if(search)search.addEventListener('input',function(){state.query=search.value;state.visible=9;render();});
     var sort=$('updatesSort');
-    if(sort)sort.addEventListener('change',function(){state.sort=sort.value||'newest';state.visible=8;render();});
+    if(sort)sort.addEventListener('change',function(){state.sort=sort.value||'newest';state.visible=9;render();});
     var more=$('updatesLoadMore');
-    if(more)more.addEventListener('click',function(){state.visible+=8;render();});
+    if(more)more.addEventListener('click',function(){state.visible+=9;render();});
     setupCopyButtons();setupTickerClicks();updateFilters();updateMetrics();renderTicker();renderSummary(0,0);setupLazyLoad();
   }
   window.loadLatestUpdates=load; window.setUpdatesFilter=setFilter;

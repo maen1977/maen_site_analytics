@@ -70,8 +70,8 @@ export async function generateLatestUpdates(options = {}) {
       category: 'frequency',
       important: true,
       date: report?.generatedAt || payload?.updatedAt || now,
-      title: 'آخر فحص لقاعدة الترددات',
-      summary: `تمت مراجعة قاعدة الترددات اليوم. إضافات جديدة: ${changes.added || 0}، تعديلات على ترددات موجودة: ${changes.updated || 0}، ترددات لم تعد ظاهرة في الفحص: ${changes.removed || payload.removedCount || 0}، أسماء قنوات أُضيفت للبحث: ${changes.channelNamesAdded || 0}.`,
+      title: 'تلميح الترددات: آخر فحص جاهز',
+      summary: `الخلاصة: تمت مراجعة قاعدة الترددات اليوم. إضافات جديدة: ${changes.added || 0}، تعديلات على ترددات موجودة: ${changes.updated || 0}، ترددات حُذفت/أُخفيت: ${changes.removed || payload.removedCount || 0}، منها بإجماع الإغلاق: ${changes.closedConsensusRemoved || 0}، وأسماء قنوات حُذفت بسبب الإغلاق: ${changes.closedConsensusChannelNamesRemoved || 0}.`,
       status: 'قاعدة الترددات محدثة',
       sources: ['نظام التحديث اليومي', 'مصادر رسمية ومصادر مقارنة'],
       tags: ['ترددات', 'تحديث يومي', 'الشرق الأوسط']
@@ -81,8 +81,8 @@ export async function generateLatestUpdates(options = {}) {
       category: 'frequency',
       important: true,
       date: payload.updatedAt || now,
-      title: 'قاعدة الترددات جاهزة للبحث',
-      summary: `يتوفر حاليًا ${payload.count || (payload.items || []).length || 0} ترددًا وباقة ضمن أقمار الشرق الأوسط. يمكنك البحث باسم القناة أو رقم التردد أو اسم القمر.`,
+      title: 'تلميح سريع: قاعدة الترددات جاهزة للبحث',
+      summary: `الخلاصة: يتوفر حاليًا ${payload.count || (payload.items || []).length || 0} ترددًا وباقة ضمن أقمار الشرق الأوسط. يمكنك البحث باسم القناة أو رقم التردد أو اسم القمر.`,
       status: 'جاهزة للاستخدام',
       sources: ['قاعدة الترددات'],
       tags: ['ترددات', 'بحث']
@@ -94,8 +94,8 @@ export async function generateLatestUpdates(options = {}) {
     items.push(makeItem({
       category: 'satellite',
       date: payload.updatedAt || now,
-      title: `${g.satelliteGroup || g.satellite || 'قمر'} — ${g.frequencies || 0} ترددًا متاحًا`,
-      summary: `يتضمن هذا القمر أو المجموعة حوالي ${g.frequencies || 0} ترددًا و ${g.services || 0} قناة/خدمة قابلة للبحث.`,
+      title: `تلميح قمر: ${g.satelliteGroup || g.satellite || 'قمر'} — ${g.frequencies || 0} ترددًا متاحًا`,
+      summary: `الخلاصة: يتضمن هذا القمر أو المجموعة حوالي ${g.frequencies || 0} ترددًا و ${g.services || 0} قناة/خدمة قابلة للبحث.`,
       satellite: g.satelliteGroup || g.satellite,
       status: 'متوفر في البحث',
       sources: ['قاعدة الترددات المحلية'],
@@ -108,15 +108,17 @@ export async function generateLatestUpdates(options = {}) {
       category: 'alert',
       important: true,
       date: removed.removedAt || report?.generatedAt || now,
-      title: 'تردد يحتاج مراجعة',
-      summary: `هذا التردد لم يظهر في آخر فحص للمصادر، لذلك تم وضعه كتنبيه للمراجعة قبل عرضه كبيان مؤكد.`,
+      title: removed.removedReason === 'closed-by-source-consensus' ? 'انتبه: تردد حُذف لأنه مغلق' : 'تلميح مراجعة: تردد يحتاج تأكد',
+      summary: removed.removedReason === 'closed-by-source-consensus'
+        ? `الخلاصة: تم حذف هذا التردد من نتائج البحث لأن أكثر من مصدر موثوق أشار إلى إغلاقه، ولا يوجد مصدر حالي مستقل يؤكد أنه ما زال يعمل.`
+        : `الخلاصة: هذا التردد لم يظهر في آخر فحص للمصادر، لذلك تم وضعه كتنبيه للمراجعة قبل عرضه كبيان مؤكد.`,
       satellite: [removed.satelliteGroup, removed.orbitalSlot].filter(Boolean).join(' / '),
       oldFrequency: removed.frequency,
       polarity: removed.pol,
       symbolRate: removed.sr,
-      status: 'قيد المراجعة',
-      sources: ['تقرير المقارنة اليومي'],
-      tags: ['تردد متوقف', 'تنبيه']
+      status: removed.removedReason === 'closed-by-source-consensus' ? 'محذوف من البحث' : 'قيد المراجعة',
+      sources: removed.closedSources || ['تقرير المقارنة اليومي'],
+      tags: removed.removedReason === 'closed-by-source-consensus' ? ['تردد مغلق', 'حُذف تلقائيًا'] : ['تردد متوقف', 'تنبيه']
     }));
   }
 
@@ -131,11 +133,12 @@ export async function generateLatestUpdates(options = {}) {
   const out = {
     ok: true,
     generatedAt: now,
-    mode: 'daily-static-updates',
+    mode: 'daily-static-hints',
     region: 'MENA / الشرق الأوسط',
     count: finalItems.length,
     categories: ['frequency', 'satellite', 'channels', 'sports', 'alert'],
-    editorialPolicy: 'المصادر الرسمية أولًا، ثم مصادر مقارنة. أخبار الرياضة وحقوق البث لا تُنشر كحقيقة إلا من مصدر رسمي أو بعد مراجعة يدوية. لا يتم نشر روابط أو سيرفرات غير مرخصة.',
+    presentation: 'hints-feed',
+    editorialPolicy: 'المصادر الرسمية أولًا، ثم مصادر مقارنة. تعرض الصفحة التحديثات على شكل تلميحات مختصرة، ولا تُنشر أخبار الرياضة وحقوق البث كحقيقة إلا من مصدر رسمي أو بعد مراجعة يدوية. لا يتم نشر روابط أو سيرفرات غير مرخصة.',
     items: finalItems
   };
   await mkdir(updatesDir, { recursive: true });

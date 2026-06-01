@@ -61,8 +61,9 @@ async function main() {
   );
 
   const candidates = sourceResults.flatMap(r => r.candidates || []);
+  const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
-  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount });
+  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates });
 
   const payload = {
     ok: true,
@@ -73,6 +74,8 @@ async function main() {
     count: merged.items.length,
     removedCount: (merged.removedItems || []).length,
     candidateCount: merged.candidateCount || candidates.length,
+    closedCandidateCount: merged.closedCandidateCount || closedCandidates.length,
+    closedConsensusCount: merged.closedConsensusCount || 0,
     successfulSourceCount,
     groupCounts: buildGroupCounts(merged.items),
     satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
@@ -87,12 +90,13 @@ async function main() {
       ok: Boolean(r.ok),
       status: r.status || null,
       candidates: (r.candidates || []).length,
+      closedCandidates: (r.closedCandidates || []).length,
       coverageOnly: Boolean(r.coverageOnly),
       error: r.error || null
     })),
     changes: merged.changes,
     satellites: JORDAN_MENA_SATELLITES,
-    note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers.'
+    note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers.'
   };
 
   const report = buildFrequencyReport(payload);
