@@ -2830,9 +2830,10 @@ function renderStationCards(rows, mode) {
     const selected = chooseTrustedFrequency(group);
     const primary = selected.item || {};
     const fec = primary.fec || 'غير مذكور';
+    const system = [primary.system || '', primary.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور';
     return '<article class="station-card station-frequency-card">' +
       logoHtml(group.name) + '<div class="station-info"><h3>' + esc(group.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(group.name, primary) + '</div><div class="station-meta station-frequency-meta">' +
-      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('FEC:', fec)].join('') +
+      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('FEC:', fec), meta('النظام:', system)].join('') +
       '</div></div></article>';
   }).join('');
 
