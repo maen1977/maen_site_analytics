@@ -1,0 +1,16 @@
+تم تفعيل تتبع الزيارات داخل الموقع بنمط session.
+
+التعديل الأساسي:
+- public/index.html
+- public/index_phone.html
+
+صار السطر:
+var mode = window.MAEN_ANALYTICS_MODE || "session";
+
+مهم بعد الرفع على GitHub/Cloudflare:
+1. تأكد أن Cloudflare Pages مربوط بقاعدة D1.
+2. اسم binding لازم يكون بالضبط: MAEN_DB
+3. افتح الموقع من متصفح أو جهاز آخر.
+4. شغل تقرير الزيارات من GitHub Actions بتاريخ اليوم.
+
+إذا بقي التقرير صفر بعد زيارات حقيقية، افحص ربط D1 في Cloudflare وليس Resend أو GitHub Actions.

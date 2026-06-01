@@ -2353,9 +2353,9 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 
 (function () {
   "use strict";
-  // Custom D1 page-view analytics is off by default to protect free Netlify/Cloudflare quotas.
-  // Set window.MAEN_ANALYTICS_MODE = "session" before this script if you intentionally want one lightweight hit per session.
-  var mode = window.MAEN_ANALYTICS_MODE || "off";
+  // Custom D1 page-view analytics is enabled in session mode to send one lightweight hit per page/session.
+  // Set window.MAEN_ANALYTICS_MODE = "off" before this script only if you intentionally want to disable analytics.
+  var mode = window.MAEN_ANALYTICS_MODE || "session";
   if (mode === "off") return;
   var endpoint = window.MAEN_ANALYTICS_ENDPOINT || (location.hostname.indexOf('pages.dev') > -1 ? "/api/track-visit" : "https://maensat.pages.dev/api/track-visit");
 

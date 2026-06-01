@@ -1409,8 +1409,8 @@ let frequencySearchTimer = 0;
 let frequencySuggestionTimer = 0;
 let frequencyVisibleLimit = 60;
 const FREQUENCY_INITIAL_LIMIT = 60;
-const FREQUENCY_SEARCH_LIMIT = 80;
-const STATION_CARD_LIMIT = 60;
+const FREQUENCY_SEARCH_LIMIT = 2000;
+const STATION_CARD_LIMIT = 2000;
 const FREQUENCY_SEARCH_DEBOUNCE_MS = 320;
 const FREQUENCY_SUGGEST_DEBOUNCE_MS = 220;
 const FREQUENCY_DATA_LOW_CREDIT_MODE = true;
@@ -2455,6 +2455,7 @@ function detectNamedChannelIntent(query) {
   if (['العربيه','العربية','عربيه','عربية','alarabiya','al arabiya','al-arabiya'].some(x => q === normalizeText(x) || c === compactText(x))) return 'alarabiya';
   if (['الحدث','حدث','alhadath','al hadath','al-hadath'].some(x => q === normalizeText(x) || c === compactText(x))) return 'alhadath';
   if (['rai','raï','راي','راى','قناة راي','قنوات راي'].some(x => q === normalizeText(x) || c === compactText(x))) return 'rai';
+  if (['mbc','امبيسي','ام بي سي','إم بي سي','ام بي سي','قنوات ام بي سي','قنوات إم بي سي'].some(x => q === normalizeText(x) || c === compactText(x))) return 'mbc';
   return null;
 }
 
@@ -2473,6 +2474,12 @@ function channelMatchesNamedIntent(name, item, brand) {
   }
   if (brand === 'rai') {
     return n === 'rai' || n.startsWith('rai ') || aliases.some(a => a === 'rai' || a === 'راي' || a === 'راى' || a.startsWith('rai '));
+  }
+  if (brand === 'mbc') {
+    const channelText = [name, ...(getChannelAliases(name, item) || [])].join(' ');
+    const cn = normalizeText(channelText);
+    const cc = compactText(channelText);
+    return cn.includes('mbc') || cc.includes('mbc') || cn.includes('ام بي سي') || cc.includes('امبيسي') || cc.includes('إمبيسي');
   }
   return false;
 }
@@ -2729,6 +2736,11 @@ function renderStationCards(rows, mode) {
   }
 
   function meta(label, value){ return '<span><em>'+esc(label)+'</em><strong>'+esc(value || '-')+'</strong></span>'; }
+  function hasUsefulMetaValue(value){
+    const raw = String(value == null ? '' : value).trim();
+    return raw && raw !== '-' && raw !== 'غير مذكور' && !/^unknown$/i.test(raw) && !/^n\/?a$/i.test(raw);
+  }
+  function metaOptional(label, value){ return hasUsefulMetaValue(value) ? meta(label, value) : ''; }
   function statusPenalty(item){
     const raw = String((item && (item.currentStatus || item.status || item.availability || item.dataQuality || item.dataQualityNote)) || '');
     if (/closed|inactive|deprecated|legacy|old|removed|stopped|offline/i.test(raw)) return 3000;
@@ -2772,16 +2784,16 @@ function renderStationCards(rows, mode) {
   const cards = displayedEntries.map(group => {
     const selected = chooseTrustedFrequency(group);
     const primary = selected.item || {};
-    const fec = primary.fec || 'غير مذكور';
+    const fec = primary.fec || '';
     const system = [primary.system || '', primary.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور';
     return '<article class="station-card station-frequency-card">' +
       logoHtml(group.name) + '<div class="station-info"><h3>' + esc(group.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(group.name, primary) + '</div><div class="station-meta station-frequency-meta">' +
-      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('FEC:', fec), meta('النظام:', system)].join('') +
+      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), metaOptional('FEC:', fec), meta('النظام:', system)].join('') +
       '</div></div></article>';
   }).join('');
 
   const titles = { frequency:'نتائج التردد', package:'فلتر باقة دقيق', namedChannel:'نتائج اسم القناة', category:(mode.category === 'christian' ? 'القنوات المسيحية المطابقة' : 'نتائج التصنيف'), country:'نتائج الدولة', countryCategory:'نتائج الدولة والتصنيف', countryPackage:'نتائج الدولة والباقة', free:'نتائج البحث' };
-  const serviceFilter = getFrequencyServiceFilter();
+  const serviceFilter = window.__lastFrequencyEffectiveServiceFilter || getFrequencyServiceFilter();
   const titleText = serviceFilter !== 'all' ? (FREQUENCY_SERVICE_FILTER_LABELS[serviceFilter] || 'نتائج البحث') : (titles[mode.type] || 'نتائج البحث');
   container.innerHTML = '<div class="station-results-head"><strong>' + esc(titleText) + '</strong><div class="station-results-head-side"><span>' + groupedEntries.length + ' نتيجة</span></div></div><div class="station-results-grid">' + cards + '</div>';
   container.classList.add('active');
@@ -2961,9 +2973,13 @@ function renderFrequenciesNow(){
   if (!tbody) return;
   const selected = (document.getElementById('frequencySatellite')?.value || 'all');
   const query = (document.getElementById('frequencySearch')?.value || '').trim();
-  const serviceFilter = getFrequencyServiceFilter();
+  let serviceFilter = getFrequencyServiceFilter();
   if (!query) exactPackageMode = null;
   const mode = getSearchMode(query);
+  // عند وجود نص في البحث، اعرض كل المحطات المطابقة للاسم/التردد
+  // ولا تترك فلتر FTA/مشفر يخبّي نتائج برمجة مهمة.
+  if (query || exactPackageMode) serviceFilter = 'all';
+  window.__lastFrequencyEffectiveServiceFilter = serviceFilter;
   const searchActive = !!query || !!exactPackageMode || serviceFilter !== 'all';
   const effectiveSelected = selected !== 'all' ? selected : (mode.satellite || selected);
   const tableWrap = tbody.closest('.frequency-table-wrap');
@@ -3001,7 +3017,7 @@ function renderFrequenciesNow(){
     const visible = channels.slice(0, 10).map(ch => channelChipHtml(ch, item, '')).join('');
     const hidden = channels.slice(10).map(ch => channelChipHtml(ch, item, 'channel-extra')).join('');
     const chHtml = channels.length ? '<div class="frequency-row-trust">' + frequencyTrustBadgesHtml(item) + '</div><div class="channels-cell">' + visible + hidden + (channels.length > 10 ? '<button type="button" class="show-more-channels" onclick="toggleChannelList(this)">عرض المزيد (' + (channels.length - 10) + ')</button>' : '') + '</div>' : '<div class="channels-missing">لا توجد محطات مطابقة داخل هذا التردد</div>';
-    return '<tr><td><span class="frequency-badge">' + esc(satelliteLabel(item.satelliteGroup || '')) + '</span></td><td>' + esc(physicalSatelliteLabel(item)) + '</td><td>' + esc(item.frequency || '') + '</td><td>' + esc(item.pol || '') + '</td><td>' + esc(item.sr || '') + '</td><td>' + esc(item.fec || '') + '</td><td>' + esc([item.system || '', item.mod || ''].filter(Boolean).join(' / ')) + '</td><td>' + chHtml + '</td></tr>';
+    return '<tr><td><span class="frequency-badge">' + esc(satelliteLabel(item.satelliteGroup || '')) + '</span></td><td>' + esc(physicalSatelliteLabel(item)) + '</td><td>' + esc(item.frequency || '') + '</td><td>' + esc(item.pol || '') + '</td><td>' + esc(item.sr || '') + '</td><td>' + esc(item.fec || '') + '</td><td>' + esc([item.system || '', item.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور') + '</td><td>' + chHtml + '</td></tr>';
   }).join('');
 
   renderStationCards(searchActive ? rows : visibleRows, mode);
@@ -4298,9 +4314,9 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 <script>
 (function () {
   "use strict";
-  // Custom D1 page-view analytics is off by default to protect free Netlify/Cloudflare quotas.
-  // Set window.MAEN_ANALYTICS_MODE = "session" before this script if you intentionally want one lightweight hit per session.
-  var mode = window.MAEN_ANALYTICS_MODE || "off";
+  // Custom D1 page-view analytics is enabled in session mode to send one lightweight hit per page/session.
+  // Set window.MAEN_ANALYTICS_MODE = "off" before this script only if you intentionally want to disable analytics.
+  var mode = window.MAEN_ANALYTICS_MODE || "session";
   if (mode === "off") return;
   var apiBase = window.MAEN_API_BASE || (location.hostname.indexOf('pages.dev') > -1 ? '' : 'https://maensat.pages.dev');
   var endpoint = window.MAEN_ANALYTICS_ENDPOINT || (apiBase + '/api/track-visit');
