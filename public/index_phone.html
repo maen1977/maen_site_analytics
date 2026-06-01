@@ -189,6 +189,11 @@
 
 .station-frequency-options{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.station-frequency-option{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(17,17,17,.10);background:#f8fafc;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:900;color:#111}.station-frequency-option b{color:#8a6500}.station-frequency-more{display:inline-flex;align-items:center;border:1px dashed rgba(17,17,17,.18);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:1000;color:#555;background:rgba(255,210,63,.12)}@media(max-width:700px){.station-frequency-options{gap:6px}.station-frequency-option,.station-frequency-more{font-size:11px;padding:6px 8px}}
 
+
+/* MAEN FREQUENCY CARD CLEANUP 2026-06-01: hide internal trust/source chips and old multiple-frequency options from the visitor-facing cards. */
+.frequency-trust-row,.frequency-row-trust{display:none!important;}
+.station-frequency-options,.station-frequency-more{display:none!important;}
+
 /* MAEN FREQUENCY SEARCH NO-SUGGESTIONS HOTFIX 2026-05-30
    The frequency search keeps working, but the dropdown list of smart suggestions
    (countries/packages/categories/channels) stays hidden by request. */
@@ -2716,18 +2721,15 @@ function frequencyTrustInfo(item){
   const checked = item && (item.lastCheckedDisplay || item.verifiedOn || item.encryptionLastChecked || (item.lastCheckedAt ? String(item.lastCheckedAt).slice(0,10) : ''));
   const sourceText = item && (item.source || item.sourceLastUpdated || (Array.isArray(item.classificationSources) ? item.classificationSources.join(' / ') : ''));
   let level = 'low';
-  let label = 'بحاجة متابعة';
-  if (sourceUrl && checked) { level = 'high'; label = 'ثقة عالية'; }
-  else if (sourceUrl || checked || sourceText) { level = 'medium'; label = 'ثقة متوسطة'; }
+  let label = '';
+  if (sourceUrl && checked) { level = 'high'; }
+  else if (sourceUrl || checked || sourceText) { level = 'medium'; }
   return { level, label, checked: checked || '', source: sourceText || '', sourceUrl: sourceUrl || '' };
 }
 
 function frequencyTrustBadgesHtml(item){
-  const info = frequencyTrustInfo(item || {});
-  const bits = ['<span class="frequency-trust-badge '+esc(info.level)+'" title="'+esc(info.source || info.sourceUrl || info.label)+'">✓ '+esc(info.label)+'</span>'];
-  if (info.checked) bits.push('<span class="frequency-trust-badge" title="آخر فحص للتردد أو المصدر">آخر فحص: '+esc(info.checked)+'</span>');
-  if (info.sourceUrl) bits.push('<span class="frequency-trust-badge" title="يوجد رابط مصدر أو تدقيق محفوظ">مصدر محفوظ</span>');
-  return '<div class="frequency-trust-row">' + bits.join('') + '</div>';
+  // بطاقات البحث لا تعرض شارات الثقة/المصدر للزائر. تبقى معلومات المصدر داخلياً داخل البيانات فقط.
+  return '';
 }
 
 function renderStationCards(rows, mode) {
@@ -2739,9 +2741,8 @@ function renderStationCards(rows, mode) {
     return;
   }
 
-  // نتائج البحث كانت تُعرض كسجل لكل (محطة + تردد). هذا صحيح تقنياً لكنه يسبب تكراراً واضحاً
-  // عندما تكون نفس المحطة موجودة على أكثر من تردد/قمر. هنا نجمع النتائج حسب اسم المحطة،
-  // ونُظهر كل تردداتها داخل نفس البطاقة بدون حذف أي معلومة من قاعدة البيانات.
+  // العرض الظاهر للزائر يعرض تردداً واحداً معتمداً لكل محطة.
+  // قاعدة البيانات الداخلية تبقى محتفظة بكل الترددات والمصادر للمقارنة والتحديث اليومي.
   const groups = new Map();
   rows.forEach(row => {
     const channelNames = Array.isArray(row.channels) ? row.channels : matchingChannels(row.item, mode);
@@ -2769,7 +2770,7 @@ function renderStationCards(rows, mode) {
       ].join('|'));
       if (group.frequencyKeys.has(frequencyKey)) return;
       group.frequencyKeys.add(frequencyKey);
-      group.frequencies.push({ item });
+      group.frequencies.push({ item, score: Number(row.score || 0) });
     });
   });
 
@@ -2785,33 +2786,63 @@ function renderStationCards(rows, mode) {
   }
 
   function meta(label, value){ return '<span><em>'+esc(label)+'</em><strong>'+esc(value || '-')+'</strong></span>'; }
-  function frequencyOptionHtml(entry){
-    const item = entry.item || {};
-    const satellite = satelliteLabel(item.satelliteGroup || '');
-    const physical = physicalSatelliteLabel(item);
-    const freqBits = [item.frequency, item.pol, item.sr].filter(Boolean).join(' / ');
-    const title = [satellite, physical, item.frequency, item.pol, item.sr, item.fec].filter(Boolean).join(' - ');
-    return '<span class="station-frequency-option" title="'+esc(title)+'"><b>'+esc(satellite || 'قمر')+'</b><span>'+esc(freqBits || '-')+'</span></span>';
+  function statusPenalty(item){
+    const raw = String((item && (item.currentStatus || item.status || item.availability || item.dataQuality || item.dataQualityNote)) || '');
+    if (/closed|inactive|deprecated|legacy|old|removed|stopped|offline/i.test(raw)) return 3000;
+    if (/مغلق|مقفول|متوقف|قديم|محذوف|ملغي|غير نشط/.test(raw)) return 3000;
+    return 0;
+  }
+  function trustedFrequencyScore(entry){
+    const item = entry && entry.item || {};
+    let score = Number(entry && entry.score || 0);
+    const priority = Number(item.searchPriority || 0);
+    if (Number.isFinite(priority)) score += Math.max(-1500, Math.min(2000, priority));
+    if (item.isCurrent) score += 2400;
+    if (item.isLegacy) score -= 2600;
+    if (item.isDeprecated || item.hideFromNamedSearch) score -= 4200;
+    score -= statusPenalty(item);
+    if (item.frequency) score += 700;
+    if (item.pol) score += 280;
+    if (item.sr) score += 280;
+    if (item.fec) score += 900;
+    if (item.officialSourceUrl) score += 420;
+    if (item.sourceAuditUrl || item.sourceUrl) score += 260;
+    if (item.lastCheckedDisplay || item.verifiedOn || item.lastCheckedAt || item.encryptionLastChecked) score += 320;
+    if (Array.isArray(item.classificationSources)) score += Math.min(360, item.classificationSources.length * 90);
+    if (mode && mode.type === 'frequency') {
+      const f = getFrequency(item);
+      if (f !== null) score += Math.max(0, 1800 - Math.abs(f - mode.frequency) * 120);
+    }
+    return score;
+  }
+  function chooseTrustedFrequency(group){
+    return (group.frequencies || []).slice().sort((a, b) => {
+      const delta = trustedFrequencyScore(b) - trustedFrequencyScore(a);
+      if (delta) return delta;
+      const af = String(a.item && a.item.frequency || '');
+      const bf = String(b.item && b.item.frequency || '');
+      return af.localeCompare(bf, 'en');
+    })[0] || { item: {} };
   }
 
   const displayedEntries = groupedEntries.slice(0, STATION_CARD_LIMIT);
-  const totalFrequencyOptions = groupedEntries.reduce((sum, group) => sum + group.frequencies.length, 0);
   const cards = displayedEntries.map(group => {
-    const primary = group.frequencies[0]?.item || {};
-    const shownFrequencies = group.frequencies.slice(0, 6).map(frequencyOptionHtml).join('');
-    const moreFrequencies = group.frequencies.length > 6 ? '<span class="station-frequency-more">+' + (group.frequencies.length - 6) + ' تردد آخر</span>' : '';
+    const selected = chooseTrustedFrequency(group);
+    const primary = selected.item || {};
+    const fec = primary.fec || 'غير مذكور';
     return '<article class="station-card station-frequency-card">' +
-      logoHtml(group.name) + '<div class="station-info"><h3>' + esc(group.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(group.name, primary) + '</div>' + frequencyTrustBadgesHtml(primary) + '<div class="station-meta station-frequency-meta">' +
-      [meta('عدد الترددات:', String(group.frequencies.length)), meta('القمر الأقرب:', satelliteLabel(primary.satelliteGroup || '')), meta('أول تردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('النظام:', [primary.system || '', primary.mod || ''].filter(Boolean).join(' / '))].join('') +
-      '</div><div class="station-frequency-options">' + shownFrequencies + moreFrequencies + '</div></div></article>';
+      logoHtml(group.name) + '<div class="station-info"><h3>' + esc(group.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(group.name, primary) + '</div><div class="station-meta station-frequency-meta">' +
+      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('FEC:', fec)].join('') +
+      '</div></div></article>';
   }).join('');
 
   const titles = { frequency:'نتائج التردد', package:'فلتر باقة دقيق', namedChannel:'نتائج اسم القناة', category:(mode.category === 'christian' ? 'القنوات المسيحية المطابقة' : 'نتائج التصنيف'), country:'نتائج الدولة', countryCategory:'نتائج الدولة والتصنيف', countryPackage:'نتائج الدولة والباقة', free:'نتائج البحث' };
   const serviceFilter = getFrequencyServiceFilter();
   const titleText = serviceFilter !== 'all' ? (FREQUENCY_SERVICE_FILTER_LABELS[serviceFilter] || 'نتائج البحث') : (titles[mode.type] || 'نتائج البحث');
-  container.innerHTML = '<div class="station-results-head"><strong>' + esc(titleText) + '</strong><div class="station-results-head-side"><span>' + groupedEntries.length + ' محطة بدون تكرار</span><span>' + totalFrequencyOptions + ' تردد مطابق</span></div></div><div class="station-results-grid">' + cards + '</div>';
+  container.innerHTML = '<div class="station-results-head"><strong>' + esc(titleText) + '</strong><div class="station-results-head-side"><span>' + groupedEntries.length + ' نتيجة</span></div></div><div class="station-results-grid">' + cards + '</div>';
   container.classList.add('active');
 }
+
 function sortedEntriesByCount(map, preferredOrder) {
   return Array.from(map.entries()).sort((a, b) => {
     const ai = preferredOrder.indexOf(a[0]);
