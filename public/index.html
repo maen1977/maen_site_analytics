@@ -311,6 +311,65 @@ img{image-rendering:auto;-ms-interpolation-mode:bicubic;backface-visibility:hidd
 @media (min-width:900px){.image-wrap img{height:390px!important}.works-gallery img,.work-card img{min-height:320px!important}}
 @media (max-width:699px){.mobile-nav-item .hq-svg-icon{width:23px;height:23px}.image-wrap img{height:clamp(250px,78vw,340px)!important}}
 </style>
+
+<style id="programming-system-visible-on-all-cards-fix">
+/* PROGRAMMING_SYSTEM_VISIBLE_ON_ALL_FREQUENCY_AND_PACKAGE_RESULTS_2026_06_01 */
+#frequencies .programming-system-meta{
+  grid-column:1 / -1 !important;
+  padding:12px 14px !important;
+  border-radius:16px !important;
+  background:#111111 !important;
+  color:#ffd23f !important;
+  border:1px solid rgba(255,210,63,.55) !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.16) !important;
+}
+#frequencies .programming-system-meta em{
+  color:#ffd23f !important;
+  opacity:.88 !important;
+  font-size:14px !important;
+}
+#frequencies .programming-system-meta strong{
+  color:#ffffff !important;
+  font-size:19px !important;
+  letter-spacing:.01em !important;
+}
+#frequencies .frequency-system-td{
+  font-weight:1000 !important;
+  color:#111111 !important;
+  background:rgba(255,210,63,.16) !important;
+}
+#frequencies .frequency-system-value{
+  display:inline-flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  min-width:96px !important;
+  padding:7px 10px !important;
+  border-radius:999px !important;
+  background:#111111 !important;
+  color:#ffd23f !important;
+  font-weight:1000 !important;
+  white-space:nowrap !important;
+}
+#frequencies .channel-system-mini{
+  display:block !important;
+  margin-top:2px !important;
+  color:#111111 !important;
+  background:rgba(255,210,63,.38) !important;
+  border-radius:999px !important;
+  padding:2px 7px !important;
+  font-size:10.5px !important;
+  line-height:1.35 !important;
+  font-weight:1000 !important;
+}
+body.lang-en #frequencies .channel-system-mini{
+  direction:ltr !important;
+  text-align:left !important;
+}
+@media (max-width:620px){
+  #frequencies .programming-system-meta strong{font-size:16px !important;}
+  #frequencies .channel-system-mini{font-size:10px !important;}
+}
+</style>
 </head>
 <body>
 <!-- Mobile UX upgrade: compact contact header + thumb-friendly bottom navigation -->
@@ -1216,7 +1275,7 @@ img{image-rendering:auto;-ms-interpolation-mode:bicubic;backface-visibility:hidd
 <option value="encrypted">قنوات مشفرة</option>
 <option value="radio">راديو</option>
 </select>
-<input aria-label="بحث ذكي في الترددات" autocomplete="off" id="frequencySearch" inputmode="search" oninput="if(window.loadFrequencyFeature)window.loadFrequencyFeature()" onchange="if(window.loadFrequencyFeature)window.loadFrequencyFeature()" placeholder="ابحث داخل القمر المختار باسم القناة أو التردد..." type="search" value=""/>
+<input aria-label="بحث ذكي في الترددات" autocomplete="off" id="frequencySearch" inputmode="search" oninput="if(window.loadFrequencyFeature)window.loadFrequencyFeature()" onchange="if(window.loadFrequencyFeature)window.loadFrequencyFeature()" placeholder="ابحث باسم القناة أو التردد... مثال: MBC أو MBC نايل سات" type="search" value=""/>
 <button class="frequency-clear-btn" onclick="clearFrequencySearch()" type="button">مسح</button>
 <div aria-label="اقتراحات البحث الذكي" class="frequency-ai-suggest" id="frequencySearchSuggest" role="listbox"></div>
 </div>
@@ -1232,7 +1291,7 @@ img{image-rendering:auto;-ms-interpolation-mode:bicubic;backface-visibility:hidd
 <th>الاستقطاب</th>
 <th>SR</th>
 <th>FEC</th>
-<th>System / Mod</th>
+<th>النظام</th>
 <th>أسماء المحطات داخل التردد</th>
 </tr>
 </thead>
@@ -1966,8 +2025,12 @@ function channelEncryptionMiniHtml(name, item){
   const st = getChannelEncryptionStatus(name, item);
   return '<em class="channel-encryption-mini encryption-' + esc(st.key) + '" title="' + esc(st.note) + '">' + esc(st.icon + ' ' + st.shortLabel) + '</em>';
 }
+function channelProgrammingSystemHtml(item){
+  const system = [item && item.system || '', item && item.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور';
+  return '<em class="channel-system-mini">النظام: ' + esc(system) + '</em>';
+}
 function channelChipHtml(name, item, extraClass){
-  return '<span class="channel-chip' + (extraClass ? ' ' + esc(extraClass) : '') + '"><b>' + esc(name) + '</b>' + channelEncryptionMiniHtml(name, item) + '</span>';
+  return '<span class="channel-chip' + (extraClass ? ' ' + esc(extraClass) : '') + '"><b>' + esc(name) + '</b>' + channelEncryptionMiniHtml(name, item) + channelProgrammingSystemHtml(item) + '</span>';
 }
 
 
@@ -2476,10 +2539,10 @@ function channelMatchesNamedIntent(name, item, brand) {
     return n === 'rai' || n.startsWith('rai ') || aliases.some(a => a === 'rai' || a === 'راي' || a === 'راى' || a.startsWith('rai '));
   }
   if (brand === 'mbc') {
-    const channelText = [name, ...(getChannelAliases(name, item) || [])].join(' ');
-    const cn = normalizeText(channelText);
-    const cc = compactText(channelText);
-    return cn.includes('mbc') || cc.includes('mbc') || cn.includes('ام بي سي') || cc.includes('امبيسي') || cc.includes('إمبيسي');
+    // Strict MBC-family match for programming searches.
+    // Matches: MBC, MBC 1/2/3/4/5, MBC Action, MBC Masr, MBC Iraq, MBC FM...
+    // Does NOT match MBN or unrelated names.
+    return /(^| )mbc($| |[0-9])/.test(n) || c === 'mbc' || c.startsWith('mbc');
   }
   return false;
 }
@@ -2697,7 +2760,20 @@ function renderStationCards(rows, mode) {
   rows.forEach(row => {
     const channelNames = Array.isArray(row.channels) ? row.channels : matchingChannels(row.item, mode);
     channelNames.forEach(name => {
-      const stationKey = channelDisplayDedupeKey(name) || compactText(name) || normalizeText(name);
+      const item = row.item || {};
+      // في نتائج البحث نعرض كل محطة على كل تردد/قمر، لا ندمج MBC كلها في بطاقة أو بطاقتين.
+      // هذا مهم للفني لأن نفس اسم القناة قد يكون على أكثر من قمر أو تردد بنظام مختلف.
+      const stationKey = normalizeText([
+        name,
+        item.satelliteGroup || '',
+        physicalSatelliteLabel(item) || '',
+        item.frequency || '',
+        item.pol || '',
+        item.sr || '',
+        item.fec || '',
+        item.system || '',
+        item.mod || ''
+      ].join('|')) || compactText(name) || normalizeText(name);
       if (!stationKey) return;
       if (!groups.has(stationKey)) {
         groups.set(stationKey, {
@@ -2709,7 +2785,6 @@ function renderStationCards(rows, mode) {
       }
       const group = groups.get(stationKey);
       group.score = Math.max(group.score, Number(row.score || 0));
-      const item = row.item || {};
       const frequencyKey = normalizeText([
         item.satelliteGroup || '',
         physicalSatelliteLabel(item) || '',
@@ -2735,7 +2810,8 @@ function renderStationCards(rows, mode) {
     return;
   }
 
-  function meta(label, value){ return '<span><em>'+esc(label)+'</em><strong>'+esc(value || '-')+'</strong></span>'; }
+  function meta(label, value){ return '<span><em>'+esc(label)+'</em><strong>'+esc(value || 'غير مذكور')+'</strong></span>'; }
+  function systemMeta(value){ return '<span class="programming-system-meta"><em>النظام:</em><strong>'+esc(value || 'غير مذكور')+'</strong></span>'; }
   function hasUsefulMetaValue(value){
     const raw = String(value == null ? '' : value).trim();
     return raw && raw !== '-' && raw !== 'غير مذكور' && !/^unknown$/i.test(raw) && !/^n\/?a$/i.test(raw);
@@ -2788,7 +2864,7 @@ function renderStationCards(rows, mode) {
     const system = [primary.system || '', primary.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور';
     return '<article class="station-card station-frequency-card">' +
       logoHtml(group.name) + '<div class="station-info"><h3>' + esc(group.name) + '</h3><div class="station-encryption-row">' + channelEncryptionBadgeHtml(group.name, primary) + '</div><div class="station-meta station-frequency-meta">' +
-      [meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || '-'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), metaOptional('FEC:', fec), meta('النظام:', system)].join('') +
+      [systemMeta(system), meta('القمر:', satelliteLabel(primary.satelliteGroup || '')), meta('المدار:', primary.orbitalSlot || primary.orbit || 'غير مذكور'), meta('التردد:', primary.frequency), meta('الاستقطاب:', primary.pol), meta('SR:', primary.sr), meta('FEC:', fec || 'غير مذكور')].join('') +
       '</div></div></article>';
   }).join('');
 
@@ -3020,7 +3096,7 @@ function renderFrequenciesNow(){
     const visible = channels.slice(0, 10).map(ch => channelChipHtml(ch, item, '')).join('');
     const hidden = channels.slice(10).map(ch => channelChipHtml(ch, item, 'channel-extra')).join('');
     const chHtml = channels.length ? '<div class="frequency-row-trust">' + frequencyTrustBadgesHtml(item) + '</div><div class="channels-cell">' + visible + hidden + (channels.length > 10 ? '<button type="button" class="show-more-channels" onclick="toggleChannelList(this)">عرض المزيد (' + (channels.length - 10) + ')</button>' : '') + '</div>' : '<div class="channels-missing">لا توجد محطات مطابقة داخل هذا التردد</div>';
-    return '<tr><td><span class="frequency-badge">' + esc(satelliteLabel(item.satelliteGroup || '')) + '</span></td><td>' + esc(physicalSatelliteLabel(item)) + '</td><td>' + esc(item.frequency || '') + '</td><td>' + esc(item.pol || '') + '</td><td>' + esc(item.sr || '') + '</td><td>' + esc(item.fec || '') + '</td><td>' + esc([item.system || '', item.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور') + '</td><td>' + chHtml + '</td></tr>';
+    return '<tr><td><span class="frequency-badge">' + esc(satelliteLabel(item.satelliteGroup || '')) + '</span></td><td>' + esc(physicalSatelliteLabel(item)) + '</td><td>' + esc(item.frequency || '') + '</td><td>' + esc(item.pol || '') + '</td><td>' + esc(item.sr || '') + '</td><td>' + esc(item.fec || '') + '</td><td class="frequency-system-td"><strong class="frequency-system-value">' + esc([item.system || '', item.mod || ''].filter(Boolean).join(' / ') || 'غير مذكور') + '</strong></td><td>' + chHtml + '</td></tr>';
   }).join('');
 
   renderStationCards(searchActive ? rows : visibleRows, mode);

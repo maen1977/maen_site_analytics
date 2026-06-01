@@ -76,3 +76,7 @@ assert('Arabic ON Time Sports query returns the current 11977 V Nilesat row', on
 assert('ON Sport query returns new Plus/Max channels on 11977', searchChannels('on sport').some(h => String(h.item.frequency) === '11977' && /plus|max|sport/i.test(h.channel)), searchChannels('on sport').slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 assert('ON Time Sports Arabsat fallback exists', items.some(item => String(item.frequency) === '12379' && /arabsat|badr/i.test(item.satelliteGroup || '') && channels(item).some(ch => /on time/i.test(ch))));
 assert('manifest and versioned-data strategy is present', Boolean(JSON.parse(await readFile('public/frequencies/frequency-manifest.json', 'utf8')).dataFile));
+
+const mbcHits = searchChannels('mbc').filter(h => /(^|\W)mbc($|\W|\d)/i.test(h.channel));
+assert('MBC query returns many programming results', mbcHits.length >= 20, mbcHits.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+assert('MBC programming results include system data when available', mbcHits.some(h => h.item.system), mbcHits.slice(0, 8).map(h => `${h.channel}:${h.item.system || 'missing'}`).join(', '));
