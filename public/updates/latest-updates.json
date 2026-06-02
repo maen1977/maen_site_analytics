@@ -1,9 +1,9 @@
 {
   "ok": true,
-  "generatedAt": "2026-06-01T17:09:40.871Z",
+  "generatedAt": "2026-06-02T22:33:26.503Z",
   "mode": "daily-static-news",
   "region": "MENA / الشرق الأوسط",
-  "count": 3,
+  "count": 4,
   "categories": [
     "frequency",
     "satellite",
@@ -14,6 +14,48 @@
   "presentation": "news-feed",
   "editorialPolicy": "تعرض الصفحة المعلومات المختصرة كأخبار فقط: عنوان، تاريخ، وخلاصة. لا يتم نشر روابط أو بيانات غير مرخصة.",
   "items": [
+    {
+      "id": "2026-06-02-frequency-تحديث-جديد-على-قاعدة-الترددات",
+      "category": "frequency",
+      "title": "تحديث جديد على قاعدة الترددات",
+      "summary": "تمت مراجعة قاعدة الترددات. الإضافات الجديدة: 2428، التعديلات: 64، والترددات المحذوفة أو المخفية: 299.",
+      "date": "2026-06-02T22:33:26.270Z",
+      "important": true,
+      "satellite": "",
+      "frequency": "",
+      "oldFrequency": "",
+      "polarity": "",
+      "symbolRate": "",
+      "status": "معلومة منشورة",
+      "sources": [
+        "فريق المتابعة"
+      ],
+      "tags": [
+        "ترددات",
+        "أخبار"
+      ]
+    },
+    {
+      "id": "2026-06-02-alert-تردد-بحاجة-إلى-مراجعة",
+      "category": "alert",
+      "title": "تردد بحاجة إلى مراجعة",
+      "summary": "هذا التردد لم يظهر بوضوح في آخر مراجعة للمصادر، لذلك تم وضعه للمراجعة قبل عرضه كمعلومة مؤكدة.",
+      "date": "2026-06-02T22:33:25.269Z",
+      "important": true,
+      "satellite": "Amos / 4W",
+      "frequency": "",
+      "oldFrequency": "10722",
+      "polarity": "V",
+      "symbolRate": "",
+      "status": "قيد المراجعة",
+      "sources": [
+        "فريق المتابعة"
+      ],
+      "tags": [
+        "ترددات",
+        "تنبيه"
+      ]
+    },
     {
       "id": "2026-05-30-frequency-on-time-sports-ترددات-محدثة-وسهلة-البحث",
       "category": "frequency",
@@ -58,27 +100,6 @@
         "رياضة",
         "FTA",
         "قنوات مفتوحة"
-      ]
-    },
-    {
-      "id": "2026-05-30-frequency-قاعدة-الترددات-جاهزة-للبحث",
-      "category": "frequency",
-      "title": "قاعدة الترددات جاهزة للبحث",
-      "summary": "تتوفر قاعدة الترددات للبحث باسم القناة أو رقم التردد أو اسم القمر، بعدد يقارب 363 ترددًا وباقة.",
-      "date": "2026-05-30T00:00:00+03:00",
-      "important": false,
-      "satellite": "",
-      "frequency": "",
-      "oldFrequency": "",
-      "polarity": "",
-      "symbolRate": "",
-      "status": "معلومة منشورة",
-      "sources": [
-        "فريق المتابعة"
-      ],
-      "tags": [
-        "ترددات",
-        "أخبار"
       ]
     }
   ]
