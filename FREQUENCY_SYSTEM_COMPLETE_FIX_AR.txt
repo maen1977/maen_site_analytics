@@ -1,0 +1,21 @@
+تصحيح حقل النظام في كل الترددات
+=================================
+
+تمت مراجعة بيانات الترددات التي كانت تظهر فيها قيمة النظام فارغة، وكانت كلها ضمن صفوف Amos 3 / Dror 1.
+تم إكمال system و modulation داخل:
+
+- public/frequencies/frequency-data.json
+- public/frequencies/frequency-data.v20260530.json
+- public/frequencies/search-index.json
+- netlify/frequency-baseline.json
+- النسخة الاحتياطية المدمجة داخل public/index.html
+- النسخة الاحتياطية المدمجة داخل public/index_phone.html
+
+بعد التعديل لا يوجد أي تردد في قاعدة البيانات بدون system أو mod.
+كما تم إضافة فحص جديد داخل scripts/search-smoke-tests.mjs حتى يفشل الفحص مستقبلًا إذا رجع أي تردد بدون نظام.
+
+القيمة تظهر الآن في البطاقات والجداول بصيغة:
+DVB-S / QPSK
+DVB-S2 / QPSK
+DVB-S2 / 8PSK
+DVB-S2 / 16APSK

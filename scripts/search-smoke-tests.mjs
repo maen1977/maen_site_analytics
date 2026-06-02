@@ -80,3 +80,8 @@ assert('manifest and versioned-data strategy is present', Boolean(JSON.parse(awa
 const mbcHits = searchChannels('mbc').filter(h => /(^|\W)mbc($|\W|\d)/i.test(h.channel));
 assert('MBC query returns many programming results', mbcHits.length >= 20, mbcHits.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 assert('MBC programming results include system data when available', mbcHits.some(h => h.item.system), mbcHits.slice(0, 8).map(h => `${h.channel}:${h.item.system || 'missing'}`).join(', '));
+
+const missingSystemRows = items.filter(item => !String(item.system || '').trim());
+assert('all frequency rows include a programming system value', missingSystemRows.length === 0, missingSystemRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));
+const missingModRows = items.filter(item => !String(item.mod || '').trim());
+assert('all frequency rows include modulation when shown as system/mod', missingModRows.length === 0, missingModRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));
