@@ -1829,6 +1829,41 @@ const SATELLITE_QUERY_KEYWORDS = {
   Azerspace: ['اذر سبيس','أذر سبيس','azerspace','46e']
 };
 
+
+const ALL_SATELLITES_QUERY_KEYWORDS = [
+  'كل الاقمار','كل الأقمار','جميع الاقمار','جميع الأقمار','كل القمرات','كل الاقمار الصناعية','كل الأقمار الصناعية',
+  'كل الساتلايت','كل الساتلايتات','كل السواتل','كل satellites','all satellites','all satellite','every satellite','any satellite',
+  'كل قمر','على كل الاقمار','على كل الأقمار','بدون تحديد قمر','كل المدارات','جميع المدارات'
+];
+
+function detectAllSatellitesIntent(raw){
+  const q = normalizeText(raw || '');
+  const c = compactText(raw || '');
+  if (!q && !c) return false;
+  return ALL_SATELLITES_QUERY_KEYWORDS.some(function(term){
+    const nt = normalizeText(term);
+    const ct = compactText(term);
+    return (nt && q.includes(nt)) || (ct && ct.length >= 4 && c.includes(ct));
+  });
+}
+
+function isSatelliteControlToken(token, satellite, allSatellites){
+  const tc = compactText(token);
+  if (!tc) return true;
+  if (allSatellites && ALL_SATELLITES_QUERY_KEYWORDS.some(function(term){
+    const ct = compactText(term);
+    return ct === tc || (ct.length >= 4 && (ct.includes(tc) || tc.includes(ct)));
+  })) return true;
+  if (allSatellites && ['كل','جميع','كافة','كامل','اقمار','الاقمار','أقمار','الأقمار','قمر','القمر','satellite','satellites','all','every','any'].some(function(term){ return compactText(term) === tc; })) return true;
+  if (!satellite) return false;
+  return Object.keys(SATELLITE_QUERY_KEYWORDS).some(function(key){
+    return key === satellite && (SATELLITE_QUERY_KEYWORDS[key] || []).some(function(alias){
+      const ac = compactText(alias);
+      return ac && (ac === tc || (tc.length >= 3 && ac.includes(tc)) || (ac.length >= 3 && tc.includes(ac)));
+    });
+  });
+}
+
 function detectSatelliteFromQuery(raw){
   const q = normalizeText(raw || '');
   const c = compactText(raw || '');
@@ -2490,7 +2525,13 @@ function physicalSatelliteLabel(item) {
 }
 
 function queryTokens(query) {
-  const stop = new Set(['قنوات','قناة','قناه','القنوات','القناه','تردد','ترددات','باقة','باقات','على','في','من','الى','إلى','ال','و','او','أو','hd','sd','tv','channel','channels','freq','frequency','sat','satellite','all','كل']);
+  const stop = new Set([
+    'قنوات','قناة','قناه','القنوات','القناه','محطات','محطة','المحطات','المحطة',
+    'تردد','ترددات','باقة','باقات','قسم','اقسام','الأقسام','الاقسام','تصنيف','تصنيفات',
+    'على','في','من','الى','إلى','ال','و','او','أو','hd','sd','tv','channel','channels','station','stations',
+    'freq','frequency','sat','satellite','satellites','all','كل','جميع','كامل','كافة',
+    'قمر','القمر','اقمار','أقمار','الاقمار','الأقمار','الاقمار الصناعية','الأقمار الصناعية'
+  ]);
   return normalizeText(query).split(' ').filter(t => t.length > 1 && !stop.has(t));
 }
 
@@ -2574,39 +2615,40 @@ function getSearchMode(query) {
   if (isFrequencySearch(raw)) return { type: 'frequency', raw, frequency: Number(raw) };
   if (exactPackageMode) return { type: 'package', raw, package: exactPackageMode };
 
-  const earlySatellite = detectSatelliteFromQuery(raw);
+  const allSatellites = detectAllSatellitesIntent(raw);
+  const earlySatellite = allSatellites ? 'all' : detectSatelliteFromQuery(raw);
+  const satellite = earlySatellite || detectSatelliteFromQuery(raw);
 
   // بحث القنوات المسيحية لازم يكون تصنيف مسيحي صريح فقط، وليس بحثاً عاماً أو دينياً.
-  if (isChristianIntentQuery(raw)) return { type: 'category', raw, category: 'christian', strictChristianIntent: true, satellite: earlySatellite };
+  if (isChristianIntentQuery(raw)) return { type: 'category', raw, category: 'christian', strictChristianIntent: true, satellite, satelliteOverrideAll: allSatellites };
 
   // كل مرادفات البحث عن القنوات الإسلامية تعطي نفس النتيجة الدقيقة.
   // لا نتركها تسقط إلى البحث النصي الحر حتى لا تظهر قنوات غير إسلامية.
-  if (isIslamicIntentQuery(raw)) return { type: 'category', raw, category: 'religion', strictIslamicIntent: true, satellite: earlySatellite };
+  if (isIslamicIntentQuery(raw)) return { type: 'category', raw, category: 'religion', strictIslamicIntent: true, satellite, satelliteOverrideAll: allSatellites };
 
   // Known channel names must stay channel-name searches before dictionary modes.
   // Otherwise "الجزيرة" may be interpreted as Algeria and "العربية" as Saudi/Arab.
   const namedChannel = detectNamedChannelIntent(raw);
-  if (namedChannel) return { type: 'namedChannel', raw, brand: namedChannel, satellite: earlySatellite };
+  if (namedChannel) return { type: 'namedChannel', raw, brand: namedChannel, satellite, satelliteOverrideAll: allSatellites };
 
   const country = detectFromDictionary(raw, COUNTRY_KEYWORDS);
   const pkg = detectFromDictionary(raw, PACKAGE_KEYWORDS);
   const category = detectFromDictionary(raw, CATEGORY_KEYWORDS);
-  const satellite = earlySatellite || detectSatelliteFromQuery(raw);
 
   // Specific package names win before broad categories. Example: "beinsport"
   // should open beIN Sports, not every sports channel in the database.
-  if (country && pkg) return { type: 'countryPackage', raw, country, package: pkg, satellite };
-  if (country && category) return { type: 'countryCategory', raw, country, category, satellite };
-  if (pkg) return { type: 'package', raw, package: pkg, satellite };
-  if (country) return { type: 'country', raw, country, satellite };
-  if (category) return { type: 'category', raw, category, satellite };
+  if (country && pkg) return { type: 'countryPackage', raw, country, package: pkg, satellite, satelliteOverrideAll: allSatellites };
+  if (country && category) return { type: 'countryCategory', raw, country, category, satellite, satelliteOverrideAll: allSatellites };
+  if (pkg) return { type: 'package', raw, package: pkg, satellite, satelliteOverrideAll: allSatellites };
+  if (country) return { type: 'country', raw, country, satellite, satelliteOverrideAll: allSatellites };
+  if (category) return { type: 'category', raw, category, satellite, satelliteOverrideAll: allSatellites };
+
   const tokens = queryTokens(raw).filter(function(token){
-    const tc = compactText(token);
-    return !(satellite && Object.keys(SATELLITE_QUERY_KEYWORDS).some(function(key){ return key === satellite && (SATELLITE_QUERY_KEYWORDS[key] || []).some(function(alias){ return compactText(alias) === tc; }); }));
+    return !isSatelliteControlToken(token, satellite, allSatellites);
   });
-  if (!tokens.length && satellite) return { type: 'all', raw, satellite };
-  if (!tokens.length) return { type: 'all', raw, stopwordOnly: true };
-  return { type: 'free', raw, tokens, satellite };
+  if (!tokens.length && satellite) return { type: 'all', raw, satellite, satelliteOverrideAll: allSatellites };
+  if (!tokens.length) return { type: 'all', raw, stopwordOnly: true, satelliteOverrideAll: allSatellites };
+  return { type: 'free', raw, tokens, satellite, satelliteOverrideAll: allSatellites };
 }
 
 function channelMatchesMode(channel, item, mode) {
@@ -3057,10 +3099,9 @@ function renderFrequenciesNow(){
   if (query || exactPackageMode) serviceFilter = 'all';
   window.__lastFrequencyEffectiveServiceFilter = serviceFilter;
   const searchActive = !!query || !!exactPackageMode || serviceFilter !== 'all';
-  // عند كتابة اسم قناة مثل MBC، لا نخلي فلتر القمر المختار يقطع النتائج.
-  // البحث النصي يكون على كل الأقمار، إلا إذا المستخدم كتب اسم القمر داخل البحث نفسه.
-  const hasTextSearch = !!query || !!exactPackageMode;
-  const effectiveSelected = hasTextSearch ? (mode.satellite || 'all') : (selected !== 'all' ? selected : (mode.satellite || selected));
+  // البحث يحترم القمر المختار من القائمة: كل قمر لحاله.
+  // إذا كتب المستخدم اسم قمر داخل مربع البحث، الاسم المكتوب يسبق اختيار القائمة.
+  const effectiveSelected = mode.satelliteOverrideAll ? 'all' : (mode.satellite || selected || 'all');
   const tableWrap = tbody.closest('.frequency-table-wrap');
   if (tableWrap) tableWrap.classList.toggle('frequency-search-hidden', searchActive);
   updateActiveFrequencyFilters(mode);
@@ -3158,7 +3199,7 @@ function buildSearchSuggestions(){
   });
   Array.from(channelCounts.entries())
     .sort((a,b) => b[1] - a[1])
-    .slice(0, 900)
+    .slice(0, 2500)
     .forEach(([key,count]) => {
       const info = channelMeta.get(key);
       if (!info) return;
@@ -3239,7 +3280,7 @@ function bindFrequencyControlsOnce(){
   const input = document.getElementById('frequencySearch');
   if (input) {
     input.defaultValue = '';
-    input.setAttribute('placeholder', 'ابحث داخل القمر المختار باسم القناة أو التردد...');
+    input.setAttribute('placeholder', 'ابحث ذكيًا: MBC، رياضة نايل سات، قنوات مصرية، دينية، beIN، أو كل الأقمار...');
     input.setAttribute('autocomplete', 'off');
     input.addEventListener('input', onFrequencySearchChanged);
     input.addEventListener('search', onFrequencySearchChanged);
