@@ -1,27 +1,21 @@
-/* MAEN_UPDATES_NEWS_STYLE_V1_2026_06_01 */
-.updates-news-section{max-width:980px;margin-inline:auto!important;padding:28px 22px 76px!important;}
-.updates-news-head{background:#111827;color:#fff;border-radius:30px;padding:30px 32px;margin-bottom:18px;box-shadow:0 18px 45px rgba(15,23,42,.14);}
+/* MAEN_UPDATES_SIMPLE_NEWS_ONLY_STYLE_V2_2026_06_03 */
+.updates-news-section{max-width:900px;margin-inline:auto!important;padding:28px 22px 76px!important;}
+.updates-news-head{background:#111827;color:#fff;border-radius:28px;padding:28px 30px;margin-bottom:18px;box-shadow:0 18px 45px rgba(15,23,42,.14);}
 .updates-news-kicker{display:inline-flex;align-items:center;min-height:30px;padding:0 13px;border-radius:999px;background:#ffd23f;color:#111;font-size:13px;font-weight:1000;margin-bottom:12px;}
-.updates-news-head h2{margin:0;font-size:clamp(32px,4vw,52px);font-weight:1000;line-height:1.2;}
-.updates-news-head p{margin:10px 0 0;max-width:680px;color:rgba(255,255,255,.82);font-size:16px;font-weight:800;line-height:1.9;}
-.updates-news-list{display:flex;flex-direction:column;gap:14px;}
-.updates-news-card{background:#fff;border:1px solid rgba(15,23,42,.09);border-radius:24px;padding:22px 24px;box-shadow:0 12px 34px rgba(15,23,42,.07);}
-.updates-news-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:10px;color:#64748b;font-size:13px;font-weight:900;}
-.updates-news-meta span{display:inline-flex;align-items:center;min-height:27px;padding:0 10px;border-radius:999px;background:rgba(255,210,63,.28);color:#111827;}
-.updates-news-meta time{direction:rtl;}
-.updates-news-card h3{margin:0 0 9px!important;font-size:clamp(21px,2.5vw,29px)!important;line-height:1.4!important;color:#111827;font-weight:1000;}
-.updates-news-card p{margin:0;color:#4b5563;font-size:15px;font-weight:750;line-height:2;}
-.updates-news-details{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid rgba(15,23,42,.08);}
-.updates-news-details span{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 11px;background:#f8fafc;border:1px solid rgba(15,23,42,.07);color:#334155;font-size:12px;font-weight:950;}
-.updates-news-details b{font-weight:1000;}
-.updates-news-loading{opacity:.78;}
-.updates-empty{display:none;margin-top:14px;border-radius:22px;padding:22px;background:#fff;border:1px dashed rgba(15,23,42,.18);color:#64748b;font-weight:950;text-align:center;}
+.updates-news-head h2{margin:0;font-size:clamp(32px,4vw,50px);font-weight:1000;line-height:1.2;}
+.updates-news-head p{margin:10px 0 0;max-width:640px;color:rgba(255,255,255,.84);font-size:16px;font-weight:800;line-height:1.9;}
+.updates-news-list{display:flex;flex-direction:column;gap:12px;}
+.updates-simple-card{background:#fff;border:1px solid rgba(15,23,42,.09);border-radius:22px;padding:20px 22px;box-shadow:0 10px 28px rgba(15,23,42,.065);}
+.updates-simple-card time{display:block;margin-bottom:8px;color:#64748b;font-size:13px;font-weight:950;}
+.updates-simple-card h3{margin:0 0 8px!important;font-size:clamp(20px,2.3vw,28px)!important;line-height:1.45!important;color:#111827;font-weight:1000;}
+.updates-simple-card p{margin:0;color:#4b5563;font-size:15px;font-weight:750;line-height:2;}
+.updates-simple-loading{opacity:.78;}
+.updates-empty{display:none;margin-top:14px;border-radius:20px;padding:20px;background:#fff;border:1px dashed rgba(15,23,42,.18);color:#64748b;font-weight:950;text-align:center;}
 .updates-empty.active{display:block;}
 @media(max-width:760px){
   .updates-news-section{padding:18px 14px 62px!important;}
-  .updates-news-head{border-radius:24px;padding:23px 20px;}
+  .updates-news-head{border-radius:23px;padding:22px 19px;}
   .updates-news-head p{font-size:14px;}
-  .updates-news-card{border-radius:21px;padding:19px 17px;}
-  .updates-news-meta{align-items:flex-start;flex-direction:column;gap:7px;}
-  .updates-news-card p{font-size:14px;line-height:1.95;}
+  .updates-simple-card{border-radius:20px;padding:18px 16px;}
+  .updates-simple-card p{font-size:14px;line-height:1.95;}
 }
