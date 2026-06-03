@@ -13,7 +13,6 @@ const now = new Date().toISOString();
 const pages = [
   { file: 'index.html', title: 'معن حنونة للستلايت', hash: '#home', priority: '1.0', changefreq: 'daily', desc: 'بيع وصيانة وتركيب وبرمجة جميع أنظمة الستلايت في الفحيص وعمان الغربية والسلط والسرو.' },
   { file: 'frequencies.html', title: 'بحث ترددات القنوات', hash: '#frequencies', priority: '0.9', changefreq: 'daily', desc: 'بحث سريع في ترددات نايل سات وعرب سات وأقمار الشرق الأوسط.' },
-  { file: 'updates.html', title: 'آخر تحديثات الترددات والقنوات', hash: '#updates', priority: '0.9', changefreq: 'daily', desc: 'آخر تحديثات الترددات والمحطات والأقمار والقنوات الرياضية المجانية المعلنة للشرق الأوسط.' },
   { file: 'maintenance.html', title: 'خدمات تركيب وصيانة الستلايت', hash: '#maintenance', priority: '0.8', changefreq: 'weekly', desc: 'خدمات تركيب وصيانة وبرمجة الستلايت والأطباق واللواقط.' },
   { file: 'devices.html', title: 'أجهزة رسيفر ولواقط', hash: '#devices', priority: '0.8', changefreq: 'weekly', desc: 'أجهزة رسيفر ولواقط وقطع ستلايت متوفرة مع تواصل مباشر.' }
 ];

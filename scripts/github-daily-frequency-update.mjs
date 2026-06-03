@@ -3,7 +3,6 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { generateLatestUpdates } from './generate-latest-updates.mjs';
 import { spawnSync } from 'node:child_process';
 
 import {
@@ -35,6 +34,15 @@ function readJson(file) {
   return readFile(file, 'utf8').then(text => JSON.parse(text));
 }
 
+
+function validateCompleteProgrammingSystems(items) {
+  const missing = (items || []).filter(item => !String(item.system || '').trim() || !String(item.mod || '').trim());
+  if (missing.length) {
+    const sample = missing.slice(0, 12).map(item => `${item.satelliteGroup || item.satellite || 'sat'} ${item.frequency || ''}${item.pol || ''}`).join(', ');
+    throw new Error(`Refusing to publish incomplete frequency data: ${missing.length} rows missing system/mod values. Check LyngSat source rows first. Sample: ${sample}`);
+  }
+}
+
 function stringifyJson(value) {
   return JSON.stringify(value, null, 2) + '\n';
 }
@@ -64,6 +72,8 @@ async function main() {
   const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
   const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates });
+
+  validateCompleteProgrammingSystems(merged.items);
 
   const payload = {
     ok: true,
@@ -109,17 +119,15 @@ async function main() {
   // Keep Netlify fallback/baseline synced even though Netlify is now static-hosting only.
   await writeJson(netlifyBaselinePath, payload);
   await writeJson(latestReportPath, report);
-  const latestUpdates = await generateLatestUpdates({ frequencyPayload: payload, frequencyReport: report });
 
   const email = await sendFrequencyUpdateEmail(report);
 
   console.log(`[frequency] Items after update: ${payload.count}`);
   console.log(`[frequency] Changes: ${JSON.stringify(payload.changes)}`);
   console.log(`[frequency] Email: ${JSON.stringify(email)}`);
-  console.log(`[frequency] Latest updates generated: ${latestUpdates.count}`);
 
   // Small machine-readable output for GitHub Actions logs.
-  console.log(JSON.stringify({ ok: true, count: payload.count, changes: payload.changes, latestUpdates: latestUpdates.count, email }, null, 2));
+  console.log(JSON.stringify({ ok: true, count: payload.count, changes: payload.changes, email }, null, 2));
 }
 
 main().catch(error => {

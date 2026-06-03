@@ -55,7 +55,9 @@ function searchChannels(query) {
   return hits;
 }
 function isNilesat(item) { return /nilesat/i.test(item.satelliteGroup || '') || /7w|8w/i.test([item.orbit, item.orbitalSlot].join(' ')); }
-function isFree(channel, item) { return (item.channelEncryption || {})[channel] === 'free'; }
+function encryptionKey(channel, item) { return (item.channelEncryption || {})[channel] || 'unknown'; }
+function isFree(channel, item) { return encryptionKey(channel, item) === 'free'; }
+function isEncrypted(channel, item) { return encryptionKey(channel, item) === 'encrypted'; }
 function isSports(channel, item) { return ((item.channelCategories || {})[channel] || []).includes('sports') || /sport/i.test(channel); }
 function assert(name, condition, detail = '') {
   if (!condition) throw new Error(`Search smoke test failed: ${name}${detail ? ` — ${detail}` : ''}`);
@@ -80,6 +82,14 @@ assert('manifest and versioned-data strategy is present', Boolean(JSON.parse(awa
 const mbcHits = searchChannels('mbc').filter(h => /(^|\W)mbc($|\W|\d)/i.test(h.channel));
 assert('MBC query returns many programming results', mbcHits.length >= 20, mbcHits.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 assert('MBC programming results include system data when available', mbcHits.some(h => h.item.system), mbcHits.slice(0, 8).map(h => `${h.channel}:${h.item.system || 'missing'}`).join(', '));
+
+const mbcNilesatHits = mbcHits.filter(h => isNilesat(h.item));
+assert('MBC query on Nilesat/Eutelsat 7W-8W returns the full station set', mbcNilesatHits.length >= 25, mbcNilesatHits.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const mbcRowsWithSystem = mbcHits.filter(h => String(h.item.system || '').trim() && String(h.item.mod || '').trim());
+assert('every MBC result card can show system/mod', mbcRowsWithSystem.length === mbcHits.length, mbcHits.filter(h => !String(h.item.system || '').trim() || !String(h.item.mod || '').trim()).slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const mbcEncryptedOnly = mbcHits.filter(h => isEncrypted(h.channel, h.item));
+assert('encrypted filter keeps MBC out unless the specific MBC channel is encrypted', mbcEncryptedOnly.length === 0 || mbcEncryptedOnly.every(h => isEncrypted(h.channel, h.item)), mbcEncryptedOnly.map(h => `${h.channel}:${encryptionKey(h.channel, h.item)}`).join(', '));
+
 
 const missingSystemRows = items.filter(item => !String(item.system || '').trim());
 assert('all frequency rows include a programming system value', missingSystemRows.length === 0, missingSystemRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));
