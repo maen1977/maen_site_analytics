@@ -1,25 +1,25 @@
 معلومات التقرير الخاصة — لا ترفع هذا الملف داخل مجلد public
 
 رابط التقرير بعد نشر الموقع على Netlify:
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=YOUR_ADMIN_TOKEN
 
 تقرير أسبوعي لآخر 7 أيام:
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=YOUR_ADMIN_TOKEN
 
 تقرير أمس، عند الحاجة:
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=YOUR_ADMIN_TOKEN
 
 تقرير JSON:
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?format=json&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?format=json&token=YOUR_ADMIN_TOKEN
 
 رابط اختبار إرسال التقرير إلى الإيميل بعد إضافة RESEND_API_KEY:
-https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=YOUR_ADMIN_TOKEN
 
 إيميل استلام التقرير مضبوط في الحزمة على:
 maenish_ai@proton.me
 
 كلمة سر التقرير / التوكن:
-maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+YOUR_ADMIN_TOKEN
 
 ملاحظة مهمة:
 كود إرسال الإيميل مضاف بالكامل، و REPORT_EMAIL مضاف.

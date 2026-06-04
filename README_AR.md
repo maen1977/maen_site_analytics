@@ -35,24 +35,24 @@ netlify/functions
 بعد النشر استبدل `YOUR-SITE` باسم موقعك وافتح:
 
 ```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=YOUR_ADMIN_TOKEN
 ```
 
 تقرير أسبوعي لآخر 7 أيام حتى التاريخ المحدد:
 
 ```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=YOUR_ADMIN_TOKEN
 ```
 
 تقرير أمس فقط، إذا احتجته يدويًا:
 
 ```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=YOUR_ADMIN_TOKEN
 ```
 
 ## هل يحتاج إعدادات إضافية؟
 
-لرؤية التقرير من الرابط: لا، وضعت لك `ANALYTICS_ADMIN_TOKEN` و `ANALYTICS_SALT` جاهزين داخل `netlify.toml`.
+لرؤية التقرير من الرابط: ضع `ANALYTICS_ADMIN_TOKEN` و `ANALYTICS_SALT` من إعدادات البيئة في Netlify/Cloudflare، ولا تنشر التوكن الحقيقي داخل ملفات الشرح.
 
 لإرسال التقرير إلى الإيميل تلقائيًا: أضفت الكود كاملًا، وضبطت `REPORT_EMAIL` على:
 
@@ -69,7 +69,7 @@ RESEND_API_KEY=ضع_مفتاح_Resend
 ثم جرّب الإرسال من:
 
 ```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=YOUR_ADMIN_TOKEN
 ```
 
 بدون `RESEND_API_KEY` سيُحفظ التقرير ويظهر بالرابط، لكنه لن يُرسل بالبريد.

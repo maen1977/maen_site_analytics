@@ -17,11 +17,11 @@
 
 شغل تحديث الترددات يدويًا:
 
-https://maensat.netlify.app/.netlify/functions/run-frequency-update?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://maensat.netlify.app/.netlify/functions/run-frequency-update?token=YOUR_ADMIN_TOKEN
 
 اعرض تقرير آخر تحديث:
 
-https://maensat.netlify.app/.netlify/functions/frequency-update-report?token=maen_admin_f30RWicjBJKpZOH3NDiHSx4RrU9kSQT
+https://maensat.netlify.app/.netlify/functions/frequency-update-report?token=YOUR_ADMIN_TOKEN
 
 اعرض بيانات الترددات الحالية بصيغة JSON:
 
