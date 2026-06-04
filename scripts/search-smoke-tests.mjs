@@ -111,6 +111,14 @@ const mbcEncryptedOnly = mbcHits.filter(h => isEncrypted(h.channel, h.item));
 assert('encrypted filter keeps MBC out unless the specific MBC channel is encrypted', mbcEncryptedOnly.length === 0 || mbcEncryptedOnly.every(h => isEncrypted(h.channel, h.item)), mbcEncryptedOnly.map(h => `${h.channel}:${encryptionKey(h.channel, h.item)}`).join(', '));
 
 
+
+const cbcMixed = searchChannels('CBC مصر').filter(h => isNilesat(h.item));
+assert('CBC mixed Arabic/English query returns CBC only, not MBC', cbcMixed.length > 0 && cbcMixed.every(h => /cbc/i.test(h.channel) && !/mbc/i.test(h.channel)), cbcMixed.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const cbcArabic = searchChannels('سي بي سي مصر').filter(h => isNilesat(h.item));
+assert('Arabic CBC Egypt query returns CBC family only', cbcArabic.length > 0 && cbcArabic.every(h => /cbc/i.test(h.channel) && !/mbc/i.test(h.channel)), cbcArabic.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const mbcArabicMasr = searchChannels('ام بي سي مصر').filter(h => isNilesat(h.item));
+assert('Arabic MBC Egypt query does not fall into CBC', mbcArabicMasr.length > 0 && mbcArabicMasr.every(h => /mbc/i.test(h.channel) && !/cbc/i.test(h.channel)), mbcArabicMasr.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+
 const missingSystemRows = items.filter(item => !String(item.system || '').trim());
 assert('all frequency rows include a programming system value', missingSystemRows.length === 0, missingSystemRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));
 const missingModRows = items.filter(item => !String(item.mod || '').trim());

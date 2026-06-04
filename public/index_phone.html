@@ -1622,16 +1622,16 @@ function variantAllowedForQueryScript(variant, script){
   return true;
 }
 const BILINGUAL_CHANNEL_ALIAS_RULES = [
-  [['al ahly','al-ahly','ahly','alahly'], ['الأهلي','الاهلي','اهلي','قناة الأهلي','Al Ahly','Ahly','Alahly','Al Ahly TV']],
+  [['al ahly','al-ahly','ahly','alahly','al ahly hd','al ahly tv'], ['الأهلي','الاهلي','اهلي','قناة الأهلي','قناة الاهلي','الاهلي تي في','Al Ahly','Ahly','Alahly','Al Ahly TV','Al Ahly HD']],
   [['al qahera news','qahera news','cairo news'], ['القاهرة الإخبارية','القاهرة الاخبارية','قاهرة نيوز','القاهرة نيوز','Al Qahera News','Cairo News']],
   [['al kahera wal nas','kahera wal nas','cairo and people','cairo people'], ['القاهرة والناس','القاهره والناس','قاهرة والناس','Al Kahera Wal Nas','Cairo and People']],
   [['al nahar','al-nahar','ennahar'], ['النهار','قناة النهار','Al Nahar','Al-Nahar','Ennahar']],
   [['al hayah','alhayat','al hayat','hayat','الحياة'], ['الحياة','الحياه','قناة الحياة','Al Hayat','Alhayat','Al Hayah']],
-  [['cbc sofra'], ['سي بي سي سفرة','سي بي سي سفره','CBC Sofra']],
-  [['cbc drama'], ['سي بي سي دراما','CBC Drama']],
-  [['cbc'], ['سي بي سي','سى بى سى','CBC']],
-  [['dmc drama'], ['دي ام سي دراما','دي إم سي دراما','DMC Drama']],
-  [['dmc'], ['دي ام سي','دي إم سي','DMC']],
+  [['cbc sofra','cbc sofra egypt','cbc cooking'], ['سي بي سي سفرة','سي بي سي سفره','سي بي سي طبخ','CBC Sofra','CBC Sofra Egypt','CBC Cooking']],
+  [['cbc drama','cbc drama egypt'], ['سي بي سي دراما','سي بي سي مصر دراما','CBC Drama','CBC Drama Egypt']],
+  [['cbc','cbc hd','cbc egypt','cbc masr'], ['سي بي سي','سى بى سى','سي بي سي مصر','سى بى سى مصر','قناة سي بي سي','CBC','CBC Egypt','CBC Masr','CBC TV']],
+  [['dmc drama','dmc drama egypt'], ['دي ام سي دراما','دي إم سي دراما','دي ام سي مصر دراما','DMC Drama','DMC Drama Egypt']],
+  [['dmc','dmc hd','dmc egypt','dmc masr'], ['دي ام سي','دي إم سي','دي ام سي مصر','دي إم سي مصر','قناة دي ام سي','DMC','DMC Egypt','DMC Masr','DMC TV']],
   [['sada el balad','sada al balad','sada albalad'], ['صدى البلد','صدي البلد','Sada El Balad']],
   [['el mehwar','al mehwar','mehwar'], ['المحور','قناة المحور','El Mehwar','Al Mehwar']],
   [['ten tv','ten'], ['تن','قناة تن','TEN TV']],
@@ -1642,13 +1642,13 @@ const BILINGUAL_CHANNEL_ALIAS_RULES = [
   [['nile culture'], ['نايل الثقافية','نايل الثقافيه','Nile Culture']],
   [['nile news'], ['نايل نيوز','النيل للأخبار','النيل للاخبار','Nile News']],
   [['nile tv','nile family','nile life','nile education','nile'], ['النيل','نايل','Nile']],
-  [['mbc masr'], ['ام بي سي مصر','إم بي سي مصر','MBC Masr','MBC Egypt']],
+  [['mbc masr','mbc masr 2','mbc masr drama','mbc egypt'], ['ام بي سي مصر','إم بي سي مصر','ام بي سي مصر 2','إم بي سي مصر 2','ام بي سي مصر دراما','MBC Masr','MBC Masr 2','MBC Masr Drama','MBC Egypt']],
   [['mbc action'], ['ام بي سي اكشن','إم بي سي أكشن','MBC Action']],
   [['mbc bollywood'], ['ام بي سي بوليوود','إم بي سي بوليوود','MBC Bollywood']],
   [['mbc drama'], ['ام بي سي دراما','إم بي سي دراما','MBC Drama']],
   [['mbc max'], ['ام بي سي ماكس','إم بي سي ماكس','MBC Max']],
   [['mbc 3','mbc3'], ['ام بي سي 3','إم بي سي 3','MBC3','MBC 3']],
-  [['mbc'], ['ام بي سي','إم بي سي','امبيسي','MBC']],
+  [['mbc'], ['ام بي سي','إم بي سي','امبيسي','ام بي سي مصر','MBC','MBC TV']],
   [['on time sports','on time sport','ontime sports','ontime sport','on sport','on sports'], ['اون تايم سبورت','أون تايم سبورت','اون تايم','أون تايم','اون سبورت','أون سبورت','ON Time Sports','ON Sport']],
   [['rotana cinema'], ['روتانا سينما','Rotana Cinema']],
   [['rotana classic'], ['روتانا كلاسيك','Rotana Classic']],
@@ -1713,7 +1713,13 @@ const BILINGUAL_CHANNEL_ALIAS_RULES = [
   [['noursat','nour sat','noorsat'], ['نورسات','نور سات','Noursat','Nour Sat']],
   [['sat 7','sat7'], ['سات 7','سات سفن','SAT-7','Sat 7']],
   [['ctv','coptic'], ['سي تي في','قبطي','CTV','Coptic TV']],
-  [['aghapy'], ['أغابي','اغابي','Aghapy']]
+  [['aghapy'], ['أغابي','اغابي','Aghapy']],
+  [['extra news','extra news egypt'], ['إكسترا نيوز','اكسترا نيوز','اكسترا نيوز مصر','Extra News','Extra News Egypt']],
+  [['sada el balad','sada al balad','sada elbalad'], ['صدى البلد','صدي البلد','قناة صدى البلد','Sada El Balad','Sada ElBalad']],
+  [['lbc sat','lbc international','lbc hd','lbc'], ['ال بي سي','إل بي سي','ال بي سي لبنان','LBC','LBC Lebanon','LBC SAT','LBC International']],
+  [['mtv lebanon'], ['ام تي في لبنان','إم تي في لبنان','ام تي في','إم تي في','MTV Lebanon']],
+  [['tele liban','télé liban','teleliban'], ['تلفزيون لبنان','تيلي لبنان','Télé Liban','Tele Liban']],
+  [['roya tv','roya'], ['رؤيا','رويا','قناة رؤيا','Roya','Roya TV']],
 ];
 function addBilingualAliasRules(normalizedName, add){
   const n = normalizeText(normalizedName || '');
@@ -1731,6 +1737,12 @@ function addBilingualAliasRules(normalizedName, add){
 }
 
 const SMART_QUERY_EQUIVALENTS = [
+  [['cbc','سي بي سي','سى بى سى','سي بي سي مصر','cbc egypt','cbc masr'], ['cbc','cbc egypt','cbc masr','سي بي سي','سي بي سي مصر']],
+  [['dmc','دي ام سي','دي إم سي','دي ام سي مصر','dmc egypt','dmc masr'], ['dmc','dmc egypt','dmc masr','دي ام سي','دي ام سي مصر']],
+  [['nahar','al nahar','al-nahar','النهار'], ['al nahar','النهار']],
+  [['hayat','al hayat','alhayat','الحياة','الحياه'], ['al hayat','alhayat','الحياة']],
+  [['lbc','ال بي سي','إل بي سي'], ['lbc','lbc lebanon','ال بي سي']],
+  [['mtv lebanon','mtv','ام تي في','إم تي في','ام تي في لبنان'], ['mtv lebanon','ام تي في لبنان']],
   [['ahly','al ahly','al-ahly','alahly','الاهلي','الأهلي','اهلي','قناة الأهلي'], ['ahly','al ahly','alahly','الأهلي','الاهلي','اهلي']],
   [['rai','raï','راي','راى','راي ايطاليا','راي ايطالي'], ['rai','rai 1','rai 2','rai 3','rai news','راي']],
   [['اليونان','يونان','يوناني','يونانية','يونانيه','قنوات اليونان','قنوات يونانية','greece','greek','hellas','ellada','ellinika'], ['اليونان','يونان','يونانية','greece','greek','hellas','ert','ert cosmos','vouli','vouli tv','cosmote','nova greece']],
@@ -2021,6 +2033,29 @@ const COUNTRY_KEYWORDS = {
 };
 
 const PACKAGE_KEYWORDS = {
+  cbc: ['cbc','cbc hd','cbc egypt','cbc masr','cbc مصر','سي بي سي','سى بى سى','سي بي سي مصر','سى بى سى مصر','قناة سي بي سي','قناة سى بى سى','سي بي سي دراما','سي بي سي سفرة','سي بي سي سفره','cbc drama','cbc sofra'],
+  dmc: ['dmc','dmc hd','dmc egypt','dmc masr','دي ام سي','دي إم سي','دي ام سي مصر','دي إم سي مصر','دي ام سي دراما','دي إم سي دراما','dmc drama','dmc masraheyat'],
+  ahly: ['al ahly','al-ahly','alahly','ahly','al ahly tv','al ahly hd','الأهلي','الاهلي','اهلي','قناة الأهلي','قناة الاهلي','الاهلي تي في'],
+  nahar: ['al nahar','al-nahar','ennahar','nahar','النهار','قناة النهار','النهار المصرية','النهار دراما'],
+  hayat: ['al hayat','alhayat','al hayah','alhayah','hayat','الحياة','الحياه','قناة الحياة','قناة الحياه','الحياة مسلسلات'],
+  qahera: ['al qahera news','qahera news','cairo news','القاهرة الإخبارية','القاهره الاخباريه','القاهرة الاخبارية','قاهرة نيوز','القاهرة نيوز'],
+  kahera_wal_nas: ['al kahera wal nas','al qahera wal nas','kahera wal nas','cairo and people','cairo people','القاهرة والناس','القاهره والناس','قاهرة والناس','القاهرة و الناس','القاهره و الناس'],
+  sada_elbalad: ['sada el balad','sada al balad','sada elbalad','sada albalad','صدى البلد','صدي البلد','قناة صدى البلد','صدى البلد 2'],
+  extra_news: ['extra news','extra','إكسترا نيوز','اكسترا نيوز','extra news egypt','اكسترا نيوز مصر'],
+  mehwar: ['el mehwar','al mehwar','mehwar','المحور','قناة المحور'],
+  ten: ['ten tv','ten','ten egypt','تن','قناة تن','تن تي في'],
+  lbc: ['lbc','lbc sat','lbc international','lbc hd','ال بي سي','إل بي سي','ال بي سي لبنان','lbc lebanon'],
+  mtv_lebanon: ['mtv lebanon','mtv lb','mtv','ام تي في لبنان','إم تي في لبنان','ام تي في','إم تي في'],
+  roya: ['roya','roya tv','رؤيا','رويا','قناة رؤيا','رؤيا الاردن'],
+  tele_liban: ['tele liban','télé liban','teleliban','تلفزيون لبنان','تيلي لبنان','تلفزيون لبناني'],
+  nile: ['nile tv','nile news','nile sport','nile cinema','nile drama','nile comedy','nile culture','nile family','nile life','nile education','نايل','النيل','نايل تي في','النيل للاخبار','النيل للأخبار','نايل سبورت','النيل الرياضية','نايل سينما','نايل دراما','نايل كوميدي','نايل الثقافية'],
+  dubai: ['dubai','dubai tv','dubai sports','dubai racing','dubai one','sama dubai','دبي','تلفزيون دبي','دبي الرياضية','دبي الرياضيه','دبي ريسنج','دبي للسباقات','دبي ون','سما دبي'],
+  abu_dhabi: ['abu dhabi','abudhabi','ad tv','abu dhabi tv','abu dhabi sports','ad sports','national geographic abu dhabi','nat geo abu dhabi','أبو ظبي','ابو ظبي','أبوظبي','تلفزيون أبو ظبي','أبو ظبي الرياضية','ابو ظبي الرياضية','ناشيونال جيوغرافيك أبو ظبي'],
+  saudi: ['saudi tv','saudi','ksa','ksa sports','saudi sport','saudi quran','saudi sunnah','السعودية','السعوديه','تلفزيون السعودية','السعودية الرياضية','السعوديه الرياضيه','قناة القرآن السعودية','قناة القران السعودية','قناة السنة السعودية','قناة السنه السعودية'],
+  qatar_tv: ['qatar tv','qatar','qatar 2','qatar quran','قطر','تلفزيون قطر','قناة قطر','قطر 2','قطر قرآن'],
+  kuwait_tv: ['kuwait tv','kuwait','kuwait sports','الكويت','تلفزيون الكويت','الكويت الرياضية'],
+  bahrain_tv: ['bahrain tv','bahrain','bahrain sports','البحرين','تلفزيون البحرين','البحرين الرياضية'],
+  oman_tv: ['oman tv','oman sports','oman','عمان','تلفزيون عمان','عمان الرياضية'],
   noursat: ['نورسات','نور سات','noursat','nour sat','noorsat','noor sat','nour el shabeb','nour al shabab','نور الشباب','nour mariam','نور مريم','nour al sharq','nour el sharq','نور الشرق','nour koddass','nour kaddass','نور قداس','نور كداس'],
   'bein-sports': ['bein sports','beinsports','be in sports','بي ان سبورت','بي إن سبورت','بين سبورت'],
   bein: ['bein','be in','بي ان','بي إن','بين','beinsports','bein sports','bein movie','bein movies','bein drama','bein kids','bein documentary'],
@@ -2034,6 +2069,29 @@ const PACKAGE_KEYWORDS = {
 };
 
 const PACKAGE_LABELS = {
+  cbc: 'CBC',
+  dmc: 'DMC',
+  ahly: 'الأهلي',
+  nahar: 'النهار',
+  hayat: 'الحياة',
+  qahera: 'القاهرة الإخبارية',
+  kahera_wal_nas: 'القاهرة والناس',
+  sada_elbalad: 'صدى البلد',
+  extra_news: 'Extra News',
+  mehwar: 'المحور',
+  ten: 'TEN',
+  lbc: 'LBC',
+  mtv_lebanon: 'MTV Lebanon',
+  roya: 'رؤيا',
+  tele_liban: 'تلفزيون لبنان',
+  nile: 'قنوات النيل',
+  dubai: 'دبي',
+  abu_dhabi: 'أبو ظبي',
+  saudi: 'السعودية',
+  qatar_tv: 'قطر',
+  kuwait_tv: 'الكويت',
+  bahrain_tv: 'البحرين',
+  oman_tv: 'عمان',
   noursat: 'نورسات',
   'bein-sports': 'beIN Sports',
   bein: 'beIN',
@@ -2151,7 +2209,22 @@ function dictionaryWordMatches(q, word) {
 
   const qTokens = queryTokens(nq);
   const wTokens = queryTokens(nw);
-  if (wTokens.length > 1 && wTokens.every(wt => qTokens.includes(wt))) return true;
+  if (wTokens.length > 1) {
+    const qTokenPhrase = ' ' + qTokens.join(' ') + ' ';
+    const wTokenPhrase = wTokens.join(' ');
+    const shortAcronymPhrase = wTokens.every(wt => compactText(wt).length <= 2);
+    // For Arabic/Latin letter acronyms such as سي بي سي / ام بي سي, token-set matching is unsafe:
+    // ام بي سي contains بي + سي, but it must never satisfy سي بي سي. Require the exact phrase order.
+    if (shortAcronymPhrase) return qTokenPhrase.includes(' ' + wTokenPhrase + ' ');
+    const tokenCounts = Object.create(null);
+    qTokens.forEach(qt => { tokenCounts[qt] = (tokenCounts[qt] || 0) + 1; });
+    let allTokensAvailable = true;
+    for (const wt of wTokens) {
+      if (!tokenCounts[wt]) { allTokensAvailable = false; break; }
+      tokenCounts[wt] -= 1;
+    }
+    if (allTokensAvailable) return true;
+  }
 
   // Small typo tolerance only when the real word stems start the same.
   // Avoid broad edit-distance matches between unrelated Arabic names.
@@ -2852,6 +2925,56 @@ function channelMatchesNamedIntent(name, item, brand) {
   return false;
 }
 
+
+
+// Strong channel/acronym guard: keeps CBC/MBC/DMC/BBC/LBC/MTV/CTV separate.
+// Mixed queries such as "CBC مصر" are treated as a channel intent plus a country filter,
+// never as a generic Egypt search that can pull MBC or DMC.
+const PROTECTED_CHANNEL_ACRONYM_ALIASES = {
+  cbc: ['cbc','سي بي سي','سى بى سى','سيبيسي','سىبىسي'],
+  mbc: ['mbc','ام بي سي','إم بي سي','امبيسي','امبسي'],
+  dmc: ['dmc','دي ام سي','دي إم سي','ديمسي'],
+  bbc: ['bbc','بي بي سي','بيبيسي'],
+  lbc: ['lbc','ال بي سي','إل بي سي','البيسي'],
+  mtv: ['mtv','ام تي في','إم تي في','ام تيفي'],
+  ctv: ['ctv','سي تي في','سيتي في'],
+  nbn: ['nbn','ان بي ان','إن بي إن'],
+  otv: ['otv','او تي في','أو تي في']
+};
+function detectProtectedAcronymToken(text){
+  const n = normalizeText(text || '');
+  const c = compactText(text || '');
+  if (!n && !c) return null;
+  for (const key in PROTECTED_CHANNEL_ACRONYM_ALIASES) {
+    const aliases = PROTECTED_CHANNEL_ACRONYM_ALIASES[key] || [];
+    if (aliases.some(function(alias){
+      const an = normalizeText(alias);
+      const ac = compactText(alias);
+      if (!an || !ac) return false;
+      if (n === an || c === ac) return true;
+      return new RegExp('(^| )' + an.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '($| )').test(n);
+    })) return key;
+  }
+  return null;
+}
+function channelHasProtectedAcronym(name, item, acronym){
+  if (!acronym) return true;
+  const aliases = PROTECTED_CHANNEL_ACRONYM_ALIASES[acronym] || [acronym];
+  const blob = strictChannelSearchText(name, item);
+  const n = normalizeText(blob);
+  const c = compactText(blob);
+  return aliases.some(function(alias){
+    const an = normalizeText(alias);
+    const ac = compactText(alias);
+    if (!an || !ac) return false;
+    if (c === ac || c.startsWith(ac)) return true;
+    if (/^[a-z0-9]{2,4}$/.test(ac)) {
+      return normalizeText(blob).split(' ').map(compactText).some(function(w){ return w === ac || w.startsWith(ac); });
+    }
+    return n.includes(an) || c.includes(ac);
+  });
+}
+
 function strictTokenMatchInChannel(name, item, token) {
   const q = normalizeText(token);
   const qc = compactText(token);
@@ -2861,6 +2984,9 @@ function strictTokenMatchInChannel(name, item, token) {
   if (/^\d{3,6}$/.test(qc)) {
     return [item.frequency, item.sr].some(v => compactText(v).includes(qc));
   }
+
+  const protectedAcronym = detectProtectedAcronymToken(token);
+  if (protectedAcronym) return channelHasProtectedAcronym(name, item, protectedAcronym);
 
   // Smart free text: per-channel only, but with aliases, typo tolerance,
   // Arabic normalization, and safe handling for short Latin names like RAI/MBC.
