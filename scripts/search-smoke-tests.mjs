@@ -19,9 +19,21 @@ function normalize(text = '') {
 }
 function compact(text = '') { return normalize(text).replace(/\s+/g, ''); }
 function channels(item) { return Array.isArray(item.channels) ? item.channels : String(item.channel || '').split(/[،,\n]/).map(s => s.trim()).filter(Boolean); }
+function generatedBilingualSmokeAliases(channel) {
+  const n = normalize(channel), c = compact(channel);
+  const out = [];
+  function hit(...keys){ return keys.some(key => c.includes(compact(key)) || (` ${n} `).includes(` ${normalize(key)} `)); }
+  if (hit('al ahly','al-ahly','ahly','alahly')) out.push('الأهلي','الاهلي','اهلي','قناة الأهلي','Al Ahly','Ahly','Alahly');
+  if (hit('mbc')) out.push('ام بي سي','إم بي سي','امبيسي','MBC');
+  if (hit('al jazeera','aljazeera')) out.push('الجزيرة','الجزيره','Al Jazeera','Aljazeera');
+  if (hit('on time sports','on time sport','ontime sports','ontime sport','on sport','on sports')) out.push('اون تايم سبورت','أون تايم سبورت','اون تايم','أون تايم','ON Time Sports','ON Sport');
+  if (hit('cbc')) out.push('سي بي سي','CBC');
+  if (hit('dmc')) out.push('دي ام سي','دي إم سي','DMC');
+  return out;
+}
 function aliasesFor(channel, item) {
   const aliases = item.channelAliases || {};
-  return [...(aliases[channel] || []), ...(aliases[normalize(channel)] || []), ...(aliases[compact(channel)] || [])];
+  return [...(aliases[channel] || []), ...(aliases[normalize(channel)] || []), ...(aliases[compact(channel)] || []), ...generatedBilingualSmokeAliases(channel)];
 }
 function channelBlob(channel, item) { return [channel, ...aliasesFor(channel, item), item.package || '', item.packageId || '', item.searchAliases || ''].join(' '); }
 function wordSafeMatch(blob, query) {
@@ -72,6 +84,14 @@ assert('beinsport query returns beIN Sports channels', bein.some(h => /bein/i.te
 const rai = searchChannels('rai').slice(0, 20);
 assert('rai short query does not match Bahrain by substring', !rai.some(h => /bahrain/i.test(h.channel)), rai.map(h => h.channel).join(', '));
 assert('natural query: free sports on Nilesat has results', items.some(item => isNilesat(item) && channels(item).some(ch => isSports(ch, item) && isFree(ch, item))));
+
+
+const ahlyArabic = searchChannels('الأهلي').filter(h => isNilesat(h.item));
+assert('Arabic Al Ahly query returns Al Ahly on Nilesat', ahlyArabic.some(h => /ahly/i.test(h.channel) && String(h.item.frequency) === '11747'), ahlyArabic.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const ahlyPlainArabic = searchChannels('اهلي').filter(h => isNilesat(h.item));
+assert('Plain Arabic Ahly query without hamza/article also works', ahlyPlainArabic.some(h => /ahly/i.test(h.channel)), ahlyPlainArabic.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+const ahlyEnglish = searchChannels('ahly').filter(h => isNilesat(h.item));
+assert('English Ahly query still returns Al Ahly on Nilesat', ahlyEnglish.some(h => /ahly/i.test(h.channel)), ahlyEnglish.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 
 const ontime = searchChannels('اون تايم سبورت');
 assert('Arabic ON Time Sports query returns the current 11977 V Nilesat row', ontime.some(h => String(h.item.frequency) === '11977' && String(h.item.pol).toUpperCase() === 'V'), ontime.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
