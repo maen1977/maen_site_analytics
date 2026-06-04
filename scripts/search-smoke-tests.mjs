@@ -119,6 +119,14 @@ assert('Arabic CBC Egypt query returns CBC family only', cbcArabic.length > 0 &&
 const mbcArabicMasr = searchChannels('ام بي سي مصر').filter(h => isNilesat(h.item));
 assert('Arabic MBC Egypt query does not fall into CBC', mbcArabicMasr.length > 0 && mbcArabicMasr.every(h => /mbc/i.test(h.channel) && !/cbc/i.test(h.channel)), mbcArabicMasr.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 
+
+const entvAlgeriaEncrypted = searchChannels('National Program').filter(h => isNilesat(h.item));
+assert('National Program query returns ENTV / Programme National on Nilesat', entvAlgeriaEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11680' && isEncrypted(h.channel, h.item)), entvAlgeriaEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
+const entvArabicEncrypted = searchChannels('القناة الأرضية الجزائرية').filter(h => isNilesat(h.item));
+assert('Arabic Algerian terrestrial query returns encrypted ENTV / Programme National', entvArabicEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11680' && isEncrypted(h.channel, h.item)), entvArabicEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
+const encryptedAlgeriaRows = items.filter(item => isNilesat(item) && channels(item).some(ch => isEncrypted(ch, item) && ((item.channelCountries || {})[ch] || []).includes('algeria')));
+assert('Nilesat encrypted Algerian channel filter includes ENTV / Programme National', encryptedAlgeriaRows.some(item => String(item.frequency) === '11680' && channels(item).some(ch => /entv|programme national/i.test(ch))), encryptedAlgeriaRows.map(item => `${item.frequency}${item.pol} ${channels(item).filter(ch => isEncrypted(ch, item)).join('/')}`).join(', '));
+
 const missingSystemRows = items.filter(item => !String(item.system || '').trim());
 assert('all frequency rows include a programming system value', missingSystemRows.length === 0, missingSystemRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));
 const missingModRows = items.filter(item => !String(item.mod || '').trim());

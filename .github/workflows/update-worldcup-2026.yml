@@ -2,12 +2,18 @@ name: Update World Cup 2026 data
 
 on:
   schedule:
-    - cron: "0 3,15 * * *"
-      timezone: "Asia/Amman"
+    # Hourly check. The script skips this run automatically on days without World Cup matches in Jordan time.
+    - cron: "17 * * * *"
+    # Baseline check every 12 hours: 03:07 and 15:07 in Jordan time while Jordan is UTC+3.
+    - cron: "7 0,12 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-worldcup-2026
+  cancel-in-progress: true
 
 jobs:
   update-worldcup-2026:
@@ -22,6 +28,9 @@ jobs:
           node-version: "20"
 
       - name: Update World Cup 2026 fixtures and scores
+        env:
+          GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: node scripts/update-worldcup-2026.mjs
 
       - name: Commit updated World Cup data

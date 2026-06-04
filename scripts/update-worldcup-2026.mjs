@@ -7,7 +7,13 @@ const MATCHES_FILE = path.join(WC_DIR, 'matches.json');
 const STANDINGS_FILE = path.join(WC_DIR, 'standings.json');
 const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+const TIMEZONE = 'Asia/Amman';
 const JORDAN_OFFSET_HOURS = 3;
+const HOURLY_MATCH_DAY_CRON = '17 * * * *';
+const BASE_12_HOUR_CRON = '7 0,12 * * *';
+const EVENT_SCHEDULE = String(process.env.GITHUB_EVENT_SCHEDULE || '').trim();
+const EVENT_NAME = String(process.env.GITHUB_EVENT_NAME || '').trim();
+const FORCE_UPDATE = process.env.WORLD_CUP_2026_FORCE_UPDATE === '1' || EVENT_NAME === 'workflow_dispatch';
 
 const TEAM_AR = {
   'Mexico':'المكسيك','South Africa':'جنوب أفريقيا','South Korea':'كوريا الجنوبية','Czech Republic':'التشيك','Canada':'كندا','Bosnia & Herzegovina':'البوسنة والهرسك','Qatar':'قطر','Switzerland':'سويسرا','Brazil':'البرازيل','Morocco':'المغرب','Haiti':'هايتي','Scotland':'اسكتلندا','USA':'أمريكا','Paraguay':'باراغواي','Australia':'أستراليا','Turkey':'تركيا','Germany':'ألمانيا','Curaçao':'كوراساو','Ivory Coast':'كوت ديفوار','Ecuador':'الإكوادور','Netherlands':'هولندا','Japan':'اليابان','Sweden':'السويد','Tunisia':'تونس','Belgium':'بلجيكا','Egypt':'مصر','Iran':'إيران','New Zealand':'نيوزيلندا','Spain':'إسبانيا','Cape Verde':'الرأس الأخضر','Saudi Arabia':'السعودية','Uruguay':'الأوروغواي','France':'فرنسا','Senegal':'السنغال','Iraq':'العراق','Norway':'النرويج','Argentina':'الأرجنتين','Algeria':'الجزائر','Austria':'النمسا','Jordan':'الأردن','Portugal':'البرتغال','DR Congo':'الكونغو الديمقراطية','Uzbekistan':'أوزبكستان','Colombia':'كولومبيا','England':'إنجلترا','Croatia':'كرواتيا','Ghana':'غانا','Panama':'بنما'
@@ -22,6 +28,19 @@ function kickoffUtc(date, time) {
   return new Date(Date.UTC(Number(date.slice(0,4)), Number(date.slice(5,7))-1, Number(date.slice(8,10)), h, min) - offsetM*60000);
 }
 function kickoffJordanIso(date, time) { return new Date(kickoffUtc(date,time).getTime()+JORDAN_OFFSET_HOURS*3600000).toISOString().replace('Z','+03:00'); }
+function dateKeyInJordan(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-CA', { timeZone: TIMEZONE, year:'numeric', month:'2-digit', day:'2-digit' }).formatToParts(date);
+  const pick = (type) => parts.find(p => p.type === type)?.value;
+  return `${pick('year')}-${pick('month')}-${pick('day')}`;
+}
+function todayKeyInJordan() {
+  return process.env.WORLD_CUP_2026_TODAY || dateKeyInJordan(new Date());
+}
+function matchDateKeyInJordan(match) {
+  if (match.kickoff_utc) return dateKeyInJordan(new Date(match.kickoff_utc));
+  if (match.kickoff_jordan) return String(match.kickoff_jordan).slice(0,10);
+  return String(match.date || '').slice(0,10);
+}
 function matchStatus(m) {
   if (m.score?.ft) return 'finished';
   if (m.status) return m.status;
@@ -83,20 +102,51 @@ function computeStandings(matches, groups) {
   thirds.forEach((r,i)=>{r.qualified=i<8;});
   return {standings, best_thirds:thirds};
 }
-async function readExisting() { try { return JSON.parse(await fs.readFile(MATCHES_FILE,'utf8')); } catch { return null; } }
-async function main(){
-  await fs.mkdir(WC_DIR,{recursive:true});
-  let source = null;
+async function readJson(file) { try { return JSON.parse(await fs.readFile(file,'utf8')); } catch { return null; } }
+async function readText(file) { try { return await fs.readFile(file,'utf8'); } catch { return ''; } }
+async function readExistingMatchesBundle() { return readJson(MATCHES_FILE); }
+function hasMatchToday(existingBundle, todayKey) {
+  const matches = existingBundle?.matches || [];
+  return matches.some(match => matchDateKeyInJordan(match) === todayKey);
+}
+function shouldSkipForSmartSchedule(existingBundle) {
+  if (FORCE_UPDATE) return {skip:false, reason:'manual/forced run'};
+  if (!EVENT_SCHEDULE) return {skip:false, reason:'direct run without schedule'};
+  if (EVENT_SCHEDULE === BASE_12_HOUR_CRON) return {skip:false, reason:'baseline 12-hour run'};
+  if (EVENT_SCHEDULE === HOURLY_MATCH_DAY_CRON) {
+    const todayKey = todayKeyInJordan();
+    const matchToday = hasMatchToday(existingBundle, todayKey);
+    return matchToday
+      ? {skip:false, reason:`match day in Jordan (${todayKey})`}
+      : {skip:true, reason:`no World Cup matches in Jordan date ${todayKey}; hourly run skipped`};
+  }
+  return {skip:false, reason:`unknown schedule (${EVENT_SCHEDULE})`};
+}
+async function fetchSource(existingBundle) {
   try {
     const res = await fetch(SOURCE_URL, {headers:{'user-agent':'maensat-worldcup-updater'}});
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    source = await res.json();
+    return await res.json();
   } catch (err) {
     console.warn('[worldcup] fetch failed, keeping existing fixture data:', err.message);
-    source = await readExisting();
-    if (!source?.matches) throw err;
-    source = {name: source.metadata?.english_name || 'World Cup 2026', matches: source.matches.map(m=>({ ...m, team1:m.team1, team2:m.team2, group:m.group?`Group ${m.group}`:'', round:m.round, date:m.date, time:m.time, ground:m.ground, score:m.score }))};
+    if (!existingBundle?.matches) throw err;
+    return {
+      name: existingBundle.metadata?.english_name || 'World Cup 2026',
+      matches: existingBundle.matches.map(m=>({
+        ...m,
+        team1:m.team1,
+        team2:m.team2,
+        group:m.group ? `Group ${m.group}` : '',
+        round:m.round,
+        date:m.date,
+        time:m.time,
+        ground:m.ground,
+        score:m.score
+      }))
+    };
   }
+}
+function buildOutput(source, lastUpdatedIso) {
   let matches = source.matches.map(normalizeSourceMatch).sort((a,b)=>String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)) || (a.num||0)-(b.num||0));
   const groups = buildGroups(matches);
   const standingsObj = computeStandings(matches, groups);
@@ -108,10 +158,63 @@ async function main(){
       if (lm && byNum.get(lm[1])) { const l=loserOf(byNum.get(lm[1])); if (l) { m[side]=l; m[side+'_ar']=TEAM_AR[l]||l; } }
     }
   }
-  const metadata = {name:'كأس العالم 2026', english_name: source.name || 'World Cup 2026', source:'openfootball/worldcup.json', source_url:SOURCE_URL, official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf', last_updated:new Date(Date.now()+JORDAN_OFFSET_HOURS*3600000).toISOString().replace('Z','+03:00'), timezone:'Asia/Amman', total_matches:104, teams_count:48, groups_count:12};
-  await fs.writeFile(MATCHES_FILE, JSON.stringify({metadata, groups, team_ar:TEAM_AR, stadiums:STADIUM_NAMES, matches}, null, 2));
-  await fs.writeFile(STANDINGS_FILE, JSON.stringify({metadata, ...standingsObj}, null, 2));
-  await fs.writeFile(BRACKET_FILE, JSON.stringify({metadata, matches:matches.filter(m=>m.stage!=='Group Stage')}, null, 2));
-  console.log(`[worldcup] updated ${matches.length} matches, ${Object.keys(groups).length} groups`);
+  const metadata = {
+    name:'كأس العالم 2026',
+    english_name: source.name || 'World Cup 2026',
+    source:'openfootball/worldcup.json',
+    source_url:SOURCE_URL,
+    official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf',
+    last_updated:lastUpdatedIso,
+    update_policy:'hourly on Jordan match days, every 12 hours on rest days',
+    timezone:TIMEZONE,
+    total_matches:104,
+    teams_count:48,
+    groups_count:12
+  };
+  const matchesObj = {metadata, groups, team_ar:TEAM_AR, stadiums:STADIUM_NAMES, matches};
+  const standingsObjOut = {metadata, ...standingsObj};
+  const bracketObj = {metadata, matches:matches.filter(m=>m.stage!=='Group Stage')};
+  return {
+    matchesObj,
+    standingsObj: standingsObjOut,
+    bracketObj,
+    matchesText: JSON.stringify(matchesObj, null, 2),
+    standingsText: JSON.stringify(standingsObjOut, null, 2),
+    bracketText: JSON.stringify(bracketObj, null, 2),
+    matchCount: matches.length,
+    groupCount: Object.keys(groups).length
+  };
+}
+function jordanNowIso() {
+  return new Date(Date.now()+JORDAN_OFFSET_HOURS*3600000).toISOString().replace('Z','+03:00');
+}
+async function main(){
+  await fs.mkdir(WC_DIR,{recursive:true});
+  const existingBundle = await readExistingMatchesBundle();
+  const gate = shouldSkipForSmartSchedule(existingBundle);
+  if (gate.skip) {
+    console.log(`[worldcup] ${gate.reason}`);
+    return;
+  }
+  console.log(`[worldcup] running update: ${gate.reason}`);
+  const source = await fetchSource(existingBundle);
+  const preservedLastUpdated = existingBundle?.metadata?.last_updated || jordanNowIso();
+  const draft = buildOutput(source, preservedLastUpdated);
+  const currentMatches = await readText(MATCHES_FILE);
+  const currentStandings = await readText(STANDINGS_FILE);
+  const currentBracket = await readText(BRACKET_FILE);
+  const desiredMatches = `${draft.matchesText}\n`;
+  const desiredStandings = `${draft.standingsText}\n`;
+  const desiredBracket = `${draft.bracketText}\n`;
+  const hasChanges = desiredMatches !== currentMatches || desiredStandings !== currentStandings || desiredBracket !== currentBracket;
+  if (!hasChanges) {
+    console.log(`[worldcup] checked ${draft.matchCount} matches; no data changes to write.`);
+    return;
+  }
+  const finalOutput = buildOutput(source, jordanNowIso());
+  await fs.writeFile(MATCHES_FILE, `${finalOutput.matchesText}\n`);
+  await fs.writeFile(STANDINGS_FILE, `${finalOutput.standingsText}\n`);
+  await fs.writeFile(BRACKET_FILE, `${finalOutput.bracketText}\n`);
+  console.log(`[worldcup] wrote updates for ${finalOutput.matchCount} matches, ${finalOutput.groupCount} groups`);
 }
 main().catch(err=>{ console.error(err); process.exitCode=1; });
