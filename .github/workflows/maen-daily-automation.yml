@@ -1,5 +1,8 @@
 name: Maen daily automation
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 "on":
   schedule:
     # 20:30 UTC = 23:30 Jordan in summer time. Updates frequency data and commits the static JSON.
@@ -36,12 +39,12 @@ jobs:
     if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.task == 'both' || inputs.task == 'frequencies')) || (github.event_name == 'schedule' && github.event.schedule == '30 20 * * *') }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Run daily frequency update
         env:
@@ -80,12 +83,12 @@ jobs:
     if: ${{ (github.event_name == 'workflow_dispatch' && (inputs.task == 'both' || inputs.task == 'analytics')) || (github.event_name == 'schedule' && github.event.schedule == '5 21 * * *') }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Send daily analytics report from Cloudflare D1
         env:
