@@ -9,7 +9,9 @@ const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const TIMEZONE = 'Asia/Amman';
 const JORDAN_OFFSET_HOURS = 3;
-const HOURLY_MATCH_DAY_CRON = '17 * * * *';
+const FAST_MATCH_WINDOW_CRON = '2,17,32,47 * * * *';
+const FAST_WINDOW_BEFORE_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_BEFORE_MINUTES || 60);
+const FAST_WINDOW_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_AFTER_MINUTES || 300);
 const BASE_12_HOUR_CRON = '7 0,12 * * *';
 const EVENT_SCHEDULE = String(process.env.GITHUB_EVENT_SCHEDULE || '').trim();
 const EVENT_NAME = String(process.env.GITHUB_EVENT_NAME || '').trim();
@@ -42,9 +44,24 @@ function matchDateKeyInJordan(match) {
   return String(match.date || '').slice(0,10);
 }
 function matchStatus(m) {
-  if (m.score?.ft) return 'finished';
+  if (m.score?.p || m.score?.et || m.score?.ft) return 'finished';
   if (m.status) return m.status;
   return 'scheduled';
+}
+function isFinishedMatch(match = {}) {
+  const status = String(match.status || '').toLowerCase();
+  const score = match.score || {};
+  return status.includes('finished') || status === 'ft' || Boolean(score.ft || score.et || score.p);
+}
+function nowForSchedule() {
+  const forced = process.env.WORLD_CUP_2026_NOW;
+  const parsed = forced ? new Date(forced) : new Date();
+  return Number.isNaN(parsed.getTime()) ? new Date() : parsed;
+}
+function kickoffMs(match = {}) {
+  const raw = match.kickoff_utc || match.kickoff_jordan || match.date;
+  const ms = new Date(raw).getTime();
+  return Number.isFinite(ms) ? ms : NaN;
 }
 function scoreValue(score, index) {
   if (!score) return 0;
@@ -109,16 +126,39 @@ function hasMatchToday(existingBundle, todayKey) {
   const matches = existingBundle?.matches || [];
   return matches.some(match => matchDateKeyInJordan(match) === todayKey);
 }
+function activeMatchWindow(existingBundle, now = nowForSchedule()) {
+  const matches = existingBundle?.matches || [];
+  const nowMs = now.getTime();
+  let nextWindow = null;
+  for (const match of matches) {
+    const startMs = kickoffMs(match);
+    if (!Number.isFinite(startMs)) continue;
+    const windowStart = startMs - FAST_WINDOW_BEFORE_MINUTES * 60000;
+    const windowEnd = startMs + FAST_WINDOW_AFTER_MINUTES * 60000;
+    if (nowMs >= windowStart && nowMs <= windowEnd && !isFinishedMatch(match)) {
+      const label = `${match.team1 || 'TBD'} vs ${match.team2 || 'TBD'}${match.num ? ` (#${match.num})` : ''}`;
+      return {active:true, reason:`inside live/near-match window for ${label}`};
+    }
+    if (nowMs < windowStart) {
+      const waitMs = windowStart - nowMs;
+      if (!nextWindow || waitMs < nextWindow.waitMs) nextWindow = {waitMs, match};
+    }
+  }
+  if (nextWindow) {
+    const hours = Math.round(nextWindow.waitMs / 36e5 * 10) / 10;
+    return {active:false, reason:`next fast update window starts in about ${hours} hours`};
+  }
+  return {active:false, reason:'no upcoming fast update window found'};
+}
 function shouldSkipForSmartSchedule(existingBundle) {
   if (FORCE_UPDATE) return {skip:false, reason:'manual/forced run'};
   if (!EVENT_SCHEDULE) return {skip:false, reason:'direct run without schedule'};
   if (EVENT_SCHEDULE === BASE_12_HOUR_CRON) return {skip:false, reason:'baseline 12-hour run'};
-  if (EVENT_SCHEDULE === HOURLY_MATCH_DAY_CRON) {
-    const todayKey = todayKeyInJordan();
-    const matchToday = hasMatchToday(existingBundle, todayKey);
-    return matchToday
-      ? {skip:false, reason:`match day in Jordan (${todayKey})`}
-      : {skip:true, reason:`no World Cup matches in Jordan date ${todayKey}; hourly run skipped`};
+  if (EVENT_SCHEDULE === FAST_MATCH_WINDOW_CRON) {
+    const window = activeMatchWindow(existingBundle);
+    return window.active
+      ? {skip:false, reason:`15-minute update allowed: ${window.reason}`}
+      : {skip:true, reason:`15-minute update skipped: ${window.reason}`};
   }
   return {skip:false, reason:`unknown schedule (${EVENT_SCHEDULE})`};
 }
@@ -165,7 +205,7 @@ function buildOutput(source, lastUpdatedIso) {
     source_url:SOURCE_URL,
     official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf',
     last_updated:lastUpdatedIso,
-    update_policy:'hourly on Jordan match days, every 12 hours on rest days',
+    update_policy:'every 15 minutes only during near/live match windows, every 12 hours otherwise',
     timezone:TIMEZONE,
     total_matches:104,
     teams_count:48,
