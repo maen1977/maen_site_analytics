@@ -6,12 +6,16 @@ const WC_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const MATCHES_FILE = path.join(WC_DIR, 'matches.json');
 const STANDINGS_FILE = path.join(WC_DIR, 'standings.json');
 const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
+const BROADCASTS_FILE = path.join(WC_DIR, 'broadcasts.json');
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+const BROADCAST_SOURCE_URL = process.env.WORLD_CUP_2026_BROADCAST_SOURCE_URL || '';
 const TIMEZONE = 'Asia/Amman';
 const JORDAN_OFFSET_HOURS = 3;
 const FAST_MATCH_WINDOW_CRON = '2,17,32,47 * * * *';
 const FAST_WINDOW_BEFORE_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_BEFORE_MINUTES || 60);
 const FAST_WINDOW_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_AFTER_MINUTES || 300);
+const BROADCAST_CHECK_BEFORE_MINUTES = Number(process.env.WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES || 1440);
+const BROADCAST_CHECK_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_BROADCAST_AFTER_MINUTES || 60);
 const BASE_12_HOUR_CRON = '7 0,12 * * *';
 const EVENT_SCHEDULE = String(process.env.GITHUB_EVENT_SCHEDULE || '').trim();
 const EVENT_NAME = String(process.env.GITHUB_EVENT_NAME || '').trim();
@@ -162,6 +166,103 @@ function shouldSkipForSmartSchedule(existingBundle) {
   }
   return {skip:false, reason:`unknown schedule (${EVENT_SCHEDULE})`};
 }
+
+function defaultBroadcasts(lastUpdatedIso = '2026-06-05T00:00:00+03:00') {
+  return {
+    metadata: {
+      name: 'World Cup 2026 broadcasters for Jordan / MENA',
+      name_ar: 'القنوات الناقلة لكأس العالم 2026 - الأردن / الشرق الأوسط وشمال أفريقيا',
+      region: 'Jordan / MENA',
+      language_focus: ['Arabic'],
+      frequencies_included: false,
+      policy: 'No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.',
+      last_updated: lastUpdatedIso,
+      update_policy: 'Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.'
+    },
+    default_channels: [
+      {name_ar:'beIN SPORTS MAX', name_en:'beIN SPORTS MAX', type:'encrypted', status:'to_be_confirmed', note_ar:'بانتظار تحديد قناة MAX الخاصة بالمباراة', note_en:'Waiting for the exact MAX channel for this match'},
+      {name_ar:'beIN SPORTS المفتوحة', name_en:'beIN SPORTS Free-to-air', type:'free', status:'pending_official_announcement', note_ar:'تظهر كمجانية فقط عند الإعلان الرسمي عن المباراة المجانية', note_en:'Shown as free-to-air only after official confirmation for the match'}
+    ],
+    matches: {},
+    status_values: {
+      confirmed:'Confirmed channel for the match',
+      to_be_confirmed:'Encrypted channel group known, exact channel pending',
+      pending_official_announcement:'Free-to-air status pending official announcement',
+      not_available:'No broadcaster information available'
+    }
+  };
+}
+function hasPendingBroadcastChannels(entry) {
+  const channels = Array.isArray(entry?.channels) ? entry.channels : [];
+  return channels.some(c => String(c?.status || '').toLowerCase() !== 'confirmed');
+}
+function shouldCheckBroadcasts(existingBundle, broadcasts, now = nowForSchedule()) {
+  if (!BROADCAST_SOURCE_URL) return {check:false, reason:'no broadcast source configured'};
+  if (FORCE_UPDATE) return {check:true, reason:'manual/forced run'};
+  const matches = existingBundle?.matches || [];
+  const map = broadcasts?.matches || {};
+  const defaults = {channels: broadcasts?.default_channels || []};
+  const nowMs = now.getTime();
+  for (const match of matches) {
+    const startMs = kickoffMs(match);
+    if (!Number.isFinite(startMs)) continue;
+    const inWindow = nowMs >= startMs - BROADCAST_CHECK_BEFORE_MINUTES * 60000 && nowMs <= startMs + BROADCAST_CHECK_AFTER_MINUTES * 60000;
+    if (!inWindow) continue;
+    const entry = map[match.id] || map[String(match.num)] || map[`M${String(match.num || '').padStart(3,'0')}`] || defaults;
+    if (hasPendingBroadcastChannels(entry)) return {check:true, reason:`pending broadcaster info near match ${match.id || match.num}`};
+  }
+  return {check:false, reason:'no pending broadcaster info inside check window'};
+}
+async function fetchBroadcastSource() {
+  if (!BROADCAST_SOURCE_URL) return null;
+  const res = await fetch(BROADCAST_SOURCE_URL, {headers:{'user-agent':'maensat-worldcup-broadcast-updater'}});
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return await res.json();
+}
+function normalizeBroadcastSource(source = {}) {
+  if (Array.isArray(source)) {
+    const matches = {};
+    for (const row of source) {
+      const key = row.match_id || row.id || row.match || row.num;
+      if (key) matches[String(key)] = {channels: row.channels || row.broadcasters || []};
+    }
+    return {matches};
+  }
+  return {
+    default_channels: source.default_channels || source.defaultChannels,
+    matches: source.matches || source.broadcasts || {}
+  };
+}
+function mergeBroadcasts(base, incoming) {
+  const src = normalizeBroadcastSource(incoming);
+  const out = JSON.parse(JSON.stringify(base || defaultBroadcasts(jordanNowIso())));
+  if (Array.isArray(src.default_channels) && src.default_channels.length) out.default_channels = src.default_channels;
+  out.matches ||= {};
+  for (const [key, value] of Object.entries(src.matches || {})) {
+    out.matches[key] = {...(out.matches[key] || {}), ...(value || {})};
+  }
+  out.metadata ||= {};
+  out.metadata.last_updated = jordanNowIso();
+  out.metadata.broadcast_source_url = BROADCAST_SOURCE_URL || out.metadata.broadcast_source_url || '';
+  return out;
+}
+async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
+  let broadcasts = existingBroadcasts || defaultBroadcasts(existingBundle?.metadata?.last_updated || '2026-06-05T00:00:00+03:00');
+  const gate = shouldCheckBroadcasts(existingBundle, broadcasts);
+  if (!gate.check) {
+    console.log(`[worldcup-broadcasts] ${gate.reason}`);
+    return broadcasts;
+  }
+  try {
+    const source = await fetchBroadcastSource();
+    broadcasts = mergeBroadcasts(broadcasts, source);
+    console.log(`[worldcup-broadcasts] merged broadcaster data: ${gate.reason}`);
+  } catch (err) {
+    console.warn('[worldcup-broadcasts] fetch failed, keeping existing broadcaster data:', err.message);
+  }
+  return broadcasts;
+}
+
 async function fetchSource(existingBundle) {
   try {
     const res = await fetch(SOURCE_URL, {headers:{'user-agent':'maensat-worldcup-updater'}});
@@ -243,18 +344,36 @@ async function main(){
   const currentMatches = await readText(MATCHES_FILE);
   const currentStandings = await readText(STANDINGS_FILE);
   const currentBracket = await readText(BRACKET_FILE);
-  const desiredMatches = `${draft.matchesText}\n`;
-  const desiredStandings = `${draft.standingsText}\n`;
-  const desiredBracket = `${draft.bracketText}\n`;
-  const hasChanges = desiredMatches !== currentMatches || desiredStandings !== currentStandings || desiredBracket !== currentBracket;
-  if (!hasChanges) {
+  const currentBroadcasts = await readText(BROADCASTS_FILE);
+  const existingBroadcasts = await readJson(BROADCASTS_FILE);
+  const broadcastOutput = await buildBroadcastOutput(existingBroadcasts, existingBundle);
+  const desiredMatches = `${draft.matchesText}
+`;
+  const desiredStandings = `${draft.standingsText}
+`;
+  const desiredBracket = `${draft.bracketText}
+`;
+  const desiredBroadcasts = `${JSON.stringify(broadcastOutput, null, 2)}
+`;
+  const matchDataChanged = desiredMatches !== currentMatches || desiredStandings !== currentStandings || desiredBracket !== currentBracket;
+  const broadcastDataChanged = desiredBroadcasts !== currentBroadcasts;
+  if (!matchDataChanged && !broadcastDataChanged) {
     console.log(`[worldcup] checked ${draft.matchCount} matches; no data changes to write.`);
     return;
   }
-  const finalOutput = buildOutput(source, jordanNowIso());
-  await fs.writeFile(MATCHES_FILE, `${finalOutput.matchesText}\n`);
-  await fs.writeFile(STANDINGS_FILE, `${finalOutput.standingsText}\n`);
-  await fs.writeFile(BRACKET_FILE, `${finalOutput.bracketText}\n`);
-  console.log(`[worldcup] wrote updates for ${finalOutput.matchCount} matches, ${finalOutput.groupCount} groups`);
+  if (matchDataChanged) {
+    const finalOutput = buildOutput(source, jordanNowIso());
+    await fs.writeFile(MATCHES_FILE, `${finalOutput.matchesText}
+`);
+    await fs.writeFile(STANDINGS_FILE, `${finalOutput.standingsText}
+`);
+    await fs.writeFile(BRACKET_FILE, `${finalOutput.bracketText}
+`);
+    console.log(`[worldcup] wrote updates for ${finalOutput.matchCount} matches, ${finalOutput.groupCount} groups`);
+  }
+  if (broadcastDataChanged) {
+    await fs.writeFile(BROADCASTS_FILE, desiredBroadcasts);
+    console.log('[worldcup-broadcasts] wrote broadcaster data updates');
+  }
 }
 main().catch(err=>{ console.error(err); process.exitCode=1; });

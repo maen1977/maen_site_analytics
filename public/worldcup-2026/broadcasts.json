@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "name": "World Cup 2026 broadcasters for Jordan / MENA",
+    "name_ar": "القنوات الناقلة لكأس العالم 2026 - الأردن / الشرق الأوسط وشمال أفريقيا",
+    "region": "Jordan / MENA",
+    "language_focus": [
+      "Arabic"
+    ],
+    "frequencies_included": false,
+    "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
+    "last_updated": "2026-06-05T00:00:00+03:00",
+    "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update."
+  },
+  "default_channels": [
+    {
+      "name_ar": "beIN SPORTS MAX",
+      "name_en": "beIN SPORTS MAX",
+      "type": "encrypted",
+      "status": "to_be_confirmed",
+      "note_ar": "بانتظار تحديد قناة MAX الخاصة بالمباراة",
+      "note_en": "Waiting for the exact MAX channel for this match"
+    },
+    {
+      "name_ar": "beIN SPORTS المفتوحة",
+      "name_en": "beIN SPORTS Free-to-air",
+      "type": "free",
+      "status": "pending_official_announcement",
+      "note_ar": "تظهر كمجانية فقط عند الإعلان الرسمي عن المباراة المجانية",
+      "note_en": "Shown as free-to-air only after official confirmation for the match"
+    }
+  ],
+  "matches": {},
+  "status_values": {
+    "confirmed": "Confirmed channel for the match",
+    "to_be_confirmed": "Encrypted channel group known, exact channel pending",
+    "pending_official_announcement": "Free-to-air status pending official announcement",
+    "not_available": "No broadcaster information available"
+  }
+}

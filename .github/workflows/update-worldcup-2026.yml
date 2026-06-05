@@ -27,10 +27,11 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Update World Cup 2026 fixtures and scores
+      - name: Update World Cup 2026 fixtures, scores, and broadcasters
         env:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
+          WORLD_CUP_2026_BROADCAST_SOURCE_URL: ${{ vars.WORLD_CUP_2026_BROADCAST_SOURCE_URL }}
         run: node scripts/update-worldcup-2026.mjs
 
       - name: Commit updated World Cup data
