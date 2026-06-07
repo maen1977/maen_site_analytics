@@ -287,7 +287,7 @@ async function fetchSource(existingBundle) {
     };
   }
 }
-function buildOutput(source, lastUpdatedIso) {
+function buildOutput(source, lastUpdatedIso, lastCheckedIso = lastUpdatedIso) {
   let matches = source.matches.map(normalizeSourceMatch).sort((a,b)=>String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)) || (a.num||0)-(b.num||0));
   const groups = buildGroups(matches);
   const standingsObj = computeStandings(matches, groups);
@@ -306,6 +306,7 @@ function buildOutput(source, lastUpdatedIso) {
     source_url:SOURCE_URL,
     official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf',
     last_updated:lastUpdatedIso,
+    last_checked_at:lastCheckedIso,
     update_policy:'every 15 minutes only during near/live match windows, every 12 hours otherwise',
     timezone:TIMEZONE,
     total_matches:104,
@@ -329,6 +330,20 @@ function buildOutput(source, lastUpdatedIso) {
 function jordanNowIso() {
   return new Date(Date.now()+JORDAN_OFFSET_HOURS*3600000).toISOString().replace('Z','+03:00');
 }
+function comparableWorldCupText(text) {
+  try {
+    const obj = JSON.parse(text || 'null');
+    if (obj?.metadata) delete obj.metadata.last_checked_at;
+    return JSON.stringify(obj);
+  } catch {
+    return text || '';
+  }
+}
+async function writeMatchBundles(output) {
+  await fs.writeFile(MATCHES_FILE, `${output.matchesText}\n`);
+  await fs.writeFile(STANDINGS_FILE, `${output.standingsText}\n`);
+  await fs.writeFile(BRACKET_FILE, `${output.bracketText}\n`);
+}
 async function main(){
   await fs.mkdir(WC_DIR,{recursive:true});
   const existingBundle = await readExistingMatchesBundle();
@@ -339,8 +354,9 @@ async function main(){
   }
   console.log(`[worldcup] running update: ${gate.reason}`);
   const source = await fetchSource(existingBundle);
-  const preservedLastUpdated = existingBundle?.metadata?.last_updated || jordanNowIso();
-  const draft = buildOutput(source, preservedLastUpdated);
+  const checkedAtIso = jordanNowIso();
+  const preservedLastUpdated = existingBundle?.metadata?.last_updated || checkedAtIso;
+  const draft = buildOutput(source, preservedLastUpdated, checkedAtIso);
   const currentMatches = await readText(MATCHES_FILE);
   const currentStandings = await readText(STANDINGS_FILE);
   const currentBracket = await readText(BRACKET_FILE);
@@ -355,21 +371,16 @@ async function main(){
 `;
   const desiredBroadcasts = `${JSON.stringify(broadcastOutput, null, 2)}
 `;
-  const matchDataChanged = desiredMatches !== currentMatches || desiredStandings !== currentStandings || desiredBracket !== currentBracket;
+  const matchDataChanged = comparableWorldCupText(desiredMatches) !== comparableWorldCupText(currentMatches) || comparableWorldCupText(desiredStandings) !== comparableWorldCupText(currentStandings) || comparableWorldCupText(desiredBracket) !== comparableWorldCupText(currentBracket);
   const broadcastDataChanged = desiredBroadcasts !== currentBroadcasts;
-  if (!matchDataChanged && !broadcastDataChanged) {
-    console.log(`[worldcup] checked ${draft.matchCount} matches; no data changes to write.`);
-    return;
-  }
+
   if (matchDataChanged) {
-    const finalOutput = buildOutput(source, jordanNowIso());
-    await fs.writeFile(MATCHES_FILE, `${finalOutput.matchesText}
-`);
-    await fs.writeFile(STANDINGS_FILE, `${finalOutput.standingsText}
-`);
-    await fs.writeFile(BRACKET_FILE, `${finalOutput.bracketText}
-`);
+    const finalOutput = buildOutput(source, checkedAtIso, checkedAtIso);
+    await writeMatchBundles(finalOutput);
     console.log(`[worldcup] wrote updates for ${finalOutput.matchCount} matches, ${finalOutput.groupCount} groups`);
+  } else {
+    await writeMatchBundles(draft);
+    console.log(`[worldcup] checked ${draft.matchCount} matches; refreshed last_checked_at only.`);
   }
   if (broadcastDataChanged) {
     await fs.writeFile(BROADCASTS_FILE, desiredBroadcasts);
