@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "name": "Manual trusted World Cup 2026 broadcast confirmations",
+    "name_ar": "مصدر تأكيدات البث اليدوي الموثوق لكأس العالم 2026",
+    "policy_ar": "لا تضع status=confirmed لقناة مجانية إلا عند وجود source_url رسمي واضح من beIN/FIFA/الناقل الرسمي.",
+    "policy_en": "Only use status=confirmed for free-to-air matches when an official source_url confirms it.",
+    "last_updated": "2026-06-09T00:00:00+03:00"
+  },
+  "instructions_ar": [
+    "لإضافة مباراة مجانية: أضف مفتاح المباراة مثل M001 داخل matches.",
+    "لا تستخدم status=confirmed إلا مع رابط source_url رسمي.",
+    "مثال: matches.M001.channels[0].name_ar = beIN SPORTS المفتوحة."
+  ],
+  "example_disabled": {
+    "M001": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS المفتوحة",
+          "name_en": "beIN SPORTS Free-to-air",
+          "type": "free",
+          "status": "confirmed",
+          "note_ar": "المباراة منقولة مجاناً حسب الإعلان الرسمي.",
+          "source_name": "beIN SPORTS",
+          "source_url": "ضع رابط الإعلان الرسمي هنا"
+        }
+      ]
+    }
+  },
+  "matches": {}
+}

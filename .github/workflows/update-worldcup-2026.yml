@@ -35,6 +35,10 @@ jobs:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
           WORLD_CUP_2026_BROADCAST_SOURCE_URL: ${{ vars.WORLD_CUP_2026_BROADCAST_SOURCE_URL }}
+          WORLD_CUP_2026_BEIN_AUTO_CHECK: ${{ vars.WORLD_CUP_2026_BEIN_AUTO_CHECK || '1' }}
+          WORLD_CUP_2026_BEIN_NEWS_URLS: ${{ vars.WORLD_CUP_2026_BEIN_NEWS_URLS || '' }}
+          WORLD_CUP_2026_BEIN_MAX_DISCOVERED_ARTICLES: ${{ vars.WORLD_CUP_2026_BEIN_MAX_DISCOVERED_ARTICLES || '12' }}
+          WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE: ${{ vars.WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE || '80' }}
         run: node scripts/update-worldcup-2026.mjs
 
       - name: Commit updated World Cup data

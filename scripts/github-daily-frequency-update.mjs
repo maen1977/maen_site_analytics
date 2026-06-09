@@ -52,6 +52,24 @@ async function writeJson(file, value) {
   await writeFile(file, stringifyJson(value), 'utf8');
 }
 
+function frequencyCandidateQuality(candidates = []) {
+  const totalCandidates = candidates.length;
+  const missingSystemMod = candidates.filter(item => !String(item.system || '').trim() || !String(item.mod || '').trim());
+  return {
+    totalCandidates,
+    missingSystemModCount: missingSystemMod.length,
+    missingSystemModRatio: totalCandidates ? Number((missingSystemMod.length / totalCandidates).toFixed(4)) : 0,
+    sampleMissingSystemMod: missingSystemMod.slice(0, 20).map(item => ({
+      satelliteGroup: item.satelliteGroup || item.satellite || '',
+      satelliteName: item.satelliteName || '',
+      frequency: item.frequency || '',
+      pol: item.pol || '',
+      sr: item.sr || '',
+      source: item.source || item.sourceId || ''
+    }))
+  };
+}
+
 async function main() {
   const baseline = await readJson(dataPath);
   const sources = await readJson(sourcesPath);
@@ -71,7 +89,12 @@ async function main() {
   const candidates = sourceResults.flatMap(r => r.candidates || []);
   const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
-  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates });
+  const sourceQuality = frequencyCandidateQuality(candidates);
+  console.log(`[frequency] Source quality: ${sourceQuality.missingSystemModCount}/${sourceQuality.totalCandidates} candidates missing system/mod (${sourceQuality.missingSystemModRatio}).`);
+  if (sourceQuality.missingSystemModCount) {
+    console.log(`[frequency] Missing system/mod sample: ${JSON.stringify(sourceQuality.sampleMissingSystemMod.slice(0, 8))}`);
+  }
+  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality });
 
   validateCompleteProgrammingSystems(merged.items);
 
@@ -87,6 +110,7 @@ async function main() {
     closedCandidateCount: merged.closedCandidateCount || closedCandidates.length,
     closedConsensusCount: merged.closedConsensusCount || 0,
     successfulSourceCount,
+    sourceQuality,
     groupCounts: buildGroupCounts(merged.items),
     satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
     satellitePositionPolicy: 'v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.',

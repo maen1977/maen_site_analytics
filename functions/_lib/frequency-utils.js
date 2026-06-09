@@ -541,12 +541,13 @@ function extractTableBlockCandidates(lines, source) {
     let j = i + 1;
     while (j < lines.length && !/^\s*\d{4,5}(?:[\.,]\d{1,3})?\s*[HVLR]\b/i.test(String(lines[j] || ""))) j++;
     const block = lines.slice(i + 1, j);
+    const technicalBlock = [lines[i], ...block];
     const channels = [];
     for (const line of block) {
       const ch = channelNameFromServiceLine(line);
       if (ch && !channels.some(x => x.toLowerCase() === ch.toLowerCase())) channels.push(ch);
     }
-    const blockText = block.join(" | ");
+    const blockText = technicalBlock.join(" | ");
     const channelName = channels.length ? channels.slice(0, 18).join("، ") + (channels.length > 18 ? ` + ${channels.length - 18} قناة أخرى` : "") : candidateChannelName(lines, i);
     const item = {
       ...candidateBase(source, satelliteGroup),
@@ -554,7 +555,7 @@ function extractTableBlockCandidates(lines, source) {
       channels,
       frequency,
       pol,
-      sr: extractBlockSr(block),
+      sr: extractBlockSr(technicalBlock),
       fec: normalizeFec(blockText),
       system: normalizeSystem(blockText),
       mod: normalizeMod(blockText),
@@ -719,6 +720,73 @@ function uniqueBySource(items = []) {
     out.push(item);
   }
   return out;
+}
+
+
+function hasProgrammingSystem(item = {}) {
+  return Boolean(String(item.system || "").trim() && String(item.mod || "").trim());
+}
+
+function sourceTuningKey(item = {}) {
+  const meta = hydrateFrequencyItem(item || {});
+  return [
+    normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit),
+    normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || ""),
+    normalizeSatelliteName(meta.satelliteName || meta.satellite || meta.satelliteGroup || "").toLowerCase(),
+    normalizeFrequency(meta.frequency || ""),
+    normalizePol(meta.pol || "") || meta.pol || "",
+    normalizeSr(meta.sr || "") || ""
+  ].join("|");
+}
+
+function mergeTrustedOldTechnicalFields(target = {}, existing = {}) {
+  const technicalFields = ["system", "mod", "fec", "sr", "pol"];
+  for (const field of technicalFields) {
+    if (!String(target[field] || "").trim() && String(existing[field] || "").trim()) {
+      target[field] = existing[field];
+      target[`${field}CarriedFromBaseline`] = true;
+    }
+  }
+  if (existing.sourceAuditUrl && !target.sourceAuditUrl) target.sourceAuditUrl = existing.sourceAuditUrl;
+  if (existing.officialSourceUrl && !target.officialSourceUrl) target.officialSourceUrl = existing.officialSourceUrl;
+  return target;
+}
+
+function incompleteCandidateReason(item = {}) {
+  const missing = [];
+  if (!String(item.system || "").trim()) missing.push("system");
+  if (!String(item.mod || "").trim()) missing.push("mod");
+  return missing.length ? `Missing ${missing.join("/")} from daily source parse` : "";
+}
+
+function markCurrentConfirmation(existing = {}, now = "") {
+  if (existing.missingStreak) existing.previousMissingStreak = existing.missingStreak;
+  delete existing.missingStreak;
+  delete existing.lastMissingAt;
+  delete existing.missingSince;
+  if (existing.currentStatus === "missing-from-daily-scan") existing.currentStatus = "current";
+  existing.lastConfirmedAt = now;
+  return existing;
+}
+
+function applyMissingProtection(item = {}, now = "", minMissingStreak = 3) {
+  const nextStreak = Number(item.missingStreak || 0) + 1;
+  item.missingStreak = nextStreak;
+  item.missingSince = item.missingSince || now;
+  item.lastMissingAt = now;
+  item.currentStatus = "missing-from-daily-scan";
+  item.updateProtection = `Kept because it is missing for ${nextStreak}/${minMissingStreak} protected daily scans.`;
+  return item;
+}
+
+function sourceQualityAllowsRemoval(sourceQuality = {}) {
+  const missing = Number(sourceQuality.missingSystemModCount || 0);
+  const total = Number(sourceQuality.totalCandidates || 0);
+  if (!total) return true;
+  const ratio = missing / total;
+  const maxMissing = Number(envValue("FREQUENCY_MAX_INCOMPLETE_SYSTEM_MOD_FOR_REMOVAL") || 25);
+  const maxRatio = Number(envValue("FREQUENCY_MAX_INCOMPLETE_SYSTEM_MOD_RATIO_FOR_REMOVAL") || 0.10);
+  return missing <= maxMissing && ratio <= maxRatio;
 }
 
 const CLOSED_SIGNAL_RE = /(\bclosed\b|\bceased\b|\bstopped\b|\bshutdown\b|\bshut\s*down\b|\bterminated\b|\bdiscontinued\b|\binactive\b|\bremoved\b|\bdeleted\b|\bleft\b|\bno\s+longer\b|\boff[-\s]?air\b|\bnot\s+broadcasting\b|\btransmission\s+stopped\b|\bservice\s+ended\b|مغلق|اغلق|أغلق|اغلقت|أغلقت|متوقف|توقف|توقفت|اوقفت|أوقفت|اوقف|أوقف|حذف|حذفت|محذوف|ازيل|أزيل|لم\s+تعد|لم\s+يعد|انتهى|انتهت|توقف\s+البث|ايقاف\s+البث|إيقاف\s+البث)/i;
@@ -888,6 +956,7 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
   const approvedModes = new Set(["auto-approve", "baseline-refresh"]);
   const baseline = dedupeItems(baselineItems || []).map(item => ({ ...item, baseline: true, confidence: item.confidence || 100 }));
   const byKey = new Map(baseline.map(item => [itemKey(item), item]));
+  const baselineByTuning = new Map(baseline.map(item => [sourceTuningKey(item), item]));
   const candidateGroups = new Map();
   for (const cand of dedupeItems(sourceCandidates || [])) {
     const key = itemKey(cand);
@@ -904,6 +973,9 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     closedConsensusRemoved: 0,
     closedConsensusChannelNamesRemoved: 0,
     closedConsensusReviewed: 0,
+    protectedMissing: 0,
+    incompleteNewSkipped: 0,
+    incompleteExistingProtected: 0,
     removalSkippedReason: ""
   };
   const closedConsensus = buildClosedConsensus(options.closedCandidates || [], candidateGroups);
@@ -915,6 +987,11 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     const consensus = group.length >= 2;
     const chosen = official || (consensus ? group[0] : null);
     if (existing && chosen) {
+      markCurrentConfirmation(existing, now);
+      mergeTrustedOldTechnicalFields(chosen, existing);
+      if (!hasProgrammingSystem(chosen) && hasProgrammingSystem(existing)) {
+        changes.incompleteExistingProtected += 1;
+      }
       const before = channelSet(existing);
       const current = [...new Set(group.flatMap(channelSet))].filter(Boolean);
       if (current.length) {
@@ -926,6 +1003,10 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
         changes.channelNamesAdded += additions.length;
         changes.channelNamesRemoved += removals.length;
       }
+      if (chosen.system && !existing.system) existing.system = chosen.system;
+      if (chosen.mod && !existing.mod) existing.mod = chosen.mod;
+      if (chosen.fec && !existing.fec) existing.fec = chosen.fec;
+      if (chosen.sr && !existing.sr) existing.sr = chosen.sr;
       if (!existing.sourceAuditUrl && chosen.sourceUrl) existing.sourceAuditUrl = chosen.sourceUrl;
       existing.lastCheckedAt = now;
       existing.source = safeText([existing.source, ...group.map(x => x.source)].filter(Boolean).join(" + "), 350);
@@ -933,9 +1014,16 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       existing.updatePolicy = official ? "daily-refreshed-official" : "daily-refreshed-consensus";
       changes.updated += 1;
     } else if (!existing && chosen) {
-      const item = { ...chosen, baseline: false, lastCheckedAt: now, updatePolicy: official ? "auto-added-official" : "auto-added-consensus", confidence: official ? 92 : 78 };
-      byKey.set(key, item);
-      changes.added += 1;
+      const oldMatch = baselineByTuning.get(sourceTuningKey(chosen));
+      const item = mergeTrustedOldTechnicalFields({ ...chosen, baseline: false, lastCheckedAt: now, updatePolicy: official ? "auto-added-official" : "auto-added-consensus", confidence: official ? 92 : 78 }, oldMatch || {});
+      if (!hasProgrammingSystem(item)) {
+        reviewedOnly.push({ ...item, reviewReason: incompleteCandidateReason(item) || "Incomplete technical system/mod; not auto-published", protection: "Skipped automatic publishing to avoid corrupting frequency-data.json." });
+        changes.reviewedOnly += 1;
+        changes.incompleteNewSkipped += 1;
+      } else {
+        byKey.set(key, item);
+        changes.added += 1;
+      }
     } else {
       reviewedOnly.push({ ...group[0], reviewReason: "Single comparison-only source; not auto-approved" });
       changes.reviewedOnly += 1;
@@ -946,7 +1034,9 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
   const minCandidates = Number(envValue("FREQUENCY_MIN_CANDIDATES_FOR_REMOVAL") || 50);
   const minSuccessfulSources = Number(envValue("FREQUENCY_MIN_SUCCESSFUL_SOURCES_FOR_REMOVAL") || 5);
   const successfulSourceCount = Number(options.successfulSourceCount || 0);
-  const canRemoveMissing = removalEnabled && candidateGroups.size >= minCandidates && successfulSourceCount >= minSuccessfulSources;
+  const sourceQualityOk = sourceQualityAllowsRemoval(options.sourceQuality || {});
+  const canRemoveMissing = removalEnabled && sourceQualityOk && candidateGroups.size >= minCandidates && successfulSourceCount >= minSuccessfulSources;
+  const minMissingStreak = Math.max(1, Number(envValue("FREQUENCY_REMOVE_MISSING_AFTER_CHECKS") || 3));
 
   let values = [...byKey.values()];
   if (canRemoveMissing) {
@@ -954,6 +1044,12 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       const key = itemKey(item);
       const keep = candidateGroups.has(key) || item.forceKeep === true || item.keep === true || item.updatePolicy === "manual-keep";
       if (!keep) {
+        const nextStreak = Number(item.missingStreak || 0) + 1;
+        if (nextStreak < minMissingStreak) {
+          applyMissingProtection(item, now, minMissingStreak);
+          changes.protectedMissing += 1;
+          return true;
+        }
         removedItems.push({
           satelliteGroup: item.satelliteGroup || item.satellite || "",
           orbitalSlot: item.orbitalSlot || item.orbit || "",
@@ -964,7 +1060,8 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
           channel: item.channel,
           channelCount: item.channelCount,
           removedAt: now,
-          removedReason: "missing-from-daily-source-scan"
+          missingStreak: nextStreak,
+          removedReason: `missing-from-daily-source-scan-after-${minMissingStreak}-protected-checks`
         });
         changes.removed += 1;
       }
@@ -972,7 +1069,9 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     });
   } else {
     changes.removalSkippedReason = removalEnabled
-      ? `لم يتم حذف الترددات الغائبة لأن التغطية اليومية لم تكن كافية: ${candidateGroups.size} تردد/مرشح و ${successfulSourceCount} مصدر ناجح.`
+      ? (!sourceQualityOk
+        ? `لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: ${Number(options.sourceQuality?.missingSystemModCount || 0)} من ${Number(options.sourceQuality?.totalCandidates || 0)} مرشح ناقص system/mod.`
+        : `لم يتم حذف الترددات الغائبة لأن التغطية اليومية لم تكن كافية: ${candidateGroups.size} تردد/مرشح و ${successfulSourceCount} مصدر ناجح.`)
       : "الحذف التلقائي للترددات الغائبة متوقف عبر FREQUENCY_REMOVE_MISSING=0.";
   }
 

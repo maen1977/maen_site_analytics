@@ -1,0 +1,23 @@
+# Secrets - keep real keys out of GitHub
+.env
+.env.*
+!.env.example
+.dev.vars
+*.pem
+*.key
+secrets.json
+
+# Local dependencies / build output
+node_modules/
+.netlify/
+.wrangler/
+dist/
+build/
+.cache/
+
+# Logs and OS/editor files
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
