@@ -8,10 +8,12 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-09T20:06:07.668+03:00",
+    "last_updated": "2026-06-09T21:43:45.565+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
-    "broadcast_source_file": "public/worldcup-2026/broadcast-source.json"
+    "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
+    "bein_official_last_checked_at": "2026-06-09T21:43:45.520+03:00",
+    "bein_official_auto_check": true
   },
   "default_channels": [
     {
@@ -31,7 +33,556 @@
       "note_en": "Shown as free-to-air only after official confirmation for the match"
     }
   ],
-  "matches": {},
+  "matches": {
+    "M001": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M031": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M049": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M010": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M021": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M034": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ]
+    },
+    "M036": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX",
+          "name_en": "beIN SPORTS MAX",
+          "type": "encrypted",
+          "status": "to_be_confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ضية عالمياً، عن خططها الشاملة لتغطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أم",
+          "note_ar": "ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 5",
+          "name_en": "beIN SPORTS MAX 5",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "ة beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN S",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 6",
+          "name_en": "beIN SPORTS MAX 6",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "قناة beIN SPORTS MAX 5 تغطية باللغة الإنجليزية من داخل الاستوديو لمدة 15 ساعة يومياً، من الساعة 18:00 حتى 09:00 بتوقيت مكة المكرمة، مدعومة بمراسلين ميدانيين ناطقين بالإنجليزية في الولايات المتحدة وكندا والمكسيك. وتخصص beIN SPORTS MAX 6 تغطية باللغة الفرنسية بالتزامن مع تغطية قناة beIN SPORTS France، الناقل الرسمي لكأس العالم FIFA 2026™ في فرنسا، بما يعزز قدرة beIN على مخاطبة جماهير متعددة اللغات في المنطقة وخارجها. وتبث قنوات beIN SPO",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ]
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "غطية كأس العالم FIFA 2026™، التي تنطلق في 11 يونيو من مكسيكو سيتي وتستمر حتى 19 يوليو في نيويورك، بمشاركة 48 منتخباً و104 مباريات تقام في كندا والمكسيك والولايات المتحدة. ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناتي beIN SPORTS 4K HDR وbeIN SPORTS الإخبارية، ستنقل جميع مباريات البطولة الـ104 مباشرةً وحصرياً في منطقة الشرق الأوسط وشمال أفريقيا تغطية بثلاث لغات، مع 18 مراسلاً ميدانياً في مختلف أنحاء أمريكا الشمالية واستوديوهات متطورة",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ]
+        }
+      ]
+    }
+  },
   "status_values": {
     "confirmed": "Confirmed channel for the match",
     "to_be_confirmed": "Encrypted channel group known, exact channel pending",
