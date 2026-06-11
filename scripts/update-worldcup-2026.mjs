@@ -268,6 +268,90 @@ function upsertChannels(existing = [], incoming = []) {
   }
   return out;
 }
+
+function coreBeinChannelKind(channel = {}) {
+  const text = normalizeArabicText([channel.name_en, channel.name_ar, channel.name, channel.title, channel.type].filter(Boolean).join(' '));
+  const isBein = /(?:^|\s)(?:bein\s+sports|بي\s+ان\s+سبورت)(?:\s|$)/.test(text);
+  if (!isBein) return 'other';
+  if (/(connect|كونكت|اشتراك|الباقات|باقات|باقه|باقة)/.test(text)) return 'blocked';
+  if (/(news|اخباريه|الاخباريه)/.test(text)) return 'blocked';
+  if (/(4k|4\s*كي|فور\s*كي|فوركي)/.test(text)) return 'bein-4k';
+  const maxMatch = text.match(/(?:max|ماكس)\s*([0-9])?/);
+  if (maxMatch) {
+    const number = String(maxMatch[1] || '').trim();
+    if (number === '1') return 'bein-max-1';
+    if (number === '2') return 'bein-max-2';
+    return 'blocked';
+  }
+  if (/(free|fta|مفتوح|المفتوحه|المفتوحة|مجاني|مجانيه)/.test(text)) return 'bein-free';
+  // MaenSat display rule: plain beIN SPORTS as a standalone channel means the free-to-air beIN SPORTS channel.
+  return 'bein-free';
+}
+function normalizeCoreBeinChannel(channel = {}) {
+  const kind = coreBeinChannelKind(channel);
+  if (kind === 'other') return channel;
+  if (kind === 'blocked') return null;
+  const base = {...channel};
+  if (kind === 'bein-free') return {
+    ...base,
+    name_ar: 'beIN SPORTS المفتوحة',
+    name_en: 'beIN SPORTS Free-to-air',
+    type: 'free',
+    status: base.status || 'confirmed',
+    note_ar: base.note_ar || 'قاعدة MaenSat: ظهور beIN SPORTS كقناة مستقلة يعني beIN SPORTS المفتوحة/المجانية؛ MAX و4K قنوات مشفرة منفصلة.'
+  };
+  if (kind === 'bein-max-1') return {
+    ...base,
+    name_ar: 'beIN SPORTS MAX 1',
+    name_en: 'beIN SPORTS MAX 1',
+    type: 'encrypted',
+    status: base.status || 'confirmed'
+  };
+  if (kind === 'bein-max-2') return {
+    ...base,
+    name_ar: 'beIN SPORTS MAX 2',
+    name_en: 'beIN SPORTS MAX 2',
+    type: 'encrypted',
+    status: base.status || 'confirmed'
+  };
+  if (kind === 'bein-4k') return {
+    ...base,
+    name_ar: 'beIN SPORTS 4K',
+    name_en: 'beIN SPORTS 4K',
+    type: 'encrypted',
+    status: base.status || 'confirmed'
+  };
+  return channel;
+}
+function coreBeinChannelKey(channel = {}) {
+  const kind = coreBeinChannelKind(channel);
+  if (kind !== 'other' && kind !== 'blocked') return kind;
+  return channelKey(channel);
+}
+function filterCoreBeinChannels(channels = []) {
+  const out = [];
+  for (const raw of channels || []) {
+    const normalized = normalizeCoreBeinChannel(raw);
+    if (!normalized) continue;
+    const key = coreBeinChannelKey(normalized);
+    const idx = out.findIndex(c => coreBeinChannelKey(c) === key);
+    if (idx >= 0) out[idx] = {...out[idx], ...normalized};
+    else out.push(normalized);
+  }
+  return out;
+}
+function sanitizeBroadcastsForCoreBeinChannels(broadcasts = {}) {
+  const out = JSON.parse(JSON.stringify(broadcasts || {}));
+  if (Array.isArray(out.default_channels)) out.default_channels = filterCoreBeinChannels(out.default_channels);
+  out.matches ||= {};
+  for (const [key, value] of Object.entries(out.matches || {})) {
+    if (Array.isArray(value?.channels)) out.matches[key].channels = filterCoreBeinChannels(value.channels);
+  }
+  out.metadata ||= {};
+  out.metadata.core_bein_channel_filter = true;
+  out.metadata.core_bein_channel_filter_ar = 'يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.';
+  return out;
+}
 function extractChannelCandidates(text = '', sourceUrl = '') {
   const candidates = [];
   const patterns = [
@@ -297,10 +381,13 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
       let type = 'encrypted';
       let status = 'confirmed';
       if (kind === 'max') {
-        nameEn = number ? `beIN SPORTS MAX ${number}` : 'beIN SPORTS MAX';
-        nameAr = number ? `beIN SPORTS MAX ${number}` : 'beIN SPORTS MAX';
+        // MaenSat display rule: only MAX 1 and MAX 2 are shown for World Cup pages.
+        // Generic MAX or MAX 3-6 are ignored to avoid clutter and accidental channel claims.
+        if (number !== '1' && number !== '2') continue;
+        nameEn = `beIN SPORTS MAX ${number}`;
+        nameAr = `beIN SPORTS MAX ${number}`;
         type = 'encrypted';
-        status = number ? 'confirmed' : 'to_be_confirmed';
+        status = 'confirmed';
       } else if (kind === '4k') {
         nameEn = 'beIN SPORTS 4K';
         nameAr = 'beIN SPORTS 4K';
@@ -321,9 +408,8 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
         type = 'free';
         status = 'confirmed';
       } else if (kind === 'news') {
-        nameEn = 'beIN SPORTS NEWS';
-        nameAr = 'beIN SPORTS الإخبارية';
-        type = 'free';
+        // NEWS is not part of MaenSat's compact match-channel display.
+        continue;
       }
       candidates.push({
         name_ar: nameAr,
@@ -340,6 +426,99 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
   const byKey = new Map();
   for (const c of candidates) byKey.set(channelKey(c), c);
   return [...byKey.values()];
+}
+
+function matchChannelTerms(match = {}, side = 1) {
+  const names = side === 1
+    ? [match.team1, match.team1_ar, match.home_team, match.home_team_ar]
+    : [match.team2, match.team2_ar, match.away_team, match.away_team_ar];
+  return uniq(names
+    .map(v => normalizeArabicText(String(v || '')).trim())
+    .filter(v => v && v.length >= 3));
+}
+function allIndexesOf(haystack = '', needle = '') {
+  const out = [];
+  const n = String(needle || '');
+  if (!n) return out;
+  let idx = String(haystack || '').indexOf(n);
+  while (idx >= 0) {
+    out.push(idx);
+    idx = String(haystack || '').indexOf(n, idx + Math.max(1, n.length));
+  }
+  return out;
+}
+function findBestTeamPairRange(textNorm = '', match = {}) {
+  const aTerms = matchChannelTerms(match, 1);
+  const bTerms = matchChannelTerms(match, 2);
+  if (!aTerms.length || !bTerms.length) return null;
+  const aPositions = [];
+  const bPositions = [];
+  for (const term of aTerms) for (const index of allIndexesOf(textNorm, term)) aPositions.push({index, length:term.length, term});
+  for (const term of bTerms) for (const index of allIndexesOf(textNorm, term)) bPositions.push({index, length:term.length, term});
+  if (!aPositions.length || !bPositions.length) return null;
+  let best = null;
+  for (const a of aPositions) {
+    for (const b of bPositions) {
+      const distance = Math.abs(a.index - b.index);
+      if (distance > 900) continue;
+      const start = Math.min(a.index, b.index);
+      const end = Math.max(a.index + a.length, b.index + b.length);
+      const item = {start, end, distance, terms:[a.term, b.term]};
+      if (!best || item.distance < best.distance) best = item;
+    }
+  }
+  return best;
+}
+function rangesForMatchesOnPage(textNorm = '', matches = []) {
+  const out = [];
+  for (const m of matches || []) {
+    const range = findBestTeamPairRange(textNorm, m);
+    if (range) out.push({match:m, ...range});
+  }
+  return out.sort((a,b) => a.start - b.start || a.end - b.end);
+}
+function kickoffSignature(match = {}) {
+  return String(match.kickoff_utc || match.kickoff_jordan || `${match.date || ''} ${match.time || ''}`).trim();
+}
+function simultaneousKickoffCount(match = {}, matches = []) {
+  const sig = kickoffSignature(match);
+  if (!sig) return 1;
+  return (matches || []).filter(m => kickoffSignature(m) === sig).length || 1;
+}
+function extractMatchSpecificChannelContext(text = '', match = {}, matches = []) {
+  const textNorm = normalizeArabicText(text);
+  const current = findBestTeamPairRange(textNorm, match);
+  if (!current) {
+    return {
+      text: '',
+      precise: false,
+      method: 'no-both-teams-nearby',
+      note_ar: 'لم يتم العثور على اسمي الفريقين قريبين من بعضهما؛ لم يتم نشر القنوات تلقائياً لتجنب خلط المباريات.'
+    };
+  }
+
+  const allRanges = rangesForMatchesOnPage(textNorm, matches);
+  const sameRange = (r) => r.match === match || (r.match?.id && r.match.id === match.id) || (r.match?.num && r.match.num === match.num);
+  const prev = [...allRanges].reverse().find(r => !sameRange(r) && r.end <= current.start);
+  const next = allRanges.find(r => !sameRange(r) && r.start >= current.end);
+
+  const leftBoundary = prev ? Math.floor((prev.end + current.start) / 2) : 0;
+  const rightBoundary = next ? Math.floor((current.end + next.start) / 2) : textNorm.length;
+
+  // Keep the extraction window tied to the exact match block. This is what prevents
+  // beIN SPORTS MAX 1 from being copied to a different simultaneous match that has MAX 2.
+  const start = Math.max(leftBoundary, current.start - 260);
+  const end = Math.min(rightBoundary, current.end + 420);
+  const segment = textNorm.slice(start, end).trim();
+  return {
+    text: segment,
+    precise: true,
+    method: simultaneousKickoffCount(match, matches) > 1 ? 'both-teams-nearby-simultaneous-safe-block' : 'both-teams-nearby-match-block',
+    boundaries: {start, end, leftBoundary, rightBoundary, pair_start: current.start, pair_end: current.end, distance: current.distance},
+    note_ar: simultaneousKickoffCount(match, matches) > 1
+      ? 'تم استخراج القنوات من مقطع المباراة نفسها فقط لأن هناك مباريات بنفس التوقيت؛ لا يتم نسخ MAX 1/MAX 2 بين المباريات.'
+      : 'تم استخراج القنوات من مقطع قريب من اسمي الفريقين فقط، وليس من الصفحة كاملة.'
+  };
 }
 function safeTitleFromHtml(html = '') {
   const m = String(html).match(/<title[^>]*>([\s\S]*?)<\/title>/i);
@@ -408,7 +587,7 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
       name_ar: 'تأكيدات بث كأس العالم الملتقطة تلقائياً من beIN SPORTS الرسمي',
       source_name: 'beIN SPORTS',
       last_checked_at: jordanNowIso(),
-      policy_ar: 'النشر التلقائي يتم فقط عندما يذكر مصدر beIN الرسمي القناة والمباراة بوضوح؛ النتائج غير الواضحة تذهب إلى ملف المراجعة.'
+      policy_ar: 'النشر التلقائي يتم فقط عندما تظهر القناة داخل مقطع المباراة نفسها. عند وجود مباراتين بنفس التوقيت لا يتم نقل MAX 1/MAX 2 من مباراة إلى أخرى؛ النتائج غير الواضحة تذهب إلى ملف المراجعة.'
     },
     matches: {},
     review: []
@@ -417,16 +596,20 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
     const text = `${page.title || ''} ${page.text || ''}`;
     const textNorm = normalizeArabicText(text);
     if (!/bein|بي ان|بي ان|بيين|بي ان سبورت|كاس العالم|world cup|fifa/.test(textNorm)) continue;
-    const channels = extractChannelCandidates(text, page.url);
     const broadcastAction = hasBroadcastAction(textNorm);
     const canPublishFromPage = page.kind !== 'listing';
     for (const match of matches || []) {
       const conf = matchConfidenceFromText(match, textNorm);
       if (conf.score < 45) continue;
+      const context = extractMatchSpecificChannelContext(text, match, matches || []);
+      const channels = context.precise ? extractChannelCandidates(context.text, page.url) : [];
+      const simultaneous = simultaneousKickoffCount(match, matches || []) > 1;
       const reviewItem = {
         match_id: match.id,
         match_num: match.num,
         teams_ar: `${match.team1_ar || match.team1} × ${match.team2_ar || match.team2}`,
+        kickoff_jordan: match.kickoff_jordan || '',
+        simultaneous_matches_at_same_time: simultaneous,
         confidence: conf.score,
         reasons: conf.reasons,
         source_url: page.url,
@@ -434,19 +617,24 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
         page_kind: page.kind,
         channels_found: channels.map(c => c.name_ar),
         action_words_found: broadcastAction,
-        note_ar: canPublishFromPage ? 'مراجعة تلقائية من beIN؛ لا تنشر إلا إذا تجاوزت الثقة الحد المطلوب ووجدت قناة واضحة.' : 'صفحة فهرس/قائمة؛ تستخدم للاكتشاف والمراجعة ولا تنشر تلقائياً لتجنب الخلط بين عدة أخبار.'
+        channel_context_method: context.method,
+        channel_context_note_ar: context.note_ar,
+        note_ar: canPublishFromPage ? 'مراجعة تلقائية من beIN؛ لا تنشر إلا إذا كانت القنوات داخل مقطع المباراة نفسها، خصوصاً عند وجود مباراتين بنفس التوقيت.' : 'صفحة فهرس/قائمة؛ تستخدم للاكتشاف والمراجعة ولا تنشر تلقائياً لتجنب الخلط بين عدة أخبار.'
       };
-      if (canPublishFromPage && conf.score >= BEIN_CONFIRMATION_SCORE && broadcastAction && channels.length) {
+      if (canPublishFromPage && conf.score >= BEIN_CONFIRMATION_SCORE && broadcastAction && context.precise && channels.length) {
         const key = match.id || `M${String(match.num || '').padStart(3,'0')}`;
         source.matches[key] ||= {channels: []};
         source.matches[key].channels = upsertChannels(source.matches[key].channels, channels.map(c => ({
           ...c,
           status: c.status === 'pending_official_announcement' ? 'confirmed' : c.status,
           match_confidence: conf.score,
-          match_confidence_reasons: conf.reasons
+          match_confidence_reasons: conf.reasons,
+          match_channel_context_method: context.method
         })));
         reviewItem.published = true;
-        reviewItem.note_ar = 'تم نشرها لأن الخبر الرسمي ذكر المباراة والقناة بوضوح كافٍ.';
+        reviewItem.note_ar = simultaneous
+          ? 'تم نشرها لأن القناة وجدت داخل مقطع المباراة نفسها رغم وجود مباريات بنفس التوقيت؛ لم يتم نسخ قنوات من مباراة ثانية.'
+          : 'تم نشرها لأن الخبر الرسمي ذكر المباراة والقناة داخل مقطع المباراة نفسه.';
       } else {
         reviewItem.published = false;
       }
@@ -527,14 +715,13 @@ function defaultBroadcasts(lastUpdatedIso = '2026-06-05T00:00:00+03:00') {
       region: 'Jordan / MENA',
       language_focus: ['Arabic'],
       frequencies_included: false,
-      policy: 'No frequencies and no streaming links. MaenSat rule: beIN SPORTS MAX and beIN SPORTS 4K are encrypted; plain beIN SPORTS without MAX/4K/NEWS/CONNECT is treated as beIN SPORTS Free-to-air when found on an official broadcaster page near a match.',
-      policy_ar: 'لا توجد ترددات ولا روابط بث. قاعدة MaenSat: beIN SPORTS MAX و beIN SPORTS 4K مشفرة؛ أما beIN SPORTS كقناة مستقلة فتُعامل كقناة beIN SPORTS المفتوحة عند ظهورها في صفحة ناقل رسمية بجانب المباراة، حتى لو ظهرت معها MAX أو 4K كقنوات مشفرة منفصلة.',
+      policy: 'No frequencies and no streaming links. MaenSat rule: plain beIN SPORTS is the free-to-air channel; beIN SPORTS MAX 1, MAX 2, and 4K are encrypted. Other beIN variants are hidden. When matches share kickoff time, channels are published only from the exact match block to avoid mixing MAX 1/MAX 2.',
+      policy_ar: 'لا توجد ترددات ولا روابط بث. قاعدة MaenSat: beIN SPORTS كقناة مستقلة تعني beIN SPORTS المفتوحة/المجانية؛ beIN SPORTS MAX 1 وMAX 2 و4K مشفرة. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباراتين بنفس الوقت لا تُنشر القناة إلا إذا ظهرت داخل مقطع المباراة نفسها.',
       last_updated: lastUpdatedIso,
       update_policy: 'Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.'
     },
     default_channels: [
-      {name_ar:'beIN SPORTS MAX', name_en:'beIN SPORTS MAX', type:'encrypted', status:'to_be_confirmed', note_ar:'بانتظار تحديد قناة MAX الخاصة بالمباراة', note_en:'Waiting for the exact MAX channel for this match'},
-      {name_ar:'beIN SPORTS المفتوحة', name_en:'beIN SPORTS Free-to-air', type:'free', status:'pending_official_announcement', note_ar:'تظهر كمجانية إذا ذكر المصدر beIN SPORTS المفتوحة أو ذكر beIN SPORTS كقناة مستقلة قرب المباراة؛ MAX و4K تبقى مشفرة منفصلة', note_en:'Shown as free-to-air when the official source says Free-to-air, or plain beIN SPORTS without MAX/4K/NEWS/CONNECT near the match'}
+      {name_ar:'beIN SPORTS المفتوحة', name_en:'beIN SPORTS Free-to-air', type:'free', status:'pending_official_announcement', note_ar:'تظهر كمجانية إذا ذكر المصدر beIN SPORTS المفتوحة أو ذكر beIN SPORTS كقناة مستقلة قرب المباراة؛ MAX 1 وMAX 2 و4K تبقى مشفرة منفصلة', note_en:'Shown as free-to-air when the official source says Free-to-air, or plain beIN SPORTS near the match'}
     ],
     matches: {},
     status_values: {
@@ -659,6 +846,7 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
     broadcasts = mergeBroadcasts(broadcasts, observedSource);
     console.log('[worldcup-observed] merged local observed broadcaster confirmations');
   }
+  broadcasts = sanitizeBroadcastsForCoreBeinChannels(broadcasts);
   return {broadcasts, review};
 }
 
