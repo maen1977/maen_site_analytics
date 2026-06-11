@@ -9,6 +9,8 @@ const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
 const BROADCASTS_FILE = path.join(WC_DIR, 'broadcasts.json');
 const BROADCAST_SOURCE_FILE = process.env.WORLD_CUP_2026_BROADCAST_SOURCE_FILE || path.join(WC_DIR, 'broadcast-source.json');
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
+const LIVE_SCORE_CHECK = process.env.WORLD_CUP_2026_LIVE_SCORE_CHECK !== '0';
+const LIVE_SCORE_URL = process.env.WORLD_CUP_2026_LIVE_SCORE_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200';
 const BROADCAST_SOURCE_URL = process.env.WORLD_CUP_2026_BROADCAST_SOURCE_URL || '';
 const BEIN_NEWS_SOURCE_FILE = process.env.WORLD_CUP_2026_BEIN_NEWS_SOURCE_FILE || path.join(WC_DIR, 'bein-news-sources.json');
 const BROADCAST_REVIEW_FILE = path.join(WC_DIR, 'broadcast-review.json');
@@ -56,6 +58,7 @@ function matchDateKeyInJordan(match) {
 }
 function matchStatus(m) {
   if (m.score?.p || m.score?.et || m.score?.ft) return 'finished';
+  if (m.score?.live && Array.isArray(m.score.live)) return 'live';
   if (m.status) return m.status;
   return 'scheduled';
 }
@@ -76,6 +79,7 @@ function kickoffMs(match = {}) {
 }
 function scoreValue(score, index) {
   if (!score) return 0;
+  if (score.live && Number.isFinite(score.live[index])) return score.live[index];
   if (score.ft && Number.isFinite(score.ft[index])) return score.ft[index];
   if (score.et && Number.isFinite(score.et[index])) return score.et[index];
   return 0;
@@ -99,7 +103,7 @@ function normalizeSourceMatch(m, idx) {
     id: `M${String(num || idx+1).padStart(3,'0')}`, num, round:m.round, stage, stage_ar:STAGE_AR[m.round] || STAGE_AR[stage] || m.round,
     group:(m.group||'').replace('Group ',''), date:m.date, time:m.time, kickoff_utc:utc, kickoff_jordan:kickoffJordanIso(m.date,m.time),
     team1:t1, team2:t2, team1_ar:TEAM_AR[t1] || t1, team2_ar:TEAM_AR[t2] || t2, ground:m.ground || '', stadium:STADIUM_NAMES[m.ground] || m.ground || '',
-    status:matchStatus(m), home_score:scoreValue(m.score,0), away_score:scoreValue(m.score,1), score:m.score || null, score_source:'openfootball'
+    status:matchStatus(m), home_score:scoreValue(m.score,0), away_score:scoreValue(m.score,1), score:m.score || null, score_source:m.score_source || m.score?.source || 'openfootball', live_clock:m.live_clock || m.score?.clock || null, live_status_detail:m.live_status_detail || m.score?.status_detail || null
   };
   obj.search_text = [obj.team1,obj.team2,obj.team1_ar,obj.team2_ar,obj.ground,obj.stadium,obj.stage_ar,obj.group].filter(Boolean).join(' ');
   return obj;
@@ -230,13 +234,25 @@ function hasFreeHint(textNorm = '') {
   return /(مجانا|مجانيه|مجاني|المفتوحه|مفتوحه|free to air|free|unencrypted|fta)/.test(textNorm);
 }
 function hasEncryptedHint(textNorm = '') {
-  return /(مشفّر|مشفر|باقة|باقة|اشتراك|مشترك|max|4k|encrypted|subscription)/.test(textNorm);
+  return /(مشفّر|مشفر|باقة|باقة|اشتراك|مشترك|max|4k|encrypted|subscription|beinconnect|connect|اشترك|الباقات|باقة|قنوات مخصصه|مخصصه)/.test(textNorm);
+}
+function hasPremiumBeinHint(textNorm = '') {
+  return /(max|4k|uhd|news|الاخباريه|الإخبارية|beinconnect|connect|اشترك|اشتراك|الباقات|باقة|مشترك|subscription|encrypted|مشفر|مشفّر|قنوات مخصصه|مخصصه|pay per view)/.test(textNorm);
+}
+function hasStandaloneBeinContext(textNorm = '') {
+  return /(شاهد عبر|مشاهده عبر|متاح عبر|يبث عبر|تبث عبر|ينقل عبر|تنقل عبر|على بي ان سبورت|علي بي ان سبورت|على قناه بي ان سبورت|قناه بي ان سبورت|beIN sports live|watch on bein sports|live on bein sports|on bein sports|via bein sports)/i.test(textNorm);
 }
 function findSnippet(text = '', needle = '', size = 240) {
   const hay = String(text || '');
   const idx = needle ? hay.toLowerCase().indexOf(String(needle).toLowerCase()) : -1;
   const start = idx >= 0 ? Math.max(0, idx - size) : 0;
   return hay.slice(start, Math.min(hay.length, start + size * 2)).replace(/\s+/g, ' ').trim();
+}
+function findSnippetAt(text = '', index = 0, size = 240) {
+  const hay = String(text || '');
+  const idx = Number.isFinite(index) ? Math.max(0, index) : 0;
+  const start = Math.max(0, idx - size);
+  return hay.slice(start, Math.min(hay.length, idx + size)).replace(/\s+/g, ' ').trim();
 }
 function channelKey(channel = {}) {
   return normalizeArabicText([channel.name_en, channel.name_ar, channel.type].filter(Boolean).join(' '));
@@ -263,6 +279,9 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
     {kind:'free', regex:/\bbeIN\s*SPORTS\s*المفتوحة\b/gi},
     {kind:'free', regex:/بي\s*إن\s*سبورت\s*المفتوح[هة]/gi},
     {kind:'free', regex:/القناة\s+المفتوح[هة]/gi},
+    {kind:'standalone_free', regex:/\bbeIN\s*SPORTS\b(?!\s*(?:MAX|4K|NEWS|الإخبارية|الاخبارية|CONNECT))/gi},
+    {kind:'standalone_free', regex:/بي\s*إن\s*سبورت\b(?!\s*(?:ماكس|4\s*كي|الإخبارية|الاخبارية|كونكت))/gi},
+    {kind:'standalone_free', regex:/بي\s*ان\s*سبورت\b(?!\s*(?:ماكس|4\s*كي|الإخبارية|الاخبارية|كونكت))/gi},
     {kind:'news', regex:/\bbeIN\s*SPORTS\s*(?:NEWS|الإخبارية|الاخبارية)\b/gi},
     {kind:'news', regex:/بي\s*إن\s*سبورت\s*(?:الإخبارية|الاخبارية)/gi}
   ];
@@ -270,7 +289,7 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
     for (const match of text.matchAll(regex)) {
       const raw = match[0];
       const number = westernDigits(match[1] || '').trim();
-      const snippet = findSnippet(text, raw, 220);
+      const snippet = findSnippetAt(text, match.index, 220);
       const snippetNorm = normalizeArabicText(snippet);
       let nameEn = 'beIN SPORTS';
       let nameAr = 'beIN SPORTS';
@@ -290,6 +309,16 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
         nameAr = 'beIN SPORTS المفتوحة';
         type = 'free';
         status = hasFreeHint(snippetNorm) || hasFreeHint(normalizeArabicText(text)) ? 'confirmed' : 'pending_official_announcement';
+      } else if (kind === 'standalone_free') {
+        // MaenSat exact rule:
+        // If the official broadcaster page lists plain "beIN SPORTS" as a channel near the match, publish it as the free-to-air beIN SPORTS channel.
+        // This stays true even when the same channel list also includes beIN SPORTS MAX or beIN SPORTS 4K; those are added separately as encrypted.
+        // Article branding like "beIN SPORTS announced..." is still ignored unless it appears in a broadcast/watch/on-channel context.
+        if (!hasFreeHint(snippetNorm) && !hasStandaloneBeinContext(snippetNorm)) continue;
+        nameEn = 'beIN SPORTS Free-to-air';
+        nameAr = 'beIN SPORTS المفتوحة';
+        type = 'free';
+        status = 'confirmed';
       } else if (kind === 'news') {
         nameEn = 'beIN SPORTS NEWS';
         nameAr = 'beIN SPORTS الإخبارية';
@@ -303,7 +332,7 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
         source_name: 'beIN SPORTS',
         source_url: sourceUrl,
         evidence_ar: snippet,
-        note_ar: kind === 'max' && !number ? 'ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.' : 'تم التقاطها من مصدر beIN SPORTS الرسمي.'
+        note_ar: kind === 'max' && !number ? 'ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.' : (kind === 'standalone_free' ? 'حسب قاعدة MaenSat: ظهور beIN SPORTS كقناة مستقلة يُعامل كقناة beIN SPORTS المفتوحة، حتى لو ظهرت معها MAX أو 4K كقنوات مشفرة منفصلة.' : 'تم التقاطها من مصدر beIN SPORTS الرسمي.')
       });
     }
   }
@@ -497,13 +526,14 @@ function defaultBroadcasts(lastUpdatedIso = '2026-06-05T00:00:00+03:00') {
       region: 'Jordan / MENA',
       language_focus: ['Arabic'],
       frequencies_included: false,
-      policy: 'No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.',
+      policy: 'No frequencies and no streaming links. MaenSat rule: beIN SPORTS MAX and beIN SPORTS 4K are encrypted; plain beIN SPORTS without MAX/4K/NEWS/CONNECT is treated as beIN SPORTS Free-to-air when found on an official broadcaster page near a match.',
+      policy_ar: 'لا توجد ترددات ولا روابط بث. قاعدة MaenSat: beIN SPORTS MAX و beIN SPORTS 4K مشفرة؛ أما beIN SPORTS كقناة مستقلة فتُعامل كقناة beIN SPORTS المفتوحة عند ظهورها في صفحة ناقل رسمية بجانب المباراة، حتى لو ظهرت معها MAX أو 4K كقنوات مشفرة منفصلة.',
       last_updated: lastUpdatedIso,
       update_policy: 'Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.'
     },
     default_channels: [
       {name_ar:'beIN SPORTS MAX', name_en:'beIN SPORTS MAX', type:'encrypted', status:'to_be_confirmed', note_ar:'بانتظار تحديد قناة MAX الخاصة بالمباراة', note_en:'Waiting for the exact MAX channel for this match'},
-      {name_ar:'beIN SPORTS المفتوحة', name_en:'beIN SPORTS Free-to-air', type:'free', status:'pending_official_announcement', note_ar:'تظهر كمجانية فقط عند الإعلان الرسمي عن المباراة المجانية', note_en:'Shown as free-to-air only after official confirmation for the match'}
+      {name_ar:'beIN SPORTS المفتوحة', name_en:'beIN SPORTS Free-to-air', type:'free', status:'pending_official_announcement', note_ar:'تظهر كمجانية إذا ذكر المصدر beIN SPORTS المفتوحة أو ذكر beIN SPORTS كقناة مستقلة قرب المباراة؛ MAX و4K تبقى مشفرة منفصلة', note_en:'Shown as free-to-air when the official source says Free-to-air, or plain beIN SPORTS without MAX/4K/NEWS/CONNECT near the match'}
     ],
     matches: {},
     status_values: {
@@ -614,6 +644,123 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
   return {broadcasts, review};
 }
 
+
+function teamNameKey(name = '') {
+  const aliases = {
+    'united states':'usa',
+    'usmnt':'usa',
+    'czechia':'czech republic',
+    'bosnia and herzegovina':'bosnia herzegovina',
+    'bosnia & herzegovina':'bosnia herzegovina',
+    'cote divoire':'ivory coast',
+    'côte divoire':'ivory coast',
+    'cote d ivoire':'ivory coast',
+    'dr congo':'dr congo',
+    'congo dr':'dr congo',
+    'congo democratic republic':'dr congo',
+    'korea republic':'south korea',
+    'republic of korea':'south korea'
+  };
+  const raw = String(name || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\b(fc|national team|men)\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return aliases[raw] || raw.replace(/\band\b/g, ' ').replace(/\s+/g, ' ').trim();
+}
+function numberFromScore(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+function espnCompetitorKey(comp = {}) {
+  const team = comp.team || {};
+  return [team.displayName, team.shortDisplayName, team.name, team.location, team.abbreviation]
+    .filter(Boolean)
+    .map(teamNameKey);
+}
+function findEspnCompetitor(entry, teamName) {
+  const wanted = teamNameKey(teamName);
+  return (entry.competitors || []).find(comp => espnCompetitorKey(comp).includes(wanted));
+}
+function extractEspnLiveEntries(json = {}) {
+  const entries = [];
+  for (const event of json.events || []) {
+    const competition = event.competitions?.[0] || {};
+    const status = competition.status || event.status || {};
+    entries.push({
+      id: event.id,
+      name: event.name || event.shortName || '',
+      date: competition.date || event.date || '',
+      status,
+      competitors: competition.competitors || []
+    });
+  }
+  return entries;
+}
+async function fetchLiveScoreEntries() {
+  if (!LIVE_SCORE_CHECK) return [];
+  try {
+    const res = await fetch(LIVE_SCORE_URL, {headers:{'user-agent':'maensat-worldcup-live-score-updater/1.1 (+https://maensat.pages.dev)'}});
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    const entries = extractEspnLiveEntries(json);
+    console.log(`[worldcup-live] fetched ${entries.length} live scoreboard event(s) from ESPN`);
+    return entries;
+  } catch (err) {
+    console.warn('[worldcup-live] live score fetch failed; keeping fixture-source scores only:', err.message);
+    return [];
+  }
+}
+function applyLiveScoresToSource(source = {}, liveEntries = []) {
+  if (!Array.isArray(source.matches) || !liveEntries.length) return source;
+  let applied = 0;
+  const matches = source.matches.map(match => {
+    const entry = liveEntries.find(e => findEspnCompetitor(e, match.team1) && findEspnCompetitor(e, match.team2));
+    if (!entry) return match;
+    const c1 = findEspnCompetitor(entry, match.team1);
+    const c2 = findEspnCompetitor(entry, match.team2);
+    const s1 = numberFromScore(c1?.score);
+    const s2 = numberFromScore(c2?.score);
+    if (s1 === null || s2 === null) return match;
+    const statusType = entry.status?.type || {};
+    const state = String(statusType.state || '').toLowerCase();
+    const completed = Boolean(statusType.completed) || state === 'post' || /final|full time|ft/i.test(statusType.name || statusType.description || statusType.detail || '');
+    const inProgress = state === 'in' || /STATUS_(FIRST|SECOND|HALF|EXTRA|IN_PROGRESS)/i.test(statusType.name || '');
+    if (!completed && !inProgress && s1 === 0 && s2 === 0) return match;
+    const score = {...(match.score || {})};
+    if (completed) {
+      score.ft = [s1, s2];
+      delete score.live;
+    } else {
+      score.live = [s1, s2];
+    }
+    score.source = 'espn';
+    score.event_id = entry.id || null;
+    score.status_detail = statusType.detail || statusType.description || entry.status?.displayClock || '';
+    score.clock = entry.status?.displayClock || statusType.shortDetail || '';
+    applied += 1;
+    return {
+      ...match,
+      score,
+      status: completed ? 'finished' : 'live',
+      score_source: 'espn',
+      live_clock: score.clock || null,
+      live_status_detail: score.status_detail || null,
+      espn_event_id: entry.id || null
+    };
+  });
+  if (applied) {
+    console.log(`[worldcup-live] applied live/final score updates to ${applied} match(es)`);
+    return {...source, matches, live_score_source: 'espn'};
+  }
+  console.log('[worldcup-live] no ESPN live score matched current World Cup fixtures');
+  return source;
+}
+
 async function fetchSource(existingBundle) {
   try {
     const res = await fetch(SOURCE_URL, {headers:{'user-agent':'maensat-worldcup-updater'}});
@@ -653,8 +800,10 @@ function buildOutput(source, lastUpdatedIso, lastCheckedIso = lastUpdatedIso) {
   const metadata = {
     name:'كأس العالم 2026',
     english_name: source.name || 'World Cup 2026',
-    source:'openfootball/worldcup.json',
+    source: source.live_score_source ? 'openfootball/worldcup.json + ESPN live scoreboard' : 'openfootball/worldcup.json',
     source_url:SOURCE_URL,
+    live_score_source: source.live_score_source || null,
+    live_score_url: source.live_score_source ? LIVE_SCORE_URL : null,
     official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf',
     last_updated:lastUpdatedIso,
     last_checked_at:lastCheckedIso,
@@ -704,7 +853,9 @@ async function main(){
     return;
   }
   console.log(`[worldcup] running update: ${gate.reason}`);
-  const source = await fetchSource(existingBundle);
+  let source = await fetchSource(existingBundle);
+  const liveEntries = await fetchLiveScoreEntries();
+  source = applyLiveScoresToSource(source, liveEntries);
   const checkedAtIso = jordanNowIso();
   const preservedLastUpdated = existingBundle?.metadata?.last_updated || checkedAtIso;
   const draft = buildOutput(source, preservedLastUpdated, checkedAtIso);
