@@ -2,11 +2,13 @@
   "metadata": {
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "source": "openfootball/worldcup.json",
+    "source": "openfootball/worldcup.json + ESPN live scoreboard",
     "source_url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+    "live_score_source": "espn",
+    "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-07T17:14:28.500+03:00",
-    "last_checked_at": "2026-06-11T22:48:25.660+03:00",
+    "last_updated": "2026-06-12T00:04:12.395+03:00",
+    "last_checked_at": "2026-06-12T00:04:12.395+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -36,6 +38,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2A 2B 2A 2B Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
     },
     {
@@ -60,6 +64,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1C 2F 1C 2F Houston Houston Stadium / NRG Stadium دور 32"
     },
     {
@@ -84,6 +90,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1E 3A/B/C/D/F 1E 3A/B/C/D/F Boston (Foxborough) Boston Stadium / Gillette Stadium دور 32"
     },
     {
@@ -108,6 +116,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1F 2C 1F 2C Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور 32"
     },
     {
@@ -132,6 +142,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2E 2I 2E 2I Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
     },
     {
@@ -156,6 +168,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1I 3C/D/F/G/H 1I 3C/D/F/G/H New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 32"
     },
     {
@@ -180,6 +194,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1A 3C/E/F/H/I 1A 3C/E/F/H/I Mexico City Mexico City Stadium / Estadio Azteca دور 32"
     },
     {
@@ -204,6 +220,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1L 3E/H/I/J/K 1L 3E/H/I/J/K Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 32"
     },
     {
@@ -228,6 +246,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1G 3A/E/H/I/J 1G 3A/E/H/I/J Seattle Seattle Stadium / Lumen Field دور 32"
     },
     {
@@ -252,6 +272,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1D 3B/E/F/I/J 1D 3B/E/F/I/J San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور 32"
     },
     {
@@ -276,6 +298,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1H 2J 1H 2J Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
     },
     {
@@ -300,6 +324,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2K 2L 2K 2L Toronto Toronto Stadium / BMO Field دور 32"
     },
     {
@@ -324,6 +350,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1B 3E/F/G/I/J 1B 3E/F/G/I/J Vancouver Vancouver Stadium / BC Place دور 32"
     },
     {
@@ -348,6 +376,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2D 2G 2D 2G Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
     },
     {
@@ -372,6 +402,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1J 2H 1J 2H Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور 32"
     },
     {
@@ -396,6 +428,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1K 3D/E/I/J/L 1K 3D/E/I/J/L Kansas City Kansas City Stadium / Arrowhead Stadium دور 32"
     },
     {
@@ -420,6 +454,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W73 W75 W73 W75 Houston Houston Stadium / NRG Stadium دور 16"
     },
     {
@@ -444,6 +480,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W74 W77 W74 W77 Philadelphia Philadelphia Stadium / Lincoln Financial Field دور 16"
     },
     {
@@ -468,6 +506,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W76 W78 W76 W78 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 16"
     },
     {
@@ -492,6 +532,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W79 W80 W79 W80 Mexico City Mexico City Stadium / Estadio Azteca دور 16"
     },
     {
@@ -516,6 +558,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W83 W84 W83 W84 Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 16"
     },
     {
@@ -540,6 +584,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W81 W82 W81 W82 Seattle Seattle Stadium / Lumen Field دور 16"
     },
     {
@@ -564,6 +610,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W86 W88 W86 W88 Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 16"
     },
     {
@@ -588,6 +636,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W85 W87 W85 W87 Vancouver Vancouver Stadium / BC Place دور 16"
     },
     {
@@ -612,6 +662,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W89 W90 W89 W90 Boston (Foxborough) Boston Stadium / Gillette Stadium ربع النهائي"
     },
     {
@@ -636,6 +688,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W93 W94 W93 W94 Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium ربع النهائي"
     },
     {
@@ -660,6 +714,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W91 W92 W91 W92 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium ربع النهائي"
     },
     {
@@ -684,6 +740,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W95 W96 W95 W96 Kansas City Kansas City Stadium / Arrowhead Stadium ربع النهائي"
     },
     {
@@ -708,6 +766,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W97 W98 W97 W98 Dallas (Arlington) Dallas Stadium / AT&T Stadium نصف النهائي"
     },
     {
@@ -732,6 +792,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W99 W100 W99 W100 Atlanta Atlanta Stadium / Mercedes-Benz Stadium نصف النهائي"
     },
     {
@@ -755,6 +817,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "L101 L102 L101 L102 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium المركز الثالث"
     },
     {
@@ -778,6 +842,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W101 W102 W101 W102 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium النهائي"
     }
   ]
