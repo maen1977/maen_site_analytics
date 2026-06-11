@@ -8,6 +8,7 @@ const STANDINGS_FILE = path.join(WC_DIR, 'standings.json');
 const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
 const BROADCASTS_FILE = path.join(WC_DIR, 'broadcasts.json');
 const BROADCAST_SOURCE_FILE = process.env.WORLD_CUP_2026_BROADCAST_SOURCE_FILE || path.join(WC_DIR, 'broadcast-source.json');
+const BROADCAST_OBSERVED_FILE = process.env.WORLD_CUP_2026_BROADCAST_OBSERVED_FILE || path.join(WC_DIR, 'broadcast-observed.json');
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const LIVE_SCORE_CHECK = process.env.WORLD_CUP_2026_LIVE_SCORE_CHECK !== '0';
 const LIVE_SCORE_URL = process.env.WORLD_CUP_2026_LIVE_SCORE_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200';
@@ -576,6 +577,13 @@ async function fetchBroadcastSource() {
   }
   return null;
 }
+
+async function fetchObservedBroadcastSource() {
+  if (!(await fileExists(BROADCAST_OBSERVED_FILE))) return null;
+  const local = await readJson(BROADCAST_OBSERVED_FILE);
+  if (!local) return null;
+  return local;
+}
 function normalizeBroadcastSource(source = {}) {
   if (Array.isArray(source)) {
     const matches = {};
@@ -611,6 +619,11 @@ function mergeBroadcasts(base, incoming) {
     out.metadata.bein_official_last_checked_at = incoming.metadata.last_checked_at || out.metadata.bein_official_last_checked_at || '';
     out.metadata.bein_official_auto_check = true;
   }
+  if (incoming?.metadata?.source_name === 'MaenSat observed confirmation') {
+    out.metadata.observed_broadcast_last_checked_at = incoming.metadata.last_checked_at || out.metadata.observed_broadcast_last_checked_at || '';
+    out.metadata.observed_broadcast_file = path.relative(ROOT, BROADCAST_OBSERVED_FILE).replace(/\\/g, '/');
+    out.metadata.observed_broadcast_note_ar = 'تأكيدات مشاهدة يدوية من صاحب الموقع؛ تُدمج فوق المصادر التلقائية ولا تمس ملفات المباريات/الترتيب/القوس.';
+  }
   return out;
 }
 async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
@@ -640,6 +653,11 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
   if (beinSource && Object.keys(beinSource.matches || {}).length) {
     broadcasts = mergeBroadcasts(broadcasts, beinSource);
     console.log('[worldcup-bein] merged official beIN broadcaster confirmations');
+  }
+  const observedSource = await fetchObservedBroadcastSource();
+  if (observedSource && Object.keys(normalizeBroadcastSource(observedSource).matches || {}).length) {
+    broadcasts = mergeBroadcasts(broadcasts, observedSource);
+    console.log('[worldcup-observed] merged local observed broadcaster confirmations');
   }
   return {broadcasts, review};
 }

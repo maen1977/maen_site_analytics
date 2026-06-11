@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "name": "Observed World Cup broadcaster confirmations",
+    "name_ar": "تأكيدات مشاهدة كأس العالم من صاحب الموقع",
+    "source_name": "MaenSat observed confirmation",
+    "last_checked_at": "2026-06-11T23:10:00+03:00",
+    "policy_ar": "هذا الملف مخصص للتأكيدات اليدوية عندما يشاهد صاحب الموقع المباراة فعلياً على قناة مفتوحة في الأردن/الشرق الأوسط. لا يحتوي روابط بث ولا ترددات.",
+    "note_ar": "M001 تمت مشاهدتها فعلياً على beIN SPORTS المجانية في الأردن/الشرق الأوسط، لذلك تُضاف كقناة مجانية مؤكدة بجانب MAX/4K المشفرة إن وجدت."
+  },
+  "matches": {
+    "M001": {
+      "observed": true,
+      "observed_region": "Jordan / MENA",
+      "observed_at": "2026-06-11T23:10:00+03:00",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS المفتوحة",
+          "name_en": "beIN SPORTS Free-to-air",
+          "type": "free",
+          "status": "confirmed",
+          "source_name": "MaenSat observed confirmation",
+          "source_url": "",
+          "evidence_ar": "تمت مشاهدة مباراة المكسيك × جنوب أفريقيا فعلياً على beIN SPORTS المجانية في الأردن/الشرق الأوسط.",
+          "note_ar": "تأكيد مشاهدة من صاحب الموقع. لا يعني أن كل مباريات البطولة مجانية؛ MAX و4K تبقى مشفرة، وbeIN SPORTS كقناة مستقلة تُعامل كمفتوحة."
+        }
+      ]
+    }
+  }
+}
