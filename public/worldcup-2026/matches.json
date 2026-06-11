@@ -2,11 +2,13 @@
   "metadata": {
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "source": "openfootball/worldcup.json",
+    "source": "openfootball/worldcup.json + ESPN live scoreboard",
     "source_url": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+    "live_score_source": "espn",
+    "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-07T17:14:28.500+03:00",
-    "last_checked_at": "2026-06-11T22:48:25.660+03:00",
+    "last_updated": "2026-06-12T00:04:12.395+03:00",
+    "last_checked_at": "2026-06-12T00:04:12.395+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -173,11 +175,22 @@
       "team2_ar": "جنوب أفريقيا",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": "scheduled",
-      "home_score": 0,
+      "status": "live",
+      "home_score": 2,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "score": {
+        "live": [
+          2,
+          0
+        ],
+        "source": "espn",
+        "event_id": "760415",
+        "status_detail": "90'+8'",
+        "clock": "90'+8'"
+      },
+      "score_source": "espn",
+      "live_clock": "90'+8'",
+      "live_status_detail": "90'+8'",
       "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A"
     },
     {
@@ -202,6 +215,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A"
     },
     {
@@ -226,6 +241,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B"
     },
     {
@@ -250,6 +267,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D"
     },
     {
@@ -274,6 +293,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Qatar Switzerland قطر سويسرا San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات B"
     },
     {
@@ -298,6 +319,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C"
     },
     {
@@ -322,6 +345,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Haiti Scotland هايتي اسكتلندا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات C"
     },
     {
@@ -346,6 +371,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Australia Turkey أستراليا تركيا Vancouver Vancouver Stadium / BC Place دور المجموعات D"
     },
     {
@@ -370,6 +397,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Germany Curaçao ألمانيا كوراساو Houston Houston Stadium / NRG Stadium دور المجموعات E"
     },
     {
@@ -394,6 +423,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Netherlands Japan هولندا اليابان Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات F"
     },
     {
@@ -418,6 +449,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Ivory Coast Ecuador كوت ديفوار الإكوادور Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات E"
     },
     {
@@ -442,6 +475,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Sweden Tunisia السويد تونس Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور المجموعات F"
     },
     {
@@ -466,6 +501,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Spain Cape Verde إسبانيا الرأس الأخضر Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات H"
     },
     {
@@ -490,6 +527,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Belgium Egypt بلجيكا مصر Seattle Seattle Stadium / Lumen Field دور المجموعات G"
     },
     {
@@ -514,6 +553,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Saudi Arabia Uruguay السعودية الأوروغواي Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور المجموعات H"
     },
     {
@@ -538,6 +579,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Iran New Zealand إيران نيوزيلندا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات G"
     },
     {
@@ -562,6 +605,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "France Senegal فرنسا السنغال New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات I"
     },
     {
@@ -586,6 +631,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Iraq Norway العراق النرويج Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات I"
     },
     {
@@ -610,6 +657,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Argentina Algeria الأرجنتين الجزائر Kansas City Kansas City Stadium / Arrowhead Stadium دور المجموعات J"
     },
     {
@@ -634,6 +683,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Austria Jordan النمسا الأردن San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات J"
     },
     {
@@ -658,6 +709,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Portugal DR Congo البرتغال الكونغو الديمقراطية Houston Houston Stadium / NRG Stadium دور المجموعات K"
     },
     {
@@ -682,6 +735,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "England Croatia إنجلترا كرواتيا Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات L"
     },
     {
@@ -706,6 +761,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Ghana Panama غانا بنما Toronto Toronto Stadium / BMO Field دور المجموعات L"
     },
     {
@@ -730,6 +787,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Uzbekistan Colombia أوزبكستان كولومبيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات K"
     },
     {
@@ -754,6 +813,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Czech Republic South Africa التشيك جنوب أفريقيا Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات A"
     },
     {
@@ -778,6 +839,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Switzerland Bosnia & Herzegovina سويسرا البوسنة والهرسك Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات B"
     },
     {
@@ -802,6 +865,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Canada Qatar كندا قطر Vancouver Vancouver Stadium / BC Place دور المجموعات B"
     },
     {
@@ -826,6 +891,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Mexico South Korea المكسيك كوريا الجنوبية Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A"
     },
     {
@@ -850,6 +917,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "USA Australia أمريكا أستراليا Seattle Seattle Stadium / Lumen Field دور المجموعات D"
     },
     {
@@ -874,6 +943,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Scotland Morocco اسكتلندا المغرب Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات C"
     },
     {
@@ -898,6 +969,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Brazil Haiti البرازيل هايتي Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات C"
     },
     {
@@ -922,6 +995,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Turkey Paraguay تركيا باراغواي San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات D"
     },
     {
@@ -946,6 +1021,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Netherlands Sweden هولندا السويد Houston Houston Stadium / NRG Stadium دور المجموعات F"
     },
     {
@@ -970,6 +1047,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Germany Ivory Coast ألمانيا كوت ديفوار Toronto Toronto Stadium / BMO Field دور المجموعات E"
     },
     {
@@ -994,6 +1073,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Ecuador Curaçao الإكوادور كوراساو Kansas City Kansas City Stadium / Arrowhead Stadium دور المجموعات E"
     },
     {
@@ -1018,6 +1099,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Tunisia Japan تونس اليابان Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور المجموعات F"
     },
     {
@@ -1042,6 +1125,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Spain Saudi Arabia إسبانيا السعودية Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات H"
     },
     {
@@ -1066,6 +1151,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Belgium Iran بلجيكا إيران Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات G"
     },
     {
@@ -1090,6 +1177,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Uruguay Cape Verde الأوروغواي الرأس الأخضر Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور المجموعات H"
     },
     {
@@ -1114,6 +1203,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "New Zealand Egypt نيوزيلندا مصر Vancouver Vancouver Stadium / BC Place دور المجموعات G"
     },
     {
@@ -1138,6 +1229,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Argentina Austria الأرجنتين النمسا Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات J"
     },
     {
@@ -1162,6 +1255,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "France Iraq فرنسا العراق Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات I"
     },
     {
@@ -1186,6 +1281,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Norway Senegal النرويج السنغال New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات I"
     },
     {
@@ -1210,6 +1307,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Jordan Algeria الأردن الجزائر San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات J"
     },
     {
@@ -1234,6 +1333,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Portugal Uzbekistan البرتغال أوزبكستان Houston Houston Stadium / NRG Stadium دور المجموعات K"
     },
     {
@@ -1258,6 +1359,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "England Ghana إنجلترا غانا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات L"
     },
     {
@@ -1282,6 +1385,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Panama Croatia بنما كرواتيا Toronto Toronto Stadium / BMO Field دور المجموعات L"
     },
     {
@@ -1306,6 +1411,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Colombia DR Congo كولومبيا الكونغو الديمقراطية Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات K"
     },
     {
@@ -1330,6 +1437,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Switzerland Canada سويسرا كندا Vancouver Vancouver Stadium / BC Place دور المجموعات B"
     },
     {
@@ -1354,6 +1463,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Bosnia & Herzegovina Qatar البوسنة والهرسك قطر Seattle Seattle Stadium / Lumen Field دور المجموعات B"
     },
     {
@@ -1378,6 +1489,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Scotland Brazil اسكتلندا البرازيل Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور المجموعات C"
     },
     {
@@ -1402,6 +1515,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Morocco Haiti المغرب هايتي Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات C"
     },
     {
@@ -1426,6 +1541,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Czech Republic Mexico التشيك المكسيك Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A"
     },
     {
@@ -1450,6 +1567,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "South Africa South Korea جنوب أفريقيا كوريا الجنوبية Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور المجموعات A"
     },
     {
@@ -1474,6 +1593,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Curaçao Ivory Coast كوراساو كوت ديفوار Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات E"
     },
     {
@@ -1498,6 +1619,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Ecuador Germany الإكوادور ألمانيا New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات E"
     },
     {
@@ -1522,6 +1645,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Japan Sweden اليابان السويد Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات F"
     },
     {
@@ -1546,6 +1671,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Tunisia Netherlands تونس هولندا Kansas City Kansas City Stadium / Arrowhead Stadium دور المجموعات F"
     },
     {
@@ -1570,6 +1697,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Turkey USA تركيا أمريكا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D"
     },
     {
@@ -1594,6 +1723,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Paraguay Australia باراغواي أستراليا San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات D"
     },
     {
@@ -1618,6 +1749,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Norway France النرويج فرنسا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات I"
     },
     {
@@ -1642,6 +1775,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Senegal Iraq السنغال العراق Toronto Toronto Stadium / BMO Field دور المجموعات I"
     },
     {
@@ -1666,6 +1801,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Cape Verde Saudi Arabia الرأس الأخضر السعودية Houston Houston Stadium / NRG Stadium دور المجموعات H"
     },
     {
@@ -1690,6 +1827,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Uruguay Spain الأوروغواي إسبانيا Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات H"
     },
     {
@@ -1714,6 +1853,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Egypt Iran مصر إيران Seattle Seattle Stadium / Lumen Field دور المجموعات G"
     },
     {
@@ -1738,6 +1879,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "New Zealand Belgium نيوزيلندا بلجيكا Vancouver Vancouver Stadium / BC Place دور المجموعات G"
     },
     {
@@ -1762,6 +1905,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Panama England بنما إنجلترا New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات L"
     },
     {
@@ -1786,6 +1931,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Croatia Ghana كرواتيا غانا Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات L"
     },
     {
@@ -1810,6 +1957,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Colombia Portugal كولومبيا البرتغال Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور المجموعات K"
     },
     {
@@ -1834,6 +1983,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "DR Congo Uzbekistan الكونغو الديمقراطية أوزبكستان Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات K"
     },
     {
@@ -1858,6 +2009,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Algeria Austria الجزائر النمسا Kansas City Kansas City Stadium / Arrowhead Stadium دور المجموعات J"
     },
     {
@@ -1882,6 +2035,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Jordan Argentina الأردن الأرجنتين Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات J"
     },
     {
@@ -1906,6 +2061,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2A 2B 2A 2B Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
     },
     {
@@ -1930,6 +2087,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1C 2F 1C 2F Houston Houston Stadium / NRG Stadium دور 32"
     },
     {
@@ -1954,6 +2113,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1E 3A/B/C/D/F 1E 3A/B/C/D/F Boston (Foxborough) Boston Stadium / Gillette Stadium دور 32"
     },
     {
@@ -1978,6 +2139,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1F 2C 1F 2C Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور 32"
     },
     {
@@ -2002,6 +2165,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2E 2I 2E 2I Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
     },
     {
@@ -2026,6 +2191,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1I 3C/D/F/G/H 1I 3C/D/F/G/H New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 32"
     },
     {
@@ -2050,6 +2217,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1A 3C/E/F/H/I 1A 3C/E/F/H/I Mexico City Mexico City Stadium / Estadio Azteca دور 32"
     },
     {
@@ -2074,6 +2243,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1L 3E/H/I/J/K 1L 3E/H/I/J/K Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 32"
     },
     {
@@ -2098,6 +2269,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1G 3A/E/H/I/J 1G 3A/E/H/I/J Seattle Seattle Stadium / Lumen Field دور 32"
     },
     {
@@ -2122,6 +2295,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1D 3B/E/F/I/J 1D 3B/E/F/I/J San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور 32"
     },
     {
@@ -2146,6 +2321,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1H 2J 1H 2J Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
     },
     {
@@ -2170,6 +2347,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2K 2L 2K 2L Toronto Toronto Stadium / BMO Field دور 32"
     },
     {
@@ -2194,6 +2373,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1B 3E/F/G/I/J 1B 3E/F/G/I/J Vancouver Vancouver Stadium / BC Place دور 32"
     },
     {
@@ -2218,6 +2399,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "2D 2G 2D 2G Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
     },
     {
@@ -2242,6 +2425,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1J 2H 1J 2H Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور 32"
     },
     {
@@ -2266,6 +2451,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "1K 3D/E/I/J/L 1K 3D/E/I/J/L Kansas City Kansas City Stadium / Arrowhead Stadium دور 32"
     },
     {
@@ -2290,6 +2477,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W73 W75 W73 W75 Houston Houston Stadium / NRG Stadium دور 16"
     },
     {
@@ -2314,6 +2503,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W74 W77 W74 W77 Philadelphia Philadelphia Stadium / Lincoln Financial Field دور 16"
     },
     {
@@ -2338,6 +2529,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W76 W78 W76 W78 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 16"
     },
     {
@@ -2362,6 +2555,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W79 W80 W79 W80 Mexico City Mexico City Stadium / Estadio Azteca دور 16"
     },
     {
@@ -2386,6 +2581,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W83 W84 W83 W84 Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 16"
     },
     {
@@ -2410,6 +2607,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W81 W82 W81 W82 Seattle Seattle Stadium / Lumen Field دور 16"
     },
     {
@@ -2434,6 +2633,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W86 W88 W86 W88 Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 16"
     },
     {
@@ -2458,6 +2659,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W85 W87 W85 W87 Vancouver Vancouver Stadium / BC Place دور 16"
     },
     {
@@ -2482,6 +2685,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W89 W90 W89 W90 Boston (Foxborough) Boston Stadium / Gillette Stadium ربع النهائي"
     },
     {
@@ -2506,6 +2711,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W93 W94 W93 W94 Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium ربع النهائي"
     },
     {
@@ -2530,6 +2737,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W91 W92 W91 W92 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium ربع النهائي"
     },
     {
@@ -2554,6 +2763,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W95 W96 W95 W96 Kansas City Kansas City Stadium / Arrowhead Stadium ربع النهائي"
     },
     {
@@ -2578,6 +2789,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W97 W98 W97 W98 Dallas (Arlington) Dallas Stadium / AT&T Stadium نصف النهائي"
     },
     {
@@ -2602,6 +2815,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W99 W100 W99 W100 Atlanta Atlanta Stadium / Mercedes-Benz Stadium نصف النهائي"
     },
     {
@@ -2625,6 +2840,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "L101 L102 L101 L102 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium المركز الثالث"
     },
     {
@@ -2648,6 +2865,8 @@
       "away_score": 0,
       "score": null,
       "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "W101 W102 W101 W102 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium النهائي"
     }
   ]
