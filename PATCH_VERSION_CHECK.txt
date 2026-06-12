@@ -1,0 +1,18 @@
+MaenSat World Cup combined fixes - V2 CONFIRMED
+
+This patch was repacked with a new folder name to avoid Windows reusing an old extracted folder.
+It includes:
+1) ESPN live-score date-window update.
+2) Core beIN channel filter: free, MAX 1, MAX 2, 4K only.
+3) Safe simultaneous-match channel matching.
+4) Multi-source/high-trust broadcast confirmation.
+
+Main files:
+- scripts/update-worldcup-2026.mjs
+- public/worldcup-2026/broadcast-observed.json
+- public/worldcup-2026/broadcast-trusted-sources.json
+
+It does NOT include:
+- public/worldcup-2026/matches.json
+- public/worldcup-2026/standings.json
+- public/worldcup-2026/bracket.json
