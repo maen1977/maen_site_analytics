@@ -1,30 +1,64 @@
 {
   "metadata": {
-    "name": "Manual trusted World Cup 2026 broadcast confirmations",
-    "name_ar": "مصدر تأكيدات البث اليدوي الموثوق لكأس العالم 2026",
-    "policy_ar": "لا تضع status=confirmed لقناة مجانية إلا عند وجود source_url رسمي واضح من beIN/FIFA/الناقل الرسمي.",
-    "policy_en": "Only use status=confirmed for free-to-air matches when an official source_url confirms it.",
-    "last_updated": "2026-06-09T00:00:00+03:00"
+    "name": "MaenSat verified World Cup broadcaster schedule",
+    "name_ar": "جدول قنوات كأس العالم المؤكد يدوياً لموقع MaenSat",
+    "source_name": "MaenSat verified schedule",
+    "last_checked_at": "2026-06-12T07:30:00+03:00",
+    "policy_ar": "هذا الملف يضيف فقط القنوات الأساسية المطلوبة: beIN SPORTS المفتوحة، وMAX 1، وMAX 2، و4K. لا يحتوي روابط بث ولا ترددات. يُستخدم عندما تكون القناة معروفة من جدول بث موثوق أو تأكيد مشاهدة، حتى لا يظل الموقع بلا قناة بعد انتهاء المباراة.",
+    "core_channels_only": true
   },
-  "instructions_ar": [
-    "لإضافة مباراة مجانية: أضف مفتاح المباراة مثل M001 داخل matches.",
-    "لا تستخدم status=confirmed إلا مع رابط source_url رسمي.",
-    "مثال: matches.M001.channels[0].name_ar = beIN SPORTS المفتوحة."
-  ],
-  "example_disabled": {
-    "M001": {
+  "matches": {
+    "M002": {
+      "status": "confirmed",
+      "note_ar": "كوريا الجنوبية × التشيك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
       "channels": [
         {
-          "name_ar": "beIN SPORTS المفتوحة",
-          "name_en": "beIN SPORTS Free-to-air",
-          "type": "free",
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
           "status": "confirmed",
-          "note_ar": "المباراة منقولة مجاناً حسب الإعلان الرسمي.",
-          "source_name": "beIN SPORTS",
-          "source_url": "ضع رابط الإعلان الرسمي هنا"
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كوريا الجنوبية - التشيك على beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كوريا الجنوبية - التشيك على beIN SPORTS MAX 2.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M003": {
+      "status": "confirmed",
+      "note_ar": "كندا × البوسنة والهرسك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كندا - البوسنة على beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كندا - البوسنة على beIN SPORTS MAX 2.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
         }
       ]
     }
-  },
-  "matches": {}
+  }
 }
