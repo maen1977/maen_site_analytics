@@ -41,4 +41,14 @@
 /robots.txt
   Cache-Control: public, max-age=3600
 
+# World Cup JSON: always fresh
+/worldcup-2026/*.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
 
+# Main app shell: avoid stale inline JavaScript after urgent fixes
+/index.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+/index_phone.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
