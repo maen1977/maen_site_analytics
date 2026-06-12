@@ -8,17 +8,20 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-12T07:23:27.121+03:00",
+    "last_updated": "2026-06-12T07:57:02.592+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
     "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
-    "bein_official_last_checked_at": "2026-06-12T00:57:39.834+03:00",
+    "bein_official_last_checked_at": "2026-06-12T07:55:57.487+03:00",
     "bein_official_auto_check": true,
     "observed_broadcast_last_checked_at": "2026-06-11T23:35:00+03:00",
     "observed_broadcast_file": "public/worldcup-2026/broadcast-observed.json",
     "observed_broadcast_note_ar": "تأكيدات مشاهدة يدوية من صاحب الموقع؛ تُدمج فوق المصادر التلقائية ولا تمس ملفات المباريات/الترتيب/القوس.",
     "core_bein_channel_filter": true,
-    "core_bein_channel_filter_ar": "يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2."
+    "core_bein_channel_filter_ar": "يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.",
+    "last_checked_at": "2026-06-12T07:57:02.594+03:00",
+    "stable_live_broadcast_patch": true,
+    "stable_live_broadcast_patch_ar": "يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة."
   },
   "default_channels": [
     {
@@ -47,7 +50,10 @@
             "both teams mentioned",
             "date hint"
           ],
-          "match_channel_context_method": "both-teams-nearby-match-block"
+          "match_channel_context_method": "multi-occurrence-match-block",
+          "match_channel_context_methods": [
+            "multi-occurrence-match-block"
+          ]
         },
         {
           "name_ar": "beIN SPORTS 4K",
@@ -356,6 +362,58 @@
             "both teams mentioned",
             "date hint"
           ]
+        }
+      ]
+    },
+    "M002": {
+      "status": "confirmed",
+      "note_ar": "كوريا الجنوبية × التشيك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كوريا الجنوبية - التشيك على beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كوريا الجنوبية - التشيك على beIN SPORTS MAX 2.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M003": {
+      "status": "confirmed",
+      "note_ar": "كندا × البوسنة والهرسك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كندا - البوسنة على beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
+          "evidence_ar": "جدول القنوات ذكر كندا - البوسنة على beIN SPORTS MAX 2.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
         }
       ]
     }
