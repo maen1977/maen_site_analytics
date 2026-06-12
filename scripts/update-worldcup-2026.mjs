@@ -779,6 +779,92 @@ async function fetchObservedBroadcastSource() {
   if (!local) return null;
   return local;
 }
+
+function broadcastEntryEvidenceText(entry = {}, key = '') {
+  const channels = Array.isArray(entry?.channels) ? entry.channels : [];
+  const parts = [
+    key,
+    entry.match_id,
+    entry.match_num,
+    entry.teams_ar,
+    entry.teams_en,
+    entry.home_team,
+    entry.away_team,
+    entry.home_team_ar,
+    entry.away_team_ar,
+    entry.source_name,
+    ...(channels || []).flatMap(c => [
+      c?.name_ar,
+      c?.name_en,
+      c?.name,
+      c?.evidence_ar,
+      c?.evidence_en,
+      c?.note_ar,
+      c?.note_en,
+      c?.source_name,
+      Array.isArray(c?.source_names) ? c.source_names.join(' ') : '',
+      Array.isArray(c?.source_urls) ? c.source_urls.join(' ') : '',
+      c?.source_url
+    ])
+  ];
+  return normalizeArabicText(parts.filter(Boolean).join(' '));
+}
+function broadcastEntryMatchesTeams(entry = {}, match = {}, key = '') {
+  const textNorm = broadcastEntryEvidenceText(entry, key);
+  if (!textNorm) return false;
+  const aTerms = matchChannelTerms(match, 1);
+  const bTerms = matchChannelTerms(match, 2);
+  return textHasAny(textNorm, aTerms) && textHasAny(textNorm, bTerms);
+}
+function primaryBroadcastKeysForMatch(match = {}) {
+  const keys = [];
+  if (match.id) keys.push(String(match.id));
+  if (match.num !== undefined && match.num !== null && String(match.num).trim()) {
+    keys.push(String(match.num));
+    keys.push(`M${String(match.num).padStart(3, '0')}`);
+  }
+  return uniq(keys);
+}
+function mergeBroadcastEntries(existing = {}, incoming = {}) {
+  const next = {...(existing || {}), ...(incoming || {})};
+  next.channels = upsertChannels(existing?.channels || [], incoming?.channels || []);
+  return next;
+}
+function reconcileBroadcastMatchKeys(broadcasts = {}, matches = []) {
+  const out = JSON.parse(JSON.stringify(broadcasts || {}));
+  out.matches ||= {};
+  let fixed = 0;
+  for (const match of matches || []) {
+    const primaryKeys = primaryBroadcastKeysForMatch(match);
+    if (!primaryKeys.length) continue;
+    const hasDirect = primaryKeys.some(k => Array.isArray(out.matches?.[k]?.channels) && out.matches[k].channels.length);
+    if (hasDirect) continue;
+    let bestKey = '';
+    let bestEntry = null;
+    let bestScore = -1;
+    for (const [key, entry] of Object.entries(out.matches || {})) {
+      if (!entry || !Array.isArray(entry.channels) || !entry.channels.length) continue;
+      if (!broadcastEntryMatchesTeams(entry, match, key)) continue;
+      const score = entry.channels.reduce((sum, c) => sum + Number(c?.match_confidence || c?.confidence || 0), 0) + entry.channels.length;
+      if (score > bestScore) { bestScore = score; bestKey = key; bestEntry = entry; }
+    }
+    if (!bestEntry) continue;
+    const targetKey = primaryKeys[0];
+    out.matches[targetKey] = mergeBroadcastEntries(out.matches[targetKey] || {}, {
+      ...bestEntry,
+      remapped_from_key: bestKey,
+      remap_method: 'team-evidence-fallback',
+      remap_note_ar: 'تم ربط القنوات بهذه المباراة لأن دليل القناة ذكر اسمَي الفريقين، حتى لو كان رقم المباراة في ملف القنوات مختلفًا عن رقم بطاقة المباراة.'
+    });
+    fixed += 1;
+  }
+  out.metadata ||= {};
+  out.metadata.broadcast_match_key_reconcile = true;
+  out.metadata.broadcast_match_key_reconcile_fixed = fixed;
+  out.metadata.broadcast_match_key_reconcile_ar = 'يحمي الواجهة من اختلاف رقم المباراة بين مصادر الجدول ومصادر القنوات؛ عند عدم وجود تطابق بالرقم، تُربط القنوات بالمباراة إذا ذكر دليل القناة اسمَي الفريقين معاً.';
+  return out;
+}
+
 function normalizeBroadcastSource(source = {}) {
   if (Array.isArray(source)) {
     const matches = {};
@@ -860,6 +946,7 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
     console.log('[worldcup-observed] merged local observed broadcaster confirmations');
   }
   broadcasts = sanitizeBroadcastsForCoreBeinChannels(broadcasts);
+  broadcasts = reconcileBroadcastMatchKeys(broadcasts, existingBundle?.matches || []);
   return {broadcasts, review: mergeBroadcastReviews(beinReview, trustedReview)};
 }
 
