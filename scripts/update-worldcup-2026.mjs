@@ -907,19 +907,49 @@ function extractEspnLiveEntries(json = {}) {
   }
   return entries;
 }
+function ymdUtc(date = new Date()) {
+  return date.toISOString().slice(0, 10).replace(/-/g, '');
+}
+function addDays(date = new Date(), days = 0) {
+  return new Date(date.getTime() + days * 86400000);
+}
+function espnUrlWithDateRange(baseUrl = LIVE_SCORE_URL, now = nowForSchedule()) {
+  const start = ymdUtc(addDays(now, -1));
+  const end = ymdUtc(addDays(now, 2));
+  const sep = String(baseUrl).includes('?') ? '&' : '?';
+  return `${baseUrl}${sep}dates=${start}-${end}`;
+}
+async function fetchEspnEntriesFromUrl(url) {
+  const res = await fetch(url, {headers:{'user-agent':'maensat-worldcup-live-score-updater/1.2 (+https://maensat.pages.dev)'}});
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json();
+  return extractEspnLiveEntries(json);
+}
 async function fetchLiveScoreEntries() {
   if (!LIVE_SCORE_CHECK) return [];
-  try {
-    const res = await fetch(LIVE_SCORE_URL, {headers:{'user-agent':'maensat-worldcup-live-score-updater/1.1 (+https://maensat.pages.dev)'}});
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    const entries = extractEspnLiveEntries(json);
-    console.log(`[worldcup-live] fetched ${entries.length} live scoreboard event(s) from ESPN`);
-    return entries;
-  } catch (err) {
-    console.warn('[worldcup-live] live score fetch failed; keeping fixture-source scores only:', err.message);
+  const urls = uniq([LIVE_SCORE_URL, espnUrlWithDateRange(LIVE_SCORE_URL)]);
+  const byId = new Map();
+  let okCount = 0;
+  for (const url of urls) {
+    try {
+      const entries = await fetchEspnEntriesFromUrl(url);
+      okCount += 1;
+      for (const entry of entries) {
+        const key = String(entry.id || `${entry.name}-${entry.date}`);
+        if (key) byId.set(key, entry);
+      }
+      console.log(`[worldcup-live] fetched ${entries.length} ESPN event(s) from ${url.includes('dates=') ? 'date-window scoreboard' : 'default scoreboard'}`);
+    } catch (err) {
+      console.warn('[worldcup-live] ESPN fetch failed for one scoreboard URL:', err.message);
+    }
+  }
+  const merged = [...byId.values()];
+  if (!okCount) {
+    console.warn('[worldcup-live] all live score fetches failed; keeping fixture-source scores only');
     return [];
   }
+  console.log(`[worldcup-live] using ${merged.length} unique ESPN scoreboard event(s) after merging default + date-window results`);
+  return merged;
 }
 function applyLiveScoresToSource(source = {}, liveEntries = []) {
   if (!Array.isArray(source.matches) || !liveEntries.length) return source;
