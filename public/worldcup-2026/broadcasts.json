@@ -8,11 +8,11 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-12T23:38:37.186+03:00",
+    "last_updated": "2026-06-12T23:42:15.716+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
     "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
-    "bein_official_last_checked_at": "2026-06-12T23:38:35.465+03:00",
+    "bein_official_last_checked_at": "2026-06-12T23:42:14.222+03:00",
     "bein_official_auto_check": true,
     "observed_broadcast_last_checked_at": "2026-06-12T07:35:00+03:00",
     "observed_broadcast_file": "public/worldcup-2026/broadcast-observed.json",
@@ -21,7 +21,10 @@
     "core_bein_channel_filter_ar": "يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.",
     "last_checked_at": "2026-06-12T07:57:02.594+03:00",
     "stable_live_broadcast_patch": true,
-    "stable_live_broadcast_patch_ar": "يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة."
+    "stable_live_broadcast_patch_ar": "يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة.",
+    "broadcast_match_key_reconcile": true,
+    "broadcast_match_key_reconcile_fixed": 1,
+    "broadcast_match_key_reconcile_ar": "يحمي الواجهة من اختلاف رقم المباراة بين مصادر الجدول ومصادر القنوات؛ عند عدم وجود تطابق بالرقم، تُربط القنوات بالمباراة إذا ذكر دليل القناة اسمَي الفريقين معاً."
   },
   "default_channels": [
     {
@@ -507,6 +510,43 @@
           "match_channel_context_method": "both-teams-nearby-simultaneous-safe-block"
         }
       ]
+    },
+    "M007": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه المكرمه",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
+        },
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
+          "evidence_ar": "في الدوحة، ترسي معياراً جديداً في نقل كأس العالمFIFA ™ وتقدم beIN SPORTS تغطية حية ومتكاملة لجميع مباريات البطولة حصرياً في 24 دولة في منطقة الشرق الأوسط وشمال أفريقيا، عبر ست قنوات من باقة beIN SPORTS MAX، إلى جانب قناةbeIN SPORTS 4K HDR ، مع بث يومي مباشر يتجاوز 17 ساعة باللغات العربية والإنجليزية والفرنسية، مصحوبة بتحليلات فنية يقدمها أبرز الخبراء والمتخصصين في عالم كرة القدم. وتنطلق النسخة الثالثة والعشرون الأضخم في تاريخ البطولة ال",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 95,
+          "match_confidence_reasons": [
+            "both teams mentioned",
+            "date hint"
+          ]
+        }
+      ],
+      "remapped_from_key": "M010",
+      "remap_method": "team-evidence-fallback",
+      "remap_note_ar": "تم ربط القنوات بهذه المباراة لأن دليل القناة ذكر اسمَي الفريقين، حتى لو كان رقم المباراة في ملف القنوات مختلفًا عن رقم بطاقة المباراة."
     }
   },
   "status_values": {
