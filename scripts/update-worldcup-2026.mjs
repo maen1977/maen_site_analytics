@@ -360,11 +360,14 @@ function sanitizeBroadcastsForCoreBeinChannels(broadcasts = {}) {
 function extractChannelCandidates(text = '', sourceUrl = '') {
   const candidates = [];
   const patterns = [
-    {kind:'max', regex:/\bbeIN\s*SPORTS\s*MAX\s*([0-9١-٩])?\b/gi},
-    {kind:'max', regex:/بي\s*إن\s*سبورت\s*ماكس\s*([0-9١-٩])?/gi},
-    {kind:'max', regex:/بي\s*ان\s*سبورت\s*ماكس\s*([0-9١-٩])?/gi},
-    {kind:'4k', regex:/\bbeIN\s*SPORTS\s*4K\b/gi},
-    {kind:'4k', regex:/بي\s*إن\s*سبورت\s*4\s*كي/gi},
+    // Accept common schedule spellings such as "beIN Max 1" and "beIN 4K HDR",
+    // not only the full "beIN SPORTS MAX 1" wording.
+    {kind:'max', regex:/\bbeIN\s*(?:SPORTS\s*)?MAX\s*([0-9١-٩])?\b/gi},
+    {kind:'max', regex:/بي\s*إن\s*(?:سبورت\s*)?ماكس\s*([0-9١-٩])?/gi},
+    {kind:'max', regex:/بي\s*ان\s*(?:سبورت\s*)?ماكس\s*([0-9١-٩])?/gi},
+    {kind:'4k', regex:/\bbeIN\s*(?:SPORTS\s*)?4K(?:\s*HDR)?\b/gi},
+    {kind:'4k', regex:/بي\s*إن\s*(?:سبورت\s*)?4\s*كي/gi},
+    {kind:'4k', regex:/بي\s*ان\s*(?:سبورت\s*)?4\s*كي/gi},
     {kind:'free', regex:/\bbeIN\s*SPORTS\s*(?:Free\s*to\s*air|FTA)\b/gi},
     {kind:'free', regex:/\bbeIN\s*SPORTS\s*المفتوحة\b/gi},
     {kind:'free', regex:/بي\s*إن\s*سبورت\s*المفتوح[هة]/gi},
@@ -978,7 +981,9 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
               source_name: page.source_name,
               source_url: page.url,
               confidence: conf.score,
-              context_method: context.method
+              context_method: context.method,
+              weight: Math.max(1, Number(page.source_weight || 1)),
+              direct_high_trust: Math.max(1, Number(page.source_weight || 1)) >= TRUSTED_BROADCAST_MIN_AGREEMENT
             });
           }
         }
@@ -994,7 +999,7 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
       source_name: 'MaenSat multi-source agreement',
       last_checked_at: jordanNowIso(),
       min_agreement: TRUSTED_BROADCAST_MIN_AGREEMENT,
-      policy_ar: 'المصادر المساعدة لا تنشر قناة تلقائياً إلا إذا اتفق مصدران موثوقان مستقلان على نفس القناة داخل مقطع المباراة نفسها. beIN الرسمي وتأكيد المشاهدة اليدوي يبقيان أعلى أولوية.'
+      policy_ar: 'المصادر المساعدة لا تنشر قناة تلقائياً إلا إذا اتفق مصدران موثوقان مستقلان على نفس القناة داخل مقطع المباراة نفسها، أو إذا كان المصدر صفحة مباراة/تقرير مباشر عالي الثقة بوزن 2 وذكر المباراة والقناة في نفس المقطع. beIN الرسمي وتأكيد المشاهدة اليدوي يبقيان أعلى أولوية.'
     },
     matches: {},
     review: []
@@ -1004,7 +1009,8 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
     for (const [channelKind, claim] of Object.entries(byChannel)) {
       const evidenceList = [...claim.evidence.values()];
       const uniqueCount = evidenceList.length;
-      const publish = uniqueCount >= TRUSTED_BROADCAST_MIN_AGREEMENT;
+      const totalWeight = evidenceList.reduce((sum, e) => sum + Math.max(1, Number(e.weight || 1)), 0);
+      const publish = uniqueCount >= TRUSTED_BROADCAST_MIN_AGREEMENT || totalWeight >= TRUSTED_BROADCAST_MIN_AGREEMENT;
       source.review.push({
         match_id: matchKey,
         channel_kind: channelKind,
@@ -1013,10 +1019,14 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
         evidence_count: uniqueCount,
         required_evidence_count: TRUSTED_BROADCAST_MIN_AGREEMENT,
         sources: evidenceList,
+        evidence_weight: totalWeight,
+        required_evidence_weight: TRUSTED_BROADCAST_MIN_AGREEMENT,
         published: publish,
         note_ar: publish
-          ? 'تم نشر القناة لأن مصدرين موثوقين أو أكثر اتفقوا عليها داخل مقطع المباراة نفسها.'
-          : 'لم تُنشر القناة بعد لأن مصدرًا واحدًا فقط ذكرها أو لأن الاتفاق غير كافٍ.'
+          ? (uniqueCount >= TRUSTED_BROADCAST_MIN_AGREEMENT
+              ? 'تم نشر القناة لأن مصدرين موثوقين أو أكثر اتفقوا عليها داخل مقطع المباراة نفسها.'
+              : 'تم نشر القناة لأن مصدرًا مباشرًا عالي الثقة ذكر المباراة والقناة داخل مقطع المباراة نفسه.')
+          : 'لم تُنشر القناة بعد لأن مصدرًا واحدًا ضعيف الوزن فقط ذكرها أو لأن الاتفاق غير كافٍ.'
       });
       if (!publish) continue;
       source.matches[matchKey] ||= {channels: []};
