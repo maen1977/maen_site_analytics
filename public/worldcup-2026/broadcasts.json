@@ -8,11 +8,11 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-12T12:38:33.588+03:00",
+    "last_updated": "2026-06-12T18:34:50.374+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
     "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
-    "bein_official_last_checked_at": "2026-06-12T07:55:57.487+03:00",
+    "bein_official_last_checked_at": "2026-06-12T18:34:48.558+03:00",
     "bein_official_auto_check": true,
     "observed_broadcast_last_checked_at": "2026-06-12T07:35:00+03:00",
     "observed_broadcast_file": "public/worldcup-2026/broadcast-observed.json",
@@ -50,7 +50,7 @@
             "both teams mentioned",
             "date hint"
           ],
-          "match_channel_context_method": "multi-occurrence-match-block",
+          "match_channel_context_method": "both-teams-nearby-match-block",
           "match_channel_context_methods": [
             "multi-occurrence-match-block"
           ]
@@ -171,14 +171,14 @@
           "type": "encrypted",
           "status": "confirmed",
           "source_name": "beIN SPORTS",
-          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/bein-sports-%D8%AA%D9%83%D8%B4%D9%81-%D8%B9%D9%86-%D8%AE%D8%B7%D8%B7-%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D8%B3%D8%AA%D8%AB%D9%86%D8%A7%D8%A6%D9%8A%D8%A9-%D9%84%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026-%D8%B9%D8%A8%D8%B1-8-%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D9%88%D8%A3%D9%83%D8%AB%D8%B1-%D9%85%D9%86-17-%D8%B3%D8%A7%D8%B9%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%A8%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B4%D8%B1-%D9%8A%D9%88%D9%85%D9%8A%D8%A7-2026-06-07",
-          "evidence_ar": "مقر الرئيسي لـ beIN في الدوحة أحدث تقنيات الإنتاج، والرسومات الافتراضية والمعززة المتقدمة، والتكامل الرقمي السلس، لتقديم تجربة مشاهدة غامرة هي الأفضل على الإطلاق في تاريخ بث بطولات كأس العالم FIFA. وتوفر القنوات العربية beIN SPORTS MAX 1-4 تغطية مباشرة يومياً من الساعة 17:00 حتى 09:30 بتوقيت مكة المكرمة، تشمل المباريات، والاستوديوهات التحليلية، والبرامج اليومية، والتقارير الميدانية، والفقرات الخاصة قبل المباريات وبعدها. كما تقدم قناة be",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه المكرمه",
           "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
-          "match_confidence": 95,
+          "match_confidence": 80,
           "match_confidence_reasons": [
-            "both teams mentioned",
-            "date hint"
-          ]
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
         },
         {
           "name_ar": "beIN SPORTS 4K",
@@ -429,6 +429,82 @@
           "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-الجمعة-12-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt07025fc2b907377a",
           "evidence_ar": "جدول القنوات ذكر كندا - البوسنة على beIN SPORTS MAX 2.",
           "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M008": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
+        }
+      ]
+    },
+    "M009": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه المكرمه لمشاهده",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
+        }
+      ]
+    },
+    "M011": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه المكرمه",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-simultaneous-safe-block"
+        }
+      ]
+    },
+    "M012": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D8%B1%D8%AA%D9%82%D8%A8%D8%A9-%D8%A8%D9%8A%D9%86-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D9%83%D9%86%D8%AF%D8%A7-%D9%88%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D8%A8%D9%88%D8%B3%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D9%87%D8%B1%D8%B3%D9%83-2026-06-12",
+          "evidence_ar": "لكندي و نظيره البوسني لحساب المجموعه الثانيه ضمن منافسات كاس العالم fifa 2026TM ويطمح الطرفان الي البصم علي بدايه جيده قبل مباراتيهما القادمتين امام كل من قطر و سويسرا شاهد مواجهه كندا والبوسنه والهرسك مباشره وحصريا عبر bein sports max 1 اليوم الجمعه علي الساعه 22 00 بتوقيت مكه المكرمه لمشاهده",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-simultaneous-safe-block"
         }
       ]
     }
