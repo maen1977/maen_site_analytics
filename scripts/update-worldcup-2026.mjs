@@ -9,6 +9,11 @@ const BRACKET_FILE = path.join(WC_DIR, 'bracket.json');
 const BROADCASTS_FILE = path.join(WC_DIR, 'broadcasts.json');
 const BROADCAST_SOURCE_FILE = process.env.WORLD_CUP_2026_BROADCAST_SOURCE_FILE || path.join(WC_DIR, 'broadcast-source.json');
 const BROADCAST_OBSERVED_FILE = process.env.WORLD_CUP_2026_BROADCAST_OBSERVED_FILE || path.join(WC_DIR, 'broadcast-observed.json');
+const BROADCAST_TRUSTED_SOURCE_FILE = process.env.WORLD_CUP_2026_BROADCAST_TRUSTED_SOURCE_FILE || path.join(WC_DIR, 'broadcast-trusted-sources.json');
+const TRUSTED_BROADCAST_URLS = String(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_URLS || '').trim();
+const TRUSTED_BROADCAST_AUTO_CHECK = process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_AUTO_CHECK !== '0';
+const TRUSTED_BROADCAST_MIN_AGREEMENT = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MIN_AGREEMENT || 2);
+const TRUSTED_BROADCAST_MAX_PAGES = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MAX_PAGES || 16);
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const LIVE_SCORE_CHECK = process.env.WORLD_CUP_2026_LIVE_SCORE_CHECK !== '0';
 const LIVE_SCORE_URL = process.env.WORLD_CUP_2026_LIVE_SCORE_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200';
@@ -25,7 +30,7 @@ const FAST_MATCH_WINDOW_CRON = '2,17,32,47 * * * *';
 const FAST_WINDOW_BEFORE_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_BEFORE_MINUTES || 60);
 const FAST_WINDOW_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_FAST_AFTER_MINUTES || 300);
 const BROADCAST_CHECK_BEFORE_MINUTES = Number(process.env.WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES || 1440);
-const BROADCAST_CHECK_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_BROADCAST_AFTER_MINUTES || 360);
+const BROADCAST_CHECK_AFTER_MINUTES = Number(process.env.WORLD_CUP_2026_BROADCAST_AFTER_MINUTES || 60);
 const BASE_12_HOUR_CRON = '7 0,12 * * *';
 const EVENT_SCHEDULE = String(process.env.GITHUB_EVENT_SCHEDULE || '').trim();
 const EVENT_NAME = String(process.env.GITHUB_EVENT_NAME || '').trim();
@@ -469,38 +474,11 @@ function findBestTeamPairRange(textNorm = '', match = {}) {
   }
   return best;
 }
-
-function findTeamPairRanges(textNorm = '', match = {}) {
-  const aTerms = matchChannelTerms(match, 1);
-  const bTerms = matchChannelTerms(match, 2);
-  if (!aTerms.length || !bTerms.length) return [];
-  const aPositions = [];
-  const bPositions = [];
-  for (const term of aTerms) for (const index of allIndexesOf(textNorm, term)) aPositions.push({term, index, length:term.length});
-  for (const term of bTerms) for (const index of allIndexesOf(textNorm, term)) bPositions.push({term, index, length:term.length});
-  const ranges = [];
-  for (const a of aPositions) {
-    for (const b of bPositions) {
-      const distance = Math.abs(a.index - b.index);
-      if (distance > 900) continue;
-      const start = Math.min(a.index, b.index);
-      const end = Math.max(a.index + a.length, b.index + b.length);
-      ranges.push({start, end, distance, terms:[a.term, b.term]});
-    }
-  }
-  const byKey = new Map();
-  for (const r of ranges.sort((a,b) => a.start - b.start || a.distance - b.distance)) {
-    const key = `${Math.floor(r.start / 25)}:${Math.floor(r.end / 25)}`;
-    const old = byKey.get(key);
-    if (!old || r.distance < old.distance) byKey.set(key, r);
-  }
-  return [...byKey.values()].sort((a,b) => a.start - b.start || a.distance - b.distance).slice(0, 12);
-}
-
 function rangesForMatchesOnPage(textNorm = '', matches = []) {
   const out = [];
   for (const m of matches || []) {
-    for (const range of findTeamPairRanges(textNorm, m)) out.push({match:m, ...range});
+    const range = findBestTeamPairRange(textNorm, m);
+    if (range) out.push({match:m, ...range});
   }
   return out.sort((a,b) => a.start - b.start || a.end - b.end);
 }
@@ -547,35 +525,6 @@ function extractMatchSpecificChannelContext(text = '', match = {}, matches = [])
       : 'تم استخراج القنوات من مقطع قريب من اسمي الفريقين فقط، وليس من الصفحة كاملة.'
   };
 }
-
-function extractMatchSpecificChannelContexts(text = '', match = {}, matches = []) {
-  const textNorm = normalizeArabicText(text);
-  const currents = findTeamPairRanges(textNorm, match);
-  if (!currents.length) {
-    return [extractMatchSpecificChannelContext(text, match, matches)];
-  }
-  const allRanges = rangesForMatchesOnPage(textNorm, matches);
-  const sameRange = (r) => r.match === match || (r.match?.id && r.match.id === match.id) || (r.match?.num && r.match.num === match.num);
-  return currents.map(current => {
-    const prev = [...allRanges].reverse().find(r => !sameRange(r) && r.end <= current.start);
-    const next = allRanges.find(r => !sameRange(r) && r.start >= current.end);
-    const leftBoundary = prev ? Math.floor((prev.end + current.start) / 2) : 0;
-    const rightBoundary = next ? Math.floor((current.end + next.start) / 2) : textNorm.length;
-    const start = Math.max(leftBoundary, current.start - 320);
-    const end = Math.min(rightBoundary, current.end + 520);
-    const segment = textNorm.slice(start, end).trim();
-    return {
-      text: segment,
-      precise: true,
-      method: simultaneousKickoffCount(match, matches) > 1 ? 'multi-occurrence-simultaneous-safe-match-block' : 'multi-occurrence-match-block',
-      boundaries: {start, end, leftBoundary, rightBoundary, pair_start: current.start, pair_end: current.end, distance: current.distance},
-      note_ar: simultaneousKickoffCount(match, matches) > 1
-        ? 'تم فحص كل ظهور للمباراة داخل صفحة beIN، واستخراج القنوات من مقاطع المباراة نفسها فقط لمنع خلط MAX 1/MAX 2.'
-        : 'تم فحص كل ظهور للمباراة داخل الصفحة واستخراج القنوات من المقاطع القريبة من اسمي الفريقين.'
-    };
-  });
-}
-
 function safeTitleFromHtml(html = '') {
   const m = String(html).match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   return m ? stripHtmlToText(m[1]) : '';
@@ -657,10 +606,8 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
     for (const match of matches || []) {
       const conf = matchConfidenceFromText(match, textNorm);
       if (conf.score < 45) continue;
-      const contexts = extractMatchSpecificChannelContexts(text, match, matches || []);
-      const preciseContexts = contexts.filter(c => c.precise);
-      const context = preciseContexts[0] || contexts[0] || {method:'no-context', note_ar:'لا يوجد مقطع واضح للمباراة'};
-      const channels = filterCoreBeinChannels(preciseContexts.flatMap(c => extractChannelCandidates(c.text, page.url)));
+      const context = extractMatchSpecificChannelContext(text, match, matches || []);
+      const channels = context.precise ? extractChannelCandidates(context.text, page.url) : [];
       const simultaneous = simultaneousKickoffCount(match, matches || []) > 1;
       const reviewItem = {
         match_id: match.id,
@@ -676,11 +623,10 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
         channels_found: channels.map(c => c.name_ar),
         action_words_found: broadcastAction,
         channel_context_method: context.method,
-        channel_context_methods: uniq(contexts.map(c => c.method)),
         channel_context_note_ar: context.note_ar,
         note_ar: canPublishFromPage ? 'مراجعة تلقائية من beIN؛ لا تنشر إلا إذا كانت القنوات داخل مقطع المباراة نفسها، خصوصاً عند وجود مباراتين بنفس التوقيت.' : 'صفحة فهرس/قائمة؛ تستخدم للاكتشاف والمراجعة ولا تنشر تلقائياً لتجنب الخلط بين عدة أخبار.'
       };
-      if (canPublishFromPage && conf.score >= BEIN_CONFIRMATION_SCORE && broadcastAction && preciseContexts.length && channels.length) {
+      if (canPublishFromPage && conf.score >= BEIN_CONFIRMATION_SCORE && broadcastAction && context.precise && channels.length) {
         const key = match.id || `M${String(match.num || '').padStart(3,'0')}`;
         source.matches[key] ||= {channels: []};
         source.matches[key].channels = upsertChannels(source.matches[key].channels, channels.map(c => ({
@@ -688,8 +634,7 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
           status: c.status === 'pending_official_announcement' ? 'confirmed' : c.status,
           match_confidence: conf.score,
           match_confidence_reasons: conf.reasons,
-          match_channel_context_method: context.method,
-          match_channel_context_methods: uniq(contexts.map(c => c.method))
+          match_channel_context_method: context.method
         })));
         reviewItem.published = true;
         reviewItem.note_ar = simultaneous
@@ -739,10 +684,9 @@ function activeMatchWindow(existingBundle, now = nowForSchedule()) {
     if (!Number.isFinite(startMs)) continue;
     const windowStart = startMs - FAST_WINDOW_BEFORE_MINUTES * 60000;
     const windowEnd = startMs + FAST_WINDOW_AFTER_MINUTES * 60000;
-    if (nowMs >= windowStart && nowMs <= windowEnd) {
+    if (nowMs >= windowStart && nowMs <= windowEnd && !isFinishedMatch(match)) {
       const label = `${match.team1 || 'TBD'} vs ${match.team2 || 'TBD'}${match.num ? ` (#${match.num})` : ''}`;
-      const stateLabel = isFinishedMatch(match) ? 'recently-finished match window' : 'live/near-match window';
-      return {active:true, reason:`inside ${stateLabel} for ${label}`};
+      return {active:true, reason:`inside live/near-match window for ${label}`};
     }
     if (nowMs < windowStart) {
       const waitMs = windowStart - nowMs;
@@ -761,17 +705,9 @@ function shouldSkipForSmartSchedule(existingBundle) {
   if (EVENT_SCHEDULE === BASE_12_HOUR_CRON) return {skip:false, reason:'baseline 12-hour run'};
   if (EVENT_SCHEDULE === FAST_MATCH_WINDOW_CRON) {
     const window = activeMatchWindow(existingBundle);
-    if (window.active) return {skip:false, reason:`15-minute update allowed: ${window.reason}`};
-    const now = nowForSchedule();
-    const nearbyDays = [
-      dateKeyInJordan(new Date(now.getTime() - 86400000)),
-      dateKeyInJordan(now),
-      dateKeyInJordan(new Date(now.getTime() + 86400000))
-    ];
-    if (nearbyDays.some(day => hasMatchToday(existingBundle, day))) {
-      return {skip:false, reason:`15-minute safety update on/near World Cup match day; ${window.reason}`};
-    }
-    return {skip:true, reason:`15-minute update skipped: ${window.reason}`};
+    return window.active
+      ? {skip:false, reason:`15-minute update allowed: ${window.reason}`}
+      : {skip:true, reason:`15-minute update skipped: ${window.reason}`};
   }
   return {skip:false, reason:`unknown schedule (${EVENT_SCHEDULE})`};
 }
@@ -886,51 +822,252 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
   let broadcasts = existingBroadcasts || defaultBroadcasts(existingBundle?.metadata?.last_updated || '2026-06-05T00:00:00+03:00');
   const sourceAvailable = Boolean(BROADCAST_SOURCE_URL) || await fileExists(BROADCAST_SOURCE_FILE);
   const gate = shouldCheckBroadcasts(existingBundle, broadcasts);
-  let review = null;
-
-  // Local trusted/verified broadcaster data is always merged. This fixes the case where
-  // a match already ended and the old gate returned before applying local confirmations.
-  if (sourceAvailable) {
+  if (!gate.check) {
+    console.log(`[worldcup-broadcasts] ${gate.reason}`);
+    if (!FORCE_UPDATE) return {broadcasts, review:null};
+  }
+  if (!sourceAvailable) {
+    console.log('[worldcup-broadcasts] no trusted JSON broadcast source configured; continuing with official beIN auto-check only');
+  } else {
     try {
       const source = await fetchBroadcastSource();
       if (source) {
         broadcasts = mergeBroadcasts(broadcasts, source);
-        console.log(`[worldcup-broadcasts] merged trusted JSON broadcaster data: ${gate.reason || 'local source'}`);
+        console.log(`[worldcup-broadcasts] merged trusted JSON broadcaster data: ${gate.reason || 'manual/local source'}`);
       } else {
         console.log('[worldcup-broadcasts] broadcast source is empty; keeping existing trusted broadcaster data');
       }
     } catch (err) {
       console.warn('[worldcup-broadcasts] trusted JSON fetch failed, keeping existing broadcaster data:', err.message);
     }
-  } else {
-    console.log('[worldcup-broadcasts] no trusted JSON broadcast source configured; local observed file will still be checked');
   }
-
-  // Official beIN scraping is allowed on manual runs and near/pending windows. On 15-minute
-  // match days it also runs as a safety net so channel pages posted late are captured.
-  const shouldRunBein = gate.check || FORCE_UPDATE || EVENT_NAME === 'workflow_dispatch' || EVENT_SCHEDULE === FAST_MATCH_WINDOW_CRON;
-  if (shouldRunBein) {
-    const result = await fetchBeinOfficialBroadcastSource(existingBundle);
-    review = result.review;
-    if (result.source && Object.keys(result.source.matches || {}).length) {
-      broadcasts = mergeBroadcasts(broadcasts, result.source);
-      console.log('[worldcup-bein] merged official beIN broadcaster confirmations');
-    }
-  } else {
-    console.log(`[worldcup-broadcasts] official beIN auto-check skipped: ${gate.reason}`);
+  const {source: beinSource, review: beinReview} = await fetchBeinOfficialBroadcastSource(existingBundle);
+  if (beinSource && Object.keys(beinSource.matches || {}).length) {
+    broadcasts = mergeBroadcasts(broadcasts, beinSource);
+    console.log('[worldcup-bein] merged official beIN broadcaster confirmations');
   }
-
+  const {source: trustedSource, review: trustedReview} = await fetchTrustedBroadcastSource(existingBundle);
+  if (trustedSource && Object.keys(trustedSource.matches || {}).length) {
+    broadcasts = mergeBroadcasts(broadcasts, trustedSource);
+    console.log('[worldcup-broadcast-trusted] merged multi-source broadcaster confirmations');
+  }
   const observedSource = await fetchObservedBroadcastSource();
   if (observedSource && Object.keys(normalizeBroadcastSource(observedSource).matches || {}).length) {
     broadcasts = mergeBroadcasts(broadcasts, observedSource);
     console.log('[worldcup-observed] merged local observed broadcaster confirmations');
   }
   broadcasts = sanitizeBroadcastsForCoreBeinChannels(broadcasts);
-  broadcasts.metadata ||= {};
-  broadcasts.metadata.last_checked_at = jordanNowIso();
-  broadcasts.metadata.stable_live_broadcast_patch = true;
-  broadcasts.metadata.stable_live_broadcast_patch_ar = 'يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة.';
-  return {broadcasts, review};
+  return {broadcasts, review: mergeBroadcastReviews(beinReview, trustedReview)};
+}
+
+
+async function loadTrustedBroadcastSources() {
+  const envUrls = TRUSTED_BROADCAST_URLS
+    ? TRUSTED_BROADCAST_URLS.split(/[\n,;]+/).map(v => v.trim()).filter(Boolean).map(url => ({name:'Configured trusted source', url}))
+    : [];
+  let fileSources = [];
+  const src = await readJson(BROADCAST_TRUSTED_SOURCE_FILE);
+  if (Array.isArray(src)) fileSources = src;
+  else if (src && Array.isArray(src.sources)) fileSources = src.sources;
+  const normalized = [...fileSources, ...envUrls]
+    .map((row, index) => typeof row === 'string' ? ({name:`Trusted source ${index + 1}`, url:row}) : row)
+    .map((row, index) => ({
+      name: String(row.name || row.name_ar || `Trusted source ${index + 1}`).trim(),
+      url: String(row.url || '').trim(),
+      weight: Number(row.weight || 1),
+      enabled: row.enabled !== false,
+      note_ar: row.note_ar || ''
+    }))
+    .filter(row => row.enabled && row.url);
+  return uniq(normalized.map(row => JSON.stringify(row))).map(raw => JSON.parse(raw)).slice(0, TRUSTED_BROADCAST_MAX_PAGES);
+}
+async function fetchTrustedBroadcastPages() {
+  const sources = await loadTrustedBroadcastSources();
+  const pages = [];
+  for (const source of sources) {
+    if (pages.length >= TRUSTED_BROADCAST_MAX_PAGES) break;
+    try {
+      const html = await fetchHtmlPage(source.url);
+      pages.push({
+        source_name: source.name,
+        source_weight: source.weight,
+        source_note_ar: source.note_ar || '',
+        url: source.url,
+        title: safeTitleFromHtml(html),
+        text: stripHtmlToText(html),
+        kind: 'trusted-helper'
+      });
+    } catch (err) {
+      console.warn('[worldcup-broadcast-trusted] failed to fetch trusted helper page:', source.name, source.url, err.message);
+      pages.push({
+        source_name: source.name,
+        source_weight: source.weight,
+        source_note_ar: source.note_ar || '',
+        url: source.url,
+        title: '',
+        text: '',
+        kind: 'trusted-helper',
+        error: err.message
+      });
+    }
+  }
+  return pages;
+}
+function sourceIdentity(page = {}) {
+  try {
+    const host = new URL(page.url || '').hostname.replace(/^www\./, '');
+    return `${page.source_name || host}|${host}`;
+  } catch {
+    return page.source_name || page.url || 'unknown-source';
+  }
+}
+function evidenceChannelKey(channel = {}) {
+  const normalized = normalizeCoreBeinChannel(channel) || channel;
+  return coreBeinChannelKey(normalized);
+}
+function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
+  const claims = {};
+  const review = [];
+  for (const page of pages || []) {
+    if (page.error) {
+      review.push({
+        source_name: page.source_name,
+        source_url: page.url,
+        published: false,
+        note_ar: `تعذر قراءة المصدر المساعد: ${page.error}`
+      });
+      continue;
+    }
+    const text = `${page.title || ''} ${page.text || ''}`;
+    const textNorm = normalizeArabicText(text);
+    if (!/(bein|بي ان|بي إن|ماكس|4k|فوركي|قناه|قناة|بث|مباشر|world cup|كاس العالم)/i.test(textNorm)) continue;
+    const broadcastAction = hasBroadcastAction(textNorm);
+    for (const match of matches || []) {
+      const conf = matchConfidenceFromText(match, textNorm);
+      if (conf.score < 55) continue;
+      const context = extractMatchSpecificChannelContext(text, match, matches || []);
+      const channels = context.precise ? extractChannelCandidates(context.text, page.url) : [];
+      const matchKey = match.id || `M${String(match.num || '').padStart(3,'0')}`;
+      const item = {
+        match_id: match.id,
+        match_num: match.num,
+        teams_ar: `${match.team1_ar || match.team1} × ${match.team2_ar || match.team2}`,
+        kickoff_jordan: match.kickoff_jordan || '',
+        source_name: page.source_name,
+        source_url: page.url,
+        confidence: conf.score,
+        reasons: conf.reasons,
+        action_words_found: broadcastAction,
+        channel_context_method: context.method,
+        channel_context_note_ar: context.note_ar,
+        channels_found: channels.map(c => c.name_ar),
+        published: false
+      };
+      if (broadcastAction && context.precise && channels.length) {
+        for (const rawChannel of channels) {
+          const normalized = normalizeCoreBeinChannel(rawChannel);
+          if (!normalized) continue;
+          const channelKind = evidenceChannelKey(normalized);
+          if (channelKind === 'blocked') continue;
+          claims[matchKey] ||= {};
+          claims[matchKey][channelKind] ||= {channel: normalized, evidence: new Map()};
+          const evidenceKey = sourceIdentity(page);
+          const evidence = claims[matchKey][channelKind].evidence;
+          if (!evidence.has(evidenceKey)) {
+            evidence.set(evidenceKey, {
+              source_name: page.source_name,
+              source_url: page.url,
+              confidence: conf.score,
+              context_method: context.method
+            });
+          }
+        }
+      }
+      review.push(item);
+    }
+  }
+
+  const source = {
+    metadata: {
+      name: 'Multi-source trusted broadcast confirmations',
+      name_ar: 'تأكيدات بث من مصادر مساعدة متعددة',
+      source_name: 'MaenSat multi-source agreement',
+      last_checked_at: jordanNowIso(),
+      min_agreement: TRUSTED_BROADCAST_MIN_AGREEMENT,
+      policy_ar: 'المصادر المساعدة لا تنشر قناة تلقائياً إلا إذا اتفق مصدران موثوقان مستقلان على نفس القناة داخل مقطع المباراة نفسها. beIN الرسمي وتأكيد المشاهدة اليدوي يبقيان أعلى أولوية.'
+    },
+    matches: {},
+    review: []
+  };
+
+  for (const [matchKey, byChannel] of Object.entries(claims)) {
+    for (const [channelKind, claim] of Object.entries(byChannel)) {
+      const evidenceList = [...claim.evidence.values()];
+      const uniqueCount = evidenceList.length;
+      const publish = uniqueCount >= TRUSTED_BROADCAST_MIN_AGREEMENT;
+      source.review.push({
+        match_id: matchKey,
+        channel_kind: channelKind,
+        channel_name_ar: claim.channel.name_ar,
+        channel_name_en: claim.channel.name_en,
+        evidence_count: uniqueCount,
+        required_evidence_count: TRUSTED_BROADCAST_MIN_AGREEMENT,
+        sources: evidenceList,
+        published: publish,
+        note_ar: publish
+          ? 'تم نشر القناة لأن مصدرين موثوقين أو أكثر اتفقوا عليها داخل مقطع المباراة نفسها.'
+          : 'لم تُنشر القناة بعد لأن مصدرًا واحدًا فقط ذكرها أو لأن الاتفاق غير كافٍ.'
+      });
+      if (!publish) continue;
+      source.matches[matchKey] ||= {channels: []};
+      source.matches[matchKey].channels = upsertChannels(source.matches[matchKey].channels, [{
+        ...claim.channel,
+        status: 'confirmed',
+        confidence: 'multi_source_agreement',
+        source_name: 'MaenSat multi-source agreement',
+        source_urls: evidenceList.map(e => e.source_url).filter(Boolean),
+        source_names: evidenceList.map(e => e.source_name).filter(Boolean),
+        note_ar: `${claim.channel.note_ar || ''} تم تأكيدها باتفاق ${uniqueCount} مصادر مساعدة موثوقة.`.trim()
+      }]);
+    }
+  }
+  return source;
+}
+async function fetchTrustedBroadcastSource(existingBundle) {
+  if (!TRUSTED_BROADCAST_AUTO_CHECK) return {source:null, review:null};
+  try {
+    const pages = await fetchTrustedBroadcastPages();
+    const source = buildTrustedBroadcastSourceFromPages(pages, existingBundle?.matches || []);
+    const review = {
+      metadata: {
+        name_ar: 'تقرير مراجعة المصادر المساعدة للقنوات الناقلة',
+        last_checked_at: source.metadata.last_checked_at,
+        min_agreement: TRUSTED_BROADCAST_MIN_AGREEMENT,
+        checked_pages: pages.map(p => ({source_name:p.source_name, url:p.url, title:p.title, error:p.error || '', kind:p.kind}))
+      },
+      published_matches: Object.keys(source.matches || {}).length,
+      candidates: [...(source.review || []), ...review]
+    };
+    console.log(`[worldcup-broadcast-trusted] checked ${pages.length} helper pages; published ${review.published_matches} match broadcaster entr${review.published_matches === 1 ? 'y' : 'ies'}; review candidates ${review.candidates.length}`);
+    return {source, review};
+  } catch (err) {
+    console.warn('[worldcup-broadcast-trusted] trusted helper check failed:', err.message);
+    return {source:null, review:{metadata:{name_ar:'تعذر فحص المصادر المساعدة', last_checked_at:jordanNowIso(), error:err.message}, published_matches:0, candidates:[]}};
+  }
+}
+function mergeBroadcastReviews(...reviews) {
+  const valid = reviews.filter(Boolean);
+  if (!valid.length) return null;
+  if (valid.length === 1) return valid[0];
+  return {
+    metadata: {
+      name_ar: 'تقرير مراجعة القنوات الناقلة من beIN والمصادر المساعدة',
+      last_checked_at: jordanNowIso(),
+      reports: valid.map(r => r.metadata || {})
+    },
+    published_matches: valid.reduce((sum, r) => sum + Number(r.published_matches || 0), 0),
+    candidates: valid.flatMap(r => Array.isArray(r.candidates) ? r.candidates : [])
+  };
 }
 
 
@@ -1074,7 +1211,7 @@ function applyLiveScoresToSource(source = {}, liveEntries = []) {
   });
   if (applied) {
     console.log(`[worldcup-live] applied live/final score updates to ${applied} match(es)`);
-    return {...source, matches, live_score_source: 'espn', live_score_applied_count: applied};
+    return {...source, matches, live_score_source: 'espn'};
   }
   console.log('[worldcup-live] no ESPN live score matched current World Cup fixtures');
   return source;
@@ -1126,7 +1263,7 @@ function buildOutput(source, lastUpdatedIso, lastCheckedIso = lastUpdatedIso) {
     official_reference:'https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf',
     last_updated:lastUpdatedIso,
     last_checked_at:lastCheckedIso,
-    update_policy:'every 15 minutes on/near match days, with ESPN live-score safety window and beIN broadcaster checks; every 12 hours baseline otherwise',
+    update_policy:'every 15 minutes only during near/live match windows, every 12 hours otherwise',
     timezone:TIMEZONE,
     total_matches:104,
     teams_count:48,
@@ -1152,7 +1289,7 @@ function jordanNowIso() {
 function comparableWorldCupText(text) {
   try {
     const obj = JSON.parse(text || 'null');
-    if (obj?.metadata) { delete obj.metadata.last_checked_at; delete obj.metadata.last_updated; }
+    if (obj?.metadata) delete obj.metadata.last_checked_at;
     return JSON.stringify(obj);
   } catch {
     return text || '';
@@ -1176,8 +1313,8 @@ async function main(){
   const liveEntries = await fetchLiveScoreEntries();
   source = applyLiveScoresToSource(source, liveEntries);
   const checkedAtIso = jordanNowIso();
-  const displayLastUpdated = checkedAtIso;
-  const draft = buildOutput(source, displayLastUpdated, checkedAtIso);
+  const preservedLastUpdated = existingBundle?.metadata?.last_updated || checkedAtIso;
+  const draft = buildOutput(source, preservedLastUpdated, checkedAtIso);
   const currentMatches = await readText(MATCHES_FILE);
   const currentStandings = await readText(STANDINGS_FILE);
   const currentBracket = await readText(BRACKET_FILE);

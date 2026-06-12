@@ -1,0 +1,34 @@
+تعديل MaenSat - منع خلط قنوات beIN عند تزامن المباريات
+
+محتويات الباتش:
+- scripts/update-worldcup-2026.mjs
+- public/worldcup-2026/broadcast-observed.json
+
+ماذا يفعل:
+1) يعرض فقط القنوات المطلوبة في كأس العالم:
+   - beIN SPORTS المفتوحة = مجانية
+   - beIN SPORTS MAX 1 = مشفرة
+   - beIN SPORTS MAX 2 = مشفرة
+   - beIN SPORTS 4K = مشفرة
+
+2) يخفي من العرض المختصر:
+   - MAX 3 / MAX 4 / MAX 5 / MAX 6
+   - beIN SPORTS NEWS
+   - beIN CONNECT
+   - الاشتراك / الباقات
+
+3) عند وجود مباراتين بنفس التوقيت:
+   لا يأخذ القنوات من الصفحة كاملة.
+   يأخذ فقط القنوات الموجودة داخل مقطع المباراة نفسها قرب اسمي الفريقين.
+   هذا يمنع خلط MAX 1 وMAX 2 بين مباراتين بنفس الساعة.
+
+4) يبقي التأكيد اليدوي لمباراة المكسيك × جنوب أفريقيا:
+   - beIN SPORTS المفتوحة
+   - beIN SPORTS MAX 1
+   - beIN SPORTS MAX 2
+   - beIN SPORTS 4K
+
+هذا الباتش لا يحتوي ولا يغير:
+- matches.json
+- standings.json
+- bracket.json

@@ -3,10 +3,10 @@
     "name": "Observed World Cup broadcaster confirmations",
     "name_ar": "تأكيدات مشاهدة كأس العالم من صاحب الموقع",
     "source_name": "MaenSat observed confirmation",
-    "last_checked_at": "2026-06-11T23:35:00+03:00",
+    "last_checked_at": "2026-06-12T07:35:00+03:00",
     "policy_ar": "هذا الملف مخصص للتأكيدات اليدوية عندما يشاهد صاحب الموقع المباراة فعلياً على قناة مفتوحة أو قناة محددة في الأردن/الشرق الأوسط. لا يحتوي روابط بث ولا ترددات.",
     "display_policy_ar": "عرض beIN المختصر للموقع: beIN SPORTS المفتوحة فقط كقناة مجانية، وMAX 1 وMAX 2 و4K كمشفرة. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات.",
-    "note_ar": "M001 تمت مشاهدتها فعلياً على beIN SPORTS المجانية في الأردن/الشرق الأوسط، وكانت القنوات المهمة للعرض: beIN SPORTS المفتوحة، beIN SPORTS MAX 1، beIN SPORTS MAX 2، وbeIN SPORTS 4K."
+    "note_ar": "M001 وM002 تمت مشاهدتهما فعلياً على beIN SPORTS المجانية في الأردن/الشرق الأوسط. لا يعني ذلك أن كل مباريات البطولة مجانية."
   },
   "matches": {
     "M001": {
@@ -53,6 +53,25 @@
           "source_url": "",
           "evidence_ar": "يُعرض خيار beIN SPORTS 4K ضمن القنوات المختصرة المطلوبة عندما يكون ضمن بيانات beIN أو التأكيد اليدوي.",
           "note_ar": "قناة مشفرة؛ تعرض فقط ضمن القنوات المختصرة المطلوبة."
+        }
+      ]
+    },
+    "M002": {
+      "observed": true,
+      "observed_region": "Jordan / MENA",
+      "observed_at": "2026-06-12T07:35:00+03:00",
+      "team1_ar": "كوريا الجنوبية",
+      "team2_ar": "التشيك",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS المفتوحة",
+          "name_en": "beIN SPORTS Free-to-air",
+          "type": "free",
+          "status": "confirmed",
+          "source_name": "MaenSat observed confirmation",
+          "source_url": "",
+          "evidence_ar": "تمت مشاهدة مباراة كوريا الجنوبية × التشيك فعلياً على beIN SPORTS المجانية على نايل سات في الأردن/الشرق الأوسط.",
+          "note_ar": "تأكيد مشاهدة من صاحب الموقع. لا يعني أن كل مباريات البطولة مجانية."
         }
       ]
     }
