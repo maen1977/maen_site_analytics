@@ -12,10 +12,8 @@ const BROADCAST_OBSERVED_FILE = process.env.WORLD_CUP_2026_BROADCAST_OBSERVED_FI
 const BROADCAST_TRUSTED_SOURCE_FILE = process.env.WORLD_CUP_2026_BROADCAST_TRUSTED_SOURCE_FILE || path.join(WC_DIR, 'broadcast-trusted-sources.json');
 const TRUSTED_BROADCAST_URLS = String(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_URLS || '').trim();
 const TRUSTED_BROADCAST_AUTO_CHECK = process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_AUTO_CHECK !== '0';
-const TRUSTED_BROADCAST_MIN_AGREEMENT = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MIN_AGREEMENT || 1);
-const TRUSTED_BROADCAST_MAX_PAGES = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MAX_PAGES || 24);
-const TRUSTED_BROADCAST_DISCOVER_CHILD_PAGES = process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_DISCOVER_CHILD_PAGES !== '0';
-const TRUSTED_BROADCAST_MAX_DISCOVERED_PAGES = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MAX_DISCOVERED_PAGES || 24);
+const TRUSTED_BROADCAST_MIN_AGREEMENT = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MIN_AGREEMENT || 2);
+const TRUSTED_BROADCAST_MAX_PAGES = Number(process.env.WORLD_CUP_2026_TRUSTED_BROADCAST_MAX_PAGES || 16);
 const SOURCE_URL = process.env.WORLD_CUP_2026_SOURCE_URL || 'https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json';
 const LIVE_SCORE_CHECK = process.env.WORLD_CUP_2026_LIVE_SCORE_CHECK !== '0';
 const LIVE_SCORE_URL = process.env.WORLD_CUP_2026_LIVE_SCORE_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200';
@@ -288,7 +286,7 @@ function coreBeinChannelKind(channel = {}) {
     const number = String(maxMatch[1] || '').trim();
     if (number === '1') return 'bein-max-1';
     if (number === '2') return 'bein-max-2';
-    return 'bein-max-generic';
+    return 'blocked';
   }
   if (/(free|fta|مفتوح|المفتوحه|المفتوحة|مجاني|مجانيه)/.test(text)) return 'bein-free';
   // MaenSat display rule: plain beIN SPORTS as a standalone channel means the free-to-air beIN SPORTS channel.
@@ -320,14 +318,6 @@ function normalizeCoreBeinChannel(channel = {}) {
     name_en: 'beIN SPORTS MAX 2',
     type: 'encrypted',
     status: base.status || 'confirmed'
-  };
-  if (kind === 'bein-max-generic') return {
-    ...base,
-    name_ar: 'beIN SPORTS MAX',
-    name_en: 'beIN SPORTS MAX',
-    type: 'encrypted',
-    status: base.status || 'confirmed',
-    note_ar: base.note_ar || 'ذكر المصدر beIN SPORTS MAX دون رقم القناة؛ يعرضها الموقع بدل ترك خانة القنوات فارغة، والرقم يبقى بانتظار التأكيد.'
   };
   if (kind === 'bein-4k') return {
     ...base,
@@ -364,7 +354,7 @@ function sanitizeBroadcastsForCoreBeinChannels(broadcasts = {}) {
   }
   out.metadata ||= {};
   out.metadata.core_bein_channel_filter = true;
-  out.metadata.core_bein_channel_filter_ar = 'يعرض الموقع beIN SPORTS المفتوحة، وbeIN SPORTS MAX العام إذا لم يُذكر الرقم، وMAX 1، وMAX 2، و4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها قدر الإمكان؛ وإذا ذكر مصدر موثوق MAX دون رقم لا تُترك القناة فارغة.';
+  out.metadata.core_bein_channel_filter_ar = 'يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.';
   return out;
 }
 function extractChannelCandidates(text = '', sourceUrl = '') {
@@ -399,12 +389,11 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
       let type = 'encrypted';
       let status = 'confirmed';
       if (kind === 'max') {
-        // Flexible MaenSat rule:
-        // MAX 1 and MAX 2 are shown exactly. If a trusted source says only "beIN SPORTS MAX",
-        // show generic MAX as encrypted instead of leaving the match with no broadcaster.
-        if (number && number !== '1' && number !== '2') continue;
-        nameEn = number ? `beIN SPORTS MAX ${number}` : 'beIN SPORTS MAX';
-        nameAr = number ? `beIN SPORTS MAX ${number}` : 'beIN SPORTS MAX';
+        // MaenSat display rule: only MAX 1 and MAX 2 are shown for World Cup pages.
+        // Generic MAX or MAX 3-6 are ignored to avoid clutter and accidental channel claims.
+        if (number !== '1' && number !== '2') continue;
+        nameEn = `beIN SPORTS MAX ${number}`;
+        nameAr = `beIN SPORTS MAX ${number}`;
         type = 'encrypted';
         status = 'confirmed';
       } else if (kind === '4k') {
@@ -421,7 +410,7 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
         // If the official broadcaster page lists plain "beIN SPORTS" as a channel near the match, publish it as the free-to-air beIN SPORTS channel.
         // This stays true even when the same channel list also includes beIN SPORTS MAX or beIN SPORTS 4K; those are added separately as encrypted.
         // Article branding like "beIN SPORTS announced..." is still ignored unless it appears in a broadcast/watch/on-channel context.
-        if (!hasFreeHint(snippetNorm) && !hasStandaloneBeinContext(snippetNorm) && !hasBroadcastAction(snippetNorm)) continue;
+        if (!hasFreeHint(snippetNorm) && !hasStandaloneBeinContext(snippetNorm)) continue;
         nameEn = 'beIN SPORTS Free-to-air';
         nameAr = 'beIN SPORTS المفتوحة';
         type = 'free';
@@ -438,7 +427,7 @@ function extractChannelCandidates(text = '', sourceUrl = '') {
         source_name: 'beIN SPORTS',
         source_url: sourceUrl,
         evidence_ar: snippet,
-        note_ar: kind === 'max' && !number ? 'ذكر المصدر beIN SPORTS MAX دون تحديد الرقم؛ يعرضها الموقع كقناة مشفرة عامة حتى لا تبقى خانة القنوات فارغة.' : (kind === 'standalone_free' ? 'حسب قاعدة MaenSat: ظهور beIN SPORTS كقناة مستقلة يُعامل كقناة beIN SPORTS المفتوحة، حتى لو ظهرت معها MAX أو 4K كقنوات مشفرة منفصلة.' : 'تم التقاطها من مصدر beIN SPORTS الرسمي.')
+        note_ar: kind === 'max' && !number ? 'ذكرت beIN SPORTS MAX دون تحديد رقم القناة؛ يبقى الرقم بانتظار التأكيد.' : (kind === 'standalone_free' ? 'حسب قاعدة MaenSat: ظهور beIN SPORTS كقناة مستقلة يُعامل كقناة beIN SPORTS المفتوحة، حتى لو ظهرت معها MAX أو 4K كقنوات مشفرة منفصلة.' : 'تم التقاطها من مصدر beIN SPORTS الرسمي.')
       });
     }
   }
@@ -539,43 +528,6 @@ function extractMatchSpecificChannelContext(text = '', match = {}, matches = [])
       : 'تم استخراج القنوات من مقطع قريب من اسمي الفريقين فقط، وليس من الصفحة كاملة.'
   };
 }
-
-function firstTeamMentionPosition(textNorm = '', match = {}) {
-  const terms = uniq([...matchChannelTerms(match, 1), ...matchChannelTerms(match, 2)]).filter(Boolean);
-  let best = -1;
-  for (const term of terms) {
-    const idx = textNorm.indexOf(term);
-    if (idx >= 0 && (best < 0 || idx < best)) best = idx;
-  }
-  return best;
-}
-function extractFlexibleTrustedChannelContext(text = '', match = {}, matches = []) {
-  const textNorm = normalizeArabicText(text);
-  const pos = firstTeamMentionPosition(textNorm, match);
-  if (pos < 0) {
-    return {
-      text: '',
-      precise: false,
-      method: 'no-team-mention-flexible-fallback',
-      note_ar: 'لم يتم العثور على اسم الفريق داخل المصدر المساعد.'
-    };
-  }
-  const allRanges = rangesForMatchesOnPage(textNorm, matches);
-  const prev = [...allRanges].reverse().find(r => r.end <= pos);
-  const next = allRanges.find(r => r.start >= pos && r.start !== pos);
-  const leftBoundary = prev ? Math.floor((prev.end + pos) / 2) : 0;
-  const rightBoundary = next ? Math.floor((next.start + pos) / 2) : textNorm.length;
-  const start = Math.max(leftBoundary, pos - 520);
-  const end = Math.min(rightBoundary, pos + 1200);
-  return {
-    text: textNorm.slice(start, end).trim(),
-    precise: true,
-    method: 'flexible-trusted-source-near-team-block',
-    boundaries: {start, end, leftBoundary, rightBoundary, team_position: pos},
-    note_ar: 'وضع مرن: لم يجد النظام مقطعاً مثالياً يجمع الفريقين، فقرأ مقطعاً قريباً من اسم الفريق داخل مصدر رياضي موثوق حتى لا تبقى القناة فارغة قبل المباراة.'
-  };
-}
-
 function safeTitleFromHtml(html = '') {
   const m = String(html).match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   return m ? stripHtmlToText(m[1]) : '';
@@ -657,8 +609,7 @@ function buildBeinBroadcastSourceFromPages(pages = [], matches = []) {
     for (const match of matches || []) {
       const conf = matchConfidenceFromText(match, textNorm);
       if (conf.score < 45) continue;
-      let context = extractMatchSpecificChannelContext(text, match, matches || []);
-      if (!context.precise && conf.score >= 70) context = extractFlexibleTrustedChannelContext(text, match, matches || []);
+      const context = extractMatchSpecificChannelContext(text, match, matches || []);
       const channels = context.precise ? extractChannelCandidates(context.text, page.url) : [];
       const simultaneous = simultaneousKickoffCount(match, matches || []) > 1;
       const reviewItem = {
@@ -828,92 +779,6 @@ async function fetchObservedBroadcastSource() {
   if (!local) return null;
   return local;
 }
-
-function broadcastEntryEvidenceText(entry = {}, key = '') {
-  const channels = Array.isArray(entry?.channels) ? entry.channels : [];
-  const parts = [
-    key,
-    entry.match_id,
-    entry.match_num,
-    entry.teams_ar,
-    entry.teams_en,
-    entry.home_team,
-    entry.away_team,
-    entry.home_team_ar,
-    entry.away_team_ar,
-    entry.source_name,
-    ...(channels || []).flatMap(c => [
-      c?.name_ar,
-      c?.name_en,
-      c?.name,
-      c?.evidence_ar,
-      c?.evidence_en,
-      c?.note_ar,
-      c?.note_en,
-      c?.source_name,
-      Array.isArray(c?.source_names) ? c.source_names.join(' ') : '',
-      Array.isArray(c?.source_urls) ? c.source_urls.join(' ') : '',
-      c?.source_url
-    ])
-  ];
-  return normalizeArabicText(parts.filter(Boolean).join(' '));
-}
-function broadcastEntryMatchesTeams(entry = {}, match = {}, key = '') {
-  const textNorm = broadcastEntryEvidenceText(entry, key);
-  if (!textNorm) return false;
-  const aTerms = matchChannelTerms(match, 1);
-  const bTerms = matchChannelTerms(match, 2);
-  return textHasAny(textNorm, aTerms) && textHasAny(textNorm, bTerms);
-}
-function primaryBroadcastKeysForMatch(match = {}) {
-  const keys = [];
-  if (match.id) keys.push(String(match.id));
-  if (match.num !== undefined && match.num !== null && String(match.num).trim()) {
-    keys.push(String(match.num));
-    keys.push(`M${String(match.num).padStart(3, '0')}`);
-  }
-  return uniq(keys);
-}
-function mergeBroadcastEntries(existing = {}, incoming = {}) {
-  const next = {...(existing || {}), ...(incoming || {})};
-  next.channels = upsertChannels(existing?.channels || [], incoming?.channels || []);
-  return next;
-}
-function reconcileBroadcastMatchKeys(broadcasts = {}, matches = []) {
-  const out = JSON.parse(JSON.stringify(broadcasts || {}));
-  out.matches ||= {};
-  let fixed = 0;
-  for (const match of matches || []) {
-    const primaryKeys = primaryBroadcastKeysForMatch(match);
-    if (!primaryKeys.length) continue;
-    const hasDirect = primaryKeys.some(k => Array.isArray(out.matches?.[k]?.channels) && out.matches[k].channels.length);
-    if (hasDirect) continue;
-    let bestKey = '';
-    let bestEntry = null;
-    let bestScore = -1;
-    for (const [key, entry] of Object.entries(out.matches || {})) {
-      if (!entry || !Array.isArray(entry.channels) || !entry.channels.length) continue;
-      if (!broadcastEntryMatchesTeams(entry, match, key)) continue;
-      const score = entry.channels.reduce((sum, c) => sum + Number(c?.match_confidence || c?.confidence || 0), 0) + entry.channels.length;
-      if (score > bestScore) { bestScore = score; bestKey = key; bestEntry = entry; }
-    }
-    if (!bestEntry) continue;
-    const targetKey = primaryKeys[0];
-    out.matches[targetKey] = mergeBroadcastEntries(out.matches[targetKey] || {}, {
-      ...bestEntry,
-      remapped_from_key: bestKey,
-      remap_method: 'team-evidence-fallback',
-      remap_note_ar: 'تم ربط القنوات بهذه المباراة لأن دليل القناة ذكر اسمَي الفريقين، حتى لو كان رقم المباراة في ملف القنوات مختلفًا عن رقم بطاقة المباراة.'
-    });
-    fixed += 1;
-  }
-  out.metadata ||= {};
-  out.metadata.broadcast_match_key_reconcile = true;
-  out.metadata.broadcast_match_key_reconcile_fixed = fixed;
-  out.metadata.broadcast_match_key_reconcile_ar = 'يحمي الواجهة من اختلاف رقم المباراة بين مصادر الجدول ومصادر القنوات؛ عند عدم وجود تطابق بالرقم، تُربط القنوات بالمباراة إذا ذكر دليل القناة اسمَي الفريقين معاً.';
-  return out;
-}
-
 function normalizeBroadcastSource(source = {}) {
   if (Array.isArray(source)) {
     const matches = {};
@@ -995,7 +860,6 @@ async function buildBroadcastOutput(existingBroadcasts, existingBundle) {
     console.log('[worldcup-observed] merged local observed broadcaster confirmations');
   }
   broadcasts = sanitizeBroadcastsForCoreBeinChannels(broadcasts);
-  broadcasts = reconcileBroadcastMatchKeys(broadcasts, existingBundle?.matches || []);
   return {broadcasts, review: mergeBroadcastReviews(beinReview, trustedReview)};
 }
 
@@ -1020,61 +884,32 @@ async function loadTrustedBroadcastSources() {
     .filter(row => row.enabled && row.url);
   return uniq(normalized.map(row => JSON.stringify(row))).map(raw => JSON.parse(raw)).slice(0, TRUSTED_BROADCAST_MAX_PAGES);
 }
-function trustedHostAllowed(url = '') {
-  try {
-    const host = new URL(url).hostname.replace(/^www\./, '').toLowerCase();
-    return /(goal\.com|kooora\.com|yallakora\.com|365scores\.com|livesoccertv\.com|filgoal\.com|winwin\.com|koraplus\.com)/.test(host);
-  } catch { return false; }
-}
-function discoverTrustedBroadcastUrls(html = '', baseUrl = '') {
-  const urls = [];
-  for (const match of String(html).matchAll(/href=["']([^"']+)["']/gi)) {
-    const url = absoluteUrl(decodeHtmlEntities(match[1]), baseUrl);
-    if (!url || !trustedHostAllowed(url)) continue;
-    const decoded = normalizeArabicText(decodeURIComponent(url).toLowerCase());
-    const looksWorldCup = /(world[-_]?cup|كاس|كأس|مونديال|fifa|2026)/i.test(decoded);
-    const looksBroadcast = /(قنوات|القنوات|الناقله|الناقلة|بث|مباشر|مواعيد|جدول|مشاهده|مشاهدة|channels|broadcast|fixtures|schedule|live)/i.test(decoded);
-    if (looksWorldCup && looksBroadcast) urls.push(url.split('#')[0]);
-  }
-  return uniq(urls).slice(0, TRUSTED_BROADCAST_MAX_DISCOVERED_PAGES);
-}
 async function fetchTrustedBroadcastPages() {
   const sources = await loadTrustedBroadcastSources();
   const pages = [];
-  const queue = sources.map(source => ({source, url:source.url, depth:0}));
-  const seen = new Set();
-  for (let i = 0; i < queue.length && pages.length < TRUSTED_BROADCAST_MAX_PAGES + TRUSTED_BROADCAST_MAX_DISCOVERED_PAGES; i++) {
-    const item = queue[i];
-    const source = item.source;
-    if (!item.url || seen.has(item.url)) continue;
-    seen.add(item.url);
+  for (const source of sources) {
+    if (pages.length >= TRUSTED_BROADCAST_MAX_PAGES) break;
     try {
-      const html = await fetchHtmlPage(item.url);
-      const page = {
-        source_name: source.name,
-        source_weight: source.weight,
-        source_note_ar: source.note_ar || '',
-        url: item.url,
-        title: safeTitleFromHtml(html),
-        text: stripHtmlToText(html),
-        kind: item.depth > 0 ? 'trusted-discovered-page' : 'trusted-helper'
-      };
-      pages.push(page);
-      if (TRUSTED_BROADCAST_DISCOVER_CHILD_PAGES && item.depth < 1) {
-        for (const childUrl of discoverTrustedBroadcastUrls(html, item.url)) {
-          if (!seen.has(childUrl)) queue.push({source:{...source, weight:Math.max(1, Number(source.weight || 1))}, url:childUrl, depth:item.depth + 1});
-        }
-      }
-    } catch (err) {
-      console.warn('[worldcup-broadcast-trusted] failed to fetch trusted helper page:', source.name, item.url, err.message);
+      const html = await fetchHtmlPage(source.url);
       pages.push({
         source_name: source.name,
         source_weight: source.weight,
         source_note_ar: source.note_ar || '',
-        url: item.url,
+        url: source.url,
+        title: safeTitleFromHtml(html),
+        text: stripHtmlToText(html),
+        kind: 'trusted-helper'
+      });
+    } catch (err) {
+      console.warn('[worldcup-broadcast-trusted] failed to fetch trusted helper page:', source.name, source.url, err.message);
+      pages.push({
+        source_name: source.name,
+        source_weight: source.weight,
+        source_note_ar: source.note_ar || '',
+        url: source.url,
         title: '',
         text: '',
-        kind: item.depth > 0 ? 'trusted-discovered-page' : 'trusted-helper',
+        kind: 'trusted-helper',
         error: err.message
       });
     }
@@ -1113,8 +948,7 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
     for (const match of matches || []) {
       const conf = matchConfidenceFromText(match, textNorm);
       if (conf.score < 55) continue;
-      let context = extractMatchSpecificChannelContext(text, match, matches || []);
-      if (!context.precise && conf.score >= 60) context = extractFlexibleTrustedChannelContext(text, match, matches || []);
+      const context = extractMatchSpecificChannelContext(text, match, matches || []);
       const channels = context.precise ? extractChannelCandidates(context.text, page.url) : [];
       const matchKey = match.id || `M${String(match.num || '').padStart(3,'0')}`;
       const item = {
@@ -1165,7 +999,7 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
       source_name: 'MaenSat multi-source agreement',
       last_checked_at: jordanNowIso(),
       min_agreement: TRUSTED_BROADCAST_MIN_AGREEMENT,
-      policy_ar: 'وضع الاستفتاء المرن: تُنشر القناة من مصدر رياضي موثوق واحد إذا ذكر المباراة والقناة في مقطع قريب، وتزداد الثقة إذا اتفقت مصادر متعددة. beIN SPORTS وحدها تعني المفتوحة، وbeIN SPORTS MAX العام يعرض كمشفر حتى لو لم يذكر الرقم.'
+      policy_ar: 'المصادر المساعدة لا تنشر قناة تلقائياً إلا إذا اتفق مصدران موثوقان مستقلان على نفس القناة داخل مقطع المباراة نفسها، أو إذا كان المصدر صفحة مباراة/تقرير مباشر عالي الثقة بوزن 2 وذكر المباراة والقناة في نفس المقطع. beIN الرسمي وتأكيد المشاهدة اليدوي يبقيان أعلى أولوية.'
     },
     matches: {},
     review: []
@@ -1190,9 +1024,9 @@ function buildTrustedBroadcastSourceFromPages(pages = [], matches = []) {
         published: publish,
         note_ar: publish
           ? (uniqueCount >= TRUSTED_BROADCAST_MIN_AGREEMENT
-              ? 'تم نشر القناة وفق وضع الاستفتاء المرن لأن مصدرًا رياضيًا موثوقًا أو أكثر ذكرها قرب المباراة نفسها.'
-              : 'تم نشر القناة لأن مصدرًا مباشرًا موثوقًا ذكر المباراة والقناة قرب نفس المقطع.')
-          : 'لم تُنشر القناة لأن النص لم يربط المباراة بالقناة بشكل كافٍ حتى في الوضع المرن.'
+              ? 'تم نشر القناة لأن مصدرين موثوقين أو أكثر اتفقوا عليها داخل مقطع المباراة نفسها.'
+              : 'تم نشر القناة لأن مصدرًا مباشرًا عالي الثقة ذكر المباراة والقناة داخل مقطع المباراة نفسه.')
+          : 'لم تُنشر القناة بعد لأن مصدرًا واحدًا ضعيف الوزن فقط ذكرها أو لأن الاتفاق غير كافٍ.'
       });
       if (!publish) continue;
       source.matches[matchKey] ||= {channels: []};

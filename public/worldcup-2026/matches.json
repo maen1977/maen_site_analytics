@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-13T01:00:19.800+03:00",
-    "last_checked_at": "2026-06-13T01:00:19.800+03:00",
+    "last_updated": "2026-06-12T12:38:31.104+03:00",
+    "last_checked_at": "2026-06-12T18:34:29.680+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -253,26 +253,13 @@
       "team2_ar": "البوسنة والهرسك",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": "finished",
-      "home_score": 1,
-      "away_score": 1,
-      "score": {
-        "ft": [
-          1,
-          1
-        ],
-        "ht": [
-          0,
-          1
-        ],
-        "source": "espn",
-        "event_id": "760416",
-        "status_detail": "FT",
-        "clock": "90'+7'"
-      },
-      "score_source": "espn",
-      "live_clock": "90'+7'",
-      "live_status_detail": "FT",
+      "status": "scheduled",
+      "home_score": 0,
+      "away_score": 0,
+      "score": null,
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B"
     },
     {

@@ -5073,69 +5073,17 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}
   function broadcastStatusText(c){var s=String((c&&c.status)||'').toLowerCase(); if(s==='confirmed')return tr('confirmed'); if(s==='to_be_confirmed'||s==='tbc'||s==='channel_tbc')return tr('toBeConfirmed'); if(s==='pending_official_announcement'||s==='pending'||s==='pending_official')return tr('pendingOfficial'); return s?esc(s):'';}
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
-  function wcBroadcastNorm(v){return String(v||'').toLowerCase().replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/ة/g,'ه').replace(/[٠-٩]/g,function(d){return String('٠١٢٣٤٥٦٧٨٩'.indexOf(d));}).replace(/[۰-۹]/g,function(d){return String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d));}).replace(/[^a-z0-9\u0600-\u06ff]+/g,' ').replace(/\s+/g,' ').trim();}
-  function wcBroadcastTerms(list){var out=[];(list||[]).forEach(function(v){v=wcBroadcastNorm(v); if(v&&v.length>=3&&out.indexOf(v)<0)out.push(v);});return out;}
-  function wcBroadcastTeamTerms(m,side){var arr=side===1?[m&&m.team1,m&&m.team1_ar,m&&m.home_team,m&&m.home_team_ar]:[m&&m.team2,m&&m.team2_ar,m&&m.away_team,m&&m.away_team_ar]; var text=wcBroadcastNorm(arr.join(' ')); if(text.indexOf('بوسن')>=0)arr=arr.concat(['البوسنة والهرسك','البوسنه والهرسك','البوسنة','البوسنه','Bosnia','Bosnia Herzegovina']); if(text.indexOf('كندا')>=0||text.indexOf('canada')>=0)arr=arr.concat(['كندا','Canada']); if(text.indexOf('تشيك')>=0||text.indexOf('czech')>=0)arr=arr.concat(['التشيك','تشيكيا','Czech Republic','Czechia']); if(text.indexOf('كوريا')>=0||text.indexOf('korea')>=0)arr=arr.concat(['كوريا الجنوبية','كوريا الجنوبيه','South Korea']); if(text.indexOf('مكسيك')>=0||text.indexOf('mexico')>=0)arr=arr.concat(['المكسيك','Mexico']); return wcBroadcastTerms(arr);}
-  function wcBroadcastEntryText(entry,key){var parts=[key,entry&&entry.match_id,entry&&entry.match_num,entry&&entry.teams_ar,entry&&entry.teams_en,entry&&entry.home_team,entry&&entry.away_team]; var ch=(entry&&entry.channels)||[]; ch.forEach(function(c){parts.push(c.name_ar,c.name_en,c.name,c.evidence_ar,c.evidence_en,c.note_ar,c.note_en,c.source_name,(c.source_names||[]).join?c.source_names.join(' '):'',(c.source_urls||[]).join?c.source_urls.join(' '):'',c.source_url);});return wcBroadcastNorm(parts.join(' '));}
-  function wcBroadcastHasAny(text,terms){return (terms||[]).some(function(t){return t&&text.indexOf(t)>=0;});}
-  function wcBroadcastEntryMatches(entry,m,key){var text=wcBroadcastEntryText(entry,key); if(!text)return false; return wcBroadcastHasAny(text,wcBroadcastTeamTerms(m,1))&&wcBroadcastHasAny(text,wcBroadcastTeamTerms(m,2));}
-  function matchBroadcastEntry(m){var b=WC_STATE.broadcasts||{}; var map=b.matches||{}; var key=(m&&m.id)||''; var n=(m&&m.num)!=null?String(m.num):''; var direct=map[key]||map[n]||map['M'+String(n).padStart(3,'0')]; if(direct&&direct.channels&&direct.channels.length)return direct; for(var k in map){if(map.hasOwnProperty(k)&&wcBroadcastEntryMatches(map[k],m,k))return map[k];} return direct||null;}
+  function matchBroadcastEntry(m){var b=WC_STATE.broadcasts||{}; var map=b.matches||{}; var key=(m&&m.id)||''; var n=(m&&m.num)!=null?String(m.num):''; return map[key]||map[n]||map['M'+String(n).padStart(3,'0')]||null;}
   function channelsForMatch(m){var b=WC_STATE.broadcasts||{}; var entry=matchBroadcastEntry(m); var ch=(entry&&Array.isArray(entry.channels)&&entry.channels.length)?entry.channels:(Array.isArray(b.default_channels)?b.default_channels:[]); return ch.filter(function(c){return c&&broadcastName(c);});}
   function broadcastHtml(m){var channels=channelsForMatch(m); if(!channels.length)return ''; return '<div class="wc-broadcast" aria-label="'+esc(tr('broadcasters'))+'"><div class="wc-broadcast-title">📺 <span>'+tr('broadcasters')+'</span></div><div class="wc-broadcast-list">'+channels.map(function(c){var type=String((c.type)||'encrypted').toLowerCase(); var cls=(type==='free'||type==='fta'||type==='free_to_air')?'free':'encrypted'; var st=broadcastStatusText(c); return '<span class="wc-channel '+cls+'"><span>'+esc(broadcastTypeLabel(c))+'</span><strong>'+esc(broadcastName(c))+'</strong>'+(st?'<span class="wc-channel-status">'+esc(st)+'</span>':'')+'</span>';}).join('')+'</div></div>'; }
   function stageName(m){var raw=m.stage_ar||m.round||m.stage||''; if(lang()==='en'){return m.round||m.stage||STAGE_EN[raw]||raw;} return m.stage_ar||m.round||m.stage||'';}
   function groupByDate(matches){return matches.reduce(function(acc,m){var k=(m.kickoff_jordan||m.date||'').slice(0,10);(acc[k]=acc[k]||[]).push(m);return acc;},{});}
-  function wcArr(v){return Array.isArray(v)?v:[];}
-  function wcObj(v){return v&&typeof v==='object'&&!Array.isArray(v)?v:{};}
-  function wcNormalizeMatchesData(d){
-    if(Array.isArray(d)) d={metadata:{},matches:d};
-    d=wcObj(d);
-    var matches=Array.isArray(d.matches)?d.matches:(Array.isArray(d.fixtures)?d.fixtures:(Array.isArray(d.games)?d.games:[]));
-    d.matches=matches.filter(function(m){return m&&typeof m==='object';}).map(function(m,i){
-      if(m.num==null){var raw=String(m.id||m.match_id||'').match(/(\d+)/); m.num=raw?Number(raw[1]):(i+1);}
-      if(!m.id && m.num!=null)m.id='M'+String(m.num).padStart(3,'0');
-      if(!m.kickoff_jordan && m.date)m.kickoff_jordan=m.date;
-      return m;
-    });
-    if(!d.groups || typeof d.groups!=='object')d.groups={};
-    return d;
-  }
-  function wcNormalizeStandingsData(s){
-    if(Array.isArray(s))s={standings:s,best_thirds:[]};
-    s=wcObj(s);
-    var standings=Array.isArray(s.standings)?s.standings:[];
-    if(!standings.length && s.groups && typeof s.groups==='object'){
-      standings=Object.keys(s.groups).map(function(g){return {group:g,rows:wcArr(s.groups[g]).map(function(t){return typeof t==='string'?{team:t}:t;})};});
-    }
-    s.standings=standings.map(function(g){g=wcObj(g); var rows=wcArr(g.rows).length?wcArr(g.rows):(wcArr(g.teams).length?wcArr(g.teams):wcArr(g.table)); return Object.assign({},g,{rows:rows});});
-    if(!Array.isArray(s.best_thirds))s.best_thirds=[];
-    return s;
-  }
-  function wcNormalizeBroadcastData(b){b=wcObj(b); if(!b.matches||typeof b.matches!=='object'||Array.isArray(b.matches))b.matches={}; if(!Array.isArray(b.default_channels))b.default_channels=[]; return b;}
-  function wcSafeRender(reason){
-    try{updateStats(); renderWorldCup2026(); startWorldCupAutoRefresh();}
-    catch(e){
-      console.error('World Cup render failed; falling back to matches list', reason||'', e);
-      try{
-        WC_STATE.filter='all'; setActiveWorldCupTab('all');
-        var out=document.getElementById('wcMainOutput');
-        var matches=wcArr(WC_STATE.data&&WC_STATE.data.matches).slice().sort(function(a,b){return String(a.kickoff_utc||a.kickoff_jordan||a.date||'').localeCompare(String(b.kickoff_utc||b.kickoff_jordan||b.date||''));});
-        if(out && !matches.length)out.innerHTML='<div class="wc-empty">'+esc(tr('noMatches'))+'</div>';
-        else renderMatches(matches,'',tr('noMatches'));
-        updateStats(); startWorldCupAutoRefresh();
-      }catch(e2){
-        console.error('World Cup fallback render failed', e2);
-        var box=document.getElementById('wcMainOutput');
-        if(box)box.innerHTML='<div class="wc-empty">'+esc(tr('loadError'))+'<br><small style="opacity:.7">'+esc((e2&&e2.message)||'')+'</small></div>';
-      }
-    }
-  }
-
   function matchCountText(n){if(lang()==='en')return n+' '+(n===1?tr('singleMatchCount'):tr('matchesCount')); if(n===1)return tr('oneMatch'); if(n===2)return tr('twoMatches'); if(n>=3&&n<=10)return n+' '+tr('matchesCount'); return n+' '+tr('singleMatchCount');}
   function dayHeader(k,count){return '<div class="wc-day-header"><strong class="wc-day-date">'+fmtDay(k)+'</strong><span class="wc-day-count">'+esc(matchCountText(count))+'</span></div>';}
   function card(m){var j=isJordan(m);var top=stageName(m)+(m.group?' · '+tr('group')+' '+m.group:'');return '<article class="wc-match-card '+(j?'jordan':'')+'"><div class="wc-match-top"><span>'+esc(top)+'</span><span>'+tr('match')+' '+esc(m.num||'—')+'</span></div><div class="wc-teams"><div class="wc-team">'+teamLabel(m.team1)+'</div><div class="'+scoreClass(m)+'">'+scoreText(m)+'</div><div class="wc-team">'+teamLabel(m.team2)+'</div></div><div class="wc-meta"><span class="wc-status">'+statusText(m)+'</span><span>'+fmtJordan(m.kickoff_jordan||m.kickoff_utc||m.date)+'</span><span>'+esc(m.stadium||m.ground||'')+'</span></div>'+broadcastHtml(m)+'</article>';}
   function renderMatches(matches,title,emptyMessage){var out=document.getElementById('wcMainOutput'); if(!out)return; if(!matches.length){out.innerHTML='<div class="wc-empty">'+esc(emptyMessage||tr('noMatches'))+'</div>';return;} var grouped=groupByDate(matches); var html=''; Object.keys(grouped).sort().forEach(function(k){html+=dayHeader(k,grouped[k].length)+'<div class="wc-match-grid">'+grouped[k].map(card).join('')+'</div>';}); out.innerHTML=(title?'<h3 class="wc-stage-title">'+esc(title)+'</h3>':'')+html;}
-  function renderGroups(){var out=document.getElementById('wcMainOutput'); if(!out)return; var standings=wcArr(WC_STATE.standings&&WC_STATE.standings.standings); if(!standings.length && WC_STATE.data){var groups=wcObj(WC_STATE.data.groups); standings=Object.keys(groups).map(function(g){return {group:g, rows:wcArr(groups[g]).map(function(t){return typeof t==='string'?{team:t}:wcObj(t);})};});} standings=standings.map(function(g){g=wcObj(g); var rows=wcArr(g.rows).length?wcArr(g.rows):(wcArr(g.teams).length?wcArr(g.teams):wcArr(g.table)); return Object.assign({},g,{rows:rows});}); if(!standings.length){out.innerHTML='<div class="wc-empty">'+esc(tr('bestThirdsPending'))+'</div>';return;} out.innerHTML='<div class="wc-group-grid">'+standings.map(function(g){var rows=wcArr(g.rows); return '<div class="wc-group-card"><h3>'+tr('group')+' '+esc(g.group||g.name||'')+'</h3><table class="wc-table"><thead><tr><th>'+tr('team')+'</th><th>'+tr('played')+'</th><th>'+tr('wins')+'</th><th>'+tr('draws')+'</th><th>'+tr('losses')+'</th><th>'+tr('goalDiff')+'</th><th>'+tr('points')+'</th></tr></thead><tbody>'+rows.map(function(r){r=wcObj(r); return '<tr><td>'+teamLabel(r.team||r.name||r.team_name)+'</td><td>'+(r.played||r.p||0)+'</td><td>'+(r.wins||r.w||0)+'</td><td>'+(r.draws||r.d||0)+'</td><td>'+(r.losses||r.l||0)+'</td><td>'+(r.goal_diff||r.gd||0)+'</td><td><strong>'+(r.points||r.pts||0)+'</strong></td></tr>';}).join('')+'</tbody></table></div>';}).join('')+'</div>';}
-  function renderThirds(){var out=document.getElementById('wcMainOutput'); if(!out)return; var thirds=wcArr(WC_STATE.standings&&WC_STATE.standings.best_thirds); if(!thirds.length){out.innerHTML='<div class="wc-empty">'+esc(tr('bestThirdsPending'))+'</div>';return;} out.innerHTML='<h3 class="wc-stage-title">'+tr('bestThirdsTitle')+'</h3><div class="wc-group-card"><table class="wc-table"><thead><tr><th>'+tr('team')+'</th><th>'+tr('group')+'</th><th>'+tr('played')+'</th><th>'+tr('goalDiff')+'</th><th>'+tr('points')+'</th><th>'+tr('status')+'</th></tr></thead><tbody>'+thirds.map(function(r,i){return '<tr><td>'+teamLabel(r.team)+'</td><td>'+esc(r.group)+'</td><td>'+(r.played||0)+'</td><td>'+(r.goal_diff||0)+'</td><td><strong>'+(r.points||0)+'</strong></td><td>'+(i<8?tr('currentlyQualified'):tr('currentlyOut'))+'</td></tr>';}).join('')+'</tbody></table></div>';}
+  function renderGroups(){var out=document.getElementById('wcMainOutput'); if(!out)return; var standings=(WC_STATE.standings&&WC_STATE.standings.standings)||[]; if(!standings.length && WC_STATE.data){var groups=WC_STATE.data.groups||{}; standings=Object.keys(groups).map(function(g){return {group:g, rows:groups[g].map(function(t){return {team:t,played:0,wins:0,draws:0,losses:0,goals_for:0,goals_against:0,goal_diff:0,points:0};})};});} out.innerHTML='<div class="wc-group-grid">'+standings.map(function(g){return '<div class="wc-group-card"><h3>'+tr('group')+' '+g.group+'</h3><table class="wc-table"><thead><tr><th>'+tr('team')+'</th><th>'+tr('played')+'</th><th>'+tr('wins')+'</th><th>'+tr('draws')+'</th><th>'+tr('losses')+'</th><th>'+tr('goalDiff')+'</th><th>'+tr('points')+'</th></tr></thead><tbody>'+g.rows.map(function(r){return '<tr><td>'+teamLabel(r.team)+'</td><td>'+(r.played||0)+'</td><td>'+(r.wins||0)+'</td><td>'+(r.draws||0)+'</td><td>'+(r.losses||0)+'</td><td>'+(r.goal_diff||0)+'</td><td><strong>'+(r.points||0)+'</strong></td></tr>';}).join('')+'</tbody></table></div>';}).join('')+'</div>';}
+  function renderThirds(){var out=document.getElementById('wcMainOutput'); if(!out)return; var thirds=(WC_STATE.standings&&WC_STATE.standings.best_thirds)||[]; if(!thirds.length){out.innerHTML='<div class="wc-empty">'+esc(tr('bestThirdsPending'))+'</div>';return;} out.innerHTML='<h3 class="wc-stage-title">'+tr('bestThirdsTitle')+'</h3><div class="wc-group-card"><table class="wc-table"><thead><tr><th>'+tr('team')+'</th><th>'+tr('group')+'</th><th>'+tr('played')+'</th><th>'+tr('goalDiff')+'</th><th>'+tr('points')+'</th><th>'+tr('status')+'</th></tr></thead><tbody>'+thirds.map(function(r,i){return '<tr><td>'+teamLabel(r.team)+'</td><td>'+esc(r.group)+'</td><td>'+(r.played||0)+'</td><td>'+(r.goal_diff||0)+'</td><td><strong>'+(r.points||0)+'</strong></td><td>'+(i<8?tr('currentlyQualified'):tr('currentlyOut'))+'</td></tr>';}).join('')+'</tbody></table></div>';}
   function renderBracket(){var out=document.getElementById('wcMainOutput'); if(!out)return; var matches=(WC_STATE.data&&WC_STATE.data.matches||[]).filter(function(m){return m.stage!=='Group Stage';}); if(!matches.length){out.innerHTML='<div class="wc-empty">'+esc(tr('knockoutPending'))+'</div>';return;} out.innerHTML='<div class="wc-bracket-list">'+matches.map(function(m){return '<div class="wc-bracket-row"><span class="wc-mini-tag">'+esc(stageName(m))+'</span><strong>'+teamLabel(m.team1)+' × '+teamLabel(m.team2)+'</strong><span>'+fmtJordan(m.kickoff_jordan||m.kickoff_utc)+'</span></div>';}).join('')+'</div>';}
   function applySearch(matches){var q=norm((document.getElementById('wcSearchInput')||{}).value||''); if(!q)return matches; return matches.filter(function(m){return norm([m.team1,m.team2,m.team1_ar,m.team2_ar,TEAM_AR[m.team1],TEAM_AR[m.team2],m.ground,m.stadium,m.stage_ar,m.round,m.stage,m.group,m.search_text].join(' ')).indexOf(q)>-1;});}
   function setActiveWorldCupTab(f,btn){document.querySelectorAll('#worldcup2026 .wc-tabs button').forEach(function(b){b.classList.toggle('active',b===btn || b.getAttribute('data-wc-filter')===f);});}
@@ -5146,50 +5094,12 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function wcMatchEstimatedEnd(m){var start=wcMatchDate(m); if(!start)return null; var stage=String((m&&(m.stage||m.round))||'').toLowerCase(); var isKnockout=stage&&stage.indexOf('group')<0; var minutes=isKnockout?240:150; return new Date(start.getTime()+minutes*60000);}
   function wcIsFinishedForNext(m,now){var status=String((m&&m.status)||'').toLowerCase(); if(/finished|completed|full[_\s-]?time|final|ended|ft|aet|penalties/.test(status))return true; var end=wcMatchEstimatedEnd(m); return !!(end&&end<=now);}
   function wcNextJordanMatch(matches){var now=new Date(); var jordan=(matches||[]).filter(isJordan).sort(function(a,b){return String(a.kickoff_utc||a.kickoff_jordan||a.date).localeCompare(String(b.kickoff_utc||b.kickoff_jordan||b.date));}); return jordan.find(function(m){return !wcIsFinishedForNext(m,now);})||jordan[jordan.length-1]||null;}
-  function updateStats(){applyStaticLanguage(); var matches=(WC_STATE.data&&WC_STATE.data.matches||[]); var sorted=matches.slice().sort(function(a,b){return String(a.kickoff_utc||a.kickoff_jordan||a.date).localeCompare(String(b.kickoff_utc||b.kickoff_jordan||b.date));}); var opening=sorted[0]; function refreshJordanNextStat(){var next=wcNextJordanMatch(matches); var n=document.getElementById('wcNextJordan'); var t=document.getElementById('wcNextJordanTime'); if(n&&next){n.textContent=teamText(next.team1)+' × '+teamText(next.team2); var matchTime=fmtJordan(next.kickoff_jordan||next.kickoff_utc||next.date); if(t)t.textContent=matchTime||'—'; var end=wcMatchEstimatedEnd(next); var hint=end?'تتغير تلقائياً بعد انتهاء المباراة المتوقع: '+fmtJordan(end.toISOString()):'تتغير تلقائياً بعد انتهاء مباراة الأردن'; n.title=hint; if(t)t.title=hint;}} refreshJordanNextStat(); var lu=document.getElementById('wcLastUpdated'); var meta=(WC_STATE.data&&WC_STATE.data.metadata)||{}; var bmeta=(WC_STATE.broadcasts&&WC_STATE.broadcasts.metadata)||{}; function latestMetaDate(){var arr=[meta.last_checked_at,meta.last_updated,bmeta.last_checked_at,bmeta.last_updated].filter(Boolean).map(function(x){return new Date(x);}).filter(function(d){return !isNaN(d);}).sort(function(a,b){return b-a;}); return arr[0]||null;} if(lu){var latest=latestMetaDate(); lu.textContent=latest?fmtJordan(latest.toISOString()):'—'; lu.title=(lang()==='en'?'Latest data fetch: ':'آخر جلب للبيانات: ')+(latest?fmtJordan(latest.toISOString()):'—');} function tick(){refreshJordanNextStat(); var c=document.getElementById('wcCountdown'); if(!c)return; if(!opening){c.textContent='—';return;} var diff=new Date(opening.kickoff_utc||opening.kickoff_jordan||opening.date)-new Date(); if(diff<=0){c.textContent=tr('tournamentStarted');return;} var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), mi=Math.floor(diff%3600000/60000); c.textContent=d+' '+tr('day')+' '+h+' '+tr('hour')+' '+mi+' '+tr('minute');} tick(); clearInterval(window.__wcCountdownTimer); window.__wcCountdownTimer=setInterval(tick,60000);}
-  function wcJsonUrl(path){var clean=String(path||'').replace(/^\/+/, ''); var sep=clean.indexOf('?')===-1?'?':'&'; return '/'+clean+sep+'v='+(Date.now());}
-  function wcRawGithubUrl(path){return 'https://raw.githubusercontent.com/maen1977/maen_site_analytics/main/public/'+String(path||'').replace(/^\/+/, '').replace(/^worldcup-2026\//,'worldcup-2026/')+'?v='+(Date.now());}
-  function wcFetchJson(path, optional){
-    var clean=String(path||'').replace(/^\/+/, '');
-    var urls=[wcJsonUrl(clean), clean+'?v='+Date.now(), wcRawGithubUrl(clean)];
-    var lastErr=null;
-    function attempt(i){
-      if(i>=urls.length){ if(optional) return null; throw lastErr||new Error('World Cup JSON unavailable: '+clean); }
-      return fetch(urls[i],{cache:'no-store'}).then(function(r){
-        if(!r.ok) throw new Error('HTTP '+r.status+' for '+urls[i]);
-        return r.text();
-      }).then(function(txt){
-        if(!txt || !txt.trim()) throw new Error('Empty JSON for '+urls[i]);
-        try { return JSON.parse(txt); } catch(e){ e.message='Invalid JSON from '+urls[i]+': '+e.message; throw e; }
-      }).catch(function(e){ lastErr=e; return attempt(i+1); });
-    }
-    return attempt(0);
-  }
-  function startWorldCupAutoRefresh(){clearInterval(window.__wcAutoRefreshTimer); window.__wcAutoRefreshTimer=setInterval(function(){var page=document.getElementById('worldcup2026'); if(page&&page.classList.contains('active')){window.loadWorldCup2026(true);}},120000);}
-  window.loadWorldCup2026=function(force){
-    applyStaticLanguage();
-    if(WC_STATE.loaded&&!force){wcSafeRender('already-loaded'); return;}
-    Promise.all([
-      wcFetchJson('worldcup-2026/matches.json', false),
-      wcFetchJson('worldcup-2026/standings.json', true),
-      wcFetchJson('worldcup-2026/broadcasts.json', true)
-    ]).then(function(res){
-      WC_STATE.data=wcNormalizeMatchesData(res[0]||{});
-      WC_STATE.standings=wcNormalizeStandingsData(res[1]||null);
-      WC_STATE.broadcasts=wcNormalizeBroadcastData(res[2]||null);
-      TEAM_AR=WC_STATE.data.team_ar||{};
-      WC_STATE.loaded=true;
-      wcSafeRender('load-success');
-    }).catch(function(err){
-      console.error('World Cup data load failed', err);
-      var out=document.getElementById('wcMainOutput');
-      if(out) out.innerHTML='<div class="wc-empty">'+esc(tr('loadError'))+'<br><small style="opacity:.7">'+esc((err&&err.message)||'')+'</small></div>';
-    });
-  };
+  function updateStats(){applyStaticLanguage(); var matches=(WC_STATE.data&&WC_STATE.data.matches||[]); var sorted=matches.slice().sort(function(a,b){return String(a.kickoff_utc||a.kickoff_jordan||a.date).localeCompare(String(b.kickoff_utc||b.kickoff_jordan||b.date));}); var opening=sorted[0]; function refreshJordanNextStat(){var next=wcNextJordanMatch(matches); var n=document.getElementById('wcNextJordan'); var t=document.getElementById('wcNextJordanTime'); if(n&&next){n.textContent=teamText(next.team1)+' × '+teamText(next.team2); var matchTime=fmtJordan(next.kickoff_jordan||next.kickoff_utc||next.date); if(t)t.textContent=matchTime||'—'; var end=wcMatchEstimatedEnd(next); var hint=end?'تتغير تلقائياً بعد انتهاء المباراة المتوقع: '+fmtJordan(end.toISOString()):'تتغير تلقائياً بعد انتهاء مباراة الأردن'; n.title=hint; if(t)t.title=hint;}} refreshJordanNextStat(); var lu=document.getElementById('wcLastUpdated'); var meta=(WC_STATE.data&&WC_STATE.data.metadata)||{}; if(lu){lu.textContent=meta.last_checked_at?fmtJordan(meta.last_checked_at):(meta.last_updated?fmtJordan(meta.last_updated):'—'); lu.title=meta.last_updated?((lang()==='en'?'Last data change: ':'آخر تغيير في البيانات: ')+fmtJordan(meta.last_updated)):'';} function tick(){refreshJordanNextStat(); var c=document.getElementById('wcCountdown'); if(!c)return; if(!opening){c.textContent='—';return;} var diff=new Date(opening.kickoff_utc||opening.kickoff_jordan||opening.date)-new Date(); if(diff<=0){c.textContent=tr('tournamentStarted');return;} var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), mi=Math.floor(diff%3600000/60000); c.textContent=d+' '+tr('day')+' '+h+' '+tr('hour')+' '+mi+' '+tr('minute');} tick(); clearInterval(window.__wcCountdownTimer); window.__wcCountdownTimer=setInterval(tick,60000);}
+  window.loadWorldCup2026=function(){applyStaticLanguage(); if(WC_STATE.loaded){updateStats(); renderWorldCup2026();return;} Promise.all([fetch('worldcup-2026/matches.json',{cache:'no-store'}).then(function(r){return r.json();}), fetch('worldcup-2026/standings.json',{cache:'no-store'}).then(function(r){return r.json();}).catch(function(){return null;}), fetch('worldcup-2026/broadcasts.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})]).then(function(res){WC_STATE.data=res[0]; WC_STATE.standings=res[1]; WC_STATE.broadcasts=res[2]||null; TEAM_AR=WC_STATE.data.team_ar||{}; WC_STATE.loaded=true; updateStats(); renderWorldCup2026();}).catch(function(){var out=document.getElementById('wcMainOutput'); if(out)out.innerHTML='<div class="wc-empty">'+esc(tr('loadError'))+'</div>';});};
   var oldShow=window.showPage; if(typeof oldShow==='function'&&!window.__wcWrappedShowPage){window.showPage=function(id){var r=oldShow.apply(this,arguments); if(id==='worldcup2026') { resetWorldCupToAll(); setTimeout(window.loadWorldCup2026,0); } return r;}; window.__wcWrappedShowPage=true;}
-  var oldSetLanguage=window.setLanguage; if(typeof oldSetLanguage==='function'&&!oldSetLanguage.__worldCupLanguagePatched){var wrapped=function(language){var result=oldSetLanguage.apply(this,arguments); setTimeout(function(){applyStaticLanguage(); if(WC_STATE.loaded){wcSafeRender('language-or-load');}},0); return result;}; wrapped.__worldCupLanguagePatched=true; window.setLanguage=wrapped;}
+  var oldSetLanguage=window.setLanguage; if(typeof oldSetLanguage==='function'&&!oldSetLanguage.__worldCupLanguagePatched){var wrapped=function(language){var result=oldSetLanguage.apply(this,arguments); setTimeout(function(){applyStaticLanguage(); if(WC_STATE.loaded){updateStats(); renderWorldCup2026();}},0); return result;}; wrapped.__worldCupLanguagePatched=true; window.setLanguage=wrapped;}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyStaticLanguage); else applyStaticLanguage();
-  window.addEventListener('load',function(){setTimeout(function(){applyStaticLanguage(); if(WC_STATE.loaded){wcSafeRender('language-or-load');}},60);});
+  window.addEventListener('load',function(){setTimeout(function(){applyStaticLanguage(); if(WC_STATE.loaded){updateStats(); renderWorldCup2026();}},60);});
   if((location.hash||'').replace('#','')==='worldcup2026'){resetWorldCupToAll();setTimeout(window.loadWorldCup2026,0);} 
 })();
 </script>
