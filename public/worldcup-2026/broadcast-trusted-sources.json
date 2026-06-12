@@ -1,40 +1,66 @@
 {
   "metadata": {
-    "name_ar": "مصادر مساعدة موثوقة للقنوات الناقلة لكأس العالم",
-    "policy_ar": "لا تُنشر القناة من هذه المصادر إلا إذا اتفق مصدران مستقلان أو أكثر على نفس القناة داخل مقطع المباراة نفسه، أو كان المصدر صفحة تقرير/مباراة مباشر عالي الثقة بوزن 2 وذكر المباراة والقناة في نفس المقطع. beIN الرسمي وتأكيد المشاهدة اليدوي أعلى أولوية.",
-    "min_agreement": 2
+    "name_ar": "مصادر رياضية موثوقة بنظام استفتاء مرن للقنوات الناقلة",
+    "policy_ar": "وضع الاستفتاء المرن: إذا ذكر مصدر رياضي معروف المباراة والقناة في مقطع قريب، ينشر الموقع القناة بدل تركها فارغة. إذا اتفقت مصادر متعددة تزيد الثقة. beIN SPORTS وحدها تعني المفتوحة/المجانية، وbeIN SPORTS MAX دون رقم تعرض كمشفرة عامة، وMAX 1/MAX 2 و4K تظهر إذا ذُكرت صراحة.",
+    "min_agreement": 1,
+    "note_ar": "هذه المصادر روابط مساعدة قابلة للتوسيع؛ السكربت يحاول قراءة صفحاتها واكتشاف روابط أخبار/جداول كأس العالم الداخلية القريبة. لا تستخدم روابط بث ولا m3u8."
   },
   "sources": [
     {
-      "name": "Goal Arabic - World Cup daily fixtures and channels",
+      "name": "Goal Arabic - World Cup fixtures and broadcast channels",
       "url": "https://www.goal.com/ar-sa/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-12-%D9%8A%D9%88%D9%86%D9%8A%D9%88-2026-%D9%81%D9%8A-%D9%83%D8%A7%D9%94%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfd233621fba4d1fe",
-      "weight": 2,
+      "weight": 1,
       "enabled": true,
-      "note_ar": "صفحة تقرير مباريات اليوم والقنوات الناقلة. وزنها 2 لأنها صفحة مباشرة تذكر المباراة والقنوات في نفس الجدول؛ يمكن اعتمادها منفردة إذا التقط النظام اسم الفريقين والقناة في نفس المقطع."
+      "note_ar": "مصدر رياضي معروف؛ يُعتمد مرنًا إذا وجد اسم المباراة والقناة في نفس المقطع."
     },
     {
-      "name": "Kooora",
+      "name": "Goal Arabic - broadcaster guide",
+      "url": "https://www.goal.com/ar-sa",
+      "weight": 1,
+      "enabled": true,
+      "note_ar": "صفحة عامة لاكتشاف روابط أخبار/جداول القنوات الناقلة داخليًا."
+    },
+    {
+      "name": "Kooora World Cup",
       "url": "https://www.kooora.com/?c=30450",
       "weight": 1,
-      "note_ar": "مصدر مساعد فقط؛ لا يعتمد منفرداً."
+      "enabled": true,
+      "note_ar": "مصدر رياضي عربي معروف؛ يعتمد إذا ظهر اسم المباراة والقناة قرب بعض."
     },
     {
-      "name": "Yallakora",
+      "name": "Yallakora World Cup",
       "url": "https://www.yallakora.com/world-cup/2866",
       "weight": 1,
-      "note_ar": "مصدر مساعد فقط؛ لا يعتمد منفرداً."
+      "enabled": true,
+      "note_ar": "مصدر رياضي عربي معروف؛ يعتمد إذا ظهر اسم المباراة والقناة قرب بعض."
     },
     {
-      "name": "365Scores Arabic",
+      "name": "365Scores Arabic World Cup",
       "url": "https://www.365scores.com/ar/football/league/world-cup-10",
       "weight": 1,
-      "note_ar": "مصدر مساعد فقط؛ لا يعتمد منفرداً."
+      "enabled": true,
+      "note_ar": "مصدر مساعد معروف؛ يعتمد إذا ظهر اسم المباراة والقناة قرب بعض."
     },
     {
-      "name": "LiveSoccerTV",
+      "name": "LiveSoccerTV World Cup fixtures",
       "url": "https://www.livesoccertv.com/competitions/international/world-cup/fixtures/",
       "weight": 1,
-      "note_ar": "مصدر مساعد فقط؛ لا يعتمد منفرداً."
+      "enabled": true,
+      "note_ar": "مصدر دولي للقنوات؛ يعتمد إذا ذكر المباراة والقناة."
+    },
+    {
+      "name": "FilGoal",
+      "url": "https://www.filgoal.com/",
+      "weight": 1,
+      "enabled": true,
+      "note_ar": "مصدر عربي مساعد لاكتشاف أخبار القنوات الناقلة عند توفرها."
+    },
+    {
+      "name": "WinWin",
+      "url": "https://www.winwin.com/",
+      "weight": 1,
+      "enabled": true,
+      "note_ar": "مصدر رياضي عربي مساعد لاكتشاف أخبار القنوات الناقلة عند توفرها."
     }
   ]
 }
