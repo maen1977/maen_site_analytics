@@ -1,99 +1,68 @@
-# موقع معن حنونة — نسخة جاهزة مع تقرير زيارات أسبوعي
+# تصحيح قنوات كأس العالم - MaenSat
 
-هذه النسخة مرتبة للنشر على Netlify كمشروع كامل.
+## الملفات الموجودة داخل الحزمة
 
-## ماذا أضفت؟
+ارفع هذين الملفين إلى نفس المسارات داخل GitHub:
 
-- `public/index.html` — الصفحة الرئيسية الجاهزة، وهي نسخة من ملف الموبايل المعدّل.
-- `public/index_phone.html` — نسخة الموبايل بنفس الاسم القديم.
-- `netlify/functions/track-visit.mjs` — يستقبل الزيارات المجهولة.
-- `netlify/functions/analytics-report.mjs` — يعرض التقرير عبر رابط محمي، ويمكن عرض تقرير أسبوعي بإضافة `period=week`.
-- `netlify/functions/weekly-report.mjs` — يشغّل تقرير زيارات أسبوعيًا ويجمع آخر 7 أيام كاملة.
-- `netlify/functions/update-frequencies.mjs` — يشغّل تحديث الترددات أسبوعيًا.
-- `netlify.toml` — إعدادات النشر والتشغيل الأسبوعي والتوكن الجاهز.
-- `ADMIN_REPORT_LINKS_AR.txt` — روابط التقارير وكلمة السر.
-- `backup/index_phone_original_backup.html` — نسخة احتياطية من الملف الأصلي.
+1. `scripts/fix-worldcup-broadcasts-safe.mjs`
+2. `public/worldcup-2026/broadcast-source.json`
 
-## طريقة الرفع الصحيحة
+> لا ترفع ملف ZIP نفسه داخل الريبو. فك الضغط أولاً، ثم ارفع الملفات الموجودة بداخله.
 
-الأفضل أن ترفع هذه الحزمة كمشروع Netlify من GitHub أو عبر Netlify CLI، وليس رفع ملف HTML وحده.
+## طريقة الرفع من GitHub
 
-الملف `netlify.toml` يحدد أن مجلد النشر هو:
+### الملف الأول
 
-```txt
-public
+المسار:
+
+```text
+scripts/fix-worldcup-broadcasts-safe.mjs
 ```
 
-والوظائف الخلفية موجودة في:
+إذا الملف موجود، استبدله بالملف الموجود داخل هذه الحزمة.
+إذا غير موجود، أنشئ ملف جديد بنفس الاسم داخل مجلد `scripts`.
 
-```txt
-netlify/functions
+رسالة الحفظ المقترحة:
+
+```text
+Fix safe World Cup broadcast cleanup script
 ```
 
-## رابط التقرير
+### الملف الثاني
 
-بعد النشر استبدل `YOUR-SITE` باسم موقعك وافتح:
+المسار:
 
-```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?token=YOUR_ADMIN_TOKEN
+```text
+public/worldcup-2026/broadcast-source.json
 ```
 
-تقرير أسبوعي لآخر 7 أيام حتى التاريخ المحدد:
+استبدل الملف القديم كاملًا بالملف الموجود داخل هذه الحزمة.
 
-```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?period=week&token=YOUR_ADMIN_TOKEN
+رسالة الحفظ المقترحة:
+
+```text
+Update confirmed World Cup broadcast source
 ```
 
-تقرير أمس فقط، إذا احتجته يدويًا:
+## بعد الرفع
 
-```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/analytics-report?day=yesterday&token=YOUR_ADMIN_TOKEN
+إذا عندك كمبيوتر أو Codespaces، شغل من جذر المشروع:
+
+```bash
+node scripts/update-worldcup-2026.mjs
+node scripts/fix-worldcup-broadcasts-safe.mjs
 ```
 
-## هل يحتاج إعدادات إضافية؟
+بعدها ارفع الملف الناتج إذا تغيّر:
 
-لرؤية التقرير من الرابط: ضع `ANALYTICS_ADMIN_TOKEN` و `ANALYTICS_SALT` من إعدادات البيئة في Netlify/Cloudflare، ولا تنشر التوكن الحقيقي داخل ملفات الشرح.
-
-لإرسال التقرير إلى الإيميل تلقائيًا: أضفت الكود كاملًا، وضبطت `REPORT_EMAIL` على:
-
-```txt
-maenish_ai@proton.me
+```text
+public/worldcup-2026/broadcasts.json
 ```
 
-المتبقي فقط أن تضيف مفتاح Resend السري من لوحة Netlify:
+## ماذا يصلح هذا التعديل؟
 
-```txt
-RESEND_API_KEY=ضع_مفتاح_Resend
-```
-
-ثم جرّب الإرسال من:
-
-```txt
-https://YOUR-SITE.netlify.app/.netlify/functions/send-test-email?token=YOUR_ADMIN_TOKEN
-```
-
-بدون `RESEND_API_KEY` سيُحفظ التقرير ويظهر بالرابط، لكنه لن يُرسل بالبريد.
-
-## الجدولة الأسبوعية
-
-- تحديث الترددات: كل يوم أحد الساعة 20:30 UTC، تقريبًا 11:30 مساءً بتوقيت الأردن عند UTC+3.
-- تقرير الزيارات الأسبوعي: كل يوم أحد الساعة 21:05 UTC، تقريبًا 12:05 بعد منتصف الليل بتوقيت الأردن عند UTC+3.
-- تقرير الزيارات الأسبوعي يجمع آخر 7 أيام كاملة حسب توقيت `Asia/Amman`.
-
-## نسخة الكمبيوتر
-
-أنت أرسلت ملف الموبايل فقط. عندك ملف اسمه:
-
-```txt
-maen-analytics-snippet.html
-```
-
-انسخ محتواه وضعه قبل `</body>` في نسخة الكمبيوتر حتى تُحسب زيارات الكمبيوتر أيضًا.
-
-## الخصوصية
-
-النظام لا يسجل الاسم أو رقم الهاتف أو البريد. يحسب الزيارات بشكل مجهول عن طريق معرف محلي في المتصفح، ثم يحوله السيرفر إلى Hash.
-
-## تحديث الترددات الأسبوعي
-
-تمت إضافة نظام تحديث ومقارنة للترددات يعمل أسبوعيًا. راجع ملف `FREQUENCY_UPDATE_SETUP_AR.md` للروابط وطريقة التشغيل.
+- يمنع ظهور كلمات مثل: بانتظار، غير مؤكد، pending، to be confirmed.
+- لا يستخدم `default_channels` كقنوات ظاهرة للمباريات.
+- يعتبر `beIN Sport` و `beIN Sports` و `beIN Sport FTA` قناة مجانية عندما تكون مكتوبة كقناة للمباراة نفسها.
+- يحافظ على القنوات الأساسية فقط: المفتوحة، MAX 1، MAX 2، 4K.
+- لا يخلط قنوات المباريات المتزامنة؛ كل مباراة حسب `match_id`.
