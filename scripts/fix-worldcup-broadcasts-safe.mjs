@@ -61,12 +61,9 @@ function classifyBeinChannel(channel = {}) {
     const number = String(max[1] || '').trim();
     if (number === '1') return 'bein-max-1';
     if (number === '2') return 'bein-max-2';
-    // Generic MAX or MAX 3-6 are not exact match channels for this compact display.
     return 'blocked';
   }
 
-  // MaenSat rule requested by owner:
-  // plain "beIN Sport" / "beIN Sports" / "beIN Sport FTA" means the free beIN channel.
   if (/(free|free\s*to\s*air|fta|مفتوح|المفتوحه|المفتوحة|مجاني|مجانيه|المجانيه|المجانية)/i.test(text)) {
     return 'bein-free';
   }
@@ -123,9 +120,6 @@ function cleanChannels(channels = [], { defaultChannels = false } = {}) {
     if (!normalized) continue;
 
     const kind = classifyBeinChannel(normalized);
-
-    // Avoid the ugly "pending / not confirmed" display, but without a blind confirmed-only filter:
-    // recognizable beIN match channels are normalized and confirmed; non-beIN channels remain only if not pending.
     if (kind === 'other' && isPendingStatus(normalized)) continue;
 
     const key = channelKey(normalized);
@@ -158,13 +152,12 @@ function cleanBroadcastFile(data = {}, file = '') {
   out.metadata.safe_display_cleanup_ar = 'تنظيف آمن: لا تُعرض default_channels كقنوات مباراة، وbeIN Sport / beIN Sport FTA تُعامل كـ beIN SPORTS المفتوحة المجانية عندما تكون داخل قنوات المباراة نفسها.';
   out.metadata.safe_display_cleanup_last_run_at = new Date().toISOString();
 
-  // The main broadcasts.json used to include default fallback channels. These caused pending/not-confirmed labels.
   if (Array.isArray(out.default_channels)) {
     out.default_channels = cleanChannels(out.default_channels, { defaultChannels: file.endsWith('broadcasts.json') });
   }
 
   out.matches ||= {};
-  for (const [matchId, entry] of Object.entries(out.matches)) {
+  for (const entry of Object.values(out.matches)) {
     if (!entry || typeof entry !== 'object') continue;
     if (Array.isArray(entry.channels)) {
       entry.channels = cleanChannels(entry.channels);
