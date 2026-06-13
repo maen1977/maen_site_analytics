@@ -5,9 +5,9 @@ env:
 
 on:
   schedule:
-    # Smart match-window check every 15 minutes. The script skips immediately unless a match is near or live.
+    # فحص ذكي كل 15 دقيقة تقريبًا أثناء البطولة.
     - cron: "2,17,32,47 * * * *"
-    # Baseline check every 12 hours: 03:07 and 15:07 in Jordan time while Jordan is UTC+3.
+    # فحص احتياطي مرتين يوميًا.
     - cron: "7 0,12 * * *"
   workflow_dispatch:
 
@@ -30,7 +30,8 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Update World Cup 2026 fixtures, scores, and broadcasters
+      - name: Run existing World Cup updater
+        continue-on-error: true
         env:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -41,13 +42,19 @@ jobs:
           WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE: ${{ vars.WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE || '80' }}
         run: node scripts/update-worldcup-2026.mjs
 
+      - name: Merge World Cup data from multiple sources
+        run: node scripts/merge-worldcup-multisource.mjs
+
+      - name: Apply manual result overrides and rebuild standings
+        run: node scripts/apply-worldcup-overrides.mjs
+
       - name: Commit updated World Cup data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain public/worldcup-2026)" ]; then
-            git add public/worldcup-2026
-            git commit -m "Update World Cup 2026 data"
+          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
+            git add public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs .github/workflows/update-worldcup-2026.yml
+            git commit -m "Improve World Cup 2026 multi-source updates"
             git push
           else
             echo "No World Cup 2026 changes to commit."

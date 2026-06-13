@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "name": "Manual World Cup 2026 result overrides",
+    "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
+    "updated_by": "ChatGPT",
+    "updated_at": "2026-06-13",
+    "note_ar": "هذا الملف يثبت النتائج التي لم تلتقطها المصادر الآلية. هذه التصحيحات تُطبّق بعد كل تحديث آلي حتى لا ترجع المباراة إلى scheduled."
+  },
+  "results": [
+    {
+      "id": "M019",
+      "team1": "USA",
+      "team2": "Paraguay",
+      "team1_ar": "الولايات المتحدة",
+      "team2_ar": "باراغواي",
+      "group": "D",
+      "status": "finished",
+      "home_score": 4,
+      "away_score": 1,
+      "score": {
+        "ft": [4, 1],
+        "source": "manual-reuters-bein",
+        "status_detail": "FT"
+      },
+      "score_source": "manual-reuters-bein",
+      "sources": [
+        "https://www.reuters.com/sports/soccer/us-team-ease-4-1-victory-over-paraguay-2026-06-13/",
+        "https://www.bein.com/en/worldcup26/"
+      ],
+      "live_clock": null,
+      "live_status_detail": "FT"
+    }
+  ]
+}

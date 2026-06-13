@@ -1,0 +1,61 @@
+{
+  "metadata": {
+    "name": "World Cup 2026 multi-source update configuration",
+    "name_ar": "إعدادات تحديث كأس العالم 2026 من أكثر من مصدر",
+    "timezone": "Asia/Amman",
+    "updated_at": "2026-06-13",
+    "note_ar": "يمكن تعديل هذا الملف لإضافة مصادر نتائج أو بث جديدة بدون تعديل السكربت. المصادر الرسمية/الأقوى لها trust أعلى."
+  },
+  "results_sources": [
+    {
+      "name": "beIN World Cup 2026 microsite",
+      "type": "bein_worldcup_page",
+      "url": "https://www.bein.com/en/worldcup26/",
+      "trust": 96,
+      "enabled": true,
+      "note_ar": "مصدر قوي للشرق الأوسط: يعرض جدول ونتائج كأس العالم على صفحة beIN الرسمية."
+    },
+    {
+      "name": "ESPN FIFA World scoreboard",
+      "type": "espn_scoreboard",
+      "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+      "trust": 88,
+      "enabled": true,
+      "date_window_days": 2,
+      "note_ar": "مصدر نتائج احتياطي؛ يتم فحص أيام قريبة من اليوم."
+    },
+    {
+      "name": "WorldCup26 open API",
+      "type": "json_common",
+      "url": "https://worldcup26.ir/get/games",
+      "trust": 70,
+      "enabled": true,
+      "note_ar": "API مجاني مفتوح؛ يستخدم كطبقة احتياطية وليس مصدرًا وحيدًا."
+    }
+  ],
+  "broadcast_sources": [
+    {
+      "name": "beIN World Cup 2026 microsite",
+      "type": "bein_worldcup_page",
+      "url": "https://www.bein.com/en/worldcup26/",
+      "trust": 96,
+      "enabled": true,
+      "note_ar": "يفحص صفحة beIN الرسمية لمحاولة التقاط القناة/التصنيف عند ظهورها بجانب المباراة."
+    },
+    {
+      "name": "beIN SPORTS MENA coverage plan",
+      "type": "bein_coverage_article",
+      "url": "https://www.beinsports.com/en-mena/football/fifa-world-cup-2026/articles-video/eight-channels-and-17-hours-daily-bein-sports-unveils-coverage-plans-for-fifa-world-cup-2026-2026-06-07",
+      "trust": 92,
+      "enabled": true,
+      "note_ar": "مصدر رسمي يؤكد تغطية beIN لجميع مباريات كأس العالم في منطقة MENA عبر قنوات MAX و4K."
+    }
+  ],
+  "channel_policy": {
+    "region": "Jordan / MENA",
+    "frequencies_included": false,
+    "no_streaming_links": true,
+    "default_free_to_air_status": "pending_official_announcement",
+    "note_ar": "لا يتم نشر ترددات أو روابط بث. القناة المفتوحة لا تُعتبر مؤكدة لمباراة معينة إلا إذا ظهر تأكيد رسمي أو تأكيد مشاهدة يدوي."
+  }
+}
