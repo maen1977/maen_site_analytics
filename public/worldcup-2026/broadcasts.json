@@ -8,23 +8,23 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-13T08:12:28.169+03:00",
+    "last_updated": "2026-06-13T08:51:15.525+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
     "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
-    "bein_official_last_checked_at": "2026-06-13T08:12:24.015+03:00",
+    "bein_official_last_checked_at": "2026-06-13T08:51:13.235+03:00",
     "bein_official_auto_check": true,
     "observed_broadcast_last_checked_at": "2026-06-12T07:35:00+03:00",
     "observed_broadcast_file": "public/worldcup-2026/broadcast-observed.json",
     "observed_broadcast_note_ar": "تأكيدات مشاهدة يدوية من صاحب الموقع؛ تُدمج فوق المصادر التلقائية ولا تمس ملفات المباريات/الترتيب/القوس.",
     "core_bein_channel_filter": true,
     "core_bein_channel_filter_ar": "يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.",
-    "last_checked_at": "2026-06-13T08:12:30+03:00",
+    "last_checked_at": "2026-06-13T08:51:22+03:00",
     "stable_live_broadcast_patch": true,
     "stable_live_broadcast_patch_ar": "يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة.",
     "multi_source_broadcast_update": true,
     "policy_ar": "لا ينشر الموقع ترددات أو روابط بث. يتم عرض القنوات الناقلة فقط، والقناة المفتوحة تبقى pending إلى أن يوجد تأكيد رسمي/يدوي للمباراة.",
-    "bein_coverage_article_checked_at": "2026-06-13T08:12:30+03:00",
+    "bein_coverage_article_checked_at": "2026-06-13T08:51:22+03:00",
     "bein_coverage_article_summary_ar": "beIN تؤكد تغطية كأس العالم 2026 في MENA عبر قنوات MAX و4K مع تغطية يومية مطولة؛ رقم القناة لكل مباراة يؤخذ من جدول beIN أو التأكيد اليدوي.",
     "exact_channel_matches_updated": 0
   },
@@ -44,7 +44,7 @@
       "name_en": "beIN SPORTS 4K",
       "type": "encrypted",
       "status": "confirmed",
-      "source_name": "beIN SPORTS official coverage plan",
+      "source_name": "beIN SPORTS MENA coverage plan",
       "source_url": "https://www.beinsports.com/en-mena/football/fifa-world-cup-2026/articles-video/eight-channels-and-17-hours-daily-bein-sports-unveils-coverage-plans-for-fifa-world-cup-2026-2026-06-07",
       "note_ar": "تظهر كخيار تغطية رسمي من beIN، وليس تأكيدًا أن كل مباراة منفردة ستعرض على 4K.",
       "evidence_ar": "Eight Channels and 17+ Hours Daily: beIN SPORTS Unveils Coverage Plans for FIFA World Cup 2026™ | beIN SPORTS | Home | Sports | Videos | Shorts | Live | Scores | TV Guide | ع | Subscribe to beIN | language | EN | ع | Edition | MENA | Manage Notifications | Joi"
@@ -413,7 +413,7 @@
     },
     "M002": {
       "status": "confirmed",
-      "note_ar": "كوريا الجنوبية × التشيك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
+      "note_ar": "كوريا الجنوبية × التشيك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لا يتم نشر المفتوحة إلا بتأكيد مشاهدة أو إذا ظهرت beIN Sport / FTA كقناة للمباراة.",
       "channels": [
         {
           "name_ar": "beIN SPORTS MAX 1",
@@ -454,7 +454,7 @@
     },
     "M003": {
       "status": "confirmed",
-      "note_ar": "كندا × البوسنة والهرسك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لم يتم تأكيد المفتوحة أو 4K لهذه المباراة داخل هذا الملف.",
+      "note_ar": "كندا × البوسنة والهرسك: جدول القنوات المتاح للجمهور ذكر beIN SPORTS MAX 1 وbeIN SPORTS MAX 2. لا يتم نشر المفتوحة إلا بتأكيد مشاهدة أو إذا ظهرت beIN Sport / FTA كقناة للمباراة.",
       "channels": [
         {
           "name_ar": "beIN SPORTS MAX 1",
@@ -487,7 +487,7 @@
           "status": "confirmed",
           "source_name": "beIN SPORTS",
           "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D9%82%D8%B7%D8%B1%D9%8A-%D9%8A%D9%88%D8%A7%D8%AC%D9%87-%D9%86%D8%B8%D9%8A%D8%B1%D9%87-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%B3%D8%B1%D9%8A-%D9%84%D8%AD%D8%B3%D8%A7%D8%A8-%D8%A7%D9%84%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9-%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A%D8%A9-2026-06-13",
-          "evidence_ar": "لمرشح الاول لتصدر هذه المجموعه مباراه منتخب قطر ومنتخب سويسرا تاتيكم اليوم السبت الساعه 10 00 ليلا بتوقيت مكه المكرمه في بث مباشر علي قناه bein sports max 1 لمشاهده جميع المباريات والاحداث الرياضيه اضغط علي هذا الرابط للاشتراك كره القدم كاس العالم fifa 2026TM قطر سويسرا قطر كاس العالم fifa 2026TM جسر جوي لجماهير العنابي من اجل مسانده المنتخب 03 17 كاس العال",
+          "evidence_ar": "لمرشح الاول لتصدر هذه المجموعه مباراه منتخب قطر ومنتخب سويسرا تاتيكم اليوم السبت الساعه 10 00 ليلا بتوقيت مكه المكرمه في بث مباشر علي قناه bein sports max 1 لمشاهده جميع المباريات والاحداث الرياضيه اضغط علي هذا الرابط للاشتراك كره القدم كاس العالم fifa 2026TM قطر سويسرا قطر 02 17 كاس العالم fifa 2026TM الهيدوس ولوبيتيغي يتحدثان عن مباراه سويسرا 01 37 كاس ال",
           "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
           "match_confidence": 95,
           "match_confidence_reasons": [
@@ -552,6 +552,109 @@
             "both teams mentioned"
           ],
           "match_channel_context_method": "both-teams-nearby-simultaneous-safe-block"
+        }
+      ]
+    },
+    "M004": {
+      "status": "confirmed",
+      "team1_ar": "أمريكا",
+      "team2_ar": "باراغواي",
+      "note_ar": "أمريكا × باراغواي: يتم عرض MAX 1 وMAX 2 فقط من القنوات الأساسية المختصرة.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Kooora / MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-السبت-13-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt5b0ae1b0e144a295",
+          "evidence_ar": "جدول كووورة ليوم 13 يونيو 2026 ذكر أمريكا - باراغواي على beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Kooora / MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/جدول-مباريات-اليوم-السبت-13-يونيو-2026-في-كأس-العالم--القنوات-الناقلة-والمعلقين/blt5b0ae1b0e144a295",
+          "evidence_ar": "جدول كووورة ليوم 13 يونيو 2026 ذكر أمريكا - باراغواي على beIN SPORTS MAX 2.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M005": {
+      "status": "confirmed",
+      "team1_ar": "قطر",
+      "team2_ar": "سويسرا",
+      "note_ar": "قطر × سويسرا: يتم عرض MAX 1 وMAX 2 فقط من القنوات الأساسية المختصرة. MAX 3/5/6 مخفية حسب سياسة الموقع.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Kooora / 365Scores / MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/ما-القنوات-الناقلة-لمباراة-قطر-وسويسرا-في-كأس-العالم-2026--وكيف-تشاهدها-عبر-الإنترنت/blt9019ba9cc68998b5",
+          "evidence_ar": "مصدر مباراة قطر - سويسرا ذكر beIN SPORTS MAX 1.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Kooora / MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/ما-القنوات-الناقلة-لمباراة-قطر-وسويسرا-في-كأس-العالم-2026--وكيف-تشاهدها-عبر-الإنترنت/blt9019ba9cc68998b5",
+          "evidence_ar": "مصدر مباراة قطر - سويسرا ذكر beIN SPORTS MAX 2 ضمن القنوات الناقلة.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M006": {
+      "status": "confirmed",
+      "team1_ar": "البرازيل",
+      "team2_ar": "المغرب",
+      "note_ar": "البرازيل × المغرب: يتم عرض 4K وMAX 2 فقط من القنوات الأساسية المختصرة. MAX 4/5/6 مخفية حسب سياسة الموقع.",
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS 4K",
+          "name_en": "beIN SPORTS 4K",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Goal / MaenSat verified schedule",
+          "source_url": "https://www.goal.com/ar/أخبار/ما-القنوات-الناقلة-لمباراة-المغرب-والبرازيل-في-كأس-العالم-2026/blt06febe9caec85ef1",
+          "evidence_ar": "Goal ذكر beIN 4K HDR ضمن قنوات مباراة المغرب والبرازيل.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        },
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "Goal / Kooora / MaenSat verified schedule",
+          "source_url": "https://www.kooora.com/كرة-قدم/أخبار/ما-القنوات-الناقلة-لمباراة-البرازيل-والمغرب-في-كأس-العالم-2026--وكيف-تشاهدها-عبر-الإنترنت/bltd9e4e6a2bca56cc3",
+          "evidence_ar": "كووورة وGoal ذكرا beIN SPORTS MAX 2 ضمن قنوات مباراة البرازيل والمغرب.",
+          "note_ar": "قناة مشفرة؛ تعرض ضمن القنوات الأساسية المطلوبة فقط."
+        }
+      ]
+    },
+    "M013": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 1",
+          "name_en": "beIN SPORTS MAX 1",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D8%A7%D9%84%D9%85%D9%86%D8%AA%D8%AE%D8%A8-%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8%D9%8A-%D9%8A%D9%82%D8%B5-%D8%B4%D8%B1%D9%8A%D8%B7-%D9%85%D8%B4%D8%A7%D8%B1%D9%83%D8%AA%D9%87-%D8%A8%D9%85%D9%88%D8%A7%D8%AC%D9%87%D8%A9-%D9%85%D9%86-%D8%A7%D9%84%D8%B9%D9%8A%D8%A7%D8%B1-%D8%A7%D9%84%D8%AB%D9%82%D9%8A%D9%84-%D8%A3%D9%85%D8%A7%D9%85-%D8%A7%D9%84%D8%A8%D8%B1%D8%A7%D8%B2%D9%8A%D9%84-2026-06-13",
+          "evidence_ar": "موعه الثالثه من المونديال الامريكي مباراه المغرب والبرازيل المنتظره بث مباشر علي قناه bein sports max 1 فجر الاثنين الساعه 1 00 بتوقيت مكه المكرمه طلمشاهده جميع المباريات والاحداث الرياضيه اضغط علي هذا الرابط للاشتراك كره القدم كاس العالم fifa 2026TM البرازيل المغرب البرازيل كاس العالم fifa 2026TM نيمار ي",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
         }
       ]
     }
