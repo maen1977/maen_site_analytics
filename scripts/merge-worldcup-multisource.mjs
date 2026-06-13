@@ -182,13 +182,17 @@ function htmlToLines(html = '') {
 
 function parseScoreFromLine(line = '') {
   const clean = westernDigits(line).trim();
-  if (/^\d{1,2}\s*[:]\s*\d{1,2}$/.test(clean)) {
-    const [a, b] = clean.split(':').map(v => Number(v.trim()));
-    if (a <= 30 && b <= 30) return [a, b];
-  }
+
+  // SECURITY / DATA QUALITY RULE:
+  // Never parse HH:MM kickoff times as football scores.
+  // The previous version accepted 22:00 as 22-0, which created fake results
+  // for future matches such as Qatar vs Switzerland.
+  if (/^\d{1,2}\s*[:]\s*\d{2}$/.test(clean)) return null;
+
+  const maxReasonableGoals = 15;
   if (/^\d{1,2}\s*-\s*\d{1,2}$/.test(clean)) {
     const [a, b] = clean.split('-').map(v => Number(v.trim()));
-    if (a <= 30 && b <= 30) return [a, b];
+    if (a <= maxReasonableGoals && b <= maxReasonableGoals) return [a, b];
   }
   // beIN schedule sometimes renders finished matches like: "13 Jun 4 - 1".
   const monthWords = /\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\b/i;
@@ -197,7 +201,7 @@ function parseScoreFromLine(line = '') {
     if (m) {
       const a = Number(m[1]);
       const b = Number(m[2]);
-      if (a <= 30 && b <= 30) return [a, b];
+      if (a <= maxReasonableGoals && b <= maxReasonableGoals) return [a, b];
     }
   }
   return null;
@@ -215,14 +219,16 @@ function parseScoreBetweenLines(lines, aIndex, bIndex) {
 
 function getMatchKickoffDate(match) {
   const candidates = [
+    match.kickoff_utc,
+    match.kickoff_jordan,
     match.date_utc,
     match.utc_time,
     match.datetime_utc,
     match.datetime,
     match.kickoff,
     match.local_time,
-    match.date,
-    match.match_time
+    match.match_time,
+    match.date
   ].filter(Boolean);
   for (const value of candidates) {
     const date = new Date(value);
@@ -233,11 +239,15 @@ function getMatchKickoffDate(match) {
 
 function statusFromKickoff(match, sourceStatus = '') {
   const normalizedStatus = normalizeText(sourceStatus);
+  const kickoff = getMatchKickoffDate(match);
+  const minutesSinceKickoff = kickoff ? (Date.now() - kickoff.getTime()) / 60000 : null;
+
+  if (kickoff && minutesSinceKickoff < -5) return 'scheduled';
+  if (/(scheduled|pre[- ]?game|not started|fixture|لم تبدا|لم تبدأ)/i.test(sourceStatus) || normalizedStatus.includes('لم تبدا')) return 'scheduled';
   if (/(full time|final|finished|ft|انتهت|نهايه|نهاية)/i.test(sourceStatus) || normalizedStatus.includes('انتهت')) return 'finished';
   if (/(live|in progress|halftime|half time|ht|مباشر|الشوط)/i.test(sourceStatus)) return 'live';
-  const kickoff = getMatchKickoffDate(match);
-  if (!kickoff) return 'finished';
-  const minutesSinceKickoff = (Date.now() - kickoff.getTime()) / 60000;
+  if (!kickoff) return 'scheduled';
+
   if (minutesSinceKickoff >= 150) return 'finished';
   if (minutesSinceKickoff >= -5) return 'live';
   return 'scheduled';
@@ -247,6 +257,13 @@ function makeCandidate({ match, source, homeScore, awayScore, status = '', confi
   const hs = Number(homeScore);
   const as = Number(awayScore);
   if (!Number.isFinite(hs) || !Number.isFinite(as)) return null;
+
+  // Reject impossible/time-derived scores. This prevents 22:00 becoming 22-0.
+  if (hs < 0 || as < 0 || hs > 15 || as > 15) return null;
+
+  const kickoff = getMatchKickoffDate(match);
+  if (kickoff && Date.now() < kickoff.getTime() - 5 * 60000) return null;
+
   const resolvedStatus = statusFromKickoff(match, status);
   if (resolvedStatus === 'scheduled') return null;
   return {

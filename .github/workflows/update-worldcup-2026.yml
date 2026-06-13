@@ -42,8 +42,11 @@ jobs:
           WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE: ${{ vars.WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE || '80' }}
         run: node scripts/update-worldcup-2026.mjs
 
-      - name: Merge World Cup data from multiple sources
+      - name: Merge safe structured result sources
         run: node scripts/merge-worldcup-multisource.mjs
+
+      - name: Repair future or impossible scores
+        run: node scripts/repair-worldcup-future-scores.mjs
 
       - name: Apply manual result overrides and rebuild standings
         run: node scripts/apply-worldcup-overrides.mjs
@@ -52,9 +55,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
-            git add public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs .github/workflows/update-worldcup-2026.yml
-            git commit -m "Improve World Cup 2026 multi-source updates"
+          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
+            git add public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
+            git commit -m "Fix World Cup score safety checks"
             git push
           else
             echo "No World Cup 2026 changes to commit."
