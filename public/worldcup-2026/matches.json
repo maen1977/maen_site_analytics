@@ -7,17 +7,16 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-14T00:23:22+03:00",
-    "last_checked_at": "2026-06-14T00:23:22+03:00",
+    "last_updated": "2026-06-14T01:40:08+03:00",
+    "last_checked_at": "2026-06-14T01:40:08+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "multi_source_results_update": true,
-    "multi_source_result_candidates": 9,
+    "multi_source_result_candidates": 5,
     "multi_source_result_changes": 0,
-    "multi_source_result_conflicts": 1,
     "emergency_score_repair": {
       "enabled": true,
       "repaired_count": 0,
@@ -212,16 +211,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-14T00:23:10+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-14T00:23:17+03:00"
+          "collected_at": "2026-06-14T01:40:02+03:00"
         }
       ]
     },
@@ -258,18 +248,7 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A",
-      "score_sources": [
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-14T00:23:17+03:00"
-        }
-      ]
+      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A"
     },
     {
       "id": "M007",
@@ -317,7 +296,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-14T00:23:10+03:00"
+          "collected_at": "2026-06-14T01:40:02+03:00"
         }
       ]
     },
@@ -361,25 +340,7 @@
           "home_score": 4,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-14T00:23:10+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 4,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-14T00:23:17+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 0,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-14T00:23:17+03:00"
+          "collected_at": "2026-06-14T01:40:02+03:00"
         }
       ]
     },
@@ -408,6 +369,10 @@
           1,
           1
         ],
+        "ht": [
+          0,
+          1
+        ],
         "source": "espn",
         "event_id": "760420",
         "status_detail": "FT",
@@ -425,16 +390,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-14T00:23:10+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "live",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-14T00:23:17+03:00"
+          "collected_at": "2026-06-14T01:40:02+03:00"
         }
       ]
     },
@@ -455,14 +411,34 @@
       "team2_ar": "المغرب",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C"
+      "status": "live",
+      "home_score": 1,
+      "away_score": 1,
+      "score": {
+        "live": [
+          1,
+          1
+        ],
+        "source": "espn",
+        "event_id": "760419",
+        "status_detail": "35'",
+        "clock": "35'"
+      },
+      "score_source": "espn",
+      "live_clock": "35'",
+      "live_status_detail": "35'",
+      "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C",
+      "score_sources": [
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "live",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 88,
+          "collected_at": "2026-06-14T01:40:02+03:00"
+        }
+      ]
     },
     {
       "id": "M014",
