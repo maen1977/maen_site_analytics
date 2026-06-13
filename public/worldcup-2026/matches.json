@@ -7,13 +7,19 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-13T01:12:58.495+03:00",
-    "last_checked_at": "2026-06-13T01:12:58.495+03:00",
+    "last_updated": "2026-06-13T07:43:15+03:00",
+    "last_checked_at": "2026-06-13T07:43:15+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
-    "groups_count": 12
+    "groups_count": 12,
+    "multi_source_results_update": true,
+    "multi_source_result_candidates": 22,
+    "multi_source_result_changes": 5,
+    "multi_source_result_conflicts": 5,
+    "manual_overrides_applied": true,
+    "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json"
   },
   "groups": {
     "A": [
@@ -186,16 +192,41 @@
         "ht": [
           1,
           0
-        ],
-        "source": "espn",
-        "event_id": "760415",
-        "status_detail": "FT",
-        "clock": "90'+8'"
+        ]
       },
-      "score_source": "espn",
-      "live_clock": "90'+8'",
-      "live_status_detail": "FT",
-      "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A"
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
+      "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 2,
+          "away_score": 0,
+          "confidence": 99,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 2,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 2,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M002",
@@ -225,16 +256,23 @@
         "ht": [
           0,
           0
-        ],
-        "source": "espn",
-        "event_id": "760414",
-        "status_detail": "FT",
-        "clock": "90'+7'"
+        ]
       },
-      "score_source": "espn",
-      "live_clock": "90'+7'",
-      "live_status_detail": "FT",
-      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A"
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
+      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A",
+      "score_sources": [
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M007",
@@ -273,7 +311,27 @@
       "score_source": "espn",
       "live_clock": "90'+7'",
       "live_status_detail": "FT",
-      "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B"
+      "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 99,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        }
+      ]
     },
     {
       "id": "M019",
@@ -288,18 +346,63 @@
       "kickoff_jordan": "2026-06-13T04:00:00.000+03:00",
       "team1": "USA",
       "team2": "Paraguay",
-      "team1_ar": "أمريكا",
+      "team1_ar": "الولايات المتحدة",
       "team2_ar": "باراغواي",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "status": "finished",
+      "home_score": 4,
+      "away_score": 1,
+      "score": {
+        "ft": [
+          4,
+          1
+        ],
+        "source": "manual-reuters-bein",
+        "status_detail": "FT"
+      },
+      "score_source": "manual-reuters-bein",
       "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D"
+      "live_status_detail": "FT",
+      "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "live",
+          "home_score": 4,
+          "away_score": 1,
+          "confidence": 99,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 4,
+          "away_score": 1,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 4,
+          "away_score": 1,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M008",
@@ -318,14 +421,50 @@
       "team2_ar": "سويسرا",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": "scheduled",
-      "home_score": 0,
+      "status": "finished",
+      "home_score": 22,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "score": {
+        "ft": [
+          22,
+          0
+        ],
+        "source": "beIN World Cup 2026 microsite",
+        "status_detail": "FT"
+      },
+      "score_source": "beIN World Cup 2026 microsite",
       "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Qatar Switzerland قطر سويسرا San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات B"
+      "live_status_detail": "FT",
+      "search_text": "Qatar Switzerland قطر سويسرا San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات B",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 22,
+          "away_score": 0,
+          "confidence": 99,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M013",
@@ -344,14 +483,50 @@
       "team2_ar": "المغرب",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": "scheduled",
-      "home_score": 0,
+      "status": "finished",
+      "home_score": 1,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "score": {
+        "ft": [
+          1,
+          0
+        ],
+        "source": "beIN World Cup 2026 microsite",
+        "status_detail": "FT"
+      },
+      "score_source": "beIN World Cup 2026 microsite",
       "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C"
+      "live_status_detail": "FT",
+      "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 96,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M014",
@@ -370,14 +545,50 @@
       "team2_ar": "اسكتلندا",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": "scheduled",
-      "home_score": 0,
+      "status": "finished",
+      "home_score": 4,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "score": {
+        "ft": [
+          4,
+          0
+        ],
+        "source": "beIN World Cup 2026 microsite",
+        "status_detail": "FT"
+      },
+      "score_source": "beIN World Cup 2026 microsite",
       "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Haiti Scotland هايتي اسكتلندا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات C"
+      "live_status_detail": "FT",
+      "search_text": "Haiti Scotland هايتي اسكتلندا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات C",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 4,
+          "away_score": 0,
+          "confidence": 96,
+          "collected_at": "2026-06-13T07:42:57+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M020",
@@ -396,14 +607,50 @@
       "team2_ar": "تركيا",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": "scheduled",
-      "home_score": 0,
+      "status": "finished",
+      "home_score": 7,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
+      "score": {
+        "ft": [
+          7,
+          0
+        ],
+        "source": "beIN World Cup 2026 microsite",
+        "status_detail": "FT"
+      },
+      "score_source": "beIN World Cup 2026 microsite",
       "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Australia Turkey أستراليا تركيا Vancouver Vancouver Stadium / BC Place دور المجموعات D"
+      "live_status_detail": "FT",
+      "search_text": "Australia Turkey أستراليا تركيا Vancouver Vancouver Stadium / BC Place دور المجموعات D",
+      "score_sources": [
+        {
+          "source_name": "beIN World Cup 2026 microsite",
+          "source_url": "https://www.bein.com/en/worldcup26/",
+          "status": "finished",
+          "home_score": 7,
+          "away_score": 0,
+          "confidence": 96,
+          "collected_at": "2026-06-13T07:42:58+03:00"
+        },
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-13T07:43:05+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "finished",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-13T07:43:10+03:00"
+        }
+      ]
     },
     {
       "id": "M025",
