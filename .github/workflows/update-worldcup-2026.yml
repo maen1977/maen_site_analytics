@@ -5,7 +5,7 @@ env:
 
 on:
   schedule:
-    # فحص ذكي كل 15 دقيقة تقريبًا أثناء البطولة.
+    # فحص كل 15 دقيقة.
     - cron: "2,17,32,47 * * * *"
     # فحص احتياطي مرتين يوميًا.
     - cron: "7 0,12 * * *"
@@ -31,16 +31,13 @@ jobs:
           node-version: "24"
 
       - name: Run existing World Cup updater
-        continue-on-error: true
         env:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
 
-          # يوسع تحديث النتائج ليغطي يوم المباراة كاملًا تقريبًا، بدل ساعة قبل و5 ساعات بعد.
+          # مهم: لا تخلي التحديث الذكي ينام أثناء يوم المباريات.
           WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1440"
           WORLD_CUP_2026_FAST_AFTER_MINUTES: "1440"
-
-          # يوسع فحص القنوات الناقلة أيضًا خلال يوم المباراة.
           WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1440"
           WORLD_CUP_2026_BROADCAST_AFTER_MINUTES: "1440"
 
@@ -57,6 +54,12 @@ jobs:
       - name: Repair future or impossible scores
         run: node scripts/repair-worldcup-future-scores.mjs
 
+      - name: Finalize stale live matches
+        env:
+          # بعد 130 دقيقة من بداية مباراة دور المجموعات، إذا بقيت LIVE ومعها نتيجة، حولها FT.
+          WORLD_CUP_2026_AUTO_FINALIZE_AFTER_MINUTES: "130"
+        run: node scripts/finalize-worldcup-stale-live.mjs
+
       - name: Apply manual result overrides and rebuild standings
         run: node scripts/apply-worldcup-overrides.mjs
 
@@ -64,8 +67,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
-            git add public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
+          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
+            git add public/worldcup-2026 scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
             git commit -m "Update World Cup 2026 data"
             git push
           else
