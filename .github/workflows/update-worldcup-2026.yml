@@ -5,9 +5,9 @@ env:
 
 on:
   schedule:
-    # تحديث كل ربع ساعة تقريبًا طوال يوم المباريات
+    # فحص ذكي كل 15 دقيقة تقريبًا أثناء البطولة.
     - cron: "2,17,32,47 * * * *"
-    # فحص احتياطي مرتين يوميًا حتى لو لم تكن هناك مباريات مباشرة
+    # فحص احتياطي مرتين يوميًا.
     - cron: "7 0,12 * * *"
   workflow_dispatch:
 
@@ -21,7 +21,6 @@ concurrency:
 jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -37,13 +36,13 @@ jobs:
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
 
-          # يجعل فحص الربع ساعة يعمل طوال يوم المباراة، وليس فقط قبلها بساعة وبعدها بخمس ساعات.
+          # يوسع تحديث النتائج ليغطي يوم المباراة كاملًا تقريبًا، بدل ساعة قبل و5 ساعات بعد.
           WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1440"
           WORLD_CUP_2026_FAST_AFTER_MINUTES: "1440"
 
-          # توسيع نافذة فحص القنوات الناقلة حول يوم المباراة.
+          # يوسع فحص القنوات الناقلة أيضًا خلال يوم المباراة.
           WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1440"
-          WORLD_CUP_2026_BROADCAST_AFTER_MINUTES: "360"
+          WORLD_CUP_2026_BROADCAST_AFTER_MINUTES: "1440"
 
           WORLD_CUP_2026_BROADCAST_SOURCE_URL: ${{ vars.WORLD_CUP_2026_BROADCAST_SOURCE_URL }}
           WORLD_CUP_2026_BEIN_AUTO_CHECK: ${{ vars.WORLD_CUP_2026_BEIN_AUTO_CHECK || '1' }}
@@ -65,10 +64,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           if [ -n "$(git status --porcelain public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
             git add public/worldcup-2026 scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
-            git commit -m "Update World Cup 2026 every 15 minutes on match days"
+            git commit -m "Update World Cup 2026 data"
             git push
           else
             echo "No World Cup 2026 changes to commit."
