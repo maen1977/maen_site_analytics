@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-15T00:44:02+03:00",
-    "last_checked_at": "2026-06-15T00:44:02+03:00",
+    "last_updated": "2026-06-15T00:48:55+03:00",
+    "last_checked_at": "2026-06-15T00:48:55+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -16,7 +16,7 @@
     "groups_count": 12,
     "multi_source_results_update": true,
     "multi_source_result_candidates": 18,
-    "multi_source_result_changes": 0,
+    "multi_source_result_changes": 1,
     "multi_source_result_conflicts": 1,
     "emergency_score_repair": {
       "enabled": true,
@@ -25,7 +25,11 @@
       "note_ar": "إزالة أي نتيجة غير منطقية أو نتيجة لمباراة مستقبلية. يمنع تحويل وقت المباراة مثل 22:00 إلى 22-0."
     },
     "manual_overrides_applied": true,
-    "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json"
+    "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
+    "last_data_change_at": "2026-06-15T00:48:55+03:00",
+    "automation_heartbeat": true,
+    "automation_heartbeat_at": "2026-06-15T00:48:55+03:00",
+    "automation_heartbeat_note_ar": "تم فحص بيانات كأس العالم تلقائيًا. قد لا تتغير النتائج إذا لم يرسل المصدر نتيجة جديدة."
   },
   "groups": {
     "A": [
@@ -212,7 +216,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -258,7 +262,7 @@
           "home_score": 2,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -304,7 +308,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         }
       ]
     },
@@ -348,7 +352,7 @@
           "home_score": 4,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -357,7 +361,7 @@
           "home_score": 4,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -366,7 +370,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -416,7 +420,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -425,7 +429,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -475,7 +479,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -484,7 +488,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -534,7 +538,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -543,7 +547,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -589,7 +593,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -598,7 +602,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -648,7 +652,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -657,7 +661,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
@@ -680,20 +684,18 @@
       "stadium": "Dallas Stadium / AT&T Stadium",
       "status": "live",
       "home_score": 2,
-      "away_score": 1,
+      "away_score": 2,
       "score": {
-        "live": [
+        "current": [
           2,
-          1
+          2
         ],
-        "source": "espn",
-        "event_id": "760425",
-        "status_detail": "84'",
-        "clock": "84'"
+        "source": "ESPN FIFA World scoreboard",
+        "status_detail": "LIVE"
       },
-      "score_source": "espn",
-      "live_clock": "84'",
-      "live_status_detail": "84'",
+      "score_source": "ESPN FIFA World scoreboard",
+      "live_clock": "89'",
+      "live_status_detail": "LIVE",
       "search_text": "Netherlands Japan هولندا اليابان Dallas (Arlington) Dallas Stadium / AT&T Stadium دور المجموعات F",
       "score_sources": [
         {
@@ -701,18 +703,18 @@
           "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
           "status": "live",
           "home_score": 2,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-15T00:43:54+03:00"
+          "collected_at": "2026-06-15T00:48:48+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
           "source_url": "https://worldcup26.ir/get/games",
           "status": "live",
           "home_score": 2,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 70,
-          "collected_at": "2026-06-15T00:43:55+03:00"
+          "collected_at": "2026-06-15T00:48:49+03:00"
         }
       ]
     },
