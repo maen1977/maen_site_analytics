@@ -8,23 +8,23 @@
     ],
     "frequencies_included": false,
     "policy": "No frequencies and no streaming links. Free-to-air match status must remain pending until officially confirmed.",
-    "last_updated": "2026-06-14T11:47:57.349+03:00",
+    "last_updated": "2026-06-14T14:35:25.215+03:00",
     "update_policy": "Broadcaster data can be merged from WORLD_CUP_2026_BROADCAST_SOURCE_URL when a trusted JSON source is configured; otherwise pending statuses are preserved. Match scores use a separate 15-minute smart match-window update.",
     "broadcast_source_url": "",
     "broadcast_source_file": "public/worldcup-2026/broadcast-source.json",
-    "bein_official_last_checked_at": "2026-06-14T11:47:55.269+03:00",
+    "bein_official_last_checked_at": "2026-06-14T14:35:22.691+03:00",
     "bein_official_auto_check": true,
     "observed_broadcast_last_checked_at": "2026-06-12T07:35:00+03:00",
     "observed_broadcast_file": "public/worldcup-2026/broadcast-observed.json",
     "observed_broadcast_note_ar": "تأكيدات مشاهدة يدوية من صاحب الموقع؛ تُدمج فوق المصادر التلقائية ولا تمس ملفات المباريات/الترتيب/القوس.",
     "core_bein_channel_filter": true,
     "core_bein_channel_filter_ar": "يعرض الموقع فقط beIN SPORTS المفتوحة، وbeIN SPORTS MAX 1، وbeIN SPORTS MAX 2، وbeIN SPORTS 4K. يتم إخفاء MAX 3-6 وNEWS وCONNECT والباقات. عند وجود مباريات بنفس التوقيت تُربط القناة بمقطع المباراة نفسها فقط لمنع خلط MAX 1 وMAX 2.",
-    "last_checked_at": "2026-06-14T11:47:59+03:00",
+    "last_checked_at": "2026-06-14T14:35:28+03:00",
     "stable_live_broadcast_patch": true,
     "stable_live_broadcast_patch_ar": "يدمج المصادر المحلية دائماً، ويفحص beIN الرسمي في أيام المباريات، ويفصل كل ظهور للمباراة حتى لا تختلط قنوات MAX 1/MAX 2 بين مباريات متزامنة.",
     "multi_source_broadcast_update": true,
     "policy_ar": "لا ينشر الموقع ترددات أو روابط بث. يتم عرض القنوات الناقلة فقط، والقناة المفتوحة تبقى pending إلى أن يوجد تأكيد رسمي/يدوي للمباراة.",
-    "bein_coverage_article_checked_at": "2026-06-14T11:47:59+03:00",
+    "bein_coverage_article_checked_at": "2026-06-14T14:35:28+03:00",
     "bein_coverage_article_summary_ar": "beIN تؤكد تغطية كأس العالم 2026 في MENA عبر قنوات MAX و4K مع تغطية يومية مطولة؛ رقم القناة لكل مباراة يؤخذ من جدول beIN أو التأكيد اليدوي.",
     "exact_channel_matches_updated": 0
   },
@@ -702,6 +702,25 @@
           "source_name": "beIN SPORTS",
           "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D9%87%D8%A7%D9%8A%D8%AA%D9%8A-0-0-%D8%A7%D8%B3%D9%83%D8%AA%D9%84%D9%86%D8%AF%D8%A7-%D8%A7%D9%84%D8%AA%D8%BA%D8%B7%D9%8A%D8%A9-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5%D8%A9-%D9%88%D8%A3%D8%A8%D8%B1%D8%B2-%D8%A3%D8%AD%D8%AF%D8%A7%D8%AB-%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-2026-06-14",
           "evidence_ar": "منذ اخر ظهور لها في 1998 تتطلع لخطف فوز يقربها من التاهل مباراه هايتي واسكتلندا بث مباشر علي قناه bein sports max 1 فجر الاحد الساعه 4 00 بتوقيت مكه المكرمه لمشاهده جميع المباريات والاحداث الرياضيه اضغط علي هذا الرابط للاشتراك كره القدم كاس العالم fifa 2026TM هايتي اسكتلندا هايتي كاس العالم fifa 2026TM المنتخب الاسكت",
+          "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
+          "match_confidence": 80,
+          "match_confidence_reasons": [
+            "both teams mentioned"
+          ],
+          "match_channel_context_method": "both-teams-nearby-match-block"
+        }
+      ]
+    },
+    "M032": {
+      "channels": [
+        {
+          "name_ar": "beIN SPORTS MAX 2",
+          "name_en": "beIN SPORTS MAX 2",
+          "type": "encrypted",
+          "status": "confirmed",
+          "source_name": "beIN SPORTS",
+          "source_url": "https://www.beinsports.com/ar-mena/%D9%83%D8%B1%D8%A9-%D8%A7%D9%84%D9%82%D8%AF%D9%85/%D9%83%D8%A3%D8%B3-%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85-fifa-2026/%D8%A7%D9%84%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1-%D8%A7%D9%84%D9%81%D9%8A%D8%AF%D9%8A%D9%88/%D8%A7%D9%84%D9%84%D9%85%D9%88%D8%B4%D9%8A-%D9%88%D8%A7%D8%AB%D9%82-%D9%85%D9%86-%D8%AA%D9%82%D8%AF%D9%8A%D9%85-%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%AC%D9%8A-%D8%AF%D8%A9-%D8%A3%D9%85%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D9%88%D9%8A%D8%AF-2026-06-14",
+          "evidence_ar": "اهير التونسيه خلال هذه المشاركه مباراه السويد وتونس انطلاقا من الساعه الخامسه فجرا يوم الاثنين بتوقيت مكه المكرمه مباشره وحصريا علي bein sports max 2 لمشاهده جميع المباريات والاحداث الرياضيه اضغط علي هذا الرابط للاشتراك كره القدم كاس العالم fifa 2026TM السويد تونس السويد 01 22 كاس العالم fifa 2026TM غراهام بوتر تنتظرنا مباراه صعبه امام تونس كاس العال",
           "note_ar": "تم التقاطها من مصدر beIN SPORTS الرسمي.",
           "match_confidence": 80,
           "match_confidence_reasons": [
