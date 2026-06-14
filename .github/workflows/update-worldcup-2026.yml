@@ -56,19 +56,21 @@ jobs:
 
       - name: Finalize stale live matches
         env:
-          # بعد 130 دقيقة من بداية مباراة دور المجموعات، إذا بقيت LIVE ومعها نتيجة، حولها FT.
           WORLD_CUP_2026_AUTO_FINALIZE_AFTER_MINUTES: "130"
         run: node scripts/finalize-worldcup-stale-live.mjs
 
       - name: Apply manual result overrides and rebuild standings
         run: node scripts/apply-worldcup-overrides.mjs
 
+      - name: Touch World Cup last checked timestamp
+        run: node scripts/touch-worldcup-last-checked.mjs
+
       - name: Commit updated World Cup data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
-            git add public/worldcup-2026 scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
+          if [ -n "$(git status --porcelain public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml)" ]; then
+            git add public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs scripts/finalize-worldcup-stale-live.mjs scripts/merge-worldcup-multisource.mjs scripts/apply-worldcup-overrides.mjs scripts/repair-worldcup-future-scores.mjs .github/workflows/update-worldcup-2026.yml
             git commit -m "Update World Cup 2026 data"
             git push
           else
