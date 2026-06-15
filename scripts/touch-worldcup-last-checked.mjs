@@ -83,10 +83,11 @@ async function writeHeartbeat(nowIso, touched, runInfo) {
     schedule: 'every 15 minutes',
     files_touched: touched,
     force_cloudflare_deploy: true,
+    deploy_hook_secret_name: 'CLOUDFLARE_PAGES_DEPLOY_HOOK',
     source: 'github-actions',
     github: runInfo,
     note_ar:
-      'هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. أي commit جديد على GitHub يجب أن يطلق نشر Cloudflare Pages إذا كان المشروع مربوطاً عبر Git integration.'
+      'هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. بعد commit/push، يحاول GitHub Action تشغيل Cloudflare Pages Deploy Hook إذا كان Secret موجوداً.'
   };
 
   await writeJson(path.join(WC_DIR, 'heartbeat.json'), heartbeat);
@@ -99,6 +100,7 @@ async function writeHeartbeat(nowIso, touched, runInfo) {
     `github_run_number=${runInfo.runNumber}`,
     `github_sha=${runInfo.sha}`,
     'cloudflare_deploy_trigger=true',
+    'deploy_hook_secret_name=CLOUDFLARE_PAGES_DEPLOY_HOOK',
     ''
   ].join('\n');
 

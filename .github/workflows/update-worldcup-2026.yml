@@ -2,7 +2,7 @@ name: Update World Cup 2026 data
 
 on:
   schedule:
-    # Every 15 minutes, UTC. This also runs when there is no match.
+    # Every 15 minutes, UTC. Runs with or without matches.
     - cron: "2,17,32,47 * * * *"
   workflow_dispatch:
 
@@ -37,10 +37,13 @@ jobs:
       - name: Run World Cup updater every quarter hour
         continue-on-error: true
         env:
+          # Force the existing updater to check even if there is no active match.
           WORLD_CUP_2026_FORCE_UPDATE: "1"
+
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
 
+          # Very wide windows so smart checks do not sleep.
           WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1000000"
           WORLD_CUP_2026_FAST_AFTER_MINUTES: "1000000"
           WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1000000"
@@ -99,7 +102,7 @@ jobs:
         if: always()
         run: node scripts/touch-worldcup-last-checked.mjs
 
-      - name: Commit and push World Cup data for Cloudflare Pages
+      - name: Commit and push World Cup data
         if: always()
         run: |
           git config user.name "github-actions[bot]"
@@ -108,9 +111,24 @@ jobs:
           git add public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs .github/workflows/update-worldcup-2026.yml
 
           if git diff --cached --quiet; then
-            echo "No staged changes found, but heartbeat should normally change every run."
+            echo "No staged changes found."
+          else
+            git commit -m "Update World Cup 2026 quarter-hour heartbeat"
+            git push
+          fi
+
+      - name: Trigger Cloudflare Pages deploy hook
+        if: always()
+        env:
+          CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$CLOUDFLARE_PAGES_DEPLOY_HOOK" ]; then
+            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK secret is not set. Skipping Cloudflare deploy hook."
+            echo "Create a Cloudflare Pages Deploy Hook and save it as this GitHub secret."
             exit 0
           fi
 
-          git commit -m "Update World Cup 2026 quarter-hour heartbeat"
-          git push
+          echo "Triggering Cloudflare Pages deploy hook..."
+          curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+          echo ""
+          echo "Cloudflare Pages deploy hook triggered."
