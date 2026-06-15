@@ -1,19 +1,24 @@
-جاهز للرفع — تشغيل تلقائي لقسم كأس العالم "كل المباريات"
+إصلاح v2 لمشكلة أن قسم "كل المباريات" لا يفتح على مباراة اليوم
 
-ارفع الملفات في نفس المسارات الموجودة داخل ZIP:
+السبب السابق:
+- public/assets/worldcup-current-focus.js انرفع.
+- لكن public/index.html لم يحتوي على سطر تشغيل السكربت.
+- وملف scripts/install-worldcup-current-focus.mjs كان فيه SCRIPT_TAG فارغ، لذلك لم يحقن السطر.
+
+ارفع هذه الملفات واستبدل الموجودة:
 
 1) public/assets/worldcup-current-focus.js
 2) scripts/install-worldcup-current-focus.mjs
 3) .github/workflows/install-worldcup-current-focus.yml
 
 بعد الرفع:
-- ادخل GitHub > Actions
-- افتح: Install World Cup current focus
-- اضغط: Run workflow
+1. ادخل GitHub > Actions
+2. افتح Install World Cup current focus
+3. اضغط Run workflow
+4. بعد نجاحه تأكد أن public/index.html يحتوي على:
+   /assets/worldcup-current-focus.js?v=20260615-v2
 
-الـ Workflow سيعدل public/index.html تلقائياً ويضيف:
-<script src="/assets/worldcup-current-focus.js?v=20260615-auto"></script>
+ثم افتح:
+https://maensat.pages.dev/#worldcup2026
 
-بعدها افتح الموقع وجرب قسم كأس العالم.
-في "كل المباريات" سيذهب تلقائياً إلى:
-مباراة مباشرة > أول مباراة قادمة اليوم > آخر مباراة اليوم > أقرب مباراة قادمة.
+واضغط "كل المباريات".

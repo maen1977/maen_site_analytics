@@ -1,34 +1,21 @@
 /*!
- * World Cup 2026 Current Match Focus
- * Auto-focuses "كل المباريات" on the live/current/today/next match.
+ * World Cup 2026 Current Match Focus v2
+ * Opens "كل المباريات" near today's/live/next match instead of the first old match.
  */
 (() => {
   "use strict";
 
-  if (window.__WORLD_CUP_CURRENT_FOCUS_LOADED__) return;
-  window.__WORLD_CUP_CURRENT_FOCUS_LOADED__ = true;
+  if (window.__WORLD_CUP_CURRENT_FOCUS_V2__) return;
+  window.__WORLD_CUP_CURRENT_FOCUS_V2__ = true;
 
-  const CONFIG = {
-    dataUrl: "/worldcup-2026/matches.json",
-    timezone: "Asia/Amman",
-    liveWindowMinutes: 140,
-    retryDelays: [250, 700, 1300, 2200, 3600, 5200, 7500],
-    rootHints: [
-      "#worldcup2026",
-      "#worldcup-2026",
-      "[data-section='worldcup']",
-      "[data-page='worldcup']",
-      ".worldcup-section",
-      ".worldcup2026",
-      ".wc-section"
-    ],
-    allMatchesWords: ["كل المباريات", "جميع المباريات", "All matches"]
-  };
+  const DATA_URL = "/worldcup-2026/matches.json";
+  const TIMEZONE = "Asia/Amman";
+  const RETRIES = [300, 800, 1500, 2600, 4200, 6500, 9000];
+  const LIVE_WINDOW_MINUTES = 150;
 
-  let cachedBundle = null;
-  let lastFocusKey = "";
+  let lastKey = "";
 
-  function normalizeText(value) {
+  function norm(value) {
     return String(value || "")
       .replace(/[أإآ]/g, "ا")
       .replace(/[ى]/g, "ي")
@@ -39,138 +26,111 @@
       .toLowerCase();
   }
 
-  function toMs(value) {
+  function ammanDateKey(date = new Date()) {
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: TIMEZONE,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour12: false
+    }).formatToParts(date);
+
+    const get = (type) => parts.find((part) => part.type === type)?.value || "00";
+    return `${get("year")}-${get("month")}-${get("day")}`;
+  }
+
+  function parseTime(value) {
     if (!value) return NaN;
     if (typeof value === "number") return value > 10_000_000_000 ? value : value * 1000;
 
-    const raw = String(value).trim();
-    if (!raw) return NaN;
-
-    const direct = Date.parse(raw);
+    const text = String(value).trim();
+    const direct = Date.parse(text);
     if (Number.isFinite(direct)) return direct;
 
-    const cleaned = raw
-      .replace(" بتوقيت الأردن", "")
+    const cleaned = text
+      .replace("بتوقيت الأردن", "")
       .replace("بتوقيت الاردن", "")
-      .replace(/\//g, "-");
+      .replace(/\//g, "-")
+      .trim();
 
     const retry = Date.parse(cleaned);
     return Number.isFinite(retry) ? retry : NaN;
   }
 
-  function jordanParts(date = new Date()) {
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: CONFIG.timezone,
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      hour12: false
-    }).formatToParts(date);
-
-    const pick = (type) => parts.find((part) => part.type === type)?.value || "00";
-    let hour = pick("hour");
-    if (hour === "24") hour = "00";
-
-    return { year: pick("year"), month: pick("month"), day: pick("day"), hour };
-  }
-
-  function jordanDateKey(date = new Date()) {
-    const p = jordanParts(date);
-    return `${p.year}-${p.month}-${p.day}`;
-  }
-
-  function kickoffMs(match) {
-    const candidates = [
+  function kickoff(match) {
+    const values = [
       match?.kickoff_utc,
       match?.kickoffUtc,
-      match?.kickoffISO,
       match?.kickoff_iso,
-      match?.kickoff,
+      match?.kickoffISO,
       match?.kickoff_jordan,
       match?.kickoffJordan,
+      match?.kickoff,
       match?.datetime,
       match?.date_time,
       match?.date
     ];
 
-    for (const candidate of candidates) {
-      const ms = toMs(candidate);
+    for (const value of values) {
+      const ms = parseTime(value);
       if (Number.isFinite(ms)) return ms;
     }
 
     return NaN;
   }
 
+  function matchId(match) {
+    return String(match?.id || match?.match_id || match?.game_id || match?.fixture_id || "").trim();
+  }
+
   function matchDateKey(match) {
     const explicit = match?.date_jordan || match?.dateJordan || match?.local_date || match?.date_key;
-    if (explicit && /^\d{4}-\d{2}-\d{2}/.test(String(explicit))) return String(explicit).slice(0, 10);
+    if (/^\d{4}-\d{2}-\d{2}/.test(String(explicit || ""))) return String(explicit).slice(0, 10);
 
-    const ms = kickoffMs(match);
-    if (!Number.isFinite(ms)) return "";
-    return jordanDateKey(new Date(ms));
+    const ms = kickoff(match);
+    return Number.isFinite(ms) ? ammanDateKey(new Date(ms)) : "";
   }
 
   function statusText(match) {
-    return normalizeText([
+    return norm([
       match?.status,
       match?.state,
       match?.live_status_detail,
-      match?.score?.status_detail,
-      match?.score?.state
+      match?.score?.status_detail
     ].filter(Boolean).join(" "));
   }
 
-  function hasScore(match) {
-    const score = match?.score || {};
-    return Boolean(
-      Array.isArray(score.ft) ||
-      Array.isArray(score.current) ||
-      Array.isArray(score.live) ||
-      Number.isFinite(Number(match?.home_score)) ||
-      Number.isFinite(Number(match?.away_score))
-    );
-  }
-
   function isFinished(match) {
-    const text = statusText(match);
+    const s = statusText(match);
     return (
-      text.includes("finished") ||
-      text.includes("complete") ||
-      text.includes("full time") ||
-      text === "ft" ||
-      text.includes("انته") ||
-      text.includes("نهائي") ||
+      s.includes("finished") ||
+      s.includes("complete") ||
+      s.includes("full time") ||
+      s === "ft" ||
+      s.includes("انته") ||
+      s.includes("نهائي") ||
       Boolean(match?.score?.ft)
     );
   }
 
   function isLive(match, nowMs) {
-    const text = statusText(match);
+    const s = statusText(match);
 
     if (
-      text.includes("live") ||
-      text.includes("in progress") ||
-      text.includes("playing") ||
-      text.includes("مباشر") ||
-      text.includes("الشوط") ||
-      text.includes("استراحه")
-    ) {
-      return true;
-    }
+      s.includes("live") ||
+      s.includes("in progress") ||
+      s.includes("مباشر") ||
+      s.includes("الشوط")
+    ) return true;
 
     if (isFinished(match)) return false;
 
-    const start = kickoffMs(match);
-    if (!Number.isFinite(start)) return false;
-
-    return nowMs >= start && nowMs <= start + CONFIG.liveWindowMinutes * 60_000;
+    const start = kickoff(match);
+    return Number.isFinite(start) && nowMs >= start && nowMs <= start + LIVE_WINDOW_MINUTES * 60_000;
   }
 
   function teamNames(match) {
-    const names = [
+    return [
       match?.team1,
       match?.team2,
       match?.home_team,
@@ -179,413 +139,254 @@
       match?.awayTeam,
       match?.home?.name,
       match?.away?.name,
-      match?.home?.short_name,
-      match?.away?.short_name,
       match?.team1_ar,
       match?.team2_ar,
       match?.home_ar,
       match?.away_ar
-    ];
-
-    return names
-      .filter(Boolean)
-      .map((name) => String(name).trim())
-      .filter((name, index, arr) => name && arr.indexOf(name) === index);
+    ].filter(Boolean).map((name) => String(name).trim());
   }
 
-  function matchId(match) {
-    return String(match?.id || match?.match_id || match?.game_id || match?.fixture_id || "").trim();
-  }
+  function flatten(bundle) {
+    if (Array.isArray(bundle?.matches)) return bundle.matches;
 
-  function flattenMatches(bundle) {
-    if (!bundle) return [];
-    if (Array.isArray(bundle.matches)) return bundle.matches;
-
-    const matches = [];
-    const rounds = bundle.rounds || bundle.groups || [];
-
-    if (Array.isArray(rounds)) {
-      for (const round of rounds) {
-        if (Array.isArray(round?.matches)) matches.push(...round.matches);
-      }
+    const out = [];
+    for (const group of bundle?.groups || bundle?.rounds || []) {
+      if (Array.isArray(group?.matches)) out.push(...group.matches);
     }
-
-    return matches;
+    return out;
   }
 
-  function pickTargetMatch(matches) {
-    const now = new Date();
-    const nowMs = now.getTime();
-    const today = jordanDateKey(now);
+  async function loadMatches() {
+    const sep = DATA_URL.includes("?") ? "&" : "?";
+    const response = await fetch(`${DATA_URL}${sep}focus=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Could not load matches: ${response.status}`);
+    return flatten(await response.json());
+  }
 
-    const valid = matches
+  function chooseMatch(matches) {
+    const now = Date.now();
+    const today = ammanDateKey(new Date());
+
+    const items = matches
       .map((match, index) => ({
         match,
         index,
         id: matchId(match),
-        start: kickoffMs(match),
-        dateKey: matchDateKey(match)
+        start: kickoff(match),
+        day: matchDateKey(match)
       }))
       .filter((item) => Number.isFinite(item.start));
 
-    const byStartAsc = (a, b) => a.start - b.start || a.index - b.index;
-    const byStartDesc = (a, b) => b.start - a.start || b.index - a.index;
+    const asc = (a, b) => a.start - b.start || a.index - b.index;
+    const desc = (a, b) => b.start - a.start || b.index - a.index;
 
-    const live = valid
-      .filter((item) => isLive(item.match, nowMs))
-      .sort((a, b) => Math.abs(a.start - nowMs) - Math.abs(b.start - nowMs));
+    const live = items.filter((item) => isLive(item.match, now)).sort(asc);
+    if (live.length) return { ...live[0], badge: "أنت هنا · مباشر الآن" };
 
-    if (live.length) return { ...live[0], reason: "live", badge: "أنت هنا · مباشر الآن" };
+    const upcomingToday = items
+      .filter((item) => item.day === today && item.start >= now && !isFinished(item.match))
+      .sort(asc);
+    if (upcomingToday.length) return { ...upcomingToday[0], badge: "أنت هنا · مباراة اليوم القادمة" };
 
-    const upcomingToday = valid
-      .filter((item) => item.dateKey === today && item.start >= nowMs && !isFinished(item.match))
-      .sort(byStartAsc);
+    const pastToday = items.filter((item) => item.day === today && item.start <= now).sort(desc);
+    if (pastToday.length) return { ...pastToday[0], badge: "أنت هنا · آخر مباراة اليوم" };
 
-    if (upcomingToday.length) return { ...upcomingToday[0], reason: "upcomingToday", badge: "أنت هنا · مباراة اليوم القادمة" };
+    const upcoming = items.filter((item) => item.start >= now && !isFinished(item.match)).sort(asc);
+    if (upcoming.length) return { ...upcoming[0], badge: "أنت هنا · أقرب مباراة قادمة" };
 
-    const pastToday = valid
-      .filter((item) => item.dateKey === today && item.start <= nowMs)
-      .sort(byStartDesc);
-
-    if (pastToday.length) return { ...pastToday[0], reason: "pastToday", badge: "أنت هنا · آخر مباراة اليوم" };
-
-    const upcoming = valid
-      .filter((item) => item.start >= nowMs && !isFinished(item.match))
-      .sort(byStartAsc);
-
-    if (upcoming.length) return { ...upcoming[0], reason: "upcoming", badge: "أنت هنا · أقرب مباراة قادمة" };
-
-    const past = valid
-      .filter((item) => item.start <= nowMs || isFinished(item.match) || hasScore(item.match))
-      .sort(byStartDesc);
-
-    if (past.length) return { ...past[0], reason: "past", badge: "أنت هنا · آخر مباراة" };
+    const past = items.filter((item) => item.start <= now || isFinished(item.match)).sort(desc);
+    if (past.length) return { ...past[0], badge: "أنت هنا · آخر مباراة" };
 
     return null;
   }
 
-  async function loadMatchesBundle() {
-    const separator = CONFIG.dataUrl.includes("?") ? "&" : "?";
-    const response = await fetch(`${CONFIG.dataUrl}${separator}focus=${Date.now()}`, { cache: "no-store" });
-    if (!response.ok) throw new Error(`matches.json HTTP ${response.status}`);
-
-    cachedBundle = await response.json();
-    return cachedBundle;
+  function root() {
+    return document.querySelector("#worldcup2026, #worldcup-2026, [data-section='worldcup'], .worldcup-section")
+      || Array.from(document.querySelectorAll("section, main, div")).find((node) => {
+        const text = norm(node.textContent || "");
+        return text.includes("كاس العالم 2026") || text.includes("كأس العالم 2026") || text.includes("مونديال 2026");
+      })
+      || document.body;
   }
 
-  function findWorldCupRoot() {
-    for (const selector of CONFIG.rootHints) {
-      const found = document.querySelector(selector);
-      if (found) return found;
-    }
-
-    const candidates = Array.from(document.querySelectorAll("section, main, div, article"));
-    return candidates.find((node) => {
-      const text = normalizeText(node.textContent || "");
-      return text.includes("كاس العالم 2026") || text.includes("كأس العالم 2026") || text.includes("مونديال 2026");
-    }) || document.body;
+  function allMatchesButton(base) {
+    return Array.from(base.querySelectorAll("button, a, [role='tab'], [data-tab], [data-view]"))
+      .find((node) => {
+        const text = norm(node.textContent || node.getAttribute?.("aria-label") || "");
+        return text.includes("كل المباريات") || text.includes("جميع المباريات") || text.includes("all matches");
+      });
   }
 
-  function isAllMatchesButton(node) {
-    if (!node) return false;
-    const text = normalizeText(node.textContent || node.getAttribute?.("aria-label") || "");
-    return CONFIG.allMatchesWords.some((word) => text.includes(normalizeText(word)));
+  function openAllMatches(base) {
+    const btn = allMatchesButton(base);
+    if (!btn) return false;
+
+    const selected = btn.getAttribute("aria-selected") === "true" || btn.classList.contains("active") || btn.classList.contains("is-active");
+    if (!selected) btn.click();
+
+    return true;
   }
 
-  function clickAllMatchesIfPossible(root) {
-    const buttons = Array.from(root.querySelectorAll("button, a, [role='tab'], [data-tab], [data-view]"));
-    const button = buttons.find(isAllMatchesButton);
-    if (!button) return false;
-
-    const ariaSelected = button.getAttribute("aria-selected");
-    const activeish =
-      button.classList.contains("active") ||
-      button.classList.contains("is-active") ||
-      ariaSelected === "true";
-
-    if (!activeish) {
-      button.click();
-      return true;
-    }
-
-    return false;
-  }
-
-  function visibleEnough(node) {
-    if (!node || !(node instanceof Element)) return false;
-    const rect = node.getBoundingClientRect();
-    const style = getComputedStyle(node);
-    return rect.width > 0 && rect.height > 0 && style.display !== "none" && style.visibility !== "hidden";
-  }
-
-  function safeCssEscape(value) {
-    if (window.CSS && typeof window.CSS.escape === "function") return window.CSS.escape(value);
+  function esc(value) {
+    if (window.CSS?.escape) return window.CSS.escape(value);
     return String(value).replace(/["\\]/g, "\\$&");
   }
 
-  function candidateCardSelectors(match) {
-    const id = matchId(match);
-    const selectors = [
-      ".match-card",
-      ".wc-match-card",
-      ".worldcup-match",
-      ".fixture-card",
-      ".game-card",
-      "[class*='match']",
-      "[class*='fixture']",
-      "[class*='game']",
-      "article",
-      "li",
-      "tr",
-      ".card"
-    ];
-
-    if (id) {
-      selectors.unshift(
-        `[data-match-id="${safeCssEscape(id)}"]`,
-        `[data-game-id="${safeCssEscape(id)}"]`,
-        `[data-fixture-id="${safeCssEscape(id)}"]`,
-        `[id="${safeCssEscape(id)}"]`,
-        `[id*="${safeCssEscape(id)}"]`
-      );
-    }
-
-    return selectors.join(",");
+  function visible(node) {
+    if (!(node instanceof Element)) return false;
+    const r = node.getBoundingClientRect();
+    const s = getComputedStyle(node);
+    return r.width > 0 && r.height > 0 && s.display !== "none" && s.visibility !== "hidden";
   }
 
-  function bestCardContainer(node, root) {
-    let current = node;
+  function containsTeamPair(text, names) {
+    const clean = norm(text);
+    const arr = names.map(norm).filter((name) => name.length > 1);
 
-    while (current && current !== root && current !== document.body) {
-      const classText = String(current.className || "").toLowerCase();
-
-      if (
-        current.matches?.(".match-card, .wc-match-card, .worldcup-match, .fixture-card, .game-card, article, li, tr, .card") ||
-        classText.includes("match") ||
-        classText.includes("fixture") ||
-        classText.includes("game")
-      ) {
-        return current;
-      }
-
-      current = current.parentElement;
-    }
-
-    return node instanceof Element ? node : null;
-  }
-
-  function textContainsTeamPair(text, names) {
-    const cleanText = normalizeText(text);
-    const normalizedNames = names.map(normalizeText).filter((name) => name && name.length >= 2);
-
-    for (let i = 0; i < normalizedNames.length; i += 1) {
-      for (let j = i + 1; j < normalizedNames.length; j += 1) {
-        if (cleanText.includes(normalizedNames[i]) && cleanText.includes(normalizedNames[j])) return true;
+    for (let i = 0; i < arr.length; i += 1) {
+      for (let j = i + 1; j < arr.length; j += 1) {
+        if (clean.includes(arr[i]) && clean.includes(arr[j])) return true;
       }
     }
 
     return false;
   }
 
-  function findRenderedMatchElement(root, match) {
+  function cardFor(base, match) {
     const id = matchId(match);
 
     if (id) {
-      const byId = root.querySelector(
-        `[data-match-id="${safeCssEscape(id)}"], [data-game-id="${safeCssEscape(id)}"], [data-fixture-id="${safeCssEscape(id)}"], [id="${safeCssEscape(id)}"], [id*="${safeCssEscape(id)}"]`
+      const direct = base.querySelector(
+        `[data-match-id="${esc(id)}"], [data-game-id="${esc(id)}"], [data-fixture-id="${esc(id)}"], [id="${esc(id)}"], [id*="${esc(id)}"]`
       );
-
-      if (byId && visibleEnough(byId)) return bestCardContainer(byId, root);
+      if (direct && visible(direct)) return direct.closest(".match-card, .wc-match-card, .worldcup-match, .fixture-card, .game-card, article, li, tr, .card") || direct;
     }
 
     const names = teamNames(match);
     if (names.length < 2) return null;
 
-    const candidates = Array.from(root.querySelectorAll(candidateCardSelectors(match))).filter(visibleEnough);
+    const candidates = Array.from(base.querySelectorAll(
+      ".match-card, .wc-match-card, .worldcup-match, .fixture-card, .game-card, [class*='match'], [class*='fixture'], article, li, tr, .card, div"
+    )).filter(visible);
+
     let best = null;
     let bestScore = -1;
 
-    for (const candidate of candidates) {
-      const text = candidate.textContent || "";
-      if (!textContainsTeamPair(text, names)) continue;
+    for (const node of candidates) {
+      if (!containsTeamPair(node.textContent || "", names)) continue;
 
-      let score = 10;
-      const classText = String(candidate.className || "").toLowerCase();
-      if (classText.includes("match") || classText.includes("fixture") || classText.includes("game")) score += 5;
-      if (candidate.matches?.("article, li, tr, .card")) score += 2;
+      let score = 1;
+      const cls = String(node.className || "").toLowerCase();
+      if (cls.includes("match") || cls.includes("fixture") || cls.includes("game")) score += 5;
+      if (node.matches("article, li, tr, .card")) score += 2;
 
       if (score > bestScore) {
-        best = candidate;
+        best = node;
         bestScore = score;
       }
     }
 
-    if (best) return bestCardContainer(best, root);
-
-    const all = Array.from(root.querySelectorAll("div, article, li, tr, section")).filter(visibleEnough);
-    return all.find((node) => textContainsTeamPair(node.textContent || "", names)) || null;
+    return best;
   }
 
-  function injectStyles() {
-    if (document.getElementById("worldcup-current-focus-style")) return;
+  function style() {
+    if (document.getElementById("wc-current-focus-style-v2")) return;
 
-    const style = document.createElement("style");
-    style.id = "worldcup-current-focus-style";
-    style.textContent = `
+    const s = document.createElement("style");
+    s.id = "wc-current-focus-style-v2";
+    s.textContent = `
       .wc-current-focus-target {
         position: relative !important;
-        outline: 3px solid rgba(250, 204, 21, 0.95) !important;
-        box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.16), 0 18px 50px rgba(0, 0, 0, 0.18) !important;
-        scroll-margin-top: 118px !important;
+        outline: 3px solid rgba(250, 204, 21, .95) !important;
+        box-shadow: 0 0 0 6px rgba(250, 204, 21, .18), 0 18px 50px rgba(0,0,0,.20) !important;
         border-radius: 18px !important;
+        scroll-margin-top: 115px !important;
       }
       .wc-current-focus-badge {
         display: inline-flex;
-        align-items: center;
-        gap: 6px;
         width: max-content;
         max-width: calc(100% - 16px);
         margin: 0 0 10px 0;
         padding: 7px 12px;
         border-radius: 999px;
-        background: linear-gradient(135deg, #facc15, #f97316);
+        background: linear-gradient(135deg, #facc15, #fb923c);
         color: #111827;
         font-weight: 900;
         font-size: 13px;
         line-height: 1.2;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-        z-index: 2;
+        box-shadow: 0 8px 24px rgba(0,0,0,.18);
       }
-      .wc-current-focus-badge::before { content: "⚽"; }
-      @media (max-width: 640px) {
-        .wc-current-focus-target { scroll-margin-top: 92px !important; }
-        .wc-current-focus-badge { font-size: 12px; padding: 6px 10px; }
-      }
+      .wc-current-focus-badge::before { content: "⚽ "; }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(s);
   }
 
-  function addBadge(target, text) {
-    target.querySelectorAll(":scope > .wc-current-focus-badge").forEach((badge) => badge.remove());
+  async function focus(force = false) {
+    const base = root();
+    openAllMatches(base);
+    await new Promise((resolve) => setTimeout(resolve, 450));
+
+    const picked = chooseMatch(await loadMatches());
+    if (!picked) return false;
+
+    const key = `${picked.id || picked.index}-${picked.start}`;
+    if (!force && key === lastKey) return true;
+
+    const card = cardFor(base, picked.match);
+    if (!card) return false;
+
+    style();
+
+    base.querySelectorAll(".wc-current-focus-target").forEach((node) => {
+      node.classList.remove("wc-current-focus-target");
+      node.querySelectorAll(":scope > .wc-current-focus-badge").forEach((badge) => badge.remove());
+    });
 
     const badge = document.createElement("div");
     badge.className = "wc-current-focus-badge";
-    badge.textContent = text || "أنت هنا";
-    target.prepend(badge);
-  }
+    badge.textContent = picked.badge;
 
-  function clearPreviousHighlights(root) {
-    root.querySelectorAll(".wc-current-focus-target").forEach((node) => {
-      node.classList.remove("wc-current-focus-target");
-      node.removeAttribute("data-worldcup-current-focus");
-      if (node.id === "worldcup-current-match") node.removeAttribute("id");
-      node.querySelectorAll(":scope > .wc-current-focus-badge").forEach((badge) => badge.remove());
-    });
-  }
+    card.prepend(badge);
+    card.classList.add("wc-current-focus-target");
+    card.id = "worldcup-current-match";
+    lastKey = key;
 
-  function scrollToTarget(target) {
-    target.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
-
-    window.setTimeout(() => {
-      const rect = target.getBoundingClientRect();
-      if (rect.top < 95) window.scrollBy({ top: rect.top - 115, behavior: "smooth" });
-    }, 450);
-  }
-
-  async function focusCurrentMatch(options = {}) {
-    const { force = false, selectAllTab = false } = options;
-
-    const root = findWorldCupRoot();
-    if (!root) return false;
-
-    if (selectAllTab) {
-      const clicked = clickAllMatchesIfPossible(root);
-      if (clicked) await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-
-    const bundle = await loadMatchesBundle();
-    const matches = flattenMatches(bundle);
-    const picked = pickTargetMatch(matches);
-    if (!picked?.match) return false;
-
-    const key = `${picked.id || picked.index}-${picked.start}-${picked.reason}`;
-    if (!force && lastFocusKey === key) return true;
-
-    const target = findRenderedMatchElement(root, picked.match);
-    if (!target) return false;
-
-    injectStyles();
-    clearPreviousHighlights(root);
-
-    target.classList.add("wc-current-focus-target");
-    target.dataset.worldcupCurrentFocus = picked.reason || "current";
-    target.id = "worldcup-current-match";
-    addBadge(target, picked.badge);
-
-    lastFocusKey = key;
-    scrollToTarget(target);
-
+    card.scrollIntoView({ behavior: "smooth", block: "center" });
     return true;
   }
 
-  function scheduleFocus(options = {}) {
-    for (const delay of CONFIG.retryDelays) {
-      window.setTimeout(() => {
-        focusCurrentMatch(options).catch((error) => console.warn("[worldcup-current-focus]", error));
-      }, delay);
+  function schedule(force = false) {
+    for (const delay of RETRIES) {
+      setTimeout(() => focus(force).catch((error) => console.warn("[worldcup-focus]", error)), delay);
     }
   }
 
-  function shouldAutoRunOnLoad() {
-    const hash = normalizeText(location.hash);
-    if (hash.includes("worldcup") || hash.includes("كاس") || hash.includes("كأس")) return true;
-
-    const root = findWorldCupRoot();
-    if (!root || root === document.body) return false;
-
-    const rect = root.getBoundingClientRect();
-    return rect.top < window.innerHeight * 1.5 && rect.bottom > 0;
-  }
-
   document.addEventListener("click", (event) => {
-    const button = event.target?.closest?.("button, a, [role='tab'], [data-tab], [data-view]");
-    if (!button) return;
+    const btn = event.target?.closest?.("button, a, [role='tab'], [data-tab], [data-view]");
+    if (!btn) return;
 
-    if (isAllMatchesButton(button)) scheduleFocus({ force: true, selectAllTab: false });
+    const text = norm(btn.textContent || "");
+    const href = btn.getAttribute?.("href") || "";
 
-    const text = normalizeText(button.textContent || "");
-    const href = button.getAttribute?.("href") || "";
-
-    if (href.includes("worldcup") || text.includes("كاس العالم") || text.includes("كأس العالم")) {
-      window.setTimeout(() => scheduleFocus({ force: true, selectAllTab: true }), 700);
+    if (
+      text.includes("كل المباريات") ||
+      text.includes("كاس العالم") ||
+      text.includes("كأس العالم") ||
+      href.includes("worldcup")
+    ) {
+      schedule(true);
     }
   }, true);
 
   window.addEventListener("hashchange", () => {
-    if (normalizeText(location.hash).includes("worldcup")) {
-      scheduleFocus({ force: true, selectAllTab: true });
-    }
+    if (norm(location.hash).includes("worldcup")) schedule(true);
   });
 
-  const observer = new MutationObserver(() => {
-    if (!lastFocusKey && shouldAutoRunOnLoad()) scheduleFocus({ force: false, selectAllTab: false });
-  });
-
-  function start() {
-    injectStyles();
-
-    try {
-      observer.observe(document.body, { childList: true, subtree: true });
-    } catch (_) {}
-
-    if (shouldAutoRunOnLoad()) scheduleFocus({ force: true, selectAllTab: true });
-
-    window.focusWorldCupCurrentMatch = () => focusCurrentMatch({ force: true, selectAllTab: true });
-  }
+  window.focusWorldCupCurrentMatch = () => focus(true);
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start, { once: true });
+    document.addEventListener("DOMContentLoaded", () => schedule(true), { once: true });
   } else {
-    start();
+    schedule(true);
   }
 })();
