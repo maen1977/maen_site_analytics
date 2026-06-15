@@ -1,0 +1,39 @@
+name: Install World Cup current focus
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-worldcup-current-focus:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check installer files
+        run: |
+          node --check scripts/install-worldcup-current-focus.mjs
+          node --check public/assets/worldcup-current-focus.js
+
+      - name: Patch public/index.html
+        run: node scripts/install-worldcup-current-focus.mjs
+
+      - name: Commit World Cup current focus files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/index.html public/assets/worldcup-current-focus.js scripts/install-worldcup-current-focus.mjs .github/workflows/install-worldcup-current-focus.yml
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Install World Cup current match focus"
+            git push
+          else
+            echo "No changes to commit."
+          fi

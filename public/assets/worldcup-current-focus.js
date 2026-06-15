@@ -1,14 +1,7 @@
 /*!
  * World Cup 2026 Current Match Focus
- * Drop-in UI helper for maensat.pages.dev
- *
- * What it does:
- * - Keeps "كل المباريات" complete.
- * - On opening/clicking "كل المباريات", scrolls to the most relevant match:
- *   live match -> next match today -> last match today -> next future match -> last finished match.
- * - Uses Asia/Amman time.
+ * Auto-focuses "كل المباريات" on the live/current/today/next match.
  */
-
 (() => {
   "use strict";
 
@@ -18,8 +11,8 @@
   const CONFIG = {
     dataUrl: "/worldcup-2026/matches.json",
     timezone: "Asia/Amman",
-    liveWindowMinutes: 130,
-    retryDelays: [250, 700, 1300, 2200, 3600, 5200],
+    liveWindowMinutes: 140,
+    retryDelays: [250, 700, 1300, 2200, 3600, 5200, 7500],
     rootHints: [
       "#worldcup2026",
       "#worldcup-2026",
@@ -29,13 +22,11 @@
       ".worldcup2026",
       ".wc-section"
     ],
-    allMatchesWords: ["كل المباريات", "جميع المباريات", "All matches"],
-    ignoreCardTags: new Set(["HTML", "BODY", "MAIN"])
+    allMatchesWords: ["كل المباريات", "جميع المباريات", "All matches"]
   };
 
   let cachedBundle = null;
   let lastFocusKey = "";
-  let userInteracted = false;
 
   function normalizeText(value) {
     return String(value || "")
@@ -50,10 +41,7 @@
 
   function toMs(value) {
     if (!value) return NaN;
-
-    if (typeof value === "number") {
-      return value > 10_000_000_000 ? value : value * 1000;
-    }
+    if (typeof value === "number") return value > 10_000_000_000 ? value : value * 1000;
 
     const raw = String(value).trim();
     if (!raw) return NaN;
@@ -86,14 +74,7 @@
     let hour = pick("hour");
     if (hour === "24") hour = "00";
 
-    return {
-      year: pick("year"),
-      month: pick("month"),
-      day: pick("day"),
-      hour,
-      minute: pick("minute"),
-      second: pick("second")
-    };
+    return { year: pick("year"), month: pick("month"), day: pick("day"), hour };
   }
 
   function jordanDateKey(date = new Date()) {
@@ -125,9 +106,7 @@
 
   function matchDateKey(match) {
     const explicit = match?.date_jordan || match?.dateJordan || match?.local_date || match?.date_key;
-    if (explicit && /^\d{4}-\d{2}-\d{2}/.test(String(explicit))) {
-      return String(explicit).slice(0, 10);
-    }
+    if (explicit && /^\d{4}-\d{2}-\d{2}/.test(String(explicit))) return String(explicit).slice(0, 10);
 
     const ms = kickoffMs(match);
     if (!Number.isFinite(ms)) return "";
@@ -170,6 +149,7 @@
 
   function isLive(match, nowMs) {
     const text = statusText(match);
+
     if (
       text.includes("live") ||
       text.includes("in progress") ||
@@ -219,11 +199,11 @@
 
   function flattenMatches(bundle) {
     if (!bundle) return [];
-
     if (Array.isArray(bundle.matches)) return bundle.matches;
 
     const matches = [];
     const rounds = bundle.rounds || bundle.groups || [];
+
     if (Array.isArray(rounds)) {
       for (const round of rounds) {
         if (Array.isArray(round?.matches)) matches.push(...round.matches);
@@ -255,48 +235,36 @@
       .filter((item) => isLive(item.match, nowMs))
       .sort((a, b) => Math.abs(a.start - nowMs) - Math.abs(b.start - nowMs));
 
-    if (live.length) {
-      return { ...live[0], reason: "المباراة الحالية", badge: "أنت هنا · مباشر الآن" };
-    }
+    if (live.length) return { ...live[0], reason: "live", badge: "أنت هنا · مباشر الآن" };
 
     const upcomingToday = valid
       .filter((item) => item.dateKey === today && item.start >= nowMs && !isFinished(item.match))
       .sort(byStartAsc);
 
-    if (upcomingToday.length) {
-      return { ...upcomingToday[0], reason: "أول مباراة قادمة اليوم", badge: "أنت هنا · مباراة اليوم القادمة" };
-    }
+    if (upcomingToday.length) return { ...upcomingToday[0], reason: "upcomingToday", badge: "أنت هنا · مباراة اليوم القادمة" };
 
     const pastToday = valid
       .filter((item) => item.dateKey === today && item.start <= nowMs)
       .sort(byStartDesc);
 
-    if (pastToday.length) {
-      return { ...pastToday[0], reason: "آخر مباراة اليوم", badge: "أنت هنا · آخر مباراة اليوم" };
-    }
+    if (pastToday.length) return { ...pastToday[0], reason: "pastToday", badge: "أنت هنا · آخر مباراة اليوم" };
 
     const upcoming = valid
       .filter((item) => item.start >= nowMs && !isFinished(item.match))
       .sort(byStartAsc);
 
-    if (upcoming.length) {
-      return { ...upcoming[0], reason: "أقرب مباراة قادمة", badge: "أنت هنا · أقرب مباراة قادمة" };
-    }
+    if (upcoming.length) return { ...upcoming[0], reason: "upcoming", badge: "أنت هنا · أقرب مباراة قادمة" };
 
     const past = valid
       .filter((item) => item.start <= nowMs || isFinished(item.match) || hasScore(item.match))
       .sort(byStartDesc);
 
-    if (past.length) {
-      return { ...past[0], reason: "آخر مباراة متاحة", badge: "أنت هنا · آخر مباراة" };
-    }
+    if (past.length) return { ...past[0], reason: "past", badge: "أنت هنا · آخر مباراة" };
 
     return null;
   }
 
   async function loadMatchesBundle() {
-    if (cachedBundle) return cachedBundle;
-
     const separator = CONFIG.dataUrl.includes("?") ? "&" : "?";
     const response = await fetch(`${CONFIG.dataUrl}${separator}focus=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) throw new Error(`matches.json HTTP ${response.status}`);
@@ -330,7 +298,10 @@
     if (!button) return false;
 
     const ariaSelected = button.getAttribute("aria-selected");
-    const activeish = button.classList.contains("active") || button.classList.contains("is-active") || ariaSelected === "true";
+    const activeish =
+      button.classList.contains("active") ||
+      button.classList.contains("is-active") ||
+      ariaSelected === "true";
 
     if (!activeish) {
       button.click();
@@ -386,7 +357,6 @@
     let current = node;
 
     while (current && current !== root && current !== document.body) {
-      const tag = current.tagName || "";
       const classText = String(current.className || "").toLowerCase();
 
       if (
@@ -398,7 +368,6 @@
         return current;
       }
 
-      if (CONFIG.ignoreCardTags.has(tag)) break;
       current = current.parentElement;
     }
 
@@ -407,15 +376,11 @@
 
   function textContainsTeamPair(text, names) {
     const cleanText = normalizeText(text);
-    const normalizedNames = names
-      .map(normalizeText)
-      .filter((name) => name && name.length >= 2);
+    const normalizedNames = names.map(normalizeText).filter((name) => name && name.length >= 2);
 
     for (let i = 0; i < normalizedNames.length; i += 1) {
       for (let j = i + 1; j < normalizedNames.length; j += 1) {
-        if (cleanText.includes(normalizedNames[i]) && cleanText.includes(normalizedNames[j])) {
-          return true;
-        }
+        if (cleanText.includes(normalizedNames[i]) && cleanText.includes(normalizedNames[j])) return true;
       }
     }
 
@@ -429,6 +394,7 @@
       const byId = root.querySelector(
         `[data-match-id="${safeCssEscape(id)}"], [data-game-id="${safeCssEscape(id)}"], [data-fixture-id="${safeCssEscape(id)}"], [id="${safeCssEscape(id)}"], [id*="${safeCssEscape(id)}"]`
       );
+
       if (byId && visibleEnough(byId)) return bestCardContainer(byId, root);
     }
 
@@ -436,7 +402,6 @@
     if (names.length < 2) return null;
 
     const candidates = Array.from(root.querySelectorAll(candidateCardSelectors(match))).filter(visibleEnough);
-
     let best = null;
     let bestScore = -1;
 
@@ -449,9 +414,6 @@
       if (classText.includes("match") || classText.includes("fixture") || classText.includes("game")) score += 5;
       if (candidate.matches?.("article, li, tr, .card")) score += 2;
 
-      const rect = candidate.getBoundingClientRect();
-      score -= Math.min(5, Math.max(0, rect.height / 800));
-
       if (score > bestScore) {
         best = candidate;
         bestScore = score;
@@ -460,7 +422,6 @@
 
     if (best) return bestCardContainer(best, root);
 
-    // Last-resort text scan.
     const all = Array.from(root.querySelectorAll("div, article, li, tr, section")).filter(visibleEnough);
     return all.find((node) => textContainsTeamPair(node.textContent || "", names)) || null;
   }
@@ -478,16 +439,6 @@
         scroll-margin-top: 118px !important;
         border-radius: 18px !important;
       }
-
-      .wc-current-focus-target::after {
-        content: "";
-        position: absolute;
-        inset: -7px;
-        border-radius: 22px;
-        pointer-events: none;
-        border: 1px solid rgba(250, 204, 21, 0.45);
-      }
-
       .wc-current-focus-badge {
         display: inline-flex;
         align-items: center;
@@ -505,20 +456,10 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
         z-index: 2;
       }
-
-      .wc-current-focus-badge::before {
-        content: "⚽";
-      }
-
+      .wc-current-focus-badge::before { content: "⚽"; }
       @media (max-width: 640px) {
-        .wc-current-focus-target {
-          scroll-margin-top: 92px !important;
-        }
-
-        .wc-current-focus-badge {
-          font-size: 12px;
-          padding: 6px 10px;
-        }
+        .wc-current-focus-target { scroll-margin-top: 92px !important; }
+        .wc-current-focus-badge { font-size: 12px; padding: 6px 10px; }
       }
     `;
     document.head.appendChild(style);
@@ -530,7 +471,6 @@
     const badge = document.createElement("div");
     badge.className = "wc-current-focus-badge";
     badge.textContent = text || "أنت هنا";
-
     target.prepend(badge);
   }
 
@@ -546,7 +486,6 @@
   function scrollToTarget(target) {
     target.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
-    // Small correction for sticky nav bars.
     window.setTimeout(() => {
       const rect = target.getBoundingClientRect();
       if (rect.top < 95) window.scrollBy({ top: rect.top - 115, behavior: "smooth" });
@@ -561,15 +500,12 @@
 
     if (selectAllTab) {
       const clicked = clickAllMatchesIfPossible(root);
-      if (clicked) {
-        await new Promise((resolve) => setTimeout(resolve, 450));
-      }
+      if (clicked) await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
     const bundle = await loadMatchesBundle();
     const matches = flattenMatches(bundle);
     const picked = pickTargetMatch(matches);
-
     if (!picked?.match) return false;
 
     const key = `${picked.id || picked.index}-${picked.start}-${picked.reason}`;
@@ -595,9 +531,7 @@
   function scheduleFocus(options = {}) {
     for (const delay of CONFIG.retryDelays) {
       window.setTimeout(() => {
-        focusCurrentMatch(options).catch((error) => {
-          console.warn("[worldcup-current-focus]", error);
-        });
+        focusCurrentMatch(options).catch((error) => console.warn("[worldcup-current-focus]", error));
       }, delay);
     }
   }
@@ -613,38 +547,28 @@
     return rect.top < window.innerHeight * 1.5 && rect.bottom > 0;
   }
 
-  document.addEventListener("pointerdown", () => {
-    userInteracted = true;
-  }, { once: true, passive: true });
-
   document.addEventListener("click", (event) => {
     const button = event.target?.closest?.("button, a, [role='tab'], [data-tab], [data-view]");
     if (!button) return;
 
-    if (isAllMatchesButton(button)) {
-      scheduleFocus({ force: true, selectAllTab: false });
-    }
+    if (isAllMatchesButton(button)) scheduleFocus({ force: true, selectAllTab: false });
 
+    const text = normalizeText(button.textContent || "");
     const href = button.getAttribute?.("href") || "";
-    if (href.includes("worldcup")) {
-      window.setTimeout(() => {
-        if (!userInteracted || isAllMatchesButton(button)) {
-          scheduleFocus({ force: true, selectAllTab: false });
-        }
-      }, 600);
+
+    if (href.includes("worldcup") || text.includes("كاس العالم") || text.includes("كأس العالم")) {
+      window.setTimeout(() => scheduleFocus({ force: true, selectAllTab: true }), 700);
     }
   }, true);
 
   window.addEventListener("hashchange", () => {
     if (normalizeText(location.hash).includes("worldcup")) {
-      scheduleFocus({ force: true, selectAllTab: false });
+      scheduleFocus({ force: true, selectAllTab: true });
     }
   });
 
   const observer = new MutationObserver(() => {
-    if (!lastFocusKey && shouldAutoRunOnLoad()) {
-      scheduleFocus({ force: false, selectAllTab: false });
-    }
+    if (!lastFocusKey && shouldAutoRunOnLoad()) scheduleFocus({ force: false, selectAllTab: false });
   });
 
   function start() {
@@ -652,15 +576,10 @@
 
     try {
       observer.observe(document.body, { childList: true, subtree: true });
-    } catch (_) {
-      // ignore
-    }
+    } catch (_) {}
 
-    if (shouldAutoRunOnLoad()) {
-      scheduleFocus({ force: true, selectAllTab: false });
-    }
+    if (shouldAutoRunOnLoad()) scheduleFocus({ force: true, selectAllTab: true });
 
-    // Expose a manual hook for testing from the browser console.
     window.focusWorldCupCurrentMatch = () => focusCurrentMatch({ force: true, selectAllTab: true });
   }
 
