@@ -7,17 +7,16 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-15T18:57:20+03:00",
-    "last_checked_at": "2026-06-15T18:57:20+03:00",
+    "last_updated": "2026-06-15T19:35:03+03:00",
+    "last_checked_at": "2026-06-15T19:35:03+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "multi_source_results_update": true,
-    "multi_source_result_candidates": 21,
-    "multi_source_result_changes": 1,
-    "multi_source_result_conflicts": 1,
+    "multi_source_result_candidates": 9,
+    "multi_source_result_changes": 0,
     "emergency_score_repair": {
       "enabled": true,
       "repaired_count": 0,
@@ -26,9 +25,9 @@
     },
     "manual_overrides_applied": true,
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
-    "last_data_change_at": "2026-06-15T18:57:20+03:00",
+    "last_data_change_at": "2026-06-15T19:35:03+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-15T18:57:20+03:00",
+    "automation_heartbeat_at": "2026-06-15T19:35:03+03:00",
     "automation_heartbeat_note_ar": "تم فحص بيانات كأس العالم تلقائيا. قد لا تتغير النتائج إذا لم يرسل المصدر نتيجة جديدة."
   },
   "groups": {
@@ -207,18 +206,7 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A",
-      "score_sources": [
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
-        }
-      ]
+      "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Mexico City Stadium / Estadio Azteca دور المجموعات A"
     },
     {
       "id": "M002",
@@ -253,18 +241,7 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A",
-      "score_sources": [
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
-        }
-      ]
+      "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A"
     },
     {
       "id": "M007",
@@ -332,27 +309,7 @@
       "score_source": "manual-reuters-bein",
       "live_clock": null,
       "live_status_detail": "FT",
-      "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D",
-      "score_sources": [
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 4,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 0,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
-        }
-      ]
+      "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D"
     },
     {
       "id": "M008",
@@ -396,16 +353,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -451,16 +399,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -506,16 +445,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 0,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -561,16 +491,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -620,16 +541,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 7,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -679,16 +591,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 2,
-          "away_score": 2,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -738,16 +641,7 @@
           "home_score": 1,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 1,
-          "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -797,16 +691,7 @@
           "home_score": 5,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T18:56:55+03:00"
-        },
-        {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
-          "status": "finished",
-          "home_score": 5,
-          "away_score": 1,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
@@ -831,26 +716,28 @@
       "home_score": 0,
       "away_score": 0,
       "score": {
-        "current": [
+        "live": [
           0,
           0
         ],
-        "source": "WorldCup26 open API",
-        "status_detail": "LIVE"
+        "source": "espn",
+        "event_id": "760428",
+        "status_detail": "33'",
+        "clock": "33'"
       },
-      "score_source": "WorldCup26 open API",
-      "live_clock": "",
-      "live_status_detail": "LIVE",
+      "score_source": "espn",
+      "live_clock": "33'",
+      "live_status_detail": "33'",
       "search_text": "Spain Cape Verde إسبانيا الرأس الأخضر Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور المجموعات H",
       "score_sources": [
         {
-          "source_name": "WorldCup26 open API",
-          "source_url": "https://worldcup26.ir/get/games",
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
           "status": "live",
           "home_score": 0,
           "away_score": 0,
-          "confidence": 70,
-          "collected_at": "2026-06-15T18:57:14+03:00"
+          "confidence": 88,
+          "collected_at": "2026-06-15T19:34:48+03:00"
         }
       ]
     },
