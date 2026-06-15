@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-06-14T21:50:37.414Z",
-  "updatedAt": "2026-06-14T21:50:37.034Z",
-  "totalFrequencies": 395,
+  "generatedAt": "2026-06-15T22:33:35.145Z",
+  "updatedAt": "2026-06-15T22:33:34.835Z",
+  "totalFrequencies": 559,
   "removedCount": 0,
-  "candidateCount": 1541,
-  "closedCandidateCount": 2877,
-  "closedConsensusCount": 325,
-  "successfulSourceCount": 46,
+  "candidateCount": 1771,
+  "closedCandidateCount": 2875,
+  "closedConsensusCount": 326,
+  "successfulSourceCount": 48,
   "sourcesChecked": 67,
-  "sourcesFailed": 21,
+  "sourcesFailed": 19,
   "changes": {
-    "updated": 29,
-    "added": 0,
+    "updated": 30,
+    "added": 164,
     "removed": 0,
-    "reviewedOnly": 1512,
-    "channelNamesAdded": 0,
-    "channelNamesRemoved": 0,
+    "reviewedOnly": 1577,
+    "channelNamesAdded": 1,
+    "channelNamesRemoved": 4,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 12,
+    "closedConsensusReviewed": 22,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 1512,
+    "incompleteNewSkipped": 1577,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 2555 من 2604 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 2703 من 2917 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -45,8 +45,8 @@
     },
     {
       "satelliteGroup": "Azerspace",
-      "frequencies": 7,
-      "services": 29
+      "frequencies": 71,
+      "services": 104
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -65,8 +65,8 @@
     },
     {
       "satelliteGroup": "Eutelsat 9E",
-      "frequencies": 13,
-      "services": 59
+      "frequencies": 61,
+      "services": 187
     },
     {
       "satelliteGroup": "Hellas Sat",
@@ -80,8 +80,8 @@
     },
     {
       "satelliteGroup": "Intelsat",
-      "frequencies": 8,
-      "services": 140
+      "frequencies": 60,
+      "services": 320
     },
     {
       "satelliteGroup": "Nilesat",
@@ -195,8 +195,8 @@
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
-      "frequencies": 7,
-      "services": 29
+      "frequencies": 71,
+      "services": 104
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -241,6 +241,13 @@
       "services": 59
     },
     {
+      "satelliteGroup": "Eutelsat 9E",
+      "orbitalSlot": "9E",
+      "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
+      "frequencies": 48,
+      "services": 128
+    },
+    {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
@@ -279,8 +286,8 @@
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
-      "frequencies": 8,
-      "services": 140
+      "frequencies": 60,
+      "services": 320
     },
     {
       "satelliteGroup": "Nilesat",
@@ -356,6 +363,16 @@
   "satellitePositionPolicy": "v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.",
   "failedSources": [
     {
+      "id": "nilesat-official-channels",
+      "name": "Nilesat Official Channels",
+      "ok": false,
+      "status": null,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": "This operation was aborted"
+    },
+    {
       "id": "lyngsat-nilesat-7w",
       "name": "LyngSat Nilesat 201/301 & Eutelsat 7 West A",
       "ok": false,
@@ -418,16 +435,6 @@
     {
       "id": "lyngsat-eutelsat-16a",
       "name": "LyngSat Eutelsat 16A",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-eutelsat-9b",
-      "name": "LyngSat Eutelsat 9B / Ka-Sat 9A",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -508,26 +515,6 @@
     {
       "id": "lyngsat-amos",
       "name": "LyngSat Amos 3 / Dror 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-intelsat-20",
-      "name": "LyngSat Intelsat 20",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-azerspace-1",
-      "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
