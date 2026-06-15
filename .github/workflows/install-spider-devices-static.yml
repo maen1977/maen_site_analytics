@@ -1,0 +1,42 @@
+name: Install Spider devices static
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: install-spider-devices-static
+  cancel-in-progress: true
+
+jobs:
+  install-spider-devices-static:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check patch script
+        run: node --check scripts/install-spider-devices-static.mjs
+
+      - name: Add Spider devices directly to pages
+        run: node scripts/install-spider-devices-static.mjs
+
+      - name: Commit Spider device static patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/index.html public/index_phone.html public/assets/devices/spider-t777-elite-master-plus.jpg public/assets/devices/spider-t666-gold-plus-5g.jpg scripts/install-spider-devices-static.mjs .github/workflows/install-spider-devices-static.yml
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Add Spider receivers directly to devices section"
+            git push
+          else
+            echo "No changes to commit."
+          fi
