@@ -1,13 +1,12 @@
-# Ultimate fix Spider prices
+# Ultimate fix Spider prices v2
 
-هذا الإصلاح أوسع من السابق لأنه يتعامل مع أكثر من صيغة:
+سبب فشل النسخة السابقة:
+كان فيها خطأ كتابي في أول سطر: import صار imp||t.
 
-- السعر 25 د.أ كنص عربي.
-- السعر مفصول داخل HTML.
-- price: 25 داخل JavaScript.
-- "price": 25 داخل JSON/JS.
-- data-price="25".
-- رسائل واتساب.
+هذه نسخة مصححة وتعمل بطريقة أبسط:
+- تبحث عن اسم الجهاز.
+- تبحث عن كلمة "السعر" بعد الاسم داخل نفس كرت الجهاز.
+- تغير أول رقم بعد كلمة السعر.
 
 المطلوب:
 - Spider T777 Elite Master Plus = 20
@@ -15,14 +14,11 @@
 
 ## ارفع الملفين:
 
-scripts/ultimate-fix-spider-prices.mjs
-.github/workflows/ultimate-fix-spider-prices.yml
+scripts/ultimate-fix-spider-prices-v2.mjs
+.github/workflows/ultimate-fix-spider-prices-v2.yml
 
 ## بعد الرفع:
 
-قد يعمل تلقائياً بسبب push.
-أو شغله يدويًا:
+GitHub > Actions > Ultimate fix Spider prices v2 > Run workflow
 
-GitHub > Actions > Ultimate fix Spider prices > Run workflow
-
-بعد النجاح افتح الموقع Ctrl + F5 أو نافذة خفية.
+بعد النجاح افتح الموقع بنافذة خفية أو Ctrl + F5.
