@@ -1,48 +1,26 @@
-# Cloudflare Deploy Hook لقسم كأس العالم
+# إصلاح نهائي مباشر للأسعار فقط
 
-هذه النسخة تجعل GitHub Action يعمل كل ربع ساعة، ويعمل:
-1. تحديث بيانات كأس العالم.
-2. Heartbeat commit حتى لو لا توجد مباراة.
-3. Push إلى GitHub.
-4. تشغيل Cloudflare Pages Deploy Hook مباشرة.
+المشكلة الحالية:
+- Spider T777 Elite Master Plus ما زال 25 د.أ
+- Spider T666 Gold+ 5G ما زال 25 د.أ
 
-## الملفات المطلوب رفعها واستبدال القديمة
+هذا الإصلاح يعمل استبدال مباشر داخل:
+- public/index.html
+- public/index_phone.html
 
-scripts/touch-worldcup-last-checked.mjs
-.github/workflows/update-worldcup-2026.yml
+ويتحقق قبل إنهاء التشغيل أن:
+- T777 = السعر 20 د.أ
+- T666 = السعر 30 د.أ
 
-## مهم جدًا قبل التشغيل
+## ارفع الملفين:
 
-لازم تضيف Deploy Hook في Cloudflare:
+scripts/hard-fix-spider-prices.mjs
+.github/workflows/hard-fix-spider-prices.yml
 
-Cloudflare > Workers & Pages > مشروع الموقع > Settings > Builds & deployments > Deploy hooks > Create hook
+## بعد الرفع
 
-سمّه مثلًا:
-worldcup-quarter-hour
+الـ workflow سيعمل تلقائيًا بسبب push.
+ولو ما اشتغل:
+GitHub > Actions > Hard fix Spider prices > Run workflow
 
-ثم انسخ الرابط واحفظه في GitHub Secret باسم:
-
-CLOUDFLARE_PAGES_DEPLOY_HOOK
-
-المسار:
-GitHub repo > Settings > Secrets and variables > Actions > New repository secret
-
-Name:
-CLOUDFLARE_PAGES_DEPLOY_HOOK
-
-Value:
-رابط الـ Deploy Hook من Cloudflare
-
-## بعد الرفع وإضافة Secret
-
-GitHub > Actions > Update World Cup 2026 data > Run workflow
-
-## كيف تتأكد؟
-
-بعد التشغيل، افحص:
-public/worldcup-2026/heartbeat.json
-
-وتأكد من Cloudflare:
-Workers & Pages > مشروع الموقع > Deployments
-
-لازم تشوف deploy جديد بعد كل تشغيل.
+بعدها افتح الموقع بنافذة خفية أو Ctrl + F5.

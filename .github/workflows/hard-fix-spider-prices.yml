@@ -1,0 +1,50 @@
+name: Hard fix Spider prices
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/hard-fix-spider-prices.mjs"
+      - ".github/workflows/hard-fix-spider-prices.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hard-fix-spider-prices
+  cancel-in-progress: true
+
+jobs:
+  hard-fix-spider-prices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check script
+        run: node --check scripts/hard-fix-spider-prices.mjs
+
+      - name: Hard replace prices
+        run: node scripts/hard-fix-spider-prices.mjs
+
+      - name: Commit hard price fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/index.html public/index_phone.html scripts/hard-fix-spider-prices.mjs .github/workflows/hard-fix-spider-prices.yml
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Hard fix Spider T777 and T666 prices"
+            git push
+          else
+            echo "No changes to commit."
+          fi
