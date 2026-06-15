@@ -1,0 +1,46 @@
+name: Safe repair Spider devices
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: safe-repair-spider-devices
+  cancel-in-progress: true
+
+jobs:
+  safe-repair-spider-devices:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check scripts
+        run: |
+          node --check scripts/safe-repair-spider-devices.mjs
+          node --check public/assets/spider-devices-safe-view-fix.js
+
+      - name: Repair devices pages
+        run: node scripts/safe-repair-spider-devices.mjs
+
+      - name: Commit safe Spider repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/index.html public/index_phone.html public/assets/spider-devices-safe-view-fix.js scripts/safe-repair-spider-devices.mjs .github/workflows/safe-repair-spider-devices.yml
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Safe repair Spider device listing"
+            git push
+          else
+            echo "No changes to commit."
+          fi

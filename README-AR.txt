@@ -1,29 +1,35 @@
-# تنظيف نهائي لقسم الأجهزة
+# إصلاح آمن لقسم الأجهزة
 
-هذا الإصلاح يعمل 3 أشياء:
+هذا الإصلاح لا يحذف أي كرت جهاز.
 
-1. يحذف أي استدعاء قديم لملف spider-new-devices.js حتى لا يكرر الأجهزة.
-2. يصحح الأسعار:
+ماذا يعمل؟
+1. يلغي سكربتات الإضافة القديمة التي قد تسبب إخفاء أو تكرار الأجهزة:
+   - spider-new-devices.js
+   - spider-devices-final-guard.js
+
+2. يصحح الأسعار داخل index.html و index_phone.html:
    - Spider T777 Elite Master Plus = 20 د.أ
    - Spider T666 Gold+ 5G = 30 د.أ
-3. يضيف guard صغير في الواجهة:
-   - يحذف أي تكرار ظاهر للجهازين في المتصفح.
-   - يجبر صور الجهازين على المسارات الصحيحة.
-   - يثبت السعر الصحيح حتى لو الكاش عرض نسخة قديمة.
 
-## ارفع الملفات بنفس المسارات:
+3. يضيف سكربت آمن فقط:
+   - يمسح فلتر البحث داخل قسم الأجهزة.
+   - يرجع كل كروت الأجهزة ظاهرة.
+   - لا يحذف أي جهاز.
+   - يثبت صورة وسعر T777 و T666 إذا كانت موجودة.
 
-public/assets/spider-devices-final-guard.js
-scripts/final-cleanup-spider-devices.mjs
-.github/workflows/final-cleanup-spider-devices.yml
+## ارفع الملفات بنفس المسارات
 
-## بعد الرفع:
+public/assets/spider-devices-safe-view-fix.js
+scripts/safe-repair-spider-devices.mjs
+.github/workflows/safe-repair-spider-devices.yml
 
-GitHub > Actions > Final cleanup Spider devices > Run workflow
+## بعد الرفع
 
-بعد النجاح افتح الموقع من نافذة خفية أو اعمل refresh قوي:
-Ctrl + F5
+GitHub > Actions > Safe repair Spider devices > Run workflow
 
-وللتأكد من المتصفح:
-افتح Console واكتب:
-fixSpiderDevicesNow()
+بعد النجاح:
+- افتح الموقع بنافذة خفية أو اعمل Ctrl + F5.
+- ادخل قسم الأجهزة.
+- إذا بقي فقط جهاز واحد، امسح خانة البحث واضغط "كل الشركات".
+- للتجربة من Console:
+  fixSpiderDevicesSafe()
