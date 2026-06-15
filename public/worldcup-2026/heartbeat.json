@@ -1,9 +1,21 @@
 {
-  "name": "World Cup 2026 heartbeat",
+  "name": "World Cup 2026 quarter-hour heartbeat",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-15T23:02:06+03:00",
-  "last_updated": "2026-06-15T23:02:06+03:00",
-  "files_touched": 3,
+  "last_checked_at": "2026-06-15T23:12:36+03:00",
+  "last_updated": "2026-06-15T23:12:36+03:00",
+  "schedule": "every 15 minutes",
+  "files_touched": 4,
+  "force_cloudflare_deploy": true,
   "source": "github-actions",
-  "note_ar": "هذا الملف يتغير كل تشغيل حتى يجبر Cloudflare Pages والمتصفح على رؤية فحص جديد."
+  "github": {
+    "runId": "27573385401",
+    "runNumber": "156",
+    "workflow": "Update World Cup 2026 data",
+    "eventName": "workflow_dispatch",
+    "schedule": "",
+    "repository": "maen1977/maen_site_analytics",
+    "ref": "refs/heads/main",
+    "sha": "1aabfb524974c35ca6c1bfa9712c3640d85bf85f"
+  },
+  "note_ar": "هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. أي commit جديد على GitHub يجب أن يطلق نشر Cloudflare Pages إذا كان المشروع مربوطاً عبر Git integration."
 }

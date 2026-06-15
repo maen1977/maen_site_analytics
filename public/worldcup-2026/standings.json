@@ -1,19 +1,23 @@
 {
   "metadata": {
-    "last_updated": "2026-06-15T23:02:06+03:00",
+    "last_updated": "2026-06-15T23:12:36+03:00",
     "source": "openfootball/worldcup.json + ESPN live scoreboard",
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "last_checked_at": "2026-06-15T23:02:06+03:00",
+    "last_checked_at": "2026-06-15T23:12:36+03:00",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "manual_overrides_applied": true,
-    "last_data_change_at": "2026-06-15T23:02:06+03:00",
+    "last_data_change_at": "2026-06-15T23:12:36+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-15T23:02:06+03:00",
-    "automation_heartbeat_note_ar": "تم فحص بيانات كأس العالم تلقائيا. قد لا تتغير النتائج إذا لم يرسل المصدر نتيجة جديدة."
+    "automation_heartbeat_at": "2026-06-15T23:12:36+03:00",
+    "cloudflare_deploy_trigger": true,
+    "github_run_id": "27573385401",
+    "github_run_number": "156",
+    "github_sha": "1aabfb524974c35ca6c1bfa9712c3640d85bf85f",
+    "note_ar": "يتم تحديث هذا الوقت كل ربع ساعة حتى لو لا توجد مباراة، وذلك لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة."
   },
   "standings": [
     {
@@ -410,18 +414,33 @@
       "group": "G",
       "rows": [
         {
+          "team": "Belgium",
+          "team_ar": "بلجيكا",
+          "group": "G",
+          "played": 0,
+          "wins": 0,
+          "draws": 0,
+          "losses": 0,
+          "goals_for": 0,
+          "goals_against": 0,
+          "goal_diff": 0,
+          "points": 0,
+          "rank": 1,
+          "qualified": true
+        },
+        {
           "team": "Egypt",
           "team_ar": "مصر",
           "group": "G",
-          "played": 1,
-          "wins": 1,
+          "played": 0,
+          "wins": 0,
           "draws": 0,
           "losses": 0,
-          "goals_for": 1,
+          "goals_for": 0,
           "goals_against": 0,
-          "goal_diff": 1,
-          "points": 3,
-          "rank": 1,
+          "goal_diff": 0,
+          "points": 0,
+          "rank": 2,
           "qualified": true
         },
         {
@@ -436,7 +455,7 @@
           "goals_against": 0,
           "goal_diff": 0,
           "points": 0,
-          "rank": 2,
+          "rank": 3,
           "qualified": true
         },
         {
@@ -450,21 +469,6 @@
           "goals_for": 0,
           "goals_against": 0,
           "goal_diff": 0,
-          "points": 0,
-          "rank": 3,
-          "qualified": true
-        },
-        {
-          "team": "Belgium",
-          "team_ar": "بلجيكا",
-          "group": "G",
-          "played": 1,
-          "wins": 0,
-          "draws": 0,
-          "losses": 1,
-          "goals_for": 0,
-          "goals_against": 1,
-          "goal_diff": -1,
           "points": 0,
           "rank": 4,
           "qualified": false
