@@ -1,32 +1,34 @@
-# تحديث كأس العالم كل ربع ساعة + تشغيل نشر Cloudflare Pages
+# إصلاح صورة Spider T700 فقط
 
-## ماذا تفعل هذه الملفات؟
+هذا الإصلاح يعمل فقط على صورة كرت:
 
-1. تجعل Workflow كأس العالم يعمل كل ربع ساعة:
-   2,17,32,47 من كل ساعة.
+Spider T700 Elite 5G
 
-2. تجبر سكربت كأس العالم على الفحص حتى لو لا توجد مباراة:
-   WORLD_CUP_2026_FORCE_UPDATE=1
+ولا يضيف سكربت عرض جديد للموقع.
 
-3. تعمل heartbeat كل ربع ساعة داخل:
-   public/worldcup-2026/heartbeat.json
-   public/worldcup-2026/deploy-marker.txt
+ماذا يفعل؟
+1. يبحث في تاريخ GitHub عن صورة T700 الأصلية قبل ما تتبدل بالغلط.
+2. يرجع هذه الصورة لكرت T700 في:
+   - public/index.html
+   - public/index_phone.html
+3. يحذف فقط استدعاءات سكربتات Spider القديمة التي ممكن تغيّر الصور وقت فتح الموقع:
+   - spider-new-devices.js
+   - spider-devices-final-guard.js
+   - spider-devices-safe-view-fix.js
 
-4. لأن الملفات تتغير كل ربع ساعة، GitHub سيعمل commit/push كل ربع ساعة.
-   إذا كان Cloudflare Pages مربوطاً مع GitHub، كل push على الفرع المرتبط يطلق deploy جديد.
+لا يحذف أي جهاز.
+لا يخفي أي صورة.
+لا يغير أسعار الأجهزة.
 
-## الملفات المطلوب رفعها واستبدال القديمة:
+## الملفات المطلوب رفعها
 
-scripts/touch-worldcup-last-checked.mjs
-.github/workflows/update-worldcup-2026.yml
+scripts/repair-spider-t700-image-only.mjs
+.github/workflows/repair-spider-t700-image-only.yml
 
-## بعد الرفع:
+## بعد الرفع
 
-1. GitHub > Actions
-2. افتح: Update World Cup 2026 data
-3. اضغط: Run workflow
+GitHub > Actions > Repair Spider T700 image only > Run workflow
 
-بعد النجاح افحص:
-public/worldcup-2026/heartbeat.json
-
-يجب أن يتغير last_checked_at كل ربع ساعة.
+بعد النجاح:
+- افتح الموقع بنافذة خفية.
+- أو اعمل Ctrl + F5.

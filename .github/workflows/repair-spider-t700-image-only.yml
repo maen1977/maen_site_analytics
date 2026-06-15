@@ -1,0 +1,46 @@
+name: Repair Spider T700 image only
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-spider-t700-image-only
+  cancel-in-progress: true
+
+jobs:
+  repair-spider-t700-image-only:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository with full history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check repair script
+        run: node --check scripts/repair-spider-t700-image-only.mjs
+
+      - name: Repair Spider T700 image
+        run: node scripts/repair-spider-t700-image-only.mjs
+
+      - name: Commit T700 image repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/index.html public/index_phone.html scripts/repair-spider-t700-image-only.mjs .github/workflows/repair-spider-t700-image-only.yml
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Repair Spider T700 image"
+            git push
+          else
+            echo "No changes to commit."
+          fi
