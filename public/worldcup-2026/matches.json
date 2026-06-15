@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-15T01:55:09+03:00",
-    "last_checked_at": "2026-06-15T01:55:09+03:00",
+    "last_updated": "2026-06-15T03:20:25+03:00",
+    "last_checked_at": "2026-06-15T03:20:25+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -26,9 +26,9 @@
     },
     "manual_overrides_applied": true,
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
-    "last_data_change_at": "2026-06-15T01:55:09+03:00",
+    "last_data_change_at": "2026-06-15T03:20:25+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-15T01:55:09+03:00",
+    "automation_heartbeat_at": "2026-06-15T03:20:25+03:00",
     "automation_heartbeat_note_ar": "تم فحص بيانات كأس العالم تلقائيًا. قد لا تتغير النتائج إذا لم يرسل المصدر نتيجة جديدة."
   },
   "groups": {
@@ -216,7 +216,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -262,7 +262,7 @@
           "home_score": 2,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -299,18 +299,7 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B",
-      "score_sources": [
-        {
-          "source_name": "ESPN FIFA World scoreboard",
-          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
-          "status": "finished",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
-        }
-      ]
+      "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Toronto Stadium / BMO Field دور المجموعات B"
     },
     {
       "id": "M019",
@@ -346,22 +335,13 @@
       "search_text": "USA Paraguay أمريكا باراغواي Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات D",
       "score_sources": [
         {
-          "source_name": "ESPN FIFA World scoreboard",
-          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
-          "status": "finished",
-          "home_score": 4,
-          "away_score": 1,
-          "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
-        },
-        {
           "source_name": "WorldCup26 open API",
           "source_url": "https://worldcup26.ir/get/games",
           "status": "finished",
           "home_score": 4,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -370,7 +350,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -402,15 +382,11 @@
         "ht": [
           0,
           1
-        ],
-        "source": "espn",
-        "event_id": "760420",
-        "status_detail": "FT",
-        "clock": "90'+7'"
+        ]
       },
-      "score_source": "espn",
-      "live_clock": "90'+7'",
-      "live_status_detail": "FT",
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Qatar Switzerland قطر سويسرا San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات B",
       "score_sources": [
         {
@@ -420,7 +396,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -429,7 +405,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -461,15 +437,11 @@
         "ht": [
           1,
           1
-        ],
-        "source": "espn",
-        "event_id": "760419",
-        "status_detail": "FT",
-        "clock": "90'+25'"
+        ]
       },
-      "score_source": "espn",
-      "live_clock": "90'+25'",
-      "live_status_detail": "FT",
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Brazil Morocco البرازيل المغرب New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور المجموعات C",
       "score_sources": [
         {
@@ -479,7 +451,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -488,7 +460,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -520,15 +492,11 @@
         "ht": [
           0,
           1
-        ],
-        "source": "espn",
-        "event_id": "760418",
-        "status_detail": "FT",
-        "clock": "90'+8'"
+        ]
       },
-      "score_source": "espn",
-      "live_clock": "90'+8'",
-      "live_status_detail": "FT",
+      "score_source": "openfootball",
+      "live_clock": null,
+      "live_status_detail": null,
       "search_text": "Haiti Scotland هايتي اسكتلندا Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات C",
       "score_sources": [
         {
@@ -538,7 +506,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -547,7 +515,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -593,7 +561,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -602,7 +570,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -652,7 +620,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -661,7 +629,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -711,7 +679,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-15T01:55:02+03:00"
+          "collected_at": "2026-06-15T03:20:03+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -720,7 +688,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 70,
-          "collected_at": "2026-06-15T01:55:04+03:00"
+          "collected_at": "2026-06-15T03:20:20+03:00"
         }
       ]
     },
@@ -741,14 +709,43 @@
       "team2_ar": "الإكوادور",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": "scheduled",
+      "status": "live",
       "home_score": 0,
       "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Ivory Coast Ecuador كوت ديفوار الإكوادور Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات E"
+      "score": {
+        "live": [
+          0,
+          0
+        ],
+        "source": "espn",
+        "event_id": "760423",
+        "status_detail": "55'",
+        "clock": "55'"
+      },
+      "score_source": "espn",
+      "live_clock": "55'",
+      "live_status_detail": "55'",
+      "search_text": "Ivory Coast Ecuador كوت ديفوار الإكوادور Philadelphia Philadelphia Stadium / Lincoln Financial Field دور المجموعات E",
+      "score_sources": [
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "live",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 88,
+          "collected_at": "2026-06-15T03:20:03+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "live",
+          "home_score": 0,
+          "away_score": 0,
+          "confidence": 70,
+          "collected_at": "2026-06-15T03:20:20+03:00"
+        }
+      ]
     },
     {
       "id": "M032",
