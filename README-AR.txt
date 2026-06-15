@@ -1,24 +1,36 @@
-إصلاح v2 لمشكلة أن قسم "كل المباريات" لا يفتح على مباراة اليوم
+# إضافة رسيفرين SPIDER إلى قسم الأجهزة
 
-السبب السابق:
-- public/assets/worldcup-current-focus.js انرفع.
-- لكن public/index.html لم يحتوي على سطر تشغيل السكربت.
-- وملف scripts/install-worldcup-current-focus.mjs كان فيه SCRIPT_TAG فارغ، لذلك لم يحقن السطر.
+## الأجهزة المضافة
+1. Spider T777 Elite Master Plus
+   السعر على الموقع: 20 د.أ
 
-ارفع هذه الملفات واستبدل الموجودة:
+2. Spider T666 Gold+ 5G
+   السعر على الموقع: 30 د.أ
 
-1) public/assets/worldcup-current-focus.js
-2) scripts/install-worldcup-current-focus.mjs
-3) .github/workflows/install-worldcup-current-focus.yml
+تم إزالة السعر المطبوع من الصور، والسعر سيظهر داخل كرت المنتج في الموقع.
 
-بعد الرفع:
-1. ادخل GitHub > Actions
-2. افتح Install World Cup current focus
-3. اضغط Run workflow
-4. بعد نجاحه تأكد أن public/index.html يحتوي على:
-   /assets/worldcup-current-focus.js?v=20260615-v2
+## ارفع الملفات كما هي بنفس المسارات
 
-ثم افتح:
-https://maensat.pages.dev/#worldcup2026
+public/assets/devices/spider-t777-elite-master-plus.jpg
+public/assets/devices/spider-t666-gold-plus-5g.jpg
+public/assets/spider-new-devices.js
+scripts/install-spider-devices.mjs
+.github/workflows/install-spider-devices.yml
 
-واضغط "كل المباريات".
+## بعد الرفع
+
+1. افتح GitHub > Actions
+2. افتح: Install Spider devices
+3. اضغط: Run workflow
+
+الـ Workflow سيضيف سطر تشغيل السكربت تلقائياً إلى:
+public/index.html
+public/index_phone.html
+
+السطر الذي سيضاف:
+<script src="/assets/spider-new-devices.js?v=20260615-devices"></script>
+
+## ملاحظة
+
+السكربت ينسخ تصميم كرت جهاز موجود في قسم الأجهزة، حتى تبقى الإضافة بنفس شكل وتصميم الموقع.
+إذا لم يجد كرتاً جاهزاً لأي سبب، يعمل كرت احتياطي بتصميم مناسب ومتجاوب.
