@@ -1,26 +1,26 @@
-# إصلاح نهائي مباشر للأسعار فقط
+# إصلاح أسعار Spider بطريقة تفهم HTML
 
-المشكلة الحالية:
-- Spider T777 Elite Master Plus ما زال 25 د.أ
-- Spider T666 Gold+ 5G ما زال 25 د.أ
+سبب فشل السكربت السابق:
+كان يبحث عن "السعر 25 د.أ" كنص واحد.
+لكن الصفحة غالباً فيها السعر مفصول داخل عناصر HTML، مثل:
+السعر ... <span>25</span> د.أ
 
-هذا الإصلاح يعمل استبدال مباشر داخل:
-- public/index.html
-- public/index_phone.html
+هذا الإصلاح يبحث عن كلمة "السعر" ثم يغير أول رقم بعدها داخل نفس كرت الجهاز.
 
-ويتحقق قبل إنهاء التشغيل أن:
-- T777 = السعر 20 د.أ
-- T666 = السعر 30 د.أ
+## المطلوب
+- Spider T777 Elite Master Plus = 20 د.أ
+- Spider T666 Gold+ 5G = 30 د.أ
 
-## ارفع الملفين:
+## ارفع الملفين
 
-scripts/hard-fix-spider-prices.mjs
-.github/workflows/hard-fix-spider-prices.yml
+scripts/html-aware-fix-spider-prices.mjs
+.github/workflows/html-aware-fix-spider-prices.yml
 
 ## بعد الرفع
+قد يشتغل تلقائياً بسبب push.
+أو شغله يدويًا:
 
-الـ workflow سيعمل تلقائيًا بسبب push.
-ولو ما اشتغل:
-GitHub > Actions > Hard fix Spider prices > Run workflow
+GitHub > Actions > HTML aware fix Spider prices > Run workflow
 
-بعدها افتح الموقع بنافذة خفية أو Ctrl + F5.
+بعد النجاح:
+- افتح الموقع بنافذة خفية أو Ctrl + F5.
