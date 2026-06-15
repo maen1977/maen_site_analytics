@@ -1,35 +1,36 @@
-# إصلاح آمن لقسم الأجهزة
+# إصلاح ثابت لقسم أجهزة Spider
 
-هذا الإصلاح لا يحذف أي كرت جهاز.
+هذا الإصلاح لا يضيف أي JavaScript جديد للموقع ولا يخفي أي جهاز.
 
 ماذا يعمل؟
-1. يلغي سكربتات الإضافة القديمة التي قد تسبب إخفاء أو تكرار الأجهزة:
+1. يحذف فقط استدعاءات السكربتات القديمة التي كانت تغير العرض:
    - spider-new-devices.js
    - spider-devices-final-guard.js
+   - spider-devices-safe-view-fix.js
 
-2. يصحح الأسعار داخل index.html و index_phone.html:
-   - Spider T777 Elite Master Plus = 20 د.أ
-   - Spider T666 Gold+ 5G = 30 د.أ
+2. يصحح الأسعار داخل:
+   - public/index.html
+   - public/index_phone.html
 
-3. يضيف سكربت آمن فقط:
-   - يمسح فلتر البحث داخل قسم الأجهزة.
-   - يرجع كل كروت الأجهزة ظاهرة.
-   - لا يحذف أي جهاز.
-   - يثبت صورة وسعر T777 و T666 إذا كانت موجودة.
+   Spider T777 Elite Master Plus = 20 د.أ
+   Spider T666 Gold+ 5G = 30 د.أ
 
-## ارفع الملفات بنفس المسارات
+3. يثبت صور الجهازين الجديدين:
+   - T777 => /assets/devices/spider-t777-elite-master-plus.jpg
+   - T666 => /assets/devices/spider-t666-gold-plus-5g.jpg
 
-public/assets/spider-devices-safe-view-fix.js
-scripts/safe-repair-spider-devices.mjs
-.github/workflows/safe-repair-spider-devices.yml
+4. يرجع صورة Spider T700 Elite 5G من تاريخ GitHub إذا كانت تبدلت بالغلط إلى صورة T666/T777.
+
+## الملفات المطلوب رفعها
+
+scripts/repair-spider-static-clean.mjs
+.github/workflows/repair-spider-static-clean.yml
 
 ## بعد الرفع
 
-GitHub > Actions > Safe repair Spider devices > Run workflow
+GitHub > Actions > Repair Spider static clean > Run workflow
 
-بعد النجاح:
-- افتح الموقع بنافذة خفية أو اعمل Ctrl + F5.
-- ادخل قسم الأجهزة.
-- إذا بقي فقط جهاز واحد، امسح خانة البحث واضغط "كل الشركات".
-- للتجربة من Console:
-  fixSpiderDevicesSafe()
+بعد نجاح التشغيل:
+- افتح الموقع بنافذة خفية.
+- أو اعمل Ctrl + F5.
+- لا تشغل Workflows Spider القديمة.
