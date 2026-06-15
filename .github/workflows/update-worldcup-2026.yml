@@ -2,10 +2,8 @@ name: Update World Cup 2026 data
 
 on:
   schedule:
-    # Every 15 minutes, UTC.
+    # Every 15 minutes, UTC. This also runs when there is no match.
     - cron: "2,17,32,47 * * * *"
-    # Extra safety runs twice daily.
-    - cron: "7 0,12 * * *"
   workflow_dispatch:
 
 permissions:
@@ -18,31 +16,36 @@ concurrency:
 jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Check World Cup helper scripts
+      - name: Check required World Cup scripts
         run: |
           node --check scripts/update-worldcup-2026.mjs
-          if [ -f scripts/finalize-worldcup-stale-live.mjs ]; then node --check scripts/finalize-worldcup-stale-live.mjs; fi
           node --check scripts/touch-worldcup-last-checked.mjs
 
-      - name: Run existing World Cup updater
+      - name: Run World Cup updater every quarter hour
         continue-on-error: true
         env:
+          WORLD_CUP_2026_FORCE_UPDATE: "1"
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
-          WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1440"
-          WORLD_CUP_2026_FAST_AFTER_MINUTES: "1440"
-          WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1440"
-          WORLD_CUP_2026_BROADCAST_AFTER_MINUTES: "1440"
+
+          WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1000000"
+          WORLD_CUP_2026_FAST_AFTER_MINUTES: "1000000"
+          WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1000000"
+          WORLD_CUP_2026_BROADCAST_AFTER_MINUTES: "1000000"
+
           WORLD_CUP_2026_BROADCAST_SOURCE_URL: ${{ vars.WORLD_CUP_2026_BROADCAST_SOURCE_URL }}
           WORLD_CUP_2026_BEIN_AUTO_CHECK: ${{ vars.WORLD_CUP_2026_BEIN_AUTO_CHECK || '1' }}
           WORLD_CUP_2026_BEIN_NEWS_URLS: ${{ vars.WORLD_CUP_2026_BEIN_NEWS_URLS || '' }}
@@ -92,21 +95,22 @@ jobs:
             echo "apply-worldcup-overrides.mjs not found, skipping."
           fi
 
-      - name: Touch World Cup last checked timestamp
+      - name: Touch World Cup heartbeat and deploy marker
         if: always()
         run: node scripts/touch-worldcup-last-checked.mjs
 
-      - name: Commit updated World Cup data
+      - name: Commit and push World Cup data for Cloudflare Pages
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs scripts/finalize-worldcup-stale-live.mjs .github/workflows/update-worldcup-2026.yml || true
+          git add public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs .github/workflows/update-worldcup-2026.yml
 
-          if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Update World Cup 2026 heartbeat"
-            git push
-          else
-            echo "No World Cup 2026 changes to commit."
+          if git diff --cached --quiet; then
+            echo "No staged changes found, but heartbeat should normally change every run."
+            exit 0
           fi
+
+          git commit -m "Update World Cup 2026 quarter-hour heartbeat"
+          git push

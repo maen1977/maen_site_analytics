@@ -4,7 +4,13 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const WC_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TIMEZONE = 'Asia/Amman';
-const FILES = ['matches.json', 'broadcasts.json', 'standings.json'];
+
+const JSON_FILES = [
+  'matches.json',
+  'broadcasts.json',
+  'standings.json',
+  'bracket.json'
+];
 
 function jordanIso(date = new Date()) {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -18,7 +24,7 @@ function jordanIso(date = new Date()) {
     hour12: false
   }).formatToParts(date);
 
-  const pick = (type) => parts.find((p) => p.type === type)?.value || '00';
+  const pick = (type) => parts.find((part) => part.type === type)?.value || '00';
   let hour = pick('hour');
   if (hour === '24') hour = '00';
 
@@ -29,7 +35,7 @@ async function readJson(filePath) {
   try {
     return JSON.parse(await fs.readFile(filePath, 'utf8'));
   } catch (error) {
-    console.warn(`[worldcup-heartbeat] Cannot read ${filePath}: ${error.message}`);
+    console.warn(`[worldcup-heartbeat] Skip ${path.relative(ROOT, filePath)}: ${error.message}`);
     return null;
   }
 }
@@ -38,9 +44,10 @@ async function writeJson(filePath, data) {
   await fs.writeFile(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
 }
 
-async function touchFile(fileName, nowIso) {
+async function touchJsonFile(fileName, nowIso, runInfo) {
   const filePath = path.join(WC_DIR, fileName);
   const data = await readJson(filePath);
+
   if (!data || typeof data !== 'object') return false;
 
   data.metadata ||= {};
@@ -53,39 +60,74 @@ async function touchFile(fileName, nowIso) {
   data.metadata.last_updated = nowIso;
   data.metadata.automation_heartbeat = true;
   data.metadata.automation_heartbeat_at = nowIso;
-  data.metadata.automation_heartbeat_note_ar =
-    'تم فحص بيانات كأس العالم تلقائيا. قد لا تتغير النتائج إذا لم يرسل المصدر نتيجة جديدة.';
+  data.metadata.cloudflare_deploy_trigger = true;
+  data.metadata.github_run_id = runInfo.runId;
+  data.metadata.github_run_number = runInfo.runNumber;
+  data.metadata.github_sha = runInfo.sha;
+  data.metadata.note_ar =
+    'يتم تحديث هذا الوقت كل ربع ساعة حتى لو لا توجد مباراة، وذلك لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.';
 
   await writeJson(filePath, data);
-  console.log(`[worldcup-heartbeat] touched ${fileName} at ${nowIso}`);
+  console.log(`[worldcup-heartbeat] touched ${path.relative(ROOT, filePath)} at ${nowIso}`);
   return true;
 }
 
-async function writeHeartbeat(nowIso, touched) {
+async function writeHeartbeat(nowIso, touched, runInfo) {
   await fs.mkdir(WC_DIR, { recursive: true });
 
   const heartbeat = {
-    name: 'World Cup 2026 heartbeat',
+    name: 'World Cup 2026 quarter-hour heartbeat',
     timezone: TIMEZONE,
     last_checked_at: nowIso,
     last_updated: nowIso,
+    schedule: 'every 15 minutes',
     files_touched: touched,
+    force_cloudflare_deploy: true,
     source: 'github-actions',
-    note_ar: 'هذا الملف يتغير كل تشغيل حتى يجبر Cloudflare Pages والمتصفح على رؤية فحص جديد.'
+    github: runInfo,
+    note_ar:
+      'هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. أي commit جديد على GitHub يجب أن يطلق نشر Cloudflare Pages إذا كان المشروع مربوطاً عبر Git integration.'
   };
 
   await writeJson(path.join(WC_DIR, 'heartbeat.json'), heartbeat);
-  console.log(`[worldcup-heartbeat] wrote heartbeat.json at ${nowIso}`);
+
+  const marker = [
+    'World Cup 2026 heartbeat',
+    `last_checked_at=${nowIso}`,
+    `timezone=${TIMEZONE}`,
+    `github_run_id=${runInfo.runId}`,
+    `github_run_number=${runInfo.runNumber}`,
+    `github_sha=${runInfo.sha}`,
+    'cloudflare_deploy_trigger=true',
+    ''
+  ].join('\n');
+
+  await fs.writeFile(path.join(WC_DIR, 'deploy-marker.txt'), marker, 'utf8');
+
+  console.log(`[worldcup-heartbeat] wrote heartbeat.json and deploy-marker.txt at ${nowIso}`);
 }
+
+const nowIso = jordanIso(new Date());
+
+const runInfo = {
+  runId: process.env.GITHUB_RUN_ID || '',
+  runNumber: process.env.GITHUB_RUN_NUMBER || '',
+  workflow: process.env.GITHUB_WORKFLOW || '',
+  eventName: process.env.GITHUB_EVENT_NAME || '',
+  schedule: process.env.GITHUB_EVENT_SCHEDULE || '',
+  repository: process.env.GITHUB_REPOSITORY || '',
+  ref: process.env.GITHUB_REF || '',
+  sha: process.env.GITHUB_SHA || ''
+};
+
+let touched = 0;
 
 await fs.mkdir(WC_DIR, { recursive: true });
 
-const nowIso = jordanIso(new Date());
-let touched = 0;
-
-for (const fileName of FILES) {
-  if (await touchFile(fileName, nowIso)) touched += 1;
+for (const fileName of JSON_FILES) {
+  if (await touchJsonFile(fileName, nowIso, runInfo)) touched += 1;
 }
 
-await writeHeartbeat(nowIso, touched);
-console.log(`[worldcup-heartbeat] done. Files touched: ${touched}`);
+await writeHeartbeat(nowIso, touched, runInfo);
+
+console.log(`[worldcup-heartbeat] Done. JSON files touched: ${touched}`);

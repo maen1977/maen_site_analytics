@@ -1,36 +1,32 @@
-# إصلاح ثابت لقسم أجهزة Spider
+# تحديث كأس العالم كل ربع ساعة + تشغيل نشر Cloudflare Pages
 
-هذا الإصلاح لا يضيف أي JavaScript جديد للموقع ولا يخفي أي جهاز.
+## ماذا تفعل هذه الملفات؟
 
-ماذا يعمل؟
-1. يحذف فقط استدعاءات السكربتات القديمة التي كانت تغير العرض:
-   - spider-new-devices.js
-   - spider-devices-final-guard.js
-   - spider-devices-safe-view-fix.js
+1. تجعل Workflow كأس العالم يعمل كل ربع ساعة:
+   2,17,32,47 من كل ساعة.
 
-2. يصحح الأسعار داخل:
-   - public/index.html
-   - public/index_phone.html
+2. تجبر سكربت كأس العالم على الفحص حتى لو لا توجد مباراة:
+   WORLD_CUP_2026_FORCE_UPDATE=1
 
-   Spider T777 Elite Master Plus = 20 د.أ
-   Spider T666 Gold+ 5G = 30 د.أ
+3. تعمل heartbeat كل ربع ساعة داخل:
+   public/worldcup-2026/heartbeat.json
+   public/worldcup-2026/deploy-marker.txt
 
-3. يثبت صور الجهازين الجديدين:
-   - T777 => /assets/devices/spider-t777-elite-master-plus.jpg
-   - T666 => /assets/devices/spider-t666-gold-plus-5g.jpg
+4. لأن الملفات تتغير كل ربع ساعة، GitHub سيعمل commit/push كل ربع ساعة.
+   إذا كان Cloudflare Pages مربوطاً مع GitHub، كل push على الفرع المرتبط يطلق deploy جديد.
 
-4. يرجع صورة Spider T700 Elite 5G من تاريخ GitHub إذا كانت تبدلت بالغلط إلى صورة T666/T777.
+## الملفات المطلوب رفعها واستبدال القديمة:
 
-## الملفات المطلوب رفعها
+scripts/touch-worldcup-last-checked.mjs
+.github/workflows/update-worldcup-2026.yml
 
-scripts/repair-spider-static-clean.mjs
-.github/workflows/repair-spider-static-clean.yml
+## بعد الرفع:
 
-## بعد الرفع
+1. GitHub > Actions
+2. افتح: Update World Cup 2026 data
+3. اضغط: Run workflow
 
-GitHub > Actions > Repair Spider static clean > Run workflow
+بعد النجاح افحص:
+public/worldcup-2026/heartbeat.json
 
-بعد نجاح التشغيل:
-- افتح الموقع بنافذة خفية.
-- أو اعمل Ctrl + F5.
-- لا تشغل Workflows Spider القديمة.
+يجب أن يتغير last_checked_at كل ربع ساعة.
