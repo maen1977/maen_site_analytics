@@ -1,26 +1,28 @@
-# إصلاح أسعار Spider بطريقة تفهم HTML
+# Ultimate fix Spider prices
 
-سبب فشل السكربت السابق:
-كان يبحث عن "السعر 25 د.أ" كنص واحد.
-لكن الصفحة غالباً فيها السعر مفصول داخل عناصر HTML، مثل:
-السعر ... <span>25</span> د.أ
+هذا الإصلاح أوسع من السابق لأنه يتعامل مع أكثر من صيغة:
 
-هذا الإصلاح يبحث عن كلمة "السعر" ثم يغير أول رقم بعدها داخل نفس كرت الجهاز.
+- السعر 25 د.أ كنص عربي.
+- السعر مفصول داخل HTML.
+- price: 25 داخل JavaScript.
+- "price": 25 داخل JSON/JS.
+- data-price="25".
+- رسائل واتساب.
 
-## المطلوب
-- Spider T777 Elite Master Plus = 20 د.أ
-- Spider T666 Gold+ 5G = 30 د.أ
+المطلوب:
+- Spider T777 Elite Master Plus = 20
+- Spider T666 Gold+ 5G = 30
 
-## ارفع الملفين
+## ارفع الملفين:
 
-scripts/html-aware-fix-spider-prices.mjs
-.github/workflows/html-aware-fix-spider-prices.yml
+scripts/ultimate-fix-spider-prices.mjs
+.github/workflows/ultimate-fix-spider-prices.yml
 
-## بعد الرفع
-قد يشتغل تلقائياً بسبب push.
+## بعد الرفع:
+
+قد يعمل تلقائياً بسبب push.
 أو شغله يدويًا:
 
-GitHub > Actions > HTML aware fix Spider prices > Run workflow
+GitHub > Actions > Ultimate fix Spider prices > Run workflow
 
-بعد النجاح:
-- افتح الموقع بنافذة خفية أو Ctrl + F5.
+بعد النجاح افتح الموقع Ctrl + F5 أو نافذة خفية.
