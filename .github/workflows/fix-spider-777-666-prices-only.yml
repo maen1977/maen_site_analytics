@@ -1,0 +1,44 @@
+name: Fix Spider 777 and 666 prices only
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-spider-777-666-prices-only
+  cancel-in-progress: true
+
+jobs:
+  fix-spider-777-666-prices-only:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Check script
+        run: node --check scripts/fix-spider-777-666-prices-only.mjs
+
+      - name: Fix prices only
+        run: node scripts/fix-spider-777-666-prices-only.mjs
+
+      - name: Commit price fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add public/index.html public/index_phone.html scripts/fix-spider-777-666-prices-only.mjs .github/workflows/fix-spider-777-666-prices-only.yml
+
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Fix Spider T777 and T666 prices"
+            git push
+          else
+            echo "No changes to commit."
+          fi

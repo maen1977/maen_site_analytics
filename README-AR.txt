@@ -1,34 +1,18 @@
-# إصلاح صورة Spider T700 فقط
+# تعديل أسعار Spider فقط
 
-هذا الإصلاح يعمل فقط على صورة كرت:
+هذا التعديل يغير الأسعار فقط، ولا يلمس الصور ولا يخفي أي جهاز.
 
-Spider T700 Elite 5G
+المطلوب:
+- Spider T777 Elite Master Plus = 20 د.أ
+- Spider T666 Gold+ 5G = 30 د.أ
 
-ولا يضيف سكربت عرض جديد للموقع.
+## ارفع الملفين بنفس المسارات:
 
-ماذا يفعل؟
-1. يبحث في تاريخ GitHub عن صورة T700 الأصلية قبل ما تتبدل بالغلط.
-2. يرجع هذه الصورة لكرت T700 في:
-   - public/index.html
-   - public/index_phone.html
-3. يحذف فقط استدعاءات سكربتات Spider القديمة التي ممكن تغيّر الصور وقت فتح الموقع:
-   - spider-new-devices.js
-   - spider-devices-final-guard.js
-   - spider-devices-safe-view-fix.js
+scripts/fix-spider-777-666-prices-only.mjs
+.github/workflows/fix-spider-777-666-prices-only.yml
 
-لا يحذف أي جهاز.
-لا يخفي أي صورة.
-لا يغير أسعار الأجهزة.
+## بعد الرفع:
 
-## الملفات المطلوب رفعها
+GitHub > Actions > Fix Spider 777 and 666 prices only > Run workflow
 
-scripts/repair-spider-t700-image-only.mjs
-.github/workflows/repair-spider-t700-image-only.yml
-
-## بعد الرفع
-
-GitHub > Actions > Repair Spider T700 image only > Run workflow
-
-بعد النجاح:
-- افتح الموقع بنافذة خفية.
-- أو اعمل Ctrl + F5.
+بعد النجاح اعمل Ctrl + F5 أو افتح الموقع بنافذة خفية.
