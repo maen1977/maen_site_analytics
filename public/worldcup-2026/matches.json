@@ -7,15 +7,15 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-17T00:28:59+03:00",
-    "last_checked_at": "2026-06-17T00:28:59+03:00",
+    "last_updated": "2026-06-17T02:06:12+03:00",
+    "last_checked_at": "2026-06-17T02:06:12+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "multi_source_results_update": true,
-    "multi_source_result_candidates": 27,
+    "multi_source_result_candidates": 29,
     "multi_source_result_changes": 0,
     "multi_source_result_conflicts": 1,
     "emergency_score_repair": {
@@ -26,14 +26,14 @@
     },
     "manual_overrides_applied": true,
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
-    "last_data_change_at": "2026-06-17T24:28:59+03:00",
+    "last_data_change_at": "2026-06-17T02:06:12+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-17T00:28:59+03:00",
+    "automation_heartbeat_at": "2026-06-17T02:06:12+03:00",
     "force_quarter_hour_update": true,
     "cloudflare_deploy_trigger": true,
-    "github_run_id": "27649334819",
-    "github_run_number": "167",
-    "github_sha": "cab5ba67127a30693591a885c7ed6523e6a5d85a",
+    "github_run_id": "27654005205",
+    "github_run_number": "168",
+    "github_sha": "3a189e0461e0b76a6f56378620f9f48cb9b06fd1",
     "note_ar": "تم فحص بيانات كأس العالم تلقائياً. هذا الوقت يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة."
   },
   "groups": {
@@ -221,7 +221,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -267,7 +267,7 @@
           "home_score": 2,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -346,7 +346,7 @@
           "home_score": 4,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -355,7 +355,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -401,7 +401,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -447,7 +447,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -493,7 +493,7 @@
           "home_score": 0,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -539,7 +539,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -548,7 +548,7 @@
           "home_score": 2,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -594,7 +594,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -603,7 +603,7 @@
           "home_score": 7,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -649,7 +649,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -658,7 +658,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -704,7 +704,7 @@
           "home_score": 1,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -713,7 +713,7 @@
           "home_score": 1,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -759,7 +759,7 @@
           "home_score": 5,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -768,7 +768,7 @@
           "home_score": 5,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -818,7 +818,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -827,7 +827,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -877,7 +877,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -886,7 +886,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -936,7 +936,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -945,7 +945,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -995,7 +995,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
@@ -1004,7 +1004,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -1054,16 +1054,16 @@
           "home_score": 3,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T24:28:40+03:00"
+          "collected_at": "2026-06-17T02:05:53+03:00"
         },
         {
           "source_name": "WorldCup26 open API",
           "source_url": "https://worldcup26.ir/get/games",
-          "status": "live",
+          "status": "finished",
           "home_score": 3,
           "away_score": 1,
           "confidence": 70,
-          "collected_at": "2026-06-17T24:28:58+03:00"
+          "collected_at": "2026-06-17T02:06:06+03:00"
         }
       ]
     },
@@ -1084,14 +1084,43 @@
       "team2_ar": "النرويج",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Iraq Norway العراق النرويج Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات I"
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 2,
+      "score": {
+        "ft": [
+          1,
+          2
+        ],
+        "source": "espn",
+        "event_id": "760430",
+        "status_detail": "HT",
+        "clock": "45'+7'"
+      },
+      "score_source": "espn",
+      "live_clock": "45'+7'",
+      "live_status_detail": "HT",
+      "search_text": "Iraq Norway العراق النرويج Boston (Foxborough) Boston Stadium / Gillette Stadium دور المجموعات I",
+      "score_sources": [
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 88,
+          "collected_at": "2026-06-17T02:05:53+03:00"
+        },
+        {
+          "source_name": "WorldCup26 open API",
+          "source_url": "https://worldcup26.ir/get/games",
+          "status": "live",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 70,
+          "collected_at": "2026-06-17T02:06:06+03:00"
+        }
+      ]
     },
     {
       "id": "M055",
