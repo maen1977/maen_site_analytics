@@ -1,22 +1,22 @@
 {
   "metadata": {
-    "last_updated": "2026-06-16T03:19:13+03:00",
+    "last_updated": "2026-06-16T08:12:40+03:00",
     "source": "openfootball/worldcup.json + ESPN live scoreboard",
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "last_checked_at": "2026-06-16T03:19:13+03:00",
+    "last_checked_at": "2026-06-16T08:12:40+03:00",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "manual_overrides_applied": true,
-    "last_data_change_at": "2026-06-16T03:19:13+03:00",
+    "last_data_change_at": "2026-06-16T08:12:39+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-16T03:19:13+03:00",
+    "automation_heartbeat_at": "2026-06-16T08:12:40+03:00",
     "cloudflare_deploy_trigger": true,
-    "github_run_id": "27585247176",
-    "github_run_number": "160",
-    "github_sha": "4cbc8eb3457f85690670978af2e16dd203ca6df7",
+    "github_run_id": "27595684040",
+    "github_run_number": "161",
+    "github_sha": "23bf5f026ba52f1d60cbeb86942c3e2a5c6d6b83",
     "note_ar": "يتم تحديث هذا الوقت كل ربع ساعة حتى لو لا توجد مباراة، وذلك لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة."
   },
   "standings": [
@@ -414,6 +414,36 @@
       "group": "G",
       "rows": [
         {
+          "team": "Iran",
+          "team_ar": "إيران",
+          "group": "G",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goals_for": 2,
+          "goals_against": 2,
+          "goal_diff": 0,
+          "points": 1,
+          "rank": 1,
+          "qualified": true
+        },
+        {
+          "team": "New Zealand",
+          "team_ar": "نيوزيلندا",
+          "group": "G",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goals_for": 2,
+          "goals_against": 2,
+          "goal_diff": 0,
+          "points": 1,
+          "rank": 2,
+          "qualified": true
+        },
+        {
           "team": "Belgium",
           "team_ar": "بلجيكا",
           "group": "G",
@@ -425,7 +455,7 @@
           "goals_against": 1,
           "goal_diff": 0,
           "points": 1,
-          "rank": 1,
+          "rank": 3,
           "qualified": true
         },
         {
@@ -440,36 +470,6 @@
           "goals_against": 1,
           "goal_diff": 0,
           "points": 1,
-          "rank": 2,
-          "qualified": true
-        },
-        {
-          "team": "Iran",
-          "team_ar": "إيران",
-          "group": "G",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goals_for": 0,
-          "goals_against": 0,
-          "goal_diff": 0,
-          "points": 0,
-          "rank": 3,
-          "qualified": true
-        },
-        {
-          "team": "New Zealand",
-          "team_ar": "نيوزيلندا",
-          "group": "G",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goals_for": 0,
-          "goals_against": 0,
-          "goal_diff": 0,
-          "points": 0,
           "rank": 4,
           "qualified": false
         }
