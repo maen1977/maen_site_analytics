@@ -1,37 +1,22 @@
-# Cache rules for Cloudflare Pages and Netlify
-# Keep optimized images cached for repeat visitors. Filenames include hashes, so this is safe.
-/assets/images-optimized/*
-  Cache-Control: public, max-age=31536000, immutable
+# Disable aggressive caching for live World Cup data.
+# This file must be in public/_headers for Cloudflare Pages.
 
-/assets/images-hq/*
-  Cache-Control: public, max-age=31536000, immutable
+/worldcup-2026/*
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
 
-/assets/icons/*
-  Cache-Control: public, max-age=31536000, immutable
+/worldcup-2026/*.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
 
-# Frequency data changes daily through GitHub Actions. The tiny manifest is refreshed often; versioned JSON can be cached longer.
-/frequencies/frequency-manifest.json
-  Cache-Control: public, max-age=300, must-revalidate
+/worldcup-2026/heartbeat.json
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0
 
-/frequencies/search-index.json
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-/frequencies/frequency-data.v*.json
-  Cache-Control: public, max-age=31536000, immutable
-
-/frequencies/*
-  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
-
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate
-
-/updates/*
-  Cache-Control: public, max-age=300, must-revalidate
-
-/sitemap.xml
-  Cache-Control: public, max-age=3600
-
-/robots.txt
-  Cache-Control: public, max-age=3600
-
-
+/worldcup-2026/deploy-marker.txt
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+  Expires: 0

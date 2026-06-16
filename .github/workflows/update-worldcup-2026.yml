@@ -2,8 +2,8 @@ name: Update World Cup 2026 data
 
 on:
   schedule:
-    # Every 15 minutes, UTC. Runs with or without matches.
-    - cron: "2,17,32,47 * * * *"
+    # Every 15 minutes, UTC. Offset away from exact hour to reduce GitHub cron congestion.
+    - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -31,19 +31,18 @@ jobs:
 
       - name: Check required World Cup scripts
         run: |
-          node --check scripts/update-worldcup-2026.mjs
+          if [ -f scripts/update-worldcup-2026.mjs ]; then node --check scripts/update-worldcup-2026.mjs; fi
           node --check scripts/touch-worldcup-last-checked.mjs
 
       - name: Run World Cup updater every quarter hour
         continue-on-error: true
         env:
-          # Force the existing updater to check even if there is no active match.
           WORLD_CUP_2026_FORCE_UPDATE: "1"
+          FORCE_UPDATE: "1"
 
           GITHUB_EVENT_SCHEDULE: ${{ github.event.schedule }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
 
-          # Very wide windows so smart checks do not sleep.
           WORLD_CUP_2026_FAST_BEFORE_MINUTES: "1000000"
           WORLD_CUP_2026_FAST_AFTER_MINUTES: "1000000"
           WORLD_CUP_2026_BROADCAST_BEFORE_MINUTES: "1000000"
@@ -54,7 +53,12 @@ jobs:
           WORLD_CUP_2026_BEIN_NEWS_URLS: ${{ vars.WORLD_CUP_2026_BEIN_NEWS_URLS || '' }}
           WORLD_CUP_2026_BEIN_MAX_DISCOVERED_ARTICLES: ${{ vars.WORLD_CUP_2026_BEIN_MAX_DISCOVERED_ARTICLES || '12' }}
           WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE: ${{ vars.WORLD_CUP_2026_BEIN_CONFIRMATION_SCORE || '80' }}
-        run: node scripts/update-worldcup-2026.mjs
+        run: |
+          if [ -f scripts/update-worldcup-2026.mjs ]; then
+            node scripts/update-worldcup-2026.mjs
+          else
+            echo "scripts/update-worldcup-2026.mjs not found, skipping updater."
+          fi
 
       - name: Merge safe structured result sources
         if: always()
@@ -98,17 +102,17 @@ jobs:
             echo "apply-worldcup-overrides.mjs not found, skipping."
           fi
 
-      - name: Touch World Cup heartbeat and deploy marker
+      - name: Touch quarter-hour heartbeat and deploy marker
         if: always()
         run: node scripts/touch-worldcup-last-checked.mjs
 
-      - name: Commit and push World Cup data
+      - name: Commit and push World Cup update
         if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add public/worldcup-2026 scripts/touch-worldcup-last-checked.mjs .github/workflows/update-worldcup-2026.yml
+          git add public/worldcup-2026 public/_headers scripts/touch-worldcup-last-checked.mjs .github/workflows/update-worldcup-2026.yml
 
           if git diff --cached --quiet; then
             echo "No staged changes found."
@@ -123,8 +127,8 @@ jobs:
           CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
         run: |
           if [ -z "$CLOUDFLARE_PAGES_DEPLOY_HOOK" ]; then
-            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK secret is not set. Skipping Cloudflare deploy hook."
-            echo "Create a Cloudflare Pages Deploy Hook and save it as this GitHub secret."
+            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK secret is not set. Skipping deploy hook."
+            echo "GitHub files were still updated. Add the secret to force Cloudflare deploys."
             exit 0
           fi
 

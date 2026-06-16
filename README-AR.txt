@@ -1,24 +1,33 @@
-# Ultimate fix Spider prices v2
+# إصلاح نهائي لتحديث كأس العالم كل ربع ساعة
 
-سبب فشل النسخة السابقة:
-كان فيها خطأ كتابي في أول سطر: import صار imp||t.
+## ارفع واستبدل هذه الملفات
 
-هذه نسخة مصححة وتعمل بطريقة أبسط:
-- تبحث عن اسم الجهاز.
-- تبحث عن كلمة "السعر" بعد الاسم داخل نفس كرت الجهاز.
-- تغير أول رقم بعد كلمة السعر.
+1. .github/workflows/update-worldcup-2026.yml
+2. scripts/touch-worldcup-last-checked.mjs
+3. public/_headers
 
-المطلوب:
-- Spider T777 Elite Master Plus = 20
-- Spider T666 Gold+ 5G = 30
+## ماذا يفعل الإصلاح؟
 
-## ارفع الملفين:
+- يشغل GitHub Actions كل ربع ساعة: 4، 19، 34، 49 من كل ساعة.
+- يجبر سكربت كأس العالم على الفحص مع مباراة أو بدون مباراة.
+- يحدّث metadata داخل ملفات كأس العالم.
+- يحدّث heartbeat.json و deploy-marker.txt كل تشغيل.
+- يعمل commit/push كل تشغيل.
+- يضرب Cloudflare Deploy Hook إذا كان Secret موجود.
+- public/_headers يمنع كاش ملفات /worldcup-2026/*.
 
-scripts/ultimate-fix-spider-prices-v2.mjs
-.github/workflows/ultimate-fix-spider-prices-v2.yml
+## Secret المطلوب في GitHub
 
-## بعد الرفع:
+CLOUDFLARE_PAGES_DEPLOY_HOOK
 
-GitHub > Actions > Ultimate fix Spider prices v2 > Run workflow
+إذا مش موجود، الـ workflow لن يفشل، لكنه سيكتب في اللوج أنه تخطى Cloudflare hook.
 
-بعد النجاح افتح الموقع بنافذة خفية أو Ctrl + F5.
+## بعد الرفع
+
+GitHub > Actions > Update World Cup 2026 data > Run workflow
+
+بعد النجاح راقب:
+public/worldcup-2026/heartbeat.json
+
+وراقب Cloudflare:
+Workers & Pages > مشروع الموقع > Deployments

@@ -60,12 +60,13 @@ async function touchJsonFile(fileName, nowIso, runInfo) {
   data.metadata.last_updated = nowIso;
   data.metadata.automation_heartbeat = true;
   data.metadata.automation_heartbeat_at = nowIso;
+  data.metadata.force_quarter_hour_update = true;
   data.metadata.cloudflare_deploy_trigger = true;
   data.metadata.github_run_id = runInfo.runId;
   data.metadata.github_run_number = runInfo.runNumber;
   data.metadata.github_sha = runInfo.sha;
   data.metadata.note_ar =
-    'يتم تحديث هذا الوقت كل ربع ساعة حتى لو لا توجد مباراة، وذلك لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.';
+    'تم فحص بيانات كأس العالم تلقائياً. هذا الوقت يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.';
 
   await writeJson(filePath, data);
   console.log(`[worldcup-heartbeat] touched ${path.relative(ROOT, filePath)} at ${nowIso}`);
@@ -87,13 +88,13 @@ async function writeHeartbeat(nowIso, touched, runInfo) {
     source: 'github-actions',
     github: runInfo,
     note_ar:
-      'هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. بعد commit/push، يحاول GitHub Action تشغيل Cloudflare Pages Deploy Hook إذا كان Secret موجوداً.'
+      'هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. إذا كان Cloudflare Pages مربوطاً عبر Git أو Deploy Hook، يجب أن يظهر deploy جديد بعد كل تشغيل.'
   };
 
   await writeJson(path.join(WC_DIR, 'heartbeat.json'), heartbeat);
 
   const marker = [
-    'World Cup 2026 heartbeat',
+    'World Cup 2026 quarter-hour deploy marker',
     `last_checked_at=${nowIso}`,
     `timezone=${TIMEZONE}`,
     `github_run_id=${runInfo.runId}`,
