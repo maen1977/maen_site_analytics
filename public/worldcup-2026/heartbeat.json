@@ -1,22 +1,22 @@
 {
   "name": "World Cup 2026 quarter-hour heartbeat",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-16T01:36:37+03:00",
-  "last_updated": "2026-06-16T01:36:37+03:00",
+  "last_checked_at": "2026-06-16T03:19:13+03:00",
+  "last_updated": "2026-06-16T03:19:13+03:00",
   "schedule": "every 15 minutes",
   "files_touched": 4,
   "force_cloudflare_deploy": true,
   "deploy_hook_secret_name": "CLOUDFLARE_PAGES_DEPLOY_HOOK",
   "source": "github-actions",
   "github": {
-    "runId": "27580936936",
-    "runNumber": "159",
+    "runId": "27585247176",
+    "runNumber": "160",
     "workflow": "Update World Cup 2026 data",
     "eventName": "schedule",
     "schedule": "",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "0e3124d9876e9db4988c658381733f2ebd690d66"
+    "sha": "4cbc8eb3457f85690670978af2e16dd203ca6df7"
   },
   "note_ar": "هذا الملف يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة. بعد commit/push، يحاول GitHub Action تشغيل Cloudflare Pages Deploy Hook إذا كان Secret موجوداً."
 }

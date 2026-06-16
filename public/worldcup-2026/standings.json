@@ -1,22 +1,22 @@
 {
   "metadata": {
-    "last_updated": "2026-06-16T01:36:37+03:00",
+    "last_updated": "2026-06-16T03:19:13+03:00",
     "source": "openfootball/worldcup.json + ESPN live scoreboard",
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "last_checked_at": "2026-06-16T01:36:37+03:00",
+    "last_checked_at": "2026-06-16T03:19:13+03:00",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "manual_overrides_applied": true,
-    "last_data_change_at": "2026-06-16T01:36:37+03:00",
+    "last_data_change_at": "2026-06-16T03:19:13+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-16T01:36:37+03:00",
+    "automation_heartbeat_at": "2026-06-16T03:19:13+03:00",
     "cloudflare_deploy_trigger": true,
-    "github_run_id": "27580936936",
-    "github_run_number": "159",
-    "github_sha": "0e3124d9876e9db4988c658381733f2ebd690d66",
+    "github_run_id": "27585247176",
+    "github_run_number": "160",
+    "github_sha": "4cbc8eb3457f85690670978af2e16dd203ca6df7",
     "note_ar": "يتم تحديث هذا الوقت كل ربع ساعة حتى لو لا توجد مباراة، وذلك لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة."
   },
   "standings": [
@@ -479,6 +479,36 @@
       "group": "H",
       "rows": [
         {
+          "team": "Saudi Arabia",
+          "team_ar": "السعودية",
+          "group": "H",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goals_for": 1,
+          "goals_against": 1,
+          "goal_diff": 0,
+          "points": 1,
+          "rank": 1,
+          "qualified": true
+        },
+        {
+          "team": "Uruguay",
+          "team_ar": "الأوروغواي",
+          "group": "H",
+          "played": 1,
+          "wins": 0,
+          "draws": 1,
+          "losses": 0,
+          "goals_for": 1,
+          "goals_against": 1,
+          "goal_diff": 0,
+          "points": 1,
+          "rank": 2,
+          "qualified": true
+        },
+        {
           "team": "Cape Verde",
           "team_ar": "الرأس الأخضر",
           "group": "H",
@@ -490,7 +520,7 @@
           "goals_against": 0,
           "goal_diff": 0,
           "points": 1,
-          "rank": 1,
+          "rank": 3,
           "qualified": true
         },
         {
@@ -505,36 +535,6 @@
           "goals_against": 0,
           "goal_diff": 0,
           "points": 1,
-          "rank": 2,
-          "qualified": true
-        },
-        {
-          "team": "Saudi Arabia",
-          "team_ar": "السعودية",
-          "group": "H",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goals_for": 0,
-          "goals_against": 0,
-          "goal_diff": 0,
-          "points": 0,
-          "rank": 3,
-          "qualified": true
-        },
-        {
-          "team": "Uruguay",
-          "team_ar": "الأوروغواي",
-          "group": "H",
-          "played": 0,
-          "wins": 0,
-          "draws": 0,
-          "losses": 0,
-          "goals_for": 0,
-          "goals_against": 0,
-          "goal_diff": 0,
-          "points": 0,
           "rank": 4,
           "qualified": false
         }
