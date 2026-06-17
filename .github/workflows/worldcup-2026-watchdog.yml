@@ -1,0 +1,86 @@
+name: World Cup 2026 watchdog every 5 minutes
+
+on:
+  schedule:
+    # GitHub cron uses UTC. This watchdog checks often, but dispatches the real update
+    # only when heartbeat is old, so it recovers from missed 15-minute schedules.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: worldcup-2026-watchdog
+  cancel-in-progress: true
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Decide if main update is needed
+        id: decide
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          const fs = require('node:fs');
+          const out = process.env.GITHUB_OUTPUT;
+          const heartbeatPath = 'public/worldcup-2026/heartbeat.json';
+          let shouldDispatch = true;
+          let ageMinutes = '';
+          let lastChecked = '';
+          let reason = 'heartbeat_missing_or_unreadable';
+
+          try {
+            const heartbeat = JSON.parse(fs.readFileSync(heartbeatPath, 'utf8'));
+            lastChecked = heartbeat.last_checked_at || heartbeat.last_updated || heartbeat.generated_at || '';
+            const parsed = Date.parse(lastChecked);
+            if (!Number.isNaN(parsed)) {
+              ageMinutes = Math.floor((Date.now() - parsed) / 60000);
+              shouldDispatch = ageMinutes >= 12;
+              reason = shouldDispatch ? 'heartbeat_older_than_12_minutes' : 'heartbeat_fresh';
+            } else {
+              shouldDispatch = true;
+              reason = 'heartbeat_time_not_parseable';
+            }
+          } catch (error) {
+            shouldDispatch = true;
+            reason = `heartbeat_error_${error.message}`;
+          }
+
+          fs.appendFileSync(out, `should_dispatch=${shouldDispatch}\n`);
+          fs.appendFileSync(out, `age_minutes=${ageMinutes}\n`);
+          fs.appendFileSync(out, `last_checked=${lastChecked}\n`);
+          fs.appendFileSync(out, `reason=${reason}\n`);
+          console.log(JSON.stringify({ shouldDispatch, ageMinutes, lastChecked, reason }, null, 2));
+          NODE
+
+      - name: Dispatch main update workflow
+        if: steps.decide.outputs.should_dispatch == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          forced_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          echo "Dispatching update-worldcup-2026.yml at ${forced_at} because: ${{ steps.decide.outputs.reason }}"
+          gh workflow run update-worldcup-2026.yml \
+            --ref main \
+            -f source="github-watchdog" \
+            -f forced_at="${forced_at}"
+
+      - name: Skip because heartbeat is fresh
+        if: steps.decide.outputs.should_dispatch != 'true'
+        shell: bash
+        run: |
+          echo "No dispatch needed. Heartbeat age: ${{ steps.decide.outputs.age_minutes }} minutes."
+          echo "Last checked: ${{ steps.decide.outputs.last_checked }}"

@@ -138,7 +138,9 @@ function buildRunInfo() {
     event_schedule: process.env.GITHUB_EVENT_SCHEDULE || '',
     repository: process.env.GITHUB_REPOSITORY || '',
     ref: process.env.GITHUB_REF || '',
-    sha: process.env.GITHUB_SHA || ''
+    sha: process.env.GITHUB_SHA || '',
+    trigger_source: process.env.WORLD_CUP_2026_TRIGGER_SOURCE || '',
+    external_forced_at: process.env.WORLD_CUP_2026_FORCED_AT || ''
   };
 }
 
@@ -196,6 +198,8 @@ function touchMetadata(data, nowIso, runInfo, extra = {}) {
   meta.github_run_number = runInfo.run_number;
   meta.github_sha = runInfo.sha;
   meta.github_event_name = runInfo.event_name;
+  meta.github_trigger_source = runInfo.trigger_source;
+  meta.external_forced_at = runInfo.external_forced_at;
   meta.cloudflare_deploy_trigger = true;
   meta.note_ar = 'تم فحص بيانات كأس العالم والقنوات تلقائياً. هذا الوقت يتغير كل ربع ساعة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.';
   Object.assign(meta, extra);

@@ -1,84 +1,91 @@
-# تحديث كأس العالم كل ربع ساعة — ملفات جاهزة للرفع
+# Maensat emergency 15-minute watchdog patch
 
-هذه الحزمة تعمل 3 أشياء معًا:
+هذه حزمة الطوارئ التي تعمل بطبقتين:
 
-1. تشغل GitHub Actions كل 15 دقيقة على الفرع `main`.
-2. تفحص ملفات مباريات كأس العالم والقنوات الناقلة، وتغيّر `heartbeat.json` و `update-check.json` وملفات البيانات حتى لو لم تتغير النتيجة.
-3. تجبر Cloudflare Pages على نشر نسخة حديثة: إمّا عبر Deploy Hook، أو عبر Git integration، أو اختيارياً عبر Wrangler Direct Deploy إذا أضفت توكن Cloudflare.
+1. GitHub workflow رئيسي يحدث ملفات كأس العالم كل 15 دقيقة.
+2. GitHub watchdog يشتغل كل 5 دقائق، يقرأ `heartbeat.json`، وإذا صار آخر تحديث أقدم من 12 دقيقة يشغّل التحديث الرئيسي فورًا.
+3. اختياري لكنه الأقوى: Cloudflare Worker Cron يشغّل GitHub workflow كل 15 دقيقة من خارج GitHub، حتى لا نعتمد على GitHub schedule وحده.
 
-## ارفع الملفات كما هي
-
-ارفع هذه الملفات بنفس المسارات داخل مستودع GitHub:
+## ارفع هذه الملفات إلى GitHub واستبدل الموجود
 
 ```text
 .github/workflows/update-worldcup-2026.yml
+.github/workflows/worldcup-2026-watchdog.yml
 scripts/worldcup-quarter-hour-force.mjs
 public/_headers
 ```
 
-إذا سألك GitHub هل تستبدل الملفات القديمة، اختر Replace / Commit changes.
+ارفعهم من جذر الريبو، وليس داخل مجلد الحزمة.
 
-## إعداد Cloudflare المهم جدًا
-
-من Cloudflare:
-
-1. افتح Workers & Pages.
-2. اختر مشروع Pages الخاص بالموقع، غالبًا اسمه `maensat`.
-3. ادخل Settings ثم Builds.
-4. اعمل Add deploy hook.
-5. اختر الفرع `main`.
-6. انسخ رابط الـ Deploy Hook.
+## بعد الرفع مباشرة
 
 من GitHub:
 
-1. افتح المستودع `maen1977/maen_site_analytics`.
-2. Settings → Secrets and variables → Actions.
-3. New repository secret.
-4. الاسم:
+1. افتح Actions.
+2. افتح `World Cup 2026 watchdog every 5 minutes`.
+3. اضغط `Run workflow` مرة واحدة.
+4. بعدها افتح `Update World Cup 2026 every 15 minutes` وتأكد أن تشغيل جديد ظهر.
+
+الـ watchdog لا يكتب ملفات بنفسه. هو فقط يراقب آخر نبضة ويشغّل ملف التحديث الرئيسي إذا تأخر.
+
+## Cloudflare Worker Cron — الضمان الأقوى
+
+هذا اختياري لكنه أفضل حل لو بدك مش بس GitHub. داخل الحزمة يوجد:
 
 ```text
-CLOUDFLARE_PAGES_DEPLOY_HOOK
+cloudflare-worker/maensat-github-dispatch-worker.js
+cloudflare-worker/wrangler.toml
 ```
 
-5. القيمة: رابط الـ Deploy Hook من Cloudflare.
+### من GitHub اعمل Token
 
-## اختياري لكن أقوى: النشر المباشر عبر Wrangler
+GitHub → Settings → Developer settings → Personal access tokens → Fine-grained token
 
-إذا أردت أن يرفع GitHub الملفات مباشرة إلى Cloudflare حتى لو Git integration فيه مشكلة، أضف هذه الأسرار:
+اختر الريبو:
 
 ```text
-CLOUDFLARE_API_TOKEN
-CLOUDFLARE_ACCOUNT_ID
+maen1977/maen_site_analytics
 ```
 
-وحط هذا كـ Repository variable إذا اسم مشروع Pages ليس `maensat`:
+الصلاحية المطلوبة:
 
 ```text
-CLOUDFLARE_PAGES_PROJECT
+Actions: Read and write
 ```
 
-القيمة المتوقعة غالبًا:
+لا تعطِه صلاحيات زيادة. خليه ينتهي بعد كأس العالم.
+
+### من Cloudflare
+
+1. Workers & Pages.
+2. Create Worker.
+3. الصق محتوى `maensat-github-dispatch-worker.js`.
+4. Settings → Variables and Secrets.
+5. أضف Secret باسم:
 
 ```text
-maensat
+GITHUB_TOKEN
 ```
 
-## كيف تتأكد أنه اشتغل؟
+والقيمة هي GitHub token.
 
-بعد الرفع:
-
-1. GitHub → Actions → Update World Cup 2026 every 15 minutes.
-2. اضغط Run workflow للتجربة الآن.
-3. بعد نجاح التشغيل، افتح هذه الملفات في المستودع وتأكد أن الوقت تغيّر:
+6. أضف Variables عادية:
 
 ```text
-public/worldcup-2026/heartbeat.json
-public/worldcup-2026/update-check.json
-public/worldcup-2026/deploy-marker.txt
+GITHUB_OWNER = maen1977
+GITHUB_REPO = maen_site_analytics
+GITHUB_WORKFLOW_ID = update-worldcup-2026.yml
+GITHUB_REF = main
 ```
 
-## ملاحظات مهمة
+7. Settings → Triggers → Cron Triggers → Add cron:
 
-- GitHub Actions قد يتأخر أحيانًا، خصوصًا عند بداية الساعة، لذلك الجدولة هنا على الدقائق `4,19,34,49` بدل `0,15,30,45`.
-- إذا لم تضف `CLOUDFLARE_PAGES_DEPLOY_HOOK`، سيظل GitHub يحدّث الملفات، لكن Cloudflare قد لا ينشر فورًا إذا الربط مع GitHub غير مضبوط.
-- ملف `public/_headers` يمنع كاش ملفات كأس العالم حتى تظهر آخر نسخة للزائر.
+```text
+*/15 * * * *
+```
+
+## ملاحظات
+
+- لا ترسل GitHub token لأي شخص ولا تضعه داخل الملفات.
+- GitHub schedule ممكن يتأخر أو ينحذف تحت الضغط، لذلك أضفنا watchdog.
+- Cloudflare Cron هو الطبقة الخارجية الأقوى لأنه يشغّل GitHub يدويًا عبر API كل 15 دقيقة.

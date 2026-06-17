@@ -1,0 +1,13 @@
+name = "maensat-worldcup-github-cron"
+main = "maensat-github-dispatch-worker.js"
+compatibility_date = "2026-06-18"
+workers_dev = true
+
+[triggers]
+crons = ["*/15 * * * *"]
+
+[vars]
+GITHUB_OWNER = "maen1977"
+GITHUB_REPO = "maen_site_analytics"
+GITHUB_WORKFLOW_ID = "update-worldcup-2026.yml"
+GITHUB_REF = "main"
