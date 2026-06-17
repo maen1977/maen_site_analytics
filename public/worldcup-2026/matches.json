@@ -7,15 +7,15 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-17T04:42:46+03:00",
-    "last_checked_at": "2026-06-17T04:42:46+03:00",
+    "last_updated": "2026-06-17T09:52:20+03:00",
+    "last_checked_at": "2026-06-17T09:52:20+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
     "multi_source_results_update": true,
-    "multi_source_result_candidates": 7,
+    "multi_source_result_candidates": 8,
     "multi_source_result_changes": 0,
     "emergency_score_repair": {
       "enabled": true,
@@ -25,14 +25,14 @@
     },
     "manual_overrides_applied": true,
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
-    "last_data_change_at": "2026-06-17T04:42:46+03:00",
+    "last_data_change_at": "2026-06-17T09:52:20+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-17T04:42:46+03:00",
+    "automation_heartbeat_at": "2026-06-17T09:52:20+03:00",
     "force_quarter_hour_update": true,
     "cloudflare_deploy_trigger": true,
-    "github_run_id": "27660079572",
-    "github_run_number": "169",
-    "github_sha": "3e8f69b24fa49d987213040dc2b32d4dacc75016",
+    "github_run_id": "27671245713",
+    "github_run_number": "170",
+    "github_sha": "0183ced57c11ca2253e4d8d73b15c44b12aaf5f1",
     "note_ar": "تم فحص بيانات كأس العالم تلقائياً. هذا الوقت يتغير كل ربع ساعة مع وجود مباراة أو بدون مباراة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة."
   },
   "groups": {
@@ -638,7 +638,7 @@
           "home_score": 0,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -684,7 +684,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -730,7 +730,7 @@
           "home_score": 1,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -776,7 +776,7 @@
           "home_score": 2,
           "away_score": 2,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -826,7 +826,7 @@
           "home_score": 3,
           "away_score": 1,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -876,7 +876,7 @@
           "home_score": 1,
           "away_score": 4,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -897,32 +897,36 @@
       "team2_ar": "الجزائر",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": "live",
-      "home_score": 1,
+      "status": "finished",
+      "home_score": 3,
       "away_score": 0,
       "score": {
-        "live": [
+        "ft": [
+          3,
+          0
+        ],
+        "ht": [
           1,
           0
         ],
         "source": "espn",
         "event_id": "760433",
-        "status_detail": "40'",
-        "clock": "40'"
+        "status_detail": "FT",
+        "clock": "90'+6'"
       },
       "score_source": "espn",
-      "live_clock": "40'",
-      "live_status_detail": "40'",
+      "live_clock": "90'+6'",
+      "live_status_detail": "FT",
       "search_text": "Argentina Algeria الأرجنتين الجزائر Kansas City Kansas City Stadium / Arrowhead Stadium دور المجموعات J",
       "score_sources": [
         {
           "source_name": "ESPN FIFA World scoreboard",
           "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
-          "status": "live",
-          "home_score": 1,
+          "status": "finished",
+          "home_score": 3,
           "away_score": 0,
           "confidence": 88,
-          "collected_at": "2026-06-17T04:42:38+03:00"
+          "collected_at": "2026-06-17T09:52:13+03:00"
         }
       ]
     },
@@ -943,14 +947,38 @@
       "team2_ar": "الأردن",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": null,
-      "score_source": "openfootball",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Austria Jordan النمسا الأردن San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات J"
+      "status": "finished",
+      "home_score": 3,
+      "away_score": 1,
+      "score": {
+        "ft": [
+          3,
+          1
+        ],
+        "ht": [
+          1,
+          0
+        ],
+        "source": "espn",
+        "event_id": "760431",
+        "status_detail": "FT",
+        "clock": "90'+14'"
+      },
+      "score_source": "espn",
+      "live_clock": "90'+14'",
+      "live_status_detail": "FT",
+      "search_text": "Austria Jordan النمسا الأردن San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور المجموعات J",
+      "score_sources": [
+        {
+          "source_name": "ESPN FIFA World scoreboard",
+          "source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard",
+          "status": "finished",
+          "home_score": 3,
+          "away_score": 1,
+          "confidence": 88,
+          "collected_at": "2026-06-17T09:52:13+03:00"
+        }
+      ]
     },
     {
       "id": "M061",
