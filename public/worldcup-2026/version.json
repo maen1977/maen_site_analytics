@@ -1,18 +1,18 @@
 {
-  "version": "f91e1c82182a",
-  "generated_at": "2026-06-18T00:47:55+03:00",
-  "next_expected_check_at": "2026-06-18T01:02:55+03:00",
+  "version": "d4e2cf1f0ea5",
+  "generated_at": "2026-06-18T01:22:41+03:00",
+  "next_expected_check_at": "2026-06-18T01:37:41+03:00",
   "refresh_interval_minutes": 15,
   "github": {
-    "run_id": "27721905954",
-    "run_number": "176",
+    "run_id": "27723534177",
+    "run_number": "177",
     "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "workflow_dispatch",
+    "event_name": "schedule",
     "event_schedule": "",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "148139a9c0ca22c9cfb441c59c5e4f85ac30b2e7",
-    "trigger_source": "github-watchdog",
-    "external_forced_at": "2026-06-17T21:47:42Z"
+    "sha": "92fb7e7e3172b0155bb0226e5cf08ace51bf6478",
+    "trigger_source": "schedule",
+    "external_forced_at": ""
   }
 }
