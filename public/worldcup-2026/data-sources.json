@@ -4,7 +4,19 @@
     "name_ar": "إعدادات تحديث كأس العالم 2026 من أكثر من مصدر",
     "timezone": "Asia/Amman",
     "updated_at": "2026-06-13",
-    "note_ar": "نسخة آمنة: beIN تستخدم للقنوات فقط. النتائج تأتي من مصادر structured مثل ESPN وAPI ثم التصحيحات اليدوية، لمنع تحويل وقت المباراة 22:00 إلى نتيجة 22-0."
+    "note_ar": "تم فحص بيانات كأس العالم والقنوات تلقائياً. هذا الوقت يتغير كل ربع ساعة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.",
+    "last_checked_at": "2026-06-17T23:50:54+03:00",
+    "last_updated": "2026-06-17T23:50:54+03:00",
+    "automation_heartbeat": true,
+    "automation_heartbeat_at": "2026-06-17T23:50:54+03:00",
+    "force_quarter_hour_update": true,
+    "refresh_interval_minutes": 15,
+    "cache_buster": "7c38c92386049bbc",
+    "github_run_id": "27718923156",
+    "github_run_number": "175",
+    "github_sha": "44e29da651a304b30d5b3cf073de4f62d2efb793",
+    "github_event_name": "workflow_dispatch",
+    "cloudflare_deploy_trigger": true
   },
   "results_sources": [
     {
