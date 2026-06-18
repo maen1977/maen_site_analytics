@@ -1,28 +1,28 @@
 {
   "name": "Maensat World Cup 2026 quarter-hour forced check",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-18T09:25:47+03:00",
-  "last_updated": "2026-06-18T09:25:47+03:00",
-  "next_expected_check_at": "2026-06-18T09:40:47+03:00",
+  "last_checked_at": "2026-06-18T12:04:41+03:00",
+  "last_updated": "2026-06-18T12:04:41+03:00",
+  "next_expected_check_at": "2026-06-18T12:19:41+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions",
   "github": {
-    "run_id": "27741022920",
-    "run_number": "182",
+    "run_id": "27748772593",
+    "run_number": "183",
     "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "workflow_dispatch",
+    "event_name": "schedule",
     "event_schedule": "",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "a611228a4f484ae1197a2741428887314ba2cb27",
-    "trigger_source": "github-watchdog",
-    "external_forced_at": "2026-06-18T06:25:30Z"
+    "sha": "fd583b8241efda90a259dc31088572715f6cc971",
+    "trigger_source": "schedule",
+    "external_forced_at": ""
   },
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
-      "events_seen": 5,
+      "events_seen": 4,
       "error": ""
     },
     "broadcast_source_url": {
@@ -46,7 +46,7 @@
     ],
     "errors_count": 0
   },
-  "cache_buster": "79e24e5a1a24ca15f4821e06b91c98eb292b5e42",
+  "cache_buster": "d16b0ff125d2601ca1dfef9c262ce875e8d210a1",
   "note_ar": "هذا الملف يتغير كل ربع ساعة حتى لو لم تتغير النتيجة أو القنوات، حتى يجبر GitHub وCloudflare Pages على نشر نسخة حديثة.",
   "errors": []
 }
