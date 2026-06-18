@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-19T00:05:45+03:00",
-    "last_checked_at": "2026-06-19T00:05:45+03:00",
+    "last_updated": "2026-06-19T00:28:38+03:00",
+    "last_checked_at": "2026-06-19T00:28:38+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -27,26 +27,26 @@
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
     "last_data_change_at": "2026-06-17T23:31:36+03:00",
     "automation_heartbeat": true,
-    "automation_heartbeat_at": "2026-06-19T00:05:45+03:00",
+    "automation_heartbeat_at": "2026-06-19T00:28:38+03:00",
     "force_quarter_hour_update": true,
     "cloudflare_deploy_trigger": true,
-    "github_run_id": "27789286552",
-    "github_run_number": "191",
-    "github_sha": "036eccf17345e8a4dc3671cffde23209ccf2da54",
+    "github_run_id": "27790427938",
+    "github_run_number": "192",
+    "github_sha": "17eba009c93bab9ff188104daf75ad4b69cf2b93",
     "note_ar": "تم فحص بيانات كأس العالم والقنوات تلقائياً. هذا الوقت يتغير كل ربع ساعة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.",
-    "live_score_checked_at": "2026-06-19T00:05:45+03:00",
+    "live_score_checked_at": "2026-06-19T00:28:38+03:00",
     "live_score_events_seen": 4,
     "live_score_matches_updated": 3,
     "refresh_interval_minutes": 15,
-    "cache_buster": "08fd5ac91f815edf",
-    "github_event_name": "schedule",
+    "cache_buster": "bd6038b33caade13",
+    "github_event_name": "workflow_dispatch",
     "quarter_hour_match_check": true,
-    "quarter_hour_match_check_at": "2026-06-19T00:05:45+03:00",
+    "quarter_hour_match_check_at": "2026-06-19T00:28:38+03:00",
     "espn_scoreboard_ok": true,
     "espn_events_seen": 4,
     "espn_matches_updated": 3,
-    "github_trigger_source": "schedule",
-    "external_forced_at": ""
+    "github_trigger_source": "github-watchdog",
+    "external_forced_at": "2026-06-18T21:28:27Z"
   },
   "groups": {
     "A": [
@@ -1220,7 +1220,7 @@
       "score": {
         "source": "espn",
         "status_detail": "STATUS_FULL_TIME",
-        "checked_at": "2026-06-19T00:05:45+03:00",
+        "checked_at": "2026-06-19T00:28:38+03:00",
         "ft": [
           4,
           1
@@ -1230,7 +1230,7 @@
       "live_clock": null,
       "live_status_detail": "STATUS_FULL_TIME",
       "search_text": "Switzerland Bosnia & Herzegovina سويسرا البوسنة والهرسك Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور المجموعات B",
-      "live_checked_at": "2026-06-19T00:05:45+03:00",
+      "live_checked_at": "2026-06-19T00:28:38+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200"
     },
@@ -1257,13 +1257,13 @@
       "score": {
         "source": "espn",
         "status_detail": "STATUS_SCHEDULED",
-        "checked_at": "2026-06-19T00:05:45+03:00"
+        "checked_at": "2026-06-19T00:28:38+03:00"
       },
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": "STATUS_SCHEDULED",
       "search_text": "Canada Qatar كندا قطر Vancouver Vancouver Stadium / BC Place دور المجموعات B",
-      "live_checked_at": "2026-06-19T00:05:45+03:00",
+      "live_checked_at": "2026-06-19T00:28:38+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200"
     },
@@ -1290,13 +1290,13 @@
       "score": {
         "source": "espn",
         "status_detail": "STATUS_SCHEDULED",
-        "checked_at": "2026-06-19T00:05:45+03:00"
+        "checked_at": "2026-06-19T00:28:38+03:00"
       },
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": "STATUS_SCHEDULED",
       "search_text": "Mexico South Korea المكسيك كوريا الجنوبية Guadalajara (Zapopan) Estadio Guadalajara / Estadio Akron دور المجموعات A",
-      "live_checked_at": "2026-06-19T00:05:45+03:00",
+      "live_checked_at": "2026-06-19T00:28:38+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200"
     },
