@@ -2,7 +2,6 @@ name: Update World Cup 2026 every 15 minutes
 
 on:
   schedule:
-    # GitHub cron uses UTC. These minutes avoid the top of the hour as much as possible.
     - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
     inputs:
@@ -32,21 +31,17 @@ env:
   WORLD_CUP_2026_TRIGGER_SOURCE: ${{ github.event.inputs.source || github.event_name }}
   WORLD_CUP_2026_FORCED_AT: ${{ github.event.inputs.forced_at || '' }}
   WORLD_CUP_2026_ESPN_SCOREBOARD_URL: ${{ vars.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200' }}
-  WORLD_CUP_2026_BROADCAST_SOURCE_URL: ${{ vars.WORLD_CUP_2026_BROADCAST_SOURCE_URL || '' }}
   CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
 
 jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
     timeout-minutes: 14
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          # If you add GH_PAT_FOR_AUTOMATION later, the push can be made with your PAT.
-          # If not, GitHub's built-in token is enough for committing the data files.
           token: ${{ secrets.GH_PAT_FOR_AUTOMATION || github.token }}
 
       - name: Setup Node.js
@@ -76,7 +71,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-git add public/worldcup-2026
+          # نضيف الملفات المهمة فقط (أنظف وأدق)
+          git add public/worldcup-2026/matches.json \
+                  public/worldcup-2026/standings.json \
+                  public/worldcup-2026/bracket.json \
+                  public/worldcup-2026/groups.json \
+                  public/worldcup-2026/version.json \
+                  public/worldcup-2026/deploy-marker.txt \
+                  public/worldcup-2026/update-errors.json 2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changed files to commit."
@@ -96,7 +99,6 @@ git add public/worldcup-2026
           set -euo pipefail
           if [ -z "${CLOUDFLARE_PAGES_DEPLOY_HOOK:-}" ]; then
             echo "CLOUDFLARE_PAGES_DEPLOY_HOOK is not set; skipping deploy hook."
-            echo "If Cloudflare Pages is connected to GitHub, the push above may still deploy automatically."
             exit 0
           fi
           echo "Triggering Cloudflare Pages deploy hook..."
