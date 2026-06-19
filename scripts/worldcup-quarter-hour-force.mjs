@@ -19,7 +19,7 @@ function normalize(str) {
 
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup-Strong' } });
     if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
   } catch {
@@ -65,13 +65,15 @@ async function main() {
   } catch {}
 
   let updated = 0;
+  let repaired = 0;
+  const problems = [];
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
-      const previousHome = match.home_score;
-      const previousAway = match.away_score;
+      const prevHome = match.home_score;
+      const prevAway = match.away_score;
 
-      // مطابقة مع ESPN
+      // مطابقة قوية
       const espnMatch = espnEvents.find(e =>
         (e.id && String(match.id) === e.id) ||
         (normalize(match.team1 || match.home_team) === normalize(e.home) &&
@@ -87,27 +89,38 @@ async function main() {
         updated++;
       }
 
-      // تحديث تلقائي ذكي + إصلاح النتائج الخاطئة
+      // تحديث تلقائي + إصلاح النتائج الخاطئة (الأقوى)
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
-        const hoursPassed = (now - kickoff) / (1000 * 60 * 60);
+        const hours = (now - kickoff) / (1000 * 60 * 60);
 
-        if (hoursPassed > 3) {
+        if (hours > 3) {
           match.status = 'finished';
           match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
 
-          // إصلاح تلقائي: لو النتيجة صارت 0-0 وكانت قبل كذا فيها أهداف → نحتفظ بالنتيجة السابقة
-          if ((match.home_score === 0 && match.away_score === 0) && (previousHome > 0 || previousAway > 0)) {
-            match.home_score = previousHome;
-            match.away_score = previousAway;
+          // إصلاح قوي: لو ESPN رجع 0-0 وكان فيه نتيجة سابقة غير صفرية → نحتفظ بالسابقة
+          if ((match.home_score === 0 && match.away_score === 0) && (prevHome > 0 || prevAway > 0)) {
+            match.home_score = prevHome;
+            match.away_score = prevAway;
             match.live_status_detail = 'انتهت المباراة (تم الإصلاح التلقائي)';
+            repaired++;
+          }
+
+          // تسجيل المشاكل
+          if (match.home_score === 0 && match.away_score === 0) {
+            problems.push({
+              id: match.id,
+              num: match.num,
+              match: `${match.team1 || match.home_team} vs ${match.team2 || match.away_team}`,
+              reason: 'ESPN returned 0-0 for finished match'
+            });
           }
           updated++;
         }
       }
     }
 
-    // ترتيب المباريات حسب الرقم
+    // ترتيب المباريات
     data.matches.sort((a, b) => {
       const numA = Number(a.num || a.id?.replace('M', '') || 9999);
       const numB = Number(b.num || b.id?.replace('M', '') || 9999);
@@ -116,7 +129,12 @@ async function main() {
   }
 
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
-  console.log(`[worldcup] Updated ${updated} matches | Auto-repair enabled | Sorted | ${nowIso}`);
+
+  console.log(`[worldcup] Updated: ${updated} | Repaired: ${repaired} | Problems: ${problems.length}`);
+  if (problems.length > 0) {
+    console.log('[worldcup] Matches that may need attention:', JSON.stringify(problems, null, 2));
+  }
+  console.log(`[worldcup] Done at ${nowIso}`);
 }
 
 main().catch(console.error);
