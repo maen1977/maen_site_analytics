@@ -40,7 +40,7 @@ function extractEspnEvents(scoreboard) {
 
     return {
       id: String(e.id || ''),
-      match_number: e.number || null,
+      num: e.number || null,
       home: home.team?.displayName || '',
       away: away.team?.displayName || '',
       home_score: Number(home.score) || null,
@@ -56,35 +56,33 @@ async function main() {
   const now = new Date();
   const nowIso = jordanIso(now);
 
-  // جلب البيانات من ESPN
   const espn = await fetchJson('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200');
   const espnEvents = espn.ok ? extractEspnEvents(espn.data) : [];
 
-  // تحميل ملف المباريات
   const matchesPath = path.join(WC_DIR, 'matches.json');
   let data = { matches: [] };
 
   try {
     data = JSON.parse(await fs.readFile(matchesPath, 'utf8'));
   } catch (e) {
-    console.log("Could not read matches.json, starting fresh");
+    console.log("Warning: Could not read matches.json");
   }
 
   let updated = 0;
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
-      // تحسين المطابقة (بالـ ID أو بالاسم)
+      // تحسين المطابقة (ID + اسم الفريقين)
       const espnMatch = espnEvents.find(e => 
         (e.id && String(match.id) === e.id) ||
-        (normalize(match.home_team) === normalize(e.home) && 
-         normalize(match.away_team) === normalize(e.away))
+        (normalize(match.team1 || match.home_team) === normalize(e.home) && 
+         normalize(match.team2 || match.away_team) === normalize(e.away))
       );
 
       if (espnMatch) {
         match.status = espnMatch.status;
-        match.home_score = espnMatch.home_score;
-        match.away_score = espnMatch.away_score;
+        if (espnMatch.home_score !== null) match.home_score = espnMatch.home_score;
+        if (espnMatch.away_score !== null) match.away_score = espnMatch.away_score;
         match.live_status_detail = espnMatch.status_detail;
         match.last_live_update = nowIso;
         updated++;
@@ -103,17 +101,15 @@ async function main() {
       }
     }
 
-    // ترتيب المباريات حسب رقم المباراة
+    // **ترتيب المباريات حسب رقم المباراة (مهم جداً)**
     data.matches.sort((a, b) => {
-      const numA = Number(a.match_number || a.id) || 9999;
-      const numB = Number(b.match_number || b.id) || 9999;
+      const numA = Number(a.num || a.id?.replace('M', '') || 9999);
+      const numB = Number(b.num || b.id?.replace('M', '') || 9999);
       return numA - numB;
     });
   }
 
-  // حفظ الملف
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
-
   console.log(`[worldcup] Updated ${updated} matches | Sorted by match number | ${nowIso}`);
 }
 
