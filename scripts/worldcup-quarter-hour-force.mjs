@@ -1,65 +1,49 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import crypto from 'node:crypto';
 
 const ROOT = process.cwd();
 const WC_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TIMEZONE = 'Asia/Amman';
-const INTERVAL_MINUTES = Number(process.env.WORLD_CUP_2026_INTERVAL_MINUTES || 15);
-const ESPN_URL = process.env.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200';
 
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
-    timeZone: TIMEZONE,
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
+    timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
   }).format(date).replace(' ', 'T') + '+03:00';
 }
 
-function normalizeText(input) {
-  return String(input || '').toLowerCase().trim();
-}
-
-function parseDateMaybe(value) {
-  if (!value) return null;
-  const date = new Date(value);
-  return isNaN(date.getTime()) ? null : date;
+function normalize(str) {
+  return String(str || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 async function fetchJson(url) {
   try {
     const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup' } });
-    if (!res.ok) return { ok: false, status: res.status };
+    if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
-  } catch (e) {
-    return { ok: false, error: e.message };
+  } catch {
+    return { ok: false };
   }
 }
 
 function extractEspnEvents(scoreboard) {
   const events = scoreboard?.events || [];
-  return events.map(event => {
-    const comp = event.competitions?.[0] || {};
-    const competitors = comp.competitors || [];
-    const home = competitors.find(c => c.homeAway === 'home') || competitors[0] || {};
-    const away = competitors.find(c => c.homeAway === 'away') || competitors[1] || {};
-    const statusType = comp.status?.type || event.status?.type || {};
-    const state = String(statusType.state || '').toLowerCase();
-    const completed = Boolean(statusType.completed);
+  return events.map(e => {
+    const comp = e.competitions?.[0] || {};
+    const comps = comp.competitors || [];
+    const home = comps.find(c => c.homeAway === 'home') || comps[0] || {};
+    const away = comps.find(c => c.homeAway === 'away') || comps[1] || {};
+    const status = comp.status?.type || {};
 
     return {
-      id: String(event.id || ''),
+      id: String(e.id || ''),
       home: home.team?.displayName || '',
       away: away.team?.displayName || '',
       home_score: Number(home.score) || null,
       away_score: Number(away.score) || null,
-      status: completed ? 'finished' : state === 'in' ? 'live' : 'scheduled',
-      status_detail: statusType.name || statusType.description || '',
-      date: event.date
+      status: status.completed ? 'finished' : status.state === 'in' ? 'live' : 'scheduled',
+      status_detail: status.name || status.description || '',
+      date: e.date
     };
   });
 }
@@ -68,27 +52,27 @@ async function main() {
   const now = new Date();
   const nowIso = jordanIso(now);
 
-  const espnResult = await fetchJson(ESPN_URL);
-  const espnEvents = espnResult.ok ? extractEspnEvents(espnResult.data) : [];
+  const espn = await fetchJson('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200');
+  const espnEvents = espn.ok ? extractEspnEvents(espn.data) : [];
 
   const matchesPath = path.join(WC_DIR, 'matches.json');
-  let matchesData = { matches: [] };
+  let data = { matches: [] };
 
   try {
-    const raw = await fs.readFile(matchesPath, 'utf8');
-    matchesData = JSON.parse(raw);
+    data = JSON.parse(await fs.readFile(matchesPath, 'utf8'));
   } catch {}
 
-  if (Array.isArray(matchesData.matches)) {
-    let updated = 0;
+  let updated = 0;
 
-    for (const match of matchesData.matches) {
-      // 1. تحديث من ESPN
-      const espnMatch = espnEvents.find(e =>
-        e.id === String(match.id) ||
-        (normalizeText(match.home_team) === normalizeText(e.home) &&
-         normalizeText(match.away_team) === normalizeText(e.away))
-      );
+  if (Array.isArray(data.matches)) {
+    for (const match of data.matches) {
+      // تحسين المطابقة
+      const espnMatch = espnEvents.find(e => {
+        const idMatch = e.id && String(match.id) === e.id;
+        const nameMatch = normalize(match.home_team) === normalize(e.home) &&
+                          normalize(match.away_team) === normalize(e.away);
+        return idMatch || nameMatch;
+      });
 
       if (espnMatch) {
         match.status = espnMatch.status;
@@ -99,28 +83,23 @@ async function main() {
         updated++;
       }
 
-      // 2. تحديث تلقائي: أي مباراة "مباشر" مر عليها أكثر من 3 ساعات → تحولها لـ "انتهت"
-      if ((match.status === 'live' || match.status === 'مباشر') && match.kickoff_utc) {
-        const kickoff = parseDateMaybe(match.kickoff_utc);
-        if (kickoff) {
-          const hoursSinceStart = (now - kickoff) / (1000 * 60 * 60);
-          if (hoursSinceStart > 3) {
-            match.status = 'finished';
-            match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
-            updated++;
-          }
+      // تحديث تلقائي ذكي (لو مر وقت طويل + فيه نتيجة)
+      if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
+        const kickoff = new Date(match.kickoff_utc);
+        const hours = (now - kickoff) / (1000 * 60 * 60);
+
+        // لو مر أكثر من ساعتين ونص وفيه نتيجة → خلصها
+        if (hours > 2.5 && (match.home_score !== null || match.away_score !== null)) {
+          match.status = 'finished';
+          match.live_status_detail = 'انتهت المباراة';
+          updated++;
         }
       }
     }
-
-    console.log(`[worldcup] Updated ${updated} matches`);
   }
 
-  // حفظ الملف
-  await fs.mkdir(WC_DIR, { recursive: true });
-  await fs.writeFile(matchesPath, JSON.stringify(matchesData, null, 2));
-
-  console.log(`[worldcup] Done at ${nowIso}`);
+  await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
+  console.log(`[worldcup] Updated ${updated} matches at ${nowIso}`);
 }
 
 main().catch(console.error);
