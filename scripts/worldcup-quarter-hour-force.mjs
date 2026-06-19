@@ -86,7 +86,7 @@ async function main() {
         updated++;
       }
 
-      // === إصلاح تلقائي قوي جداً ===
+      // === إصلاح تلقائي قوي ===
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
         const hours = (now - kickoff) / (1000 * 60 * 60);
