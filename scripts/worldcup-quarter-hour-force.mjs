@@ -7,8 +7,7 @@ const TIMEZONE = 'Asia/Amman';
 
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
-    timeZone: TIMEZONE,
-    year: 'numeric', month: '2-digit', day: '2-digit',
+    timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   }).format(date).replace(' ', 'T') + '+03:00';
 }
@@ -19,7 +18,7 @@ function normalize(str) {
 
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup-Strong' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup-Final' } });
     if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
   } catch {
@@ -54,24 +53,20 @@ async function main() {
   const now = new Date();
   const nowIso = jordanIso(now);
 
-  // 1. تحميل التصحيحات اليدوية (أولوية عالية)
+  // تحميل التصحيحات اليدوية (أعلى أولوية)
   const overridesPath = path.join(WC_DIR, 'manual-results-overrides.json');
   let overrides = {};
   try {
     const raw = await fs.readFile(overridesPath, 'utf8');
     const parsed = JSON.parse(raw);
     if (parsed.results && Array.isArray(parsed.results)) {
-      for (const o of parsed.results) {
-        if (o.id) overrides[o.id] = o;
-      }
+      for (const o of parsed.results) if (o.id) overrides[o.id] = o;
     }
   } catch {}
 
-  // 2. جلب بيانات ESPN
   const espn = await fetchJson('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200');
   const espnEvents = espn.ok ? extractEspnEvents(espn.data) : [];
 
-  // 3. تحميل ملف المباريات
   const matchesPath = path.join(WC_DIR, 'matches.json');
   let data = { matches: [] };
   try {
@@ -80,9 +75,14 @@ async function main() {
 
   let updated = 0;
   let overridden = 0;
+  let repaired = 0;
+  const problems = [];
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
+      const prevHome = match.home_score;
+      const prevAway = match.away_score;
+
       // === أولوية 1: التصحيح اليدوي ===
       if (overrides[match.id]) {
         const o = overrides[match.id];
@@ -93,7 +93,7 @@ async function main() {
         match.score_source = 'manual-override';
         overridden++;
         updated++;
-        continue; // ما نكملش على ESPN
+        continue;
       }
 
       // === أولوية 2: ESPN ===
@@ -112,7 +112,7 @@ async function main() {
         updated++;
       }
 
-      // === أولوية 3: تحديث تلقائي ذكي ===
+      // === أولوية 3: إصلاح تلقائي قوي + حفظ النتائج السابقة ===
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
         const hours = (now - kickoff) / (1000 * 60 * 60);
@@ -120,12 +120,36 @@ async function main() {
         if (hours > 3) {
           match.status = 'finished';
           match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
+
+          // إصلاح قوي: لو ESPN رجع 0-0 وكان فيه نتيجة سابقة غير صفرية → نحتفظ بالسابقة
+          if ((match.home_score === 0 && match.away_score === 0) && (prevHome > 0 || prevAway > 0)) {
+            match.home_score = prevHome;
+            match.away_score = prevAway;
+            match.live_status_detail = 'انتهت المباراة (تم الإصلاح التلقائي)';
+            repaired++;
+          }
+
+          if (match.home_score === 0 && match.away_score === 0) {
+            problems.push(`${match.id} (${match.team1 || match.home_team} vs ${match.team2 || match.away_team})`);
+          }
           updated++;
         }
       }
+
+      // إعادة بناء search_text بشكل نظيف (يصلح خربطة الأرقام في البحث)
+      match.search_text = [
+        match.team1 || match.home_team,
+        match.team2 || match.away_team,
+        match.team1_ar,
+        match.team2_ar,
+        match.stadium,
+        match.round,
+        match.group ? `Group ${match.group}` : '',
+        match.num ? `Match ${match.num}` : ''
+      ].filter(Boolean).join(' ');
     }
 
-    // ترتيب المباريات
+    // ترتيب المباريات حسب الرقم
     data.matches.sort((a, b) => {
       const numA = Number(a.num || a.id?.replace('M', '') || 9999);
       const numB = Number(b.num || b.id?.replace('M', '') || 9999);
@@ -135,7 +159,11 @@ async function main() {
 
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
 
-  console.log(`[worldcup] Updated: ${updated} | Manual overrides applied: ${overridden} | ${nowIso}`);
+  console.log(`[worldcup] Updated: ${updated} | Overrides: ${overridden} | Repaired: ${repaired} | Problems: ${problems.length}`);
+  if (problems.length > 0) {
+    console.log('[worldcup] Matches with 0-0 after repair:', problems.join(' | '));
+  }
+  console.log(`[worldcup] Done at ${nowIso}`);
 }
 
 main().catch(console.error);
