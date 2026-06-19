@@ -18,7 +18,7 @@ function normalize(str) {
 
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup-Strong' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup' } });
     if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
   } catch {
@@ -64,7 +64,6 @@ async function main() {
 
   let updated = 0;
   let repaired = 0;
-  const problems = [];
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
@@ -86,7 +85,7 @@ async function main() {
         updated++;
       }
 
-      // === إصلاح تلقائي قوي ===
+      // إصلاح تلقائي قوي
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
         const hours = (now - kickoff) / (1000 * 60 * 60);
@@ -100,10 +99,6 @@ async function main() {
             match.away_score = prevAway;
             match.live_status_detail = 'انتهت المباراة (تم الإصلاح التلقائي)';
             repaired++;
-          }
-
-          if (match.home_score === 0 && match.away_score === 0) {
-            problems.push(`${match.id} - ${match.team1 || match.home_team} vs ${match.team2 || match.away_team}`);
           }
           updated++;
         }
@@ -131,11 +126,7 @@ async function main() {
 
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
 
-  console.log(`[worldcup] Updated: ${updated} | Repaired: ${repaired} | Problems: ${problems.length}`);
-  if (problems.length > 0) {
-    console.log('[worldcup] Still 0-0:', problems.join(' | '));
-  }
-  console.log(`[worldcup] Done at ${nowIso}`);
+  console.log(`[worldcup] Updated: ${updated} | Repaired: ${repaired} | ${nowIso}`);
 }
 
 main().catch(console.error);
