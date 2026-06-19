@@ -7,7 +7,8 @@ const TIMEZONE = 'Asia/Amman';
 
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
-    timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+    timeZone: TIMEZONE,
+    year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   }).format(date).replace(' ', 'T') + '+03:00';
 }
@@ -18,7 +19,9 @@ function normalize(str) {
 
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup' } });
+    const res = await fetch(url, { 
+      headers: { 'User-Agent': 'Maensat-WorldCup-Checker' } 
+    });
     if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
   } catch {
@@ -37,6 +40,7 @@ function extractEspnEvents(scoreboard) {
 
     return {
       id: String(e.id || ''),
+      match_number: e.number || null,
       home: home.team?.displayName || '',
       away: away.team?.displayName || '',
       home_score: Number(home.score) || null,
@@ -52,27 +56,30 @@ async function main() {
   const now = new Date();
   const nowIso = jordanIso(now);
 
+  // جلب البيانات من ESPN
   const espn = await fetchJson('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200');
   const espnEvents = espn.ok ? extractEspnEvents(espn.data) : [];
 
+  // تحميل ملف المباريات
   const matchesPath = path.join(WC_DIR, 'matches.json');
   let data = { matches: [] };
 
   try {
     data = JSON.parse(await fs.readFile(matchesPath, 'utf8'));
-  } catch {}
+  } catch (e) {
+    console.log("Could not read matches.json, starting fresh");
+  }
 
   let updated = 0;
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
-      // تحسين المطابقة
-      const espnMatch = espnEvents.find(e => {
-        const idMatch = e.id && String(match.id) === e.id;
-        const nameMatch = normalize(match.home_team) === normalize(e.home) &&
-                          normalize(match.away_team) === normalize(e.away);
-        return idMatch || nameMatch;
-      });
+      // تحسين المطابقة (بالـ ID أو بالاسم)
+      const espnMatch = espnEvents.find(e => 
+        (e.id && String(match.id) === e.id) ||
+        (normalize(match.home_team) === normalize(e.home) && 
+         normalize(match.away_team) === normalize(e.away))
+      );
 
       if (espnMatch) {
         match.status = espnMatch.status;
@@ -83,23 +90,31 @@ async function main() {
         updated++;
       }
 
-      // تحديث تلقائي ذكي (لو مر وقت طويل + فيه نتيجة)
+      // تحديث تلقائي ذكي
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
-        const hours = (now - kickoff) / (1000 * 60 * 60);
+        const hoursPassed = (now - kickoff) / (1000 * 60 * 60);
 
-        // لو مر أكثر من ساعتين ونص وفيه نتيجة → خلصها
-        if (hours > 2.5 && (match.home_score !== null || match.away_score !== null)) {
+        if (hoursPassed > 3 && (match.home_score !== null || match.away_score !== null)) {
           match.status = 'finished';
-          match.live_status_detail = 'انتهت المباراة';
+          match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
           updated++;
         }
       }
     }
+
+    // ترتيب المباريات حسب رقم المباراة
+    data.matches.sort((a, b) => {
+      const numA = Number(a.match_number || a.id) || 9999;
+      const numB = Number(b.match_number || b.id) || 9999;
+      return numA - numB;
+    });
   }
 
+  // حفظ الملف
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
-  console.log(`[worldcup] Updated ${updated} matches at ${nowIso}`);
+
+  console.log(`[worldcup] Updated ${updated} matches | Sorted by match number | ${nowIso}`);
 }
 
 main().catch(console.error);
