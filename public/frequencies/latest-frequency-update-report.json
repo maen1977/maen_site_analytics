@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-06-18T22:29:52.145Z",
-  "updatedAt": "2026-06-18T22:29:51.758Z",
+  "generatedAt": "2026-06-19T21:43:11.537Z",
+  "updatedAt": "2026-06-19T21:43:11.161Z",
   "totalFrequencies": 559,
   "removedCount": 0,
-  "candidateCount": 2580,
-  "closedCandidateCount": 2899,
+  "candidateCount": 2498,
+  "closedCandidateCount": 2884,
   "closedConsensusCount": 328,
-  "successfulSourceCount": 45,
+  "successfulSourceCount": 44,
   "sourcesChecked": 67,
-  "sourcesFailed": 22,
+  "sourcesFailed": 23,
   "changes": {
-    "updated": 165,
+    "updated": 101,
     "added": 0,
     "removed": 0,
-    "reviewedOnly": 2415,
+    "reviewedOnly": 2397,
     "channelNamesAdded": 1,
-    "channelNamesRemoved": 13,
+    "channelNamesRemoved": 15,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 22,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 2415,
+    "incompleteNewSkipped": 2397,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3570 من 3688 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3525 من 3578 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -46,7 +46,7 @@
     {
       "satelliteGroup": "Azerspace",
       "frequencies": 71,
-      "services": 104
+      "services": 103
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -196,7 +196,7 @@
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
       "frequencies": 71,
-      "services": 104
+      "services": 103
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -525,6 +525,16 @@
     {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-azerspace-1",
+      "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
