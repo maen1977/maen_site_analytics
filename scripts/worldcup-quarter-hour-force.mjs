@@ -54,26 +54,49 @@ async function main() {
   const now = new Date();
   const nowIso = jordanIso(now);
 
+  // 1. تحميل التصحيحات اليدوية (أولوية عالية)
+  const overridesPath = path.join(WC_DIR, 'manual-results-overrides.json');
+  let overrides = {};
+  try {
+    const raw = await fs.readFile(overridesPath, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (parsed.results && Array.isArray(parsed.results)) {
+      for (const o of parsed.results) {
+        if (o.id) overrides[o.id] = o;
+      }
+    }
+  } catch {}
+
+  // 2. جلب بيانات ESPN
   const espn = await fetchJson('https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200');
   const espnEvents = espn.ok ? extractEspnEvents(espn.data) : [];
 
+  // 3. تحميل ملف المباريات
   const matchesPath = path.join(WC_DIR, 'matches.json');
   let data = { matches: [] };
-
   try {
     data = JSON.parse(await fs.readFile(matchesPath, 'utf8'));
   } catch {}
 
   let updated = 0;
-  let repaired = 0;
-  const problems = [];
+  let overridden = 0;
 
   if (Array.isArray(data.matches)) {
     for (const match of data.matches) {
-      const prevHome = match.home_score;
-      const prevAway = match.away_score;
+      // === أولوية 1: التصحيح اليدوي ===
+      if (overrides[match.id]) {
+        const o = overrides[match.id];
+        match.status = o.status || match.status;
+        match.home_score = o.home_score ?? match.home_score;
+        match.away_score = o.away_score ?? match.away_score;
+        match.live_status_detail = o.live_status_detail || 'انتهت المباراة (تصحيح يدوي)';
+        match.score_source = 'manual-override';
+        overridden++;
+        updated++;
+        continue; // ما نكملش على ESPN
+      }
 
-      // مطابقة قوية
+      // === أولوية 2: ESPN ===
       const espnMatch = espnEvents.find(e =>
         (e.id && String(match.id) === e.id) ||
         (normalize(match.team1 || match.home_team) === normalize(e.home) &&
@@ -82,14 +105,14 @@ async function main() {
 
       if (espnMatch) {
         match.status = espnMatch.status;
-        match.home_score = espnMatch.home_score;
-        match.away_score = espnMatch.away_score;
+        if (espnMatch.home_score !== null) match.home_score = espnMatch.home_score;
+        if (espnMatch.away_score !== null) match.away_score = espnMatch.away_score;
         match.live_status_detail = espnMatch.status_detail;
         match.last_live_update = nowIso;
         updated++;
       }
 
-      // تحديث تلقائي + إصلاح النتائج الخاطئة (الأقوى)
+      // === أولوية 3: تحديث تلقائي ذكي ===
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
         const hours = (now - kickoff) / (1000 * 60 * 60);
@@ -97,24 +120,6 @@ async function main() {
         if (hours > 3) {
           match.status = 'finished';
           match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
-
-          // إصلاح قوي: لو ESPN رجع 0-0 وكان فيه نتيجة سابقة غير صفرية → نحتفظ بالسابقة
-          if ((match.home_score === 0 && match.away_score === 0) && (prevHome > 0 || prevAway > 0)) {
-            match.home_score = prevHome;
-            match.away_score = prevAway;
-            match.live_status_detail = 'انتهت المباراة (تم الإصلاح التلقائي)';
-            repaired++;
-          }
-
-          // تسجيل المشاكل
-          if (match.home_score === 0 && match.away_score === 0) {
-            problems.push({
-              id: match.id,
-              num: match.num,
-              match: `${match.team1 || match.home_team} vs ${match.team2 || match.away_team}`,
-              reason: 'ESPN returned 0-0 for finished match'
-            });
-          }
           updated++;
         }
       }
@@ -130,11 +135,7 @@ async function main() {
 
   await fs.writeFile(matchesPath, JSON.stringify(data, null, 2));
 
-  console.log(`[worldcup] Updated: ${updated} | Repaired: ${repaired} | Problems: ${problems.length}`);
-  if (problems.length > 0) {
-    console.log('[worldcup] Matches that may need attention:', JSON.stringify(problems, null, 2));
-  }
-  console.log(`[worldcup] Done at ${nowIso}`);
+  console.log(`[worldcup] Updated: ${updated} | Manual overrides applied: ${overridden} | ${nowIso}`);
 }
 
 main().catch(console.error);
