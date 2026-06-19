@@ -7,7 +7,8 @@ const TIMEZONE = 'Asia/Amman';
 
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
-    timeZone: TIMEZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+    timeZone: TIMEZONE,
+    year: 'numeric', month: '2-digit', day: '2-digit',
     hour: '2-digit', minute: '2-digit', second: '2-digit'
   }).format(date).replace(' ', 'T') + '+03:00';
 }
@@ -18,7 +19,7 @@ function normalize(str) {
 
 async function fetchJson(url) {
   try {
-    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'Maensat-WorldCup-Auto' } });
     if (!res.ok) return { ok: false };
     return { ok: true, data: await res.json() };
   } catch {
@@ -70,6 +71,7 @@ async function main() {
       const prevHome = match.home_score;
       const prevAway = match.away_score;
 
+      // مطابقة مع ESPN
       const espnMatch = espnEvents.find(e =>
         (e.id && String(match.id) === e.id) ||
         (normalize(match.team1 || match.home_team) === normalize(e.home) &&
@@ -85,7 +87,7 @@ async function main() {
         updated++;
       }
 
-      // إصلاح تلقائي قوي
+      // إصلاح تلقائي قوي (بعد 3 ساعات)
       if ((match.status === 'live' || match.status === 'مباشر' || match.status === 'scheduled') && match.kickoff_utc) {
         const kickoff = new Date(match.kickoff_utc);
         const hours = (now - kickoff) / (1000 * 60 * 60);
@@ -94,6 +96,7 @@ async function main() {
           match.status = 'finished';
           match.live_status_detail = 'انتهت المباراة (تحديث تلقائي)';
 
+          // لو ESPN رجع 0-0 وكان فيه نتيجة سابقة → نحتفظ بالسابقة
           if ((match.home_score === 0 && match.away_score === 0) && (prevHome > 0 || prevAway > 0)) {
             match.home_score = prevHome;
             match.away_score = prevAway;
@@ -104,7 +107,7 @@ async function main() {
         }
       }
 
-      // إعادة بناء search_text
+      // إعادة بناء search_text بشكل نظيف
       match.search_text = [
         match.team1 || match.home_team,
         match.team2 || match.away_team,
@@ -117,6 +120,7 @@ async function main() {
       ].filter(Boolean).join(' ');
     }
 
+    // ترتيب المباريات حسب الرقم
     data.matches.sort((a, b) => {
       const numA = Number(a.num || a.id?.replace('M', '') || 9999);
       const numB = Number(b.num || b.id?.replace('M', '') || 9999);
