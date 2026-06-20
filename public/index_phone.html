@@ -5125,7 +5125,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function hasVisibleScore(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); return !!scorePair(m)||hasFinalScore(m)||s.includes('finished')||s==='ft'||s.includes('live')||s==='live'||s==='in_play';}
   function scoreText(m){var pair=scorePair(m); if(!pair && !hasVisibleScore(m))return '—'; pair=pair||[0,0]; return pair[0]+' - '+pair[1];}
   function scoreClass(m){return hasVisibleScore(m)?'wc-score':'wc-score pending';}
-  function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; if(sc&&sc.p)return tr('finishedPenalties'); if(sc&&sc.et)return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play')return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
+  function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; if(s.includes('pending_verification')||s.includes('pending-verification'))return lang()==='en'?'Pending verification':'بانتظار التحديث'; if(sc&&sc.p)return tr('finishedPenalties'); if(sc&&sc.et)return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play')return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}
   function broadcastStatusText(c){var s=String((c&&c.status)||'').toLowerCase(); if(s==='confirmed')return tr('confirmed'); if(s==='to_be_confirmed'||s==='tbc'||s==='channel_tbc')return tr('toBeConfirmed'); if(s==='pending_official_announcement'||s==='pending'||s==='pending_official')return tr('pendingOfficial'); return s?esc(s):'';}
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
@@ -5290,11 +5290,15 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     Promise.all([
       fetch(wcDataUrl('worldcup-2026/matches.json'),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('matches '+r.status); return r.json();}),
       fetch(wcDataUrl('worldcup-2026/standings.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
-      fetch(wcDataUrl('worldcup-2026/broadcasts.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})
+      fetch(wcDataUrl('worldcup-2026/broadcasts.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+      fetch(wcDataUrl('worldcup-2026/update-check.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+      fetch(wcDataUrl('worldcup-2026/heartbeat.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
+      fetch(wcDataUrl('worldcup-2026/version.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})
     ]).then(function(res){
       WC_STATE.data=res[0];
       WC_STATE.standings=res[1];
       WC_STATE.broadcasts=res[2]||null;
+      WC_STATE.updateInfo=res[3]||res[4]||res[5]||null;
       WC_STATE.lastFetch=Date.now();
       TEAM_AR=(WC_STATE.data&&WC_STATE.data.team_ar)||{};
       WC_STATE.loaded=true;
