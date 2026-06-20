@@ -5110,9 +5110,20 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function fmtDay(k){try{return new Intl.DateTimeFormat(lang()==='en'?'en-US':'ar-JO',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Amman'}).format(new Date(k+'T12:00:00+03:00'));}catch(e){return k;}}
   function dateKeyJordan(d){try{return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Amman',year:'numeric',month:'2-digit',day:'2-digit'}).format(d).replace(/\//g,'-');}catch(e){return d.toISOString().slice(0,10);}}
   function isJordan(m){return /(^|\s)(jordan|الأردن|الاردن|jor|النشامى)(\s|$)/i.test((m.team1+' '+m.team2+' '+m.team1_ar+' '+m.team2_ar+' '+(m.search_text||'')));}
+  function scorePair(m){
+    var sc=m&&m.score;
+    var pair=null;
+    if(sc&&Array.isArray(sc.ft))pair=sc.ft;
+    else if(sc&&Array.isArray(sc.et))pair=sc.et;
+    else if(sc&&Array.isArray(sc.p))pair=sc.p;
+    else if(sc&&Array.isArray(sc.current))pair=sc.current;
+    if(pair&&pair.length>=2)return [Number(pair[0])||0, Number(pair[1])||0];
+    if(m&&(m.home_score!=null || m.away_score!=null))return [Number(m.home_score)||0, Number(m.away_score)||0];
+    return null;
+  }
   function hasFinalScore(m){var sc=m&&m.score; return !!(sc&&(sc.ft||sc.et||sc.p));}
-  function hasVisibleScore(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); return hasFinalScore(m)||s.includes('finished')||s==='ft'||s.includes('live')||s==='live'||s==='in_play'||(Number(m&&m.home_score)>0||Number(m&&m.away_score)>0);}
-  function scoreText(m){if(!hasVisibleScore(m))return '—'; var a=(m.home_score!=null?m.home_score:0), b=(m.away_score!=null?m.away_score:0); return a+' - '+b;}
+  function hasVisibleScore(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); return !!scorePair(m)||hasFinalScore(m)||s.includes('finished')||s==='ft'||s.includes('live')||s==='live'||s==='in_play';}
+  function scoreText(m){var pair=scorePair(m); if(!pair && !hasVisibleScore(m))return '—'; pair=pair||[0,0]; return pair[0]+' - '+pair[1];}
   function scoreClass(m){return hasVisibleScore(m)?'wc-score':'wc-score pending';}
   function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; if(sc&&sc.p)return tr('finishedPenalties'); if(sc&&sc.et)return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play')return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}

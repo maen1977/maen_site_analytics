@@ -71,12 +71,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # نضيف الملفات المهمة فقط (أنظف وأدق)
           git add public/worldcup-2026/matches.json \
                   public/worldcup-2026/standings.json \
                   public/worldcup-2026/bracket.json \
                   public/worldcup-2026/groups.json \
                   public/worldcup-2026/version.json \
+                  public/worldcup-2026/heartbeat.json \
                   public/worldcup-2026/deploy-marker.txt \
                   public/worldcup-2026/update-errors.json 2>/dev/null || true
 
