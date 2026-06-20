@@ -1,52 +1,46 @@
 {
   "name": "Maensat World Cup 2026 quarter-hour forced check",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-19T15:30:18+03:00",
-  "last_updated": "2026-06-19T15:30:18+03:00",
-  "next_expected_check_at": "2026-06-19T15:45:18+03:00",
+  "last_checked_at": "2026-06-20T16:11:50+03:00",
+  "last_updated": "2026-06-20T16:11:50+03:00",
+  "next_expected_check_at": "2026-06-20T16:26:51+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions",
   "github": {
-    "run_id": "27825778981",
-    "run_number": "204",
+    "run_id": "27872200734",
+    "run_number": "338",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
-    "event_schedule": "",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "e011d16a5531145fe3a433bdabbf33cef6bfaef8",
-    "trigger_source": "manual",
-    "external_forced_at": ""
+    "sha": "87a9ba63ee17f945208bd4cdc7813c8af972efb0",
+    "trigger_source": "manual"
   },
   "checks": {
     "espn_scoreboard": {
       "ok": true,
-      "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
-      "events_seen": 4,
-      "error": ""
+      "urls_checked": 8,
+      "events_seen": 44,
+      "matched": 44,
+      "changed": 44,
+      "stale_unverified_scores_cleared": 0,
+      "unmatched_past_count": 0,
+      "unmatched_past_sample": []
     },
-    "broadcast_source_url": {
-      "configured": false,
-      "ok": false,
-      "url": "",
-      "error": "not configured"
-    },
+    "manual_overrides_applied": 0,
     "files_written": [
       "matches.json",
-      "broadcasts.json",
       "standings.json",
-      "bracket.json",
       "groups.json",
-      "data-sources.json",
-      "broadcast-source.json",
-      "broadcast-observed.json",
-      "broadcast-review.json",
-      "broadcast-trusted-sources.json",
-      "bein-news-sources.json"
+      "heartbeat.json",
+      "update-check.json",
+      "version.json",
+      "deploy-marker.txt",
+      "update-errors.json"
     ],
-    "errors_count": 0
+    "errors": []
   },
-  "cache_buster": "e2b4c38dcf8271bb12187a977de7ea22cd7a8230",
-  "note_ar": "هذا الملف يتغير كل ربع ساعة حتى لو لم تتغير النتيجة أو القنوات، حتى يجبر GitHub وCloudflare Pages على نشر نسخة حديثة.",
+  "cache_buster": "e093e7cae284",
+  "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج.",
   "errors": []
 }
