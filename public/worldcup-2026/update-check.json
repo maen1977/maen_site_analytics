@@ -1,19 +1,19 @@
 {
   "name": "Maensat World Cup 2026 quarter-hour forced check",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-22T03:30:20+03:00",
-  "last_updated": "2026-06-22T03:30:20+03:00",
-  "next_expected_check_at": "2026-06-22T03:45:21+03:00",
+  "last_checked_at": "2026-06-22T03:45:18+03:00",
+  "last_updated": "2026-06-22T03:45:18+03:00",
+  "next_expected_check_at": "2026-06-22T04:00:18+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions",
   "github": {
-    "run_id": "27922531579",
-    "run_number": "502",
+    "run_id": "27922904202",
+    "run_number": "503",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "cb5f3d0e5f20c7113a14be30a018794248673467",
+    "sha": "6ae8910fc2a0c1020935a4cf01348d8942fb45a2",
     "trigger_source": "manual"
   },
   "checks": {
@@ -40,7 +40,7 @@
     ],
     "errors": []
   },
-  "cache_buster": "cbd7cbf3dd14",
+  "cache_buster": "ba6dc2415d3e",
   "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج.",
   "errors": []
 }
