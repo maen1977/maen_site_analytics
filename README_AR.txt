@@ -1,43 +1,22 @@
-تعديل كأس العالم V3 - مهم جداً
-===============================
-
-سبب أن النسخة السابقة لم تغيّر شيئاً:
-فحصت index.html على GitHub ولم أجد سطر تحميل:
-/worldcup-2026-today-fix.js
-يعني السكربت لم يدخل داخل index.html و index_phone.html، لذلك الموقع بقي كما هو.
-
-هذه النسخة لا تستخدم _worker.js ولا تحتاج Node.js.
-تستخدم PowerShell الموجود في ويندوز لإدخال السطر داخل الملفين تلقائياً.
+تعديل كأس العالم النهائي - بدون Worker
 
 الخطوات:
 1) فك الضغط.
-2) افتح مشروع maen_site_analytics من GitHub Desktop.
-3) اضغط Repository ثم Open in Explorer.
-4) انسخ محتويات هذه الحزمة فوق مجلد المشروع نفسه، وليس داخل public فقط.
-   لازم تندمج هذه الملفات:
-   - public/worldcup-2026-today-fix.js
-   - tools/apply-worldcup-fix-v3.ps1
-   - APPLY_WORLD_CUP_FIX_V3.bat
-5) اضغط مرتين على APPLY_WORLD_CUP_FIX_V3.bat من داخل مجلد المشروع.
-6) لازم تظهر رسالة UPDATED للملفين:
-   - public/index.html
-   - public/index_phone.html
-7) افتح GitHub Desktop.
-8) تأكد أن Changed files فيها على الأقل:
-   - public/index.html
-   - public/index_phone.html
-   - public/worldcup-2026-today-fix.js
-9) اكتب Summary:
-   Fix World Cup today tab V3
-10) اضغط Commit to main ثم Push origin.
+2) افتح GitHub Desktop ثم Repository > Open in Explorer.
+3) انسخ محتويات هذا المجلد داخل مجلد المشروع maen_site_analytics نفسه.
+4) شغل الملف: APPLY_WORLD_CUP_FINAL_FIX.bat
+5) لازم تظهر:
+   UPDATED: public/index.html
+   UPDATED: public/index_phone.html
+   OK: public/worldcup-direct-fix-final.js موجود
+6) افتح GitHub Desktop وتأكد من ظهور 3 ملفات متغيرة:
+   public/index.html
+   public/index_phone.html
+   public/worldcup-direct-fix-final.js
+7) Summary:
+   Fix World Cup today tab final
+8) Commit to main ثم Push origin.
+9) بعد النشر افتح الموقع بنافذة خفية أو Ctrl+F5.
 
-بعد النشر:
-افتح الموقع بمتصفح خفي أو اضغط Ctrl+F5 حتى تتجاوز الكاش.
-
-ما الذي يتغير؟
-- قسم كأس العالم يفتح على تبويب اليوم.
-- اليوم يعرض من بداية اليوم بتوقيت الأردن إلى وقت فتح الموقع + 24 ساعة.
-- عداد البطولة يظهر مثل: انطلقت البطولة — اليوم 15 من البطولة.
-
-إذا لم يظهر تغيير:
-افتح GitHub Desktop وتأكد أن public/index.html تغيّر. إذا لم يتغيّر، فالتعديل لم يُطبّق.
+ملاحظة مهمة:
+إذا GitHub Desktop لم يعرض public/index.html و public/index_phone.html كملفات متغيرة، معناته التعديل لم ينضاف ولن يظهر على الموقع.
