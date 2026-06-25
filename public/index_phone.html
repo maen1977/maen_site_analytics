@@ -810,7 +810,7 @@ body.lang-en #frequencies .station-frequency-meta span{
         </div>
 <!-- MAEN_MOBILE_DEVICES_CATALOG_BUTTON_V2_START -->
 <div class="maen-mobile-devices-catalog" id="maenDevicesCatalogShareBox">
-  <button type="button" class="maen-mobile-devices-catalog__btn" id="maenDevicesCatalogShareBtn">
+  <button type="button" class="maen-mobile-devices-catalog__btn" id="maenDevicesCatalogShareBtn" onclick="if(window.maenOpenDevicesCatalogWhatsApp){window.maenOpenDevicesCatalogWhatsApp();return false;}">
     <span>إرسال كتالوج الأجهزة واتساب</span>
     <small>يرسل صورة واحدة فيها كل الأجهزة والأسعار، وإذا لم يدعم الهاتف الصور يفتح رسالة واتساب جاهزة.</small>
   </button>
@@ -5400,18 +5400,21 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 </script>
 
 
-      <!-- MAEN_MOBILE_DEVICES_CATALOG_JS_V2 -->
+      <!-- MAEN_MOBILE_DEVICES_CATALOG_JS_V3 -->
 <script>
 (function(){
-  if(window.__MAEN_DEVICES_CATALOG_SHARE_V2__) return;
-  window.__MAEN_DEVICES_CATALOG_SHARE_V2__ = true;
+  if (window.__MAEN_DEVICES_CATALOG_SHARE_V3__) return;
+  window.__MAEN_DEVICES_CATALOG_SHARE_V3__ = true;
+
+  var WHATSAPP_PHONE = '962788272988';
 
   function cleanText(value){
     return String(value || '').replace(/\s+/g, ' ').trim();
   }
 
   function absoluteUrl(src){
-    try { return new URL(src || '', location.href).href; } catch(e) { return src || ''; }
+    try { return new URL(src || '', location.href).href; }
+    catch(e) { return src || ''; }
   }
 
   function getDevices(){
@@ -5422,168 +5425,79 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
       var price = cleanText((card.querySelector('.price-row strong') || {textContent:''}).textContent);
       var img = card.querySelector('img');
       var src = img ? (img.getAttribute('src') || img.src || '') : '';
-      var features = cleanText((card.querySelector('.features') || {textContent:''}).textContent);
-      return { name:name, price:price, image:absoluteUrl(src), features:features };
-    }).filter(function(item){ return item.name || item.price || item.image; });
-  }
-
-  function loadImage(src){
-    return new Promise(function(resolve){
-      if(!src) return resolve(null);
-      var img = new Image();
-      img.crossOrigin = 'anonymous';
-      img.onload = function(){ resolve(img); };
-      img.onerror = function(){ resolve(null); };
-      img.src = src;
-    });
-  }
-
-  function roundRect(ctx,x,y,w,h,r){
-    r = Math.min(r, w/2, h/2);
-    ctx.beginPath();
-    ctx.moveTo(x+r,y);
-    ctx.arcTo(x+w,y,x+w,y+h,r);
-    ctx.arcTo(x+w,y+h,x,y+h,r);
-    ctx.arcTo(x,y+h,x,y,r);
-    ctx.arcTo(x,y,x+w,y,r);
-    ctx.closePath();
-  }
-
-  function drawCover(ctx,img,x,y,w,h){
-    if(!img){
-      ctx.fillStyle='#f4f4f4';
-      roundRect(ctx,x,y,w,h,18); ctx.fill();
-      ctx.fillStyle='#777';
-      ctx.font='700 24px Tahoma, Arial';
-      ctx.textAlign='center'; ctx.textBaseline='middle';
-      ctx.fillText('صورة الجهاز', x+w/2, y+h/2);
-      return;
-    }
-    var scale = Math.min(w / img.width, h / img.height);
-    var dw = img.width * scale, dh = img.height * scale;
-    var dx = x + (w - dw) / 2, dy = y + (h - dh) / 2;
-    ctx.fillStyle='#fff';
-    roundRect(ctx,x,y,w,h,18); ctx.fill();
-    ctx.drawImage(img, dx, dy, dw, dh);
-  }
-
-  function wrapArabicText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
-    text = cleanText(text);
-    var words = text.split(' ');
-    var line = '';
-    var lines = [];
-    for(var i=0;i<words.length;i++){
-      var test = line ? line + ' ' + words[i] : words[i];
-      if(ctx.measureText(test).width > maxWidth && line){ lines.push(line); line = words[i]; }
-      else { line = test; }
-    }
-    if(line) lines.push(line);
-    if(maxLines && lines.length > maxLines){
-      lines = lines.slice(0, maxLines);
-      lines[lines.length-1] = lines[lines.length-1].replace(/…?$/, '') + '…';
-    }
-    lines.forEach(function(l,idx){ ctx.fillText(l, x, y + idx*lineHeight); });
-    return lines.length * lineHeight;
-  }
-
-  async function createCatalogImage(devices){
-    var width = 1080;
-    var margin = 44;
-    var gap = 24;
-    var headerH = 190;
-    var cardW = (width - margin*2 - gap) / 2;
-    var cardH = 370;
-    var rows = Math.ceil(devices.length / 2);
-    var height = headerH + rows * (cardH + gap) + margin + 80;
-    var canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    var ctx = canvas.getContext('2d');
-    ctx.direction = 'rtl';
-    ctx.fillStyle = '#f8f5ed';
-    ctx.fillRect(0,0,width,height);
-
-    ctx.fillStyle = '#111111';
-    roundRect(ctx, margin, 32, width-margin*2, 130, 30); ctx.fill();
-    ctx.fillStyle = '#ffd23f';
-    ctx.font = '1000 44px Tahoma, Arial';
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'top';
-    ctx.fillText('كتالوج أجهزة معن حنونة للستلايت', width - margin - 20, 58);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '800 25px Tahoma, Arial';
-    ctx.fillText('الأسعار حسب الموقع — للتأكيد والتوفر تواصل واتساب: 0788272988', width - margin - 20, 114);
-
-    var loaded = await Promise.all(devices.map(function(d){return loadImage(d.image);}));
-    for(var i=0;i<devices.length;i++){
-      var row = Math.floor(i/2), col = i % 2;
-      var x = margin + (1-col)*(cardW + gap); // right column first in RTL
-      var y = headerH + row*(cardH+gap);
-      ctx.fillStyle='#ffffff';
-      roundRect(ctx,x,y,cardW,cardH,28); ctx.fill();
-      ctx.strokeStyle='rgba(0,0,0,.10)'; ctx.lineWidth=2; roundRect(ctx,x,y,cardW,cardH,28); ctx.stroke();
-      drawCover(ctx, loaded[i], x+22, y+20, cardW-44, 205);
-      ctx.fillStyle='#111111'; ctx.font='1000 27px Tahoma, Arial'; ctx.textAlign='right'; ctx.textBaseline='top';
-      wrapArabicText(ctx, devices[i].name, x+cardW-24, y+244, cardW-48, 34, 2);
-      ctx.fillStyle='#f5b700'; ctx.font='1000 32px Tahoma, Arial';
-      ctx.fillText(devices[i].price || 'السعر عند التواصل', x+cardW-24, y+318);
-    }
-    ctx.fillStyle='#111111';
-    roundRect(ctx, margin, height-72, width-margin*2, 48, 18); ctx.fill();
-    ctx.fillStyle='#ffd23f'; ctx.font='900 22px Tahoma, Arial'; ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText('للطلب والاستفسار: 0788272988', width/2, height-48);
-
-    return new Promise(function(resolve, reject){
-      canvas.toBlob(function(blob){
-        if(!blob) return reject(new Error('تعذر إنشاء صورة الكتالوج'));
-        resolve(new File([blob], 'maen-devices-catalog.png', {type:'image/png'}));
-      }, 'image/png', 0.95);
+      return {
+        name: name,
+        price: price || 'السعر عند التواصل',
+        image: absoluteUrl(src)
+      };
+    }).filter(function(item){
+      return item.name || item.price || item.image;
     });
   }
 
   function buildWhatsappText(devices){
-    var lines = ['كتالوج أجهزة معن حنونة للستلايت', ''];
+    var lines = [];
+    lines.push('كتالوج أجهزة معن حنونة للستلايت');
+    lines.push('الأسعار حسب الموقع، يرجى التأكيد حسب التوفر.');
+    lines.push('');
+
     devices.forEach(function(d, i){
-      lines.push((i+1)+'. '+(d.name || 'جهاز'));
-      lines.push('السعر: '+(d.price || 'للتأكيد بالتواصل'));
-      if(d.image) lines.push('الصورة: '+d.image);
+      lines.push((i + 1) + '. ' + (d.name || 'جهاز'));
+      lines.push('السعر: ' + (d.price || 'السعر عند التواصل'));
+      if (d.image) lines.push('صورة الجهاز: ' + d.image);
       lines.push('');
     });
+
     lines.push('للطلب والاستفسار: 0788272988');
-    return lines.join('
-');
+    return lines.join('\n');
   }
 
-  async function shareCatalog(btn){
+  function openWhatsAppCatalog(){
     var devices = getDevices();
-    if(!devices.length){ alert('لم يتم العثور على أجهزة داخل الصفحة.'); return; }
-    var oldText = btn ? btn.innerHTML : '';
-    if(btn){ btn.disabled = true; btn.innerHTML = '<span>جاري تجهيز الكتالوج...</span><small>انتظر ثواني قليلة</small>'; }
-    try{
-      var file = await createCatalogImage(devices);
-      var text = 'كتالوج أجهزة معن حنونة للستلايت - الأسعار حسب الموقع.';
-      if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){
-        await navigator.share({ files:[file], title:'كتالوج أجهزة معن حنونة للستلايت', text:text });
-      } else {
-        location.href = 'https://wa.me/?text=' + encodeURIComponent(buildWhatsappText(devices));
-      }
-    }catch(e){
-      location.href = 'https://wa.me/?text=' + encodeURIComponent(buildWhatsappText(devices));
-    }finally{
-      if(btn){ btn.disabled = false; btn.innerHTML = oldText; }
+    if (!devices.length) {
+      alert('لم يتم العثور على أجهزة داخل الصفحة.');
+      return;
+    }
+
+    var text = buildWhatsappText(devices);
+    var url = 'https://wa.me/' + WHATSAPP_PHONE + '?text=' + encodeURIComponent(text);
+
+    var opened = window.open(url, '_blank', 'noopener');
+    if (!opened) {
+      window.location.href = url;
     }
   }
 
-  function bindButton(){
+  function bindCatalogButton(){
     var btn = document.getElementById('maenDevicesCatalogShareBtn');
-    if(btn && !btn.__maenBound){
-      btn.addEventListener('click', function(){ shareCatalog(btn); });
-      btn.__maenBound = true;
-    }
+    if (!btn) return;
+
+    btn.removeAttribute('disabled');
+    btn.onclick = function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      openWhatsAppCatalog();
+      return false;
+    };
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindButton);
-  else bindButton();
+  document.addEventListener('click', function(e){
+    var target = e.target;
+    var btn = target && target.closest ? target.closest('#maenDevicesCatalogShareBtn') : null;
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    openWhatsAppCatalog();
+  }, true);
+
+  window.maenOpenDevicesCatalogWhatsApp = openWhatsAppCatalog;
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bindCatalogButton);
+  } else {
+    bindCatalogButton();
+  }
+  window.addEventListener('load', bindCatalogButton);
 })();
 </script>
 </body>
