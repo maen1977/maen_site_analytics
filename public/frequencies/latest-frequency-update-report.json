@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-06-24T21:52:41.754Z",
-  "updatedAt": "2026-06-24T21:52:41.205Z",
+  "generatedAt": "2026-06-25T22:00:08.137Z",
+  "updatedAt": "2026-06-25T22:00:07.680Z",
   "totalFrequencies": 809,
   "removedCount": 0,
-  "candidateCount": 2683,
-  "closedCandidateCount": 2895,
-  "closedConsensusCount": 327,
+  "candidateCount": 1546,
+  "closedCandidateCount": 2897,
+  "closedConsensusCount": 328,
   "successfulSourceCount": 46,
   "sourcesChecked": 67,
   "sourcesFailed": 21,
   "changes": {
-    "updated": 117,
-    "added": 112,
+    "updated": 33,
+    "added": 0,
     "removed": 0,
-    "reviewedOnly": 2454,
+    "reviewedOnly": 1513,
     "channelNamesAdded": 0,
-    "channelNamesRemoved": 36,
+    "channelNamesRemoved": 2,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 27,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 2454,
+    "incompleteNewSkipped": 1513,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3620 من 3785 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 2564 من 2613 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -41,7 +41,7 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 132,
-      "services": 208
+      "services": 206
     },
     {
       "satelliteGroup": "Azerspace",
@@ -182,7 +182,7 @@
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 122,
-      "services": 169
+      "services": 167
     },
     {
       "satelliteGroup": "Astra",
@@ -507,6 +507,26 @@
       "error": null
     },
     {
+      "id": "lyngsat-astra-19",
+      "name": "LyngSat Astra 19.2E cluster",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-astra-28",
+      "name": "LyngSat Astra 28.2E cluster",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
       "id": "lyngsat-amos",
       "name": "LyngSat Amos 3 / Dror 1",
       "ok": false,
@@ -561,26 +581,6 @@
       "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "dthsat-nilesat",
-      "name": "DTHSat Nilesat 7W current channel table",
-      "ok": false,
-      "status": 404,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "dthsat-azerspace",
-      "name": "DTHSat Azerspace 1 46E current channel table",
-      "ok": false,
-      "status": 404,
       "candidates": 0,
       "closedCandidates": 0,
       "coverageOnly": false,
