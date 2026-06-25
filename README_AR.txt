@@ -1,22 +1,23 @@
-تعديل كأس العالم النهائي - بدون Worker
+تعديل كأس العالم 2026 - نسخة مباشرة من الملفات الأصلية
 
-الخطوات:
-1) فك الضغط.
-2) افتح GitHub Desktop ثم Repository > Open in Explorer.
-3) انسخ محتويات هذا المجلد داخل مجلد المشروع maen_site_analytics نفسه.
-4) شغل الملف: APPLY_WORLD_CUP_FINAL_FIX.bat
-5) لازم تظهر:
-   UPDATED: public/index.html
-   UPDATED: public/index_phone.html
-   OK: public/worldcup-direct-fix-final.js موجود
-6) افتح GitHub Desktop وتأكد من ظهور 3 ملفات متغيرة:
-   public/index.html
-   public/index_phone.html
-   public/worldcup-direct-fix-final.js
-7) Summary:
-   Fix World Cup today tab final
-8) Commit to main ثم Push origin.
-9) بعد النشر افتح الموقع بنافذة خفية أو Ctrl+F5.
+ماذا تم تعديله:
+1) عند فتح قسم كأس العالم يبدأ مباشرة على تبويب "اليوم" بدل "كل المباريات".
+2) تبويب اليوم يعرض المباريات من بداية اليوم بتوقيت الأردن 00:00 وحتى وقت فتح الموقع + 24 ساعة.
+3) خانة العدّاد أصبحت "حالة البطولة" وتعرض: انطلقت البطولة — اليوم X من البطولة.
+4) لا يوجد _worker.js ولا سكربت خارجي ولا باتش؛ التعديل داخل index.html و index_phone.html مباشرة.
 
-ملاحظة مهمة:
-إذا GitHub Desktop لم يعرض public/index.html و public/index_phone.html كملفات متغيرة، معناته التعديل لم ينضاف ولن يظهر على الموقع.
+طريقة الرفع:
+- افتح GitHub Desktop.
+- Repository > Open in Explorer.
+- انسخ مجلد public الموجود هنا فوق مجلد public الموجود في مشروعك.
+- وافق على الاستبدال.
+- تأكد أن GitHub Desktop يظهر الملفين:
+  public/index.html
+  public/index_phone.html
+- اكتب Summary:
+  Fix World Cup today view from original files
+- اضغط Commit to main ثم Push origin.
+
+بعد النشر:
+- افتح الموقع بنافذة خفية أو Ctrl + F5.
+- ادخل قسم كأس العالم، لازم يكون تبويب "اليوم" هو النشط.
