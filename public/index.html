@@ -5382,13 +5382,52 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 
 
   <script src="/assets/worldcup-current-focus.js?v=20260615-v2"></script>
-      <!-- MAEN_MOBILE_DEVICES_CATALOG_JS_V3 -->
+      <!-- MAEN_MOBILE_DEVICES_CATALOG_JS_V5_CUSTOMER_PHONE -->
 <script>
 (function(){
-  if (window.__MAEN_DEVICES_CATALOG_SHARE_V3__) return;
-  window.__MAEN_DEVICES_CATALOG_SHARE_V3__ = true;
+  if (window.__MAEN_DEVICES_CATALOG_SHARE_V5_CUSTOMER_PHONE__) return;
+  window.__MAEN_DEVICES_CATALOG_SHARE_V5_CUSTOMER_PHONE__ = true;
 
-  var WHATSAPP_PHONE = '962788272988';
+  var BUSINESS_PHONE = '962788272988';
+
+  function convertArabicDigits(value){
+    var ar = '٠١٢٣٤٥٦٧٨٩';
+    var fa = '۰۱۲۳۴۵۶۷۸۹';
+    return String(value || '').replace(/[٠-٩۰-۹]/g, function(ch){
+      var i = ar.indexOf(ch);
+      if (i >= 0) return String(i);
+      i = fa.indexOf(ch);
+      return i >= 0 ? String(i) : ch;
+    });
+  }
+
+  function normalizeWhatsAppPhone(input){
+    var phone = convertArabicDigits(input);
+    phone = phone.replace(/[^0-9+]/g, '');
+    if (phone.indexOf('+') === 0) phone = phone.slice(1);
+    phone = phone.replace(/^00+/, '');
+
+    if (/^0\d{8,12}$/.test(phone)) {
+      phone = '962' + phone.replace(/^0+/, '');
+    } else if (/^7\d{8}$/.test(phone)) {
+      phone = '962' + phone;
+    }
+
+    phone = phone.replace(/\D/g, '');
+    if (!/^[1-9]\d{7,14}$/.test(phone)) return '';
+    return phone;
+  }
+
+  function askCustomerPhone(){
+    var input = window.prompt('أدخل رقم واتساب الزبون لإرسال كتالوج الأجهزة\n\nمثال: 0791234567\nأو: 962791234567');
+    if (input === null) return null;
+    var phone = normalizeWhatsAppPhone(input);
+    if (!phone) {
+      alert('رقم الواتساب غير صحيح.\nاكتب الرقم مثل: 0791234567 أو 962791234567');
+      return null;
+    }
+    return phone;
+  }
 
   function cleanText(value){
     return String(value || '').replace(/\s+/g, ' ').trim();
@@ -5446,8 +5485,11 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
       return;
     }
 
+    var customerPhone = askCustomerPhone();
+    if (!customerPhone) return;
+
     var text = buildWhatsappText(devices);
-    var url = 'https://wa.me/' + WHATSAPP_PHONE + '?text=' + encodeURIComponent(text);
+    var url = 'https://wa.me/' + customerPhone + '?text=' + encodeURIComponent(text);
 
     var opened = window.open(url, '_blank', 'noopener');
     if (!opened) {
