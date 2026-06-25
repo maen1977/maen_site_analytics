@@ -18,7 +18,7 @@
   var TOURNAMENT_START = '2026-06-11';
   var PANEL_ID = 'maensat-wc-today-24h-panel';
   var STYLE_ID = 'maensat-wc-today-fix-style';
-  var SCRIPT_VERSION = '2026-06-25-safe-v2';
+  var SCRIPT_VERSION = '2026-06-25-safe-v3';
 
   function textOf(el) {
     return (el && (el.textContent || el.innerText) || '').replace(/\s+/g, ' ').trim();
@@ -343,7 +343,7 @@
     var bestScore = -1;
     candidates.forEach(function (el) {
       var t = textOf(el);
-      if (!t || t.length > 6000) return;
+      if (!t || t.length > 50000) return;
       var score = 0;
       if (t.indexOf('كأس العالم 2026') !== -1) score += 4;
       if (t.indexOf('مونديال 2026') !== -1) score += 4;
@@ -464,7 +464,7 @@
         return;
       }
       var t = textOf(el);
-      if (!changed && (t === 'انطلقت البطولة' || t === 'العدّ التنازلي لانطلاق كأس العالم' || t.indexOf('العدّ التنازلي لانطلاق كأس العالم') !== -1)) {
+      if (!changed && (t === 'انطلقت البطولة' || t === 'العدّ التنازلي لانطلاق كأس العالم' || t.indexOf('العدّ التنازلي لانطلاق كأس العالم') !== -1 || t.indexOf('انطلقت البطولة') !== -1)) {
         el.textContent = label;
         el.setAttribute('data-maensat-wc-counter', '1');
         changed = true;
@@ -517,6 +517,8 @@
     bindTabs(tabs, panel);
     updateTournamentCounter();
     activateTodayOnce(tabs, panel);
+    setTimeout(function(){ try { renderToday(panel); updateTournamentCounter(); } catch(e){} }, 800);
+    setTimeout(function(){ try { renderToday(panel); updateTournamentCounter(); } catch(e){} }, 1800);
     return true;
   }
 
