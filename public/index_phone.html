@@ -592,6 +592,21 @@ body.lang-en #frequencies .station-frequency-meta span{
 
 </style>
 
+
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_STYLE_START -->
+<style>
+.mobile-catalog-share-box{display:none;}
+@media (max-width:720px){
+  #devices .mobile-catalog-share-box{display:block;margin:14px 0 16px;padding:14px;border-radius:22px;background:linear-gradient(135deg,#111,#2b2b2b);box-shadow:0 18px 42px rgba(0,0,0,.18);border:1px solid rgba(255,210,63,.35);}
+  #devices .mobile-catalog-share-btn{width:100%;border:0;border-radius:20px;padding:15px 16px;background:#25D366;color:#fff;font-family:Tahoma,Arial,sans-serif;font-weight:1000;display:grid;gap:5px;text-align:center;box-shadow:0 12px 28px rgba(37,211,102,.28);cursor:pointer;}
+  #devices .mobile-catalog-share-btn span{font-size:17px;line-height:1.5;}
+  #devices .mobile-catalog-share-btn small{font-size:12px;line-height:1.7;font-weight:800;color:rgba(255,255,255,.92);}
+  #devices .mobile-catalog-share-btn:disabled{opacity:.72;cursor:wait;}
+  #devices .mobile-catalog-share-note{margin:10px 2px 0;color:#fff;font-size:12px;font-weight:800;line-height:1.8;text-align:center;}
+}
+</style>
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_STYLE_END -->
+
 </head>
 <body>
 <!-- Mobile UX upgrade: compact contact header + thumb-friendly bottom navigation -->
@@ -765,6 +780,17 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div class="price-update-note">
           ملاحظة: الأسعار قابلة للتغيير حسب التوفر والعروض. الرجاء التواصل للتأكيد قبل الطلب.
         </div>
+
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_BUTTON_START -->
+<div class="mobile-catalog-share-box">
+  <button type="button" class="mobile-catalog-share-btn" onclick="shareDevicesCatalogWhatsApp(this)">
+    <span>إرسال كتالوج الأجهزة واتساب</span>
+    <small>يجهّز صورة واحدة فيها كل الأجهزة والأسعار، وإذا لم يدعم الهاتف الصور يفتح رسالة واتساب جاهزة.</small>
+  </button>
+  <p class="mobile-catalog-share-note">عند ظهور نافذة المشاركة اختر واتساب، ثم اختر الزبون واضغط إرسال.</p>
+</div>
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_BUTTON_END -->
+
 <div class="pro-tools" data-filter-scope="devices">
 <div class="pro-tools-text">
 <strong>تصفية وبحث سريع</strong>
@@ -5348,5 +5374,137 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 </script>
 
 
-      </body>
+      
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_SCRIPT_START -->
+<script>
+(function(){
+  if(window.__maenMobileCatalogShareInstalled)return;
+  window.__maenMobileCatalogShareInstalled=true;
+  var PHONE='962788272988';
+  function text(el){return el?String(el.textContent||'').replace(/\s+/g,' ').trim():'';}
+  function absUrl(src){try{return new URL(src,window.location.href).href;}catch(e){return src||'';}}
+  function collectDevices(){
+    return Array.prototype.slice.call(document.querySelectorAll('#devices .grid.store-grid .device-card')).map(function(card){
+      var img=card.querySelector('.image-wrap img');
+      var name=text(card.querySelector('h3')) || (img?img.alt:'جهاز رسيفر');
+      var price=text(card.querySelector('.price-row strong'));
+      if(!price && card.getAttribute('data-product-price')) price=card.getAttribute('data-product-price')+' د.أ';
+      var brand=text(card.querySelector('.brand')) || card.getAttribute('data-brand') || '';
+      var features=text(card.querySelector('.features'));
+      var desc=text(card.querySelector('.desc'));
+      return {name:name,price:price||'يرجى الاستفسار',brand:brand,features:features,desc:desc,img:img?absUrl(img.getAttribute('src')):''};
+    }).filter(function(p){return p.name && p.img;});
+  }
+  function loadImage(url){
+    return new Promise(function(resolve){
+      if(!url){resolve(null);return;}
+      var img=new Image();
+      try{if(new URL(url,window.location.href).origin!==window.location.origin){img.crossOrigin='anonymous';}}catch(e){}
+      img.onload=function(){resolve(img);};
+      img.onerror=function(){resolve(null);};
+      img.src=url;
+    });
+  }
+  function drawRoundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+  }
+  function drawContain(ctx,img,x,y,w,h){
+    if(!img){ctx.fillStyle='#f1f2f4';drawRoundRect(ctx,x,y,w,h,24);ctx.fill();ctx.fillStyle='#777';ctx.font='bold 28px Tahoma, Arial';ctx.textAlign='center';ctx.fillText('لا توجد صورة',x+w/2,y+h/2+8);return;}
+    var ratio=Math.min(w/img.width,h/img.height);
+    var nw=img.width*ratio, nh=img.height*ratio;
+    ctx.drawImage(img,x+(w-nw)/2,y+(h-nh)/2,nw,nh);
+  }
+  function wrapText(ctx,str,x,y,maxWidth,lineHeight,maxLines){
+    str=String(str||'');
+    var words=str.split(' '), line='', lines=0;
+    for(var i=0;i<words.length;i++){
+      var test=line?line+' '+words[i]:words[i];
+      if(ctx.measureText(test).width>maxWidth && line){
+        ctx.fillText(line,x,y); y+=lineHeight; lines++;
+        line=words[i];
+        if(maxLines && lines>=maxLines-1){
+          var rest=words.slice(i).join(' ');
+          while(ctx.measureText(line+'…').width>maxWidth && line.length>2){line=line.slice(0,-1);}
+          ctx.fillText(line+'…',x,y); return y+lineHeight;
+        }
+      }else{line=test;}
+    }
+    if(line){ctx.fillText(line,x,y); y+=lineHeight;}
+    return y;
+  }
+  function fallbackWhatsApp(products){
+    var lines=['كتالوج أجهزة الرسيفرات - معن حنونة للستلايت','الأسعار قابلة للتغيير حسب التوفر والعروض. الرجاء التواصل للتأكيد.',''];
+    products.forEach(function(p,i){
+      lines.push((i+1)+'. '+p.name);
+      lines.push('السعر: '+p.price);
+      if(p.features)lines.push('المواصفات: '+p.features);
+      lines.push('الصورة: '+p.img);
+      lines.push('');
+    });
+    lines.push('للطلب والاستفسار: 0788272988');
+    window.open('https://wa.me/'+PHONE+'?text='+encodeURIComponent(lines.join('\n')),'_blank','noopener');
+  }
+  async function buildCatalogImage(products){
+    var width=1080, margin=48, headerH=230, cardH=250, gap=22, footerH=130;
+    var height=headerH+(cardH+gap)*products.length+footerH;
+    var canvas=document.createElement('canvas');
+    canvas.width=width; canvas.height=height;
+    var ctx=canvas.getContext('2d');
+    ctx.direction='rtl';
+    ctx.fillStyle='#f8f5ed';ctx.fillRect(0,0,width,height);
+    var grad=ctx.createLinearGradient(0,0,width,headerH);
+    grad.addColorStop(0,'#111111');grad.addColorStop(1,'#2b2b2b');
+    ctx.fillStyle=grad;ctx.fillRect(0,0,width,headerH);
+    ctx.fillStyle='#ffd23f';ctx.beginPath();ctx.arc(120,80,95,0,Math.PI*2);ctx.fill();
+    ctx.textAlign='right';ctx.fillStyle='#ffd23f';ctx.font='bold 48px Tahoma, Arial';ctx.fillText('كتالوج أجهزة الرسيفرات',width-margin,78);
+    ctx.fillStyle='#ffffff';ctx.font='bold 34px Tahoma, Arial';ctx.fillText('معن حنونة للستلايت',width-margin,128);
+    ctx.fillStyle='rgba(255,255,255,.88)';ctx.font='bold 24px Tahoma, Arial';ctx.fillText('الأسعار قابلة للتغيير حسب التوفر — للتأكيد واتساب: 0788272988',width-margin,174);
+    var images=await Promise.all(products.map(function(p){return loadImage(p.img);}));
+    var y=headerH;
+    products.forEach(function(p,i){
+      ctx.fillStyle='#ffffff';drawRoundRect(ctx,margin,y,width-margin*2,cardH,28);ctx.fill();
+      ctx.strokeStyle='rgba(17,17,17,.08)';ctx.lineWidth=2;ctx.stroke();
+      var imgX=width-margin-210, imgY=y+26, imgW=180, imgH=180;
+      ctx.fillStyle='#ffffff';drawRoundRect(ctx,imgX-10,imgY-10,imgW+20,imgH+20,24);ctx.fill();
+      drawContain(ctx,images[i],imgX,imgY,imgW,imgH);
+      var tx=imgX-34;
+      ctx.textAlign='right';
+      ctx.fillStyle='#777';ctx.font='bold 24px Tahoma, Arial';ctx.fillText((i+1)+' / '+products.length,tx,y+45);
+      ctx.fillStyle='#111';ctx.font='bold 34px Tahoma, Arial';wrapText(ctx,p.name,tx,y+88,620,40,2);
+      ctx.fillStyle='#555';ctx.font='bold 22px Tahoma, Arial';wrapText(ctx,p.brand+(p.features?' · '+p.features:''),tx,y+166,610,30,2);
+      ctx.fillStyle='#111';drawRoundRect(ctx,margin+28,y+148,210,58,18);ctx.fill();
+      ctx.fillStyle='#ffd23f';ctx.font='bold 30px Tahoma, Arial';ctx.textAlign='center';ctx.fillText(p.price,margin+133,y+187);
+      y+=cardH+gap;
+    });
+    ctx.fillStyle='#111';drawRoundRect(ctx,margin,height-footerH+26,width-margin*2,78,22);ctx.fill();
+    ctx.fillStyle='#ffd23f';ctx.font='bold 28px Tahoma, Arial';ctx.textAlign='center';ctx.fillText('للطلب والاستفسار عبر واتساب: 0788272988',width/2,height-footerH+77);
+    return new Promise(function(resolve){canvas.toBlob(resolve,'image/png',0.92);});
+  }
+  window.shareDevicesCatalogWhatsApp=async function(btn){
+    var original=btn?btn.innerHTML:'';
+    var products=collectDevices();
+    if(!products.length){alert('لم يتم العثور على أجهزة داخل الصفحة.');return;}
+    try{
+      if(btn){btn.disabled=true;btn.innerHTML='<span>جاري تجهيز كتالوج الأجهزة...</span><small>يرجى الانتظار لحظات</small>';}
+      var blob=await buildCatalogImage(products);
+      if(blob && navigator.share && window.File){
+        var file=new File([blob],'maen-devices-catalog.png',{type:'image/png'});
+        if(!navigator.canShare || navigator.canShare({files:[file]})){
+          await navigator.share({title:'كتالوج أجهزة الرسيفرات',text:'كتالوج أجهزة الرسيفرات من معن حنونة للستلايت',files:[file]});
+          return;
+        }
+      }
+      fallbackWhatsApp(products);
+    }catch(err){
+      if(!err || err.name!=='AbortError')fallbackWhatsApp(products);
+    }finally{
+      if(btn){btn.disabled=false;btn.innerHTML=original;}
+    }
+  };
+})();
+</script>
+<!-- MOBILE_PRODUCTS_CATALOG_SHARE_SCRIPT_END -->
+
+</body>
 </html>
