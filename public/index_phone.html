@@ -592,45 +592,30 @@ body.lang-en #frequencies .station-frequency-meta span{
 
 </style>
 
-<!-- MAEN_MOBILE_DEVICES_CATALOG_CSS_V2 -->
+<!-- MAEN_MOBILE_DEVICES_CATALOG_CSS_V4 -->
 <style>
 .maen-mobile-devices-catalog{
   display:block;
-  margin:16px 0 18px;
-  padding:14px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#111111,#242424);
-  border:1px solid rgba(255,210,63,.42);
-  box-shadow:0 18px 42px rgba(0,0,0,.18);
+  margin:12px 0 16px;
+  padding:0;
   direction:rtl;
 }
 .maen-mobile-devices-catalog__btn{
   width:100%;
   border:0;
-  border-radius:20px;
-  padding:16px 14px;
+  border-radius:18px;
+  padding:15px 12px;
   background:#25D366;
   color:#fff;
   font-family:Tahoma,Arial,sans-serif;
+  font-size:17px;
   font-weight:1000;
-  line-height:1.55;
-  display:grid;
-  gap:5px;
+  line-height:1.45;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 12px 28px rgba(37,211,102,.30);
+  box-shadow:0 10px 24px rgba(37,211,102,.28);
 }
-.maen-mobile-devices-catalog__btn span{font-size:17px;}
-.maen-mobile-devices-catalog__btn small{font-size:12px;color:rgba(255,255,255,.92);font-weight:800;line-height:1.75;}
 .maen-mobile-devices-catalog__btn:disabled{opacity:.72;cursor:wait;}
-.maen-mobile-devices-catalog__note{
-  margin:10px 2px 0;
-  color:#fff;
-  font-size:12px;
-  font-weight:800;
-  line-height:1.85;
-  text-align:center;
-}
 @media (min-width: 901px){
   .maen-mobile-devices-catalog{display:none !important;}
 }
@@ -808,15 +793,11 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div class="price-update-note">
           ملاحظة: الأسعار قابلة للتغيير حسب التوفر والعروض. الرجاء التواصل للتأكيد قبل الطلب.
         </div>
-<!-- MAEN_MOBILE_DEVICES_CATALOG_BUTTON_V2_START -->
+<!-- MAEN_MOBILE_DEVICES_CATALOG_BUTTON_V4_START -->
 <div class="maen-mobile-devices-catalog" id="maenDevicesCatalogShareBox">
-  <button type="button" class="maen-mobile-devices-catalog__btn" id="maenDevicesCatalogShareBtn" onclick="if(window.maenOpenDevicesCatalogWhatsApp){window.maenOpenDevicesCatalogWhatsApp();return false;}">
-    <span>إرسال كتالوج الأجهزة واتساب</span>
-    <small>يرسل صورة واحدة فيها كل الأجهزة والأسعار، وإذا لم يدعم الهاتف الصور يفتح رسالة واتساب جاهزة.</small>
-  </button>
-  <p class="maen-mobile-devices-catalog__note">افتحها من الموبايل، اختر واتساب، ثم اختر الزبون واضغط إرسال.</p>
+  <button type="button" class="maen-mobile-devices-catalog__btn" id="maenDevicesCatalogShareBtn" onclick="if(window.maenOpenDevicesCatalogWhatsApp){window.maenOpenDevicesCatalogWhatsApp();return false;}">إرسال كتالوج الأجهزة واتساب</button>
 </div>
-<!-- MAEN_MOBILE_DEVICES_CATALOG_BUTTON_V2_END -->
+<!-- MAEN_MOBILE_DEVICES_CATALOG_BUTTON_V4_END -->
 <div class="pro-tools" data-filter-scope="devices">
 <div class="pro-tools-text">
 <strong>تصفية وبحث سريع</strong>
@@ -5440,11 +5421,16 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     lines.push('كتالوج أجهزة معن حنونة للستلايت');
     lines.push('الأسعار حسب الموقع، يرجى التأكيد حسب التوفر.');
     lines.push('');
+    lines.push('ملاحظة: لمشاهدة صورة أي جهاز، اضغط على رابط الصورة الموجود تحت اسمه.');
+    lines.push('');
 
     devices.forEach(function(d, i){
       lines.push((i + 1) + '. ' + (d.name || 'جهاز'));
       lines.push('السعر: ' + (d.price || 'السعر عند التواصل'));
-      if (d.image) lines.push('صورة الجهاز: ' + d.image);
+      if (d.image) {
+        lines.push('📷 اضغط هنا لمشاهدة صورة الجهاز:');
+        lines.push(d.image);
+      }
       lines.push('');
     });
 
