@@ -1,20 +1,21 @@
 {
-  "name": "Maensat World Cup 2026 quarter-hour forced check",
+  "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-28T21:45:16+03:00",
-  "last_updated": "2026-06-28T21:45:16+03:00",
-  "next_expected_check_at": "2026-06-28T22:00:16+03:00",
+  "last_checked_at": "2026-06-28T22:00:14+03:00",
+  "last_updated": "2026-06-28T22:00:14+03:00",
+  "next_expected_check_at": "2026-06-28T22:15:14+03:00",
   "refresh_interval_minutes": 15,
-  "source": "github-actions",
+  "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28332278046",
-    "run_number": "1227",
+    "run_id": "28332671060",
+    "run_number": "1229",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "0b1d85feec5a956d0dc11fd8dcda3bcf02943e5e",
-    "trigger_source": "manual"
+    "sha": "db1694a5d5749e76fb063a3dc8962df9783bc3b9",
+    "trigger_source": "manual",
+    "forced_at": ""
   },
   "checks": {
     "espn_scoreboard": {
@@ -22,16 +23,531 @@
       "urls_checked": 9,
       "events_seen": 79,
       "matched": 76,
-      "changed": 76,
-      "stale_unverified_scores_cleared": 0,
-      "unmatched_past_count": 0,
-      "unmatched_past_sample": []
+      "bracket_matched": 4,
+      "score_changed": 0,
+      "future_openfootball_zero_scores_cleared": 0
+    },
+    "knockout": {
+      "changed": 0,
+      "directResolved": 48,
+      "thirdResolved": 16,
+      "winnerResolved": 0,
+      "unresolved": [
+        {
+          "file": "matches.json",
+          "match": "M090",
+          "side": "team1",
+          "slot": "W73",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M090",
+          "side": "team2",
+          "slot": "W75",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M089",
+          "side": "team1",
+          "slot": "W74",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M089",
+          "side": "team2",
+          "slot": "W77",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M091",
+          "side": "team1",
+          "slot": "W76",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M091",
+          "side": "team2",
+          "slot": "W78",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M092",
+          "side": "team1",
+          "slot": "W79",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M092",
+          "side": "team2",
+          "slot": "W80",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M093",
+          "side": "team1",
+          "slot": "W83",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M093",
+          "side": "team2",
+          "slot": "W84",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M094",
+          "side": "team1",
+          "slot": "W81",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M094",
+          "side": "team2",
+          "slot": "W82",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M095",
+          "side": "team1",
+          "slot": "W86",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M095",
+          "side": "team2",
+          "slot": "W88",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M096",
+          "side": "team1",
+          "slot": "W85",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M096",
+          "side": "team2",
+          "slot": "W87",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M097",
+          "side": "team1",
+          "slot": "W89",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M097",
+          "side": "team2",
+          "slot": "W90",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M098",
+          "side": "team1",
+          "slot": "W93",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M098",
+          "side": "team2",
+          "slot": "W94",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M099",
+          "side": "team1",
+          "slot": "W91",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M099",
+          "side": "team2",
+          "slot": "W92",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M100",
+          "side": "team1",
+          "slot": "W95",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M100",
+          "side": "team2",
+          "slot": "W96",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M101",
+          "side": "team1",
+          "slot": "W97",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M101",
+          "side": "team2",
+          "slot": "W98",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M102",
+          "side": "team1",
+          "slot": "W99",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M102",
+          "side": "team2",
+          "slot": "W100",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M103",
+          "side": "team1",
+          "slot": "L101",
+          "reason": "loser-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M103",
+          "side": "team2",
+          "slot": "L102",
+          "reason": "loser-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M104",
+          "side": "team1",
+          "slot": "W101",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "matches.json",
+          "match": "M104",
+          "side": "team2",
+          "slot": "W102",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M090",
+          "side": "team1",
+          "slot": "W73",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M090",
+          "side": "team2",
+          "slot": "W75",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M089",
+          "side": "team1",
+          "slot": "W74",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M089",
+          "side": "team2",
+          "slot": "W77",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M091",
+          "side": "team1",
+          "slot": "W76",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M091",
+          "side": "team2",
+          "slot": "W78",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M092",
+          "side": "team1",
+          "slot": "W79",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M092",
+          "side": "team2",
+          "slot": "W80",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M093",
+          "side": "team1",
+          "slot": "W83",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M093",
+          "side": "team2",
+          "slot": "W84",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M094",
+          "side": "team1",
+          "slot": "W81",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M094",
+          "side": "team2",
+          "slot": "W82",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M095",
+          "side": "team1",
+          "slot": "W86",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M095",
+          "side": "team2",
+          "slot": "W88",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M096",
+          "side": "team1",
+          "slot": "W85",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M096",
+          "side": "team2",
+          "slot": "W87",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M097",
+          "side": "team1",
+          "slot": "W89",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M097",
+          "side": "team2",
+          "slot": "W90",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M098",
+          "side": "team1",
+          "slot": "W93",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M098",
+          "side": "team2",
+          "slot": "W94",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M099",
+          "side": "team1",
+          "slot": "W91",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M099",
+          "side": "team2",
+          "slot": "W92",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M100",
+          "side": "team1",
+          "slot": "W95",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M100",
+          "side": "team2",
+          "slot": "W96",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M101",
+          "side": "team1",
+          "slot": "W97",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M101",
+          "side": "team2",
+          "slot": "W98",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M102",
+          "side": "team1",
+          "slot": "W99",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M102",
+          "side": "team2",
+          "slot": "W100",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M103",
+          "side": "team1",
+          "slot": "L101",
+          "reason": "loser-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M103",
+          "side": "team2",
+          "slot": "L102",
+          "reason": "loser-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M104",
+          "side": "team1",
+          "slot": "W101",
+          "reason": "winner-not-ready"
+        },
+        {
+          "file": "bracket.json",
+          "match": "M104",
+          "side": "team2",
+          "slot": "W102",
+          "reason": "winner-not-ready"
+        }
+      ],
+      "third_assignment_count": 8,
+      "third_assignments": [
+        {
+          "key": "M077:2",
+          "group": "D",
+          "team": "Paraguay",
+          "team_ar": "باراغواي",
+          "fallback": false
+        },
+        {
+          "key": "M074:2",
+          "group": "B",
+          "team": "Bosnia & Herzegovina",
+          "team_ar": "البوسنة والهرسك",
+          "fallback": false
+        },
+        {
+          "key": "M079:2",
+          "group": "F",
+          "team": "Sweden",
+          "team_ar": "السويد",
+          "fallback": false
+        },
+        {
+          "key": "M082:2",
+          "group": "J",
+          "team": "Algeria",
+          "team_ar": "الجزائر",
+          "fallback": false
+        },
+        {
+          "key": "M080:2",
+          "group": "K",
+          "team": "DR Congo",
+          "team_ar": "الكونغو الديمقراطية",
+          "fallback": false
+        },
+        {
+          "key": "M085:2",
+          "group": "I",
+          "team": "Senegal",
+          "team_ar": "السنغال",
+          "fallback": false
+        },
+        {
+          "key": "M081:2",
+          "group": "E",
+          "team": "Ecuador",
+          "team_ar": "الإكوادور",
+          "fallback": false
+        },
+        {
+          "key": "M087:2",
+          "group": "L",
+          "team": "Ghana",
+          "team_ar": "غانا",
+          "fallback": false
+        }
+      ]
     },
     "manual_overrides_applied": 0,
     "files_written": [
       "matches.json",
       "standings.json",
       "groups.json",
+      "bracket.json",
       "heartbeat.json",
       "update-check.json",
       "version.json",
@@ -40,498 +556,6 @@
     ],
     "errors": []
   },
-  "cache_buster": "25dfa246150c",
-  "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج والأدوار.",
-  "bracket_linker": {
-    "last_linked_at": "2026-06-28T21:45:16+03:00",
-    "timezone": "Asia/Amman",
-    "groups_seen": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L"
-    ],
-    "best_third_groups_seen": [
-      "B",
-      "D",
-      "E",
-      "F",
-      "I",
-      "J",
-      "K",
-      "L"
-    ],
-    "bracket": {
-      "directResolved": 24,
-      "thirdResolved": 6,
-      "winnerResolved": 0,
-      "changed": 0,
-      "unresolved": [
-        {
-          "match": "M090",
-          "side": "team1",
-          "slot": "W73",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M090",
-          "side": "team2",
-          "slot": "W75",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M089",
-          "side": "team1",
-          "slot": "W74",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M089",
-          "side": "team2",
-          "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M091",
-          "side": "team2",
-          "slot": "W78",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M092",
-          "side": "team1",
-          "slot": "W79",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M092",
-          "side": "team2",
-          "slot": "W80",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M093",
-          "side": "team1",
-          "slot": "W83",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M093",
-          "side": "team2",
-          "slot": "W84",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M094",
-          "side": "team1",
-          "slot": "W81",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M094",
-          "side": "team2",
-          "slot": "W82",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M095",
-          "side": "team1",
-          "slot": "W86",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M095",
-          "side": "team2",
-          "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M096",
-          "side": "team1",
-          "slot": "W85",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M096",
-          "side": "team2",
-          "slot": "W87",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M097",
-          "side": "team1",
-          "slot": "W89",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M097",
-          "side": "team2",
-          "slot": "W90",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M098",
-          "side": "team1",
-          "slot": "W93",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M098",
-          "side": "team2",
-          "slot": "W94",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M099",
-          "side": "team1",
-          "slot": "W91",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M099",
-          "side": "team2",
-          "slot": "W92",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M100",
-          "side": "team1",
-          "slot": "W95",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M100",
-          "side": "team2",
-          "slot": "W96",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M101",
-          "side": "team1",
-          "slot": "W97",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M101",
-          "side": "team2",
-          "slot": "W98",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M102",
-          "side": "team1",
-          "slot": "W99",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M102",
-          "side": "team2",
-          "slot": "W100",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
-        {
-          "match": "M103",
-          "side": "team2",
-          "slot": "L102",
-          "reason": "loser-not-ready"
-        },
-        {
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M104",
-          "side": "team2",
-          "slot": "W102",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M081",
-          "side": "team2",
-          "slot": "3B/E/F/I/J",
-          "reason": "best-third-not-ready-or-no-valid-assignment"
-        },
-        {
-          "match": "M085",
-          "side": "team2",
-          "slot": "3E/F/G/I/J",
-          "reason": "best-third-not-ready-or-no-valid-assignment"
-        }
-      ]
-    },
-    "matches_file": {
-      "directResolved": 24,
-      "thirdResolved": 6,
-      "winnerResolved": 0,
-      "changed": 0,
-      "unresolved": [
-        {
-          "match": "M090",
-          "side": "team1",
-          "slot": "W73",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M090",
-          "side": "team2",
-          "slot": "W75",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M089",
-          "side": "team1",
-          "slot": "W74",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M089",
-          "side": "team2",
-          "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M091",
-          "side": "team2",
-          "slot": "W78",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M092",
-          "side": "team1",
-          "slot": "W79",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M092",
-          "side": "team2",
-          "slot": "W80",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M093",
-          "side": "team1",
-          "slot": "W83",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M093",
-          "side": "team2",
-          "slot": "W84",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M094",
-          "side": "team1",
-          "slot": "W81",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M094",
-          "side": "team2",
-          "slot": "W82",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M095",
-          "side": "team1",
-          "slot": "W86",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M095",
-          "side": "team2",
-          "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M096",
-          "side": "team1",
-          "slot": "W85",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M096",
-          "side": "team2",
-          "slot": "W87",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M097",
-          "side": "team1",
-          "slot": "W89",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M097",
-          "side": "team2",
-          "slot": "W90",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M098",
-          "side": "team1",
-          "slot": "W93",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M098",
-          "side": "team2",
-          "slot": "W94",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M099",
-          "side": "team1",
-          "slot": "W91",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M099",
-          "side": "team2",
-          "slot": "W92",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M100",
-          "side": "team1",
-          "slot": "W95",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M100",
-          "side": "team2",
-          "slot": "W96",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M101",
-          "side": "team1",
-          "slot": "W97",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M101",
-          "side": "team2",
-          "slot": "W98",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M102",
-          "side": "team1",
-          "slot": "W99",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M102",
-          "side": "team2",
-          "slot": "W100",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
-        {
-          "match": "M103",
-          "side": "team2",
-          "slot": "L102",
-          "reason": "loser-not-ready"
-        },
-        {
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M104",
-          "side": "team2",
-          "slot": "W102",
-          "reason": "winner-not-ready"
-        },
-        {
-          "match": "M081",
-          "side": "team2",
-          "slot": "3B/E/F/I/J",
-          "reason": "best-third-not-ready-or-no-valid-assignment"
-        },
-        {
-          "match": "M085",
-          "side": "team2",
-          "slot": "3E/F/G/I/J",
-          "reason": "best-third-not-ready-or-no-valid-assignment"
-        }
-      ]
-    },
-    "third_assignment_count": 6,
-    "third_assignments": [
-      {
-        "key": "M077:team2",
-        "group": "D",
-        "team": "Paraguay",
-        "team_ar": "باراغواي"
-      },
-      {
-        "key": "M074:team2",
-        "group": "B",
-        "team": "Bosnia & Herzegovina",
-        "team_ar": "البوسنة والهرسك"
-      },
-      {
-        "key": "M079:team2",
-        "group": "I",
-        "team": "Senegal",
-        "team_ar": "السنغال"
-      },
-      {
-        "key": "M082:team2",
-        "group": "J",
-        "team": "Algeria",
-        "team_ar": "الجزائر"
-      },
-      {
-        "key": "M080:team2",
-        "group": "K",
-        "team": "DR Congo",
-        "team_ar": "الكونغو الديمقراطية"
-      },
-      {
-        "key": "M087:team2",
-        "group": "L",
-        "team": "Ghana",
-        "team_ar": "غانا"
-      }
-    ]
-  },
-  "cloudflare_hook_configured": false
+  "cache_buster": "912e076de8e2",
+  "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع."
 }
