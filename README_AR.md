@@ -1,28 +1,37 @@
-# جعل تبويب الأدوار هو الافتراضي داخل قسم كأس العالم 2026
+# تعديل رسالة أنت هنا فقط
 
-هذا التعديل يجعل المستخدم عندما يدخل إلى قسم **كأس العالم 2026** يفتح مباشرة على تبويب **الأدوار** بدل تبويب **اليوم**.
+هذا الإصلاح نفس الإصلاح السابق، لكنه يزيل عبارة **مباشر الآن** وأي وصف إضافي من العلامة بجانب المباراة.
 
-## الملفات المعدلة
+الآن ستظهر العلامة فقط:
 
-- `public/index.html`
-- `public/index_phone.html`
+```text
+أنت هنا
+```
 
-## لا يلمس
+التعديل لا يلمس:
 
-- GitHub Actions
-- التحديث كل ربع ساعة
-- ملفات JSON
-- سكربتات التحديث
-- قسم الرئيسية أو باقي أقسام الموقع
+- التحديث كل ربع ساعة.
+- GitHub Actions.
+- ملفات JSON.
+- قسم الرئيسية.
 
-## طريقة الاستخدام
+الملفات المعدلة فقط:
+
+```text
+public/index.html
+public/index_phone.html
+public/assets/worldcup-current-focus.js
+```
+
+طريقة التركيب:
 
 1. فك الضغط.
-2. انسخ محتويات المجلد إلى جذر المشروع.
-3. شغّل:
-   `APPLY_DEFAULT_ADWAR_TAB.bat`
-4. اعمل Commit بالرسالة:
-   `Open World Cup section on knockout rounds by default`
+2. ارفع مجلد `public` فوق مجلد `public` الموجود في GitHub.
+3. شغّل ملف `APPLY_WORLD_CUP_YOU_ARE_HERE_FOCUS.bat` إذا كنت تعمل محليًا على ويندوز.
+4. اعمل Commit.
 
-بعد النشر افتح الموقع بكسر الكاش:
-`https://maensat.pages.dev/?v=default-adwar`
+رسالة commit المقترحة:
+
+```text
+Show only you are here label on current World Cup match
+```

@@ -5192,7 +5192,9 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function groupByDate(matches){return matches.reduce(function(acc,m){var k=(m.kickoff_jordan||m.date||'').slice(0,10);(acc[k]=acc[k]||[]).push(m);return acc;},{});}
   function matchCountText(n){if(lang()==='en')return n+' '+(n===1?tr('singleMatchCount'):tr('matchesCount')); if(n===1)return tr('oneMatch'); if(n===2)return tr('twoMatches'); if(n>=3&&n<=10)return n+' '+tr('matchesCount'); return n+' '+tr('singleMatchCount');}
   function dayHeader(k,count){return '<div class="wc-day-header"><strong class="wc-day-date">'+fmtDay(k)+'</strong><span class="wc-day-count">'+esc(matchCountText(count))+'</span></div>';}
-  function card(m){var j=isJordan(m);var top=stageName(m)+(m.group?' · '+tr('group')+' '+m.group:'');return '<article class="wc-match-card '+(j?'jordan':'')+'"><div class="wc-match-top"><span>'+esc(top)+'</span><span>'+tr('match')+' '+esc(m.num||'—')+'</span></div><div class="wc-teams"><div class="wc-team">'+teamLabel(m.team1)+'</div><div class="'+scoreClass(m)+'">'+scoreText(m)+'</div><div class="wc-team">'+teamLabel(m.team2)+'</div></div><div class="wc-meta"><span class="wc-status">'+statusText(m)+'</span><span>'+fmtJordan(m.kickoff_jordan||m.kickoff_utc||m.date)+'</span><span>'+esc(m.stadium||m.ground||'')+'</span></div>'+broadcastHtml(m)+'</article>';}
+  function wcDomMatchKey(m){var raw=m&&(m.id||m.match_id||m.matchId||m.num||m.match_number||m.matchNo)||''; var n=wcMatchNumber(m); if(!raw&&n!==999999)raw='M'+String(n).padStart(3,'0'); return String(raw||'').trim();}
+  function wcDomAttrs(m){var n=wcMatchNumber(m); var key=wcDomMatchKey(m); return ' data-wc-match-card="1" data-wc-match-key="'+esc(key)+'" data-wc-match-num="'+esc(n===999999?'':String(n))+'"';}
+  function card(m){var j=isJordan(m);var top=stageName(m)+(m.group?' · '+tr('group')+' '+m.group:'');return '<article class="wc-match-card '+(j?'jordan':'')+'"'+wcDomAttrs(m)+'><div class="wc-match-top"><span>'+esc(top)+'</span><span>'+tr('match')+' '+esc(m.num||'—')+'</span></div><div class="wc-teams"><div class="wc-team">'+teamLabel(m.team1)+'</div><div class="'+scoreClass(m)+'">'+scoreText(m)+'</div><div class="wc-team">'+teamLabel(m.team2)+'</div></div><div class="wc-meta"><span class="wc-status">'+statusText(m)+'</span><span>'+fmtJordan(m.kickoff_jordan||m.kickoff_utc||m.date)+'</span><span>'+esc(m.stadium||m.ground||'')+'</span></div>'+broadcastHtml(m)+'</article>';}
   function wcMatchNumber(m){
     var raw = m && (m.num || m.match_number || m.matchNo || m.match_id || m.id);
     var n = parseInt(String(raw || '').replace(/[^\d]/g,''), 10);
@@ -5402,7 +5404,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 </script>
 
 
-  <script src="/assets/worldcup-current-focus.js?v=20260615-v2"></script>
+  <script src="/assets/worldcup-current-focus.js?v=20260628-you-are-here-v1"></script>
       <!-- MAEN_MOBILE_DEVICES_CATALOG_JS_V5_CUSTOMER_PHONE -->
 <script>
 (function(){
