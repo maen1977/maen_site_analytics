@@ -1,19 +1,19 @@
 {
   "name": "Maensat World Cup 2026 quarter-hour forced check",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-28T20:57:57+03:00",
-  "last_updated": "2026-06-28T20:57:57+03:00",
-  "next_expected_check_at": "2026-06-28T21:12:57+03:00",
+  "last_checked_at": "2026-06-28T21:00:16+03:00",
+  "last_updated": "2026-06-28T21:00:16+03:00",
+  "next_expected_check_at": "2026-06-28T21:15:16+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions",
   "github": {
-    "run_id": "28331010689",
-    "run_number": "1223",
+    "run_id": "28331069862",
+    "run_number": "1224",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "ca97bc22cc24a51d7f28a0d81b5290722eeb1896",
+    "sha": "aec42bbf000cda944dd8c38943ec82ad4cce0fd0",
     "trigger_source": "manual"
   },
   "checks": {
@@ -21,8 +21,8 @@
       "ok": true,
       "urls_checked": 9,
       "events_seen": 79,
-      "matched": 72,
-      "changed": 72,
+      "matched": 76,
+      "changed": 76,
       "stale_unverified_scores_cleared": 0,
       "unmatched_past_count": 0,
       "unmatched_past_sample": []
@@ -40,10 +40,10 @@
     ],
     "errors": []
   },
-  "cache_buster": "3145ea5b39fd",
+  "cache_buster": "db2c317753aa",
   "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج والأدوار.",
   "bracket_linker": {
-    "last_linked_at": "2026-06-28T20:57:57+03:00",
+    "last_linked_at": "2026-06-28T21:00:16+03:00",
     "timezone": "Asia/Amman",
     "groups_seen": [
       "A",
@@ -73,7 +73,7 @@
       "directResolved": 24,
       "thirdResolved": 6,
       "winnerResolved": 0,
-      "changed": 30,
+      "changed": 0,
       "unresolved": [
         {
           "match": "M090",
@@ -285,7 +285,7 @@
       "directResolved": 24,
       "thirdResolved": 6,
       "winnerResolved": 0,
-      "changed": 30,
+      "changed": 0,
       "unresolved": [
         {
           "match": "M090",
