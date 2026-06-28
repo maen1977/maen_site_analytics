@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-19T15:30:18+03:00",
-    "last_checked_at": "2026-06-19T15:30:18+03:00",
+    "last_updated": "2026-06-28T20:57:57+03:00",
+    "last_checked_at": "2026-06-28T20:57:57+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -22,12 +22,505 @@
     "github_run_id": "27825778981",
     "github_run_number": "204",
     "github_sha": "e011d16a5531145fe3a433bdabbf33cef6bfaef8",
-    "note_ar": "تم فحص بيانات كأس العالم والقنوات تلقائياً. هذا الوقت يتغير كل ربع ساعة لإجبار GitHub وCloudflare Pages على نشر نسخة حديثة.",
+    "note_ar": "تم ربط رموز الأدوار مثل 1A و2B و3A/B/C بأسماء المتأهلين من standings.json بدون تعديل تصميم الموقع.",
     "refresh_interval_minutes": 15,
     "cache_buster": "9205195953872ecf",
     "github_event_name": "workflow_dispatch",
     "github_trigger_source": "manual",
-    "external_forced_at": ""
+    "external_forced_at": "",
+    "bracket_team_name_linker": true,
+    "bracket_team_name_linked_at": "2026-06-28T20:57:57+03:00",
+    "bracket_resolution_summary": {
+      "last_linked_at": "2026-06-28T20:57:57+03:00",
+      "timezone": "Asia/Amman",
+      "groups_seen": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "best_third_groups_seen": [
+        "B",
+        "D",
+        "E",
+        "F",
+        "I",
+        "J",
+        "K",
+        "L"
+      ],
+      "bracket": {
+        "directResolved": 24,
+        "thirdResolved": 6,
+        "winnerResolved": 0,
+        "changed": 30,
+        "unresolved": [
+          {
+            "match": "M090",
+            "side": "team1",
+            "slot": "W73",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M090",
+            "side": "team2",
+            "slot": "W75",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M089",
+            "side": "team1",
+            "slot": "W74",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M089",
+            "side": "team2",
+            "slot": "W77",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M091",
+            "side": "team1",
+            "slot": "W76",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M091",
+            "side": "team2",
+            "slot": "W78",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M092",
+            "side": "team1",
+            "slot": "W79",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M092",
+            "side": "team2",
+            "slot": "W80",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M093",
+            "side": "team1",
+            "slot": "W83",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M093",
+            "side": "team2",
+            "slot": "W84",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M094",
+            "side": "team1",
+            "slot": "W81",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M094",
+            "side": "team2",
+            "slot": "W82",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M095",
+            "side": "team1",
+            "slot": "W86",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M095",
+            "side": "team2",
+            "slot": "W88",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M096",
+            "side": "team1",
+            "slot": "W85",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M096",
+            "side": "team2",
+            "slot": "W87",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M097",
+            "side": "team1",
+            "slot": "W89",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M097",
+            "side": "team2",
+            "slot": "W90",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M098",
+            "side": "team1",
+            "slot": "W93",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M098",
+            "side": "team2",
+            "slot": "W94",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M099",
+            "side": "team1",
+            "slot": "W91",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M099",
+            "side": "team2",
+            "slot": "W92",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M100",
+            "side": "team1",
+            "slot": "W95",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M100",
+            "side": "team2",
+            "slot": "W96",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M101",
+            "side": "team1",
+            "slot": "W97",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M101",
+            "side": "team2",
+            "slot": "W98",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M102",
+            "side": "team1",
+            "slot": "W99",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M102",
+            "side": "team2",
+            "slot": "W100",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M103",
+            "side": "team1",
+            "slot": "L101",
+            "reason": "loser-not-ready"
+          },
+          {
+            "match": "M103",
+            "side": "team2",
+            "slot": "L102",
+            "reason": "loser-not-ready"
+          },
+          {
+            "match": "M104",
+            "side": "team1",
+            "slot": "W101",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M104",
+            "side": "team2",
+            "slot": "W102",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M081",
+            "side": "team2",
+            "slot": "3B/E/F/I/J",
+            "reason": "best-third-not-ready-or-no-valid-assignment"
+          },
+          {
+            "match": "M085",
+            "side": "team2",
+            "slot": "3E/F/G/I/J",
+            "reason": "best-third-not-ready-or-no-valid-assignment"
+          }
+        ]
+      },
+      "matches_file": {
+        "directResolved": 24,
+        "thirdResolved": 6,
+        "winnerResolved": 0,
+        "changed": 30,
+        "unresolved": [
+          {
+            "match": "M090",
+            "side": "team1",
+            "slot": "W73",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M090",
+            "side": "team2",
+            "slot": "W75",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M089",
+            "side": "team1",
+            "slot": "W74",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M089",
+            "side": "team2",
+            "slot": "W77",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M091",
+            "side": "team1",
+            "slot": "W76",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M091",
+            "side": "team2",
+            "slot": "W78",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M092",
+            "side": "team1",
+            "slot": "W79",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M092",
+            "side": "team2",
+            "slot": "W80",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M093",
+            "side": "team1",
+            "slot": "W83",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M093",
+            "side": "team2",
+            "slot": "W84",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M094",
+            "side": "team1",
+            "slot": "W81",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M094",
+            "side": "team2",
+            "slot": "W82",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M095",
+            "side": "team1",
+            "slot": "W86",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M095",
+            "side": "team2",
+            "slot": "W88",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M096",
+            "side": "team1",
+            "slot": "W85",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M096",
+            "side": "team2",
+            "slot": "W87",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M097",
+            "side": "team1",
+            "slot": "W89",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M097",
+            "side": "team2",
+            "slot": "W90",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M098",
+            "side": "team1",
+            "slot": "W93",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M098",
+            "side": "team2",
+            "slot": "W94",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M099",
+            "side": "team1",
+            "slot": "W91",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M099",
+            "side": "team2",
+            "slot": "W92",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M100",
+            "side": "team1",
+            "slot": "W95",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M100",
+            "side": "team2",
+            "slot": "W96",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M101",
+            "side": "team1",
+            "slot": "W97",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M101",
+            "side": "team2",
+            "slot": "W98",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M102",
+            "side": "team1",
+            "slot": "W99",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M102",
+            "side": "team2",
+            "slot": "W100",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M103",
+            "side": "team1",
+            "slot": "L101",
+            "reason": "loser-not-ready"
+          },
+          {
+            "match": "M103",
+            "side": "team2",
+            "slot": "L102",
+            "reason": "loser-not-ready"
+          },
+          {
+            "match": "M104",
+            "side": "team1",
+            "slot": "W101",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M104",
+            "side": "team2",
+            "slot": "W102",
+            "reason": "winner-not-ready"
+          },
+          {
+            "match": "M081",
+            "side": "team2",
+            "slot": "3B/E/F/I/J",
+            "reason": "best-third-not-ready-or-no-valid-assignment"
+          },
+          {
+            "match": "M085",
+            "side": "team2",
+            "slot": "3E/F/G/I/J",
+            "reason": "best-third-not-ready-or-no-valid-assignment"
+          }
+        ]
+      },
+      "third_assignment_count": 6,
+      "third_assignments": [
+        {
+          "key": "M077:team2",
+          "group": "D",
+          "team": "Paraguay",
+          "team_ar": "باراغواي"
+        },
+        {
+          "key": "M074:team2",
+          "group": "B",
+          "team": "Bosnia & Herzegovina",
+          "team_ar": "البوسنة والهرسك"
+        },
+        {
+          "key": "M079:team2",
+          "group": "I",
+          "team": "Senegal",
+          "team_ar": "السنغال"
+        },
+        {
+          "key": "M082:team2",
+          "group": "J",
+          "team": "Algeria",
+          "team_ar": "الجزائر"
+        },
+        {
+          "key": "M080:team2",
+          "group": "K",
+          "team": "DR Congo",
+          "team_ar": "الكونغو الديمقراطية"
+        },
+        {
+          "key": "M087:team2",
+          "group": "L",
+          "team": "Ghana",
+          "team_ar": "غانا"
+        }
+      ]
+    }
   },
   "matches": [
     {
@@ -41,10 +534,10 @@
       "time": "12:00 UTC-7",
       "kickoff_utc": "2026-06-28T19:00:00.000Z",
       "kickoff_jordan": "2026-06-28T22:00:00.000+03:00",
-      "team1": "2A",
-      "team2": "2B",
-      "team1_ar": "2A",
-      "team2_ar": "2B",
+      "team1": "South Africa",
+      "team2": "Canada",
+      "team1_ar": "جنوب أفريقيا",
+      "team2_ar": "كندا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
       "status": "scheduled",
@@ -54,7 +547,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "2A 2B 2A 2B Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
+      "search_text": "South Africa Canada جنوب أفريقيا كندا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Round of 32 Round of 32 دور 32 Match 73",
+      "team1_slot": "2A",
+      "team1_original_slot": "2A",
+      "team1_seed": "2A",
+      "team1_resolved_from": "2A",
+      "team1_resolved_group": "A",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-A-rank-2",
+      "team2_slot": "2B",
+      "team2_original_slot": "2B",
+      "team2_seed": "2B",
+      "team2_resolved_from": "2B",
+      "team2_resolved_group": "B",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-B-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M076",
@@ -67,10 +575,10 @@
       "time": "12:00 UTC-5",
       "kickoff_utc": "2026-06-29T17:00:00.000Z",
       "kickoff_jordan": "2026-06-29T20:00:00.000+03:00",
-      "team1": "1C",
-      "team2": "2F",
-      "team1_ar": "1C",
-      "team2_ar": "2F",
+      "team1": "Brazil",
+      "team2": "Japan",
+      "team1_ar": "البرازيل",
+      "team2_ar": "اليابان",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
       "status": "scheduled",
@@ -80,7 +588,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1C 2F 1C 2F Houston Houston Stadium / NRG Stadium دور 32"
+      "search_text": "Brazil Japan البرازيل اليابان Houston Houston Stadium / NRG Stadium Round of 32 Round of 32 دور 32 Match 76",
+      "team1_slot": "1C",
+      "team1_original_slot": "1C",
+      "team1_seed": "1C",
+      "team1_resolved_from": "1C",
+      "team1_resolved_group": "C",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-C-rank-1",
+      "team2_slot": "2F",
+      "team2_original_slot": "2F",
+      "team2_seed": "2F",
+      "team2_resolved_from": "2F",
+      "team2_resolved_group": "F",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-F-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M074",
@@ -93,10 +616,10 @@
       "time": "16:30 UTC-4",
       "kickoff_utc": "2026-06-29T20:30:00.000Z",
       "kickoff_jordan": "2026-06-29T23:30:00.000+03:00",
-      "team1": "1E",
-      "team2": "3A/B/C/D/F",
-      "team1_ar": "1E",
-      "team2_ar": "3A/B/C/D/F",
+      "team1": "Germany",
+      "team2": "Bosnia & Herzegovina",
+      "team1_ar": "ألمانيا",
+      "team2_ar": "البوسنة والهرسك",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
       "status": "scheduled",
@@ -106,7 +629,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1E 3A/B/C/D/F 1E 3A/B/C/D/F Boston (Foxborough) Boston Stadium / Gillette Stadium دور 32"
+      "search_text": "Germany Bosnia & Herzegovina ألمانيا البوسنة والهرسك Boston (Foxborough) Boston Stadium / Gillette Stadium Round of 32 Round of 32 دور 32 Match 74",
+      "team1_slot": "1E",
+      "team1_original_slot": "1E",
+      "team1_seed": "1E",
+      "team1_resolved_from": "1E",
+      "team1_resolved_group": "E",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-E-rank-1",
+      "team2_slot": "3A/B/C/D/F",
+      "team2_original_slot": "3A/B/C/D/F",
+      "team2_seed": "3A/B/C/D/F",
+      "team2_resolved_from": "3A/B/C/D/F",
+      "team2_resolved_group": "B",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-B",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M075",
@@ -119,10 +657,10 @@
       "time": "19:00 UTC-6",
       "kickoff_utc": "2026-06-30T01:00:00.000Z",
       "kickoff_jordan": "2026-06-30T04:00:00.000+03:00",
-      "team1": "1F",
-      "team2": "2C",
-      "team1_ar": "1F",
-      "team2_ar": "2C",
+      "team1": "Netherlands",
+      "team2": "Morocco",
+      "team1_ar": "هولندا",
+      "team2_ar": "المغرب",
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
       "status": "scheduled",
@@ -132,7 +670,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1F 2C 1F 2C Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA دور 32"
+      "search_text": "Netherlands Morocco هولندا المغرب Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA Round of 32 Round of 32 دور 32 Match 75",
+      "team1_slot": "1F",
+      "team1_original_slot": "1F",
+      "team1_seed": "1F",
+      "team1_resolved_from": "1F",
+      "team1_resolved_group": "F",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-F-rank-1",
+      "team2_slot": "2C",
+      "team2_original_slot": "2C",
+      "team2_seed": "2C",
+      "team2_resolved_from": "2C",
+      "team2_resolved_group": "C",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-C-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M078",
@@ -145,10 +698,10 @@
       "time": "12:00 UTC-5",
       "kickoff_utc": "2026-06-30T17:00:00.000Z",
       "kickoff_jordan": "2026-06-30T20:00:00.000+03:00",
-      "team1": "2E",
-      "team2": "2I",
-      "team1_ar": "2E",
-      "team2_ar": "2I",
+      "team1": "Ivory Coast",
+      "team2": "Norway",
+      "team1_ar": "كوت ديفوار",
+      "team2_ar": "النرويج",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
       "status": "scheduled",
@@ -158,7 +711,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "2E 2I 2E 2I Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
+      "search_text": "Ivory Coast Norway كوت ديفوار النرويج Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 32 Round of 32 دور 32 Match 78",
+      "team1_slot": "2E",
+      "team1_original_slot": "2E",
+      "team1_seed": "2E",
+      "team1_resolved_from": "2E",
+      "team1_resolved_group": "E",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-E-rank-2",
+      "team2_slot": "2I",
+      "team2_original_slot": "2I",
+      "team2_seed": "2I",
+      "team2_resolved_from": "2I",
+      "team2_resolved_group": "I",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-I-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M077",
@@ -171,10 +739,10 @@
       "time": "17:00 UTC-4",
       "kickoff_utc": "2026-06-30T21:00:00.000Z",
       "kickoff_jordan": "2026-07-01T00:00:00.000+03:00",
-      "team1": "1I",
-      "team2": "3C/D/F/G/H",
-      "team1_ar": "1I",
-      "team2_ar": "3C/D/F/G/H",
+      "team1": "France",
+      "team2": "Paraguay",
+      "team1_ar": "فرنسا",
+      "team2_ar": "باراغواي",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
       "status": "scheduled",
@@ -184,7 +752,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1I 3C/D/F/G/H 1I 3C/D/F/G/H New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 32"
+      "search_text": "France Paraguay فرنسا باراغواي New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Round of 32 Round of 32 دور 32 Match 77",
+      "team1_slot": "1I",
+      "team1_original_slot": "1I",
+      "team1_seed": "1I",
+      "team1_resolved_from": "1I",
+      "team1_resolved_group": "I",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-I-rank-1",
+      "team2_slot": "3C/D/F/G/H",
+      "team2_original_slot": "3C/D/F/G/H",
+      "team2_seed": "3C/D/F/G/H",
+      "team2_resolved_from": "3C/D/F/G/H",
+      "team2_resolved_group": "D",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-D",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M079",
@@ -197,10 +780,10 @@
       "time": "19:00 UTC-6",
       "kickoff_utc": "2026-07-01T01:00:00.000Z",
       "kickoff_jordan": "2026-07-01T04:00:00.000+03:00",
-      "team1": "1A",
-      "team2": "3C/E/F/H/I",
-      "team1_ar": "1A",
-      "team2_ar": "3C/E/F/H/I",
+      "team1": "Mexico",
+      "team2": "Senegal",
+      "team1_ar": "المكسيك",
+      "team2_ar": "السنغال",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
       "status": "scheduled",
@@ -210,7 +793,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1A 3C/E/F/H/I 1A 3C/E/F/H/I Mexico City Mexico City Stadium / Estadio Azteca دور 32"
+      "search_text": "Mexico Senegal المكسيك السنغال Mexico City Mexico City Stadium / Estadio Azteca Round of 32 Round of 32 دور 32 Match 79",
+      "team1_slot": "1A",
+      "team1_original_slot": "1A",
+      "team1_seed": "1A",
+      "team1_resolved_from": "1A",
+      "team1_resolved_group": "A",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-A-rank-1",
+      "team2_slot": "3C/E/F/H/I",
+      "team2_original_slot": "3C/E/F/H/I",
+      "team2_seed": "3C/E/F/H/I",
+      "team2_resolved_from": "3C/E/F/H/I",
+      "team2_resolved_group": "I",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-I",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M080",
@@ -223,10 +821,10 @@
       "time": "12:00 UTC-4",
       "kickoff_utc": "2026-07-01T16:00:00.000Z",
       "kickoff_jordan": "2026-07-01T19:00:00.000+03:00",
-      "team1": "1L",
-      "team2": "3E/H/I/J/K",
-      "team1_ar": "1L",
-      "team2_ar": "3E/H/I/J/K",
+      "team1": "England",
+      "team2": "DR Congo",
+      "team1_ar": "إنجلترا",
+      "team2_ar": "الكونغو الديمقراطية",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
       "status": "scheduled",
@@ -236,7 +834,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1L 3E/H/I/J/K 1L 3E/H/I/J/K Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 32"
+      "search_text": "England DR Congo إنجلترا الكونغو الديمقراطية Atlanta Atlanta Stadium / Mercedes-Benz Stadium Round of 32 Round of 32 دور 32 Match 80",
+      "team1_slot": "1L",
+      "team1_original_slot": "1L",
+      "team1_seed": "1L",
+      "team1_resolved_from": "1L",
+      "team1_resolved_group": "L",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-L-rank-1",
+      "team2_slot": "3E/H/I/J/K",
+      "team2_original_slot": "3E/H/I/J/K",
+      "team2_seed": "3E/H/I/J/K",
+      "team2_resolved_from": "3E/H/I/J/K",
+      "team2_resolved_group": "K",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-K",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M082",
@@ -249,10 +862,10 @@
       "time": "13:00 UTC-7",
       "kickoff_utc": "2026-07-01T20:00:00.000Z",
       "kickoff_jordan": "2026-07-01T23:00:00.000+03:00",
-      "team1": "1G",
-      "team2": "3A/E/H/I/J",
-      "team1_ar": "1G",
-      "team2_ar": "3A/E/H/I/J",
+      "team1": "Belgium",
+      "team2": "Algeria",
+      "team1_ar": "بلجيكا",
+      "team2_ar": "الجزائر",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
       "status": "scheduled",
@@ -262,7 +875,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1G 3A/E/H/I/J 1G 3A/E/H/I/J Seattle Seattle Stadium / Lumen Field دور 32"
+      "search_text": "Belgium Algeria بلجيكا الجزائر Seattle Seattle Stadium / Lumen Field Round of 32 Round of 32 دور 32 Match 82",
+      "team1_slot": "1G",
+      "team1_original_slot": "1G",
+      "team1_seed": "1G",
+      "team1_resolved_from": "1G",
+      "team1_resolved_group": "G",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-G-rank-1",
+      "team2_slot": "3A/E/H/I/J",
+      "team2_original_slot": "3A/E/H/I/J",
+      "team2_seed": "3A/E/H/I/J",
+      "team2_resolved_from": "3A/E/H/I/J",
+      "team2_resolved_group": "J",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-J",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M081",
@@ -275,9 +903,9 @@
       "time": "17:00 UTC-7",
       "kickoff_utc": "2026-07-02T00:00:00.000Z",
       "kickoff_jordan": "2026-07-02T03:00:00.000+03:00",
-      "team1": "1D",
+      "team1": "USA",
       "team2": "3B/E/F/I/J",
-      "team1_ar": "1D",
+      "team1_ar": "أمريكا",
       "team2_ar": "3B/E/F/I/J",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
@@ -288,7 +916,18 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1D 3B/E/F/I/J 1D 3B/E/F/I/J San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium دور 32"
+      "search_text": "USA 3B/E/F/I/J أمريكا 3B/E/F/I/J San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium Round of 32 Round of 32 دور 32 Match 81",
+      "team1_slot": "1D",
+      "team1_original_slot": "1D",
+      "team1_seed": "1D",
+      "team1_resolved_from": "1D",
+      "team1_resolved_group": "D",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-D-rank-1",
+      "team2_slot": "3B/E/F/I/J",
+      "team2_original_slot": "3B/E/F/I/J",
+      "team2_seed": "3B/E/F/I/J",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M084",
@@ -301,10 +940,10 @@
       "time": "12:00 UTC-7",
       "kickoff_utc": "2026-07-02T19:00:00.000Z",
       "kickoff_jordan": "2026-07-02T22:00:00.000+03:00",
-      "team1": "1H",
-      "team2": "2J",
-      "team1_ar": "1H",
-      "team2_ar": "2J",
+      "team1": "Spain",
+      "team2": "Austria",
+      "team1_ar": "إسبانيا",
+      "team2_ar": "النمسا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
       "status": "scheduled",
@@ -314,7 +953,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1H 2J 1H 2J Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium دور 32"
+      "search_text": "Spain Austria إسبانيا النمسا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Round of 32 Round of 32 دور 32 Match 84",
+      "team1_slot": "1H",
+      "team1_original_slot": "1H",
+      "team1_seed": "1H",
+      "team1_resolved_from": "1H",
+      "team1_resolved_group": "H",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-H-rank-1",
+      "team2_slot": "2J",
+      "team2_original_slot": "2J",
+      "team2_seed": "2J",
+      "team2_resolved_from": "2J",
+      "team2_resolved_group": "J",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-J-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M083",
@@ -327,10 +981,10 @@
       "time": "19:00 UTC-4",
       "kickoff_utc": "2026-07-02T23:00:00.000Z",
       "kickoff_jordan": "2026-07-03T02:00:00.000+03:00",
-      "team1": "2K",
-      "team2": "2L",
-      "team1_ar": "2K",
-      "team2_ar": "2L",
+      "team1": "Portugal",
+      "team2": "Croatia",
+      "team1_ar": "البرتغال",
+      "team2_ar": "كرواتيا",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
       "status": "scheduled",
@@ -340,7 +994,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "2K 2L 2K 2L Toronto Toronto Stadium / BMO Field دور 32"
+      "search_text": "Portugal Croatia البرتغال كرواتيا Toronto Toronto Stadium / BMO Field Round of 32 Round of 32 دور 32 Match 83",
+      "team1_slot": "2K",
+      "team1_original_slot": "2K",
+      "team1_seed": "2K",
+      "team1_resolved_from": "2K",
+      "team1_resolved_group": "K",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-K-rank-2",
+      "team2_slot": "2L",
+      "team2_original_slot": "2L",
+      "team2_seed": "2L",
+      "team2_resolved_from": "2L",
+      "team2_resolved_group": "L",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-L-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M085",
@@ -353,9 +1022,9 @@
       "time": "20:00 UTC-7",
       "kickoff_utc": "2026-07-03T03:00:00.000Z",
       "kickoff_jordan": "2026-07-03T06:00:00.000+03:00",
-      "team1": "1B",
+      "team1": "Switzerland",
       "team2": "3E/F/G/I/J",
-      "team1_ar": "1B",
+      "team1_ar": "سويسرا",
       "team2_ar": "3E/F/G/I/J",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
@@ -366,7 +1035,18 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1B 3E/F/G/I/J 1B 3E/F/G/I/J Vancouver Vancouver Stadium / BC Place دور 32"
+      "search_text": "Switzerland 3E/F/G/I/J سويسرا 3E/F/G/I/J Vancouver Vancouver Stadium / BC Place Round of 32 Round of 32 دور 32 Match 85",
+      "team1_slot": "1B",
+      "team1_original_slot": "1B",
+      "team1_seed": "1B",
+      "team1_resolved_from": "1B",
+      "team1_resolved_group": "B",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-B-rank-1",
+      "team2_slot": "3E/F/G/I/J",
+      "team2_original_slot": "3E/F/G/I/J",
+      "team2_seed": "3E/F/G/I/J",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M088",
@@ -379,10 +1059,10 @@
       "time": "13:00 UTC-5",
       "kickoff_utc": "2026-07-03T18:00:00.000Z",
       "kickoff_jordan": "2026-07-03T21:00:00.000+03:00",
-      "team1": "2D",
-      "team2": "2G",
-      "team1_ar": "2D",
-      "team2_ar": "2G",
+      "team1": "Australia",
+      "team2": "Egypt",
+      "team1_ar": "أستراليا",
+      "team2_ar": "مصر",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
       "status": "scheduled",
@@ -392,7 +1072,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "2D 2G 2D 2G Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 32"
+      "search_text": "Australia Egypt أستراليا مصر Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 32 Round of 32 دور 32 Match 88",
+      "team1_slot": "2D",
+      "team1_original_slot": "2D",
+      "team1_seed": "2D",
+      "team1_resolved_from": "2D",
+      "team1_resolved_group": "D",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-D-rank-2",
+      "team2_slot": "2G",
+      "team2_original_slot": "2G",
+      "team2_seed": "2G",
+      "team2_resolved_from": "2G",
+      "team2_resolved_group": "G",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-G-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M086",
@@ -405,10 +1100,10 @@
       "time": "18:00 UTC-4",
       "kickoff_utc": "2026-07-03T22:00:00.000Z",
       "kickoff_jordan": "2026-07-04T01:00:00.000+03:00",
-      "team1": "1J",
-      "team2": "2H",
-      "team1_ar": "1J",
-      "team2_ar": "2H",
+      "team1": "Argentina",
+      "team2": "Cape Verde",
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "الرأس الأخضر",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
       "status": "scheduled",
@@ -418,7 +1113,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1J 2H 1J 2H Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium دور 32"
+      "search_text": "Argentina Cape Verde الأرجنتين الرأس الأخضر Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Round of 32 Round of 32 دور 32 Match 86",
+      "team1_slot": "1J",
+      "team1_original_slot": "1J",
+      "team1_seed": "1J",
+      "team1_resolved_from": "1J",
+      "team1_resolved_group": "J",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-J-rank-1",
+      "team2_slot": "2H",
+      "team2_original_slot": "2H",
+      "team2_seed": "2H",
+      "team2_resolved_from": "2H",
+      "team2_resolved_group": "H",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "group-H-rank-2",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M087",
@@ -431,10 +1141,10 @@
       "time": "20:30 UTC-5",
       "kickoff_utc": "2026-07-04T01:30:00.000Z",
       "kickoff_jordan": "2026-07-04T04:30:00.000+03:00",
-      "team1": "1K",
-      "team2": "3D/E/I/J/L",
-      "team1_ar": "1K",
-      "team2_ar": "3D/E/I/J/L",
+      "team1": "Colombia",
+      "team2": "Ghana",
+      "team1_ar": "كولومبيا",
+      "team2_ar": "غانا",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
       "status": "scheduled",
@@ -444,7 +1154,22 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "1K 3D/E/I/J/L 1K 3D/E/I/J/L Kansas City Kansas City Stadium / Arrowhead Stadium دور 32"
+      "search_text": "Colombia Ghana كولومبيا غانا Kansas City Kansas City Stadium / Arrowhead Stadium Round of 32 Round of 32 دور 32 Match 87",
+      "team1_slot": "1K",
+      "team1_original_slot": "1K",
+      "team1_seed": "1K",
+      "team1_resolved_from": "1K",
+      "team1_resolved_group": "K",
+      "team1_resolution_status": "resolved",
+      "team1_resolution_source": "group-K-rank-1",
+      "team2_slot": "3D/E/I/J/L",
+      "team2_original_slot": "3D/E/I/J/L",
+      "team2_seed": "3D/E/I/J/L",
+      "team2_resolved_from": "3D/E/I/J/L",
+      "team2_resolved_group": "L",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-L",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M090",
@@ -470,7 +1195,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W73 W75 W73 W75 Houston Houston Stadium / NRG Stadium دور 16"
+      "search_text": "W73 W75 W73 W75 Houston Houston Stadium / NRG Stadium Round of 16 Round of 16 دور 16 Match 90",
+      "team1_slot": "W73",
+      "team1_original_slot": "W73",
+      "team1_seed": "W73",
+      "team2_slot": "W75",
+      "team2_original_slot": "W75",
+      "team2_seed": "W75",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M089",
@@ -496,7 +1228,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W74 W77 W74 W77 Philadelphia Philadelphia Stadium / Lincoln Financial Field دور 16"
+      "search_text": "W74 W77 W74 W77 Philadelphia Philadelphia Stadium / Lincoln Financial Field Round of 16 Round of 16 دور 16 Match 89",
+      "team1_slot": "W74",
+      "team1_original_slot": "W74",
+      "team1_seed": "W74",
+      "team2_slot": "W77",
+      "team2_original_slot": "W77",
+      "team2_seed": "W77",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M091",
@@ -522,7 +1261,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W76 W78 W76 W78 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium دور 16"
+      "search_text": "W76 W78 W76 W78 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Round of 16 Round of 16 دور 16 Match 91",
+      "team1_slot": "W76",
+      "team1_original_slot": "W76",
+      "team1_seed": "W76",
+      "team2_slot": "W78",
+      "team2_original_slot": "W78",
+      "team2_seed": "W78",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M092",
@@ -548,7 +1294,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W79 W80 W79 W80 Mexico City Mexico City Stadium / Estadio Azteca دور 16"
+      "search_text": "W79 W80 W79 W80 Mexico City Mexico City Stadium / Estadio Azteca Round of 16 Round of 16 دور 16 Match 92",
+      "team1_slot": "W79",
+      "team1_original_slot": "W79",
+      "team1_seed": "W79",
+      "team2_slot": "W80",
+      "team2_original_slot": "W80",
+      "team2_seed": "W80",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M093",
@@ -574,7 +1327,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W83 W84 W83 W84 Dallas (Arlington) Dallas Stadium / AT&T Stadium دور 16"
+      "search_text": "W83 W84 W83 W84 Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 16 Round of 16 دور 16 Match 93",
+      "team1_slot": "W83",
+      "team1_original_slot": "W83",
+      "team1_seed": "W83",
+      "team2_slot": "W84",
+      "team2_original_slot": "W84",
+      "team2_seed": "W84",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M094",
@@ -600,7 +1360,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W81 W82 W81 W82 Seattle Seattle Stadium / Lumen Field دور 16"
+      "search_text": "W81 W82 W81 W82 Seattle Seattle Stadium / Lumen Field Round of 16 Round of 16 دور 16 Match 94",
+      "team1_slot": "W81",
+      "team1_original_slot": "W81",
+      "team1_seed": "W81",
+      "team2_slot": "W82",
+      "team2_original_slot": "W82",
+      "team2_seed": "W82",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M095",
@@ -626,7 +1393,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W86 W88 W86 W88 Atlanta Atlanta Stadium / Mercedes-Benz Stadium دور 16"
+      "search_text": "W86 W88 W86 W88 Atlanta Atlanta Stadium / Mercedes-Benz Stadium Round of 16 Round of 16 دور 16 Match 95",
+      "team1_slot": "W86",
+      "team1_original_slot": "W86",
+      "team1_seed": "W86",
+      "team2_slot": "W88",
+      "team2_original_slot": "W88",
+      "team2_seed": "W88",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M096",
@@ -652,7 +1426,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W85 W87 W85 W87 Vancouver Vancouver Stadium / BC Place دور 16"
+      "search_text": "W85 W87 W85 W87 Vancouver Vancouver Stadium / BC Place Round of 16 Round of 16 دور 16 Match 96",
+      "team1_slot": "W85",
+      "team1_original_slot": "W85",
+      "team1_seed": "W85",
+      "team2_slot": "W87",
+      "team2_original_slot": "W87",
+      "team2_seed": "W87",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M097",
@@ -678,7 +1459,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W89 W90 W89 W90 Boston (Foxborough) Boston Stadium / Gillette Stadium ربع النهائي"
+      "search_text": "W89 W90 W89 W90 Boston (Foxborough) Boston Stadium / Gillette Stadium Quarter-final Quarter-final ربع النهائي Match 97",
+      "team1_slot": "W89",
+      "team1_original_slot": "W89",
+      "team1_seed": "W89",
+      "team2_slot": "W90",
+      "team2_original_slot": "W90",
+      "team2_seed": "W90",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M098",
@@ -704,7 +1492,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W93 W94 W93 W94 Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium ربع النهائي"
+      "search_text": "W93 W94 W93 W94 Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Quarter-final Quarter-final ربع النهائي Match 98",
+      "team1_slot": "W93",
+      "team1_original_slot": "W93",
+      "team1_seed": "W93",
+      "team2_slot": "W94",
+      "team2_original_slot": "W94",
+      "team2_seed": "W94",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M099",
@@ -730,7 +1525,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W91 W92 W91 W92 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium ربع النهائي"
+      "search_text": "W91 W92 W91 W92 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Quarter-final Quarter-final ربع النهائي Match 99",
+      "team1_slot": "W91",
+      "team1_original_slot": "W91",
+      "team1_seed": "W91",
+      "team2_slot": "W92",
+      "team2_original_slot": "W92",
+      "team2_seed": "W92",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M100",
@@ -756,7 +1558,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W95 W96 W95 W96 Kansas City Kansas City Stadium / Arrowhead Stadium ربع النهائي"
+      "search_text": "W95 W96 W95 W96 Kansas City Kansas City Stadium / Arrowhead Stadium Quarter-final Quarter-final ربع النهائي Match 100",
+      "team1_slot": "W95",
+      "team1_original_slot": "W95",
+      "team1_seed": "W95",
+      "team2_slot": "W96",
+      "team2_original_slot": "W96",
+      "team2_seed": "W96",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M101",
@@ -782,7 +1591,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W97 W98 W97 W98 Dallas (Arlington) Dallas Stadium / AT&T Stadium نصف النهائي"
+      "search_text": "W97 W98 W97 W98 Dallas (Arlington) Dallas Stadium / AT&T Stadium Semi-final Semi-final نصف النهائي Match 101",
+      "team1_slot": "W97",
+      "team1_original_slot": "W97",
+      "team1_seed": "W97",
+      "team2_slot": "W98",
+      "team2_original_slot": "W98",
+      "team2_seed": "W98",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M102",
@@ -808,7 +1624,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W99 W100 W99 W100 Atlanta Atlanta Stadium / Mercedes-Benz Stadium نصف النهائي"
+      "search_text": "W99 W100 W99 W100 Atlanta Atlanta Stadium / Mercedes-Benz Stadium Semi-final Semi-final نصف النهائي Match 102",
+      "team1_slot": "W99",
+      "team1_original_slot": "W99",
+      "team1_seed": "W99",
+      "team2_slot": "W100",
+      "team2_original_slot": "W100",
+      "team2_seed": "W100",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M103",
@@ -834,7 +1657,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "L101 L102 L101 L102 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium المركز الثالث"
+      "search_text": "L101 L102 L101 L102 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Match for third place Match for third place المركز الثالث Match 103",
+      "team1_slot": "L101",
+      "team1_original_slot": "L101",
+      "team1_seed": "L101",
+      "team2_slot": "L102",
+      "team2_original_slot": "L102",
+      "team2_seed": "L102",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     },
     {
       "id": "M104",
@@ -860,7 +1690,14 @@
       "score_source": "openfootball",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "W101 W102 W101 W102 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium النهائي"
+      "search_text": "W101 W102 W101 W102 New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Final Final النهائي Match 104",
+      "team1_slot": "W101",
+      "team1_original_slot": "W101",
+      "team1_seed": "W101",
+      "team2_slot": "W102",
+      "team2_original_slot": "W102",
+      "team2_seed": "W102",
+      "bracket_linked_at": "2026-06-28T20:57:57+03:00"
     }
   ]
 }

@@ -1,48 +1,15 @@
 {
-  "name": "Maensat World Cup 2026 quarter-hour forced check",
-  "timezone": "Asia/Amman",
+  "name": "MaenSat World Cup 2026 deploy health",
   "last_checked_at": "2026-06-28T20:57:57+03:00",
-  "last_updated": "2026-06-28T20:57:57+03:00",
-  "next_expected_check_at": "2026-06-28T21:12:57+03:00",
-  "refresh_interval_minutes": 15,
-  "source": "github-actions",
-  "github": {
-    "run_id": "28331010689",
-    "run_number": "1223",
-    "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "workflow_dispatch",
-    "repository": "maen1977/maen_site_analytics",
-    "ref": "refs/heads/main",
-    "sha": "ca97bc22cc24a51d7f28a0d81b5290722eeb1896",
-    "trigger_source": "manual"
-  },
-  "checks": {
-    "espn_scoreboard": {
-      "ok": true,
-      "urls_checked": 9,
-      "events_seen": 79,
-      "matched": 72,
-      "changed": 72,
-      "stale_unverified_scores_cleared": 0,
-      "unmatched_past_count": 0,
-      "unmatched_past_sample": []
-    },
-    "manual_overrides_applied": 0,
-    "files_written": [
-      "matches.json",
-      "standings.json",
-      "groups.json",
-      "heartbeat.json",
-      "update-check.json",
-      "version.json",
-      "deploy-marker.txt",
-      "update-errors.json"
-    ],
-    "errors": []
-  },
-  "cache_buster": "3145ea5b39fd",
-  "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج والأدوار.",
-  "bracket_linker": {
+  "timezone": "Asia/Amman",
+  "github_run_id": "28331010689",
+  "github_run_number": "1223",
+  "github_workflow": "Update World Cup 2026 every 15 minutes",
+  "github_event_name": "workflow_dispatch",
+  "trigger_source": "manual",
+  "cloudflare_hook_configured": false,
+  "cloudflare_note_ar": "سر CLOUDFLARE_PAGES_DEPLOY_HOOK غير موجود. إذا كان Cloudflare Pages غير مربوط تلقائياً بـ GitHub، سيبقى الموقع على نسخة قديمة حتى تضيف Deploy Hook أو تعيد ربط GitHub.",
+  "bracket_summary": {
     "last_linked_at": "2026-06-28T20:57:57+03:00",
     "timezone": "Asia/Amman",
     "groups_seen": [
@@ -532,6 +499,5 @@
         "team_ar": "غانا"
       }
     ]
-  },
-  "cloudflare_hook_configured": false
+  }
 }
