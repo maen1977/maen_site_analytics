@@ -1,50 +1,54 @@
-# إصلاح الأدوار المباشر لكأس العالم 2026 - MaenSat
+# إصلاح كأس العالم داخل التحديث الأصلي كل 15 دقيقة
 
-هذا الإصلاح يعمل فقط على قسم كأس العالم ولا يغيّر تصميم الموقع العام.
+هذا الملف معمول حسب طلبك: لا يضيف Action جديد، ولا يغيّر تصميم الموقع، ولا يلمس `index.html`.
 
-## ماذا يفعل؟
+## ماذا يغيّر؟
 
-1. يجعل تبويب **الأدوار** هو التبويب الافتراضي عند دخول المستخدم إلى قسم كأس العالم.
-2. يعرض الأدوار بنفس نظام كروت المباريات: فريق × فريق، النتيجة، الحالة، التاريخ، الساعة، والملعب.
-3. يحوّل رموز مثل `1A` و `2B` و `3B/E/F/I/J` إلى أسماء منتخبات عندما تكون بيانات المجموعات متوفرة.
-4. يحدّث باقي الأدوار تلقائياً: الفائز من مباراة 73 ينتقل إلى المباراة التالية بعد ظهور النتيجة في ملفات JSON.
-5. ينشئ ملف فحص مباشر:
-   `/worldcup-2026/knockout-live-health.json`
+يستبدل ملفين فقط:
+
+1. `.github/workflows/update-worldcup-2026.yml`
+2. `scripts/worldcup-quarter-hour-force.mjs`
+
+## ماذا يعمل الإصلاح؟
+
+- يحافظ على نفس Action الأصلي: `Update World Cup 2026 every 15 minutes`.
+- يحافظ على نفس الجدولة: كل 15 دقيقة تقريباً.
+- يحدّث النتائج من ESPN داخل نفس سكربت التحديث الأصلي.
+- يعيد بناء `standings.json` و `groups.json`.
+- يحدّث `bracket.json` داخل نفس التحديث الأصلي.
+- يربط أسماء المنتخبات في دور الـ32 بدل الرموز مثل `1A` و `2B` و `3B/E/F/I/J` قدر الإمكان.
+- ينقل الفائزين تلقائياً للأدوار التالية عندما تصبح نتيجة المباراة موثقة.
+- يكتب ملفات فحص كل تشغيل: `heartbeat.json`, `update-check.json`, `version.json`, `deploy-marker.txt`.
 
 ## طريقة التركيب
 
-1. فك ضغط الملف.
-2. ارفع كل الملفات إلى جذر الريبو:
+1. فك الضغط.
+2. ارفع محتويات المجلد إلى جذر الريبو:
    `maen1977/maen_site_analytics`
-3. اعمل Commit بهذه الرسالة:
+3. وافق على استبدال الملفين الموجودين.
+4. اعمل Commit بهذه الرسالة:
 
 ```text
-Add World Cup knockout live cards and auto update
+Restore original 15-minute World Cup updater with integrated knockout patch
 ```
 
-4. ادخل GitHub Actions.
-5. شغّل Action باسم:
-   **World Cup knockout live cards**
-6. بعد نجاحه انتظر Deploy الموقع.
-7. افتح:
+5. ادخل GitHub Actions.
+6. شغّل Action الأصلي فقط:
 
 ```text
-https://maensat.pages.dev/worldcup-2026/knockout-live-health.json?v=test
+Update World Cup 2026 every 15 minutes
 ```
 
-إذا ظهر وقت جديد، فالبيانات صارت تتحدث.
+7. بعد نجاحه، افحص:
+
+```text
+https://maensat.pages.dev/worldcup-2026/heartbeat.json?v=15min
+```
+
+لا تشغّل أي Action قديم من ملفات الإصلاح السابقة.
 
 ## ملاحظات مهمة
 
-- هذا الإصلاح لا يحذف التحديث القديم ولا يوقفه.
-- لا يحتاج Deploy Hook طالما أنت أكدت أن الموقع يحدث.
-- لو لم يظهر تبويب الأدوار مباشرة، افتح الموقع بكسر الكاش:
-  `https://maensat.pages.dev/?v=knockout-live`
-
-## الملفات المضافة
-
-- `.github/workflows/worldcup-knockout-live-cards.yml`
-- `scripts/worldcup-knockout-live-sync.mjs`
-- `scripts/install-worldcup-knockout-cards-ui.mjs`
-- `public/worldcup-knockout-cards-ui.js`
-
+- هذا الإصلاح لا يحتوي على `worldcup-final-ui-fix.js` ولا `knockout-live-cards` ولا أي سكربت واجهة.
+- إذا كانت ملفات إصلاح قديمة موجودة في الريبو، لا تشغّلها. الأفضل حذفها لاحقاً بهدوء، لكن هذا الملف لا يعتمد عليها.
+- إذا بقي الموقع لا يعرض التحديث رغم أن `heartbeat.json` تغير، تكون المشكلة نشر/كاش، وليس سكربت التحديث.

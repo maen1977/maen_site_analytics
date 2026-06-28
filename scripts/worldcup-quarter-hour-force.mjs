@@ -5,25 +5,30 @@ import crypto from 'node:crypto';
 const ROOT = process.cwd();
 const WC_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TIMEZONE = 'Asia/Amman';
-const ESPN_BASE = process.env.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950';
 const START_DATE = process.env.WORLD_CUP_2026_START_DATE || '2026-06-11';
 const END_DATE = process.env.WORLD_CUP_2026_END_DATE || '2026-07-19';
 const REFRESH_MINUTES = Number(process.env.WORLD_CUP_2026_INTERVAL_MINUTES || 15);
-const CLEAR_STALE_UNVERIFIED = process.env.WORLD_CUP_2026_KEEP_UNVERIFIED_SCORES !== '1';
+const ESPN_BASE = process.env.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950';
 
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
     timeZone: TIMEZONE,
-    year: 'numeric', month: '2-digit', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit',
-    hour12: false
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
   }).format(date).replace(' ', 'T') + '+03:00';
 }
 
 function ymd(date) {
   return new Intl.DateTimeFormat('en-CA', {
     timeZone: TIMEZONE,
-    year: 'numeric', month: '2-digit', day: '2-digit'
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
   }).format(date);
 }
 
@@ -44,9 +49,39 @@ function parseDateOnly(value, endOfDay = false) {
 }
 
 function clampDate(date, min, max) {
-  if (date < min) return new Date(min);
-  if (date > max) return new Date(max);
+  if (Number.isFinite(min?.getTime?.()) && date < min) return new Date(min);
+  if (Number.isFinite(max?.getTime?.()) && date > max) return new Date(max);
   return date;
+}
+
+function stableString(value) {
+  return JSON.stringify(value, Object.keys(value || {}).sort());
+}
+
+async function readJson(file, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(path.join(WC_DIR, file), 'utf8'));
+  } catch {
+    return structuredClone(fallback);
+  }
+}
+
+async function writeJson(file, value) {
+  await fs.writeFile(path.join(WC_DIR, file), JSON.stringify(value, null, 2) + '\n');
+}
+
+function ensureMatchesContainer(value) {
+  if (Array.isArray(value)) return { root: { matches: value }, matches: value, arrayRoot: true };
+  if (!value || typeof value !== 'object') return { root: { matches: [] }, matches: [], arrayRoot: false };
+  if (!Array.isArray(value.matches)) value.matches = [];
+  return { root: value, matches: value.matches, arrayRoot: false };
+}
+
+function matchesArray(value) {
+  if (Array.isArray(value)) return value;
+  if (Array.isArray(value?.matches)) return value.matches;
+  if (Array.isArray(value?.data?.matches)) return value.data.matches;
+  return [];
 }
 
 function normalize(value) {
@@ -56,8 +91,8 @@ function normalize(value) {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/&/g, 'and')
     .replace(/\+/g, 'and')
-    .replace(/\b(fc|cf|sc|nt|team|national|republic of)\b/g, '')
-    .replace(/[^a-z0-9]/g, '');
+    .replace(/\b(fc|cf|sc|nt|team|national|republic of|the)\b/g, '')
+    .replace(/[^a-z0-9ء-ي]/g, '');
 }
 
 const ALIASES = new Map(Object.entries({
@@ -86,12 +121,10 @@ const ALIASES = new Map(Object.entries({
   curaçao: 'curacao',
   capeverde: 'capeverde',
   caboverde: 'capeverde',
-  netherlands: 'netherlands',
-  holland: 'netherlands',
   turkey: 'turkey',
   turkiye: 'turkey',
   uae: 'unitedarabemirates',
-  unitedarabemirates: 'unitedarabemirates'
+  unitedarabemirates: 'unitedarabemirates',
 }));
 
 function teamKey(value) {
@@ -105,6 +138,18 @@ function scoreNumber(value) {
   return Number.isFinite(n) ? n : null;
 }
 
+function matchNumber(match) {
+  const raw = match?.num ?? match?.match_number ?? match?.matchNo ?? match?.match ?? match?.id;
+  const n = Number(String(raw || '').replace(/[^0-9]/g, ''));
+  return Number.isFinite(n) ? n : 999999;
+}
+
+function matchId(match) {
+  const num = matchNumber(match);
+  if (Number.isFinite(num) && num !== 999999) return `M${String(num).padStart(3, '0')}`;
+  return String(match?.id || '');
+}
+
 function matchDateMs(match) {
   const raw = match?.kickoff_utc || match?.kickoff_jordan || match?.datetime || match?.date_time || match?.date;
   const t = raw ? Date.parse(raw) : NaN;
@@ -116,18 +161,120 @@ function eventDateMs(event) {
   return Number.isFinite(t) ? t : NaN;
 }
 
-function matchNumber(match) {
-  const raw = match?.num ?? match?.match_number ?? match?.matchNo ?? String(match?.id || '').replace(/^M/i, '');
-  const n = Number(String(raw || '').replace(/[^0-9]/g, ''));
-  return Number.isFinite(n) ? n : 999999;
+function slotText(value) {
+  return String(value || '').trim();
+}
+
+function isPlaceholder(value) {
+  const s = slotText(value);
+  return /^(?:[12][A-L]|3[A-L](?:\/[A-L])*|W\d{1,3}|L\d{1,3})$/i.test(s);
+}
+
+function stageIsGroup(match) {
+  const text = `${match?.stage || ''} ${match?.round || ''} ${match?.stage_ar || ''}`.toLowerCase();
+  return Boolean(match?.group) || text.includes('group') || text.includes('مجموع');
+}
+
+function stageIsKnockout(match) {
+  return !stageIsGroup(match) && matchNumber(match) >= 73;
+}
+
+function teamFields(side) {
+  if (side === 1) return ['team1', 'home_team', 'homeTeam'];
+  return ['team2', 'away_team', 'awayTeam'];
+}
+
+function getTeamName(match, side) {
+  for (const field of teamFields(side)) {
+    if (match?.[field]) return match[field];
+  }
+  return '';
+}
+
+function setTeamName(match, side, team, teamAr, sourceSlot = '') {
+  if (!team) return false;
+  const before = `${getTeamName(match, side)}|${match[`team${side}_ar`] || ''}`;
+  match[`team${side}`] = team;
+  match[`team${side}_ar`] = teamAr || team;
+  if (sourceSlot) match[`team${side}_source_slot`] = sourceSlot;
+  if (side === 1) {
+    if ('home_team' in match) match.home_team = team;
+    if ('homeTeam' in match) match.homeTeam = team;
+    if ('home_team_ar' in match) match.home_team_ar = teamAr || team;
+  } else {
+    if ('away_team' in match) match.away_team = team;
+    if ('awayTeam' in match) match.awayTeam = team;
+    if ('away_team_ar' in match) match.away_team_ar = teamAr || team;
+  }
+  return before !== `${getTeamName(match, side)}|${match[`team${side}_ar`] || ''}`;
+}
+
+function originalSlot(match, side) {
+  const saved = match?.[`team${side}_source_slot`] || match?.[`team${side}_slot`] || match?.[`slot${side}`] || '';
+  if (isPlaceholder(saved)) return slotText(saved).toUpperCase();
+  const current = getTeamName(match, side);
+  if (isPlaceholder(current)) return slotText(current).toUpperCase();
+  const ar = match?.[`team${side}_ar`];
+  if (isPlaceholder(ar)) return slotText(ar).toUpperCase();
+  return '';
+}
+
+function refreshSearchText(match) {
+  match.search_text = [
+    match.team1 || match.home_team || match.homeTeam,
+    match.team2 || match.away_team || match.awayTeam,
+    match.team1_ar || match.home_team_ar,
+    match.team2_ar || match.away_team_ar,
+    match.stadium,
+    match.ground,
+    match.round,
+    match.stage,
+    match.stage_ar,
+    match.group ? `Group ${match.group}` : '',
+    match.num ? `Match ${match.num}` : '',
+  ].filter(Boolean).join(' ');
+}
+
+function hasScore(match) {
+  return scoreNumber(match?.home_score) !== null && scoreNumber(match?.away_score) !== null;
+}
+
+function isFinished(match) {
+  const status = String(match?.status || '').toLowerCase();
+  return status.includes('finish') || status.includes('full') || status === 'ft' || Boolean(match?.score?.ft) || Boolean(match?.score?.full_time);
+}
+
+function isVerifiedResult(match) {
+  if (!hasScore(match) || !isFinished(match)) return false;
+  const source = String(match?.score_source || match?.live_score_source || match?.score?.source || '').toLowerCase();
+  return ['espn', 'manual-override', 'manual', 'verified'].some((key) => source.includes(key));
+}
+
+function teamResult(match) {
+  if (!isVerifiedResult(match)) return null;
+  let a = scoreNumber(match.home_score);
+  let b = scoreNumber(match.away_score);
+  if (a === null || b === null) return null;
+  if (a === b) {
+    const pa = scoreNumber(match.penalty_home_score ?? match.home_penalties ?? match.score?.penalties?.home ?? match.score?.penalty_home_score);
+    const pb = scoreNumber(match.penalty_away_score ?? match.away_penalties ?? match.score?.penalties?.away ?? match.score?.penalty_away_score);
+    if (pa !== null && pb !== null && pa !== pb) {
+      a = pa;
+      b = pb;
+    }
+  }
+  if (a === b) return null;
+  return {
+    winner: a > b ? 1 : 2,
+    loser: a > b ? 2 : 1,
+  };
 }
 
 function eventUrlWithDates(baseUrl, start, end) {
   try {
     const url = new URL(baseUrl);
     url.searchParams.set('limit', url.searchParams.get('limit') || '950');
-    const range = `${ymdCompact(start)}-${ymdCompact(end)}`;
-    url.searchParams.set('dates', range);
+    url.searchParams.set('dates', `${ymdCompact(start)}-${ymdCompact(end)}`);
     return url.toString();
   } catch {
     const sep = baseUrl.includes('?') ? '&' : '?';
@@ -140,21 +287,16 @@ function buildEspnUrls(now) {
   const tournamentEnd = parseDateOnly(END_DATE, true);
   const scanEnd = clampDate(addDays(now, 2), tournamentStart, tournamentEnd);
   const urls = new Set([ESPN_BASE]);
-
-  // Scan the whole played part of the tournament, not only today's ESPN board.
   let cursor = new Date(tournamentStart);
   while (cursor <= scanEnd) {
     const end = new Date(Math.min(addDays(cursor, 6).getTime(), scanEnd.getTime()));
     urls.add(eventUrlWithDates(ESPN_BASE, cursor, end));
     cursor = addDays(end, 1);
   }
-
-  // Extra daily checks around today improve live/near-live matching if ESPN ignores ranges.
   [-2, -1, 0, 1, 2].forEach((offset) => {
     const d = clampDate(addDays(now, offset), tournamentStart, tournamentEnd);
     urls.add(eventUrlWithDates(ESPN_BASE, d, d));
   });
-
   return [...urls];
 }
 
@@ -162,12 +304,12 @@ async function fetchJson(url) {
   try {
     const res = await fetch(url, {
       headers: {
-        'User-Agent': 'Maensat-WorldCup-2026-Updater/3.0',
-        'Accept': 'application/json'
-      }
+        'User-Agent': 'Maensat-WorldCup-2026-Updater/4.0',
+        Accept: 'application/json',
+      },
     });
     if (!res.ok) return { ok: false, status: res.status, error: `HTTP ${res.status}` };
-    return { ok: true, data: await res.json(), status: res.status };
+    return { ok: true, status: res.status, data: await res.json() };
   } catch (error) {
     return { ok: false, status: 0, error: error.message };
   }
@@ -181,15 +323,13 @@ function extractEspnEvents(scoreboard) {
     const home = competitors.find((c) => c.homeAway === 'home') || competitors[0] || {};
     const away = competitors.find((c) => c.homeAway === 'away') || competitors[1] || {};
     const status = comp.status?.type || e.status?.type || {};
-    const homeScore = scoreNumber(home.score);
-    const awayScore = scoreNumber(away.score);
-    const completed = Boolean(status.completed);
     const state = String(status.state || '').toLowerCase();
-    const name = status.name || status.description || status.detail || status.shortDetail || '';
-
+    const completed = Boolean(status.completed);
     const homeName = home.team?.displayName || home.team?.shortDisplayName || home.team?.name || '';
     const awayName = away.team?.displayName || away.team?.shortDisplayName || away.team?.name || '';
-
+    const homeScore = scoreNumber(home.score);
+    const awayScore = scoreNumber(away.score);
+    const detail = status.description || status.detail || status.shortDetail || status.name || '';
     return {
       source: 'espn',
       id: String(e.id || comp.id || ''),
@@ -201,22 +341,22 @@ function extractEspnEvents(scoreboard) {
       home_score: homeScore,
       away_score: awayScore,
       status: completed ? 'finished' : (state === 'in' || state === 'live') ? 'live' : 'scheduled',
-      status_detail: name,
+      status_detail: detail,
       clock: comp.status?.displayClock || e.status?.displayClock || '',
-      rawState: state
     };
   }).filter((event) => event.homeKey && event.awayKey && event.date);
 }
 
 function matchTeamKeys(match) {
-  const team1 = teamKey(match.team1 || match.home_team || match.homeTeam || match.team1_en || '');
-  const team2 = teamKey(match.team2 || match.away_team || match.awayTeam || match.team2_en || '');
-  return { team1, team2 };
+  return {
+    team1: teamKey(getTeamName(match, 1)),
+    team2: teamKey(getTeamName(match, 2)),
+  };
 }
 
 function sameTeams(match, event) {
   const { team1, team2 } = matchTeamKeys(match);
-  if (!team1 || !team2) return false;
+  if (!team1 || !team2 || isPlaceholder(getTeamName(match, 1)) || isPlaceholder(getTeamName(match, 2))) return false;
   return (team1 === event.homeKey && team2 === event.awayKey) || (team1 === event.awayKey && team2 === event.homeKey);
 }
 
@@ -228,20 +368,16 @@ function timeDiffMs(match, event) {
 }
 
 function findEspnMatch(match, events) {
-  const explicitIds = [match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id]
-    .filter(Boolean).map(String);
+  const explicitIds = [match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id].filter(Boolean).map(String);
   if (explicitIds.length) {
     const byId = events.find((event) => explicitIds.includes(String(event.id)));
     if (byId) return byId;
   }
-
-  const candidates = events
+  return events
     .filter((event) => sameTeams(match, event))
     .map((event) => ({ event, diff: timeDiffMs(match, event) }))
     .filter((row) => row.diff <= 54 * 60 * 60 * 1000 || row.diff === Number.MAX_SAFE_INTEGER)
-    .sort((a, b) => a.diff - b.diff);
-
-  return candidates[0]?.event || null;
+    .sort((a, b) => a.diff - b.diff)[0]?.event || null;
 }
 
 function applyScore(match, event, nowIso) {
@@ -249,122 +385,72 @@ function applyScore(match, event, nowIso) {
   const sameOrder = team1 && team1 === event.homeKey;
   const team1Score = sameOrder ? event.home_score : event.away_score;
   const team2Score = sameOrder ? event.away_score : event.home_score;
-
+  const before = JSON.stringify({ s: match.status, a: match.home_score, b: match.away_score, src: match.score_source, id: match.espn_event_id });
   match.espn_event_id = event.id || match.espn_event_id;
   match.status = event.status;
-  if (team1Score !== null) match.home_score = team1Score;
-  if (team2Score !== null) match.away_score = team2Score;
-  match.score_source = 'espn';
   match.live_score_source = 'espn';
+  match.score_source = 'espn';
   match.live_status_detail = event.status_detail || event.status;
   match.live_clock = event.clock || null;
   match.live_checked_at = nowIso;
   match.last_live_update = nowIso;
-
-  const currentPair = [match.home_score ?? 0, match.away_score ?? 0];
+  if (team1Score !== null) match.home_score = team1Score;
+  if (team2Score !== null) match.away_score = team2Score;
+  const current = [match.home_score ?? null, match.away_score ?? null];
   match.score = {
     source: 'espn',
     event_id: event.id,
     status_detail: event.status_detail,
     clock: event.clock || null,
     checked_at: nowIso,
-    current: currentPair
+    current,
   };
-
-  if (event.status === 'finished') {
-    match.score.ft = currentPair;
-  } else if (event.status === 'live') {
-    match.score.live = currentPair;
-  }
+  if (event.status === 'finished') match.score.ft = current;
+  if (event.status === 'live') match.score.live = current;
+  return before !== JSON.stringify({ s: match.status, a: match.home_score, b: match.away_score, src: match.score_source, id: match.espn_event_id });
 }
 
-function clearUnverifiedPastScore(match, now, reason = 'unverified_score_removed') {
+function clearFutureOpenfootballZeros(match, now) {
   const kickoff = matchDateMs(match);
-  if (!Number.isFinite(kickoff)) return false;
-  const endedLongAgo = now.getTime() - kickoff > 3.5 * 60 * 60 * 1000;
-  if (!endedLongAgo) return false;
-
   const source = String(match.score_source || match.live_score_source || match.score?.source || '').toLowerCase();
-  if (source === 'espn') return false;
-
-  match.status = 'pending_verification';
+  const status = String(match.status || '').toLowerCase();
+  const futureOrNotStarted = !Number.isFinite(kickoff) || kickoff > now.getTime() - 30 * 60 * 1000 || status === 'scheduled';
+  const falseZero = Number(match.home_score) === 0 && Number(match.away_score) === 0 && source.includes('openfootball') && futureOrNotStarted;
+  if (!falseZero) return false;
   match.home_score = null;
   match.away_score = null;
   match.score = null;
-  match.score_source = 'pending-verification';
-  match.live_score_source = '';
-  match.live_status_detail = 'بانتظار نتيجة موثوقة من ESPN';
-  match.unverified_result_note = reason;
+  match.score_source = 'scheduled';
   return true;
 }
 
-async function readJson(file, fallback) {
-  try {
-    return JSON.parse(await fs.readFile(path.join(WC_DIR, file), 'utf8'));
-  } catch {
-    return fallback;
+function collectTeamArMap(matchesData, standingsData, groupsData) {
+  const map = new Map();
+  const sources = [matchesData?.team_ar, groupsData?.team_ar, standingsData?.team_ar];
+  for (const src of sources) {
+    if (src && typeof src === 'object') {
+      for (const [en, ar] of Object.entries(src)) if (en && ar) map.set(en, ar);
+    }
   }
-}
-
-function lockedManualOverrides(overrides) {
-  const results = Array.isArray(overrides?.results) ? overrides.results : [];
-  return results.filter((override) => override && (override.locked === true || override.force === true || override.verified === true));
-}
-
-function applyManualOverrides(data, overrides, nowIso, matchedIds) {
-  let count = 0;
-  for (const override of lockedManualOverrides(overrides)) {
-    const target = data.matches.find((m) =>
-      (override.id && m.id === override.id) ||
-      (override.num != null && Number(m.num) === Number(override.num))
-    );
-    if (!target) continue;
-    const alreadyUpdatedByEspn = matchedIds.has(target.id) || (target.espn_event_id && matchedIds.has(String(target.espn_event_id)));
-    if (alreadyUpdatedByEspn && override.prefer_espn !== false) continue;
-
-    Object.assign(target, override, {
-      last_live_update: override.last_live_update || nowIso,
-      score_source: override.score_source || 'manual-override',
-      manual_override_locked: true
-    });
-    count++;
+  for (const m of [...matchesArray(matchesData), ...matchesArray(groupsData)]) {
+    if (m?.team1 && m?.team1_ar) map.set(m.team1, m.team1_ar);
+    if (m?.team2 && m?.team2_ar) map.set(m.team2, m.team2_ar);
   }
-  return count;
+  for (const group of standingsData?.standings || groupsData?.standings || []) {
+    for (const row of group.rows || []) if (row.team && row.team_ar) map.set(row.team, row.team_ar);
+  }
+  return map;
 }
 
-function refreshSearchText(match) {
-  match.search_text = [
-    match.team1 || match.home_team,
-    match.team2 || match.away_team,
-    match.team1_ar,
-    match.team2_ar,
-    match.stadium,
-    match.ground,
-    match.round,
-    match.stage,
-    match.stage_ar,
-    match.group ? `Group ${match.group}` : '',
-    match.num ? `Match ${match.num}` : ''
-  ].filter(Boolean).join(' ');
-}
-
-function hasVerifiedResult(match) {
-  const source = String(match.score_source || match.live_score_source || match.score?.source || '').toLowerCase();
-  const hasScore = match.home_score !== null && match.home_score !== undefined && match.away_score !== null && match.away_score !== undefined;
-  const finished = String(match.status || '').toLowerCase().includes('finished') || Boolean(match.score?.ft);
-  return hasScore && finished && (source === 'espn' || source === 'manual-override');
-}
-
-function buildStandings(data, nowIso) {
-  const groups = data.groups || {};
+function buildStandings(matchesData, nowIso, teamArMap) {
+  const groups = matchesData.groups || {};
   const standings = [];
-
   for (const group of Object.keys(groups).sort()) {
     const rows = new Map();
     for (const team of groups[group] || []) {
       rows.set(team, {
         team,
-        team_ar: data.team_ar?.[team] || '',
+        team_ar: teamArMap.get(team) || team,
         group,
         played: 0,
         wins: 0,
@@ -375,18 +461,20 @@ function buildStandings(data, nowIso) {
         goal_diff: 0,
         points: 0,
         rank: 0,
-        qualified: false
+        qualified: false,
       });
     }
-
-    const groupMatches = (data.matches || []).filter((m) => m.group === group && String(m.stage || '').toLowerCase().includes('group') && hasVerifiedResult(m));
+    const groupMatches = matchesArray(matchesData).filter((m) => String(m.group || '').toUpperCase() === group.toUpperCase() && stageIsGroup(m) && isVerifiedResult(m));
     for (const m of groupMatches) {
-      if (!rows.has(m.team1)) rows.set(m.team1, { team: m.team1, team_ar: data.team_ar?.[m.team1] || '', group, played: 0, wins: 0, draws: 0, losses: 0, goals_for: 0, goals_against: 0, goal_diff: 0, points: 0, rank: 0, qualified: false });
-      if (!rows.has(m.team2)) rows.set(m.team2, { team: m.team2, team_ar: data.team_ar?.[m.team2] || '', group, played: 0, wins: 0, draws: 0, losses: 0, goals_for: 0, goals_against: 0, goal_diff: 0, points: 0, rank: 0, qualified: false });
-      const a = rows.get(m.team1);
-      const b = rows.get(m.team2);
-      const hs = Number(m.home_score || 0);
-      const as = Number(m.away_score || 0);
+      const t1 = getTeamName(m, 1);
+      const t2 = getTeamName(m, 2);
+      if (!t1 || !t2) continue;
+      if (!rows.has(t1)) rows.set(t1, { team: t1, team_ar: teamArMap.get(t1) || m.team1_ar || t1, group, played: 0, wins: 0, draws: 0, losses: 0, goals_for: 0, goals_against: 0, goal_diff: 0, points: 0, rank: 0, qualified: false });
+      if (!rows.has(t2)) rows.set(t2, { team: t2, team_ar: teamArMap.get(t2) || m.team2_ar || t2, group, played: 0, wins: 0, draws: 0, losses: 0, goals_for: 0, goals_against: 0, goal_diff: 0, points: 0, rank: 0, qualified: false });
+      const a = rows.get(t1);
+      const b = rows.get(t2);
+      const hs = scoreNumber(m.home_score) ?? 0;
+      const as = scoreNumber(m.away_score) ?? 0;
       a.played++; b.played++;
       a.goals_for += hs; a.goals_against += as;
       b.goals_for += as; b.goals_against += hs;
@@ -394,7 +482,6 @@ function buildStandings(data, nowIso) {
       else if (hs < as) { b.wins++; a.losses++; b.points += 3; }
       else { a.draws++; b.draws++; a.points++; b.points++; }
     }
-
     const sorted = [...rows.values()].map((r) => ({ ...r, goal_diff: r.goals_for - r.goals_against }))
       .sort((a, b) => b.points - a.points || b.goal_diff - a.goal_diff || b.goals_for - a.goals_for || a.team.localeCompare(b.team));
     sorted.forEach((row, index) => {
@@ -403,48 +490,229 @@ function buildStandings(data, nowIso) {
     });
     standings.push({ group, rows: sorted });
   }
-
   const bestThirds = standings
-    .map((g) => g.rows[2]).filter(Boolean)
+    .map((g) => g.rows[2])
+    .filter(Boolean)
     .sort((a, b) => b.points - a.points || b.goal_diff - a.goal_diff || b.goals_for - a.goals_for || a.team.localeCompare(b.team))
     .map((row, index) => ({ ...row, qualified: index < 8 }));
-
   return {
     metadata: {
-      name: data.metadata?.name || 'كأس العالم 2026',
-      english_name: data.metadata?.english_name || 'World Cup 2026',
+      name: matchesData.metadata?.name || 'كأس العالم 2026',
+      english_name: matchesData.metadata?.english_name || 'World Cup 2026',
       source: 'ESPN verified results + local schedule',
       last_checked_at: nowIso,
       last_updated: nowIso,
       timezone: TIMEZONE,
-      total_matches: data.matches?.length || 0,
+      total_matches: matchesArray(matchesData).length,
       teams_count: Object.values(groups).flat().length,
       groups_count: Object.keys(groups).length,
       verified_results_only: true,
-      note_ar: 'تم احتساب الترتيب من النتائج الموثقة فقط. النتائج غير المطابقة مع ESPN لا تدخل في ترتيب المجموعات.'
+      note_ar: 'تم احتساب ترتيب المجموعات من النتائج الموثقة فقط، ويعمل هذا ضمن التحديث الأصلي كل 15 دقيقة.',
     },
     standings,
-    best_thirds: bestThirds
+    best_thirds: bestThirds,
   };
 }
 
-function sortMatches(data) {
-  data.matches.sort((a, b) => {
+function standingLookups(standings) {
+  const groupMap = new Map();
+  for (const group of standings.standings || []) {
+    groupMap.set(String(group.group || '').toUpperCase(), group.rows || []);
+  }
+  const bestThirds = (standings.best_thirds || [])
+    .filter((row) => row?.team)
+    .slice(0, 8)
+    .map((row, index) => ({ ...row, priority: index }));
+  return { groupMap, bestThirds };
+}
+
+function findMatchByNum(allMatches, num) {
+  return allMatches.find((m) => matchNumber(m) === Number(num));
+}
+
+function teamFromMatchSide(match, side) {
+  const team = getTeamName(match, side);
+  return { team, team_ar: match?.[`team${side}_ar`] || team };
+}
+
+function resolveDirectSlot(slot, groupMap) {
+  const m = String(slot || '').toUpperCase().match(/^([12])([A-L])$/);
+  if (!m) return null;
+  const rank = Number(m[1]);
+  const group = m[2];
+  const row = groupMap.get(group)?.[rank - 1];
+  return row?.team ? { team: row.team, team_ar: row.team_ar || row.team, group, rank } : null;
+}
+
+function resolveWinnerSlot(slot, allMatches) {
+  const m = String(slot || '').toUpperCase().match(/^([WL])(\d{1,3})$/);
+  if (!m) return null;
+  const kind = m[1];
+  const source = findMatchByNum(allMatches, Number(m[2]));
+  const result = teamResult(source);
+  if (!source || !result) return null;
+  const side = kind === 'W' ? result.winner : result.loser;
+  const team = teamFromMatchSide(source, side);
+  return team.team ? { ...team, from_match: matchId(source), slot } : null;
+}
+
+function parseThirdSlot(slot) {
+  const s = String(slot || '').toUpperCase();
+  const m = s.match(/^3([A-L](?:\/[A-L])*)$/);
+  if (!m) return null;
+  return m[1].split('/').filter(Boolean);
+}
+
+function collectThirdSlotEntries(containers) {
+  const entries = [];
+  for (const { name, matches } of containers) {
+    for (const match of matches) {
+      for (const side of [1, 2]) {
+        const slot = originalSlot(match, side);
+        const allowed = parseThirdSlot(slot);
+        if (allowed) entries.push({ container: name, match, side, slot, allowed, key: `${matchId(match)}:${side}` });
+      }
+    }
+  }
+  // same match/side can appear in matches.json and bracket.json; keep both but use a common assignment key.
+  return entries;
+}
+
+function solveThirdAssignments(entries, bestThirds) {
+  const uniqueKeys = new Map();
+  for (const entry of entries) {
+    if (!uniqueKeys.has(entry.key)) uniqueKeys.set(entry.key, entry);
+  }
+  const unique = [...uniqueKeys.values()];
+  const teamsByGroup = new Map(bestThirds.map((row) => [String(row.group || '').toUpperCase(), row]));
+  const groups = [...teamsByGroup.keys()];
+  const sorted = [...unique].sort((a, b) => {
+    const ca = a.allowed.filter((g) => groups.includes(g)).length;
+    const cb = b.allowed.filter((g) => groups.includes(g)).length;
+    return ca - cb || a.allowed.length - b.allowed.length || matchNumber(a.match) - matchNumber(b.match);
+  });
+  const best = { score: -1, assign: new Map() };
+  function backtrack(index, used, assign, score) {
+    if (index >= sorted.length) {
+      if (score > best.score) {
+        best.score = score;
+        best.assign = new Map(assign);
+      }
+      return;
+    }
+    const entry = sorted[index];
+    const candidates = entry.allowed
+      .filter((g) => teamsByGroup.has(g) && !used.has(g))
+      .sort((a, b) => (teamsByGroup.get(a).priority ?? 99) - (teamsByGroup.get(b).priority ?? 99));
+    for (const group of candidates) {
+      used.add(group);
+      assign.set(entry.key, { ...teamsByGroup.get(group), assignment_group: group, official_slot_match: true });
+      backtrack(index + 1, used, assign, score + 10 - (teamsByGroup.get(group).priority || 0) / 100);
+      assign.delete(entry.key);
+      used.delete(group);
+    }
+    // Allow unresolved branch so we can later fill with fallback and still avoid symbols.
+    backtrack(index + 1, used, assign, score);
+  }
+  backtrack(0, new Set(), new Map(), 0);
+
+  const assignedGroups = new Set([...best.assign.values()].map((row) => String(row.group || row.assignment_group || '').toUpperCase()));
+  const fallbackRows = bestThirds.filter((row) => !assignedGroups.has(String(row.group || '').toUpperCase()));
+  let fallbackIndex = 0;
+  for (const entry of unique) {
+    if (best.assign.has(entry.key)) continue;
+    const fallback = fallbackRows[fallbackIndex++];
+    if (fallback) {
+      best.assign.set(entry.key, { ...fallback, assignment_group: fallback.group, official_slot_match: false, fallback_assignment: true });
+    }
+  }
+  return best.assign;
+}
+
+function resolveSlot(slot, lookups, allMatches, thirdAssignments, assignmentKey) {
+  if (!slot) return null;
+  const direct = resolveDirectSlot(slot, lookups.groupMap);
+  if (direct) return direct;
+  const win = resolveWinnerSlot(slot, allMatches);
+  if (win) return win;
+  const thirdAllowed = parseThirdSlot(slot);
+  if (thirdAllowed && thirdAssignments?.has(assignmentKey)) {
+    const row = thirdAssignments.get(assignmentKey);
+    return row?.team ? { team: row.team, team_ar: row.team_ar || row.team, group: row.group, third_place: true, fallback_assignment: row.fallback_assignment } : null;
+  }
+  return null;
+}
+
+function resolveKnockout(containers, standings, nowIso) {
+  const allMatches = containers.flatMap((c) => c.matches);
+  const lookups = standingLookups(standings);
+  const thirdEntries = collectThirdSlotEntries(containers);
+  const thirdAssignments = solveThirdAssignments(thirdEntries, lookups.bestThirds);
+  let changed = 0;
+  let directResolved = 0;
+  let thirdResolved = 0;
+  let winnerResolved = 0;
+  const unresolved = [];
+  for (const { name, matches } of containers) {
+    for (const match of matches) {
+      if (!stageIsKnockout(match)) continue;
+      for (const side of [1, 2]) {
+        const slot = originalSlot(match, side);
+        if (!slot) continue;
+        const assignmentKey = `${matchId(match)}:${side}`;
+        const resolved = resolveSlot(slot, lookups, allMatches, thirdAssignments, assignmentKey);
+        if (resolved?.team) {
+          if (setTeamName(match, side, resolved.team, resolved.team_ar, slot)) changed++;
+          if (/^[12][A-L]$/i.test(slot)) directResolved++;
+          else if (/^3/i.test(slot)) thirdResolved++;
+          else if (/^[WL]/i.test(slot)) winnerResolved++;
+          if (resolved.fallback_assignment) match[`team${side}_resolution_note_ar`] = 'تم ربط أفضل ثالث متأهل تلقائياً حتى لا يظهر رمز في الموقع.';
+        } else {
+          const reason = /^W/i.test(slot) ? 'winner-not-ready' : /^L/i.test(slot) ? 'loser-not-ready' : /^3/i.test(slot) ? 'best-third-not-ready' : 'slot-not-ready';
+          unresolved.push({ file: name, match: matchId(match), side: `team${side}`, slot, reason });
+        }
+      }
+      match.knockout_linked_at = nowIso;
+      refreshSearchText(match);
+    }
+  }
+  return {
+    changed,
+    directResolved,
+    thirdResolved,
+    winnerResolved,
+    unresolved: unresolved.slice(0, 80),
+    third_assignment_count: thirdAssignments.size,
+    third_assignments: [...thirdAssignments.entries()].map(([key, row]) => ({ key, group: row.group, team: row.team, team_ar: row.team_ar, fallback: Boolean(row.fallback_assignment) })),
+  };
+}
+
+function applyManualOverrides(matchesData, nowIso) {
+  // Optional locked manual corrections. This preserves your current manual override mechanism if the file exists.
+  return readJson('manual-results-overrides.json', { results: [] }).then((overrides) => {
+    const list = Array.isArray(overrides?.results) ? overrides.results : [];
+    let applied = 0;
+    for (const override of list) {
+      if (!override || !(override.locked || override.force || override.verified)) continue;
+      const target = matchesData.matches.find((m) => (override.id && String(m.id) === String(override.id)) || (override.num != null && matchNumber(m) === Number(override.num)));
+      if (!target) continue;
+      Object.assign(target, override, {
+        last_live_update: override.last_live_update || nowIso,
+        score_source: override.score_source || 'manual-override',
+        manual_override_locked: true,
+      });
+      refreshSearchText(target);
+      applied++;
+    }
+    return applied;
+  }).catch(() => 0);
+}
+
+function sortMatchesList(matches) {
+  matches.sort((a, b) => {
     const ta = matchDateMs(a);
     const tb = matchDateMs(b);
     return (Number.isFinite(ta) ? ta : Number.MAX_SAFE_INTEGER) - (Number.isFinite(tb) ? tb : Number.MAX_SAFE_INTEGER) || matchNumber(a) - matchNumber(b);
-  });
-}
-
-function shallowScoreSnapshot(match) {
-  return JSON.stringify({
-    id: match.id,
-    status: match.status,
-    home_score: match.home_score,
-    away_score: match.away_score,
-    score: match.score,
-    score_source: match.score_source,
-    espn_event_id: match.espn_event_id
   });
 }
 
@@ -452,15 +720,14 @@ async function writeStatusFiles(nowIso, details) {
   const next = new Date(Date.now() + REFRESH_MINUTES * 60 * 1000);
   const nextIso = jordanIso(next);
   const version = crypto.createHash('sha1').update(`${nowIso}:${JSON.stringify(details)}`).digest('hex').slice(0, 12);
-
   const status = {
-    name: 'Maensat World Cup 2026 quarter-hour forced check',
+    name: 'MaenSat World Cup 2026 original 15-minute updater',
     timezone: TIMEZONE,
     last_checked_at: nowIso,
     last_updated: nowIso,
     next_expected_check_at: nextIso,
     refresh_interval_minutes: REFRESH_MINUTES,
-    source: 'github-actions',
+    source: 'github-actions-original-workflow',
     github: {
       run_id: process.env.GITHUB_RUN_ID || '',
       run_number: process.env.GITHUB_RUN_NUMBER || '',
@@ -469,24 +736,24 @@ async function writeStatusFiles(nowIso, details) {
       repository: process.env.GITHUB_REPOSITORY || '',
       ref: process.env.GITHUB_REF || '',
       sha: process.env.GITHUB_SHA || '',
-      trigger_source: process.env.WORLD_CUP_2026_TRIGGER_SOURCE || ''
+      trigger_source: process.env.WORLD_CUP_2026_TRIGGER_SOURCE || '',
+      forced_at: process.env.WORLD_CUP_2026_FORCED_AT || '',
     },
     checks: details,
     cache_buster: version,
-    note_ar: 'يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج.'
+    note_ar: 'هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.',
   };
-
-  await fs.writeFile(path.join(WC_DIR, 'heartbeat.json'), JSON.stringify(status, null, 2));
-  await fs.writeFile(path.join(WC_DIR, 'update-check.json'), JSON.stringify({ ...status, errors: details.errors || [] }, null, 2));
-  await fs.writeFile(path.join(WC_DIR, 'version.json'), JSON.stringify({
+  await writeJson('heartbeat.json', status);
+  await writeJson('update-check.json', { ...status, errors: details.errors || [] });
+  await writeJson('version.json', {
     version,
     generated_at: nowIso,
     next_expected_check_at: nextIso,
     refresh_interval_minutes: REFRESH_MINUTES,
-    checks: details
-  }, null, 2));
-  await fs.writeFile(path.join(WC_DIR, 'deploy-marker.txt'), `worldcup-check=${nowIso}\ncache=${version}\nmatched=${details?.espn_scoreboard?.matched || 0}\n`);
-  await fs.writeFile(path.join(WC_DIR, 'update-errors.json'), JSON.stringify(details.errors || [], null, 2));
+    checks: details,
+  });
+  await fs.writeFile(path.join(WC_DIR, 'deploy-marker.txt'), `worldcup-check=${nowIso}\ncache=${version}\nmatched=${details?.espn_scoreboard?.matched || 0}\nknockout=${details?.knockout?.changed || 0}\n`);
+  await writeJson('update-errors.json', details.errors || []);
 }
 
 async function main() {
@@ -494,13 +761,24 @@ async function main() {
   const nowIso = jordanIso(now);
   await fs.mkdir(WC_DIR, { recursive: true });
 
+  const matchesRaw = await readJson('matches.json', { matches: [] });
+  const bracketRaw = await readJson('bracket.json', { matches: [] });
+  const oldStandings = await readJson('standings.json', { standings: [], best_thirds: [] });
+  const oldGroups = await readJson('groups.json', { groups: {}, standings: [] });
+  const matchesBox = ensureMatchesContainer(matchesRaw);
+  const bracketBox = ensureMatchesContainer(bracketRaw);
+
+  const teamArMap = collectTeamArMap(matchesBox.root, oldStandings, oldGroups);
+  const initialStandings = buildStandings(matchesBox.root, nowIso, teamArMap);
+  resolveKnockout([
+    { name: 'matches.json', matches: matchesBox.matches },
+    { name: 'bracket.json', matches: bracketBox.matches },
+  ], initialStandings, nowIso);
+
   const urls = buildEspnUrls(now);
   const fetchResults = await Promise.all(urls.map(async (url) => ({ url, ...(await fetchJson(url)) })));
   const rawEvents = [];
-  for (const result of fetchResults) {
-    if (result.ok) rawEvents.push(...extractEspnEvents(result.data));
-  }
-
+  for (const result of fetchResults) if (result.ok) rawEvents.push(...extractEspnEvents(result.data));
   const seen = new Set();
   const events = rawEvents.filter((event) => {
     const key = event.id || `${event.date}:${event.homeKey}:${event.awayKey}`;
@@ -509,84 +787,104 @@ async function main() {
     return true;
   });
 
-  const data = await readJson('matches.json', { matches: [] });
-  if (!Array.isArray(data.matches)) data.matches = [];
-
-  const before = new Map(data.matches.map((m) => [m.id || String(matchNumber(m)), shallowScoreSnapshot(m)]));
   let matched = 0;
-  let changed = 0;
-  let cleared = 0;
-  const matchedIds = new Set();
-  const unmatchedPast = [];
-
-  for (const match of data.matches) {
+  let scoreChanged = 0;
+  let clearedZeros = 0;
+  for (const match of matchesBox.matches) {
     const event = findEspnMatch(match, events);
     if (event) {
-      applyScore(match, event, nowIso);
       matched++;
-      if (match.id) matchedIds.add(match.id);
-      if (event.id) matchedIds.add(String(event.id));
-    } else if (CLEAR_STALE_UNVERIFIED && clearUnverifiedPastScore(match, now)) {
-      cleared++;
-      unmatchedPast.push({ id: match.id, num: match.num, team1: match.team1, team2: match.team2, kickoff_utc: match.kickoff_utc });
+      if (applyScore(match, event, nowIso)) scoreChanged++;
+    } else if (clearFutureOpenfootballZeros(match, now)) {
+      clearedZeros++;
     }
     refreshSearchText(match);
-
-    const key = match.id || String(matchNumber(match));
-    if (before.get(key) !== shallowScoreSnapshot(match)) changed++;
+  }
+  // Apply same score pass to bracket so the tab can update even if the UI reads bracket.json directly.
+  let bracketMatched = 0;
+  for (const match of bracketBox.matches) {
+    const event = findEspnMatch(match, events);
+    if (event) {
+      bracketMatched++;
+      applyScore(match, event, nowIso);
+    } else {
+      clearFutureOpenfootballZeros(match, now);
+    }
+    refreshSearchText(match);
   }
 
-  const manualOverrides = await readJson('manual-results-overrides.json', { results: [] });
-  const manualApplied = applyManualOverrides(data, manualOverrides, nowIso, matchedIds);
+  const manualApplied = await applyManualOverrides(matchesBox.root, nowIso);
+  const standings = buildStandings(matchesBox.root, nowIso, teamArMap);
+  const knockout = resolveKnockout([
+    { name: 'matches.json', matches: matchesBox.matches },
+    { name: 'bracket.json', matches: bracketBox.matches },
+  ], standings, nowIso);
 
-  data.metadata = {
-    ...(data.metadata && typeof data.metadata === 'object' ? data.metadata : {}),
+  sortMatchesList(matchesBox.matches);
+  sortMatchesList(bracketBox.matches);
+
+  matchesBox.root.metadata = {
+    ...(matchesBox.root.metadata && typeof matchesBox.root.metadata === 'object' ? matchesBox.root.metadata : {}),
     source: 'local schedule + ESPN verified live/results updater',
     live_score_source: 'espn',
     live_score_url: ESPN_BASE,
     last_checked_at: nowIso,
-    last_updated: changed || manualApplied ? nowIso : (data.metadata?.last_updated || nowIso),
-    last_data_change_at: changed || manualApplied ? nowIso : (data.metadata?.last_data_change_at || data.metadata?.last_updated || nowIso),
+    last_updated: nowIso,
+    last_data_change_at: scoreChanged || knockout.changed || manualApplied ? nowIso : (matchesBox.root.metadata?.last_data_change_at || matchesBox.root.metadata?.last_updated || nowIso),
     timezone: TIMEZONE,
     refresh_interval_minutes: REFRESH_MINUTES,
     espn_urls_checked: urls.length,
     espn_events_seen: events.length,
     espn_matches_applied: matched,
-    stale_unverified_scores_cleared: cleared,
+    bracket_matches_applied: bracketMatched,
+    future_openfootball_zero_scores_cleared: clearedZeros,
     manual_overrides_applied: manualApplied,
-    verified_results_only: true,
-    note_ar: 'تم إيقاف الاعتماد على نتائج openfootball القديمة داخل النتائج. يتم عرض النتيجة فقط إذا طابقت ESPN أو كانت تصحيحاً يدوياً موثقاً locked/force/verified.'
+    original_15_minute_workflow: true,
+    knockout_integrated_patch: true,
+    note_ar: 'التحديث يعمل من ملف التحديث الأصلي كل 15 دقيقة. تم دمج تحديث النتائج والأدوار داخل نفس السكربت بدون تغيير واجهة الموقع.',
   };
 
-  sortMatches(data);
-  const standings = buildStandings(data, nowIso);
+  if (!bracketBox.root.metadata || typeof bracketBox.root.metadata !== 'object') bracketBox.root.metadata = {};
+  bracketBox.root.metadata = {
+    ...bracketBox.root.metadata,
+    last_checked_at: nowIso,
+    last_updated: nowIso,
+    timezone: TIMEZONE,
+    live_score_source: 'espn',
+    refresh_interval_minutes: REFRESH_MINUTES,
+    knockout_integrated_patch: true,
+    knockout_summary: knockout,
+    note_ar: 'أسماء الأدوار والفائزين يتم تحديثها من داخل التحديث الأصلي كل 15 دقيقة.',
+  };
 
-  await fs.writeFile(path.join(WC_DIR, 'matches.json'), JSON.stringify(data, null, 2));
-  await fs.writeFile(path.join(WC_DIR, 'standings.json'), JSON.stringify(standings, null, 2));
-  await fs.writeFile(path.join(WC_DIR, 'groups.json'), JSON.stringify({
+  await writeJson('matches.json', matchesBox.arrayRoot ? matchesBox.matches : matchesBox.root);
+  await writeJson('standings.json', standings);
+  await writeJson('groups.json', {
     metadata: standings.metadata,
-    groups: data.groups || {},
-    standings: standings.standings
-  }, null, 2));
+    groups: matchesBox.root.groups || oldGroups.groups || {},
+    standings: standings.standings,
+    best_thirds: standings.best_thirds,
+  });
+  await writeJson('bracket.json', bracketBox.arrayRoot ? bracketBox.matches : bracketBox.root);
 
-  const errors = fetchResults.filter((r) => !r.ok).map((r) => ({ url: r.url, error: r.error || `HTTP ${r.status}` })).slice(0, 10);
-  await writeStatusFiles(nowIso, {
+  const errors = fetchResults.filter((r) => !r.ok).map((r) => ({ url: r.url, error: r.error || `HTTP ${r.status}` })).slice(0, 15);
+  const details = {
     espn_scoreboard: {
       ok: fetchResults.some((r) => r.ok),
       urls_checked: urls.length,
       events_seen: events.length,
       matched,
-      changed,
-      stale_unverified_scores_cleared: cleared,
-      unmatched_past_count: unmatchedPast.length,
-      unmatched_past_sample: unmatchedPast.slice(0, 10)
+      bracket_matched: bracketMatched,
+      score_changed: scoreChanged,
+      future_openfootball_zero_scores_cleared: clearedZeros,
     },
+    knockout,
     manual_overrides_applied: manualApplied,
-    files_written: ['matches.json', 'standings.json', 'groups.json', 'heartbeat.json', 'update-check.json', 'version.json', 'deploy-marker.txt', 'update-errors.json'],
-    errors
-  });
-
-  console.log(`[worldcup] urls=${urls.length} espnEvents=${events.length} matched=${matched} changed=${changed} cleared=${cleared} manual=${manualApplied} ${nowIso}`);
+    files_written: ['matches.json', 'standings.json', 'groups.json', 'bracket.json', 'heartbeat.json', 'update-check.json', 'version.json', 'deploy-marker.txt', 'update-errors.json'],
+    errors,
+  };
+  await writeStatusFiles(nowIso, details);
+  console.log(`[worldcup] original-15min urls=${urls.length} events=${events.length} matched=${matched} bracket=${bracketMatched} knockoutChanged=${knockout.changed} ${nowIso}`);
 }
 
 main().catch(async (error) => {
@@ -595,8 +893,9 @@ main().catch(async (error) => {
     const nowIso = jordanIso(new Date());
     await writeStatusFiles(nowIso, {
       espn_scoreboard: { ok: false, error: error.message },
+      knockout: { changed: 0, error: error.message },
       files_written: ['heartbeat.json', 'update-check.json', 'version.json', 'deploy-marker.txt', 'update-errors.json'],
-      errors: [{ error: error.stack || error.message }]
+      errors: [{ error: error.stack || error.message }],
     });
   } catch {}
   process.exitCode = 1;

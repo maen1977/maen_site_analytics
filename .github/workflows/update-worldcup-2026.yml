@@ -2,7 +2,7 @@ name: Update World Cup 2026 every 15 minutes
 
 on:
   schedule:
-    # كل ربع ساعة تقريباً بتوقيت UTC
+    # تشغيل ثابت كل 15 دقيقة تقريباً.
     - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
     inputs:
@@ -57,59 +57,30 @@ jobs:
           echo "workflow=${GITHUB_WORKFLOW}"
           echo "trigger_source=${WORLD_CUP_2026_TRIGGER_SOURCE}"
           echo "forced_at=${WORLD_CUP_2026_FORCED_AT}"
-          echo "cloudflare_hook_configured=$([ -n \"${CLOUDFLARE_PAGES_DEPLOY_HOOK:-}\" ] && echo yes || echo no)"
 
-      - name: Validate World Cup scripts
-        shell: bash
-        run: |
-          set -euo pipefail
-          node --check scripts/worldcup-quarter-hour-force.mjs
-          node --check scripts/worldcup-bracket-linker.mjs
-          node --check scripts/worldcup-cache-headers-safe.mjs
+      - name: Validate original quarter-hour updater
+        run: node --check scripts/worldcup-quarter-hour-force.mjs
 
-      - name: Force quarter-hour World Cup score check
-        id: updater
-        continue-on-error: true
+      - name: Run original quarter-hour updater with integrated knockout patch
         run: node scripts/worldcup-quarter-hour-force.mjs
 
-      - name: Resolve bracket team names from group standings
-        run: node scripts/worldcup-bracket-linker.mjs
-
-      - name: Keep World Cup JSON uncached
-        run: node scripts/worldcup-cache-headers-safe.mjs
-
-      - name: Show generated status
-        shell: bash
-        run: |
-          set -euo pipefail
-          echo "--- deploy marker ---"
-          cat public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
-          echo "--- bracket health ---"
-          cat public/worldcup-2026/bracket-linker-status.json 2>/dev/null || true
-          echo "--- deploy health ---"
-          cat public/worldcup-2026/deploy-health.json 2>/dev/null || true
-
-      - name: Commit changed World Cup files
+      - name: Commit changed World Cup data files
         id: commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            public/worldcup-2026/matches.json \
-            public/worldcup-2026/standings.json \
-            public/worldcup-2026/groups.json \
-            public/worldcup-2026/bracket.json \
-            public/worldcup-2026/broadcasts.json \
-            public/worldcup-2026/heartbeat.json \
-            public/worldcup-2026/update-check.json \
-            public/worldcup-2026/version.json \
-            public/worldcup-2026/update-errors.json \
-            public/worldcup-2026/deploy-marker.txt \
-            public/worldcup-2026/bracket-linker-status.json \
-            public/worldcup-2026/deploy-health.json \
-            public/_headers 2>/dev/null || true
+
+          git add public/worldcup-2026/matches.json \
+                  public/worldcup-2026/standings.json \
+                  public/worldcup-2026/groups.json \
+                  public/worldcup-2026/bracket.json \
+                  public/worldcup-2026/heartbeat.json \
+                  public/worldcup-2026/update-check.json \
+                  public/worldcup-2026/version.json \
+                  public/worldcup-2026/update-errors.json \
+                  public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -118,18 +89,19 @@ jobs:
           fi
 
           stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
-          git commit -m "Fix World Cup 2026 live update and bracket names ${stamp}"
+          git commit -m "World Cup 2026 15-minute data update ${stamp}"
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main || { git pull --rebase --autostash origin main; git push origin HEAD:main; }
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Trigger Cloudflare Pages deploy hook
+      - name: Trigger Cloudflare Pages deploy hook if configured
         if: always()
         shell: bash
         run: |
           set -euo pipefail
           if [ -z "${CLOUDFLARE_PAGES_DEPLOY_HOOK:-}" ]; then
-            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK is not set; relying on Cloudflare GitHub integration if connected."
+            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK is not set; skipping deploy hook."
+            echo "If Cloudflare Pages is connected to GitHub, the push above should deploy automatically."
             exit 0
           fi
           echo "Triggering Cloudflare Pages deploy hook..."
