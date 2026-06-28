@@ -23,6 +23,13 @@
 /*.html
   Cache-Control: no-cache, must-revalidate, max-age=0
 
+# MaenSat World Cup live JSON no-cache start
+/worldcup-2026/*.json
+  Cache-Control: no-cache, no-store, must-revalidate
+/worldcup-knockout-cards-ui.js
+  Cache-Control: no-cache, no-store, must-revalidate
+# MaenSat World Cup live JSON no-cache end
+
 # MaenSat World Cup 2026 live JSON no-cache - start
 /worldcup-2026/*.json
   Cache-Control: no-store, no-cache, must-revalidate, max-age=0
@@ -33,10 +40,3 @@
   CDN-Cache-Control: no-store
   Cloudflare-CDN-Cache-Control: no-store
 # MaenSat World Cup 2026 live JSON no-cache - end
-
-# MaenSat World Cup live JSON no-cache start
-/worldcup-2026/*.json
-  Cache-Control: no-cache, no-store, must-revalidate
-/worldcup-knockout-cards-ui.js
-  Cache-Control: no-cache, no-store, must-revalidate
-# MaenSat World Cup live JSON no-cache end
