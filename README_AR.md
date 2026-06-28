@@ -1,80 +1,52 @@
-# إصلاح عرض الأدوار داخل World Cup 2026 فقط
+# تنظيف عرض كأس العالم من الرئيسية على نسخة الحاسوب فقط
 
-هذا الملف مخصص لعمل تعديل واجهة فقط داخل قسم كأس العالم 2026.
+هذا الملف يعمل تنظيف صغير وآمن حسب المطلوب:
 
-## ماذا يفعل؟
-
+- يزيل حقن سكربت عرض الأدوار UI-only من نسخة الحاسوب `public/index.html` فقط.
+- يزيل ذكر "ترتيب المجموعات" و"الأدوار الإقصائية" من بطاقة كأس العالم في الرئيسية على نسخة الحاسوب فقط إذا وجد النص نفسه.
+- لا يلمس قسم كأس العالم نفسه ولا ملفات البيانات.
+- لا يلمس `public/index_phone.html`.
 - لا يغير GitHub Actions.
-- لا يغير جدول التحديث كل ربع ساعة.
-- لا يغير سكربت التحديث الأصلي.
-- لا يلمس باقي أقسام الموقع.
-- يضيف ملف واجهة داخل:
+- لا يغير التحديث الأصلي كل 15 دقيقة.
+
+## الملفات التي يعدلها السكربت
 
 ```text
-public/worldcup-2026/worldcup-knockout-ui-only.js
+public/index.html
 ```
 
-- يجعل تبويب الأدوار داخل قسم كأس العالم يعرض مباريات الأدوار على شكل كروت مثل نظام المجموعات.
-- يقرأ البيانات من ملفات كأس العالم الحالية:
+## الملفات التي لا يلمسها
 
 ```text
-public/worldcup-2026/matches.json
-public/worldcup-2026/bracket.json
-public/worldcup-2026/standings.json
-public/worldcup-2026/groups.json
+.github/workflows/update-worldcup-2026.yml
+scripts/worldcup-quarter-hour-force.mjs
+public/index_phone.html
+public/worldcup-2026/*.json
 ```
 
-لذلك عندما يحدث التحديث الأصلي كل 15 دقيقة، الأدوار ستقرأ نفس الملفات الجديدة بدون تغيير نظام التحديث.
+## طريقة التركيب
 
-## طريقة التركيب الآمنة
-
-1. فك الضغط داخل نسخة المشروع عندك.
-2. تأكد أن الملفات صارت في نفس أماكنها.
-3. شغل الملف:
+1. فك الضغط داخل جذر مشروع GitHub.
+2. شغل الملف:
 
 ```text
-APPLY_WORLD_CUP_2026_UI_ONLY.bat
+APPLY_DESKTOP_HOME_WORLDCUP_CLEANUP.bat
 ```
 
 أو من Terminal:
 
 ```bash
-node scripts/install-worldcup-2026-ui-only.mjs
+node scripts/cleanup-desktop-home-worldcup-only.mjs
 ```
 
-4. ارفع التغييرات إلى GitHub.
-5. رسالة الـ commit المقترحة:
+3. اعمل Commit بهذه الرسالة:
 
 ```text
-Add World Cup 2026 knockout UI-only card display
+Clean desktop homepage World Cup 2026 display only
 ```
 
-## مهم جداً
+4. ارفع التغييرات.
 
-لا تشغل أي Action جديد. هذا الإصلاح لا يحتاج Action جديد.
+## مهم
 
-اترك Action التحديث الأصلي كما هو:
-
-```text
-Update World Cup 2026 every 15 minutes
-```
-
-التعديل فقط يركب سكربت واجهة داخل قسم كأس العالم 2026، ولا يغير التحديث كل 15 دقيقة.
-
-## إذا أردت تركيبه يدوياً من GitHub بدون تشغيل bat
-
-ارفع الملف:
-
-```text
-public/worldcup-2026/worldcup-knockout-ui-only.js
-```
-
-ثم افتح `public/index.html` وأضف قبل `</body>` هذا السطر:
-
-```html
-<!-- MaenSat World Cup 2026 UI-only knockout start -->
-<script src="/worldcup-2026/worldcup-knockout-ui-only.js?v=20260628-ui-only" defer></script>
-<!-- MaenSat World Cup 2026 UI-only knockout end -->
-```
-
-وإذا عندك `public/index_phone.html` أضف نفس السطر فيه أيضاً.
+لا تشغل أي Action جديد. التحديث الأصلي كل ربع ساعة يبقى كما هو.
