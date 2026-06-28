@@ -1625,12 +1625,12 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div class="wc-toolbar">
 <input id="wcSearchInput" class="wc-search" type="search" placeholder="ابحث عن الأردن، Argentina، ملعب، مدينة، مجموعة..." oninput="renderWorldCup2026()" aria-label="بحث كأس العالم 2026">
 <div class="wc-tabs" role="tablist" aria-label="فلاتر كأس العالم 2026">
-<button type="button" class="active" data-wc-filter="today" onclick="setWorldCupFilter('today', this)">اليوم</button>
+<button type="button" data-wc-filter="today" onclick="setWorldCupFilter('today', this)">اليوم</button>
 <button type="button" data-wc-filter="jordan" onclick="setWorldCupFilter('jordan', this)">الأردن</button>
 <button type="button" data-wc-filter="all" onclick="setWorldCupFilter('all', this)">كل المباريات</button>
 <button type="button" data-wc-filter="groups" onclick="setWorldCupFilter('groups', this)">المجموعات</button>
 <button type="button" data-wc-filter="thirds" onclick="setWorldCupFilter('thirds', this)">أفضل الثوالث</button>
-<button type="button" data-wc-filter="bracket" onclick="setWorldCupFilter('bracket', this)">الأدوار</button>
+<button type="button" class="active" data-wc-filter="bracket" onclick="setWorldCupFilter('bracket', this)">الأدوار</button>
 </div>
 </div>
 <div id="wcMainOutput"><div class="wc-empty">جاري تحميل بيانات كأس العالم 2026...</div></div>
@@ -5272,7 +5272,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   }
   function applySearch(matches){var q=norm((document.getElementById('wcSearchInput')||{}).value||''); if(!q)return matches; return matches.filter(function(m){return norm([m.team1,m.team2,m.team1_ar,m.team2_ar,TEAM_AR[m.team1],TEAM_AR[m.team2],m.ground,m.stadium,m.stage_ar,m.round,m.stage,m.group,m.search_text].join(' ')).indexOf(q)>-1;});}
   function setActiveWorldCupTab(f,btn){document.querySelectorAll('#worldcup2026 .wc-tabs button').forEach(function(b){b.classList.toggle('active',b===btn || b.getAttribute('data-wc-filter')===f);});}
-  function resetWorldCupToAll(){WC_STATE.filter='today'; setActiveWorldCupTab('today');}
+  function resetWorldCupToAll(){WC_STATE.filter='bracket'; setActiveWorldCupTab('bracket');}
   window.setWorldCupFilter=function(f,btn){WC_STATE.filter=f; setActiveWorldCupTab(f,btn); renderWorldCup2026();};
   window.renderWorldCup2026=function(){
     applyStaticLanguage();
