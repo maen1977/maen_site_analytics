@@ -1,19 +1,19 @@
 {
   "name": "Maensat World Cup 2026 quarter-hour forced check",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-28T21:15:14+03:00",
-  "last_updated": "2026-06-28T21:15:14+03:00",
-  "next_expected_check_at": "2026-06-28T21:30:14+03:00",
+  "last_checked_at": "2026-06-28T21:30:13+03:00",
+  "last_updated": "2026-06-28T21:30:13+03:00",
+  "next_expected_check_at": "2026-06-28T21:45:13+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions",
   "github": {
-    "run_id": "28331486577",
-    "run_number": "1225",
+    "run_id": "28331876310",
+    "run_number": "1226",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "418b7ad0d571e6a763a5eedc78a5c293641ce3f6",
+    "sha": "4a88495d5b6cb5fdc0e0259ce0b99a6242bb4ae1",
     "trigger_source": "manual"
   },
   "checks": {
@@ -40,10 +40,10 @@
     ],
     "errors": []
   },
-  "cache_buster": "1cf30f0e1cde",
+  "cache_buster": "b14178542bb2",
   "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج والأدوار.",
   "bracket_linker": {
-    "last_linked_at": "2026-06-28T21:15:14+03:00",
+    "last_linked_at": "2026-06-28T21:30:13+03:00",
     "timezone": "Asia/Amman",
     "groups_seen": [
       "A",
@@ -536,17 +536,17 @@
   "cloudflare_hook_configured": false,
   "deploy_health": {
     "name": "MaenSat World Cup 2026 deploy health",
-    "last_checked_at": "2026-06-28T21:15:14+03:00",
+    "last_checked_at": "2026-06-28T21:30:13+03:00",
     "timezone": "Asia/Amman",
-    "github_run_id": "28331486577",
-    "github_run_number": "1225",
+    "github_run_id": "28331876310",
+    "github_run_number": "1226",
     "github_workflow": "Update World Cup 2026 every 15 minutes",
     "github_event_name": "workflow_dispatch",
     "trigger_source": "manual",
     "cloudflare_hook_configured": false,
     "cloudflare_note_ar": "سر CLOUDFLARE_PAGES_DEPLOY_HOOK غير موجود. إذا كان Cloudflare Pages غير مربوط تلقائياً بـ GitHub، سيبقى الموقع على نسخة قديمة حتى تضيف Deploy Hook أو تعيد ربط GitHub.",
     "bracket_summary": {
-      "last_linked_at": "2026-06-28T21:15:14+03:00",
+      "last_linked_at": "2026-06-28T21:30:13+03:00",
       "timezone": "Asia/Amman",
       "groups_seen": [
         "A",
