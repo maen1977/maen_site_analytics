@@ -1,64 +1,50 @@
-# إصلاح آمن لتحديث كأس العالم 2026 وربط أسماء فرق الأدوار
+# إصلاح الأدوار المباشر لكأس العالم 2026 - MaenSat
 
-هذا الملف لا يغيّر تصميم الموقع ولا يضيف سكربتات للواجهة. الإصلاح يلمس فقط:
+هذا الإصلاح يعمل فقط على قسم كأس العالم ولا يغيّر تصميم الموقع العام.
 
-- GitHub Action الخاص بالتحديث كل ربع ساعة.
-- سكربت يربط رموز الأدوار مثل `1A` و`2B` و`3A/B/C` بأسماء المنتخبات من `standings.json`.
-- إعدادات كاش آمنة لملفات JSON داخل `/worldcup-2026`.
-- ملفات فحص واضحة: `heartbeat.json` و`deploy-health.json` و`bracket-linker-status.json`.
+## ماذا يفعل؟
 
-## الملفات الموجودة في هذا الإصلاح
-
-- `.github/workflows/update-worldcup-2026.yml`
-- `scripts/worldcup-bracket-linker.mjs`
-- `scripts/worldcup-cache-headers-safe.mjs`
+1. يجعل تبويب **الأدوار** هو التبويب الافتراضي عند دخول المستخدم إلى قسم كأس العالم.
+2. يعرض الأدوار بنفس نظام كروت المباريات: فريق × فريق، النتيجة، الحالة، التاريخ، الساعة، والملعب.
+3. يحوّل رموز مثل `1A` و `2B` و `3B/E/F/I/J` إلى أسماء منتخبات عندما تكون بيانات المجموعات متوفرة.
+4. يحدّث باقي الأدوار تلقائياً: الفائز من مباراة 73 ينتقل إلى المباراة التالية بعد ظهور النتيجة في ملفات JSON.
+5. ينشئ ملف فحص مباشر:
+   `/worldcup-2026/knockout-live-health.json`
 
 ## طريقة التركيب
 
 1. فك ضغط الملف.
-2. ارفع محتويات المجلد إلى جذر الريبو:
+2. ارفع كل الملفات إلى جذر الريبو:
    `maen1977/maen_site_analytics`
 3. اعمل Commit بهذه الرسالة:
 
 ```text
-Fix World Cup 2026 live update and bracket team names
+Add World Cup knockout live cards and auto update
 ```
 
-4. ادخل إلى GitHub ثم **Actions**.
-5. شغّل يدويًا workflow باسم:
-   **Update World Cup 2026 every 15 minutes**
-6. انتظر انتهاء التشغيل وظهور Commit جديد من `github-actions[bot]`.
-7. انتظر Cloudflare Pages يعمل Deploy جديد.
-8. افتح هذه الروابط للفحص:
+4. ادخل GitHub Actions.
+5. شغّل Action باسم:
+   **World Cup knockout live cards**
+6. بعد نجاحه انتظر Deploy الموقع.
+7. افتح:
 
-- `https://maensat.pages.dev/worldcup-2026/heartbeat.json?v=check`
-- `https://maensat.pages.dev/worldcup-2026/deploy-marker.txt?v=check`
-- `https://maensat.pages.dev/worldcup-2026/bracket-linker-status.json?v=check`
-- `https://maensat.pages.dev/worldcup-2026/deploy-health.json?v=check`
-
-## كيف تعرف أين المشكلة لو بقي الموقع لا يتحدث؟
-
-افتح:
-
-`https://maensat.pages.dev/worldcup-2026/deploy-health.json?v=check`
-
-إذا وجدت:
-
-```json
-"cloudflare_hook_configured": false
+```text
+https://maensat.pages.dev/worldcup-2026/knockout-live-health.json?v=test
 ```
 
-فهذا يعني أن GitHub قد يعمل ويكتب ملفات جديدة، لكن Cloudflare قد لا ينشرها إذا كان الربط التلقائي مع GitHub غير شغال. في هذه الحالة تحتاج إضافة Secret باسم:
+إذا ظهر وقت جديد، فالبيانات صارت تتحدث.
 
-`CLOUDFLARE_PAGES_DEPLOY_HOOK`
+## ملاحظات مهمة
 
-داخل GitHub Secrets بقيمة Deploy Hook من Cloudflare Pages.
+- هذا الإصلاح لا يحذف التحديث القديم ولا يوقفه.
+- لا يحتاج Deploy Hook طالما أنت أكدت أن الموقع يحدث.
+- لو لم يظهر تبويب الأدوار مباشرة، افتح الموقع بكسر الكاش:
+  `https://maensat.pages.dev/?v=knockout-live`
 
-## ملاحظة مهمة
+## الملفات المضافة
 
-هذا الإصلاح لا يمس `index.html` ولا `index_phone.html` ولا شكل الموقع. إذا حدث أي شيء غير مرغوب، يمكنك حذف الملفين:
+- `.github/workflows/worldcup-knockout-live-cards.yml`
+- `scripts/worldcup-knockout-live-sync.mjs`
+- `scripts/install-worldcup-knockout-cards-ui.mjs`
+- `public/worldcup-knockout-cards-ui.js`
 
-- `scripts/worldcup-bracket-linker.mjs`
-- `scripts/worldcup-cache-headers-safe.mjs`
-
-ثم ترجع ملف workflow من History.
