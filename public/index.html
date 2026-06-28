@@ -671,7 +671,6 @@ body.lang-en #frequencies .station-frequency-meta span{
 </nav>
 </aside>
 <section class="page hero active" id="home">
-<!-- MAENSAT_HOME_WORLDCUP_CARD_REMOVED_ONLY -->
 <div aria-label="تعريف معن حنونة للستلايت للكمبيوتر" class="desktop-section-brand">
 <h2>معن حنونة للستلايت</h2>
 <p>نخدمكم بالفحيص وعمان الغربية والسلط والسرو</p>
@@ -724,6 +723,12 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div class="option-icon"><svg aria-hidden="true" class="hq-svg-icon" viewbox="0 0 64 64"><path d="M16 47c15 2 29-9 31-25" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M13 42c11 11 28 10 39-1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M18 49l-7 7M33 48l9 8" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M43 15c4-4 11-4 15 0M38 9c7-7 19-7 26 0" fill="none" opacity=".65" stroke="currentColor" stroke-linecap="round" stroke-width="4"></path></svg></div>
 <h2>ترددات القنوات</h2>
 <p>بحث سريع في ترددات نايل سات وعرب سات مع روابط المصادر الرسمية للتحديث.</p>
+<span class="enter">دخول القسم</span>
+</button>
+<button class="option-card" onclick="showPage('worldcup2026')">
+<div class="option-icon">🏆</div>
+<h2>كأس العالم 2026</h2>
+<p>تابع مباريات ونتائج كأس العالم، ترتيب المجموعات، مشوار الأردن، والأدوار الإقصائية بتوقيت الأردن.</p>
 <span class="enter">دخول القسم</span>
 </button>
 <button class="option-card" onclick="showPage('receiverSoftware')">
@@ -5234,9 +5239,36 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function renderBracket(){
     var out=document.getElementById('wcMainOutput');
     if(!out)return;
-    var matches=wcSortMatches((WC_STATE.data&&WC_STATE.data.matches||[]).filter(function(m){return m.stage!=='Group Stage';}),'time');
+    var all=(WC_STATE.data&&WC_STATE.data.matches||[]).slice();
+    var matches=all.filter(function(m){
+      var n=wcMatchNumber(m);
+      var stage=String((m&& (m.stage||m.round||m.stage_ar)) || '').toLowerCase();
+      return n>=73 || (stage && stage.indexOf('group')<0 && stage.indexOf('مجموع')<0);
+    });
+    matches=applySearch(wcSortMatches(matches,'num'));
     if(!matches.length){out.innerHTML='<div class="wc-empty">'+esc(tr('knockoutPending'))+'</div>';return;}
-    out.innerHTML='<div class="wc-bracket-list">'+matches.map(function(m){return '<div class="wc-bracket-row"><span class="wc-mini-tag">'+esc(stageName(m))+'</span><strong>'+teamLabel(m.team1)+' × '+teamLabel(m.team2)+'</strong><span>'+fmtJordan(m.kickoff_jordan||m.kickoff_utc)+'</span></div>';}).join('')+'</div>';
+    function roundRank(m){
+      var n=wcMatchNumber(m);
+      if(n>=73&&n<=88)return 10;
+      if(n>=89&&n<=96)return 20;
+      if(n>=97&&n<=100)return 30;
+      if(n>=101&&n<=102)return 40;
+      if(n===103)return 50;
+      if(n===104)return 60;
+      return 90;
+    }
+    var groups={};
+    matches.forEach(function(m){
+      var r=roundRank(m);
+      if(!groups[r])groups[r]={title:stageName(m)||tr('bracket'),matches:[]};
+      groups[r].matches.push(m);
+    });
+    var html=Object.keys(groups).sort(function(a,b){return Number(a)-Number(b);}).map(function(k){
+      var g=groups[k];
+      var roundMatches=wcSortMatches(g.matches,'num');
+      return '<section class="wc-round-block"><h3 class="wc-stage-title">'+esc(g.title)+'</h3><div class="wc-match-grid">'+roundMatches.map(card).join('')+'</div></section>';
+    }).join('');
+    out.innerHTML=html;
   }
   function applySearch(matches){var q=norm((document.getElementById('wcSearchInput')||{}).value||''); if(!q)return matches; return matches.filter(function(m){return norm([m.team1,m.team2,m.team1_ar,m.team2_ar,TEAM_AR[m.team1],TEAM_AR[m.team2],m.ground,m.stadium,m.stage_ar,m.round,m.stage,m.group,m.search_text].join(' ')).indexOf(q)>-1;});}
   function setActiveWorldCupTab(f,btn){document.querySelectorAll('#worldcup2026 .wc-tabs button').forEach(function(b){b.classList.toggle('active',b===btn || b.getAttribute('data-wc-filter')===f);});}
@@ -5518,8 +5550,5 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   window.addEventListener('load', bindCatalogButton);
 })();
 </script>
-<!-- MaenSat World Cup knockout live cards start -->
-<script src="/worldcup-knockout-cards-ui.js?v=20260628-knockout-live" defer></script>
-<!-- MaenSat World Cup knockout live cards end -->
 </body>
 </html>
