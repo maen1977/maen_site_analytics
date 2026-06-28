@@ -80,6 +80,12 @@
     return st + minutes * 60000;
   }
 
+  function isKnockoutMatch(m){
+    var n = matchNum(m);
+    var stage = norm([m && m.stage, m && m.round, m && m.stage_ar].join(' '));
+    return (n >= 73) || /round|knockout|quarter|semi|final|دور|ربع|نصف|نهائي/.test(stage);
+  }
+
   function isCurrent(m, now){
     if (!m || isFinished(m)) return false;
     if (isLiveStatus(m)) return true;
@@ -129,17 +135,26 @@
       .filter(function(x){ return Number.isFinite(x.start); })
       .sort(function(a,b){ return a.start - b.start || a.num - b.num || a.i - b.i; });
 
+    /*
+      داخل تبويب الأدوار: إذا لا توجد مباراة مباشرة الآن، نختار أول مباراة إقصائية
+      غير منتهية حسب رقم المباراة، وليس حسب وقت البداية فقط. هذا يجعل المؤشر ينتقل
+      بعد مباراة 73 إلى مباراة 74، ثم 75... بنفس ترتيب الأدوار الظاهر للمستخدم.
+    */
     var current = list.filter(function(x){ return isCurrent(x.m, now); });
     if (current.length) return Object.assign({badge:'أنت هنا', kind:'live'}, current[current.length-1]);
 
+    var knockoutQueue = list.filter(function(x){ return isKnockoutMatch(x.m) && !isFinished(x.m); })
+      .sort(function(a,b){ return a.num - b.num || a.start - b.start || a.i - b.i; });
+    if (knockoutQueue.length) return Object.assign({badge:'أنت هنا', kind:'next-knockout'}, knockoutQueue[0]);
+
     var todayItems = list.filter(function(x){ return ammanDay(x.start) === today; });
-    var upcomingToday = todayItems.filter(function(x){ return x.start >= now; });
+    var upcomingToday = todayItems.filter(function(x){ return x.start >= now && !isFinished(x.m); });
     if (upcomingToday.length) return Object.assign({badge:'أنت هنا', kind:'next'}, upcomingToday[0]);
 
     var pastToday = todayItems.filter(function(x){ return x.start < now; });
     if (pastToday.length) return Object.assign({badge:'أنت هنا', kind:'last'}, pastToday[pastToday.length-1]);
 
-    var upcoming = list.filter(function(x){ return x.start >= now; });
+    var upcoming = list.filter(function(x){ return x.start >= now && !isFinished(x.m); });
     if (upcoming.length) return Object.assign({badge:'أنت هنا', kind:'next'}, upcoming[0]);
 
     return list.length ? Object.assign({badge:'أنت هنا', kind:'last'}, list[list.length-1]) : null;
