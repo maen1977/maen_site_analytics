@@ -1,63 +1,51 @@
-# إصلاح نهائي لواجهة كأس العالم 2026 في موقع MaenSat
+# رجوع آمن لإضافات كأس العالم السابقة
 
-هذا الإصلاح مخصص للمشكلة التي بقيت كما هي بعد تحديث البيانات: تبويبات كأس العالم داخل الصفحة، خصوصًا:
+هذا الملف مخصص فقط لإزالة الإضافات التي أرسلتها سابقاً في ملفي الإصلاح:
 
-- المجموعات
-- أفضل الثوالث
-- الأدوار
-- كل المباريات
-- الأردن
-- اليوم
+- `maensat_worldcup_groups_fix.zip`
+- `maensat_worldcup_final_ui_fix.zip`
 
-## سبب المشكلة
+## ماذا يحذف؟
 
-البيانات داخل `public/worldcup-2026` أصبحت موجودة ومحدثة، لكن واجهة الصفحة نفسها تبقى أحيانًا على:
+يحذف فقط الملفات التالية إذا كانت موجودة:
 
-`جاري تحميل بيانات كأس العالم 2026...`
-
-أو لا تعرض تبويب `المجموعات` و`الأدوار` بشكل صحيح. لذلك هذا التصليح لا يعتمد فقط على تحديث JSON، بل يضيف ملف JavaScript جديد يقرأ ملفات JSON مباشرة ويعرض التبويبات في المتصفح.
-
-## الملفات الموجودة في هذا التصليح
-
-- `public/worldcup-final-ui-fix.js`
-- `scripts/install-worldcup-final-ui-fix.mjs`
+- `.github/workflows/repair-worldcup-groups-live.yml`
 - `.github/workflows/maensat-worldcup-final-ui-fix.yml`
-- `APPLY_WORLD_CUP_FINAL_UI_FIX.bat`
-- `README_AR.md`
+- `.github/workflows/rollback-worldcup-chatgpt-fixes.yml`
+- `scripts/repair-worldcup-groups-live.mjs`
+- `scripts/install-worldcup-cache-headers.mjs`
+- `scripts/install-worldcup-browser-fix.mjs`
+- `scripts/install-worldcup-final-ui-fix.mjs`
+- `scripts/rollback-worldcup-chatgpt-fixes.mjs`
+- `public/worldcup-2026-live-fallback.js`
+- `public/worldcup-final-ui-fix.js`
+- `public/worldcup-2026/final-ui-fix-marker.json`
 
-## طريقة التركيب من GitHub
+ويزيل من `public/index.html` و `public/index_phone.html` فقط وسوم السكربت التي تشير إلى:
+
+- `worldcup-2026-live-fallback.js`
+- `worldcup-final-ui-fix.js`
+
+ويزيل من `public/_headers` فقط بلوكات الكاش التي تحمل عنوان MaenSat World Cup الخاصة بهذه الإضافات.
+
+## طريقة الاستخدام عبر GitHub Actions
 
 1. فك الضغط.
-2. افتح المجلد `maensat_worldcup_final_ui_fix`.
-3. ارفع محتوياته كما هي إلى جذر الريبو:
+2. ارفع محتويات المجلد إلى جذر الريبو `maen1977/maen_site_analytics`.
+3. اعمل Commit.
+4. افتح GitHub Actions.
+5. شغّل Action باسم:
+   `Rollback ChatGPT World Cup fixes`
+6. بعد نجاح التشغيل، انتظر Deploy جديد من Cloudflare Pages.
 
-   `maen1977/maen_site_analytics`
+## الرجوع الأصلي 100%
 
-4. بعد رفع الملفات، ادخل GitHub ثم Actions.
-5. شغل Action باسم:
+إذا أردت الرجوع حرفياً إلى ما كان قبل أي رفع، فالطريقة الأدق هي من GitHub:
 
-   `MaenSat World Cup final UI fix`
+1. افتح الريبو.
+2. ادخل إلى `Commits` أو `History`.
+3. ابحث عن الـ commits التي رفعت فيها ملفات الإصلاح أو التي شغّلت Action الإصلاح.
+4. اضغط `Revert` على هذه commits بالترتيب من الأحدث إلى الأقدم.
+5. انتظر Deploy جديد من Cloudflare Pages.
 
-6. انتظر إلى أن ينجح التشغيل ويعمل Commit تلقائي.
-7. انتظر Cloudflare Pages حتى يعمل Deploy جديد.
-8. افتح الموقع واعمل Hard Refresh:
-
-   - على ويندوز: `Ctrl + F5`
-   - أو افتح الرابط مع كسر كاش مثل: `https://maensat.pages.dev/?v=final-worldcup-ui`
-
-## ماذا يفعل الإصلاح؟
-
-- يحقن ملف `worldcup-final-ui-fix.js` داخل `public/index.html` و `public/index_phone.html`.
-- يكسر كاش ملفات كأس العالم JSON.
-- يعرض جدول المجموعات من `groups.json` أو `standings.json`.
-- يعرض أفضل الثوالث ويحسِب أفضل 8.
-- يعرض الأدوار من `bracket.json` أو `matches.json`، وإذا لم تكن المواجهات موجودة بعد يعرض المنتخبات المتأهلة من ترتيب المجموعات.
-- لا يغيّر باقي أقسام الموقع.
-
-## علامة نجاح التركيب
-
-بعد تشغيل الـ Action سيظهر ملف جديد:
-
-`public/worldcup-2026/final-ui-fix-marker.json`
-
-وجود هذا الملف يعني أن الإصلاح تم تركيبه في الريبو.
+هذه الطريقة هي الوحيدة التي ترجع كل ملف بيانات JSON إلى نسخته السابقة تماماً، لأن ملفات البيانات قد تكون تغيّرت بعد تشغيل Actions.
