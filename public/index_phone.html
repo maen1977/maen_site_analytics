@@ -5362,7 +5362,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
       hint.title=changed?((lang()==='en'?'Last data change: ':'آخر تغيير بيانات: ')+fmtJordan(changed)):'';
     }
     function tick(){
-      refreshJordanNextStat();
+      refreshNextMatchStat();
       var c=document.getElementById('wcCountdown');
       if(!c)return;
       if(!opening){c.textContent='—';return;}
