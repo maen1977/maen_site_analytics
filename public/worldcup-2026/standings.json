@@ -2,19 +2,21 @@
   "metadata": {
     "name": "كأس العالم 2026",
     "english_name": "World Cup 2026",
-    "source": "ESPN verified results + local schedule",
-    "last_checked_at": "2026-06-28T16:45:13+03:00",
-    "last_updated": "2026-06-28T16:45:13+03:00",
+    "source": "ESPN live scoreboard + MaenSat group standings repair",
+    "last_checked_at": "2026-06-28T16:58:39+03:00",
+    "last_updated": "2026-06-28T16:58:39+03:00",
     "timezone": "Asia/Amman",
     "total_matches": 104,
     "teams_count": 48,
     "groups_count": 12,
-    "verified_results_only": true,
-    "note_ar": "تم احتساب الترتيب من النتائج الموثقة فقط. النتائج غير المطابقة مع ESPN لا تدخل في ترتيب المجموعات."
+    "all_groups_complete": true,
+    "repair_version": "maensat-worldcup-groups-repair-2026-06-28",
+    "note_ar": "تم احتساب ترتيب المجموعات تلقائياً من نتائج المباريات الموثقة، مع تصحيح تأهل أفضل الثوالث داخل جدول المجموعات نفسه."
   },
   "standings": [
     {
       "group": "A",
+      "complete": true,
       "rows": [
         {
           "team": "Mexico",
@@ -29,7 +31,8 @@
           "goal_diff": 6,
           "points": 9,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "South Africa",
@@ -44,7 +47,8 @@
           "goal_diff": -1,
           "points": 4,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "South Korea",
@@ -59,7 +63,10 @@
           "goal_diff": -1,
           "points": 3,
           "rank": 3,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false,
+          "best_third_rank": 10,
+          "current_best_third_qualifying": false
         },
         {
           "team": "Czech Republic",
@@ -74,12 +81,14 @@
           "goal_diff": -4,
           "points": 1,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "B",
+      "complete": true,
       "rows": [
         {
           "team": "Switzerland",
@@ -94,7 +103,8 @@
           "goal_diff": 4,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Canada",
@@ -109,7 +119,8 @@
           "goal_diff": 5,
           "points": 4,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Bosnia & Herzegovina",
@@ -124,7 +135,10 @@
           "goal_diff": -1,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 5,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Qatar",
@@ -139,12 +153,14 @@
           "goal_diff": -8,
           "points": 1,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "C",
+      "complete": true,
       "rows": [
         {
           "team": "Brazil",
@@ -159,7 +175,8 @@
           "goal_diff": 6,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Morocco",
@@ -174,7 +191,8 @@
           "goal_diff": 3,
           "points": 7,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Scotland",
@@ -189,7 +207,10 @@
           "goal_diff": -3,
           "points": 3,
           "rank": 3,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false,
+          "best_third_rank": 11,
+          "current_best_third_qualifying": false
         },
         {
           "team": "Haiti",
@@ -204,12 +225,14 @@
           "goal_diff": -6,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "D",
+      "complete": true,
       "rows": [
         {
           "team": "USA",
@@ -224,7 +247,8 @@
           "goal_diff": 4,
           "points": 6,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Australia",
@@ -239,7 +263,8 @@
           "goal_diff": 0,
           "points": 4,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Paraguay",
@@ -254,7 +279,10 @@
           "goal_diff": -2,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 7,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Turkey",
@@ -269,12 +297,14 @@
           "goal_diff": -2,
           "points": 3,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "E",
+      "complete": true,
       "rows": [
         {
           "team": "Germany",
@@ -289,7 +319,8 @@
           "goal_diff": 6,
           "points": 6,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Ivory Coast",
@@ -304,7 +335,8 @@
           "goal_diff": 2,
           "points": 6,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Ecuador",
@@ -319,7 +351,10 @@
           "goal_diff": 0,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 3,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Curaçao",
@@ -334,12 +369,14 @@
           "goal_diff": -8,
           "points": 1,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "F",
+      "complete": true,
       "rows": [
         {
           "team": "Netherlands",
@@ -354,7 +391,8 @@
           "goal_diff": 6,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Japan",
@@ -369,7 +407,8 @@
           "goal_diff": 4,
           "points": 5,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Sweden",
@@ -384,7 +423,10 @@
           "goal_diff": 0,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 2,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Tunisia",
@@ -399,12 +441,14 @@
           "goal_diff": -10,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "G",
+      "complete": true,
       "rows": [
         {
           "team": "Belgium",
@@ -419,7 +463,8 @@
           "goal_diff": 4,
           "points": 5,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Egypt",
@@ -434,7 +479,8 @@
           "goal_diff": 2,
           "points": 5,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Iran",
@@ -449,7 +495,10 @@
           "goal_diff": 0,
           "points": 3,
           "rank": 3,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false,
+          "best_third_rank": 9,
+          "current_best_third_qualifying": false
         },
         {
           "team": "New Zealand",
@@ -464,12 +513,14 @@
           "goal_diff": -6,
           "points": 1,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "H",
+      "complete": true,
       "rows": [
         {
           "team": "Spain",
@@ -484,7 +535,8 @@
           "goal_diff": 5,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Cape Verde",
@@ -499,7 +551,8 @@
           "goal_diff": 0,
           "points": 3,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Uruguay",
@@ -514,7 +567,10 @@
           "goal_diff": -1,
           "points": 2,
           "rank": 3,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false,
+          "best_third_rank": 12,
+          "current_best_third_qualifying": false
         },
         {
           "team": "Saudi Arabia",
@@ -529,12 +585,14 @@
           "goal_diff": -4,
           "points": 2,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "I",
+      "complete": true,
       "rows": [
         {
           "team": "France",
@@ -549,7 +607,8 @@
           "goal_diff": 8,
           "points": 9,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Norway",
@@ -564,7 +623,8 @@
           "goal_diff": 1,
           "points": 6,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Senegal",
@@ -579,7 +639,10 @@
           "goal_diff": 2,
           "points": 3,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 8,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Iraq",
@@ -594,12 +657,14 @@
           "goal_diff": -11,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "J",
+      "complete": true,
       "rows": [
         {
           "team": "Argentina",
@@ -614,7 +679,8 @@
           "goal_diff": 7,
           "points": 9,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Austria",
@@ -629,7 +695,8 @@
           "goal_diff": 0,
           "points": 4,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Algeria",
@@ -644,7 +711,10 @@
           "goal_diff": -2,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 6,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Jordan",
@@ -659,12 +729,14 @@
           "goal_diff": -5,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "K",
+      "complete": true,
       "rows": [
         {
           "team": "Colombia",
@@ -679,7 +751,8 @@
           "goal_diff": 3,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Portugal",
@@ -694,7 +767,8 @@
           "goal_diff": 5,
           "points": 5,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "DR Congo",
@@ -709,7 +783,10 @@
           "goal_diff": 1,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 1,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Uzbekistan",
@@ -724,12 +801,14 @@
           "goal_diff": -9,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     },
     {
       "group": "L",
+      "complete": true,
       "rows": [
         {
           "team": "England",
@@ -744,7 +823,8 @@
           "goal_diff": 4,
           "points": 7,
           "rank": 1,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Croatia",
@@ -759,7 +839,8 @@
           "goal_diff": 0,
           "points": 6,
           "rank": 2,
-          "qualified": true
+          "qualified": true,
+          "current_qualifying": true
         },
         {
           "team": "Ghana",
@@ -774,7 +855,10 @@
           "goal_diff": 0,
           "points": 4,
           "rank": 3,
-          "qualified": false
+          "qualified": true,
+          "current_qualifying": false,
+          "best_third_rank": 4,
+          "current_best_third_qualifying": true
         },
         {
           "team": "Panama",
@@ -789,7 +873,8 @@
           "goal_diff": -4,
           "points": 0,
           "rank": 4,
-          "qualified": false
+          "qualified": false,
+          "current_qualifying": false
         }
       ]
     }
@@ -808,7 +893,10 @@
       "goal_diff": 1,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 1,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Sweden",
@@ -823,7 +911,10 @@
       "goal_diff": 0,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 2,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Ecuador",
@@ -838,7 +929,10 @@
       "goal_diff": 0,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 3,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Ghana",
@@ -853,7 +947,10 @@
       "goal_diff": 0,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 4,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Bosnia & Herzegovina",
@@ -868,7 +965,10 @@
       "goal_diff": -1,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 5,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Algeria",
@@ -883,7 +983,10 @@
       "goal_diff": -2,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 6,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Paraguay",
@@ -898,7 +1001,10 @@
       "goal_diff": -2,
       "points": 4,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 7,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Senegal",
@@ -913,7 +1019,10 @@
       "goal_diff": 2,
       "points": 3,
       "rank": 3,
-      "qualified": true
+      "qualified": true,
+      "current_qualifying": false,
+      "best_third_rank": 8,
+      "current_best_third_qualifying": true
     },
     {
       "team": "Iran",
@@ -928,7 +1037,10 @@
       "goal_diff": 0,
       "points": 3,
       "rank": 3,
-      "qualified": false
+      "qualified": false,
+      "current_qualifying": false,
+      "best_third_rank": 9,
+      "current_best_third_qualifying": false
     },
     {
       "team": "South Korea",
@@ -943,7 +1055,10 @@
       "goal_diff": -1,
       "points": 3,
       "rank": 3,
-      "qualified": false
+      "qualified": false,
+      "current_qualifying": false,
+      "best_third_rank": 10,
+      "current_best_third_qualifying": false
     },
     {
       "team": "Scotland",
@@ -958,7 +1073,10 @@
       "goal_diff": -3,
       "points": 3,
       "rank": 3,
-      "qualified": false
+      "qualified": false,
+      "current_qualifying": false,
+      "best_third_rank": 11,
+      "current_best_third_qualifying": false
     },
     {
       "team": "Uruguay",
@@ -973,7 +1091,10 @@
       "goal_diff": -1,
       "points": 2,
       "rank": 3,
-      "qualified": false
+      "qualified": false,
+      "current_qualifying": false,
+      "best_third_rank": 12,
+      "current_best_third_qualifying": false
     }
   ]
 }
