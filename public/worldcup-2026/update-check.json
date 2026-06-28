@@ -1,46 +1,11 @@
 {
-  "name": "Maensat World Cup 2026 quarter-hour forced check",
-  "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-28T16:45:13+03:00",
-  "last_updated": "2026-06-28T16:45:13+03:00",
-  "next_expected_check_at": "2026-06-28T17:00:13+03:00",
-  "refresh_interval_minutes": 15,
-  "source": "github-actions",
-  "github": {
-    "run_id": "28324220322",
-    "run_number": "1222",
-    "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "workflow_dispatch",
-    "repository": "maen1977/maen_site_analytics",
-    "ref": "refs/heads/main",
-    "sha": "035c2931ab6b2e08e73a43ccddc1b1df7dc2d95d",
-    "trigger_source": "manual"
-  },
-  "checks": {
-    "espn_scoreboard": {
-      "ok": true,
-      "urls_checked": 9,
-      "events_seen": 79,
-      "matched": 72,
-      "changed": 72,
-      "stale_unverified_scores_cleared": 0,
-      "unmatched_past_count": 0,
-      "unmatched_past_sample": []
-    },
-    "manual_overrides_applied": 0,
-    "files_written": [
-      "matches.json",
-      "standings.json",
-      "groups.json",
-      "heartbeat.json",
-      "update-check.json",
-      "version.json",
-      "deploy-marker.txt",
-      "update-errors.json"
-    ],
-    "errors": []
-  },
-  "cache_buster": "4d149428b4e6",
-  "note_ar": "يتغير هذا الملف في كل تشغيل حتى يعرف الموقع أن هناك فحصاً جديداً للنتائج.",
-  "errors": []
+  "ok": true,
+  "checked_at": "2026-06-28T16:58:39+03:00",
+  "last_updated": "2026-06-28T16:58:39+03:00",
+  "source": "maensat-worldcup-groups-repair",
+  "message_ar": "تم تحديث 69 مباراة وإعادة بناء ترتيب المجموعات.",
+  "groups_count": 12,
+  "standings_groups_count": 12,
+  "best_thirds_count": 12,
+  "errors_count": 0
 }
