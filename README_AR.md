@@ -1,44 +1,63 @@
-# إصلاح تحديث مجموعات كأس العالم 2026 لموقع MaenSat
+# إصلاح نهائي لواجهة كأس العالم 2026 في موقع MaenSat
 
-هذا الملف مخصص لمشروع GitHub:
+هذا الإصلاح مخصص للمشكلة التي بقيت كما هي بعد تحديث البيانات: تبويبات كأس العالم داخل الصفحة، خصوصًا:
 
-`maen1977/maen_site_analytics`
+- المجموعات
+- أفضل الثوالث
+- الأدوار
+- كل المباريات
+- الأردن
+- اليوم
 
-ويعالج مشكلة توقف تحديث **المجموعات داخل قسم كأس العالم** عبر 3 أشياء:
+## سبب المشكلة
 
-1. تحديث `matches.json` من ESPN حسب تواريخ البطولة.
-2. إعادة بناء `standings.json` و`groups.json` تلقائياً، بما في ذلك أفضل الثوالث.
-3. منع كاش Cloudflare/المتصفح من عرض ملفات JSON قديمة، وإضافة واجهة احتياطية تظهر المجموعات إذا بقيت عبارة "جاري تحميل بيانات كأس العالم".
+البيانات داخل `public/worldcup-2026` أصبحت موجودة ومحدثة، لكن واجهة الصفحة نفسها تبقى أحيانًا على:
 
-## طريقة التركيب السهلة
+`جاري تحميل بيانات كأس العالم 2026...`
 
-1. افتح الريبو على GitHub.
-2. ارفع محتويات هذا المجلد كما هي إلى جذر المشروع، وليس داخل مجلد فرعي.
-3. تأكد أن هذه الملفات أصبحت موجودة:
-   - `scripts/repair-worldcup-groups-live.mjs`
-   - `scripts/install-worldcup-cache-headers.mjs`
-   - `scripts/install-worldcup-browser-fix.mjs`
-   - `public/worldcup-2026-live-fallback.js`
-   - `.github/workflows/repair-worldcup-groups-live.yml`
-4. من تبويب **Actions** شغّل workflow باسم:
-   `Repair World Cup 2026 groups live data`
-5. اضغط **Run workflow** أول مرة. التشغيل اليدوي يعمل فحص كامل من 2026-06-11 إلى 2026-07-19.
-6. بعد نجاحه، افتح الموقع ثم اعمل تحديث قوي للصفحة:
-   - كمبيوتر: `Ctrl + F5`
-   - موبايل: امسح كاش المتصفح أو افتح نافذة خاصة.
+أو لا تعرض تبويب `المجموعات` و`الأدوار` بشكل صحيح. لذلك هذا التصليح لا يعتمد فقط على تحديث JSON، بل يضيف ملف JavaScript جديد يقرأ ملفات JSON مباشرة ويعرض التبويبات في المتصفح.
 
-## ملاحظات مهمة
+## الملفات الموجودة في هذا التصليح
 
-- لا يحذف السكربت التحديث القديم الموجود عندك؛ يضيف طبقة إصلاح آمنة.
-- التشغيل المجدول كل 15 دقيقة تقريباً، لكن على دقائق مختلفة عن التحديث القديم لتقليل تعارضات Git.
-- إذا أردت تشغيل فحص كامل مرة أخرى، شغّل الـ workflow يدوياً من Actions.
-- إذا كان عندك ملف `public/_headers` سابق، السكربت يضيف قواعد كأس العالم فقط ولا يمسح الموجود.
+- `public/worldcup-final-ui-fix.js`
+- `scripts/install-worldcup-final-ui-fix.mjs`
+- `.github/workflows/maensat-worldcup-final-ui-fix.yml`
+- `APPLY_WORLD_CUP_FINAL_UI_FIX.bat`
+- `README_AR.md`
 
-## الملفات التي يحدثها الإصلاح تلقائياً
+## طريقة التركيب من GitHub
 
-- `public/worldcup-2026/matches.json`
-- `public/worldcup-2026/standings.json`
-- `public/worldcup-2026/groups.json`
-- `public/worldcup-2026/heartbeat.json`
-- `public/worldcup-2026/update-check.json`
-- `public/worldcup-2026/version.json`
+1. فك الضغط.
+2. افتح المجلد `maensat_worldcup_final_ui_fix`.
+3. ارفع محتوياته كما هي إلى جذر الريبو:
+
+   `maen1977/maen_site_analytics`
+
+4. بعد رفع الملفات، ادخل GitHub ثم Actions.
+5. شغل Action باسم:
+
+   `MaenSat World Cup final UI fix`
+
+6. انتظر إلى أن ينجح التشغيل ويعمل Commit تلقائي.
+7. انتظر Cloudflare Pages حتى يعمل Deploy جديد.
+8. افتح الموقع واعمل Hard Refresh:
+
+   - على ويندوز: `Ctrl + F5`
+   - أو افتح الرابط مع كسر كاش مثل: `https://maensat.pages.dev/?v=final-worldcup-ui`
+
+## ماذا يفعل الإصلاح؟
+
+- يحقن ملف `worldcup-final-ui-fix.js` داخل `public/index.html` و `public/index_phone.html`.
+- يكسر كاش ملفات كأس العالم JSON.
+- يعرض جدول المجموعات من `groups.json` أو `standings.json`.
+- يعرض أفضل الثوالث ويحسِب أفضل 8.
+- يعرض الأدوار من `bracket.json` أو `matches.json`، وإذا لم تكن المواجهات موجودة بعد يعرض المنتخبات المتأهلة من ترتيب المجموعات.
+- لا يغيّر باقي أقسام الموقع.
+
+## علامة نجاح التركيب
+
+بعد تشغيل الـ Action سيظهر ملف جديد:
+
+`public/worldcup-2026/final-ui-fix-marker.json`
+
+وجود هذا الملف يعني أن الإصلاح تم تركيبه في الريبو.
