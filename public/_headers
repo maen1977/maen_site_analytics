@@ -22,24 +22,3 @@
 
 /*.html
   Cache-Control: no-cache, must-revalidate, max-age=0
-# MaenSat World Cup JSON live repair - do not cache tournament data
-/worldcup-2026/*.json
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  CDN-Cache-Control: no-store
-  Cloudflare-CDN-Cache-Control: no-store
-
-/worldcup-2026-live-fallback.js
-  Cache-Control: no-cache, must-revalidate, max-age=0
-
-# MaenSat World Cup 2026 live JSON/cache fix
-/worldcup-2026/*.json
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-
-/worldcup-final-ui-fix.js
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-
-/index.html
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-
-/index_phone.html
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
