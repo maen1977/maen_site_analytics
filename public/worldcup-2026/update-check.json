@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T00:25:56+03:00",
-  "last_updated": "2026-06-29T00:25:56+03:00",
-  "next_expected_check_at": "2026-06-29T00:40:57+03:00",
+  "last_checked_at": "2026-06-29T00:30:13+03:00",
+  "last_updated": "2026-06-29T00:30:13+03:00",
+  "next_expected_check_at": "2026-06-29T00:45:14+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28336502106",
-    "run_number": "1249",
+    "run_id": "28336612175",
+    "run_number": "1250",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "0ccaa90258dca4d036df35e5b16b23ae31860b9d",
+    "sha": "d14106e3057e9349af7fa7c13da8c94d9951700e",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -31,15 +31,8 @@
       "changed": 0,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 0,
+      "winnerResolved": 2,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M090",
-          "side": "team1",
-          "slot": "W73",
-          "reason": "winner-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M090",
@@ -255,13 +248,6 @@
           "match": "M104",
           "side": "team2",
           "slot": "W102",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M090",
-          "side": "team1",
-          "slot": "W73",
           "reason": "winner-not-ready"
         },
         {
@@ -556,7 +542,7 @@
     ],
     "errors": []
   },
-  "cache_buster": "f6b0f4515519",
+  "cache_buster": "29a1700d37e2",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "errors": []
 }
