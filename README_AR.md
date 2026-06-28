@@ -1,68 +1,44 @@
-# تصحيح قنوات كأس العالم - MaenSat
+# إصلاح تحديث مجموعات كأس العالم 2026 لموقع MaenSat
 
-## الملفات الموجودة داخل الحزمة
+هذا الملف مخصص لمشروع GitHub:
 
-ارفع هذين الملفين إلى نفس المسارات داخل GitHub:
+`maen1977/maen_site_analytics`
 
-1. `scripts/fix-worldcup-broadcasts-safe.mjs`
-2. `public/worldcup-2026/broadcast-source.json`
+ويعالج مشكلة توقف تحديث **المجموعات داخل قسم كأس العالم** عبر 3 أشياء:
 
-> لا ترفع ملف ZIP نفسه داخل الريبو. فك الضغط أولاً، ثم ارفع الملفات الموجودة بداخله.
+1. تحديث `matches.json` من ESPN حسب تواريخ البطولة.
+2. إعادة بناء `standings.json` و`groups.json` تلقائياً، بما في ذلك أفضل الثوالث.
+3. منع كاش Cloudflare/المتصفح من عرض ملفات JSON قديمة، وإضافة واجهة احتياطية تظهر المجموعات إذا بقيت عبارة "جاري تحميل بيانات كأس العالم".
 
-## طريقة الرفع من GitHub
+## طريقة التركيب السهلة
 
-### الملف الأول
+1. افتح الريبو على GitHub.
+2. ارفع محتويات هذا المجلد كما هي إلى جذر المشروع، وليس داخل مجلد فرعي.
+3. تأكد أن هذه الملفات أصبحت موجودة:
+   - `scripts/repair-worldcup-groups-live.mjs`
+   - `scripts/install-worldcup-cache-headers.mjs`
+   - `scripts/install-worldcup-browser-fix.mjs`
+   - `public/worldcup-2026-live-fallback.js`
+   - `.github/workflows/repair-worldcup-groups-live.yml`
+4. من تبويب **Actions** شغّل workflow باسم:
+   `Repair World Cup 2026 groups live data`
+5. اضغط **Run workflow** أول مرة. التشغيل اليدوي يعمل فحص كامل من 2026-06-11 إلى 2026-07-19.
+6. بعد نجاحه، افتح الموقع ثم اعمل تحديث قوي للصفحة:
+   - كمبيوتر: `Ctrl + F5`
+   - موبايل: امسح كاش المتصفح أو افتح نافذة خاصة.
 
-المسار:
+## ملاحظات مهمة
 
-```text
-scripts/fix-worldcup-broadcasts-safe.mjs
-```
+- لا يحذف السكربت التحديث القديم الموجود عندك؛ يضيف طبقة إصلاح آمنة.
+- التشغيل المجدول كل 15 دقيقة تقريباً، لكن على دقائق مختلفة عن التحديث القديم لتقليل تعارضات Git.
+- إذا أردت تشغيل فحص كامل مرة أخرى، شغّل الـ workflow يدوياً من Actions.
+- إذا كان عندك ملف `public/_headers` سابق، السكربت يضيف قواعد كأس العالم فقط ولا يمسح الموجود.
 
-إذا الملف موجود، استبدله بالملف الموجود داخل هذه الحزمة.
-إذا غير موجود، أنشئ ملف جديد بنفس الاسم داخل مجلد `scripts`.
+## الملفات التي يحدثها الإصلاح تلقائياً
 
-رسالة الحفظ المقترحة:
-
-```text
-Fix safe World Cup broadcast cleanup script
-```
-
-### الملف الثاني
-
-المسار:
-
-```text
-public/worldcup-2026/broadcast-source.json
-```
-
-استبدل الملف القديم كاملًا بالملف الموجود داخل هذه الحزمة.
-
-رسالة الحفظ المقترحة:
-
-```text
-Update confirmed World Cup broadcast source
-```
-
-## بعد الرفع
-
-إذا عندك كمبيوتر أو Codespaces، شغل من جذر المشروع:
-
-```bash
-node scripts/update-worldcup-2026.mjs
-node scripts/fix-worldcup-broadcasts-safe.mjs
-```
-
-بعدها ارفع الملف الناتج إذا تغيّر:
-
-```text
-public/worldcup-2026/broadcasts.json
-```
-
-## ماذا يصلح هذا التعديل؟
-
-- يمنع ظهور كلمات مثل: بانتظار، غير مؤكد، pending، to be confirmed.
-- لا يستخدم `default_channels` كقنوات ظاهرة للمباريات.
-- يعتبر `beIN Sport` و `beIN Sports` و `beIN Sport FTA` قناة مجانية عندما تكون مكتوبة كقناة للمباراة نفسها.
-- يحافظ على القنوات الأساسية فقط: المفتوحة، MAX 1، MAX 2، 4K.
-- لا يخلط قنوات المباريات المتزامنة؛ كل مباراة حسب `match_id`.
+- `public/worldcup-2026/matches.json`
+- `public/worldcup-2026/standings.json`
+- `public/worldcup-2026/groups.json`
+- `public/worldcup-2026/heartbeat.json`
+- `public/worldcup-2026/update-check.json`
+- `public/worldcup-2026/version.json`
