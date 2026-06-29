@@ -4821,6 +4821,14 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   }
 }
 
+
+/* MAENSAT_HIDE_WORLDCUP_BROADCASTS_DIRECT */
+#worldcup2026 .wc-broadcast,
+#worldcup2026 .wc-broadcast-title,
+#worldcup2026 .wc-broadcast-list,
+#worldcup2026 .wc-channel,
+#worldcup2026 [aria-label="القنوات الناقلة"],
+#worldcup2026 [aria-label="Broadcasters"]{display:none!important;}
 </style>
 <script id="latest-bilingual-frequency-scroll-fix-script">
 (function(){
@@ -5204,7 +5212,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
   function matchBroadcastEntry(m){var b=WC_STATE.broadcasts||{}; var map=b.matches||{}; var key=(m&&m.id)||''; var n=(m&&m.num)!=null?String(m.num):''; return map[key]||map[n]||map['M'+String(n).padStart(3,'0')]||null;}
   function channelsForMatch(m){var b=WC_STATE.broadcasts||{}; var entry=matchBroadcastEntry(m); var ch=(entry&&Array.isArray(entry.channels)&&entry.channels.length)?entry.channels:(Array.isArray(b.default_channels)?b.default_channels:[]); return ch.filter(function(c){return c&&broadcastName(c);});}
-  function broadcastHtml(m){var channels=channelsForMatch(m); if(!channels.length)return ''; return '<div class="wc-broadcast" aria-label="'+esc(tr('broadcasters'))+'"><div class="wc-broadcast-title">📺 <span>'+tr('broadcasters')+'</span></div><div class="wc-broadcast-list">'+channels.map(function(c){var type=String((c.type)||'encrypted').toLowerCase(); var cls=(type==='free'||type==='fta'||type==='free_to_air')?'free':'encrypted'; var st=broadcastStatusText(c); return '<span class="wc-channel '+cls+'"><span>'+esc(broadcastTypeLabel(c))+'</span><strong>'+esc(broadcastName(c))+'</strong>'+(st?'<span class="wc-channel-status">'+esc(st)+'</span>':'')+'</span>';}).join('')+'</div></div>'; }
+  function broadcastHtml(m){return '';} 
   function stageName(m){var raw=m.stage_ar||m.round||m.stage||''; if(lang()==='en'){return m.round||m.stage||STAGE_EN[raw]||raw;} return m.stage_ar||m.round||m.stage||'';}
   function groupByDate(matches){return matches.reduce(function(acc,m){var k=(m.kickoff_jordan||m.date||'').slice(0,10);(acc[k]=acc[k]||[]).push(m);return acc;},{});}
   function matchCountText(n){if(lang()==='en')return n+' '+(n===1?tr('singleMatchCount'):tr('matchesCount')); if(n===1)return tr('oneMatch'); if(n===2)return tr('twoMatches'); if(n>=3&&n<=10)return n+' '+tr('matchesCount'); return n+' '+tr('singleMatchCount');}
