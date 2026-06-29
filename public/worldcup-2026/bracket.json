@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-06-30T01:00:17+03:00",
-    "last_checked_at": "2026-06-30T01:00:17+03:00",
+    "last_updated": "2026-06-30T01:03:16+03:00",
+    "last_checked_at": "2026-06-30T01:03:16+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -22,7 +22,7 @@
     "github_run_id": "27825778981",
     "github_run_number": "204",
     "github_sha": "e011d16a5531145fe3a433bdabbf33cef6bfaef8",
-    "note_ar": "أسماء الأدوار والفائزين يتم تحديثها من داخل التحديث الأصلي كل 15 دقيقة.",
+    "note_ar": "تصحيح رسمي لتوزيع مباريات دور الـ32 مع إبقاء تحديث الـ15 دقيقة كما هو.",
     "refresh_interval_minutes": 15,
     "cache_buster": "9205195953872ecf",
     "github_event_name": "workflow_dispatch",
@@ -1008,7 +1008,9 @@
           "fallback": false
         }
       ]
-    }
+    },
+    "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+    "r32_official_pairings_version": "2026-06-29-v1"
   },
   "matches": [
     {
@@ -1032,11 +1034,10 @@
       "home_score": 0,
       "away_score": 1,
       "score": {
-        "source": "espn",
-        "event_id": "760486",
+        "source": "r32-official-correction",
         "status_detail": "Full Time",
-        "clock": "90'+6'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
+        "clock": "90'",
+        "checked_at": "2026-06-30T01:03:16+03:00",
         "current": [
           0,
           1
@@ -1049,7 +1050,7 @@
       "score_source": "espn",
       "live_clock": "90'+6'",
       "live_status_detail": "Full Time",
-      "search_text": "South Africa Canada جنوب أفريقيا كندا Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Round of 32 Round of 32 دور 32 Match 73",
+      "search_text": "South Africa Canada جنوب أفريقيا كندا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Round of 32 Round of 32 دور 32 Match 73",
       "team1_slot": "2A",
       "team1_original_slot": "2A",
       "team1_seed": "2A",
@@ -1067,11 +1068,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2A",
       "team2_source_slot": "2B",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760486",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M076",
@@ -1094,11 +1097,10 @@
       "home_score": 2,
       "away_score": 1,
       "score": {
-        "source": "espn",
-        "event_id": "760487",
+        "source": "r32-official-correction",
         "status_detail": "Full Time",
-        "clock": "90'+11'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
+        "clock": "90'",
+        "checked_at": "2026-06-30T01:03:16+03:00",
         "current": [
           2,
           1
@@ -1111,7 +1113,7 @@
       "score_source": "espn",
       "live_clock": "90'+11'",
       "live_status_detail": "Full Time",
-      "search_text": "Brazil Japan البرازيل اليابان Houston Stadium / NRG Stadium Houston Round of 32 Round of 32 دور 32 Match 76",
+      "search_text": "Brazil Japan البرازيل اليابان Houston Houston Stadium / NRG Stadium Round of 32 Round of 32 دور 32 Match 76",
       "team1_slot": "1C",
       "team1_original_slot": "1C",
       "team1_seed": "1C",
@@ -1129,11 +1131,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1C",
       "team2_source_slot": "2F",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760487",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M074",
@@ -1147,9 +1151,9 @@
       "kickoff_utc": "2026-06-29T20:30:00.000Z",
       "kickoff_jordan": "2026-06-29T23:30:00.000+03:00",
       "team1": "Germany",
-      "team2": "Bosnia & Herzegovina",
+      "team2": "Paraguay",
       "team1_ar": "ألمانيا",
-      "team2_ar": "البوسنة والهرسك",
+      "team2_ar": "باراغواي",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
       "status": "scheduled",
@@ -1159,7 +1163,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Germany Bosnia & Herzegovina ألمانيا البوسنة والهرسك Boston Stadium / Gillette Stadium Boston (Foxborough) Round of 32 Round of 32 دور 32 Match 74",
+      "search_text": "Germany Paraguay ألمانيا باراغواي Boston (Foxborough) Boston Stadium / Gillette Stadium Round of 32 Round of 32 دور 32 Match 74",
       "team1_slot": "1E",
       "team1_original_slot": "1E",
       "team1_seed": "1E",
@@ -1171,13 +1175,15 @@
       "team2_original_slot": "3A/B/C/D/F",
       "team2_seed": "3A/B/C/D/F",
       "team2_resolved_from": "3A/B/C/D/F",
-      "team2_resolved_group": "B",
+      "team2_resolved_group": "D",
       "team2_resolution_status": "resolved",
-      "team2_resolution_source": "best-third-B",
+      "team2_resolution_source": "best-third-D",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1E",
       "team2_source_slot": "3A/B/C/D/F",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M075",
@@ -1197,23 +1203,13 @@
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
       "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": {
-        "source": "espn",
-        "event_id": "760488",
-        "status_detail": "Scheduled",
-        "clock": "0'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
-        "current": [
-          0,
-          0
-        ]
-      },
+      "home_score": null,
+      "away_score": null,
+      "score": null,
       "score_source": "espn",
       "live_clock": "0'",
       "live_status_detail": "Scheduled",
-      "search_text": "Netherlands Morocco هولندا المغرب Estadio Monterrey / Estadio BBVA Monterrey (Guadalupe) Round of 32 Round of 32 دور 32 Match 75",
+      "search_text": "Netherlands Morocco هولندا المغرب Monterrey (Guadalupe) Estadio Monterrey / Estadio BBVA Round of 32 Round of 32 دور 32 Match 75",
       "team1_slot": "1F",
       "team1_original_slot": "1F",
       "team1_seed": "1F",
@@ -1231,11 +1227,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1F",
       "team2_source_slot": "2C",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760488",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M078",
@@ -1255,23 +1253,13 @@
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
       "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": {
-        "source": "espn",
-        "event_id": "760490",
-        "status_detail": "Scheduled",
-        "clock": "0'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
-        "current": [
-          0,
-          0
-        ]
-      },
+      "home_score": null,
+      "away_score": null,
+      "score": null,
       "score_source": "espn",
       "live_clock": "0'",
       "live_status_detail": "Scheduled",
-      "search_text": "Ivory Coast Norway كوت ديفوار النرويج Dallas Stadium / AT&T Stadium Dallas (Arlington) Round of 32 Round of 32 دور 32 Match 78",
+      "search_text": "Ivory Coast Norway كوت ديفوار النرويج Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 32 Round of 32 دور 32 Match 78",
       "team1_slot": "2E",
       "team1_original_slot": "2E",
       "team1_seed": "2E",
@@ -1289,11 +1277,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2E",
       "team2_source_slot": "2I",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760490",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M077",
@@ -1307,9 +1297,9 @@
       "kickoff_utc": "2026-06-30T21:00:00.000Z",
       "kickoff_jordan": "2026-07-01T00:00:00.000+03:00",
       "team1": "France",
-      "team2": "Paraguay",
+      "team2": "Sweden",
       "team1_ar": "فرنسا",
-      "team2_ar": "باراغواي",
+      "team2_ar": "السويد",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
       "status": "scheduled",
@@ -1319,7 +1309,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "France Paraguay فرنسا باراغواي New York New Jersey Stadium / MetLife Stadium New York/New Jersey (East Rutherford) Round of 32 Round of 32 دور 32 Match 77",
+      "search_text": "France Sweden فرنسا السويد New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Round of 32 Round of 32 دور 32 Match 77",
       "team1_slot": "1I",
       "team1_original_slot": "1I",
       "team1_seed": "1I",
@@ -1331,13 +1321,15 @@
       "team2_original_slot": "3C/D/F/G/H",
       "team2_seed": "3C/D/F/G/H",
       "team2_resolved_from": "3C/D/F/G/H",
-      "team2_resolved_group": "D",
+      "team2_resolved_group": "F",
       "team2_resolution_status": "resolved",
-      "team2_resolution_source": "best-third-D",
+      "team2_resolution_source": "best-third-F",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1I",
       "team2_source_slot": "3C/D/F/G/H",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M079",
@@ -1351,9 +1343,9 @@
       "kickoff_utc": "2026-07-01T01:00:00.000Z",
       "kickoff_jordan": "2026-07-01T04:00:00.000+03:00",
       "team1": "Mexico",
-      "team2": "Sweden",
+      "team2": "Ecuador",
       "team1_ar": "المكسيك",
-      "team2_ar": "السويد",
+      "team2_ar": "الإكوادور",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
       "status": "scheduled",
@@ -1363,7 +1355,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Mexico Sweden المكسيك السويد Mexico City Stadium / Estadio Azteca Mexico City Round of 32 Round of 32 دور 32 Match 79",
+      "search_text": "Mexico Ecuador المكسيك الإكوادور Mexico City Mexico City Stadium / Estadio Azteca Round of 32 Round of 32 دور 32 Match 79",
       "team1_slot": "1A",
       "team1_original_slot": "1A",
       "team1_seed": "1A",
@@ -1375,13 +1367,15 @@
       "team2_original_slot": "3C/E/F/H/I",
       "team2_seed": "3C/E/F/H/I",
       "team2_resolved_from": "3C/E/F/H/I",
-      "team2_resolved_group": "I",
+      "team2_resolved_group": "E",
       "team2_resolution_status": "resolved",
-      "team2_resolution_source": "best-third-I",
+      "team2_resolution_source": "best-third-E",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1A",
       "team2_source_slot": "3C/E/F/H/I",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M080",
@@ -1401,23 +1395,13 @@
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
       "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": {
-        "source": "espn",
-        "event_id": "760495",
-        "status_detail": "Scheduled",
-        "clock": "0'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
-        "current": [
-          0,
-          0
-        ]
-      },
+      "home_score": null,
+      "away_score": null,
+      "score": null,
       "score_source": "espn",
       "live_clock": "0'",
       "live_status_detail": "Scheduled",
-      "search_text": "England DR Congo إنجلترا الكونغو الديمقراطية Atlanta Stadium / Mercedes-Benz Stadium Atlanta Round of 32 Round of 32 دور 32 Match 80",
+      "search_text": "England DR Congo إنجلترا الكونغو الديمقراطية Atlanta Atlanta Stadium / Mercedes-Benz Stadium Round of 32 Round of 32 دور 32 Match 80",
       "team1_slot": "1L",
       "team1_original_slot": "1L",
       "team1_seed": "1L",
@@ -1435,11 +1419,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1L",
       "team2_source_slot": "3E/H/I/J/K",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760495",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M082",
@@ -1453,9 +1439,9 @@
       "kickoff_utc": "2026-07-01T20:00:00.000Z",
       "kickoff_jordan": "2026-07-01T23:00:00.000+03:00",
       "team1": "Belgium",
-      "team2": "Algeria",
+      "team2": "Senegal",
       "team1_ar": "بلجيكا",
-      "team2_ar": "الجزائر",
+      "team2_ar": "السنغال",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
       "status": "scheduled",
@@ -1465,7 +1451,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Belgium Algeria بلجيكا الجزائر Seattle Stadium / Lumen Field Seattle Round of 32 Round of 32 دور 32 Match 82",
+      "search_text": "Belgium Senegal بلجيكا السنغال Seattle Seattle Stadium / Lumen Field Round of 32 Round of 32 دور 32 Match 82",
       "team1_slot": "1G",
       "team1_original_slot": "1G",
       "team1_seed": "1G",
@@ -1477,13 +1463,15 @@
       "team2_original_slot": "3A/E/H/I/J",
       "team2_seed": "3A/E/H/I/J",
       "team2_resolved_from": "3A/E/H/I/J",
-      "team2_resolved_group": "J",
+      "team2_resolved_group": "I",
       "team2_resolution_status": "resolved",
-      "team2_resolution_source": "best-third-J",
+      "team2_resolution_source": "best-third-I",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1G",
       "team2_source_slot": "3A/E/H/I/J",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M081",
@@ -1497,9 +1485,9 @@
       "kickoff_utc": "2026-07-02T00:00:00.000Z",
       "kickoff_jordan": "2026-07-02T03:00:00.000+03:00",
       "team1": "USA",
-      "team2": "Ecuador",
-      "team1_ar": "أمريكا",
-      "team2_ar": "الإكوادور",
+      "team2": "Bosnia & Herzegovina",
+      "team1_ar": "الولايات المتحدة",
+      "team2_ar": "البوسنة والهرسك",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
       "status": "scheduled",
@@ -1509,7 +1497,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "USA Ecuador أمريكا الإكوادور San Francisco Bay Area Stadium / Levi's Stadium San Francisco Bay Area (Santa Clara) Round of 32 Round of 32 دور 32 Match 81",
+      "search_text": "USA Bosnia & Herzegovina الولايات المتحدة البوسنة والهرسك San Francisco Bay Area (Santa Clara) San Francisco Bay Area Stadium / Levi's Stadium Round of 32 Round of 32 دور 32 Match 81",
       "team1_slot": "1D",
       "team1_original_slot": "1D",
       "team1_seed": "1D",
@@ -1523,7 +1511,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1D",
       "team2_source_slot": "3B/E/F/I/J",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "team2_resolved_from": "3B/E/F/I/J",
+      "team2_resolved_group": "B",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-B",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M084",
@@ -1543,23 +1537,13 @@
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
       "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": {
-        "source": "espn",
-        "event_id": "760497",
-        "status_detail": "Scheduled",
-        "clock": "0'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
-        "current": [
-          0,
-          0
-        ]
-      },
+      "home_score": null,
+      "away_score": null,
+      "score": null,
       "score_source": "espn",
       "live_clock": "0'",
       "live_status_detail": "Scheduled",
-      "search_text": "Spain Austria إسبانيا النمسا Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Round of 32 Round of 32 دور 32 Match 84",
+      "search_text": "Spain Austria إسبانيا النمسا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Round of 32 Round of 32 دور 32 Match 84",
       "team1_slot": "1H",
       "team1_original_slot": "1H",
       "team1_seed": "1H",
@@ -1577,11 +1561,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1H",
       "team2_source_slot": "2J",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760497",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M083",
@@ -1601,23 +1587,13 @@
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
       "status": "scheduled",
-      "home_score": 0,
-      "away_score": 0,
-      "score": {
-        "source": "espn",
-        "event_id": "760496",
-        "status_detail": "Scheduled",
-        "clock": "0'",
-        "checked_at": "2026-06-30T01:00:17+03:00",
-        "current": [
-          0,
-          0
-        ]
-      },
+      "home_score": null,
+      "away_score": null,
+      "score": null,
       "score_source": "espn",
       "live_clock": "0'",
       "live_status_detail": "Scheduled",
-      "search_text": "Portugal Croatia البرتغال كرواتيا Toronto Stadium / BMO Field Toronto Round of 32 Round of 32 دور 32 Match 83",
+      "search_text": "Portugal Croatia البرتغال كرواتيا Toronto Toronto Stadium / BMO Field Round of 32 Round of 32 دور 32 Match 83",
       "team1_slot": "2K",
       "team1_original_slot": "2K",
       "team1_seed": "2K",
@@ -1635,11 +1611,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2K",
       "team2_source_slot": "2L",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "espn_event_id": "760496",
       "live_score_source": "espn",
-      "live_checked_at": "2026-06-30T01:00:17+03:00",
-      "last_live_update": "2026-06-30T01:00:17+03:00"
+      "live_checked_at": "2026-06-30T01:03:16+03:00",
+      "last_live_update": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M085",
@@ -1653,9 +1631,9 @@
       "kickoff_utc": "2026-07-03T03:00:00.000Z",
       "kickoff_jordan": "2026-07-03T06:00:00.000+03:00",
       "team1": "Switzerland",
-      "team2": "Senegal",
+      "team2": "Algeria",
       "team1_ar": "سويسرا",
-      "team2_ar": "السنغال",
+      "team2_ar": "الجزائر",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
       "status": "scheduled",
@@ -1665,7 +1643,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Switzerland Senegal سويسرا السنغال Vancouver Stadium / BC Place Vancouver Round of 32 Round of 32 دور 32 Match 85",
+      "search_text": "Switzerland Algeria سويسرا الجزائر Vancouver Vancouver Stadium / BC Place Round of 32 Round of 32 دور 32 Match 85",
       "team1_slot": "1B",
       "team1_original_slot": "1B",
       "team1_seed": "1B",
@@ -1679,7 +1657,13 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1B",
       "team2_source_slot": "3E/F/G/I/J",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "team2_resolved_from": "3E/F/G/I/J",
+      "team2_resolved_group": "J",
+      "team2_resolution_status": "resolved",
+      "team2_resolution_source": "best-third-J",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M088",
@@ -1705,7 +1689,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Australia Egypt أستراليا مصر Dallas Stadium / AT&T Stadium Dallas (Arlington) Round of 32 Round of 32 دور 32 Match 88",
+      "search_text": "Australia Egypt أستراليا مصر Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 32 Round of 32 دور 32 Match 88",
       "team1_slot": "2D",
       "team1_original_slot": "2D",
       "team1_seed": "2D",
@@ -1723,7 +1707,9 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2D",
       "team2_source_slot": "2G",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M086",
@@ -1749,7 +1735,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Argentina Cape Verde الأرجنتين الرأس الأخضر Miami Stadium / Hard Rock Stadium Miami (Miami Gardens) Round of 32 Round of 32 دور 32 Match 86",
+      "search_text": "Argentina Cape Verde الأرجنتين الرأس الأخضر Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Round of 32 Round of 32 دور 32 Match 86",
       "team1_slot": "1J",
       "team1_original_slot": "1J",
       "team1_seed": "1J",
@@ -1767,7 +1753,9 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1J",
       "team2_source_slot": "2H",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M087",
@@ -1793,7 +1781,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Colombia Ghana كولومبيا غانا Kansas City Stadium / Arrowhead Stadium Kansas City Round of 32 Round of 32 دور 32 Match 87",
+      "search_text": "Colombia Ghana كولومبيا غانا Kansas City Kansas City Stadium / Arrowhead Stadium Round of 32 Round of 32 دور 32 Match 87",
       "team1_slot": "1K",
       "team1_original_slot": "1K",
       "team1_seed": "1K",
@@ -1811,7 +1799,9 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1K",
       "team2_source_slot": "3D/E/I/J/L",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_corrected_at": "2026-06-30T01:03:16+03:00",
+      "r32_official_pairing": true
     },
     {
       "id": "M090",
@@ -1845,7 +1835,7 @@
       "team2_original_slot": "W75",
       "team2_seed": "W75",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "team1_source_slot": "W73"
     },
     {
@@ -1880,7 +1870,7 @@
       "team2_original_slot": "W77",
       "team2_seed": "W77",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M091",
@@ -1914,7 +1904,7 @@
       "team2_original_slot": "W78",
       "team2_seed": "W78",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00",
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00",
       "team1_source_slot": "W76"
     },
     {
@@ -1949,7 +1939,7 @@
       "team2_original_slot": "W80",
       "team2_seed": "W80",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M093",
@@ -1983,7 +1973,7 @@
       "team2_original_slot": "W84",
       "team2_seed": "W84",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M094",
@@ -2017,7 +2007,7 @@
       "team2_original_slot": "W82",
       "team2_seed": "W82",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M095",
@@ -2051,7 +2041,7 @@
       "team2_original_slot": "W88",
       "team2_seed": "W88",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M096",
@@ -2085,7 +2075,7 @@
       "team2_original_slot": "W87",
       "team2_seed": "W87",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M097",
@@ -2119,7 +2109,7 @@
       "team2_original_slot": "W90",
       "team2_seed": "W90",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M098",
@@ -2153,7 +2143,7 @@
       "team2_original_slot": "W94",
       "team2_seed": "W94",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M099",
@@ -2187,7 +2177,7 @@
       "team2_original_slot": "W92",
       "team2_seed": "W92",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M100",
@@ -2221,7 +2211,7 @@
       "team2_original_slot": "W96",
       "team2_seed": "W96",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M101",
@@ -2255,7 +2245,7 @@
       "team2_original_slot": "W98",
       "team2_seed": "W98",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M102",
@@ -2289,7 +2279,7 @@
       "team2_original_slot": "W100",
       "team2_seed": "W100",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M103",
@@ -2323,7 +2313,7 @@
       "team2_original_slot": "L102",
       "team2_seed": "L102",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     },
     {
       "id": "M104",
@@ -2357,7 +2347,7 @@
       "team2_original_slot": "W102",
       "team2_seed": "W102",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-06-30T01:00:17+03:00"
+      "knockout_linked_at": "2026-06-30T01:03:16+03:00"
     }
   ]
 }
