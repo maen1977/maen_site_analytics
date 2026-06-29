@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T22:30:15+03:00",
-  "last_updated": "2026-06-29T22:30:15+03:00",
-  "next_expected_check_at": "2026-06-29T22:45:15+03:00",
+  "last_checked_at": "2026-06-29T22:45:14+03:00",
+  "last_updated": "2026-06-29T22:45:14+03:00",
+  "next_expected_check_at": "2026-06-29T23:00:16+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28397337630",
-    "run_number": "1355",
+    "run_id": "28398164871",
+    "run_number": "1356",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "bb8c769dd0ff14c382a8ede2aa7c7de7a6519bc1",
+    "sha": "e555de7c6c56cba46339dae6346028586c0f6f2d",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -24,11 +24,11 @@
       "events_seen": 82,
       "matched": 77,
       "bracket_matched": 5,
-      "score_changed": 1,
+      "score_changed": 0,
       "future_openfootball_zero_scores_cleared": 0
     },
     "knockout": {
-      "changed": 2,
+      "changed": 0,
       "directResolved": 48,
       "thirdResolved": 16,
       "winnerResolved": 4,
@@ -526,9 +526,19 @@
       "deploy-marker.txt",
       "update-errors.json"
     ],
-    "errors": []
+    "errors": [
+      {
+        "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260629-20260629",
+        "error": "fetch failed"
+      }
+    ]
   },
-  "cache_buster": "1db807e82d6d",
+  "cache_buster": "8790537ee44a",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
-  "errors": []
+  "errors": [
+    {
+      "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260629-20260629",
+      "error": "fetch failed"
+    }
+  ]
 }
