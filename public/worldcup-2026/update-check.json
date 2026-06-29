@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T22:15:16+03:00",
-  "last_updated": "2026-06-29T22:15:16+03:00",
-  "next_expected_check_at": "2026-06-29T22:30:17+03:00",
+  "last_checked_at": "2026-06-29T22:30:15+03:00",
+  "last_updated": "2026-06-29T22:30:15+03:00",
+  "next_expected_check_at": "2026-06-29T22:45:15+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28396529450",
-    "run_number": "1354",
+    "run_id": "28397337630",
+    "run_number": "1355",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "b0bde71809d5ed5315f647a8677eaabe712b5911",
+    "sha": "bb8c769dd0ff14c382a8ede2aa7c7de7a6519bc1",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -28,10 +28,10 @@
       "future_openfootball_zero_scores_cleared": 0
     },
     "knockout": {
-      "changed": 0,
+      "changed": 2,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 2,
+      "winnerResolved": 4,
       "unresolved": [
         {
           "file": "matches.json",
@@ -52,13 +52,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -269,13 +262,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -542,7 +528,7 @@
     ],
     "errors": []
   },
-  "cache_buster": "d82e39ae1021",
+  "cache_buster": "1db807e82d6d",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "errors": []
 }
