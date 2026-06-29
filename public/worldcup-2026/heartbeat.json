@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T11:45:14+03:00",
-  "last_updated": "2026-06-29T11:45:14+03:00",
-  "next_expected_check_at": "2026-06-29T12:00:14+03:00",
+  "last_checked_at": "2026-06-30T01:00:17+03:00",
+  "last_updated": "2026-06-30T01:00:17+03:00",
+  "next_expected_check_at": "2026-06-30T01:15:17+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28359748891",
-    "run_number": "1310",
+    "run_id": "28405479864",
+    "run_number": "1367",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "aa2c06e8834a97b34decfc9eaadef4792831e818",
+    "sha": "2356a3fdc5db8513b0a1a3f52ff2e06f81860354",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -21,9 +21,9 @@
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 9,
-      "events_seen": 82,
-      "matched": 77,
-      "bracket_matched": 5,
+      "events_seen": 85,
+      "matched": 79,
+      "bracket_matched": 7,
       "score_changed": 0,
       "future_openfootball_zero_scores_cleared": 0
     },
@@ -31,7 +31,7 @@
       "changed": 0,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 2,
+      "winnerResolved": 4,
       "unresolved": [
         {
           "file": "matches.json",
@@ -52,13 +52,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -269,13 +262,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -542,6 +528,6 @@
     ],
     "errors": []
   },
-  "cache_buster": "4ef151cc0f9a",
+  "cache_buster": "7d0eea76f7cf",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع."
 }
