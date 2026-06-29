@@ -37,7 +37,6 @@ jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
     timeout-minutes: 14
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -61,8 +60,14 @@ jobs:
       - name: Validate original quarter-hour updater
         run: node --check scripts/worldcup-quarter-hour-force.mjs
 
+      - name: Validate Round of 32 official correction
+        run: node --check scripts/worldcup-r32-official-fix.mjs
+
       - name: Run original quarter-hour updater with integrated knockout patch
         run: node scripts/worldcup-quarter-hour-force.mjs
+
+      - name: Apply official Round of 32 pairings correction
+        run: node scripts/worldcup-r32-official-fix.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -71,23 +76,24 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          git add public/worldcup-2026/matches.json \
-                  public/worldcup-2026/standings.json \
-                  public/worldcup-2026/groups.json \
-                  public/worldcup-2026/bracket.json \
-                  public/worldcup-2026/heartbeat.json \
-                  public/worldcup-2026/update-check.json \
-                  public/worldcup-2026/version.json \
-                  public/worldcup-2026/update-errors.json \
-                  public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
-
+          git add \
+            public/worldcup-2026/matches.json \
+            public/worldcup-2026/standings.json \
+            public/worldcup-2026/groups.json \
+            public/worldcup-2026/bracket.json \
+            public/worldcup-2026/knockout-live.json \
+            public/worldcup-2026/bracket-linker-status.json \
+            public/worldcup-2026/r32-correction-status.json \
+            public/worldcup-2026/heartbeat.json \
+            public/worldcup-2026/update-check.json \
+            public/worldcup-2026/version.json \
+            public/worldcup-2026/update-errors.json \
+            public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changed files to commit."
             exit 0
           fi
-
           stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
           git commit -m "World Cup 2026 15-minute data update ${stamp}"
           git pull --rebase --autostash origin main || true
