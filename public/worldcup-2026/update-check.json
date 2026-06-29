@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T23:00:16+03:00",
-  "last_updated": "2026-06-29T23:00:16+03:00",
-  "next_expected_check_at": "2026-06-29T23:15:17+03:00",
+  "last_checked_at": "2026-06-29T23:15:14+03:00",
+  "last_updated": "2026-06-29T23:15:14+03:00",
+  "next_expected_check_at": "2026-06-29T23:30:15+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28398988530",
-    "run_number": "1357",
+    "run_id": "28399830928",
+    "run_number": "1358",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "999814f715bf6f582ea6cccf9dce341ecbc6c06d",
+    "sha": "a783aa7b267f58d07fd1b9da01766b7fd9d25ca1",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -31,7 +31,7 @@
       "changed": 0,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 2,
+      "winnerResolved": 4,
       "unresolved": [
         {
           "file": "matches.json",
@@ -52,13 +52,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -269,13 +262,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -542,7 +528,7 @@
     ],
     "errors": []
   },
-  "cache_buster": "bdb6aa8a1c63",
+  "cache_buster": "c7620ba1137d",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "errors": []
 }

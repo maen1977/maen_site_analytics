@@ -1,7 +1,7 @@
 {
-  "version": "bdb6aa8a1c63",
-  "generated_at": "2026-06-29T23:00:16+03:00",
-  "next_expected_check_at": "2026-06-29T23:15:17+03:00",
+  "version": "c7620ba1137d",
+  "generated_at": "2026-06-29T23:15:14+03:00",
+  "next_expected_check_at": "2026-06-29T23:30:15+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
@@ -17,7 +17,7 @@
       "changed": 0,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 2,
+      "winnerResolved": 4,
       "unresolved": [
         {
           "file": "matches.json",
@@ -38,13 +38,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
@@ -255,13 +248,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M091",
-          "side": "team1",
-          "slot": "W76",
           "reason": "winner-not-ready"
         },
         {
