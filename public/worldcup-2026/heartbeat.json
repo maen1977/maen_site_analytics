@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-06-29T20:45:14+03:00",
-  "last_updated": "2026-06-29T20:45:14+03:00",
-  "next_expected_check_at": "2026-06-29T21:00:15+03:00",
+  "last_checked_at": "2026-06-29T21:00:18+03:00",
+  "last_updated": "2026-06-29T21:00:18+03:00",
+  "next_expected_check_at": "2026-06-29T21:15:18+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28391532697",
-    "run_number": "1347",
+    "run_id": "28392372277",
+    "run_number": "1348",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "b1d75eca8b8ad8005eb76a7061d8ca999f8a7903",
+    "sha": "d736db73e6c8248bbb616ee69e70d1955d41c175",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -542,6 +542,6 @@
     ],
     "errors": []
   },
-  "cache_buster": "2fbad5ee8376",
+  "cache_buster": "c19be6d8b9e8",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع."
 }
