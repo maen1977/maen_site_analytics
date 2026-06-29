@@ -13,6 +13,8 @@
   var pending = false;
   var observerStarted = false;
   var retryTimes = [250, 700, 1200, 2200, 3800, 6000, 9000];
+  var didAutoOpenBracket = false;
+  var userChangedTab = false;
 
   function norm(v){
     return String(v || '')
@@ -190,14 +192,38 @@
     return null;
   }
 
-  function ensureBracketTab(){
+  function isBracketTabActive(){
     var section = document.getElementById('worldcup2026');
-    if (!section) return;
+    if (!section) return false;
+    var btn = section.querySelector('.wc-tabs [data-wc-filter="bracket"]');
+    return !!(btn && btn.classList.contains('active'));
+  }
+
+  function ensureBracketTabOnce(){
+    var section = document.getElementById('worldcup2026');
+    if (!section || didAutoOpenBracket || userChangedTab) return;
     var btn = section.querySelector('.wc-tabs [data-wc-filter="bracket"]');
     if (btn && !btn.classList.contains('active')){
       if (typeof window.setWorldCupFilter === 'function') window.setWorldCupFilter('bracket', btn);
       else btn.click();
     }
+    didAutoOpenBracket = true;
+  }
+
+  function watchUserTabClicks(){
+    var section = document.getElementById('worldcup2026');
+    if (!section || section.__maensatWcTabClickWatch) return;
+    section.__maensatWcTabClickWatch = true;
+    section.addEventListener('click', function(ev){
+      var btn = ev.target && ev.target.closest ? ev.target.closest('.wc-tabs [data-wc-filter]') : null;
+      if (btn) userChangedTab = true;
+    }, true);
+  }
+
+  function resetEntryFlags(){
+    didAutoOpenBracket = false;
+    userChangedTab = false;
+    didAutoScroll = false;
   }
 
   function markCard(card, picked, shouldScroll){
@@ -225,9 +251,11 @@
     if (pending) return;
     pending = true;
     Promise.resolve().then(function(){
-      ensureBracketTab();
+      ensureBracketTabOnce();
+      if (!isBracketTabActive()) { clearBadges(); return null; }
       return loadMatches();
     }).then(function(matches){
+      if (!matches) return;
       var picked = choose(matches);
       if (!picked) { clearBadges(); return; }
       var card = findCard(picked);
@@ -256,15 +284,24 @@
   }
 
   document.addEventListener('DOMContentLoaded', function(){
+    watchUserTabClicks();
     observeOutput();
     scheduleFirstRun();
   });
   window.addEventListener('load', function(){
+    watchUserTabClicks();
     observeOutput();
     scheduleFirstRun();
   });
   window.addEventListener('hashchange', function(){
-    if ((location.hash || '').replace('#','') === 'worldcup2026') setTimeout(function(){ run(false); }, 500);
+    var h = (location.hash || '').replace('#','');
+    if (h === 'worldcup2026') {
+      resetEntryFlags();
+      setTimeout(function(){ run(false); }, 500);
+    } else {
+      resetEntryFlags();
+      clearBadges();
+    }
   });
 
   window.focusWorldCupCurrentMatch = function(forceScroll){ run(forceScroll !== false); };
