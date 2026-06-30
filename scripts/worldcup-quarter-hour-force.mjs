@@ -725,6 +725,58 @@ function clearFutureOpenfootballZeros(match, now) {
   return true;
 }
 
+const TIME_STATUS_START_GRACE_MS = 2 * 60 * 1000;
+const TIME_STATUS_LIVE_WINDOW_MS = 3 * 60 * 60 * 1000 + 20 * 60 * 1000;
+
+function matchTimeFallbackState(match, now) {
+  const kickoff = matchDateMs(match);
+  if (!Number.isFinite(kickoff)) return 'unknown';
+  const t = now.getTime();
+  if (t < kickoff - TIME_STATUS_START_GRACE_MS) return 'before';
+  if (t <= kickoff + TIME_STATUS_LIVE_WINDOW_MS) return 'live';
+  return 'pending_update';
+}
+
+function canApplyTimeFallbackStatus(match) {
+  const status = String(match?.status || '').toLowerCase();
+  const phase = String(match?.live_phase || match?.score?.phase || match?.live_status_detail || match?.score?.status_detail || '').toLowerCase();
+  const source = String(match?.score_source || match?.live_score_source || match?.score?.source || '').toLowerCase();
+  const all = `${status} ${phase}`;
+  if (isVerifiedResult(match) || isFinished(match)) return false;
+  if (/postpon|cancel/.test(all)) return false;
+  if (status === 'live' && source.includes('time-fallback')) return true;
+  if (/live|in[_\s-]?play|playing|started|first_half|second_half|half_time|extra[_\s-]?time|penalties|penalty|shootout/.test(all)) return false;
+  return !status || /scheduled|not[_\s-]?started|pre|pending_verification|pending-update|pending_update|awaiting/.test(all);
+}
+
+function applyTimeFallbackStatus(match, now, nowIso) {
+  if (!canApplyTimeFallbackStatus(match)) return false;
+  const state = matchTimeFallbackState(match, now);
+  if (state === 'before' || state === 'unknown') return false;
+  const nextStatus = state === 'live' ? 'live' : 'pending_verification';
+  const nextDetail = state === 'live'
+    ? 'Kickoff time reached; awaiting verified live score source'
+    : 'Match time passed; awaiting verified final result source';
+  const before = JSON.stringify({
+    status: match.status || '',
+    source: match.score_source || '',
+    detail: match.live_status_detail || '',
+    checked: match.live_checked_at || '',
+  });
+  match.status = nextStatus;
+  match.score_source = match.score_source && match.score_source !== 'scheduled' ? match.score_source : 'time-fallback';
+  match.live_score_source = match.live_score_source || 'time-fallback';
+  match.live_status_detail = nextDetail;
+  match.live_checked_at = nowIso;
+  if (!match.score || typeof match.score !== 'object') match.score = null;
+  return before !== JSON.stringify({
+    status: match.status || '',
+    source: match.score_source || '',
+    detail: match.live_status_detail || '',
+    checked: match.live_checked_at || '',
+  });
+}
+
 function collectTeamArMap(matchesData, standingsData, groupsData) {
   const map = new Map();
   const sources = [matchesData?.team_ar, groupsData?.team_ar, standingsData?.team_ar];
@@ -1095,17 +1147,20 @@ async function main() {
   let matched = 0;
   let scoreChanged = 0;
   let clearedZeros = 0;
+  let timeFallbackApplied = 0;
+  let bracketTimeFallbackApplied = 0;
   for (const match of matchesBox.matches) {
     const event = findEspnMatch(match, events);
     if (event) {
       matched++;
       if (applyScore(match, event, nowIso)) scoreChanged++;
-    } else if (clearFutureOpenfootballZeros(match, now)) {
-      clearedZeros++;
+    } else {
+      if (clearFutureOpenfootballZeros(match, now)) clearedZeros++;
+      if (applyTimeFallbackStatus(match, now, nowIso)) timeFallbackApplied++;
     }
     refreshSearchText(match);
   }
-  // Apply same score pass to bracket so the tab can update even if the UI reads bracket.json directly.
+  // Apply same score/status pass to bracket so the tab can update even if the UI reads bracket.json directly.
   let bracketMatched = 0;
   for (const match of bracketBox.matches) {
     const event = findEspnMatch(match, events);
@@ -1114,6 +1169,7 @@ async function main() {
       applyScore(match, event, nowIso);
     } else {
       clearFutureOpenfootballZeros(match, now);
+      if (applyTimeFallbackStatus(match, now, nowIso)) bracketTimeFallbackApplied++;
     }
     refreshSearchText(match);
   }
@@ -1143,6 +1199,8 @@ async function main() {
     espn_matches_applied: matched,
     bracket_matches_applied: bracketMatched,
     future_openfootball_zero_scores_cleared: clearedZeros,
+    time_fallback_status_applied: timeFallbackApplied,
+    bracket_time_fallback_status_applied: bracketTimeFallbackApplied,
     manual_overrides_applied: manualApplied,
     original_15_minute_workflow: true,
     knockout_integrated_patch: true,
@@ -1186,6 +1244,8 @@ async function main() {
       bracket_matched: bracketMatched,
       score_changed: scoreChanged,
       future_openfootball_zero_scores_cleared: clearedZeros,
+      time_fallback_status_applied: timeFallbackApplied,
+      bracket_time_fallback_status_applied: bracketTimeFallbackApplied,
     },
     knockout,
     manual_overrides_applied: manualApplied,

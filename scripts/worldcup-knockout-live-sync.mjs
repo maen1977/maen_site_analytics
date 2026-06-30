@@ -268,11 +268,29 @@ function getScores(m) {
   return { s1, s2, p1, p2, ft: scorePair(scoreValue(deepGet(m, ['score.ft.0'])), scoreValue(deepGet(m, ['score.ft.1']))), et: scorePair(scoreValue(deepGet(m, ['score.et.0'])), scoreValue(deepGet(m, ['score.et.1']))), p: scorePair(p1, p2) };
 }
 
+function matchKickoffMs(m) {
+  const raw = deepGet(m, ['kickoff_utc']) || deepGet(m, ['kickoff_jordan']) || deepGet(m, ['datetime']) || deepGet(m, ['date_time']) || deepGet(m, ['date']);
+  const t = raw ? Date.parse(raw) : NaN;
+  return Number.isFinite(t) ? t : NaN;
+}
+
+function matchTimeFallbackStatus(m) {
+  const kickoff = matchKickoffMs(m);
+  if (!Number.isFinite(kickoff)) return null;
+  const now = Date.now();
+  const startGrace = 2 * 60 * 1000;
+  const liveWindow = 3 * 60 * 60 * 1000 + 20 * 60 * 1000;
+  if (now < kickoff - startGrace) return null;
+  if (now <= kickoff + liveWindow) return { key: 'live', label_ar: 'مباشر' };
+  return { key: 'pending_verification', label_ar: 'بانتظار التحديث' };
+}
+
 function matchStatus(m) {
   const raw = text(deepGet(m, ['score.phase', 'live_phase', 'status_ar', 'status', 'state', 'match_status', 'period']));
   const detail = text(deepGet(m, ['score.phase_ar', 'live_phase_ar', 'score.status_detail', 'live_status_detail']));
   const low = `${raw} ${detail}`.toLowerCase();
   const scores = getScores(m);
+  if (/pending_verification|pending-update|pending_update|awaiting/.test(low)) return { key: 'pending_verification', label_ar: 'بانتظار التحديث' };
   if (/finished_on_penalties|penalties|penalty|shootout|ترجيح/.test(low) && scores.p) return { key: 'finished_on_penalties', label_ar: 'انتهت بركلات الترجيح' };
   if (/finished_after_extra_time|after\s+extra|aet|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(low)) return { key: 'finished_after_extra_time', label_ar: 'انتهت بعد التمديد' };
   if (/extra_time_first/.test(low)) return { key: 'live', label_ar: 'الشوط الإضافي الأول' };
@@ -281,7 +299,7 @@ function matchStatus(m) {
   if (/live|in[_\s-]?play|playing|مباشر|الشوط|استراحة|first_half|second_half|half_time/.test(low)) return { key: 'live', label_ar: detail || 'مباشر' };
   if (/finished|full[_\s-]?time|ft|ended|complete|انته/.test(low)) return { key: 'finished', label_ar: 'انتهت' };
   if (scores.s1 !== null && scores.s2 !== null && /final|ft|انته/i.test(low)) return { key: 'finished', label_ar: 'انتهت' };
-  return { key: 'scheduled', label_ar: 'لم تبدأ' };
+  return matchTimeFallbackStatus(m) || { key: 'scheduled', label_ar: 'لم تبدأ' };
 }
 
 function winnerSide(m) {
