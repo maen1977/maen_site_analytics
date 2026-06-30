@@ -5,7 +5,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TZ = 'Asia/Amman';
-const VERSION = '2026-06-30-dynamic-knockout-advancement-v3';
+const VERSION = '2026-06-30-dynamic-knockout-advancement-force-v4';
 
 function nowAmmanIso() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -482,6 +482,28 @@ function main() {
       channels: deepGet(raw, ['channels', 'broadcasts.channels', 'broadcast_channels']) || []
     };
   });
+
+  // Final safety pass: if a later-round card still carries a dynamic source like W74/L101,
+  // force the displayed team from the actual source match. This prevents stale seeded names
+  // such as Bosnia & Herzegovina from remaining beside slot W74 after Paraguay qualified.
+  function forcedDynamicTeam(slot) {
+    const s = normalizeSlot(slot || '');
+    const ref = s.match(/^([WL])(\d{2,3})$/);
+    if (!ref) return null;
+    const prev = byNumber.get(Number(ref[2]));
+    if (!prev) return makePlaceholder(s);
+    const side = ref[1] === 'W' ? winnerSide(prev.raw) : loserSide(prev.raw);
+    if (side === 1) return teamObject(prev.team1, { slot: s, resolved_from: s, unresolved: false });
+    if (side === 2) return teamObject(prev.team2, { slot: s, resolved_from: s, unresolved: false });
+    return makePlaceholder(s);
+  }
+
+  for (const m of normalizedMatches) {
+    const forced1 = forcedDynamicTeam(m.source_slot1);
+    if (forced1) m.team1 = forced1;
+    const forced2 = forcedDynamicTeam(m.source_slot2);
+    if (forced2) m.team2 = forced2;
+  }
 
   const roundMap = new Map();
   for (const m of normalizedMatches) {
