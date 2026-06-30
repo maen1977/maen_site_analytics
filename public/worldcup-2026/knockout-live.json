@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
-  "version": "2026-06-30-dynamic-knockout-advancement-force-v4",
-  "last_updated_at": "2026-06-30T20:15:17+03:00",
+  "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
+  "last_updated_at": "2026-06-30T20:27:34+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -38,7 +38,9 @@
       "W101",
       "W102"
     ],
-    "dynamic_advancement_slots_checked": 32
+    "dynamic_advancement_slots_checked": 32,
+    "matches_json_synced": true,
+    "matches_json_updated": 15
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -532,12 +534,12 @@
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
           "status": {
-            "key": "scheduled",
-            "label_ar": "لم تبدأ"
+            "key": "live",
+            "label_ar": "الشوط الأول"
           },
-          "phase": "scheduled",
-          "score1": null,
-          "score2": null,
+          "phase": "first_half",
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -2047,12 +2049,12 @@
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
       "status": {
-        "key": "scheduled",
-        "label_ar": "لم تبدأ"
+        "key": "live",
+        "label_ar": "الشوط الأول"
       },
-      "phase": "scheduled",
-      "score1": null,
-      "score2": null,
+      "phase": "first_half",
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
