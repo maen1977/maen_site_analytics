@@ -6502,5 +6502,30 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 }
 </style>
 
+
+<!-- MAEN_DESKTOP_STICKY_HEADER_POSITION_ONLY_2026_06_30: keep the current desktop header in place while scrolling. Position-only CSS; no size/padding/font/menu/JS/World Cup changes. -->
+<style id="maen-desktop-sticky-header-position-only">
+@media (min-width: 901px) {
+  /* Position only: keep the existing header/tabs visible while scrolling, without making it taller or changing menu sizes. */
+  .dashboard-app {
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  .side-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10050 !important;
+    transform: none !important;
+  }
+
+  .dashboard-app > .page,
+  .dashboard-app > section.page {
+    scroll-margin-top: 168px !important;
+  }
+}
+</style>
+
 </body>
 </html>
