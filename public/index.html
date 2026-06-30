@@ -6527,5 +6527,106 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 }
 </style>
 
+
+
+<!-- MAEN_DESKTOP_FIXED_HEADER_FORCE_2026_06_30: make the existing desktop header stay at the top without changing its size. Adds only a safe spacer based on actual header height; no tab handlers, no World Cup, no data changes. -->
+<style id="maen-desktop-fixed-header-force">
+@media (min-width: 901px) {
+  :root {
+    --maen-fixed-top-header-space: 158px;
+  }
+
+  html,
+  body {
+    scroll-padding-top: calc(var(--maen-fixed-top-header-space) + 14px) !important;
+  }
+
+  .dashboard-app {
+    padding-top: calc(var(--maen-fixed-top-header-space) + 14px) !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  .dashboard-app > .side-nav,
+  .side-nav {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: 0 !important;
+    bottom: auto !important;
+    z-index: 10080 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-top: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  .dashboard-app > .page,
+  .dashboard-app > section.page,
+  .dashboard-app > #home,
+  .dashboard-app > #devices,
+  .dashboard-app > #softwares,
+  .dashboard-app > #maintenance,
+  .dashboard-app > #works,
+  .dashboard-app > #receiverSoftware,
+  .dashboard-app > #frequencies,
+  .dashboard-app > #worldcup2026,
+  .dashboard-app > #contact {
+    scroll-margin-top: calc(var(--maen-fixed-top-header-space) + 18px) !important;
+  }
+}
+</style>
+<script id="maen-desktop-fixed-header-spacer">
+(function(){
+  var resizeTimer = null;
+  var observer = null;
+  function isDesktop(){
+    return window.matchMedia && window.matchMedia('(min-width: 901px)').matches;
+  }
+  function applyHeaderSpace(){
+    var root = document.documentElement;
+    var nav = document.querySelector('.dashboard-app > .side-nav') || document.querySelector('.side-nav');
+    if(!root || !nav){return;}
+    if(!isDesktop()){
+      root.style.removeProperty('--maen-fixed-top-header-space');
+      return;
+    }
+    var rect = nav.getBoundingClientRect ? nav.getBoundingClientRect() : null;
+    var height = rect && rect.height ? Math.ceil(rect.height) : nav.offsetHeight;
+    if(!height || height < 80){height = 158;}
+    root.style.setProperty('--maen-fixed-top-header-space', height + 'px');
+  }
+  function scheduleApply(){
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(applyHeaderSpace, 80);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', applyHeaderSpace, {once:true});
+  } else {
+    applyHeaderSpace();
+  }
+  window.addEventListener('load', applyHeaderSpace, {once:true});
+  window.addEventListener('resize', scheduleApply, {passive:true});
+  try {
+    if('ResizeObserver' in window){
+      observer = new ResizeObserver(scheduleApply);
+      var start = function(){
+        var nav = document.querySelector('.dashboard-app > .side-nav') || document.querySelector('.side-nav');
+        if(nav){observer.observe(nav);}
+      };
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', start, {once:true});
+      } else {
+        start();
+      }
+    }
+  } catch(e) {}
+})();
+</script>
+
 </body>
 </html>
