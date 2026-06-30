@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
-  "version": "2026-06-30-knockout-extra-time-penalties-sort-v2",
-  "last_updated_at": "2026-06-30T14:45:16+03:00",
+  "version": "2026-06-30-dynamic-knockout-advancement-v3",
+  "last_updated_at": "2026-06-30T14:53:41+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -37,9 +37,268 @@
       "L102",
       "W101",
       "W102"
-    ]
+    ],
+    "dynamic_advancement_slots_checked": 32
   },
   "third_assignments": [],
+  "dynamic_advancement_checks": [
+    {
+      "match": "M090",
+      "side": "team1",
+      "source_slot": "W73",
+      "resolved_team_ar": "Canada",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M090",
+      "side": "team2",
+      "source_slot": "W75",
+      "resolved_team_ar": "Morocco",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M089",
+      "side": "team1",
+      "source_slot": "W74",
+      "resolved_team_ar": "Paraguay",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M089",
+      "side": "team2",
+      "source_slot": "W77",
+      "resolved_team_ar": "الفائز من مباراة 77",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M091",
+      "side": "team1",
+      "source_slot": "W76",
+      "resolved_team_ar": "Brazil",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M091",
+      "side": "team2",
+      "source_slot": "W78",
+      "resolved_team_ar": "الفائز من مباراة 78",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M092",
+      "side": "team1",
+      "source_slot": "W79",
+      "resolved_team_ar": "الفائز من مباراة 79",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M092",
+      "side": "team2",
+      "source_slot": "W80",
+      "resolved_team_ar": "الفائز من مباراة 80",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M093",
+      "side": "team1",
+      "source_slot": "W83",
+      "resolved_team_ar": "الفائز من مباراة 83",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M093",
+      "side": "team2",
+      "source_slot": "W84",
+      "resolved_team_ar": "الفائز من مباراة 84",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M094",
+      "side": "team1",
+      "source_slot": "W81",
+      "resolved_team_ar": "الفائز من مباراة 81",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M094",
+      "side": "team2",
+      "source_slot": "W82",
+      "resolved_team_ar": "الفائز من مباراة 82",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M095",
+      "side": "team1",
+      "source_slot": "W86",
+      "resolved_team_ar": "الفائز من مباراة 86",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M095",
+      "side": "team2",
+      "source_slot": "W88",
+      "resolved_team_ar": "الفائز من مباراة 88",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M096",
+      "side": "team1",
+      "source_slot": "W85",
+      "resolved_team_ar": "الفائز من مباراة 85",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M096",
+      "side": "team2",
+      "source_slot": "W87",
+      "resolved_team_ar": "الفائز من مباراة 87",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M097",
+      "side": "team1",
+      "source_slot": "W89",
+      "resolved_team_ar": "الفائز من مباراة 89",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M097",
+      "side": "team2",
+      "source_slot": "W90",
+      "resolved_team_ar": "الفائز من مباراة 90",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M098",
+      "side": "team1",
+      "source_slot": "W93",
+      "resolved_team_ar": "الفائز من مباراة 93",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M098",
+      "side": "team2",
+      "source_slot": "W94",
+      "resolved_team_ar": "الفائز من مباراة 94",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M099",
+      "side": "team1",
+      "source_slot": "W91",
+      "resolved_team_ar": "الفائز من مباراة 91",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M099",
+      "side": "team2",
+      "source_slot": "W92",
+      "resolved_team_ar": "الفائز من مباراة 92",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M100",
+      "side": "team1",
+      "source_slot": "W95",
+      "resolved_team_ar": "الفائز من مباراة 95",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M100",
+      "side": "team2",
+      "source_slot": "W96",
+      "resolved_team_ar": "الفائز من مباراة 96",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M101",
+      "side": "team1",
+      "source_slot": "W97",
+      "resolved_team_ar": "الفائز من مباراة 97",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M101",
+      "side": "team2",
+      "source_slot": "W98",
+      "resolved_team_ar": "الفائز من مباراة 98",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M102",
+      "side": "team1",
+      "source_slot": "W99",
+      "resolved_team_ar": "الفائز من مباراة 99",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M102",
+      "side": "team2",
+      "source_slot": "W100",
+      "resolved_team_ar": "الفائز من مباراة 100",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M103",
+      "side": "team1",
+      "source_slot": "L101",
+      "resolved_team_ar": "الخاسر من مباراة 101",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M103",
+      "side": "team2",
+      "source_slot": "L102",
+      "resolved_team_ar": "الخاسر من مباراة 102",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M104",
+      "side": "team1",
+      "source_slot": "W101",
+      "resolved_team_ar": "الفائز من مباراة 101",
+      "unresolved": true,
+      "ok": true
+    },
+    {
+      "match": "M104",
+      "side": "team2",
+      "source_slot": "W102",
+      "resolved_team_ar": "الفائز من مباراة 102",
+      "unresolved": true,
+      "ok": true
+    }
+  ],
   "rounds": [
     {
       "key": "round32",
@@ -862,7 +1121,8 @@
             "group": "",
             "position": "",
             "slot": "W73",
-            "unresolved": false
+            "unresolved": false,
+            "resolved_from": "W73"
           },
           "team2": {
             "name_ar": "Morocco",
@@ -870,7 +1130,8 @@
             "group": "",
             "position": "",
             "slot": "W75",
-            "unresolved": false
+            "unresolved": false,
+            "resolved_from": "W75"
           },
           "source_slot1": "W73",
           "source_slot2": "W75",
@@ -904,12 +1165,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "Bosnia & Herzegovina",
-            "name_en": "Bosnia & Herzegovina",
+            "name_ar": "Paraguay",
+            "name_en": "Paraguay",
             "group": "",
             "position": "",
             "slot": "W74",
-            "unresolved": false
+            "unresolved": false,
+            "resolved_from": "W74"
           },
           "team2": {
             "name_ar": "الفائز من مباراة 77",
@@ -954,7 +1216,8 @@
             "group": "",
             "position": "",
             "slot": "W76",
-            "unresolved": false
+            "unresolved": false,
+            "resolved_from": "W76"
           },
           "team2": {
             "name_ar": "الفائز من مباراة 78",
@@ -2366,7 +2629,8 @@
         "group": "",
         "position": "",
         "slot": "W73",
-        "unresolved": false
+        "unresolved": false,
+        "resolved_from": "W73"
       },
       "team2": {
         "name_ar": "Morocco",
@@ -2374,7 +2638,8 @@
         "group": "",
         "position": "",
         "slot": "W75",
-        "unresolved": false
+        "unresolved": false,
+        "resolved_from": "W75"
       },
       "source_slot1": "W73",
       "source_slot2": "W75",
@@ -2408,12 +2673,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "Bosnia & Herzegovina",
-        "name_en": "Bosnia & Herzegovina",
+        "name_ar": "Paraguay",
+        "name_en": "Paraguay",
         "group": "",
         "position": "",
         "slot": "W74",
-        "unresolved": false
+        "unresolved": false,
+        "resolved_from": "W74"
       },
       "team2": {
         "name_ar": "الفائز من مباراة 77",
@@ -2458,7 +2724,8 @@
         "group": "",
         "position": "",
         "slot": "W76",
-        "unresolved": false
+        "unresolved": false,
+        "resolved_from": "W76"
       },
       "team2": {
         "name_ar": "الفائز من مباراة 78",
