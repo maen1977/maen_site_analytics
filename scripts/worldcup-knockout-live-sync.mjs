@@ -5,7 +5,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TZ = 'Asia/Amman';
-const VERSION = '2026-06-28-knockout-live-cards-v1';
+const VERSION = '2026-06-30-knockout-extra-time-penalties-sort-v2';
 
 function nowAmmanIso() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -101,6 +101,26 @@ function matchNumber(m) {
 function matchCode(m) {
   const n = matchNumber(m);
   return n ? `M${String(n).padStart(3, '0')}` : (text(m.id || m.match_id || m.code || m.key) || `M${Math.random().toString(36).slice(2, 8)}`);
+}
+
+function parseMatchTimeMs(m) {
+  let raw = text(deepGet(m, ['kickoff_jordan', 'kickoff_utc', 'datetime', 'date_time', 'kickoff_at', 'start_time', 'startTime', 'kickoff', 'date']));
+  if (!raw) return Number.MAX_SAFE_INTEGER;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) {
+    const timeRaw = text(deepGet(m, ['time', 'time_ar', 'kickoff_time', 'local_time']));
+    const hm = timeRaw.match(/(\d{1,2}):(\d{2})/);
+    raw = hm ? `${raw}T${hm[1].padStart(2, '0')}:${hm[2]}:00+03:00` : `${raw}T23:59:59+03:00`;
+  }
+  const t = Date.parse(raw);
+  return Number.isFinite(t) ? t : Number.MAX_SAFE_INTEGER;
+}
+
+function sortByStageTimeNumber(a, b) {
+  return (a.stage?.order || 99) - (b.stage?.order || 99) || parseMatchTimeMs(a.raw || a) - parseMatchTimeMs(b.raw || b) || matchNumber(a.raw || a) - matchNumber(b.raw || b);
+}
+
+function scorePair(a, b) {
+  return a !== null && b !== null ? [a, b] : null;
 }
 
 function stageFromNumber(n, fallback = '') {
@@ -241,20 +261,26 @@ function scoreValue(v) {
 }
 
 function getScores(m) {
-  const s1 = scoreValue(deepGet(m, ['score1', 'team1_score', 'home_score', 'homeScore', 'score.home', 'score.ft.home', 'result.home', 'goals_home', 'goals.team1']));
-  const s2 = scoreValue(deepGet(m, ['score2', 'team2_score', 'away_score', 'awayScore', 'score.away', 'score.ft.away', 'result.away', 'goals_away', 'goals.team2']));
-  const p1 = scoreValue(deepGet(m, ['penalty1', 'penalties1', 'home_penalties', 'penalties.home', 'score.penalties.home']));
-  const p2 = scoreValue(deepGet(m, ['penalty2', 'penalties2', 'away_penalties', 'penalties.away', 'score.penalties.away']));
-  return { s1, s2, p1, p2 };
+  const s1 = scoreValue(deepGet(m, ['score1', 'team1_score', 'home_score', 'homeScore', 'score.current.0', 'score.et.0', 'score.ft.0', 'score.home', 'score.ft.home', 'result.home', 'goals_home', 'goals.team1']));
+  const s2 = scoreValue(deepGet(m, ['score2', 'team2_score', 'away_score', 'awayScore', 'score.current.1', 'score.et.1', 'score.ft.1', 'score.away', 'score.ft.away', 'result.away', 'goals_away', 'goals.team2']));
+  const p1 = scoreValue(deepGet(m, ['penalty1', 'penalties1', 'penalty_home_score', 'home_penalties', 'team1_penalties', 'penalties.home', 'penalties.team1', 'score.p.0', 'score.penalties.home', 'score.penalties.team1', 'score.penalty_home_score']));
+  const p2 = scoreValue(deepGet(m, ['penalty2', 'penalties2', 'penalty_away_score', 'away_penalties', 'team2_penalties', 'penalties.away', 'penalties.team2', 'score.p.1', 'score.penalties.away', 'score.penalties.team2', 'score.penalty_away_score']));
+  return { s1, s2, p1, p2, ft: scorePair(scoreValue(deepGet(m, ['score.ft.0'])), scoreValue(deepGet(m, ['score.ft.1']))), et: scorePair(scoreValue(deepGet(m, ['score.et.0'])), scoreValue(deepGet(m, ['score.et.1']))), p: scorePair(p1, p2) };
 }
 
 function matchStatus(m) {
-  const raw = text(deepGet(m, ['status_ar', 'status', 'state', 'match_status', 'period']));
-  const low = raw.toLowerCase();
-  if (/live|in[_\s-]?play|playing|مباشر|الشوط|استراحة/.test(low)) return { key: 'live', label_ar: 'مباشر' };
+  const raw = text(deepGet(m, ['score.phase', 'live_phase', 'status_ar', 'status', 'state', 'match_status', 'period']));
+  const detail = text(deepGet(m, ['score.phase_ar', 'live_phase_ar', 'score.status_detail', 'live_status_detail']));
+  const low = `${raw} ${detail}`.toLowerCase();
+  const scores = getScores(m);
+  if (/finished_on_penalties|penalties|penalty|shootout|ترجيح/.test(low) && scores.p) return { key: 'finished_on_penalties', label_ar: 'انتهت بركلات الترجيح' };
+  if (/finished_after_extra_time|after\s+extra|aet|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(low)) return { key: 'finished_after_extra_time', label_ar: 'انتهت بعد التمديد' };
+  if (/extra_time_first/.test(low)) return { key: 'live', label_ar: 'الشوط الإضافي الأول' };
+  if (/extra_time_second/.test(low)) return { key: 'live', label_ar: 'الشوط الإضافي الثاني' };
+  if (/penalties|penalty|shootout|ترجيح/.test(low)) return { key: 'live', label_ar: 'ركلات الترجيح' };
+  if (/live|in[_\s-]?play|playing|مباشر|الشوط|استراحة|first_half|second_half|half_time/.test(low)) return { key: 'live', label_ar: detail || 'مباشر' };
   if (/finished|full[_\s-]?time|ft|ended|complete|انته/.test(low)) return { key: 'finished', label_ar: 'انتهت' };
-  const { s1, s2 } = getScores(m);
-  if (s1 !== null && s2 !== null) return { key: 'finished', label_ar: 'انتهت' };
+  if (scores.s1 !== null && scores.s2 !== null && /final|ft|انته/i.test(low)) return { key: 'finished', label_ar: 'انتهت' };
   return { key: 'scheduled', label_ar: 'لم تبدأ' };
 }
 
@@ -324,7 +350,7 @@ function main() {
     byCodeRaw.set(code, { ...current, ...raw });
   }
 
-  const rawMatches = [...byCodeRaw.values()].sort((a, b) => matchNumber(a) - matchNumber(b));
+  const rawMatches = [...byCodeRaw.values()].sort((a, b) => parseMatchTimeMs(a) - parseMatchTimeMs(b) || matchNumber(a) - matchNumber(b));
   const byNumber = new Map();
   const usedThirdGroups = new Set();
   const assignedThird = [];
@@ -393,25 +419,34 @@ function main() {
     }
   }
 
-  const normalizedMatches = [...byNumber.values()].sort((a, b) => a.n - b.n).map(({ raw, n, code, stage, team1, team2 }) => {
+  const normalizedMatches = [...byNumber.values()].sort(sortByStageTimeNumber).map(({ raw, n, code, stage, team1, team2 }) => {
     const scores = getScores(raw);
-    const kickoff = text(deepGet(raw, ['datetime', 'date_time', 'kickoff', 'kickoff_at', 'start_time', 'startTime', 'date'])) || '';
+    const kickoff = text(deepGet(raw, ['kickoff_jordan', 'kickoff_utc', 'datetime', 'date_time', 'kickoff', 'kickoff_at', 'start_time', 'startTime', 'date'])) || '';
+    const phase = text(deepGet(raw, ['score.phase', 'live_phase', 'status']));
     return {
       id: code,
       number: n,
       stage_key: stage.key,
       stage_ar: stage.title_ar,
       stage_order: stage.order,
+      sort_time: parseMatchTimeMs(raw),
       date: text(deepGet(raw, ['date_ar', 'date', 'match_date', 'day'])) || '',
       time: text(deepGet(raw, ['time_ar', 'time', 'kickoff_time'])) || '',
       kickoff,
+      kickoff_jordan: text(deepGet(raw, ['kickoff_jordan'])) || '',
+      kickoff_utc: text(deepGet(raw, ['kickoff_utc'])) || '',
       venue_ar: text(deepGet(raw, ['venue_ar', 'stadium_ar', 'stadium.name_ar', 'venue.name_ar', 'stadium', 'venue'])) || '',
       city_ar: text(deepGet(raw, ['city_ar', 'city', 'venue.city_ar'])) || '',
       status: matchStatus(raw),
+      phase,
       score1: scores.s1,
       score2: scores.s2,
+      score_ft: scores.ft,
+      score_et: scores.et,
       penalty1: scores.p1,
       penalty2: scores.p2,
+      score_penalties: scores.p,
+      winner_side: scoreValue(deepGet(raw, ['winner_side', 'score.winner_side'])),
       team1,
       team2,
       source_slot1: extractTeam(raw, 1).slot || '',
@@ -425,7 +460,7 @@ function main() {
     if (!roundMap.has(m.stage_key)) roundMap.set(m.stage_key, { key: m.stage_key, title_ar: m.stage_ar, order: m.stage_order, matches: [] });
     roundMap.get(m.stage_key).matches.push(m);
   }
-  const rounds = [...roundMap.values()].sort((a, b) => a.order - b.order);
+  const rounds = [...roundMap.values()].sort((a, b) => a.order - b.order).map((round) => ({ ...round, matches: round.matches.sort((a, b) => (a.sort_time || Number.MAX_SAFE_INTEGER) - (b.sort_time || Number.MAX_SAFE_INTEGER) || a.number - b.number) }));
   const unresolvedSymbols = normalizedMatches.flatMap(m => [m.team1, m.team2]).filter(t => t?.unresolved).map(t => t.slot).filter(Boolean);
 
   const output = {
@@ -451,7 +486,7 @@ function main() {
     version: VERSION,
     last_checked_at: output.last_updated_at,
     timezone: TZ,
-    workflow_hint_ar: 'هذا الملف يتحدث مع Workflow الجديد كل 15 دقيقة، ويغذي تبويب الأدوار بالكروت والنتائج.',
+    workflow_hint_ar: 'هذا الملف يتحدث من نفس Workflow الأصلي كل 15 دقيقة، ويغذي تبويب الأدوار بالكروت والنتائج والتمديد وركلات الترجيح.',
     matches: output.summary.matches,
     rounds: output.summary.rounds,
     best_third_resolved: output.summary.best_third_resolved,

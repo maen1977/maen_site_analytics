@@ -5197,23 +5197,35 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     var pair=null;
     if(sc&&Array.isArray(sc.ft))pair=sc.ft;
     else if(sc&&Array.isArray(sc.et))pair=sc.et;
-    else if(sc&&Array.isArray(sc.p))pair=sc.p;
     else if(sc&&Array.isArray(sc.current))pair=sc.current;
+    else if(sc&&Array.isArray(sc.p))pair=sc.p;
     if(pair&&pair.length>=2)return [Number(pair[0])||0, Number(pair[1])||0];
     if(m&&(m.home_score!=null || m.away_score!=null))return [Number(m.home_score)||0, Number(m.away_score)||0];
     return null;
   }
-  function hasFinalScore(m){var sc=m&&m.score; return !!(sc&&(sc.ft||sc.et||sc.p));}
+  function penaltyPair(m){
+    var sc=m&&m.score;
+    var pair=null;
+    if(sc&&Array.isArray(sc.p))pair=sc.p;
+    else if(sc&&Array.isArray(sc.penalties))pair=sc.penalties;
+    else if(sc&&sc.penalties&&typeof sc.penalties==='object')pair=[sc.penalties.home!=null?sc.penalties.home:sc.penalties.team1,sc.penalties.away!=null?sc.penalties.away:sc.penalties.team2];
+    else if(m&&(m.penalty_home_score!=null||m.penalty_away_score!=null||m.home_penalties!=null||m.away_penalties!=null||m.team1_penalties!=null||m.team2_penalties!=null)){pair=[m.penalty_home_score!=null?m.penalty_home_score:(m.home_penalties!=null?m.home_penalties:m.team1_penalties),m.penalty_away_score!=null?m.penalty_away_score:(m.away_penalties!=null?m.away_penalties:m.team2_penalties)];}
+    if(pair&&pair.length>=2&&pair[0]!=null&&pair[1]!=null)return [Number(pair[0])||0,Number(pair[1])||0];
+    return null;
+  }
+  function hasFinalScore(m){var sc=m&&m.score; var s=String((m&&m.status)||'').toLowerCase(); return !!(sc&&(sc.ft||sc.et||sc.p))||(/finished|completed|complete|full[_\s-]?time|final|ended|ft|انته/.test(s)&&!!scorePair(m));}
   function hasStartedOrFinishedScore(m){
     var s=String((m&&m.status)||'scheduled').toLowerCase();
+    var phase=String((m&&(m.live_phase||(m.score&&m.score.phase)))||'').toLowerCase();
+    var all=s+' '+phase;
     if(hasFinalScore(m))return true;
-    if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|penalty|live|in[_\s-]?play|playing|started|halftime|half[_\s-]?time|extra[_\s-]?time/.test(s))return true;
+    if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|penalty|live|in[_\s-]?play|playing|started|halftime|half[_\s-]?time|first_half|second_half|extra[_\s-]?time/.test(all))return true;
     return !!(m&&(m.is_live===true||m.live===true||m.in_play===true||m.started===true));
   }
   function hasVisibleScore(m){return hasStartedOrFinishedScore(m);}
-  function scoreText(m){if(!hasVisibleScore(m))return '—'; var pair=scorePair(m)||[0,0]; return pair[0]+' - '+pair[1];}
+  function scoreText(m){if(!hasVisibleScore(m))return '—'; var pair=scorePair(m)||[0,0]; var pen=penaltyPair(m); return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');}
   function scoreClass(m){return hasVisibleScore(m)?'wc-score':'wc-score pending';}
-  function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; if(s.includes('pending_verification')||s.includes('pending-verification'))return lang()==='en'?'Pending verification':'بانتظار التحديث'; if(sc&&sc.p)return tr('finishedPenalties'); if(sc&&sc.et)return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play')return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
+  function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; var phase=String((m&&(m.live_phase||(sc&&sc.phase)))||'').toLowerCase(); var detail=String((m&&(m.live_status_detail||(sc&&sc.status_detail)))||'').toLowerCase(); var all=s+' '+phase+' '+detail; if(s.includes('pending_verification')||s.includes('pending-verification'))return lang()==='en'?'Pending verification':'بانتظار التحديث'; if(penaltyPair(m)&&(/finished|ended|complete|ft|final|انته/.test(all)||sc&&sc.p))return tr('finishedPenalties'); if(/penalties|penalty|shootout|ترجيح/.test(all))return lang()==='en'?'Penalties':'ركلات الترجيح'; if(/extra_time_first/.test(all))return lang()==='en'?'Extra time 1st half':'الشوط الإضافي الأول'; if(/extra_time_second/.test(all))return lang()==='en'?'Extra time 2nd half':'الشوط الإضافي الثاني'; if((sc&&sc.et)||/finished_after_extra_time|after\s+extra|aet|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(all))return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play'||/first_half|second_half|half_time/.test(all))return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}
   function broadcastStatusText(c){var s=String((c&&c.status)||'').toLowerCase(); if(s==='confirmed')return tr('confirmed'); if(s==='to_be_confirmed'||s==='tbc'||s==='channel_tbc')return tr('toBeConfirmed'); if(s==='pending_official_announcement'||s==='pending'||s==='pending_official')return tr('pendingOfficial'); return s?esc(s):'';}
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
@@ -5279,7 +5291,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
       var stage=String((m&& (m.stage||m.round||m.stage_ar)) || '').toLowerCase();
       return n>=73 || (stage && stage.indexOf('group')<0 && stage.indexOf('مجموع')<0);
     });
-    matches=applySearch(wcSortMatches(matches,'num'));
+    matches=applySearch(wcSortMatches(matches,'time'));
     if(!matches.length){out.innerHTML='<div class="wc-empty">'+esc(tr('knockoutPending'))+'</div>';return;}
     function roundRank(m){
       var n=wcMatchNumber(m);
@@ -5299,7 +5311,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     });
     var html=Object.keys(groups).sort(function(a,b){return Number(a)-Number(b);}).map(function(k){
       var g=groups[k];
-      var roundMatches=wcSortMatches(g.matches,'num');
+      var roundMatches=wcSortMatches(g.matches,'time');
       return '<section class="wc-round-block"><h3 class="wc-stage-title">'+esc(g.title)+'</h3><div class="wc-match-grid">'+roundMatches.map(card).join('')+'</div></section>';
     }).join('');
     out.innerHTML=html;
@@ -5344,7 +5356,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     list.sort(function(a,b){return a.start-b.start||a.num-b.num||a.i-b.i;});
     var current=list.filter(function(x){return wcIsCurrentForNext(x.m,now);});
     if(current.length)return current[current.length-1].m;
-    var knockout=list.filter(function(x){return wcIsKnockoutForNext(x.m)&&!wcIsFinishedForNext(x.m,now);}).sort(function(a,b){return a.num-b.num||a.start-b.start||a.i-b.i;});
+    var knockout=list.filter(function(x){return wcIsKnockoutForNext(x.m)&&!wcIsFinishedForNext(x.m,now);}).sort(function(a,b){return a.start-b.start||a.num-b.num||a.i-b.i;});
     if(knockout.length)return knockout[0].m;
     var upcoming=list.filter(function(x){return x.start>=Number(now)&&!wcIsFinishedForNext(x.m,now);});
     if(upcoming.length)return upcoming[0].m;

@@ -63,11 +63,17 @@ jobs:
       - name: Validate Round of 32 official correction
         run: node --check scripts/worldcup-r32-official-fix.mjs
 
+      - name: Validate knockout live sync
+        run: node --check scripts/worldcup-knockout-live-sync.mjs
+
       - name: Run original quarter-hour updater with integrated knockout patch
         run: node scripts/worldcup-quarter-hour-force.mjs
 
       - name: Apply official Round of 32 pairings correction
         run: node scripts/worldcup-r32-official-fix.mjs
+
+      - name: Sync knockout live cards inside the same 15-minute run
+        run: node scripts/worldcup-knockout-live-sync.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -82,6 +88,7 @@ jobs:
             public/worldcup-2026/groups.json \
             public/worldcup-2026/bracket.json \
             public/worldcup-2026/knockout-live.json \
+            public/worldcup-2026/knockout-live-health.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \

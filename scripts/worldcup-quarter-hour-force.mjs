@@ -134,8 +134,124 @@ function teamKey(value) {
 
 function scoreNumber(value) {
   if (value === null || value === undefined || value === '') return null;
+  if (typeof value === 'string') {
+    const cleaned = value.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+    const m = cleaned.match(/-?\d+(?:\.\d+)?/);
+    if (!m) return null;
+    const n = Number(m[0]);
+    return Number.isFinite(n) ? n : null;
+  }
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
+}
+
+function firstScore(...values) {
+  for (const value of values) {
+    const n = scoreNumber(value);
+    if (n !== null) return n;
+  }
+  return null;
+}
+
+function scorePair(home, away) {
+  const a = scoreNumber(home);
+  const b = scoreNumber(away);
+  return a !== null && b !== null ? [a, b] : null;
+}
+
+function scoreFromObject(obj, keys = []) {
+  if (!obj || typeof obj !== 'object') return null;
+  for (const key of keys) {
+    if (obj[key] !== undefined && obj[key] !== null && obj[key] !== '') return obj[key];
+  }
+  return null;
+}
+
+function espnPenaltyScore(competitor, competition, side) {
+  const sideKeys = side === 'home' ? ['home', 'team1', 'h'] : ['away', 'team2', 'a'];
+  const penaltyContainers = [
+    competitor?.penalties,
+    competitor?.penalty,
+    competitor?.shootout,
+    competitor?.shootoutScore,
+    competitor?.penaltyScore,
+    competitor?.scorePenalty,
+    competitor?.score?.penalties,
+    competitor?.score?.shootout,
+    competition?.penalties,
+    competition?.shootout,
+    competition?.shootoutScore,
+  ];
+  const direct = firstScore(
+    competitor?.shootoutScore,
+    competitor?.penaltyScore,
+    competitor?.penalties,
+    competitor?.penalty,
+    competitor?.scorePenalty,
+    competitor?.score?.shootoutScore,
+    competitor?.score?.penaltyScore
+  );
+  if (direct !== null) return direct;
+  for (const container of penaltyContainers) {
+    if (!container || typeof container !== 'object') continue;
+    const value = scoreFromObject(container, [...sideKeys, `${side}Score`, `${side}_score`, `${side}Penalty`, `${side}_penalty`, `${side}Penalties`, `${side}_penalties`, 'score', 'value', 'displayValue']);
+    const n = scoreNumber(value);
+    if (n !== null) return n;
+  }
+  return null;
+}
+
+function espnPhase(status, comp, event) {
+  const statusText = [
+    status?.name,
+    status?.description,
+    status?.detail,
+    status?.shortDetail,
+    comp?.status?.displayClock,
+    event?.status?.type?.name,
+    event?.status?.type?.description,
+    event?.status?.type?.detail,
+    event?.status?.type?.shortDetail,
+  ].filter(Boolean).join(' ').toLowerCase();
+  const state = String(status?.state || event?.status?.type?.state || '').toLowerCase();
+  const completed = Boolean(status?.completed || event?.status?.type?.completed);
+  const period = Number(comp?.status?.period ?? event?.status?.period ?? status?.period);
+
+  if (/penalt|shootout|ركلات|ترجيح/.test(statusText)) return completed ? 'finished_on_penalties' : 'penalties';
+  if (/aet|after\s+extra|extra\s+time|وقت\s*إضاف|وقت\s*اضاف|تمديد/.test(statusText)) return completed ? 'finished_after_extra_time' : (period >= 4 ? 'extra_time_second' : 'extra_time_first');
+  if (completed) return 'finished';
+  if (/half\s*time|halftime|استراحة/.test(statusText)) return 'half_time';
+  if (state === 'in' || state === 'live') {
+    if (period === 1) return 'first_half';
+    if (period === 2) return 'second_half';
+    if (period === 3) return 'extra_time_first';
+    if (period === 4) return 'extra_time_second';
+    if (period >= 5) return 'penalties';
+    return 'live';
+  }
+  return 'scheduled';
+}
+
+function statusFromPhase(phase) {
+  if (String(phase || '').startsWith('finished')) return 'finished';
+  if (phase === 'scheduled') return 'scheduled';
+  return 'live';
+}
+
+function phaseLabelAr(phase) {
+  return ({
+    first_half: 'الشوط الأول',
+    half_time: 'استراحة بين الشوطين',
+    second_half: 'الشوط الثاني',
+    extra_time_first: 'الشوط الإضافي الأول',
+    extra_time_second: 'الشوط الإضافي الثاني',
+    penalties: 'ركلات الترجيح',
+    finished_after_extra_time: 'انتهت بعد التمديد',
+    finished_on_penalties: 'انتهت بركلات الترجيح',
+    finished: 'انتهت',
+    scheduled: 'لم تبدأ',
+    live: 'مباشر',
+  })[phase] || '';
 }
 
 function matchNumber(match) {
@@ -256,11 +372,16 @@ function teamResult(match) {
   let b = scoreNumber(match.away_score);
   if (a === null || b === null) return null;
   if (a === b) {
-    const pa = scoreNumber(match.penalty_home_score ?? match.home_penalties ?? match.score?.penalties?.home ?? match.score?.penalty_home_score);
-    const pb = scoreNumber(match.penalty_away_score ?? match.away_penalties ?? match.score?.penalties?.away ?? match.score?.penalty_away_score);
+    const pa = firstScore(match.penalty_home_score, match.home_penalties, match.team1_penalties, match.score?.penalties?.home, match.score?.penalties?.team1, Array.isArray(match.score?.p) ? match.score.p[0] : null, match.score?.penalty_home_score);
+    const pb = firstScore(match.penalty_away_score, match.away_penalties, match.team2_penalties, match.score?.penalties?.away, match.score?.penalties?.team2, Array.isArray(match.score?.p) ? match.score.p[1] : null, match.score?.penalty_away_score);
     if (pa !== null && pb !== null && pa !== pb) {
       a = pa;
       b = pb;
+    } else {
+      const explicitWinner = scoreNumber(match.winner_side ?? match.score?.winner_side);
+      if (explicitWinner === 1 || explicitWinner === 2) {
+        return { winner: explicitWinner, loser: explicitWinner === 1 ? 2 : 1 };
+      }
     }
   }
   if (a === b) return null;
@@ -323,12 +444,13 @@ function extractEspnEvents(scoreboard) {
     const home = competitors.find((c) => c.homeAway === 'home') || competitors[0] || {};
     const away = competitors.find((c) => c.homeAway === 'away') || competitors[1] || {};
     const status = comp.status?.type || e.status?.type || {};
-    const state = String(status.state || '').toLowerCase();
-    const completed = Boolean(status.completed);
+    const phase = espnPhase(status, comp, e);
     const homeName = home.team?.displayName || home.team?.shortDisplayName || home.team?.name || '';
     const awayName = away.team?.displayName || away.team?.shortDisplayName || away.team?.name || '';
     const homeScore = scoreNumber(home.score);
     const awayScore = scoreNumber(away.score);
+    const homePenalties = espnPenaltyScore(home, comp, 'home');
+    const awayPenalties = espnPenaltyScore(away, comp, 'away');
     const detail = status.description || status.detail || status.shortDetail || status.name || '';
     return {
       source: 'espn',
@@ -340,9 +462,16 @@ function extractEspnEvents(scoreboard) {
       awayKey: teamKey(awayName),
       home_score: homeScore,
       away_score: awayScore,
-      status: completed ? 'finished' : (state === 'in' || state === 'live') ? 'live' : 'scheduled',
+      home_penalties: homePenalties,
+      away_penalties: awayPenalties,
+      home_winner: Boolean(home.winner),
+      away_winner: Boolean(away.winner),
+      status: statusFromPhase(phase),
+      phase,
+      phase_label_ar: phaseLabelAr(phase),
       status_detail: detail,
       clock: comp.status?.displayClock || e.status?.displayClock || '',
+      period: Number(comp.status?.period ?? e.status?.period ?? status.period) || null,
     };
   }).filter((event) => event.homeKey && event.awayKey && event.date);
 }
@@ -385,29 +514,80 @@ function applyScore(match, event, nowIso) {
   const sameOrder = team1 && team1 === event.homeKey;
   const team1Score = sameOrder ? event.home_score : event.away_score;
   const team2Score = sameOrder ? event.away_score : event.home_score;
-  const before = JSON.stringify({ s: match.status, a: match.home_score, b: match.away_score, src: match.score_source, id: match.espn_event_id });
+  const team1Penalties = sameOrder ? event.home_penalties : event.away_penalties;
+  const team2Penalties = sameOrder ? event.away_penalties : event.home_penalties;
+  const winnerSide = event.home_winner ? (sameOrder ? 1 : 2) : event.away_winner ? (sameOrder ? 2 : 1) : null;
+  const before = JSON.stringify({
+    s: match.status,
+    a: match.home_score,
+    b: match.away_score,
+    p1: match.penalty_home_score ?? match.home_penalties,
+    p2: match.penalty_away_score ?? match.away_penalties,
+    phase: match.live_phase || match.score?.phase,
+    winner: match.winner_side ?? match.score?.winner_side,
+    src: match.score_source,
+    id: match.espn_event_id,
+  });
   match.espn_event_id = event.id || match.espn_event_id;
   match.status = event.status;
+  match.live_phase = event.phase || event.status;
+  match.live_phase_ar = event.phase_label_ar || '';
   match.live_score_source = 'espn';
   match.score_source = 'espn';
-  match.live_status_detail = event.status_detail || event.status;
+  match.live_status_detail = event.status_detail || event.phase_label_ar || event.status;
   match.live_clock = event.clock || null;
+  match.live_period = event.period || null;
   match.live_checked_at = nowIso;
   match.last_live_update = nowIso;
   if (team1Score !== null) match.home_score = team1Score;
   if (team2Score !== null) match.away_score = team2Score;
+  if (team1Penalties !== null) {
+    match.penalty_home_score = team1Penalties;
+    match.home_penalties = team1Penalties;
+    match.team1_penalties = team1Penalties;
+  }
+  if (team2Penalties !== null) {
+    match.penalty_away_score = team2Penalties;
+    match.away_penalties = team2Penalties;
+    match.team2_penalties = team2Penalties;
+  }
+  if (winnerSide === 1 || winnerSide === 2) {
+    match.winner_side = winnerSide;
+    match.loser_side = winnerSide === 1 ? 2 : 1;
+  }
   const current = [match.home_score ?? null, match.away_score ?? null];
+  const penalties = scorePair(team1Penalties, team2Penalties);
   match.score = {
     source: 'espn',
     event_id: event.id,
+    status: event.status,
+    phase: event.phase,
+    phase_ar: event.phase_label_ar || '',
     status_detail: event.status_detail,
     clock: event.clock || null,
+    period: event.period || null,
     checked_at: nowIso,
     current,
   };
   if (event.status === 'finished') match.score.ft = current;
   if (event.status === 'live') match.score.live = current;
-  return before !== JSON.stringify({ s: match.status, a: match.home_score, b: match.away_score, src: match.score_source, id: match.espn_event_id });
+  if (['extra_time_first', 'extra_time_second', 'finished_after_extra_time', 'finished_on_penalties', 'penalties'].includes(event.phase)) match.score.et = current;
+  if (penalties) {
+    match.score.p = penalties;
+    match.score.penalties = { home: penalties[0], away: penalties[1], team1: penalties[0], team2: penalties[1] };
+  }
+  if (winnerSide === 1 || winnerSide === 2) match.score.winner_side = winnerSide;
+  return before !== JSON.stringify({
+    s: match.status,
+    a: match.home_score,
+    b: match.away_score,
+    p1: match.penalty_home_score ?? match.home_penalties,
+    p2: match.penalty_away_score ?? match.away_penalties,
+    phase: match.live_phase || match.score?.phase,
+    winner: match.winner_side ?? match.score?.winner_side,
+    src: match.score_source,
+    id: match.espn_event_id,
+  });
 }
 
 function clearFutureOpenfootballZeros(match, now) {
