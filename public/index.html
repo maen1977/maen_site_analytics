@@ -6401,5 +6401,106 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 }
 </style>
 
+
+
+<!-- MAEN_DESKTOP_MOUSE_WHEEL_SCROLL_UNLOCK_2026_06_30: desktop-only scroll unlock after top-tabs/full-width fixes. CSS-only; no JavaScript, no tab handlers, no World Cup data changes. -->
+<style id="maen-desktop-mouse-wheel-scroll-unlock">
+@media (min-width: 901px) {
+  /* Restore the browser's normal page scroll. Older sidebar-era rules fixed the app
+     to the viewport and trapped scrolling inside pages, so mouse-wheel scrolling could stop. */
+  html,
+  body {
+    height: auto !important;
+    min-height: 100% !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: auto !important;
+    touch-action: auto !important;
+  }
+
+  body {
+    position: static !important;
+  }
+
+  .app,
+  .dashboard-app {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    overscroll-behavior-y: auto !important;
+  }
+
+  /* Undo old fixed-page layout on desktop. Pages should live in the document flow
+     below the top tabs so the window scrolls normally with the mouse wheel. */
+  .dashboard-app > .page,
+  .dashboard-app > section.page,
+  .dashboard-app > #home,
+  .dashboard-app > #devices,
+  .dashboard-app > #softwares,
+  .dashboard-app > #maintenance,
+  .dashboard-app > #works,
+  .dashboard-app > #receiverSoftware,
+  .dashboard-app > #frequencies,
+  .dashboard-app > #worldcup2026,
+  .dashboard-app > #contact {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    overscroll-behavior: auto !important;
+    -webkit-overflow-scrolling: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-app > .page:not(.active),
+  .dashboard-app > section.page:not(.active) {
+    display: none !important;
+  }
+
+  .dashboard-app > .page.active,
+  .dashboard-app > section.page.active {
+    display: block !important;
+  }
+
+  /* Keep long content responsible for page height instead of trapping it in internal panels. */
+  .dashboard-app > .page.active > *,
+  #maintenance.active > *,
+  #works.active > *,
+  #receiverSoftware.active > *,
+  #frequencies.active > *,
+  #worldcup2026.active > * {
+    max-height: none !important;
+  }
+
+  /* Tables may scroll horizontally only inside their own wrapper; vertical scroll remains the page. */
+  #frequencies .frequency-table-wrap {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+  }
+}
+</style>
+
 </body>
 </html>
