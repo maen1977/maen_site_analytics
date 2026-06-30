@@ -710,8 +710,8 @@ function applyScore(match, event, nowIso) {
     match.loser_side = winnerSide === 1 ? 2 : 1;
   }
   const current = [
-    team1Score !== null ? team1Score : (event.status === 'live' ? 0 : (match.home_score ?? null)),
-    team2Score !== null ? team2Score : (event.status === 'live' ? 0 : (match.away_score ?? null)),
+    team1Score !== null ? team1Score : (match.home_score ?? null),
+    team2Score !== null ? team2Score : (match.away_score ?? null),
   ];
   const penalties = scorePair(team1Penalties, team2Penalties);
   match.score = {
@@ -724,11 +724,15 @@ function applyScore(match, event, nowIso) {
     clock: event.clock || null,
     period: event.period || null,
     checked_at: nowIso,
-    current,
+    current: current[0] !== null && current[1] !== null ? current : null,
   };
-  if (event.status === 'finished') match.score.ft = current;
-  if (event.status === 'live') match.score.live = current;
-  if (['extra_time_first', 'extra_time_second', 'finished_after_extra_time', 'finished_on_penalties', 'penalties'].includes(event.phase)) match.score.et = current;
+  if (current[0] === null || current[1] === null) {
+    match.score.score_pending = true;
+    match.score.note_ar = 'المصدر المباشر لم يرسل أرقام النتيجة بعد.';
+  }
+  if (event.status === 'finished' && current[0] !== null && current[1] !== null) match.score.ft = current;
+  if (event.status === 'live' && current[0] !== null && current[1] !== null) match.score.live = current;
+  if (current[0] !== null && current[1] !== null && ['extra_time_first', 'extra_time_second', 'finished_after_extra_time', 'finished_on_penalties', 'penalties'].includes(event.phase)) match.score.et = current;
   if (penalties) {
     match.score.p = penalties;
     match.score.penalties = { home: penalties[0], away: penalties[1], team1: penalties[0], team2: penalties[1] };
@@ -806,19 +810,32 @@ function applyTimeFallbackStatus(match, now, nowIso) {
   match.live_score_source = match.live_score_source || 'time-fallback';
   match.live_status_detail = nextDetail;
   match.live_checked_at = nowIso;
+  // Important: time fallback is status-only. It must never create a fake 0-0 score.
+  // Live scores must come only from a verified feed such as ESPN or a locked manual override.
   if (nextStatus === 'live') {
-    match.score = {
-      source: 'time-fallback',
-      status: 'live',
-      phase: 'live',
-      phase_ar: 'مباشر',
-      status_detail: nextDetail,
-      checked_at: nowIso,
-      current: [0, 0],
-      placeholder_score: true,
-      note_ar: 'نتيجة مؤقتة 0-0 إلى حين وصول نتيجة مباشرة موثقة من المصدر.'
-    };
-  } else if (!match.score || typeof match.score !== 'object' || match.score?.source === 'time-fallback') {
+    const existingSource = String(match.score?.source || match.score_source || '').toLowerCase();
+    const existingPlaceholder = match.score?.placeholder_score === true || existingSource.includes('time-fallback');
+    if (!match.score || typeof match.score !== 'object' || existingPlaceholder) {
+      match.score = {
+        source: 'time-fallback',
+        status: 'live',
+        phase: 'live',
+        phase_ar: 'مباشر',
+        status_detail: nextDetail,
+        checked_at: nowIso,
+        score_pending: true,
+        note_ar: 'المباراة بدأت حسب الوقت، لكن النتيجة لا تظهر إلا من مصدر مباشر موثق.'
+      };
+    } else {
+      match.score.status = match.score.status || 'live';
+      match.score.phase = match.score.phase || 'live';
+      match.score.checked_at = nowIso;
+    }
+    if (String(match.score_source || '').toLowerCase().includes('time-fallback')) {
+      match.home_score = null;
+      match.away_score = null;
+    }
+  } else if (!match.score || typeof match.score !== 'object' || match.score?.source === 'time-fallback' || match.score?.placeholder_score === true) {
     match.score = null;
   }
   return before !== JSON.stringify({

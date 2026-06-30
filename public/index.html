@@ -5226,15 +5226,22 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     return lang()==='en' ? ('Tournament started — Day '+day) : ('انطلقت البطولة — اليوم '+day+' من البطولة');
   }
   function isJordan(m){return /(^|\s)(jordan|الأردن|الاردن|jor|النشامى)(\s|$)/i.test((m.team1+' '+m.team2+' '+m.team1_ar+' '+m.team2_ar+' '+(m.search_text||'')));}
+  function wcScoreNum(v){
+    if(v===null||v===undefined||v==='')return null;
+    var n=Number(String(v).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);}).replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d);}));
+    return isFinite(n)?n:null;
+  }
   function scorePair(m){
     var sc=m&&m.score;
+    var source=String((sc&&sc.source)||(m&&m.score_source)||(m&&m.live_score_source)||'').toLowerCase();
+    var placeholder=!!(sc&&(sc.placeholder_score===true||sc.score_pending===true))||source.indexOf('time-fallback')>-1;
     var pair=null;
-    if(sc&&Array.isArray(sc.ft))pair=sc.ft;
-    else if(sc&&Array.isArray(sc.et))pair=sc.et;
-    else if(sc&&Array.isArray(sc.current))pair=sc.current;
-    else if(sc&&Array.isArray(sc.p))pair=sc.p;
-    if(pair&&pair.length>=2)return [Number(pair[0])||0, Number(pair[1])||0];
-    if(m&&(m.home_score!=null || m.away_score!=null))return [Number(m.home_score)||0, Number(m.away_score)||0];
+    if(!placeholder&&sc&&Array.isArray(sc.ft))pair=sc.ft;
+    else if(!placeholder&&sc&&Array.isArray(sc.et))pair=sc.et;
+    else if(!placeholder&&sc&&Array.isArray(sc.current))pair=sc.current;
+    else if(!placeholder&&sc&&Array.isArray(sc.p))pair=sc.p;
+    if(pair&&pair.length>=2){var a=wcScoreNum(pair[0]);var b=wcScoreNum(pair[1]);if(a!==null&&b!==null)return [a,b];}
+    if(!placeholder&&m&&(m.home_score!=null || m.away_score!=null)){var ha=wcScoreNum(m.home_score);var aw=wcScoreNum(m.away_score);if(ha!==null&&aw!==null)return [ha,aw];}
     return null;
   }
   function penaltyPair(m){
@@ -5258,16 +5265,11 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   }
   function hasVisibleScore(m){return !!scorePair(m)&&hasStartedOrFinishedScore(m);}
   function wcLiveScoreFallbackPair(m){
-    if(scorePair(m))return null;
-    if(hasFinalScore(m)||wcIsTimeFallbackPending(m))return null;
-    if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m)){return [0,0];}
     return null;
   }
   function scoreText(m){
     var pair=scorePair(m);
     if(pair&&hasStartedOrFinishedScore(m)){var pen=penaltyPair(m); return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');}
-    var liveFallback=wcLiveScoreFallbackPair(m);
-    if(liveFallback)return liveFallback[0]+' - '+liveFallback[1];
     if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m))return lang()==='en'?'Live':'مباشر';
     if(wcIsTimeFallbackPending(m))return lang()==='en'?'Update':'تحديث';
     return '—';
