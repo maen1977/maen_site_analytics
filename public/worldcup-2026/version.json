@@ -1,31 +1,24 @@
 {
-  "version": "49b686591efc",
-  "generated_at": "2026-06-30T14:15:17+03:00",
-  "next_expected_check_at": "2026-06-30T14:30:18+03:00",
+  "version": "4c7dd723b1ff",
+  "generated_at": "2026-06-30T14:23:08+03:00",
+  "next_expected_check_at": "2026-06-30T14:38:08+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 9,
       "events_seen": 85,
-      "matched": 79,
-      "bracket_matched": 7,
-      "score_changed": 4,
+      "matched": 80,
+      "bracket_matched": 8,
+      "score_changed": 5,
       "future_openfootball_zero_scores_cleared": 0
     },
     "knockout": {
-      "changed": 0,
+      "changed": 3,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 6,
+      "winnerResolved": 8,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M089",
-          "side": "team1",
-          "slot": "W74",
-          "reason": "winner-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M089",
@@ -220,13 +213,6 @@
           "match": "M104",
           "side": "team2",
           "slot": "W102",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M089",
-          "side": "team1",
-          "slot": "W74",
           "reason": "winner-not-ready"
         },
         {
@@ -486,7 +472,7 @@
         }
       ]
     },
-    "manual_overrides_applied": 0,
+    "manual_overrides_applied": 1,
     "files_written": [
       "matches.json",
       "standings.json",
@@ -503,7 +489,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-06-30T14:15:18+03:00",
+    "corrected_at": "2026-06-30T14:23:08+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -656,6 +642,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "4fdd405f89f9",
-  "last_updated": "2026-06-30T14:15:18+03:00"
+  "cache_buster": "f002bb0ead8f",
+  "last_updated": "2026-06-30T14:23:08+03:00"
 }
