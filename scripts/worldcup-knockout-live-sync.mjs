@@ -5,7 +5,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TZ = 'Asia/Amman';
-const VERSION = '2026-06-30-dynamic-knockout-advancement-force-v4';
+const VERSION = '2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync';
 
 function nowAmmanIso() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -505,6 +505,107 @@ function main() {
     if (forced2) m.team2 = forced2;
   }
 
+
+  // Sync the same resolved teams back into matches.json because the public pages
+  // currently render the bracket from matches.json, not knockout-live.json.
+  // Keep unresolved W/L slots as their slot code (W77/L101) so the existing UI
+  // translates them correctly in Arabic/English and shows the trophy placeholder.
+  function teamForMatchesJson(team, sideSlot) {
+    const slot = normalizeSlot(sideSlot || team?.slot || '');
+    if (!team || team.unresolved) {
+      const placeholder = makePlaceholder(slot);
+      return {
+        team: slot || text(placeholder.name_en) || 'TBD',
+        team_ar: text(placeholder.name_ar) || slot || 'لم يتحدد بعد',
+        unresolved: true,
+        resolved_from: slot
+      };
+    }
+    const nameEn = text(team.name_en || team.team_en || team.english || team.name || team.team || team.name_ar);
+    const currentTeamArMap = matchesJson && typeof matchesJson === 'object' && matchesJson.team_ar && typeof matchesJson.team_ar === 'object' ? matchesJson.team_ar : {};
+    const nameAr = text(currentTeamArMap[nameEn] || team.name_ar || team.team_ar || team.arabic || team.name || team.name_en || nameEn);
+    return {
+      team: nameEn || slot || 'TBD',
+      team_ar: nameAr || nameEn || slot || 'لم يتحدد بعد',
+      unresolved: false,
+      resolved_from: text(team.resolved_from || slot)
+    };
+  }
+
+  function applyResolvedKnockoutTeamsToMatchesJson() {
+    if (!matchesJson || typeof matchesJson !== 'object' || !Array.isArray(matchesJson.matches)) {
+      return { changed: false, updated: 0 };
+    }
+    if (!matchesJson.team_ar || typeof matchesJson.team_ar !== 'object') matchesJson.team_ar = {};
+    const byNum = new Map(normalizedMatches.map((m) => [Number(m.number), m]));
+    const syncedAt = nowAmmanIso();
+    let changed = false;
+    let updated = 0;
+
+    for (const raw of matchesJson.matches) {
+      const n = matchNumber(raw);
+      if (n < 89 || n > 104) continue;
+      const resolved = byNum.get(n);
+      if (!resolved) continue;
+
+      const slot1 = normalizeSlot(raw.team1_slot || raw.team1_source_slot || raw.team1_original_slot || raw.team1_seed || resolved.source_slot1 || raw.team1 || '');
+      const slot2 = normalizeSlot(raw.team2_slot || raw.team2_source_slot || raw.team2_original_slot || raw.team2_seed || resolved.source_slot2 || raw.team2 || '');
+      const next1 = teamForMatchesJson(resolved.team1, slot1 || resolved.source_slot1);
+      const next2 = teamForMatchesJson(resolved.team2, slot2 || resolved.source_slot2);
+
+      const before = JSON.stringify({ team1: raw.team1, team2: raw.team2, team1_ar: raw.team1_ar, team2_ar: raw.team2_ar });
+      raw.team1 = next1.team;
+      raw.team2 = next2.team;
+      raw.team1_ar = next1.team_ar;
+      raw.team2_ar = next2.team_ar;
+
+      // Preserve dynamic source slots permanently, even after the display name becomes Paraguay, Morocco, etc.
+      if (slot1) {
+        raw.team1_slot = slot1;
+        raw.team1_source_slot = slot1;
+        raw.team1_original_slot = raw.team1_original_slot || slot1;
+        raw.team1_seed = raw.team1_seed || slot1;
+      }
+      if (slot2) {
+        raw.team2_slot = slot2;
+        raw.team2_source_slot = slot2;
+        raw.team2_original_slot = raw.team2_original_slot || slot2;
+        raw.team2_seed = raw.team2_seed || slot2;
+      }
+
+      raw.team1_resolution_status = next1.unresolved ? 'pending' : 'resolved';
+      raw.team2_resolution_status = next2.unresolved ? 'pending' : 'resolved';
+      raw.team1_resolved_from = next1.resolved_from;
+      raw.team2_resolved_from = next2.resolved_from;
+      raw.knockout_advancement_synced_at = syncedAt;
+      raw.knockout_advancement_sync_version = VERSION;
+      raw.search_text = [
+        raw.team1, raw.team2, raw.team1_ar, raw.team2_ar,
+        raw.ground, raw.stadium, raw.round, raw.stage, raw.stage_ar,
+        `Match ${n}`
+      ].filter(Boolean).join(' ');
+
+      if (next1.team && next1.team_ar && !matchesJson.team_ar[next1.team] && !next1.unresolved) matchesJson.team_ar[next1.team] = next1.team_ar;
+      if (next2.team && next2.team_ar && !matchesJson.team_ar[next2.team] && !next2.unresolved) matchesJson.team_ar[next2.team] = next2.team_ar;
+
+      const after = JSON.stringify({ team1: raw.team1, team2: raw.team2, team1_ar: raw.team1_ar, team2_ar: raw.team2_ar });
+      if (before !== after) {
+        changed = true;
+        updated++;
+      }
+    }
+
+    if (changed) {
+      matchesJson.metadata = matchesJson.metadata && typeof matchesJson.metadata === 'object' ? matchesJson.metadata : {};
+      matchesJson.metadata.knockout_advancement_synced_at = syncedAt;
+      matchesJson.metadata.knockout_advancement_sync_version = VERSION;
+      writeJson('matches.json', matchesJson);
+    }
+    return { changed, updated };
+  }
+
+  const matchesJsonSync = applyResolvedKnockoutTeamsToMatchesJson();
+
   const roundMap = new Map();
   for (const m of normalizedMatches) {
     if (!roundMap.has(m.stage_key)) roundMap.set(m.stage_key, { key: m.stage_key, title_ar: m.stage_ar, order: m.stage_order, matches: [] });
@@ -535,7 +636,9 @@ function main() {
       direct_resolved: normalizedMatches.flatMap(m => [m.team1, m.team2]).filter(t => /^[12][A-L]$/.test(t.resolved_from || '')).length,
       best_third_resolved: assignedThird.length,
       unresolved_future_slots: unresolvedSymbols,
-      dynamic_advancement_slots_checked: dynamicAdvancementChecks.length
+      dynamic_advancement_slots_checked: dynamicAdvancementChecks.length,
+      matches_json_synced: matchesJsonSync.changed,
+      matches_json_updated: matchesJsonSync.updated
     },
     third_assignments: assignedThird,
     dynamic_advancement_checks: dynamicAdvancementChecks,
@@ -555,9 +658,12 @@ function main() {
     best_third_resolved: output.summary.best_third_resolved,
     unresolved_future_slots: output.summary.unresolved_future_slots,
     dynamic_advancement_slots_checked: output.summary.dynamic_advancement_slots_checked,
+    matches_json_synced: output.summary.matches_json_synced,
+    matches_json_updated: output.summary.matches_json_updated,
     dynamic_advancement_checks: dynamicAdvancementChecks
   });
   console.log(`Wrote public/worldcup-2026/knockout-live.json with ${normalizedMatches.length} knockout matches.`);
+  if (matchesJsonSync.changed) console.log(`Synced ${matchesJsonSync.updated} later-round knockout cards back into public/worldcup-2026/matches.json.`);
 }
 
 main();
