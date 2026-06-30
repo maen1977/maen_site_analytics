@@ -6231,5 +6231,175 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 }
 </style>
 
+
+
+<!-- MAEN_DESKTOP_TARGET_SECTIONS_FULL_WIDTH_2026_06_30: desktop-only fix for maintenance/works/receiver software/frequencies sections taking full available width. CSS-only; no JavaScript or World Cup data changes. -->
+<style id="maen-desktop-target-sections-full-width-fix">
+@media (min-width: 901px) {
+  /* These sections were still inheriting older sidebar-era size limits.
+     Keep the top-tabs design, but let the selected pages use the full desktop canvas. */
+  .dashboard-app > #maintenance,
+  .dashboard-app > #works,
+  .dashboard-app > #receiverSoftware,
+  .dashboard-app > #frequencies {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    display: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    min-height: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  .dashboard-app > #maintenance.active,
+  .dashboard-app > #works.active,
+  .dashboard-app > #receiverSoftware.active,
+  .dashboard-app > #frequencies.active {
+    display: block !important;
+  }
+
+  #maintenance > .section,
+  #maintenance > .footer-cta,
+  #maintenance .faq-section,
+  #works > .section,
+  #works > .footer-cta,
+  #receiverSoftware > .section,
+  #receiverSoftware > .section-head,
+  #frequencies > .section,
+  #frequencies .frequency-section {
+    position: relative !important;
+    inset: auto !important;
+    left: auto !important;
+    right: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: clamp(18px, 3vw, 46px) !important;
+    padding-right: clamp(18px, 3vw, 46px) !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  #maintenance .section-head,
+  #works .section-head,
+  #receiverSoftware .section-head,
+  #frequencies .section-head {
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  #maintenance .section-head p,
+  #works .section-head p,
+  #receiverSoftware .section-head p,
+  #frequencies .section-head p {
+    max-width: none !important;
+  }
+
+  #maintenance .maintenance-layout,
+  #maintenance .areas-grid,
+  #maintenance .faq-grid,
+  #works .works-gallery,
+  #receiverSoftware .software-direct-links,
+  #receiverSoftware .software-desktop-cards,
+  #frequencies .frequency-tools,
+  #frequencies .frequency-tools-pro,
+  #frequencies .frequency-filter-panel,
+  #frequencies .station-search-results,
+  #frequencies .station-results-grid,
+  #frequencies .frequency-data-status,
+  #frequencies .frequency-table-wrap {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #maintenance .maintenance-layout {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 24px !important;
+  }
+
+  #maintenance .maintenance-hero-card,
+  #maintenance .maintenance-areas-card,
+  #maintenance .faq-card,
+  #works .work-card,
+  #receiverSoftware .software-company-card,
+  #receiverSoftware .software-logo-link,
+  #frequencies .station-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #works .works-gallery {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 22px !important;
+  }
+
+  #works .work-thumb,
+  #works .work-thumb img,
+  #works .work-card img {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  #receiverSoftware .software-direct-links {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  #receiverSoftware .software-desktop-cards {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+  }
+
+  #frequencies .frequency-tools-pro {
+    display: grid !important;
+    grid-template-columns: minmax(180px, 260px) minmax(320px, 1fr) auto !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+
+  #frequencies .frequency-table-wrap {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #frequencies .frequency-table {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 1120px !important;
+    table-layout: auto !important;
+  }
+}
+</style>
+
 </body>
 </html>
