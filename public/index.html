@@ -5257,9 +5257,17 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     return !!(m&&(m.is_live===true||m.live===true||m.in_play===true||m.started===true));
   }
   function hasVisibleScore(m){return !!scorePair(m)&&hasStartedOrFinishedScore(m);}
+  function wcLiveScoreFallbackPair(m){
+    if(scorePair(m))return null;
+    if(hasFinalScore(m)||wcIsTimeFallbackPending(m))return null;
+    if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m)){return [0,0];}
+    return null;
+  }
   function scoreText(m){
     var pair=scorePair(m);
     if(pair&&hasStartedOrFinishedScore(m)){var pen=penaltyPair(m); return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');}
+    var liveFallback=wcLiveScoreFallbackPair(m);
+    if(liveFallback)return liveFallback[0]+' - '+liveFallback[1];
     if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m))return lang()==='en'?'Live':'مباشر';
     if(wcIsTimeFallbackPending(m))return lang()==='en'?'Update':'تحديث';
     return '—';

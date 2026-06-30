@@ -159,6 +159,38 @@ function scorePair(home, away) {
   return a !== null && b !== null ? [a, b] : null;
 }
 
+function scoreFromLineScores(linescores) {
+  if (!Array.isArray(linescores)) return null;
+  let total = 0;
+  let seen = false;
+  for (const row of linescores) {
+    const n = firstScore(row?.score, row?.value, row?.displayValue, row?.points, row?.goals);
+    if (n !== null) { total += n; seen = true; }
+  }
+  return seen ? total : null;
+}
+
+function espnCompetitorScore(competitor) {
+  const direct = firstScore(
+    competitor?.score,
+    competitor?.displayScore,
+    competitor?.scoreDisplay,
+    competitor?.scoreValue,
+    competitor?.score?.value,
+    competitor?.score?.displayValue,
+    competitor?.score?.score,
+    competitor?.result?.score,
+    competitor?.statistics?.score,
+    competitor?.statistics?.goals,
+    competitor?.team?.score
+  );
+  if (direct !== null) return direct;
+  const objectScore = scoreFromObject(competitor?.score, ['current', 'value', 'displayValue', 'score', 'goals', 'total']);
+  const objectNumber = scoreNumber(objectScore);
+  if (objectNumber !== null) return objectNumber;
+  return scoreFromLineScores(competitor?.linescores) ?? scoreFromLineScores(competitor?.lineScores) ?? null;
+}
+
 function scoreFromObject(obj, keys = []) {
   if (!obj || typeof obj !== 'object') return null;
   for (const key of keys) {
@@ -508,8 +540,8 @@ function extractEspnEvents(scoreboard) {
     const phase = espnPhase(status, comp, e);
     const homeName = home.team?.displayName || home.team?.shortDisplayName || home.team?.name || '';
     const awayName = away.team?.displayName || away.team?.shortDisplayName || away.team?.name || '';
-    const homeScore = scoreNumber(home.score);
-    const awayScore = scoreNumber(away.score);
+    const homeScore = espnCompetitorScore(home);
+    const awayScore = espnCompetitorScore(away);
     const detail = [
       status.description,
       status.detail,
@@ -648,6 +680,7 @@ function applyScore(match, event, nowIso) {
     winner: match.winner_side ?? match.score?.winner_side,
     src: match.score_source,
     id: match.espn_event_id,
+    current: match.score?.current,
   });
   match.espn_event_id = event.id || match.espn_event_id;
   match.status = event.status;
@@ -676,7 +709,10 @@ function applyScore(match, event, nowIso) {
     match.winner_side = winnerSide;
     match.loser_side = winnerSide === 1 ? 2 : 1;
   }
-  const current = [match.home_score ?? null, match.away_score ?? null];
+  const current = [
+    team1Score !== null ? team1Score : (event.status === 'live' ? 0 : (match.home_score ?? null)),
+    team2Score !== null ? team2Score : (event.status === 'live' ? 0 : (match.away_score ?? null)),
+  ];
   const penalties = scorePair(team1Penalties, team2Penalties);
   match.score = {
     source: 'espn',
@@ -708,6 +744,7 @@ function applyScore(match, event, nowIso) {
     winner: match.winner_side ?? match.score?.winner_side,
     src: match.score_source,
     id: match.espn_event_id,
+    current: match.score?.current,
   });
 }
 
@@ -762,18 +799,34 @@ function applyTimeFallbackStatus(match, now, nowIso) {
     source: match.score_source || '',
     detail: match.live_status_detail || '',
     checked: match.live_checked_at || '',
+    current: match.score?.current,
   });
   match.status = nextStatus;
   match.score_source = match.score_source && match.score_source !== 'scheduled' ? match.score_source : 'time-fallback';
   match.live_score_source = match.live_score_source || 'time-fallback';
   match.live_status_detail = nextDetail;
   match.live_checked_at = nowIso;
-  if (!match.score || typeof match.score !== 'object') match.score = null;
+  if (nextStatus === 'live') {
+    match.score = {
+      source: 'time-fallback',
+      status: 'live',
+      phase: 'live',
+      phase_ar: 'مباشر',
+      status_detail: nextDetail,
+      checked_at: nowIso,
+      current: [0, 0],
+      placeholder_score: true,
+      note_ar: 'نتيجة مؤقتة 0-0 إلى حين وصول نتيجة مباشرة موثقة من المصدر.'
+    };
+  } else if (!match.score || typeof match.score !== 'object' || match.score?.source === 'time-fallback') {
+    match.score = null;
+  }
   return before !== JSON.stringify({
     status: match.status || '',
     source: match.score_source || '',
     detail: match.live_status_detail || '',
     checked: match.live_checked_at || '',
+    current: match.score?.current,
   });
 }
 
