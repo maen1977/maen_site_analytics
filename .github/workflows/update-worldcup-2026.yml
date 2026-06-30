@@ -72,7 +72,7 @@ jobs:
       - name: Apply official Round of 32 pairings correction
         run: node scripts/worldcup-r32-official-fix.mjs
 
-      - name: Sync knockout live cards inside the same 15-minute run
+      - name: Sync knockout live advancement cards
         run: node scripts/worldcup-knockout-live-sync.mjs
 
       - name: Commit changed World Cup data files

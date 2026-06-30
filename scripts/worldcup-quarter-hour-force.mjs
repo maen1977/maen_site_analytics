@@ -368,8 +368,26 @@ function setTeamName(match, side, team, teamAr, sourceSlot = '') {
   return before !== `${getTeamName(match, side)}|${match[`team${side}_ar`] || ''}`;
 }
 
+function placeholderNameForSlot(slot) {
+  const s = slotText(slot).toUpperCase();
+  const w = s.match(/^W(\d{1,3})$/);
+  if (w) return { team: `Winner of match ${w[1]}`, team_ar: `الفائز من مباراة ${w[1]}` };
+  const l = s.match(/^L(\d{1,3})$/);
+  if (l) return { team: `Loser of match ${l[1]}`, team_ar: `الخاسر من مباراة ${l[1]}` };
+  const d = s.match(/^([12])([A-L])$/);
+  if (d) return { team: `${d[1] === '1' ? 'Winner' : 'Runner-up'} Group ${d[2]}`, team_ar: `${d[1] === '1' ? 'متصدر' : 'وصيف'} المجموعة ${d[2]}` };
+  const t = s.match(/^3([A-L](?:\/[A-L])*)$/);
+  if (t) return { team: `Best third ${t[1]}`, team_ar: `أفضل ثالث من المجموعات ${t[1].replace(/\//g, ' أو ')}` };
+  return { team: 'TBD', team_ar: 'لم يتحدد بعد' };
+}
+
+function setPlaceholderName(match, side, slot) {
+  const placeholder = placeholderNameForSlot(slot);
+  return setTeamName(match, side, placeholder.team, placeholder.team_ar, slot);
+}
+
 function originalSlot(match, side) {
-  const saved = match?.[`team${side}_source_slot`] || match?.[`team${side}_slot`] || match?.[`slot${side}`] || '';
+  const saved = match?.[`team${side}_source_slot`] || match?.[`team${side}_original_slot`] || match?.[`team${side}_slot`] || match?.[`team${side}_seed`] || match?.[`slot${side}`] || '';
   if (isPlaceholder(saved)) return slotText(saved).toUpperCase();
   const current = getTeamName(match, side);
   if (isPlaceholder(current)) return slotText(current).toUpperCase();
@@ -952,6 +970,10 @@ function resolveKnockout(containers, standings, nowIso) {
           if (resolved.fallback_assignment) match[`team${side}_resolution_note_ar`] = 'تم ربط أفضل ثالث متأهل تلقائياً حتى لا يظهر رمز في الموقع.';
         } else {
           const reason = /^W/i.test(slot) ? 'winner-not-ready' : /^L/i.test(slot) ? 'loser-not-ready' : /^3/i.test(slot) ? 'best-third-not-ready' : 'slot-not-ready';
+          if (/^[WL]\d{1,3}$/i.test(slot)) {
+            // Do not leave stale country names in future rounds while the referenced match is not resolved yet.
+            if (setPlaceholderName(match, side, slot)) changed++;
+          }
           unresolved.push({ file: name, match: matchId(match), side: `team${side}`, slot, reason });
         }
       }
@@ -1125,6 +1147,7 @@ async function main() {
     original_15_minute_workflow: true,
     knockout_integrated_patch: true,
     universal_penalties_patch: true,
+      dynamic_knockout_advancement_patch: true,
     note_ar: 'التحديث يعمل من ملف التحديث الأصلي كل 15 دقيقة. تم دمج تحديث النتائج والأدوار وركلات الترجيح لكل المباريات داخل نفس السكربت بدون تغيير واجهة الموقع.',
   };
 
@@ -1138,6 +1161,7 @@ async function main() {
     refresh_interval_minutes: REFRESH_MINUTES,
     knockout_integrated_patch: true,
     universal_penalties_patch: true,
+      dynamic_knockout_advancement_patch: true,
     knockout_summary: knockout,
     note_ar: 'أسماء الأدوار والفائزين يتم تحديثها من داخل التحديث الأصلي كل 15 دقيقة.',
   };

@@ -5,7 +5,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TZ = 'Asia/Amman';
-const VERSION = '2026-06-30-knockout-extra-time-penalties-sort-v2';
+const VERSION = '2026-06-30-dynamic-knockout-advancement-v3';
 
 function nowAmmanIso() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -196,8 +196,8 @@ function extractTeam(match, side) {
   const raw = deepGet(match, side === 1 ? side1 : side2);
   const t = teamFromRaw(raw, `team${side}`);
   const slotPaths = side === 1
-    ? ['team1_slot', 'team_1_slot', 'home_slot', 'home_seed', 'slot1', 'seed1', 'team1Seed', 'team1_placeholder']
-    : ['team2_slot', 'team_2_slot', 'away_slot', 'away_seed', 'slot2', 'seed2', 'team2Seed', 'team2_placeholder'];
+    ? ['team1_slot', 'team_1_slot', 'team1_source_slot', 'team1_original_slot', 'team1_seed', 'home_slot', 'home_seed', 'slot1', 'seed1', 'team1Seed', 'team1_placeholder']
+    : ['team2_slot', 'team_2_slot', 'team2_source_slot', 'team2_original_slot', 'team2_seed', 'away_slot', 'away_seed', 'slot2', 'seed2', 'team2Seed', 'team2_placeholder'];
   const slot = deepGet(match, slotPaths);
   if (text(slot)) t.slot = normalizeSlot(slot);
   return t;
@@ -287,7 +287,7 @@ function matchStatus(m) {
 function winnerSide(m) {
   const { s1, s2, p1, p2 } = getScores(m);
   const status = matchStatus(m).key;
-  if (status !== 'finished') return null;
+  if (!['finished', 'finished_on_penalties', 'finished_after_extra_time'].includes(status)) return null;
   if (s1 !== null && s2 !== null && s1 !== s2) return s1 > s2 ? 1 : 2;
   if (p1 !== null && p2 !== null && p1 !== p2) return p1 > p2 ? 1 : 2;
   const rawWinner = text(deepGet(m, ['winner', 'winner_team', 'winnerTeam', 'qualified']));
@@ -381,6 +381,10 @@ function main() {
 
   function resolveInitialTeam(team, matchCodeValue, side) {
     const slot = normalizeSlot(team.slot || team.name_ar || team.name_en || '');
+    // Dynamic knockout placeholders must stay dynamic on every run.
+    // If an older file already contains a stale country name beside W74/L101,
+    // ignore that stale name and resolve from the source match again.
+    if (/^[WL]\d{2,3}$/i.test(slot)) return makePlaceholder(slot);
     if (/^[12][A-L]$/.test(slot) && standingSlot.has(slot)) return teamObject(standingSlot.get(slot), { slot, resolved_from: slot });
     if (/^3([A-L])$/.test(slot) && standingSlot.has(slot)) {
       const group = slot.slice(1);
@@ -426,12 +430,12 @@ function main() {
   function resolveWinnerLoser(team) {
     const slot = normalizeSlot(team.slot || '');
     const ref = slot.match(/^([WL])(\d{2,3})$/);
-    if (!ref || !team.unresolved) return team;
+    if (!ref) return team;
     const prev = byNumber.get(Number(ref[2]));
     if (!prev) return makePlaceholder(slot);
     const side = ref[1] === 'W' ? winnerSide(prev.raw) : loserSide(prev.raw);
-    if (side === 1) return teamObject(prev.team1, { slot, resolved_from: slot });
-    if (side === 2) return teamObject(prev.team2, { slot, resolved_from: slot });
+    if (side === 1) return teamObject(prev.team1, { slot, resolved_from: slot, unresolved: false });
+    if (side === 2) return teamObject(prev.team2, { slot, resolved_from: slot, unresolved: false });
     return makePlaceholder(slot);
   }
   for (let i = 0; i < 3; i++) {
@@ -486,6 +490,17 @@ function main() {
   }
   const rounds = [...roundMap.values()].sort((a, b) => a.order - b.order).map((round) => ({ ...round, matches: round.matches.sort((a, b) => (a.sort_time || Number.MAX_SAFE_INTEGER) - (b.sort_time || Number.MAX_SAFE_INTEGER) || a.number - b.number) }));
   const unresolvedSymbols = normalizedMatches.flatMap(m => [m.team1, m.team2]).filter(t => t?.unresolved).map(t => t.slot).filter(Boolean);
+  const dynamicAdvancementChecks = normalizedMatches.flatMap((m) => [
+    { match: m.id, side: 'team1', source_slot: m.source_slot1, team: m.team1 },
+    { match: m.id, side: 'team2', source_slot: m.source_slot2, team: m.team2 },
+  ]).filter((entry) => /^[WL]\d{2,3}$/i.test(entry.source_slot || '')).map((entry) => ({
+    match: entry.match,
+    side: entry.side,
+    source_slot: entry.source_slot,
+    resolved_team_ar: entry.team?.name_ar || '',
+    unresolved: Boolean(entry.team?.unresolved),
+    ok: !entry.team?.unresolved || /^الفائز من مباراة|^الخاسر من مباراة/.test(entry.team?.name_ar || '')
+  }));
 
   const output = {
     name: 'MaenSat World Cup 2026 knockout live cards',
@@ -497,9 +512,11 @@ function main() {
       rounds: rounds.length,
       direct_resolved: normalizedMatches.flatMap(m => [m.team1, m.team2]).filter(t => /^[12][A-L]$/.test(t.resolved_from || '')).length,
       best_third_resolved: assignedThird.length,
-      unresolved_future_slots: unresolvedSymbols
+      unresolved_future_slots: unresolvedSymbols,
+      dynamic_advancement_slots_checked: dynamicAdvancementChecks.length
     },
     third_assignments: assignedThird,
+    dynamic_advancement_checks: dynamicAdvancementChecks,
     rounds,
     matches: normalizedMatches
   };
@@ -514,7 +531,9 @@ function main() {
     matches: output.summary.matches,
     rounds: output.summary.rounds,
     best_third_resolved: output.summary.best_third_resolved,
-    unresolved_future_slots: output.summary.unresolved_future_slots
+    unresolved_future_slots: output.summary.unresolved_future_slots,
+    dynamic_advancement_slots_checked: output.summary.dynamic_advancement_slots_checked,
+    dynamic_advancement_checks: dynamicAdvancementChecks
   });
   console.log(`Wrote public/worldcup-2026/knockout-live.json with ${normalizedMatches.length} knockout matches.`);
 }
