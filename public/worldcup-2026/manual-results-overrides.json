@@ -3,8 +3,9 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-06-19",
-    "note_ar": "هذا الملف يحتوي على التصحيحات اليدوية للنتائج التي لم تلتقطها المصادر الآلية بشكل صحيح. يتم تطبيقها بأولوية عالية."
+    "updated_at": "2026-06-30T14:00:00+03:00",
+    "note_ar": "تصحيحات يدوية موثقة للنتائج التي لم تلتقطها المصادر الآلية، وتُطبّق داخل نفس تحديث الربع ساعة.",
+    "m074_penalty_hotfix": true
   },
   "results": [
     {
@@ -19,12 +20,78 @@
       "home_score": 1,
       "away_score": 0,
       "score": {
-        "ft": [1, 0],
+        "ft": [
+          1,
+          0
+        ],
         "source": "manual-override",
         "status_detail": "FT"
       },
       "score_source": "manual-override",
       "live_status_detail": "انتهت المباراة"
+    },
+    {
+      "id": "M074",
+      "num": 74,
+      "team1": "Germany",
+      "team2": "Paraguay",
+      "team1_ar": "ألمانيا",
+      "team2_ar": "باراغواي",
+      "stage": "Round of 32",
+      "stage_ar": "دور 32",
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 1,
+      "penalty_home_score": 3,
+      "penalty_away_score": 4,
+      "home_penalties": 3,
+      "away_penalties": 4,
+      "team1_penalties": 3,
+      "team2_penalties": 4,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-override",
+        "event_id": "760489",
+        "status": "finished",
+        "phase": "finished_on_penalties",
+        "phase_ar": "انتهت بركلات الترجيح",
+        "status_detail": "Paraguay advances 4-3 on penalties",
+        "current": [
+          1,
+          1
+        ],
+        "ft": [
+          1,
+          1
+        ],
+        "et": [
+          1,
+          1
+        ],
+        "p": [
+          3,
+          4
+        ],
+        "penalties": {
+          "home": 3,
+          "away": 4,
+          "team1": 3,
+          "team2": 4
+        },
+        "winner_side": 2,
+        "checked_at": "2026-06-30T14:00:00+03:00"
+      },
+      "score_source": "manual-override",
+      "live_score_source": "manual-override",
+      "live_phase": "finished_on_penalties",
+      "live_phase_ar": "انتهت بركلات الترجيح",
+      "live_status_detail": "انتهت بركلات الترجيح",
+      "espn_event_id": "760489",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "تصحيح موثق لمباراة ألمانيا وباراغواي: 1-1، باراغواي فازت 4-3 بركلات الترجيح."
     }
   ]
 }

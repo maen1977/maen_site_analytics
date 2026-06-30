@@ -10,6 +10,11 @@ const END_DATE = process.env.WORLD_CUP_2026_END_DATE || '2026-07-19';
 const REFRESH_MINUTES = Number(process.env.WORLD_CUP_2026_INTERVAL_MINUTES || 15);
 const ESPN_BASE = process.env.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950';
 
+const KNOWN_ESPN_EVENT_IDS = new Map(Object.entries({
+  // ESPN final: Germany 1-1 Paraguay, Paraguay advances 4-3 on penalties.
+  M074: '760489',
+}));
+
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
     timeZone: TIMEZONE,
@@ -497,7 +502,8 @@ function timeDiffMs(match, event) {
 }
 
 function findEspnMatch(match, events) {
-  const explicitIds = [match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id].filter(Boolean).map(String);
+  const knownId = KNOWN_ESPN_EVENT_IDS.get(matchId(match));
+  const explicitIds = [knownId, match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id].filter(Boolean).map(String);
   if (explicitIds.length) {
     const byId = events.find((event) => explicitIds.includes(String(event.id)));
     if (byId) return byId;

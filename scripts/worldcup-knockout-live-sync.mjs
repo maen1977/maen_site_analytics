@@ -306,6 +306,30 @@ function loserSide(m) {
   return w === 1 ? 2 : w === 2 ? 1 : null;
 }
 
+
+function rawScorePriority(raw) {
+  if (!raw || typeof raw !== 'object') return 0;
+  const scores = getScores(raw);
+  const status = matchStatus(raw).key;
+  const source = text(deepGet(raw, ['score_source', 'live_score_source', 'score.source'])).toLowerCase();
+  let priority = 0;
+  if (scores.s1 !== null && scores.s2 !== null) priority += 10;
+  if (scores.p1 !== null && scores.p2 !== null) priority += 6;
+  if (status === 'finished' || status === 'finished_on_penalties' || status === 'finished_after_extra_time') priority += 8;
+  if (status === 'live') priority += 5;
+  if (/espn|manual|verified/.test(source)) priority += 4;
+  return priority;
+}
+
+function mergePreferScoredMatch(existing, incoming) {
+  if (!existing || !Object.keys(existing).length) return { ...incoming };
+  const incomingPriority = rawScorePriority(incoming);
+  const existingPriority = rawScorePriority(existing);
+  // Keep the richer live/final score object if bracket.json still has the same match as scheduled.
+  if (incomingPriority >= existingPriority) return { ...existing, ...incoming };
+  return { ...incoming, ...existing };
+}
+
 function makePlaceholder(slot) {
   const s = normalizeSlot(slot);
   const w = s.match(/^W(\d{2,3})$/); if (w) return { name_ar: `الفائز من مباراة ${w[1]}`, name_en: `Winner of match ${w[1]}`, slot: s, unresolved: true };
@@ -347,7 +371,7 @@ function main() {
     if (!n || n < 73 || n > 104) continue;
     const code = `M${String(n).padStart(3, '0')}`;
     const current = byCodeRaw.get(code) || {};
-    byCodeRaw.set(code, { ...current, ...raw });
+    byCodeRaw.set(code, mergePreferScoredMatch(current, raw));
   }
 
   const rawMatches = [...byCodeRaw.values()].sort((a, b) => parseMatchTimeMs(a) - parseMatchTimeMs(b) || matchNumber(a) - matchNumber(b));
