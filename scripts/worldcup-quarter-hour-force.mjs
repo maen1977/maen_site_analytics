@@ -10,11 +10,6 @@ const END_DATE = process.env.WORLD_CUP_2026_END_DATE || '2026-07-19';
 const REFRESH_MINUTES = Number(process.env.WORLD_CUP_2026_INTERVAL_MINUTES || 15);
 const ESPN_BASE = process.env.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950';
 
-const KNOWN_ESPN_EVENT_IDS = new Map(Object.entries({
-  // ESPN final: Germany 1-1 Paraguay, Paraguay advances 4-3 on penalties.
-  M074: '760489',
-}));
-
 function jordanIso(date = new Date()) {
   return new Intl.DateTimeFormat('sv-SE', {
     timeZone: TIMEZONE,
@@ -183,9 +178,14 @@ function espnPenaltyScore(competitor, competition, side) {
     competitor?.scorePenalty,
     competitor?.score?.penalties,
     competitor?.score?.shootout,
+    competitor?.records?.penalties,
+    competitor?.linescores?.penalties,
     competition?.penalties,
+    competition?.penalty,
     competition?.shootout,
     competition?.shootoutScore,
+    competition?.score?.penalties,
+    competition?.score?.shootout,
   ];
   const direct = firstScore(
     competitor?.shootoutScore,
@@ -199,11 +199,49 @@ function espnPenaltyScore(competitor, competition, side) {
   if (direct !== null) return direct;
   for (const container of penaltyContainers) {
     if (!container || typeof container !== 'object') continue;
+    if (Array.isArray(container)) {
+      const sideEntry = container.find((item) => {
+        const sideText = normalize(item?.homeAway || item?.side || item?.type || item?.name || item?.team?.displayName || item?.team?.name);
+        return sideKeys.some((key) => sideText === normalize(key));
+      });
+      const arrayValue = scoreFromObject(sideEntry, ['score', 'value', 'displayValue', 'penalties', 'shootoutScore', 'penaltyScore']);
+      const arrayNumber = scoreNumber(arrayValue);
+      if (arrayNumber !== null) return arrayNumber;
+    }
     const value = scoreFromObject(container, [...sideKeys, `${side}Score`, `${side}_score`, `${side}Penalty`, `${side}_penalty`, `${side}Penalties`, `${side}_penalties`, 'score', 'value', 'displayValue']);
     const n = scoreNumber(value);
     if (n !== null) return n;
   }
   return null;
+}
+
+function parsePenaltyDetail(detail, homeName, awayName, homeWinner, awayWinner) {
+  const raw = String(detail || '');
+  if (!/penalt|shootout|ركلات|ترجيح/i.test(raw)) return null;
+  const numbers = raw.match(/(\d+)\s*[-–—:]\s*(\d+)/);
+  if (!numbers) return null;
+  const first = scoreNumber(numbers[1]);
+  const second = scoreNumber(numbers[2]);
+  if (first === null || second === null) return null;
+
+  const beforeScore = raw.slice(0, numbers.index || 0);
+  const beforeKey = teamKey(beforeScore);
+  const homeKey = teamKey(homeName);
+  const awayKey = teamKey(awayName);
+  let winner = null;
+  if (homeKey && beforeKey.includes(homeKey)) winner = 'home';
+  else if (awayKey && beforeKey.includes(awayKey)) winner = 'away';
+  else if (homeWinner) winner = 'home';
+  else if (awayWinner) winner = 'away';
+
+  // ESPN often writes: "Paraguay advances 4-3 on penalties". In that wording,
+  // the first number belongs to the named/winning team, not always to home.
+  if (winner === 'home') return { home: first, away: second, winner_side: first === second ? null : (first > second ? 1 : 2) };
+  if (winner === 'away') return { home: second, away: first, winner_side: first === second ? null : (first > second ? 2 : 1) };
+
+  // Fallback for details that only say "4-3 on penalties": keep home-away order,
+  // then winner can still be determined from the larger number.
+  return { home: first, away: second, winner_side: first === second ? null : (first > second ? 1 : 2) };
 }
 
 function espnPhase(status, comp, event) {
@@ -454,9 +492,24 @@ function extractEspnEvents(scoreboard) {
     const awayName = away.team?.displayName || away.team?.shortDisplayName || away.team?.name || '';
     const homeScore = scoreNumber(home.score);
     const awayScore = scoreNumber(away.score);
-    const homePenalties = espnPenaltyScore(home, comp, 'home');
-    const awayPenalties = espnPenaltyScore(away, comp, 'away');
-    const detail = status.description || status.detail || status.shortDetail || status.name || '';
+    const detail = [
+      status.description,
+      status.detail,
+      status.shortDetail,
+      status.name,
+      comp.status?.type?.description,
+      comp.status?.type?.detail,
+      comp.status?.type?.shortDetail,
+      e.status?.type?.description,
+      e.status?.type?.detail,
+      e.status?.type?.shortDetail,
+    ].filter(Boolean).find((value) => /penalt|shootout|ركلات|ترجيح/i.test(String(value))) || status.description || status.detail || status.shortDetail || status.name || '';
+    const homeWinner = Boolean(home.winner);
+    const awayWinner = Boolean(away.winner);
+    const detailPenalty = parsePenaltyDetail(detail, homeName, awayName, homeWinner, awayWinner);
+    const homePenalties = espnPenaltyScore(home, comp, 'home') ?? detailPenalty?.home ?? null;
+    const awayPenalties = espnPenaltyScore(away, comp, 'away') ?? detailPenalty?.away ?? null;
+    const winnerSide = detailPenalty?.winner_side || (homeWinner ? 1 : awayWinner ? 2 : (homePenalties !== null && awayPenalties !== null && homePenalties !== awayPenalties ? (homePenalties > awayPenalties ? 1 : 2) : null));
     return {
       source: 'espn',
       id: String(e.id || comp.id || ''),
@@ -469,11 +522,12 @@ function extractEspnEvents(scoreboard) {
       away_score: awayScore,
       home_penalties: homePenalties,
       away_penalties: awayPenalties,
-      home_winner: Boolean(home.winner),
-      away_winner: Boolean(away.winner),
+      home_winner: winnerSide === 1 || homeWinner,
+      away_winner: winnerSide === 2 || awayWinner,
+      winner_side: winnerSide,
       status: statusFromPhase(phase),
-      phase,
-      phase_label_ar: phaseLabelAr(phase),
+      phase: (homePenalties !== null && awayPenalties !== null && statusFromPhase(phase) === 'finished') ? 'finished_on_penalties' : phase,
+      phase_label_ar: phaseLabelAr((homePenalties !== null && awayPenalties !== null && statusFromPhase(phase) === 'finished') ? 'finished_on_penalties' : phase),
       status_detail: detail,
       clock: comp.status?.displayClock || e.status?.displayClock || '',
       period: Number(comp.status?.period ?? e.status?.period ?? status.period) || null,
@@ -488,10 +542,44 @@ function matchTeamKeys(match) {
   };
 }
 
-function sameTeams(match, event) {
+function levenshtein(a, b) {
+  a = String(a || '');
+  b = String(b || '');
+  if (!a || !b) return Math.max(a.length, b.length);
+  const prev = [...Array(b.length + 1).keys()];
+  const curr = new Array(b.length + 1);
+  for (let i = 1; i <= a.length; i++) {
+    curr[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+    }
+    for (let j = 0; j <= b.length; j++) prev[j] = curr[j];
+  }
+  return prev[b.length];
+}
+
+function teamSimilarity(a, b) {
+  a = teamKey(a);
+  b = teamKey(b);
+  if (!a || !b) return 0;
+  if (a === b) return 1;
+  if (a.includes(b) || b.includes(a)) return 0.92;
+  const distance = levenshtein(a, b);
+  return Math.max(0, 1 - distance / Math.max(a.length, b.length));
+}
+
+function teamMatchScore(match, event) {
   const { team1, team2 } = matchTeamKeys(match);
-  if (!team1 || !team2 || isPlaceholder(getTeamName(match, 1)) || isPlaceholder(getTeamName(match, 2))) return false;
-  return (team1 === event.homeKey && team2 === event.awayKey) || (team1 === event.awayKey && team2 === event.homeKey);
+  if (!team1 || !team2 || isPlaceholder(getTeamName(match, 1)) || isPlaceholder(getTeamName(match, 2))) return { score: 0, sameOrder: true };
+  const direct = teamSimilarity(team1, event.homeKey) + teamSimilarity(team2, event.awayKey);
+  const reversed = teamSimilarity(team1, event.awayKey) + teamSimilarity(team2, event.homeKey);
+  const score = Math.max(direct, reversed) / 2;
+  return { score, sameOrder: direct >= reversed };
+}
+
+function sameTeams(match, event) {
+  return teamMatchScore(match, event).score >= 0.86;
 }
 
 function timeDiffMs(match, event) {
@@ -502,17 +590,25 @@ function timeDiffMs(match, event) {
 }
 
 function findEspnMatch(match, events) {
-  const knownId = KNOWN_ESPN_EVENT_IDS.get(matchId(match));
-  const explicitIds = [knownId, match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id].filter(Boolean).map(String);
+  const explicitIds = [match?.espn_id, match?.espn_event_id, match?.event_id, match?.score?.event_id].filter(Boolean).map(String);
   if (explicitIds.length) {
     const byId = events.find((event) => explicitIds.includes(String(event.id)));
     if (byId) return byId;
   }
+  const matchNum = matchNumber(match);
   return events
-    .filter((event) => sameTeams(match, event))
-    .map((event) => ({ event, diff: timeDiffMs(match, event) }))
-    .filter((row) => row.diff <= 54 * 60 * 60 * 1000 || row.diff === Number.MAX_SAFE_INTEGER)
-    .sort((a, b) => a.diff - b.diff)[0]?.event || null;
+    .map((event) => {
+      const team = teamMatchScore(match, event);
+      const diff = timeDiffMs(match, event);
+      const maxWindow = matchNum >= 73 ? 96 * 60 * 60 * 1000 : 60 * 60 * 1000;
+      const timeOk = diff === Number.MAX_SAFE_INTEGER || diff <= maxWindow;
+      const timePenalty = diff === Number.MAX_SAFE_INTEGER ? 0.2 : Math.min(diff / maxWindow, 1);
+      const liveBonus = event.status === 'live' ? 0.03 : 0;
+      const finalBonus = event.status === 'finished' ? 0.02 : 0;
+      return { event, teamScore: team.score, diff, timeOk, rank: team.score - timePenalty * 0.18 + liveBonus + finalBonus };
+    })
+    .filter((row) => row.teamScore >= 0.86 && row.timeOk)
+    .sort((a, b) => b.rank - a.rank || a.diff - b.diff)[0]?.event || null;
 }
 
 function applyScore(match, event, nowIso) {
@@ -522,7 +618,8 @@ function applyScore(match, event, nowIso) {
   const team2Score = sameOrder ? event.away_score : event.home_score;
   const team1Penalties = sameOrder ? event.home_penalties : event.away_penalties;
   const team2Penalties = sameOrder ? event.away_penalties : event.home_penalties;
-  const winnerSide = event.home_winner ? (sameOrder ? 1 : 2) : event.away_winner ? (sameOrder ? 2 : 1) : null;
+  const espnWinnerSide = event.winner_side || (event.home_winner ? 1 : event.away_winner ? 2 : null);
+  const winnerSide = espnWinnerSide === 1 ? (sameOrder ? 1 : 2) : espnWinnerSide === 2 ? (sameOrder ? 2 : 1) : (team1Penalties !== null && team2Penalties !== null && team1Penalties !== team2Penalties ? (team1Penalties > team2Penalties ? 1 : 2) : null);
   const before = JSON.stringify({
     s: match.status,
     a: match.home_score,
@@ -1027,7 +1124,8 @@ async function main() {
     manual_overrides_applied: manualApplied,
     original_15_minute_workflow: true,
     knockout_integrated_patch: true,
-    note_ar: 'التحديث يعمل من ملف التحديث الأصلي كل 15 دقيقة. تم دمج تحديث النتائج والأدوار داخل نفس السكربت بدون تغيير واجهة الموقع.',
+    universal_penalties_patch: true,
+    note_ar: 'التحديث يعمل من ملف التحديث الأصلي كل 15 دقيقة. تم دمج تحديث النتائج والأدوار وركلات الترجيح لكل المباريات داخل نفس السكربت بدون تغيير واجهة الموقع.',
   };
 
   if (!bracketBox.root.metadata || typeof bracketBox.root.metadata !== 'object') bracketBox.root.metadata = {};
@@ -1039,6 +1137,7 @@ async function main() {
     live_score_source: 'espn',
     refresh_interval_minutes: REFRESH_MINUTES,
     knockout_integrated_patch: true,
+    universal_penalties_patch: true,
     knockout_summary: knockout,
     note_ar: 'أسماء الأدوار والفائزين يتم تحديثها من داخل التحديث الأصلي كل 15 دقيقة.',
   };
