@@ -667,7 +667,7 @@ body.lang-en #frequencies .station-frequency-meta span{
 <button id="langEnBtn" onclick="setLanguage('en')" type="button">English</button>
 </div>
 <main class="app dashboard-app">
-<aside aria-label="القائمة الرئيسية" class="side-nav">
+<aside aria-label="القائمة الرئيسية" class="side-nav maen-real-fixed-desktop-header">
 <div class="side-brand">
 <div class="side-logo">
 <img alt="معن حنونة للستلايت" decoding="async" draggable="false" height="1536" loading="lazy" src="assets/images-optimized/01-maen-hanouneh-satellite-fbae01986e.webp" width="1536"/>
@@ -6503,128 +6503,105 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 </style>
 
 
-<!-- MAEN_DESKTOP_STICKY_HEADER_POSITION_ONLY_2026_06_30: keep the current desktop header in place while scrolling. Position-only CSS; no size/padding/font/menu/JS/World Cup changes. -->
-<style id="maen-desktop-sticky-header-position-only">
-@media (min-width: 901px) {
-  /* Position only: keep the existing header/tabs visible while scrolling, without making it taller or changing menu sizes. */
-  .dashboard-app {
-    overflow: visible !important;
-    overflow-x: hidden !important;
-    overflow-y: visible !important;
-  }
-
-  .side-nav {
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 10050 !important;
-    transform: none !important;
-  }
-
-  .dashboard-app > .page,
-  .dashboard-app > section.page {
-    scroll-margin-top: 168px !important;
-  }
-}
-</style>
 
 
-
-<!-- MAEN_DESKTOP_FIXED_HEADER_FORCE_2026_06_30: make the existing desktop header stay at the top without changing its size. Adds only a safe spacer based on actual header height; no tab handlers, no World Cup, no data changes. -->
-<style id="maen-desktop-fixed-header-force">
+<!-- MAEN_DESKTOP_REAL_FIXED_HEADER_FINAL_2026_06_30: fixes the ACTUAL desktop header element only. Adds a dedicated class to the real <aside class="side-nav"> and pins it without changing size, tabs, handlers, World Cup data, or page JavaScript. -->
+<style id="maen-desktop-real-fixed-header-final">
 @media (min-width: 901px) {
   :root {
-    --maen-fixed-top-header-space: 158px;
+    --maen-real-fixed-header-height: 168px;
   }
 
   html,
   body {
-    scroll-padding-top: calc(var(--maen-fixed-top-header-space) + 14px) !important;
+    scroll-padding-top: calc(var(--maen-real-fixed-header-height) + 14px) !important;
   }
 
+  main.dashboard-app,
   .dashboard-app {
-    padding-top: calc(var(--maen-fixed-top-header-space) + 14px) !important;
+    padding-top: calc(var(--maen-real-fixed-header-height) + 14px) !important;
     overflow: visible !important;
     overflow-x: hidden !important;
     overflow-y: visible !important;
   }
 
-  .dashboard-app > .side-nav,
-  .side-nav {
+  main.dashboard-app > aside.side-nav.maen-real-fixed-desktop-header,
+  .dashboard-app > aside.side-nav.maen-real-fixed-desktop-header,
+  aside.side-nav.maen-real-fixed-desktop-header {
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
     left: 0 !important;
     bottom: auto !important;
-    z-index: 10080 !important;
+    z-index: 2147483000 !important;
     width: 100% !important;
     max-width: none !important;
-    margin-top: 0 !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: visible !important;
     transform: none !important;
     will-change: auto !important;
+    box-sizing: border-box !important;
   }
 
-  .dashboard-app > .page,
+  main.dashboard-app > aside.side-nav.maen-real-fixed-desktop-header .side-menu,
+  .dashboard-app > aside.side-nav.maen-real-fixed-desktop-header .side-menu {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  main.dashboard-app > section.page,
   .dashboard-app > section.page,
-  .dashboard-app > #home,
-  .dashboard-app > #devices,
-  .dashboard-app > #softwares,
-  .dashboard-app > #maintenance,
-  .dashboard-app > #works,
-  .dashboard-app > #receiverSoftware,
-  .dashboard-app > #frequencies,
-  .dashboard-app > #worldcup2026,
-  .dashboard-app > #contact {
-    scroll-margin-top: calc(var(--maen-fixed-top-header-space) + 18px) !important;
+  .dashboard-app > .page {
+    scroll-margin-top: calc(var(--maen-real-fixed-header-height) + 18px) !important;
   }
 }
 </style>
-<script id="maen-desktop-fixed-header-spacer">
+<script id="maen-desktop-real-fixed-header-height">
 (function(){
-  var resizeTimer = null;
-  var observer = null;
-  function isDesktop(){
-    return window.matchMedia && window.matchMedia('(min-width: 901px)').matches;
+  function desktop(){
+    return !window.matchMedia || window.matchMedia('(min-width: 901px)').matches;
   }
-  function applyHeaderSpace(){
+  function header(){
+    return document.querySelector('main.dashboard-app > aside.side-nav.maen-real-fixed-desktop-header') ||
+           document.querySelector('.dashboard-app > aside.side-nav.maen-real-fixed-desktop-header') ||
+           document.querySelector('aside.side-nav.maen-real-fixed-desktop-header') ||
+           document.querySelector('main.dashboard-app > aside.side-nav') ||
+           document.querySelector('.dashboard-app > aside.side-nav') ||
+           document.querySelector('aside.side-nav');
+  }
+  function apply(){
+    var nav = header();
     var root = document.documentElement;
-    var nav = document.querySelector('.dashboard-app > .side-nav') || document.querySelector('.side-nav');
-    if(!root || !nav){return;}
-    if(!isDesktop()){
-      root.style.removeProperty('--maen-fixed-top-header-space');
+    if(!nav || !root){return;}
+    if(!nav.classList.contains('maen-real-fixed-desktop-header')){
+      nav.classList.add('maen-real-fixed-desktop-header');
+    }
+    if(!desktop()){
+      root.style.removeProperty('--maen-real-fixed-header-height');
       return;
     }
-    var rect = nav.getBoundingClientRect ? nav.getBoundingClientRect() : null;
-    var height = rect && rect.height ? Math.ceil(rect.height) : nav.offsetHeight;
-    if(!height || height < 80){height = 158;}
-    root.style.setProperty('--maen-fixed-top-header-space', height + 'px');
+    var h = Math.ceil(nav.getBoundingClientRect().height || nav.offsetHeight || 168);
+    if(!h || h < 90){h = 168;}
+    root.style.setProperty('--maen-real-fixed-header-height', h + 'px');
   }
-  function scheduleApply(){
-    window.clearTimeout(resizeTimer);
-    resizeTimer = window.setTimeout(applyHeaderSpace, 80);
+  function soon(){
+    window.requestAnimationFrame ? window.requestAnimationFrame(apply) : window.setTimeout(apply, 0);
   }
   if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', applyHeaderSpace, {once:true});
+    document.addEventListener('DOMContentLoaded', soon, {once:true});
   } else {
-    applyHeaderSpace();
+    soon();
   }
-  window.addEventListener('load', applyHeaderSpace, {once:true});
-  window.addEventListener('resize', scheduleApply, {passive:true});
-  try {
-    if('ResizeObserver' in window){
-      observer = new ResizeObserver(scheduleApply);
-      var start = function(){
-        var nav = document.querySelector('.dashboard-app > .side-nav') || document.querySelector('.side-nav');
-        if(nav){observer.observe(nav);}
-      };
-      if(document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', start, {once:true});
-      } else {
-        start();
-      }
+  window.addEventListener('load', function(){soon(); window.setTimeout(apply, 250);}, {once:true});
+  window.addEventListener('resize', soon, {passive:true});
+  document.addEventListener('click', function(e){
+    if(e && e.target && e.target.closest && e.target.closest('.language-switcher, .side-menu, .side-nav')){
+      window.setTimeout(apply, 80);
     }
-  } catch(e) {}
+  }, true);
 })();
 </script>
 
