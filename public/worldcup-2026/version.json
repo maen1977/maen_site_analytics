@@ -1,7 +1,7 @@
 {
-  "version": "cb1936cc535b",
-  "generated_at": "2026-06-30T23:04:25+03:00",
-  "next_expected_check_at": "2026-06-30T23:19:25+03:00",
+  "version": "d194855fe0c7",
+  "generated_at": "2026-06-30T23:15:19+03:00",
+  "next_expected_check_at": "2026-06-30T23:30:20+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
@@ -10,27 +10,20 @@
       "events_seen": 85,
       "matched": 80,
       "bracket_matched": 8,
-      "score_changed": 5,
+      "score_changed": 4,
       "future_openfootball_zero_scores_cleared": 0
     },
     "knockout": {
-      "changed": 3,
+      "changed": 1,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 8,
+      "winnerResolved": 10,
       "unresolved": [
         {
           "file": "matches.json",
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M091",
-          "side": "team2",
-          "slot": "W78",
           "reason": "winner-not-ready"
         },
         {
@@ -220,13 +213,6 @@
           "match": "M089",
           "side": "team2",
           "slot": "W77",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M091",
-          "side": "team2",
-          "slot": "W78",
           "reason": "winner-not-ready"
         },
         {
@@ -489,7 +475,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-06-30T23:04:25+03:00",
+    "corrected_at": "2026-06-30T23:15:20+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -642,6 +628,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "6bd55d562c59",
-  "last_updated": "2026-06-30T23:04:25+03:00"
+  "cache_buster": "9f1ab1eaf5a9",
+  "last_updated": "2026-06-30T23:15:20+03:00"
 }

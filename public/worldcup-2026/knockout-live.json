@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-06-30T23:04:25+03:00",
+  "last_updated_at": "2026-06-30T23:15:20+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -10,7 +10,6 @@
     "best_third_resolved": 0,
     "unresolved_future_slots": [
       "W77",
-      "W78",
       "W79",
       "W80",
       "W83",
@@ -40,7 +39,7 @@
     ],
     "dynamic_advancement_slots_checked": 32,
     "matches_json_synced": true,
-    "matches_json_updated": 15
+    "matches_json_updated": 14
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -88,8 +87,8 @@
       "match": "M091",
       "side": "team2",
       "source_slot": "W78",
-      "resolved_team_ar": "الفائز من مباراة 78",
-      "unresolved": true,
+      "resolved_team_ar": "Norway",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -534,13 +533,16 @@
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
           "status": {
-            "key": "live",
-            "label_ar": "الشوط الثاني"
+            "key": "finished",
+            "label_ar": "انتهت"
           },
-          "phase": "second_half",
+          "phase": "finished",
           "score1": 1,
           "score2": 2,
-          "score_ft": null,
+          "score_ft": [
+            1,
+            2
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
@@ -1222,10 +1224,13 @@
             "resolved_from": "W76"
           },
           "team2": {
-            "name_ar": "الفائز من مباراة 78",
-            "name_en": "Winner of match 78",
+            "name_ar": "Norway",
+            "name_en": "Norway",
+            "group": "",
+            "position": "",
             "slot": "W78",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W78"
           },
           "source_slot1": "W76",
           "source_slot2": "W78",
@@ -2049,13 +2054,16 @@
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
       "status": {
-        "key": "live",
-        "label_ar": "الشوط الثاني"
+        "key": "finished",
+        "label_ar": "انتهت"
       },
-      "phase": "second_half",
+      "phase": "finished",
       "score1": 1,
       "score2": 2,
-      "score_ft": null,
+      "score_ft": [
+        1,
+        2
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
@@ -2730,10 +2738,13 @@
         "resolved_from": "W76"
       },
       "team2": {
-        "name_ar": "الفائز من مباراة 78",
-        "name_en": "Winner of match 78",
+        "name_ar": "Norway",
+        "name_en": "Norway",
+        "group": "",
+        "position": "",
         "slot": "W78",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W78"
       },
       "source_slot1": "W76",
       "source_slot2": "W78",
