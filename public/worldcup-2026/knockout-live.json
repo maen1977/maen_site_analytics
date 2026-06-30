@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-knockout-extra-time-penalties-sort-v2",
-  "last_updated_at": "2026-06-30T14:15:18+03:00",
+  "last_updated_at": "2026-06-30T14:23:08+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W74",
       "W77",
       "W78",
       "W79",
@@ -162,18 +161,27 @@
           "venue_ar": "Boston Stadium / Gillette Stadium",
           "city_ar": "",
           "status": {
-            "key": "scheduled",
-            "label_ar": "لم تبدأ"
+            "key": "finished_on_penalties",
+            "label_ar": "انتهت بركلات الترجيح"
           },
-          "phase": "scheduled",
-          "score1": null,
-          "score2": null,
-          "score_ft": null,
-          "score_et": null,
-          "penalty1": null,
-          "penalty2": null,
-          "score_penalties": null,
-          "winner_side": null,
+          "phase": "finished_on_penalties",
+          "score1": 1,
+          "score2": 1,
+          "score_ft": [
+            1,
+            1
+          ],
+          "score_et": [
+            1,
+            1
+          ],
+          "penalty1": 3,
+          "penalty2": 4,
+          "score_penalties": [
+            3,
+            4
+          ],
+          "winner_side": 2,
           "team1": {
             "name_ar": "Germany",
             "name_en": "Germany",
@@ -896,10 +904,12 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 74",
-            "name_en": "Winner of match 74",
+            "name_ar": "Bosnia & Herzegovina",
+            "name_en": "Bosnia & Herzegovina",
+            "group": "",
+            "position": "",
             "slot": "W74",
-            "unresolved": true
+            "unresolved": false
           },
           "team2": {
             "name_ar": "الفائز من مباراة 77",
@@ -1662,18 +1672,27 @@
       "venue_ar": "Boston Stadium / Gillette Stadium",
       "city_ar": "",
       "status": {
-        "key": "scheduled",
-        "label_ar": "لم تبدأ"
+        "key": "finished_on_penalties",
+        "label_ar": "انتهت بركلات الترجيح"
       },
-      "phase": "scheduled",
-      "score1": null,
-      "score2": null,
-      "score_ft": null,
-      "score_et": null,
-      "penalty1": null,
-      "penalty2": null,
-      "score_penalties": null,
-      "winner_side": null,
+      "phase": "finished_on_penalties",
+      "score1": 1,
+      "score2": 1,
+      "score_ft": [
+        1,
+        1
+      ],
+      "score_et": [
+        1,
+        1
+      ],
+      "penalty1": 3,
+      "penalty2": 4,
+      "score_penalties": [
+        3,
+        4
+      ],
+      "winner_side": 2,
       "team1": {
         "name_ar": "Germany",
         "name_en": "Germany",
@@ -2389,10 +2408,12 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 74",
-        "name_en": "Winner of match 74",
+        "name_ar": "Bosnia & Herzegovina",
+        "name_en": "Bosnia & Herzegovina",
+        "group": "",
+        "position": "",
         "slot": "W74",
-        "unresolved": true
+        "unresolved": false
       },
       "team2": {
         "name_ar": "الفائز من مباراة 77",
