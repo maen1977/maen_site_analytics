@@ -5769,5 +5769,714 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   try { new MutationObserver(schedule).observe(document.body, { childList:true, subtree:true }); } catch(e) {}
 })();
 </script>
+
+<!-- DESKTOP_TOP_TABS_LIGHT_UI_2026_06_30: desktop-only visual navigation redesign; content and data logic unchanged -->
+<style id="desktop-top-tabs-light-ui-fix">
+@media (min-width: 901px) {
+  html, body {
+    background: #f5f8fc !important;
+  }
+
+  /* Turn the old left sidebar into a clean horizontal tab bar on desktop only. */
+  .dashboard-app {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 0 46px !important;
+    display: block !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+    direction: rtl !important;
+    background:
+      radial-gradient(circle at 12% -10%, rgba(37,99,235,.10), transparent 34%),
+      radial-gradient(circle at 92% 0%, rgba(255,210,63,.18), transparent 28%),
+      #f5f8fc !important;
+  }
+
+  .side-nav {
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9980 !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    display: grid !important;
+    grid-template-columns: minmax(220px, auto) minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 18px !important;
+    padding: 12px 28px 10px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(15, 35, 70, .10) !important;
+    border-radius: 0 !important;
+    background: rgba(255,255,255,.96) !important;
+    color: #0f1f3d !important;
+    box-shadow: 0 12px 34px rgba(15, 35, 70, .08) !important;
+    backdrop-filter: blur(16px) !important;
+    direction: rtl !important;
+    text-align: right !important;
+  }
+
+  .side-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 11px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .side-logo {
+    width: 66px !important;
+    height: 48px !important;
+    border-radius: 16px !important;
+    padding: 4px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(15, 35, 70, .10) !important;
+    box-shadow: 0 8px 22px rgba(15, 35, 70, .09) !important;
+  }
+
+  .side-logo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .side-brand-text strong {
+    color: #0f1f3d !important;
+    font-size: 17px !important;
+    line-height: 1.25 !important;
+    font-weight: 1000 !important;
+  }
+
+  .side-brand-text span {
+    color: #64748b !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    max-width: 260px !important;
+  }
+
+  .side-menu {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 7px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 6px 0 8px !important;
+    margin: 0 !important;
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+    direction: rtl !important;
+  }
+
+  .side-menu::-webkit-scrollbar { height: 5px !important; }
+  .side-menu::-webkit-scrollbar-thumb { background: rgba(15, 35, 70, .20) !important; border-radius: 999px !important; }
+
+  .side-menu-btn {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: auto !important;
+    min-height: 42px !important;
+    border: 1px solid transparent !important;
+    border-radius: 999px !important;
+    background: transparent !important;
+    color: #172033 !important;
+    box-shadow: none !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    font-weight: 1000 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    padding: 11px 13px !important;
+    cursor: pointer !important;
+    transition: background .18s ease, color .18s ease, box-shadow .18s ease, transform .18s ease, border-color .18s ease !important;
+  }
+
+  .side-menu-btn:hover {
+    transform: translateY(-1px) !important;
+    background: rgba(37, 99, 235, .08) !important;
+    border-color: rgba(37, 99, 235, .12) !important;
+  }
+
+  .side-menu-btn.active {
+    background: #2563eb !important;
+    color: #ffffff !important;
+    border-color: #2563eb !important;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, .22) !important;
+  }
+
+  .side-menu-btn[data-nav-target="home"]::before { content: "⌂"; }
+  .side-menu-btn[data-nav-target="devices"]::before { content: "▣"; }
+  .side-menu-btn[data-nav-target="softwares"]::before { content: "◌"; }
+  .side-menu-btn[data-nav-target="maintenance"]::before { content: "⚒"; }
+  .side-menu-btn[data-nav-target="works"]::before { content: "▤"; }
+  .side-menu-btn[data-nav-target="receiverSoftware"]::before { content: "⚙"; }
+  .side-menu-btn[data-nav-target="frequencies"]::before { content: "◉"; }
+  .side-menu-btn[data-nav-target="worldcup2026"]::before { content: "🏆"; }
+  .side-menu-btn::before {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-inline-start: 6px !important;
+    font-size: 15px !important;
+    line-height: 1 !important;
+  }
+
+  .dashboard-app > .page {
+    grid-column: auto !important;
+    width: min(1280px, calc(100% - 42px)) !important;
+    max-width: 1280px !important;
+    min-height: auto !important;
+    margin: 22px auto 0 !important;
+    padding: 0 !important;
+    direction: rtl !important;
+    text-align: right !important;
+    border-radius: 28px !important;
+    overflow: visible !important;
+  }
+
+  .dashboard-app > .page.hero {
+    background: transparent !important;
+    isolation: isolate !important;
+  }
+
+  .dashboard-app > .page:not(.active) {
+    display: none !important;
+  }
+
+  /* Remove the heavy black visual blocks from the desktop home header only. */
+  #home .shape-black,
+  #home .shape-yellow,
+  #home .dots {
+    display: none !important;
+  }
+
+  #home::before,
+  #home::after {
+    opacity: .08 !important;
+  }
+
+  #home > header {
+    display: none !important;
+  }
+
+  .desktop-section-brand {
+    display: grid !important;
+    gap: 8px !important;
+    width: 100% !important;
+    max-width: 1280px !important;
+    margin: 0 auto 18px !important;
+    padding: 28px 34px !important;
+    border-radius: 28px !important;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.98), rgba(234,244,255,.94)),
+      radial-gradient(circle at 12% 15%, rgba(37,99,235,.12), transparent 34%) !important;
+    color: #0f1f3d !important;
+    text-align: center !important;
+    box-shadow: 0 18px 42px rgba(15, 35, 70, .09) !important;
+    border: 1px solid rgba(37,99,235,.11) !important;
+  }
+
+  .desktop-section-brand h2 {
+    color: #2563eb !important;
+    font-size: clamp(28px, 3vw, 46px) !important;
+    line-height: 1.2 !important;
+    font-weight: 1000 !important;
+  }
+
+  .desktop-section-brand p {
+    color: #334155 !important;
+    font-size: clamp(15px, 1.25vw, 21px) !important;
+    font-weight: 900 !important;
+  }
+
+  #home .hero-content {
+    max-width: 1280px !important;
+    padding: 20px 0 64px !important;
+  }
+
+  #home .badge {
+    background: rgba(255,255,255,.92) !important;
+    color: #172033 !important;
+    border: 1px solid rgba(37,99,235,.11) !important;
+    box-shadow: 0 10px 26px rgba(15, 35, 70, .07) !important;
+  }
+
+  #home .option-card,
+  .device-card,
+  .software-card,
+  .maintenance-hero-card,
+  .maintenance-areas-card,
+  .work-card,
+  .contact-card,
+  .frequency-card,
+  .software-direct-card {
+    box-shadow: 0 16px 38px rgba(15, 35, 70, .08) !important;
+    border-color: rgba(15, 35, 70, .09) !important;
+  }
+
+  /* Keep cart and language as clean top actions, not beside WhatsApp/call. */
+  .language-switcher {
+    position: fixed !important;
+    top: 16px !important;
+    left: 24px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 10020 !important;
+    background: rgba(255,255,255,.96) !important;
+    border: 1px solid rgba(15, 35, 70, .10) !important;
+    box-shadow: 0 10px 24px rgba(15, 35, 70, .10) !important;
+  }
+
+  .language-switcher button {
+    color: #0f1f3d !important;
+  }
+
+  .language-switcher button.active {
+    background: #2563eb !important;
+    color: #ffffff !important;
+  }
+
+  .store-cart-float,
+  .store-cart-float.desktop-cart-outside-sidebar,
+  .store-cart-float.side-cart-inline {
+    position: fixed !important;
+    top: 16px !important;
+    left: 176px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 10019 !important;
+    transform: none !important;
+    min-height: 42px !important;
+    padding: 10px 14px !important;
+    border-radius: 999px !important;
+    background: #ffd23f !important;
+    color: #111827 !important;
+    box-shadow: 0 10px 24px rgba(15, 35, 70, .12) !important;
+    border: 1px solid rgba(15, 35, 70, .08) !important;
+    gap: 8px !important;
+    font-size: 14px !important;
+  }
+
+  .store-cart-float span,
+  .store-cart-float.desktop-cart-outside-sidebar span,
+  .store-cart-float.side-cart-inline span {
+    background: #111827 !important;
+    color: #ffd23f !important;
+    min-width: 22px !important;
+    height: 22px !important;
+    font-size: 11px !important;
+  }
+
+  .pro-floating-actions {
+    right: 18px !important;
+    bottom: 18px !important;
+  }
+
+  .pro-back-top {
+    left: 18px !important;
+    bottom: 18px !important;
+  }
+
+  body.lang-en .side-nav,
+  body.lang-en .side-menu,
+  body.lang-en .dashboard-app > .page {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  body.lang-en .side-menu {
+    justify-content: flex-start !important;
+  }
+
+  body.lang-en .side-menu-btn::before {
+    margin-inline-start: 0 !important;
+    margin-inline-end: 6px !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1180px) {
+  .side-nav {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding-inline: 18px !important;
+  }
+  .side-brand {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .side-menu {
+    justify-content: flex-start !important;
+  }
+  .store-cart-float,
+  .store-cart-float.desktop-cart-outside-sidebar,
+  .store-cart-float.side-cart-inline {
+    top: 78px !important;
+    left: 18px !important;
+  }
+}
+</style>
+
+
+<!-- MAEN_DESKTOP_FINAL_SAFE_TOP_UI_2026_06_30: desktop-only final header/tabs positioning; section IDs and onclick handlers are unchanged -->
+<style id="maen-desktop-final-safe-top-ui">
+@media (min-width: 901px) {
+  :root {
+    --maen-blue: #0b3b82;
+    --maen-blue-2: #155bd6;
+    --maen-green: #0b7a3b;
+    --maen-red: #d71920;
+    --maen-ink: #0f1f3d;
+    --maen-soft: #f6f9fd;
+  }
+
+  html, body {
+    background: var(--maen-soft) !important;
+  }
+
+  .dashboard-app {
+    background:
+      linear-gradient(180deg, #ffffff 0, #f7fbff 34%, #f6f9fd 100%) !important;
+  }
+
+  /* Main fixed-feel desktop header: brand first, tabs directly under it. */
+  .side-nav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9980 !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+    padding: 56px 24px 12px !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(15, 35, 70, .10) !important;
+    border-radius: 0 !important;
+    background:
+      linear-gradient(135deg, rgba(255,255,255,.98), rgba(244,248,255,.96)) !important;
+    color: var(--maen-ink) !important;
+    box-shadow: 0 16px 40px rgba(15, 35, 70, .10) !important;
+    backdrop-filter: blur(18px) !important;
+    direction: rtl !important;
+    overflow: visible !important;
+  }
+
+  /* Jordan flag accent behind the top brand area, without changing content. */
+  .side-nav::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 138px;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      linear-gradient(125deg, rgba(0,0,0,.08) 0 13%, transparent 13% 100%),
+      linear-gradient(153deg, rgba(215,25,32,.22) 0 13%, transparent 13% 100%),
+      linear-gradient(180deg, rgba(0,0,0,.10) 0 30%, rgba(255,255,255,.0) 30% 44%, rgba(11,122,59,.16) 44% 78%, rgba(255,255,255,.0) 78% 100%);
+    opacity: .88;
+  }
+
+  .side-nav::after {
+    content: "✦";
+    position: absolute;
+    top: 72px;
+    right: 42px;
+    color: rgba(215,25,32,.72);
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  .side-brand {
+    width: min(1180px, calc(100vw - 56px)) !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns: 112px minmax(260px, 1fr) minmax(260px, 1fr) !important;
+    grid-template-areas:
+      "logo title title"
+      "logo location service" !important;
+    align-items: center !important;
+    gap: 12px 16px !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    text-align: center !important;
+  }
+
+  .side-logo {
+    grid-area: logo !important;
+    width: 104px !important;
+    height: 88px !important;
+    border-radius: 24px !important;
+    padding: 8px !important;
+    background: rgba(255,255,255,.96) !important;
+    border: 1px solid rgba(15, 35, 70, .10) !important;
+    box-shadow: 0 14px 34px rgba(15, 35, 70, .12) !important;
+    justify-self: center !important;
+  }
+
+  .side-logo img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+  }
+
+  .side-brand-text {
+    display: contents !important;
+  }
+
+  .side-brand-text strong {
+    grid-area: title !important;
+    display: block !important;
+    color: var(--maen-blue) !important;
+    font-size: clamp(34px, 4vw, 62px) !important;
+    line-height: 1.1 !important;
+    letter-spacing: -.5px !important;
+    font-weight: 1000 !important;
+    text-shadow: 0 3px 16px rgba(11,59,130,.10) !important;
+    white-space: nowrap !important;
+  }
+
+  .side-brand-text span {
+    grid-area: service !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 54px !important;
+    max-width: none !important;
+    padding: 12px 18px !important;
+    border-radius: 18px !important;
+    background: linear-gradient(135deg, var(--maen-blue), #0d2f66) !important;
+    color: #ffffff !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    font-weight: 1000 !important;
+    box-shadow: 0 12px 28px rgba(11,59,130,.18) !important;
+    text-align: center !important;
+  }
+
+  .side-brand::after {
+    content: "نخدمكم بالفحيص وعمان الغربية والسلط والسرو";
+    grid-area: location !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 54px !important;
+    padding: 12px 18px !important;
+    border-radius: 18px !important;
+    background: rgba(255,255,255,.94) !important;
+    color: var(--maen-ink) !important;
+    border: 1px solid rgba(15, 35, 70, .10) !important;
+    box-shadow: 0 12px 28px rgba(15,35,70,.07) !important;
+    font-size: 15px !important;
+    line-height: 1.7 !important;
+    font-weight: 1000 !important;
+    text-align: center !important;
+  }
+
+  .side-menu {
+    width: min(1180px, calc(100vw - 56px)) !important;
+    margin: 2px auto 0 !important;
+    padding: 8px !important;
+    display: flex !important;
+    align-items: stretch !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    border: 1px solid rgba(15,35,70,.10) !important;
+    border-radius: 24px !important;
+    background: rgba(255,255,255,.92) !important;
+    box-shadow: 0 14px 34px rgba(15,35,70,.07) !important;
+    direction: rtl !important;
+  }
+
+  .side-menu-btn {
+    flex: 0 0 auto !important;
+    min-height: 54px !important;
+    padding: 11px 14px !important;
+    border-radius: 18px !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+    color: var(--maen-ink) !important;
+    font-size: 14px !important;
+    font-weight: 1000 !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+  }
+
+  .side-menu-btn:hover {
+    background: rgba(21,91,214,.08) !important;
+    border-color: rgba(21,91,214,.14) !important;
+  }
+
+  .side-menu-btn.active {
+    background: linear-gradient(135deg, var(--maen-blue-2), var(--maen-blue)) !important;
+    color: #ffffff !important;
+    border-color: transparent !important;
+    box-shadow: 0 12px 25px rgba(21,91,214,.22) !important;
+  }
+
+  /* Do not show repeated brand strips inside each content page on desktop. */
+  .desktop-section-brand {
+    display: none !important;
+  }
+
+  .dashboard-app > .page {
+    width: min(1280px, calc(100% - 42px)) !important;
+    max-width: 1280px !important;
+    margin: 22px auto 0 !important;
+    padding: 0 !important;
+    border-radius: 28px !important;
+  }
+
+  #home > header {
+    display: none !important;
+  }
+
+  #home .shape-black,
+  #home .shape-yellow,
+  #home .dots {
+    display: none !important;
+  }
+
+  /* Language stays at the top-left corner. */
+  .language-switcher {
+    position: fixed !important;
+    top: 14px !important;
+    left: 18px !important;
+    right: auto !important;
+    bottom: auto !important;
+    z-index: 10040 !important;
+    display: inline-flex !important;
+    gap: 6px !important;
+    padding: 6px !important;
+    border-radius: 16px !important;
+    background: rgba(255,255,255,.98) !important;
+    border: 1px solid rgba(15,35,70,.12) !important;
+    box-shadow: 0 10px 24px rgba(15,35,70,.10) !important;
+  }
+
+  .language-switcher button {
+    min-height: 36px !important;
+    border-radius: 12px !important;
+    color: var(--maen-ink) !important;
+    font-weight: 1000 !important;
+  }
+
+  .language-switcher button.active {
+    background: var(--maen-blue) !important;
+    color: #ffffff !important;
+  }
+
+  /* Floating buttons: WhatsApp/contact stay bottom-right; cart moves bottom-left. */
+  .pro-floating-actions {
+    position: fixed !important;
+    right: 18px !important;
+    left: auto !important;
+    bottom: 18px !important;
+    z-index: 10010 !important;
+  }
+
+  .store-cart-float,
+  .store-cart-float.desktop-cart-outside-sidebar,
+  .store-cart-float.side-cart-inline {
+    position: fixed !important;
+    top: auto !important;
+    right: auto !important;
+    left: 18px !important;
+    bottom: 18px !important;
+    z-index: 10010 !important;
+    transform: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    min-height: 52px !important;
+    padding: 12px 17px !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, #ffd23f, #f6b800) !important;
+    color: #111827 !important;
+    border: 1px solid rgba(15,35,70,.12) !important;
+    box-shadow: 0 14px 34px rgba(15,35,70,.18) !important;
+    font-size: 14px !important;
+    font-weight: 1000 !important;
+    white-space: nowrap !important;
+  }
+
+  .store-cart-float .hq-svg-icon,
+  .store-cart-float.desktop-cart-outside-sidebar .hq-svg-icon,
+  .store-cart-float.side-cart-inline .hq-svg-icon {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .store-cart-float span,
+  .store-cart-float.desktop-cart-outside-sidebar span,
+  .store-cart-float.side-cart-inline span {
+    position: static !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    display: grid !important;
+    place-items: center !important;
+    border-radius: 999px !important;
+    background: var(--maen-blue) !important;
+    color: #ffffff !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    font-size: 12px !important;
+    font-weight: 1000 !important;
+  }
+
+  .pro-back-top {
+    display: none !important;
+  }
+
+  body.lang-en .side-nav,
+  body.lang-en .side-menu,
+  body.lang-en .dashboard-app > .page {
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  body.lang-en .side-brand {
+    direction: ltr !important;
+  }
+
+  body.lang-en .side-brand::after {
+    content: "Serving Fuheis, West Amman, Salt and Al-Saru";
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1120px) {
+  .side-brand {
+    grid-template-columns: 96px 1fr !important;
+    grid-template-areas:
+      "logo title"
+      "location service" !important;
+  }
+
+  .side-logo {
+    width: 90px !important;
+    height: 74px !important;
+  }
+
+  .side-brand-text strong {
+    font-size: clamp(28px, 4vw, 42px) !important;
+  }
+
+  .side-brand-text span,
+  .side-brand::after {
+    font-size: 13px !important;
+    padding: 10px 12px !important;
+  }
+}
+</style>
+
 </body>
 </html>
