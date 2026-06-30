@@ -5613,5 +5613,122 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   window.addEventListener('load', bindCatalogButton);
 })();
 </script>
+
+<!-- DESKTOP_CART_NEXT_TO_WORLDCUP_2026_06_30: move cart beside World Cup menu item on desktop only -->
+<style id="desktop-cart-next-to-worldcup-fix">
+@media (min-width: 981px) {
+  .side-menu-cart-row {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+    width: 100% !important;
+    direction: rtl !important;
+  }
+  .side-menu-cart-row > .side-menu-btn[data-nav-target="worldcup2026"] {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  .store-cart-float.side-cart-inline {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    z-index: 1 !important;
+    flex: 0 0 94px !important;
+    width: 94px !important;
+    min-height: 46px !important;
+    padding: 0 10px !important;
+    border-radius: 16px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    background: #ffd23f !important;
+    color: #111111 !important;
+    border: 1px solid #ffd23f !important;
+    box-shadow: none !important;
+    font-size: 13px !important;
+    font-weight: 1000 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+  .store-cart-float.side-cart-inline:hover {
+    transform: translateY(-1px) !important;
+    background: #f5b700 !important;
+  }
+  .store-cart-float.side-cart-inline .hq-svg-icon {
+    width: 18px !important;
+    height: 18px !important;
+    flex: 0 0 auto !important;
+  }
+  .store-cart-float.side-cart-inline span {
+    position: absolute !important;
+    top: -7px !important;
+    left: -6px !important;
+    min-width: 22px !important;
+    height: 22px !important;
+    border: 2px solid rgba(17,17,17,.95) !important;
+    box-shadow: 0 8px 16px rgba(0,0,0,.22) !important;
+  }
+}
+</style>
+<script id="desktop-cart-next-to-worldcup-script">
+(function(){
+  var mq = window.matchMedia ? window.matchMedia('(min-width: 981px)') : null;
+  var pending = false;
+  function isDesktop(){ return mq ? mq.matches : window.innerWidth >= 981; }
+  function moveCart(){
+    var cart = document.querySelector('.store-cart-float');
+    var menu = document.querySelector('.side-menu');
+    var wcBtn = menu ? menu.querySelector('[data-nav-target="worldcup2026"]') : document.querySelector('[data-nav-target="worldcup2026"]');
+    if(!cart || !menu || !wcBtn) return;
+    var row = document.querySelector('.side-menu-cart-row');
+    if(isDesktop()){
+      if(!row){
+        row = document.createElement('div');
+        row.className = 'side-menu-cart-row';
+        row.setAttribute('data-desktop-cart-row','1');
+        menu.insertBefore(row, wcBtn);
+      }
+      if(cart.parentNode !== row || row.firstElementChild !== cart){
+        row.insertBefore(cart, row.firstChild);
+      }
+      if(wcBtn.parentNode !== row){
+        row.appendChild(wcBtn);
+      }
+      cart.classList.add('side-cart-inline');
+      cart.setAttribute('aria-label', (localStorage.getItem('siteLang') === 'en') ? 'Cart' : 'السلة');
+      return;
+    }
+    cart.classList.remove('side-cart-inline');
+    if(row){
+      var rowWorldCup = row.querySelector('[data-nav-target="worldcup2026"]');
+      if(rowWorldCup && rowWorldCup.parentNode === row){
+        menu.appendChild(rowWorldCup);
+      }
+      if(cart.parentNode === row){
+        document.body.appendChild(cart);
+      }
+      if(row.parentNode){ row.parentNode.removeChild(row); }
+    }
+  }
+  function schedule(){
+    if(pending) return;
+    pending = true;
+    requestAnimationFrame(function(){ pending = false; moveCart(); });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule);
+  else schedule();
+  window.addEventListener('load', function(){ schedule(); setTimeout(schedule, 120); });
+  window.addEventListener('resize', schedule);
+  if(mq && mq.addEventListener) mq.addEventListener('change', schedule);
+  else if(mq && mq.addListener) mq.addListener(schedule);
+  try {
+    new MutationObserver(schedule).observe(document.body, { childList:true });
+  } catch(e) {}
+})();
+</script>
+
 </body>
 </html>
