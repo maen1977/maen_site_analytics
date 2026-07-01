@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-02T01:00:19+03:00",
+  "checked_at": "2026-07-02T01:15:19+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -23,10 +23,31 @@
   ],
   "updates": [
     {
-      "file": "knockout-live.json",
+      "file": "matches.json",
+      "match": "M080",
+      "event_id": "760495",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "england",
+        "democraticrepublicofcongo"
+      ],
+      "before_score": [
+        2,
+        1
+      ],
+      "after_score": [
+        2,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "matches.json",
       "match": "M082",
       "event_id": "760493",
-      "reason": "team-match",
+      "reason": "explicit-id",
       "orientation": "same",
       "teams": [
         "belgium",
@@ -41,7 +62,49 @@
         2
       ],
       "event_status": "live",
-      "event_detail": "90'+8'"
+      "event_detail": "100'"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M080",
+      "event_id": "760495",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "england",
+        "democraticrepublicofcongo"
+      ],
+      "before_score": [
+        2,
+        1
+      ],
+      "after_score": [
+        2,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M082",
+      "event_id": "760493",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "belgium",
+        "senegal"
+      ],
+      "before_score": [
+        2,
+        2
+      ],
+      "after_score": [
+        2,
+        2
+      ],
+      "event_status": "live",
+      "event_detail": "100'"
     },
     {
       "file": "knockout-live.json",
@@ -62,11 +125,32 @@
         2
       ],
       "event_status": "live",
-      "event_detail": "90'+8'"
+      "event_detail": "100'"
+    },
+    {
+      "file": "knockout-live.json",
+      "match": "M082",
+      "event_id": "760493",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "belgium",
+        "senegal"
+      ],
+      "before_score": [
+        2,
+        2
+      ],
+      "after_score": [
+        2,
+        2
+      ],
+      "event_status": "live",
+      "event_detail": "100'"
     }
   ],
   "errors": [],
   "espn_events": 3,
-  "updated_matches": 2,
+  "updated_matches": 6,
   "ok": true
 }
