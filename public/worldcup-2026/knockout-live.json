@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-02T02:15:21+03:00",
+  "last_updated_at": "2026-07-02T02:18:15+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -12,6 +12,7 @@
       "W83",
       "W84",
       "W81",
+      "W82",
       "W86",
       "W88",
       "W85",
@@ -131,8 +132,8 @@
       "match": "M094",
       "side": "team2",
       "source_slot": "W82",
-      "resolved_team_ar": "Belgium",
-      "unresolved": false,
+      "resolved_team_ar": "الفائز من مباراة 82",
+      "unresolved": true,
       "ok": true
     },
     {
@@ -736,10 +737,7 @@
             3,
             2
           ],
-          "score_et": [
-            3,
-            2
-          ],
+          "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
@@ -769,7 +767,7 @@
             "status": "finished",
             "phase": "finished",
             "status_detail": "AET",
-            "checked_at": "2026-07-02T02:15:21+03:00",
+            "checked_at": "2026-07-02T02:18:15+03:00",
             "current": [
               3,
               2
@@ -789,7 +787,7 @@
           "score_source": "espn-live-score-repair",
           "live_score_source": "espn-live-score-repair",
           "espn_event_id": "760493",
-          "live_checked_at": "2026-07-02T02:15:21+03:00",
+          "live_checked_at": "2026-07-02T02:18:15+03:00",
           "live_status_detail": "AET",
           "live_phase": "finished",
           "status_ar": "انتهت",
@@ -1406,13 +1404,10 @@
             "unresolved": true
           },
           "team2": {
-            "name_ar": "Belgium",
-            "name_en": "Belgium",
-            "group": "",
-            "position": "",
+            "name_ar": "الفائز من مباراة 82",
+            "name_en": "Winner of match 82",
             "slot": "W82",
-            "unresolved": false,
-            "resolved_from": "W82"
+            "unresolved": true
           },
           "source_slot1": "W81",
           "source_slot2": "W82",
@@ -2314,10 +2309,7 @@
         3,
         2
       ],
-      "score_et": [
-        3,
-        2
-      ],
+      "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
@@ -2347,7 +2339,7 @@
         "status": "finished",
         "phase": "finished",
         "status_detail": "AET",
-        "checked_at": "2026-07-02T02:15:21+03:00",
+        "checked_at": "2026-07-02T02:18:15+03:00",
         "current": [
           3,
           2
@@ -2367,7 +2359,7 @@
       "score_source": "espn-live-score-repair",
       "live_score_source": "espn-live-score-repair",
       "espn_event_id": "760493",
-      "live_checked_at": "2026-07-02T02:15:21+03:00",
+      "live_checked_at": "2026-07-02T02:18:15+03:00",
       "live_status_detail": "AET",
       "live_phase": "finished",
       "status_ar": "انتهت",
@@ -2977,13 +2969,10 @@
         "unresolved": true
       },
       "team2": {
-        "name_ar": "Belgium",
-        "name_en": "Belgium",
-        "group": "",
-        "position": "",
+        "name_ar": "الفائز من مباراة 82",
+        "name_en": "Winner of match 82",
         "slot": "W82",
-        "unresolved": false,
-        "resolved_from": "W82"
+        "unresolved": true
       },
       "source_slot1": "W81",
       "source_slot2": "W82",
