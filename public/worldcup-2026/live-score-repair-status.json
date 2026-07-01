@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-02T01:45:21+03:00",
+  "checked_at": "2026-07-02T02:00:19+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -33,15 +33,15 @@
         "senegal"
       ],
       "before_score": [
-        2,
+        3,
         2
       ],
       "after_score": [
-        2,
+        3,
         2
       ],
-      "event_status": "live",
-      "event_detail": "112'"
+      "event_status": "finished",
+      "event_detail": "AET"
     },
     {
       "file": "knockout-live.json",
@@ -54,15 +54,15 @@
         "senegal"
       ],
       "before_score": [
-        2,
+        3,
         2
       ],
       "after_score": [
-        2,
+        3,
         2
       ],
-      "event_status": "live",
-      "event_detail": "112'"
+      "event_status": "finished",
+      "event_detail": "AET"
     }
   ],
   "errors": [],
