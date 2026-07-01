@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-01T20:45:21+03:00",
-  "last_updated": "2026-07-01T20:45:21+03:00",
-  "next_expected_check_at": "2026-07-01T21:00:22+03:00",
+  "last_checked_at": "2026-07-01T21:00:20+03:00",
+  "last_updated": "2026-07-01T21:00:20+03:00",
+  "next_expected_check_at": "2026-07-01T21:15:21+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28536691811",
-    "run_number": "1585",
+    "run_id": "28537516559",
+    "run_number": "1586",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "0e121442dc02640c61dd132bf18318cc10bc99b6",
+    "sha": "67fa79b67e81d5b11b47518726e62831feabc00e",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -458,25 +458,15 @@
       "deploy-marker.txt",
       "update-errors.json"
     ],
-    "errors": [
-      {
-        "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
-        "error": "fetch failed"
-      }
-    ]
+    "errors": []
   },
-  "cache_buster": "a038162a2167",
+  "cache_buster": "ca647410ce7d",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
-  "errors": [
-    {
-      "url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
-      "error": "fetch failed"
-    }
-  ],
+  "errors": [],
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-01T20:45:23+03:00",
+    "corrected_at": "2026-07-01T21:00:21+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
