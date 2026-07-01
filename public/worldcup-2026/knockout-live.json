@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-01T05:00:15+03:00",
+  "last_updated_at": "2026-07-01T05:15:17+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -569,7 +569,7 @@
             "status": "finished",
             "phase": "finished",
             "status_detail": "FT",
-            "checked_at": "2026-07-01T05:00:15+03:00",
+            "checked_at": "2026-07-01T05:15:17+03:00",
             "current": [
               1,
               2
@@ -589,7 +589,7 @@
           "score_source": "espn-live-score-repair",
           "live_score_source": "espn-live-score-repair",
           "espn_event_id": "760490",
-          "live_checked_at": "2026-07-01T05:00:15+03:00",
+          "live_checked_at": "2026-07-01T05:15:17+03:00",
           "live_status_detail": "FT",
           "live_phase": "finished",
           "status_ar": "انتهت",
@@ -649,7 +649,7 @@
             "status": "finished",
             "phase": "finished",
             "status_detail": "FT",
-            "checked_at": "2026-07-01T05:00:15+03:00",
+            "checked_at": "2026-07-01T05:15:17+03:00",
             "current": [
               3,
               0
@@ -669,7 +669,7 @@
           "score_source": "espn-live-score-repair",
           "live_score_source": "espn-live-score-repair",
           "espn_event_id": "760492",
-          "live_checked_at": "2026-07-01T05:00:15+03:00",
+          "live_checked_at": "2026-07-01T05:15:17+03:00",
           "live_status_detail": "FT",
           "live_phase": "finished",
           "status_ar": "انتهت",
@@ -691,13 +691,10 @@
           "kickoff_utc": "2026-07-01T01:00:00.000Z",
           "venue_ar": "Mexico City Stadium / Estadio Azteca",
           "city_ar": "",
-          "status": {
-            "key": "live",
-            "label_ar": "مباشر"
-          },
+          "status": "live",
           "phase": "live",
-          "score1": null,
-          "score2": null,
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -722,7 +719,36 @@
           },
           "source_slot1": "1A",
           "source_slot2": "3C/E/F/H/I",
-          "channels": []
+          "channels": [],
+          "score": {
+            "source": "espn-live-score-repair",
+            "event_id": "760491",
+            "status": "live",
+            "phase": "live",
+            "status_detail": "14'",
+            "checked_at": "2026-07-01T05:15:17+03:00",
+            "current": [
+              0,
+              0
+            ],
+            "live": [
+              0,
+              0
+            ],
+            "clock": "14'",
+            "period": 1
+          },
+          "team1_score": 0,
+          "team2_score": 0,
+          "home_score": 0,
+          "away_score": 0,
+          "score_source": "espn-live-score-repair",
+          "live_score_source": "espn-live-score-repair",
+          "espn_event_id": "760491",
+          "live_checked_at": "2026-07-01T05:15:17+03:00",
+          "live_status_detail": "14'",
+          "live_phase": "live",
+          "status_ar": "مباشر"
         },
         {
           "id": "M080",
@@ -2156,7 +2182,7 @@
         "status": "finished",
         "phase": "finished",
         "status_detail": "FT",
-        "checked_at": "2026-07-01T05:00:15+03:00",
+        "checked_at": "2026-07-01T05:15:17+03:00",
         "current": [
           1,
           2
@@ -2176,7 +2202,7 @@
       "score_source": "espn-live-score-repair",
       "live_score_source": "espn-live-score-repair",
       "espn_event_id": "760490",
-      "live_checked_at": "2026-07-01T05:00:15+03:00",
+      "live_checked_at": "2026-07-01T05:15:17+03:00",
       "live_status_detail": "FT",
       "live_phase": "finished",
       "status_ar": "انتهت",
@@ -2236,7 +2262,7 @@
         "status": "finished",
         "phase": "finished",
         "status_detail": "FT",
-        "checked_at": "2026-07-01T05:00:15+03:00",
+        "checked_at": "2026-07-01T05:15:17+03:00",
         "current": [
           3,
           0
@@ -2256,7 +2282,7 @@
       "score_source": "espn-live-score-repair",
       "live_score_source": "espn-live-score-repair",
       "espn_event_id": "760492",
-      "live_checked_at": "2026-07-01T05:00:15+03:00",
+      "live_checked_at": "2026-07-01T05:15:17+03:00",
       "live_status_detail": "FT",
       "live_phase": "finished",
       "status_ar": "انتهت",
@@ -2278,13 +2304,10 @@
       "kickoff_utc": "2026-07-01T01:00:00.000Z",
       "venue_ar": "Mexico City Stadium / Estadio Azteca",
       "city_ar": "",
-      "status": {
-        "key": "live",
-        "label_ar": "مباشر"
-      },
+      "status": "live",
       "phase": "live",
-      "score1": null,
-      "score2": null,
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
@@ -2309,7 +2332,36 @@
       },
       "source_slot1": "1A",
       "source_slot2": "3C/E/F/H/I",
-      "channels": []
+      "channels": [],
+      "score": {
+        "source": "espn-live-score-repair",
+        "event_id": "760491",
+        "status": "live",
+        "phase": "live",
+        "status_detail": "14'",
+        "checked_at": "2026-07-01T05:15:17+03:00",
+        "current": [
+          0,
+          0
+        ],
+        "live": [
+          0,
+          0
+        ],
+        "clock": "14'",
+        "period": 1
+      },
+      "team1_score": 0,
+      "team2_score": 0,
+      "home_score": 0,
+      "away_score": 0,
+      "score_source": "espn-live-score-repair",
+      "live_score_source": "espn-live-score-repair",
+      "espn_event_id": "760491",
+      "live_checked_at": "2026-07-01T05:15:17+03:00",
+      "live_status_detail": "14'",
+      "live_phase": "live",
+      "status_ar": "مباشر"
     },
     {
       "id": "M080",
