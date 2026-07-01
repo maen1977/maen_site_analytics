@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-01T04:45:15+03:00",
+  "checked_at": "2026-07-01T04:57:08+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 2
+      "updated": 0
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 2
+      "updated": 0
     },
     {
       "file": "knockout-live.json",
@@ -22,90 +22,6 @@
     }
   ],
   "updates": [
-    {
-      "file": "matches.json",
-      "match": "M078",
-      "event_id": "760490",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "cotedivoire",
-        "norway"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "matches.json",
-      "match": "M077",
-      "event_id": "760492",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "france",
-        "sweden"
-      ],
-      "before_score": [
-        3,
-        0
-      ],
-      "after_score": [
-        3,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M078",
-      "event_id": "760490",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "cotedivoire",
-        "norway"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M077",
-      "event_id": "760492",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "france",
-        "sweden"
-      ],
-      "before_score": [
-        3,
-        0
-      ],
-      "after_score": [
-        3,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
     {
       "file": "knockout-live.json",
       "match": "M078",
@@ -193,6 +109,6 @@
   ],
   "errors": [],
   "espn_events": 3,
-  "updated_matches": 8,
+  "updated_matches": 4,
   "ok": true
 }
