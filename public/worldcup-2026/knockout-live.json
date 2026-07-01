@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-01T10:30:15+03:00",
+  "last_updated_at": "2026-07-01T10:45:16+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -530,7 +530,10 @@
           "kickoff_utc": "2026-06-30T17:00:00.000Z",
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished",
+            "label_ar": "انتهت"
+          },
           "phase": "finished",
           "score1": 1,
           "score2": 2,
@@ -561,40 +564,7 @@
           },
           "source_slot1": "2E",
           "source_slot2": "2I",
-          "channels": [],
-          "score": {
-            "source": "espn-live-score-repair",
-            "event_id": "760490",
-            "status": "finished",
-            "phase": "finished",
-            "status_detail": "FT",
-            "checked_at": "2026-07-01T10:30:15+03:00",
-            "current": [
-              1,
-              2
-            ],
-            "ft": [
-              1,
-              2
-            ],
-            "clock": "90'+8'",
-            "period": 2,
-            "winner_side": 2
-          },
-          "team1_score": 1,
-          "team2_score": 2,
-          "home_score": 1,
-          "away_score": 2,
-          "score_source": "espn-live-score-repair",
-          "live_score_source": "espn-live-score-repair",
-          "espn_event_id": "760490",
-          "live_checked_at": "2026-07-01T10:30:15+03:00",
-          "live_status_detail": "FT",
-          "live_phase": "finished",
-          "status_ar": "انتهت",
-          "loser_side": 1,
-          "winner": 2,
-          "loser": 1
+          "channels": []
         },
         {
           "id": "M077",
@@ -610,7 +580,10 @@
           "kickoff_utc": "2026-06-30T21:00:00.000Z",
           "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished",
+            "label_ar": "انتهت"
+          },
           "phase": "finished",
           "score1": 3,
           "score2": 0,
@@ -641,40 +614,7 @@
           },
           "source_slot1": "1I",
           "source_slot2": "3C/D/F/G/H",
-          "channels": [],
-          "score": {
-            "source": "espn-live-score-repair",
-            "event_id": "760492",
-            "status": "finished",
-            "phase": "finished",
-            "status_detail": "FT",
-            "checked_at": "2026-07-01T10:30:15+03:00",
-            "current": [
-              3,
-              0
-            ],
-            "ft": [
-              3,
-              0
-            ],
-            "clock": "90'+4'",
-            "period": 2,
-            "winner_side": 1
-          },
-          "team1_score": 3,
-          "team2_score": 0,
-          "home_score": 3,
-          "away_score": 0,
-          "score_source": "espn-live-score-repair",
-          "live_score_source": "espn-live-score-repair",
-          "espn_event_id": "760492",
-          "live_checked_at": "2026-07-01T10:30:15+03:00",
-          "live_status_detail": "FT",
-          "live_phase": "finished",
-          "status_ar": "انتهت",
-          "loser_side": 2,
-          "winner": 1,
-          "loser": 2
+          "channels": []
         },
         {
           "id": "M079",
@@ -690,7 +630,10 @@
           "kickoff_utc": "2026-07-01T01:00:00.000Z",
           "venue_ar": "Mexico City Stadium / Estadio Azteca",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished",
+            "label_ar": "انتهت"
+          },
           "phase": "finished",
           "score1": 2,
           "score2": 0,
@@ -721,40 +664,7 @@
           },
           "source_slot1": "1A",
           "source_slot2": "3C/E/F/H/I",
-          "channels": [],
-          "score": {
-            "source": "espn-live-score-repair",
-            "event_id": "760491",
-            "status": "finished",
-            "phase": "finished",
-            "status_detail": "FT",
-            "checked_at": "2026-07-01T10:30:15+03:00",
-            "current": [
-              2,
-              0
-            ],
-            "ft": [
-              2,
-              0
-            ],
-            "clock": "90'+9'",
-            "period": 2,
-            "winner_side": 1
-          },
-          "team1_score": 2,
-          "team2_score": 0,
-          "home_score": 2,
-          "away_score": 0,
-          "score_source": "espn-live-score-repair",
-          "live_score_source": "espn-live-score-repair",
-          "espn_event_id": "760491",
-          "live_checked_at": "2026-07-01T10:30:15+03:00",
-          "live_status_detail": "FT",
-          "live_phase": "finished",
-          "status_ar": "انتهت",
-          "loser_side": 2,
-          "winner": 1,
-          "loser": 2
+          "channels": []
         },
         {
           "id": "M080",
@@ -2153,7 +2063,10 @@
       "kickoff_utc": "2026-06-30T17:00:00.000Z",
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
-      "status": "finished",
+      "status": {
+        "key": "finished",
+        "label_ar": "انتهت"
+      },
       "phase": "finished",
       "score1": 1,
       "score2": 2,
@@ -2184,40 +2097,7 @@
       },
       "source_slot1": "2E",
       "source_slot2": "2I",
-      "channels": [],
-      "score": {
-        "source": "espn-live-score-repair",
-        "event_id": "760490",
-        "status": "finished",
-        "phase": "finished",
-        "status_detail": "FT",
-        "checked_at": "2026-07-01T10:30:15+03:00",
-        "current": [
-          1,
-          2
-        ],
-        "ft": [
-          1,
-          2
-        ],
-        "clock": "90'+8'",
-        "period": 2,
-        "winner_side": 2
-      },
-      "team1_score": 1,
-      "team2_score": 2,
-      "home_score": 1,
-      "away_score": 2,
-      "score_source": "espn-live-score-repair",
-      "live_score_source": "espn-live-score-repair",
-      "espn_event_id": "760490",
-      "live_checked_at": "2026-07-01T10:30:15+03:00",
-      "live_status_detail": "FT",
-      "live_phase": "finished",
-      "status_ar": "انتهت",
-      "loser_side": 1,
-      "winner": 2,
-      "loser": 1
+      "channels": []
     },
     {
       "id": "M077",
@@ -2233,7 +2113,10 @@
       "kickoff_utc": "2026-06-30T21:00:00.000Z",
       "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
       "city_ar": "",
-      "status": "finished",
+      "status": {
+        "key": "finished",
+        "label_ar": "انتهت"
+      },
       "phase": "finished",
       "score1": 3,
       "score2": 0,
@@ -2264,40 +2147,7 @@
       },
       "source_slot1": "1I",
       "source_slot2": "3C/D/F/G/H",
-      "channels": [],
-      "score": {
-        "source": "espn-live-score-repair",
-        "event_id": "760492",
-        "status": "finished",
-        "phase": "finished",
-        "status_detail": "FT",
-        "checked_at": "2026-07-01T10:30:15+03:00",
-        "current": [
-          3,
-          0
-        ],
-        "ft": [
-          3,
-          0
-        ],
-        "clock": "90'+4'",
-        "period": 2,
-        "winner_side": 1
-      },
-      "team1_score": 3,
-      "team2_score": 0,
-      "home_score": 3,
-      "away_score": 0,
-      "score_source": "espn-live-score-repair",
-      "live_score_source": "espn-live-score-repair",
-      "espn_event_id": "760492",
-      "live_checked_at": "2026-07-01T10:30:15+03:00",
-      "live_status_detail": "FT",
-      "live_phase": "finished",
-      "status_ar": "انتهت",
-      "loser_side": 2,
-      "winner": 1,
-      "loser": 2
+      "channels": []
     },
     {
       "id": "M079",
@@ -2313,7 +2163,10 @@
       "kickoff_utc": "2026-07-01T01:00:00.000Z",
       "venue_ar": "Mexico City Stadium / Estadio Azteca",
       "city_ar": "",
-      "status": "finished",
+      "status": {
+        "key": "finished",
+        "label_ar": "انتهت"
+      },
       "phase": "finished",
       "score1": 2,
       "score2": 0,
@@ -2344,40 +2197,7 @@
       },
       "source_slot1": "1A",
       "source_slot2": "3C/E/F/H/I",
-      "channels": [],
-      "score": {
-        "source": "espn-live-score-repair",
-        "event_id": "760491",
-        "status": "finished",
-        "phase": "finished",
-        "status_detail": "FT",
-        "checked_at": "2026-07-01T10:30:15+03:00",
-        "current": [
-          2,
-          0
-        ],
-        "ft": [
-          2,
-          0
-        ],
-        "clock": "90'+9'",
-        "period": 2,
-        "winner_side": 1
-      },
-      "team1_score": 2,
-      "team2_score": 0,
-      "home_score": 2,
-      "away_score": 0,
-      "score_source": "espn-live-score-repair",
-      "live_score_source": "espn-live-score-repair",
-      "espn_event_id": "760491",
-      "live_checked_at": "2026-07-01T10:30:15+03:00",
-      "live_status_detail": "FT",
-      "live_phase": "finished",
-      "status_ar": "انتهت",
-      "loser_side": 2,
-      "winner": 1,
-      "loser": 2
+      "channels": []
     },
     {
       "id": "M080",
