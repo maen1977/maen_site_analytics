@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-01T23:00:21+03:00",
+  "last_updated_at": "2026-07-01T23:15:21+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -729,13 +729,10 @@
           "kickoff_utc": "2026-07-01T20:00:00.000Z",
           "venue_ar": "Seattle Stadium / Lumen Field",
           "city_ar": "",
-          "status": {
-            "key": "live",
-            "label_ar": "مباشر"
-          },
+          "status": "live",
           "phase": "live",
-          "score1": null,
-          "score2": null,
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -760,7 +757,36 @@
           },
           "source_slot1": "1G",
           "source_slot2": "3A/E/H/I/J",
-          "channels": []
+          "channels": [],
+          "score": {
+            "source": "espn-live-score-repair",
+            "event_id": "760493",
+            "status": "live",
+            "phase": "live",
+            "status_detail": "15'",
+            "checked_at": "2026-07-01T23:15:21+03:00",
+            "current": [
+              0,
+              0
+            ],
+            "live": [
+              0,
+              0
+            ],
+            "clock": "15'",
+            "period": 1
+          },
+          "team1_score": 0,
+          "team2_score": 0,
+          "home_score": 0,
+          "away_score": 0,
+          "score_source": "espn-live-score-repair",
+          "live_score_source": "espn-live-score-repair",
+          "espn_event_id": "760493",
+          "live_checked_at": "2026-07-01T23:15:21+03:00",
+          "live_status_detail": "15'",
+          "live_phase": "live",
+          "status_ar": "مباشر"
         },
         {
           "id": "M081",
@@ -2268,13 +2294,10 @@
       "kickoff_utc": "2026-07-01T20:00:00.000Z",
       "venue_ar": "Seattle Stadium / Lumen Field",
       "city_ar": "",
-      "status": {
-        "key": "live",
-        "label_ar": "مباشر"
-      },
+      "status": "live",
       "phase": "live",
-      "score1": null,
-      "score2": null,
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
@@ -2299,7 +2322,36 @@
       },
       "source_slot1": "1G",
       "source_slot2": "3A/E/H/I/J",
-      "channels": []
+      "channels": [],
+      "score": {
+        "source": "espn-live-score-repair",
+        "event_id": "760493",
+        "status": "live",
+        "phase": "live",
+        "status_detail": "15'",
+        "checked_at": "2026-07-01T23:15:21+03:00",
+        "current": [
+          0,
+          0
+        ],
+        "live": [
+          0,
+          0
+        ],
+        "clock": "15'",
+        "period": 1
+      },
+      "team1_score": 0,
+      "team2_score": 0,
+      "home_score": 0,
+      "away_score": 0,
+      "score_source": "espn-live-score-repair",
+      "live_score_source": "espn-live-score-repair",
+      "espn_event_id": "760493",
+      "live_checked_at": "2026-07-01T23:15:21+03:00",
+      "live_status_detail": "15'",
+      "live_phase": "live",
+      "status_ar": "مباشر"
     },
     {
       "id": "M081",
