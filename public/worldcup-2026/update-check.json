@@ -1,20 +1,20 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-01T23:15:20+03:00",
-  "last_updated": "2026-07-01T23:15:20+03:00",
-  "next_expected_check_at": "2026-07-01T23:30:20+03:00",
+  "last_checked_at": "2026-07-01T23:17:05+03:00",
+  "last_updated": "2026-07-01T23:17:05+03:00",
+  "next_expected_check_at": "2026-07-01T23:32:07+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28544981936",
-    "run_number": "1595",
+    "run_id": "28545082792",
+    "run_number": "1596",
     "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "workflow_dispatch",
+    "event_name": "schedule",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "e7c6dd344285b461f9c512a737f904b0a518e336",
-    "trigger_source": "manual",
+    "sha": "11de4492c911a71e5005959e2c7c4629df43adbd",
+    "trigger_source": "schedule",
     "forced_at": ""
   },
   "checks": {
@@ -22,12 +22,12 @@
       "ok": true,
       "urls_checked": 10,
       "events_seen": 88,
-      "matched": 85,
-      "bracket_matched": 13,
-      "score_changed": 7,
+      "matched": 86,
+      "bracket_matched": 14,
+      "score_changed": 8,
       "future_openfootball_zero_scores_cleared": 0,
-      "time_fallback_status_applied": 1,
-      "bracket_time_fallback_status_applied": 1
+      "time_fallback_status_applied": 0,
+      "bracket_time_fallback_status_applied": 0
     },
     "knockout": {
       "changed": 1,
@@ -446,13 +446,13 @@
     ],
     "errors": []
   },
-  "cache_buster": "702d47027047",
+  "cache_buster": "cc4be367cd9e",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "errors": [],
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-01T23:15:20+03:00",
+    "corrected_at": "2026-07-01T23:17:07+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {

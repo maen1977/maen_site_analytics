@@ -1,19 +1,19 @@
 {
-  "version": "702d47027047",
-  "generated_at": "2026-07-01T23:15:20+03:00",
-  "next_expected_check_at": "2026-07-01T23:30:20+03:00",
+  "version": "cc4be367cd9e",
+  "generated_at": "2026-07-01T23:17:05+03:00",
+  "next_expected_check_at": "2026-07-01T23:32:07+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 10,
       "events_seen": 88,
-      "matched": 85,
-      "bracket_matched": 13,
-      "score_changed": 7,
+      "matched": 86,
+      "bracket_matched": 14,
+      "score_changed": 8,
       "future_openfootball_zero_scores_cleared": 0,
-      "time_fallback_status_applied": 1,
-      "bracket_time_fallback_status_applied": 1
+      "time_fallback_status_applied": 0,
+      "bracket_time_fallback_status_applied": 0
     },
     "knockout": {
       "changed": 1,
@@ -435,7 +435,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-01T23:15:20+03:00",
+    "corrected_at": "2026-07-01T23:17:07+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -588,6 +588,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "f6ac72fc38b0",
-  "last_updated": "2026-07-01T23:15:20+03:00"
+  "cache_buster": "939a0bd0f23f",
+  "last_updated": "2026-07-01T23:17:07+03:00"
 }
