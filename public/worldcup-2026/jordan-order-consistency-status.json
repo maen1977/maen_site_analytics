@@ -1,6 +1,33 @@
 {
   "script": "worldcup-jordan-order-consistency.mjs",
-  "status": "ready",
-  "message_ar": "سيتم إنشاء التقرير الحقيقي بعد أول تشغيل للـ GitHub Action.",
-  "timezone": "Asia/Amman"
+  "ran_at_jordan": "2026-07-03T00:13:58+03:00",
+  "timezone": "Asia/Amman",
+  "files": {
+    "matches.json": {
+      "sorted_arrays": 0
+    },
+    "bracket.json": {
+      "sorted_arrays": 0
+    },
+    "knockout-live.json": {
+      "sorted_arrays": 0
+    }
+  },
+  "espn": {
+    "fetched_events": 0,
+    "errors": [],
+    "skipped": true
+  },
+  "counters": {
+    "espn_matched": 0,
+    "score_updates": 0,
+    "status_updates": 0,
+    "number_updates": 32,
+    "time_updates": 64,
+    "visible_time_updates": 64,
+    "time_state_updates": 0,
+    "zero_score_fills": 0,
+    "canonical_sync_changes": 180,
+    "sorted_arrays": 0
+  }
 }
