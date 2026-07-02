@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-02T23:45:41+03:00",
+  "last_updated_at": "2026-07-03T24:00:42+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -11,7 +11,6 @@
     "unresolved_future_slots": [
       "W83",
       "W84",
-      "W81",
       "W86",
       "W88",
       "W85",
@@ -35,7 +34,7 @@
     ],
     "dynamic_advancement_slots_checked": 32,
     "matches_json_synced": true,
-    "matches_json_updated": 13
+    "matches_json_updated": 12
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -123,8 +122,8 @@
       "match": "M094",
       "side": "team1",
       "source_slot": "W81",
-      "resolved_team_ar": "الفائز من مباراة 81",
-      "unresolved": true,
+      "resolved_team_ar": "USA",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -782,18 +781,21 @@
           "venue_ar": "San Francisco Bay Area Stadium / Levi's Stadium",
           "city_ar": "",
           "status": {
-            "key": "pending_verification",
-            "label_ar": "بانتظار التحديث"
+            "key": "finished",
+            "label_ar": "انتهت"
           },
-          "phase": "pending_verification",
-          "score1": null,
-          "score2": null,
-          "score_ft": null,
+          "phase": "finished",
+          "score1": 2,
+          "score2": 0,
+          "score_ft": [
+            2,
+            0
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 1,
           "team1": {
             "name_ar": "USA",
             "name_en": "USA",
@@ -828,20 +830,19 @@
           "kickoff_utc": "2026-07-02T19:00:00.000Z",
           "venue_ar": "Los Angeles Stadium / SoFi Stadium",
           "city_ar": "",
-          "status": {
-            "key": "live",
-            "label_ar": "مباشر",
-            "label": "Live"
-          },
-          "phase": "live",
-          "score1": 2,
+          "status": "finished",
+          "phase": "finished",
+          "score1": 3,
           "score2": 0,
-          "score_ft": null,
+          "score_ft": [
+            3,
+            0
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 1,
           "team1": {
             "name_ar": "Spain",
             "name_en": "Spain",
@@ -864,35 +865,36 @@
           "score": {
             "source": "espn-live-score-repair",
             "event_id": "760497",
-            "status": "live",
-            "phase": "live",
-            "status_detail": "84'",
-            "checked_at": "2026-07-02T23:45:41+03:00",
+            "status": "finished",
+            "phase": "finished",
+            "status_detail": "FT",
+            "checked_at": "2026-07-03T00:00:42+03:00",
             "current": [
-              2,
+              3,
               0
             ],
-            "live": [
-              2,
+            "ft": [
+              3,
               0
             ],
-            "clock": "84'",
-            "period": 2
+            "clock": "90'+6'",
+            "period": 2,
+            "winner_side": 1
           },
-          "team1_score": 2,
+          "team1_score": 3,
           "team2_score": 0,
-          "home_score": 2,
+          "home_score": 3,
           "away_score": 0,
           "score_source": "espn-live-score-repair",
           "live_score_source": "espn-live-score-repair",
           "espn_event_id": "760497",
-          "live_checked_at": "2026-07-02T23:45:41+03:00",
-          "live_status_detail": "84'",
-          "live_phase": "live",
-          "status_ar": "مباشر",
-          "homeScore": 2,
-          "awayScore": 0,
-          "score_text": "2 - 0"
+          "live_checked_at": "2026-07-03T00:00:42+03:00",
+          "live_status_detail": "FT",
+          "live_phase": "finished",
+          "status_ar": "انتهت",
+          "loser_side": 2,
+          "winner": 1,
+          "loser": 2
         },
         {
           "id": "M083",
@@ -1253,8 +1255,8 @@
             "label_ar": "لم تبدأ"
           },
           "phase": "scheduled",
-          "score1": null,
-          "score2": null,
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -1302,8 +1304,8 @@
             "label_ar": "لم تبدأ"
           },
           "phase": "scheduled",
-          "score1": null,
-          "score2": null,
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -1403,10 +1405,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 81",
-            "name_en": "Winner of match 81",
+            "name_ar": "USA",
+            "name_en": "USA",
+            "group": "",
+            "position": "",
             "slot": "W81",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W81"
           },
           "team2": {
             "name_ar": "Belgium",
@@ -2363,18 +2368,21 @@
       "venue_ar": "San Francisco Bay Area Stadium / Levi's Stadium",
       "city_ar": "",
       "status": {
-        "key": "pending_verification",
-        "label_ar": "بانتظار التحديث"
+        "key": "finished",
+        "label_ar": "انتهت"
       },
-      "phase": "pending_verification",
-      "score1": null,
-      "score2": null,
-      "score_ft": null,
+      "phase": "finished",
+      "score1": 2,
+      "score2": 0,
+      "score_ft": [
+        2,
+        0
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 1,
       "team1": {
         "name_ar": "USA",
         "name_en": "USA",
@@ -2409,20 +2417,19 @@
       "kickoff_utc": "2026-07-02T19:00:00.000Z",
       "venue_ar": "Los Angeles Stadium / SoFi Stadium",
       "city_ar": "",
-      "status": {
-        "key": "live",
-        "label_ar": "مباشر",
-        "label": "Live"
-      },
-      "phase": "live",
-      "score1": 2,
+      "status": "finished",
+      "phase": "finished",
+      "score1": 3,
       "score2": 0,
-      "score_ft": null,
+      "score_ft": [
+        3,
+        0
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 1,
       "team1": {
         "name_ar": "Spain",
         "name_en": "Spain",
@@ -2445,35 +2452,36 @@
       "score": {
         "source": "espn-live-score-repair",
         "event_id": "760497",
-        "status": "live",
-        "phase": "live",
-        "status_detail": "84'",
-        "checked_at": "2026-07-02T23:45:41+03:00",
+        "status": "finished",
+        "phase": "finished",
+        "status_detail": "FT",
+        "checked_at": "2026-07-03T00:00:42+03:00",
         "current": [
-          2,
+          3,
           0
         ],
-        "live": [
-          2,
+        "ft": [
+          3,
           0
         ],
-        "clock": "84'",
-        "period": 2
+        "clock": "90'+6'",
+        "period": 2,
+        "winner_side": 1
       },
-      "team1_score": 2,
+      "team1_score": 3,
       "team2_score": 0,
-      "home_score": 2,
+      "home_score": 3,
       "away_score": 0,
       "score_source": "espn-live-score-repair",
       "live_score_source": "espn-live-score-repair",
       "espn_event_id": "760497",
-      "live_checked_at": "2026-07-02T23:45:41+03:00",
-      "live_status_detail": "84'",
-      "live_phase": "live",
-      "status_ar": "مباشر",
-      "homeScore": 2,
-      "awayScore": 0,
-      "score_text": "2 - 0"
+      "live_checked_at": "2026-07-03T00:00:42+03:00",
+      "live_status_detail": "FT",
+      "live_phase": "finished",
+      "status_ar": "انتهت",
+      "loser_side": 2,
+      "winner": 1,
+      "loser": 2
     },
     {
       "id": "M083",
@@ -2827,8 +2835,8 @@
         "label_ar": "لم تبدأ"
       },
       "phase": "scheduled",
-      "score1": null,
-      "score2": null,
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
@@ -2876,8 +2884,8 @@
         "label_ar": "لم تبدأ"
       },
       "phase": "scheduled",
-      "score1": null,
-      "score2": null,
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
@@ -2977,10 +2985,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 81",
-        "name_en": "Winner of match 81",
+        "name_ar": "USA",
+        "name_en": "USA",
+        "group": "",
+        "position": "",
         "slot": "W81",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W81"
       },
       "team2": {
         "name_ar": "Belgium",
@@ -3425,10 +3436,5 @@
       "source_slot2": "W102",
       "channels": []
     }
-  ],
-  "live_zero_score_guard": {
-    "version": "2026-07-02-live-zero-score-guard-v1",
-    "checked_at": "2026-07-02T23:45:41+03:00",
-    "note_ar": "أثناء المباريات المباشرة تعرض النتيجة 0 - 0 إذا لم تصل النتيجة بعد، ولا يتم وضع 0 - 0 قبل بداية المباراة."
-  }
+  ]
 }
