@@ -66,6 +66,7 @@ jobs:
             scripts/worldcup-quarter-hour-force.mjs \
             scripts/worldcup-r32-official-fix.mjs \
             scripts/worldcup-live-score-repair.mjs \
+            scripts/worldcup-finished-score-backfill.mjs \
             scripts/worldcup-knockout-live-sync.mjs \
             scripts/worldcup-live-zero-score-guard.mjs
           do
@@ -93,6 +94,13 @@ jobs:
             node scripts/worldcup-live-score-repair.mjs
           fi
 
+      - name: Backfill finished scores before knockout sync
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-finished-score-backfill.mjs ]; then
+            node scripts/worldcup-finished-score-backfill.mjs
+          fi
+
       - name: Sync knockout live advancement cards
         shell: bash
         run: |
@@ -107,8 +115,26 @@ jobs:
             node scripts/worldcup-live-score-repair.mjs
           fi
 
+      - name: Backfill finished scores after knockout sync
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-finished-score-backfill.mjs ]; then
+            node scripts/worldcup-finished-score-backfill.mjs
+          fi
+
       - name: Force 0-0 display for live matches without scores
-        run: node scripts/worldcup-live-zero-score-guard.mjs
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-live-zero-score-guard.mjs ]; then
+            node scripts/worldcup-live-zero-score-guard.mjs
+          fi
+
+      - name: Final backfill for finished scores
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-finished-score-backfill.mjs ]; then
+            node scripts/worldcup-finished-score-backfill.mjs
+          fi
 
       - name: Commit changed World Cup data files
         id: commit
@@ -126,6 +152,7 @@ jobs:
             public/worldcup-2026/knockout-live-health.json \
             public/worldcup-2026/live-score-repair-status.json \
             public/worldcup-2026/live-zero-score-guard-status.json \
+            public/worldcup-2026/finished-score-backfill-status.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \
