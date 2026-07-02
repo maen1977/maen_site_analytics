@@ -1,6 +1,6 @@
 {
   "version": "2026-07-02-live-zero-score-guard-v1",
-  "checked_at": "2026-07-02T23:57:55+03:00",
+  "checked_at": "2026-07-03T00:00:42+03:00",
   "timezone": "Asia/Amman",
   "live_window_minutes": 270,
   "rule_ar": "وقت المباراة المباشرة: إذا لا توجد نتيجة موثوقة، تظهر 0 - 0 مكان النتيجة، وتبقى كلمة مباشر كحالة فقط.",
@@ -8,27 +8,27 @@
     {
       "file": "matches.json",
       "exists": true,
-      "changed": true,
+      "changed": false,
       "liveZeroFilled": 0,
-      "preservedScore": 1,
+      "preservedScore": 0,
       "futureLiveCleared": 0,
       "scanned": 104
     },
     {
       "file": "bracket.json",
       "exists": true,
-      "changed": true,
+      "changed": false,
       "liveZeroFilled": 0,
-      "preservedScore": 1,
+      "preservedScore": 0,
       "futureLiveCleared": 0,
       "scanned": 32
     },
     {
       "file": "knockout-live.json",
       "exists": true,
-      "changed": true,
+      "changed": false,
       "liveZeroFilled": 0,
-      "preservedScore": 2,
+      "preservedScore": 0,
       "futureLiveCleared": 0,
       "scanned": 64
     }
@@ -36,8 +36,8 @@
   "totals": {
     "scanned": 200,
     "live_zero_filled": 0,
-    "preserved_score": 4,
+    "preserved_score": 0,
     "future_live_cleared": 0,
-    "changed_files": 3
+    "changed_files": 0
   }
 }
