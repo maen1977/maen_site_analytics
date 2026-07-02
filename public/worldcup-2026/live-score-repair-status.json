@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-02T10:15:19+03:00",
+  "checked_at": "2026-07-02T10:30:18+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -18,12 +18,55 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-      "updated": 0
+      "updated": 2
     }
   ],
-  "updates": [],
+  "updates": [
+    {
+      "file": "knockout-live.json",
+      "match": "M082",
+      "event_id": "760493",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "belgium",
+        "senegal"
+      ],
+      "before_score": [
+        3,
+        2
+      ],
+      "after_score": [
+        3,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
+    },
+    {
+      "file": "knockout-live.json",
+      "match": "M082",
+      "event_id": "760493",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "belgium",
+        "senegal"
+      ],
+      "before_score": [
+        3,
+        2
+      ],
+      "after_score": [
+        3,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
+    }
+  ],
   "errors": [],
   "espn_events": 3,
-  "updated_matches": 0,
+  "updated_matches": 2,
   "ok": true
 }

@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-02T10:15:19+03:00",
+  "last_updated_at": "2026-07-02T10:30:18+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -728,11 +728,8 @@
           "kickoff_utc": "2026-07-01T20:00:00.000Z",
           "venue_ar": "Seattle Stadium / Lumen Field",
           "city_ar": "",
-          "status": {
-            "key": "finished_after_extra_time",
-            "label_ar": "انتهت بعد التمديد"
-          },
-          "phase": "finished_after_extra_time",
+          "status": "finished",
+          "phase": "finished",
           "score1": 3,
           "score2": 2,
           "score_ft": [
@@ -765,7 +762,40 @@
           },
           "source_slot1": "1G",
           "source_slot2": "3A/E/H/I/J",
-          "channels": []
+          "channels": [],
+          "score": {
+            "source": "espn-live-score-repair",
+            "event_id": "760493",
+            "status": "finished",
+            "phase": "finished",
+            "status_detail": "AET",
+            "checked_at": "2026-07-02T10:30:18+03:00",
+            "current": [
+              3,
+              2
+            ],
+            "ft": [
+              3,
+              2
+            ],
+            "clock": "120'+12'",
+            "period": 4,
+            "winner_side": 1
+          },
+          "team1_score": 3,
+          "team2_score": 2,
+          "home_score": 3,
+          "away_score": 2,
+          "score_source": "espn-live-score-repair",
+          "live_score_source": "espn-live-score-repair",
+          "espn_event_id": "760493",
+          "live_checked_at": "2026-07-02T10:30:18+03:00",
+          "live_status_detail": "AET",
+          "live_phase": "finished",
+          "status_ar": "انتهت",
+          "loser_side": 2,
+          "winner": 1,
+          "loser": 2
         },
         {
           "id": "M081",
@@ -2276,11 +2306,8 @@
       "kickoff_utc": "2026-07-01T20:00:00.000Z",
       "venue_ar": "Seattle Stadium / Lumen Field",
       "city_ar": "",
-      "status": {
-        "key": "finished_after_extra_time",
-        "label_ar": "انتهت بعد التمديد"
-      },
-      "phase": "finished_after_extra_time",
+      "status": "finished",
+      "phase": "finished",
       "score1": 3,
       "score2": 2,
       "score_ft": [
@@ -2313,7 +2340,40 @@
       },
       "source_slot1": "1G",
       "source_slot2": "3A/E/H/I/J",
-      "channels": []
+      "channels": [],
+      "score": {
+        "source": "espn-live-score-repair",
+        "event_id": "760493",
+        "status": "finished",
+        "phase": "finished",
+        "status_detail": "AET",
+        "checked_at": "2026-07-02T10:30:18+03:00",
+        "current": [
+          3,
+          2
+        ],
+        "ft": [
+          3,
+          2
+        ],
+        "clock": "120'+12'",
+        "period": 4,
+        "winner_side": 1
+      },
+      "team1_score": 3,
+      "team2_score": 2,
+      "home_score": 3,
+      "away_score": 2,
+      "score_source": "espn-live-score-repair",
+      "live_score_source": "espn-live-score-repair",
+      "espn_event_id": "760493",
+      "live_checked_at": "2026-07-02T10:30:18+03:00",
+      "live_status_detail": "AET",
+      "live_phase": "finished",
+      "status_ar": "انتهت",
+      "loser_side": 2,
+      "winner": 1,
+      "loser": 2
     },
     {
       "id": "M081",
