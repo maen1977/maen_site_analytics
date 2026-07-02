@@ -2,7 +2,54 @@
   "name": "World Cup 2026 finished score backfill",
   "name_ar": "إصلاح نتائج المباريات المنتهية العالقة بانتظار التحديث",
   "version": "2026-07-02-finished-score-backfill-v1",
-  "checked_at": null,
-  "status": "installed_waiting_for_first_run",
-  "note_ar": "بعد أول تشغيل للـ GitHub Action، سيبحث السكربت عن المباريات التي انتهى وقتها وبقيت بلا نتيجة، ثم ينسخ النتيجة من ملفات الموقع أو يجلبها من ESPN حسب تاريخ المباراة."
+  "checked_at": "2026-07-02T23:57:55+03:00",
+  "timezone": "Asia/Amman",
+  "finished_grace_minutes": 135,
+  "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
+  "date_keys_fetched": [],
+  "espn_urls_requested": [],
+  "espn_events_seen": 0,
+  "errors": [],
+  "files": [
+    {
+      "file": "matches.json",
+      "scanned": 104,
+      "stale_missing_scores": 0,
+      "local_updates": 0,
+      "espn_updates": 0,
+      "changed": false,
+      "unresolved": [],
+      "unresolved_count": 0
+    },
+    {
+      "file": "bracket.json",
+      "scanned": 32,
+      "stale_missing_scores": 0,
+      "local_updates": 0,
+      "espn_updates": 0,
+      "changed": false,
+      "unresolved": [],
+      "unresolved_count": 0
+    },
+    {
+      "file": "knockout-live.json",
+      "scanned": 64,
+      "stale_missing_scores": 0,
+      "local_updates": 0,
+      "espn_updates": 0,
+      "changed": false,
+      "unresolved": [],
+      "unresolved_count": 0
+    }
+  ],
+  "totals": {
+    "scanned": 200,
+    "stale_missing_scores": 0,
+    "local_updates": 0,
+    "espn_updates": 0,
+    "changed_files": 0,
+    "unresolved": 0
+  },
+  "updates": [],
+  "ok": true
 }
