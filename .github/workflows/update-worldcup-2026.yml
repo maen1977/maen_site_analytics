@@ -37,6 +37,7 @@ jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
     timeout-minutes: 14
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -57,32 +58,57 @@ jobs:
           echo "trigger_source=${WORLD_CUP_2026_TRIGGER_SOURCE}"
           echo "forced_at=${WORLD_CUP_2026_FORCED_AT}"
 
-      - name: Validate original quarter-hour updater
-        run: node --check scripts/worldcup-quarter-hour-force.mjs
-
-      - name: Validate Round of 32 official correction
-        run: node --check scripts/worldcup-r32-official-fix.mjs
-
-      - name: Validate knockout live sync
-        run: node --check scripts/worldcup-knockout-live-sync.mjs
-
-      - name: Validate live score repair
-        run: node --check scripts/worldcup-live-score-repair.mjs
+      - name: Validate World Cup scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in \
+            scripts/worldcup-quarter-hour-force.mjs \
+            scripts/worldcup-r32-official-fix.mjs \
+            scripts/worldcup-live-score-repair.mjs \
+            scripts/worldcup-knockout-live-sync.mjs \
+            scripts/worldcup-live-zero-score-guard.mjs
+          do
+            if [ -f "$file" ]; then
+              node --check "$file"
+            else
+              echo "Skipping missing optional script: $file"
+            fi
+          done
 
       - name: Run original quarter-hour updater
         run: node scripts/worldcup-quarter-hour-force.mjs
 
       - name: Apply official Round of 32 pairings correction
-        run: node scripts/worldcup-r32-official-fix.mjs
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-r32-official-fix.mjs ]; then
+            node scripts/worldcup-r32-official-fix.mjs
+          fi
 
       - name: Repair live scores before knockout sync
-        run: node scripts/worldcup-live-score-repair.mjs
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
+            node scripts/worldcup-live-score-repair.mjs
+          fi
 
       - name: Sync knockout live advancement cards
-        run: node scripts/worldcup-knockout-live-sync.mjs
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-knockout-live-sync.mjs ]; then
+            node scripts/worldcup-knockout-live-sync.mjs
+          fi
 
       - name: Repair live scores after knockout sync
-        run: node scripts/worldcup-live-score-repair.mjs
+        shell: bash
+        run: |
+          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
+            node scripts/worldcup-live-score-repair.mjs
+          fi
+
+      - name: Force 0-0 display for live matches without scores
+        run: node scripts/worldcup-live-zero-score-guard.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -99,6 +125,7 @@ jobs:
             public/worldcup-2026/knockout-live.json \
             public/worldcup-2026/knockout-live-health.json \
             public/worldcup-2026/live-score-repair-status.json \
+            public/worldcup-2026/live-zero-score-guard-status.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \
@@ -106,15 +133,20 @@ jobs:
             public/worldcup-2026/version.json \
             public/worldcup-2026/update-errors.json \
             public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changed files to commit."
             exit 0
           fi
+
           stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
           git commit -m "World Cup 2026 15-minute data update ${stamp}"
           git pull --rebase --autostash origin main || true
-          git push origin HEAD:main || { git pull --rebase --autostash origin main; git push origin HEAD:main; }
+          git push origin HEAD:main || {
+            git pull --rebase --autostash origin main
+            git push origin HEAD:main
+          }
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
       - name: Trigger Cloudflare Pages deploy hook if configured

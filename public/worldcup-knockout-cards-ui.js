@@ -1,15 +1,27 @@
 (() => {
   'use strict';
-  const VERSION = '20260628-knockout-live-cards-v1';
+
+  const VERSION = '20260702-knockout-live-cards-zero-score-v2';
   const DATA_URL = '/worldcup-2026/knockout-live.json';
   const REFRESH_MS = 60 * 1000;
   const TAB_TEXT = 'الأدوار';
+
   let cache = null;
   let lastRenderKey = '';
 
   const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const norm = (s) => String(s || '').replace(/\s+/g, ' ').trim();
-  const hasText = (el, s) => norm(el?.textContent || '').includes(s);
+  const numberOrNull = (value) => {
+    if (value === null || value === undefined || value === '') return null;
+    if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+    const cleaned = String(value)
+      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
+    const m = cleaned.match(/-?\d+(?:\.\d+)?/);
+    if (!m) return null;
+    const n = Number(m[0]);
+    return Number.isFinite(n) ? n : null;
+  };
 
   function findWorldCupRoot() {
     const candidates = Array.from(document.querySelectorAll('section, article, main, div[id], div[class]'));
@@ -70,7 +82,10 @@
     let sib = tabbar?.nextElementSibling || null;
     let guard = 0;
     while (sib && guard++ < 5) {
-      if (sib === panel) { sib = sib.nextElementSibling; continue; }
+      if (sib === panel) {
+        sib = sib.nextElementSibling;
+        continue;
+      }
       const t = norm(sib.textContent || '');
       if (t.includes('جاري تحميل بيانات كأس العالم') || t.includes('1A') || t.includes('2B') || t.includes('3B/E') || t.includes('W73') || t.includes('الفائز من مباراة')) {
         if (!sib.dataset.wcOldDisplay) sib.dataset.wcOldDisplay = sib.style.display || '';
@@ -81,6 +96,19 @@
     }
   }
 
+  function slotLabel(slot) {
+    const s = String(slot || '').trim();
+    const w = s.match(/^W(\d+)$/);
+    if (w) return `الفائز من مباراة ${w[1]}`;
+    const l = s.match(/^L(\d+)$/);
+    if (l) return `الخاسر من مباراة ${l[1]}`;
+    const d = s.match(/^([12])([A-L])$/);
+    if (d) return `${d[1] === '1' ? 'متصدر' : 'وصيف'} المجموعة ${d[2]}`;
+    const t = s.match(/^3(.+)$/);
+    if (t) return `أفضل ثالث من ${t[1].replace(/\//g, ' أو ')}`;
+    return s || 'لم يتحدد بعد';
+  }
+
   function cardTeam(team, side) {
     const name = team?.name_ar || team?.name || team?.name_en || (team?.slot ? slotLabel(team.slot) : 'لم يتحدد بعد');
     const cls = team?.unresolved ? ' wc-team-pending' : '';
@@ -88,41 +116,60 @@
     return `<div class="wc-team wc-team-${side}${cls}"><strong>${esc(name)}</strong>${group}</div>`;
   }
 
-  function slotLabel(slot) {
-    const s = String(slot || '').trim();
-    const w = s.match(/^W(\d+)$/); if (w) return `الفائز من مباراة ${w[1]}`;
-    const l = s.match(/^L(\d+)$/); if (l) return `الخاسر من مباراة ${l[1]}`;
-    const d = s.match(/^([12])([A-L])$/); if (d) return `${d[1] === '1' ? 'متصدر' : 'وصيف'} المجموعة ${d[2]}`;
-    const t = s.match(/^3(.+)$/); if (t) return `أفضل ثالث من ${t[1].replace(/\//g, ' أو ')}`;
-    return s || 'لم يتحدد بعد';
+  function matchStatusKey(m) {
+    return String(m?.status?.key || m?.status?.state || m?.status || '').toLowerCase();
+  }
+
+  function isLiveMatch(m) {
+    const text = [m?.status?.key, m?.status?.state, m?.status?.label_ar, m?.status?.label, m?.status, m?.phase]
+      .map(v => String(v || '').toLowerCase()).join(' ');
+    return /\b(live|in|progress|halftime|extra|penalty)\b|مباشر|الشوط|استراحة|ركلات|ترجيح/.test(text)
+      && !/\b(final|finished|complete|completed|post)\b|انته/.test(text);
+  }
+
+  function readScorePair(m) {
+    let s1 = numberOrNull(m.score1 ?? m.team1_score ?? m.team1Score ?? m.home_score ?? m.homeScore);
+    let s2 = numberOrNull(m.score2 ?? m.team2_score ?? m.team2Score ?? m.away_score ?? m.awayScore);
+
+    if (s1 !== null || s2 !== null) return [s1 ?? 0, s2 ?? 0];
+
+    const textScore = String(m.score_text || m.scoreText || m.display_score || m.displayScore || m.result || m.score || '');
+    const cleaned = textScore
+      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
+    const pair = cleaned.match(/(\d+)\s*[-–—:]\s*(\d+)/);
+    if (pair) return [Number(pair[1]), Number(pair[2])];
+
+    return null;
   }
 
   function scoreHtml(m) {
-    const hasScore = Number.isFinite(m.score1) && Number.isFinite(m.score2);
-    const pen = Number.isFinite(m.penalty1) && Number.isFinite(m.penalty2) ? `<small>ركلات ${m.penalty1} - ${m.penalty2}</small>` : '';
-    if (!hasScore) return `<div class="wc-score wc-score-empty">${esc(m.status?.label_ar || 'لم تبدأ')}</div>`;
-    return `<div class="wc-score"><b>${m.score1}</b><span>-</span><b>${m.score2}</b>${pen}</div>`;
+    const pair = readScorePair(m);
+    const live = isLiveMatch(m);
+    const score = pair || (live ? [0, 0] : null);
+    const pen = Number.isFinite(numberOrNull(m.penalty1)) && Number.isFinite(numberOrNull(m.penalty2))
+      ? `<small>ركلات ${esc(m.penalty1)} - ${esc(m.penalty2)}</small>`
+      : '';
+
+    if (!score) {
+      return `<div class="wc-score wc-score-empty">${esc(m.status?.label_ar || 'لم تبدأ')}</div>`;
+    }
+
+    return `<div class="wc-score"><span>${esc(score[0])}-${esc(score[1])}</span>${pen}</div>`;
   }
 
   function statusClass(m) {
-    const key = m.status?.key || 'scheduled';
-    return key === 'live' ? 'is-live' : key === 'finished' ? 'is-finished' : 'is-scheduled';
+    const key = matchStatusKey(m) || 'scheduled';
+    if (isLiveMatch(m)) return 'is-live';
+    return key === 'finished' || key === 'final' || key === 'complete' ? 'is-finished' : 'is-scheduled';
   }
 
   function matchCard(m) {
     const when = [m.date, m.time].filter(Boolean).join(' • ') || (m.kickoff ? m.kickoff : 'الموعد حسب الجدول');
     const venue = [m.venue_ar, m.city_ar].filter(Boolean).join(' • ');
     return `<article class="wc-knockout-card ${statusClass(m)}">
-      <div class="wc-card-top">
-        <span class="wc-stage-pill">${esc(m.stage_ar || 'الأدوار')}</span>
-        <span class="wc-match-no">مباراة ${esc(m.number || m.id || '')}</span>
-        <span class="wc-status">${esc(m.status?.label_ar || 'لم تبدأ')}</span>
-      </div>
-      <div class="wc-card-body">
-        ${cardTeam(m.team1, 'one')}
-        ${scoreHtml(m)}
-        ${cardTeam(m.team2, 'two')}
-      </div>
+      <div class="wc-card-top"><span class="wc-stage-pill">${esc(m.stage_ar || 'الأدوار')}</span><span class="wc-match-no">مباراة ${esc(m.number || m.id || '')}</span><span class="wc-status">${esc(m.status?.label_ar || 'لم تبدأ')}</span></div>
+      <div class="wc-card-body">${cardTeam(m.team1, 'one')} ${scoreHtml(m)} ${cardTeam(m.team2, 'two')}</div>
       <div class="wc-card-meta"><span>${esc(when)}</span>${venue ? `<span>${esc(venue)}</span>` : ''}</div>
     </article>`;
   }
@@ -134,13 +181,8 @@
     if (!panel) return;
     const rounds = Array.isArray(data?.rounds) && data.rounds.length ? data.rounds : [];
     const body = rounds.map(round => `<section class="wc-round-block"><h3>${esc(round.title_ar || 'الأدوار')}</h3><div class="wc-round-grid">${(round.matches || []).map(matchCard).join('')}</div></section>`).join('');
-    const updated = data?.last_updated_at || '—';
-    panel.innerHTML = `<style>${css()}</style>
-      <div class="wc-live-head">
-        <div><strong>الأدوار الإقصائية</strong><span>عرض مباشر بنفس نظام كروت مباريات كأس العالم</span></div>
-        <div class="wc-live-updated">آخر تحديث: ${esc(updated)}</div>
-      </div>
-      ${body || '<div class="wc-empty">لا توجد بيانات أدوار متاحة حالياً.</div>'}`;
+    const updated = data?.last_updated_at || data?.updated_at || '—';
+    panel.innerHTML = `<div class="wc-live-head"><div><strong>الأدوار الإقصائية</strong><span>عرض مباشر بنفس نظام كروت مباريات كأس العالم</span></div><div class="wc-live-updated">آخر تحديث: ${esc(updated)}</div></div>${body || '<div class="wc-empty">لا توجد بيانات أدوار متاحة حالياً.</div>'}`;
     panel.style.display = 'block';
     maybeHideOriginal(root, true);
   }
@@ -165,12 +207,12 @@
       setTimeout(() => { if (tab) delete tab.dataset.wcAutoClicked; }, 1000);
     }
     const panel = ensurePanel(root);
-    if (panel) panel.innerHTML = `<style>${css()}</style><div class="wc-empty">جاري تحميل الأدوار...</div>`;
+    if (panel) panel.innerHTML = '<div class="wc-empty">جاري تحميل الأدوار...</div>';
     try {
       const data = await loadData(true);
       renderData(data);
     } catch (err) {
-      if (panel) panel.innerHTML = `<style>${css()}</style><div class="wc-empty wc-error">تعذر تحميل بيانات الأدوار الآن. سيتم إعادة المحاولة تلقائياً.</div>`;
+      if (panel) panel.innerHTML = '<div class="wc-empty wc-error">تعذر تحميل بيانات الأدوار الآن. سيتم إعادة المحاولة تلقائياً.</div>';
       console.warn('[MaenSat] knockout live cards failed:', err);
     }
   }
@@ -188,37 +230,19 @@
   }
 
   function css() {
-    return `
-      #wc-knockout-live-cards-panel{margin:18px 0;direction:rtl;font-family:inherit}
-      #wc-knockout-live-cards-panel .wc-live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 14px;padding:12px 14px;border:1px solid rgba(0,0,0,.1);border-radius:16px;background:rgba(255,255,255,.88);box-shadow:0 8px 20px rgba(0,0,0,.06)}
-      #wc-knockout-live-cards-panel .wc-live-head strong{display:block;font-size:1.1rem}
-      #wc-knockout-live-cards-panel .wc-live-head span{display:block;opacity:.75;font-size:.9rem;margin-top:3px}
-      #wc-knockout-live-cards-panel .wc-live-updated{font-size:.88rem;opacity:.82;white-space:nowrap}
-      #wc-knockout-live-cards-panel .wc-round-block{margin:16px 0 22px}
-      #wc-knockout-live-cards-panel .wc-round-block h3{margin:0 0 10px;font-size:1.15rem}
-      #wc-knockout-live-cards-panel .wc-round-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
-      #wc-knockout-live-cards-panel .wc-knockout-card{border:1px solid rgba(0,0,0,.10);border-radius:18px;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.07);overflow:hidden}
-      #wc-knockout-live-cards-panel .wc-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(0,0,0,.01));font-size:.86rem}
-      #wc-knockout-live-cards-panel .wc-stage-pill{font-weight:700}
-      #wc-knockout-live-cards-panel .wc-match-no{opacity:.72}
-      #wc-knockout-live-cards-panel .wc-status{border-radius:99px;padding:3px 8px;background:rgba(0,0,0,.06);font-size:.78rem}
-      #wc-knockout-live-cards-panel .is-live .wc-status{background:#fff0f0;color:#b00020;font-weight:700}
-      #wc-knockout-live-cards-panel .wc-card-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:16px 12px}
-      #wc-knockout-live-cards-panel .wc-team{min-width:0;text-align:center}
-      #wc-knockout-live-cards-panel .wc-team strong{display:block;font-size:1rem;line-height:1.35;word-break:break-word}
-      #wc-knockout-live-cards-panel .wc-team-pending strong{opacity:.72;font-weight:600}
-      #wc-knockout-live-cards-panel .wc-team-group{display:inline-block;margin-top:5px;font-size:.76rem;opacity:.7}
-      #wc-knockout-live-cards-panel .wc-score{min-width:62px;text-align:center;font-size:1.05rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
-      #wc-knockout-live-cards-panel .wc-score small{display:block;flex-basis:100%;font-size:.68rem;opacity:.72;font-weight:500}
-      #wc-knockout-live-cards-panel .wc-score-empty{font-size:.82rem;font-weight:700;opacity:.75}
-      #wc-knockout-live-cards-panel .wc-card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 12px;border-top:1px solid rgba(0,0,0,.08);font-size:.82rem;opacity:.78}
-      #wc-knockout-live-cards-panel .wc-empty{padding:18px;border:1px dashed rgba(0,0,0,.18);border-radius:16px;background:#fff;text-align:center}
-      #wc-knockout-live-cards-panel .wc-error{color:#a10000}
-      @media(max-width:620px){#wc-knockout-live-cards-panel .wc-live-head{display:block}#wc-knockout-live-cards-panel .wc-live-updated{margin-top:8px;white-space:normal}#wc-knockout-live-cards-panel .wc-card-body{grid-template-columns:1fr;gap:8px}#wc-knockout-live-cards-panel .wc-score{order:2}.wc-team-one{order:1}.wc-team-two{order:3}}
-    `;
+    return `#wc-knockout-live-cards-panel{margin:18px 0;direction:rtl;font-family:inherit}#wc-knockout-live-cards-panel .wc-live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 14px;padding:12px 14px;border:1px solid rgba(0,0,0,.1);border-radius:16px;background:rgba(255,255,255,.88);box-shadow:0 8px 20px rgba(0,0,0,.06)}#wc-knockout-live-cards-panel .wc-live-head strong{display:block;font-size:1.1rem}#wc-knockout-live-cards-panel .wc-live-head span{display:block;opacity:.75;font-size:.9rem;margin-top:3px}#wc-knockout-live-cards-panel .wc-live-updated{font-size:.88rem;opacity:.82;white-space:nowrap}#wc-knockout-live-cards-panel .wc-round-block{margin:16px 0 22px}#wc-knockout-live-cards-panel .wc-round-block h3{margin:0 0 10px;font-size:1.15rem}#wc-knockout-live-cards-panel .wc-round-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}#wc-knockout-live-cards-panel .wc-knockout-card{border:1px solid rgba(0,0,0,.10);border-radius:18px;background:#fff;box-shadow:0 10px 24px rgba(0,0,0,.07);overflow:hidden}#wc-knockout-live-cards-panel .wc-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(0,0,0,.01));font-size:.86rem}#wc-knockout-live-cards-panel .wc-stage-pill{font-weight:700}#wc-knockout-live-cards-panel .wc-match-no{opacity:.72}#wc-knockout-live-cards-panel .wc-status{border-radius:99px;padding:3px 8px;background:rgba(0,0,0,.06);font-size:.78rem}#wc-knockout-live-cards-panel .is-live .wc-status{background:#fff0f0;color:#b00020;font-weight:700}#wc-knockout-live-cards-panel .wc-card-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:16px 12px}#wc-knockout-live-cards-panel .wc-team{min-width:0;text-align:center}#wc-knockout-live-cards-panel .wc-team strong{display:block;font-size:1rem;line-height:1.35;word-break:break-word}#wc-knockout-live-cards-panel .wc-team-pending strong{opacity:.72;font-weight:600}#wc-knockout-live-cards-panel .wc-team-group{display:inline-block;margin-top:5px;font-size:.76rem;opacity:.7}#wc-knockout-live-cards-panel .wc-score{min-width:62px;text-align:center;font-size:1.05rem;font-weight:800;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}#wc-knockout-live-cards-panel .wc-score small{display:block;flex-basis:100%;font-size:.68rem;opacity:.72;font-weight:500}#wc-knockout-live-cards-panel .wc-score-empty{font-size:.82rem;font-weight:700;opacity:.75}#wc-knockout-live-cards-panel .wc-card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding:10px 12px;border-top:1px solid rgba(0,0,0,.08);font-size:.82rem;opacity:.78}#wc-knockout-live-cards-panel .wc-empty{padding:18px;border:1px dashed rgba(0,0,0,.18);border-radius:16px;background:#fff;text-align:center}#wc-knockout-live-cards-panel .wc-error{color:#a10000}@media(max-width:620px){#wc-knockout-live-cards-panel .wc-live-head{display:block}#wc-knockout-live-cards-panel .wc-live-updated{margin-top:8px;white-space:normal}#wc-knockout-live-cards-panel .wc-card-body{grid-template-columns:1fr;gap:8px}#wc-knockout-live-cards-panel .wc-score{order:2}.wc-team-one{order:1}.wc-team-two{order:3}}`;
+  }
+
+  function injectCss() {
+    if (document.getElementById('wc-knockout-live-cards-style')) return;
+    const style = document.createElement('style');
+    style.id = 'wc-knockout-live-cards-style';
+    style.textContent = css();
+    document.head.appendChild(style);
   }
 
   function boot() {
+    injectCss();
     document.addEventListener('click', deactivateIfOtherTab, true);
     document.addEventListener('click', (e) => {
       const t = norm(e.target?.textContent || '');
