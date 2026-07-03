@@ -1,0 +1,144 @@
+name: Daily frequency and analytics reports
+
+on:
+  schedule:
+    # 05:15 UTC = about 08:15 in Jordan when Jordan is UTC+3.
+    - cron: '15 5 * * *'
+  workflow_dispatch:
+    inputs:
+      run_mode:
+        description: 'What should run?'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - frequency_only
+          - analytics_only
+      report_date:
+        description: 'Optional analytics report date in Jordan calendar, YYYY-MM-DD. Leave empty for yesterday.'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: daily-frequency-and-analytics-report
+  cancel-in-progress: false
+
+jobs:
+  daily-reports:
+    name: Update frequencies and email daily reports
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    env:
+      ANALYTICS_TIMEZONE: ${{ secrets.ANALYTICS_TIMEZONE || 'Asia/Amman' }}
+      PUBLIC_BASE_URL: ${{ secrets.PUBLIC_BASE_URL || 'https://maensat.pages.dev' }}
+      PAGES_BASE_URL: ${{ secrets.PUBLIC_BASE_URL || 'https://maensat.pages.dev' }}
+      FREQUENCY_SOURCE_CONCURRENCY: ${{ secrets.FREQUENCY_SOURCE_CONCURRENCY || '12' }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+      REPORT_FROM: ${{ secrets.REPORT_FROM }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      REPORT_DATE: ${{ github.event.inputs.report_date }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Verify daily report environment
+        run: node scripts/verify-daily-report-env.mjs
+
+      - name: Check daily report scripts
+        run: |
+          node --check scripts/github-daily-frequency-update.mjs
+          node --check scripts/github-daily-analytics-report.mjs
+          node --check scripts/verify-daily-report-env.mjs
+
+      - name: Run daily frequency update and email report
+        id: frequency
+        if: ${{ github.event_name == 'schedule' || github.event.inputs.run_mode == 'all' || github.event.inputs.run_mode == 'frequency_only' }}
+        continue-on-error: true
+        run: npm run github:update-frequencies
+
+      - name: Commit frequency JSON changes
+        if: ${{ always() && steps.frequency.outcome != 'skipped' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/frequencies netlify/frequency-baseline.json public/reports/daily-github-actions-status.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No frequency changes to commit."
+          else
+            git commit -m "Update daily frequency data"
+            git push
+          fi
+
+      - name: Run Cloudflare D1 analytics email report
+        id: analytics
+        if: ${{ always() && (github.event_name == 'schedule' || github.event.inputs.run_mode == 'all' || github.event.inputs.run_mode == 'analytics_only') }}
+        continue-on-error: true
+        run: npm run github:analytics-report
+
+      - name: Write workflow status file
+        if: ${{ always() }}
+        run: |
+          mkdir -p public/reports
+          node - <<'NODE'
+          const fs = require('fs');
+          const payload = {
+            ok: true,
+            generatedAt: new Date().toISOString(),
+            mode: 'github-actions-daily-reports-restored',
+            timezone: process.env.ANALYTICS_TIMEZONE || 'Asia/Amman',
+            publicBaseUrl: process.env.PUBLIC_BASE_URL || 'https://maensat.pages.dev',
+            note: 'GitHub Actions runs daily frequency update and Cloudflare D1 analytics report. Secrets are not written to this file.'
+          };
+          fs.writeFileSync('public/reports/daily-github-actions-status.json', JSON.stringify(payload, null, 2) + '\n');
+          NODE
+
+      - name: Commit workflow status file
+        if: ${{ always() }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/reports/daily-github-actions-status.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No status changes to commit."
+          else
+            git commit -m "Update daily report workflow status"
+            git push
+          fi
+
+      - name: Fail workflow if a daily task failed
+        if: ${{ always() && (steps.frequency.outcome == 'failure' || steps.analytics.outcome == 'failure') }}
+        run: |
+          echo "One or more daily report tasks failed. Check the logs above."
+          echo "frequency outcome: ${{ steps.frequency.outcome }}"
+          echo "analytics outcome: ${{ steps.analytics.outcome }}"
+          exit 1
