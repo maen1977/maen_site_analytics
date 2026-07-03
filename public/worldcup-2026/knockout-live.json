@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-03T22:00:52+03:00",
+  "last_updated_at": "2026-07-03T22:15:49+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -1149,7 +1149,7 @@
           "status": {
             "key": "live",
             "label_ar": "مباشر",
-            "label": "Live",
+            "label": "Halftime",
             "state": "live"
           },
           "phase": "live",
@@ -1190,7 +1190,13 @@
           "sort_key_jordan": "2026-07-03T21:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760499",
-          "espnEventId": "760499"
+          "espnEventId": "760499",
+          "team1_score": 0,
+          "team2_score": 1,
+          "home_score": 0,
+          "away_score": 1,
+          "score_text": "0-1",
+          "score_updated_by": "canonical-sync-final"
         },
         {
           "id": "M087",
@@ -3067,7 +3073,7 @@
       "status": {
         "key": "live",
         "label_ar": "مباشر",
-        "label": "Live",
+        "label": "Halftime",
         "state": "live"
       },
       "phase": "live",
@@ -3108,7 +3114,13 @@
       "sort_key_jordan": "2026-07-03T21:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760499",
-      "espnEventId": "760499"
+      "espnEventId": "760499",
+      "team1_score": 0,
+      "team2_score": 1,
+      "home_score": 0,
+      "away_score": 1,
+      "score_text": "0-1",
+      "score_updated_by": "canonical-sync-final"
     },
     {
       "id": "M087",
