@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-03T07:45:48+03:00",
+  "last_updated_at": "2026-07-03T08:00:47+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -1085,10 +1085,10 @@
           "venue_ar": "Vancouver Stadium / BC Place",
           "city_ar": "",
           "status": {
-            "key": "live",
-            "label_ar": "مباشر",
-            "label": "Live",
-            "state": "live"
+            "key": "finished",
+            "label_ar": "انتهت",
+            "label": "Full Time",
+            "state": "finished"
           },
           "phase": "live",
           "score1": 2,
@@ -1128,7 +1128,13 @@
           "sort_key_jordan": "2026-07-03T06:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760498",
-          "espnEventId": "760498"
+          "espnEventId": "760498",
+          "team1_score": 2,
+          "team2_score": 0,
+          "home_score": 2,
+          "away_score": 0,
+          "score_text": "2-0",
+          "score_updated_by": "canonical-sync-final"
         },
         {
           "id": "M086",
@@ -2997,10 +3003,10 @@
       "venue_ar": "Vancouver Stadium / BC Place",
       "city_ar": "",
       "status": {
-        "key": "live",
-        "label_ar": "مباشر",
-        "label": "Live",
-        "state": "live"
+        "key": "finished",
+        "label_ar": "انتهت",
+        "label": "Full Time",
+        "state": "finished"
       },
       "phase": "live",
       "score1": 2,
@@ -3040,7 +3046,13 @@
       "sort_key_jordan": "2026-07-03T06:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760498",
-      "espnEventId": "760498"
+      "espnEventId": "760498",
+      "team1_score": 2,
+      "team2_score": 0,
+      "home_score": 2,
+      "away_score": 0,
+      "score_text": "2-0",
+      "score_updated_by": "canonical-sync-final"
     },
     {
       "id": "M086",
