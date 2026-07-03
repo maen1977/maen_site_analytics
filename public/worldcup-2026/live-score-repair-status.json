@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-03T05:45:39+03:00",
+  "checked_at": "2026-07-03T06:00:41+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -22,6 +22,90 @@
     }
   ],
   "updates": [
+    {
+      "file": "matches.json",
+      "match": "M084",
+      "event_id": "760497",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "spain",
+        "austria"
+      ],
+      "before_score": [
+        3,
+        0
+      ],
+      "after_score": [
+        3,
+        0
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "matches.json",
+      "match": "M083",
+      "event_id": "760496",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "portugal",
+        "croatia"
+      ],
+      "before_score": [
+        2,
+        1
+      ],
+      "after_score": [
+        2,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M084",
+      "event_id": "760497",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "spain",
+        "austria"
+      ],
+      "before_score": [
+        3,
+        0
+      ],
+      "after_score": [
+        3,
+        0
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M083",
+      "event_id": "760496",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "portugal",
+        "croatia"
+      ],
+      "before_score": [
+        2,
+        1
+      ],
+      "after_score": [
+        2,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
     {
       "file": "knockout-live.json",
       "match": "M084",
@@ -109,6 +193,6 @@
   ],
   "errors": [],
   "espn_events": 3,
-  "updated_matches": 4,
+  "updated_matches": 8,
   "ok": true
 }
