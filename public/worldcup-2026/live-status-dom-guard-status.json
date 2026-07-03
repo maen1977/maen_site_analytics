@@ -1,0 +1,10 @@
+{
+  "name": "World Cup live status DOM guard",
+  "version": "20260703-real-dom-live-status-guard-v1",
+  "purpose": "Force visible World Cup cards to show مباشر instead of لم تبدأ when a match is live or has a live score.",
+  "files": [
+    "functions/_middleware.js",
+    "public/worldcup-live-status-dom-guard.js"
+  ],
+  "safe_scope": "Does not change card design, colors, teams, match order, or finished statuses. It only patches visible scheduled labels for matches that are live according to knockout-live.json."
+}
