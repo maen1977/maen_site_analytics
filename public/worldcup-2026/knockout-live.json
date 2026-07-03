@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-03T23:45:41+03:00",
+  "last_updated_at": "2026-07-04T00:00:42+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -961,7 +961,7 @@
             "key": "finished",
             "state": "finished",
             "label_ar": "انتهت",
-            "label": "Final"
+            "label": "Full Time"
           },
           "phase": "finished",
           "score1": 3,
@@ -1004,19 +1004,7 @@
           "sort_key_jordan": "2026-07-02T22:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760497",
-          "espnEventId": "760497",
-          "status_key": "finished",
-          "status_ar": "انتهت",
-          "team1_score": 3,
-          "team2_score": 0,
-          "team1Score": 3,
-          "team2Score": 0,
-          "home_score": 3,
-          "away_score": 0,
-          "homeScore": 3,
-          "awayScore": 0,
-          "score_text": "3 - 0",
-          "score_source": "espn-finished"
+          "espnEventId": "760497"
         },
         {
           "id": "M083",
@@ -1036,7 +1024,7 @@
             "key": "finished",
             "state": "finished",
             "label_ar": "انتهت",
-            "label": "Final"
+            "label": "Full Time"
           },
           "phase": "finished",
           "score1": 2,
@@ -1079,19 +1067,7 @@
           "sort_key_jordan": "2026-07-03T02:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760496",
-          "espnEventId": "760496",
-          "status_key": "finished",
-          "status_ar": "انتهت",
-          "team1_score": 2,
-          "team2_score": 1,
-          "team1Score": 2,
-          "team2Score": 1,
-          "home_score": 2,
-          "away_score": 1,
-          "homeScore": 2,
-          "awayScore": 1,
-          "score_text": "2 - 1",
-          "score_source": "espn-finished"
+          "espnEventId": "760496"
         },
         {
           "id": "M085",
@@ -1111,7 +1087,7 @@
             "key": "finished",
             "state": "finished",
             "label_ar": "انتهت",
-            "label": "Final"
+            "label": "Full Time"
           },
           "phase": "finished",
           "score1": 2,
@@ -1154,19 +1130,7 @@
           "sort_key_jordan": "2026-07-03T06:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760498",
-          "espnEventId": "760498",
-          "status_key": "finished",
-          "status_ar": "انتهت",
-          "team1_score": 2,
-          "team2_score": 0,
-          "team1Score": 2,
-          "team2Score": 0,
-          "home_score": 2,
-          "away_score": 0,
-          "homeScore": 2,
-          "awayScore": 0,
-          "score_text": "2 - 0",
-          "score_source": "espn-finished"
+          "espnEventId": "760498"
         },
         {
           "id": "M086",
@@ -1183,23 +1147,29 @@
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
           "status": {
-            "key": "live",
-            "label_ar": "مباشر",
-            "label": "Live",
-            "state": "live"
+            "key": "finished",
+            "label_ar": "انتهت",
+            "state": "finished",
+            "label": "Final"
           },
-          "phase": "live",
+          "phase": "finished",
           "score1": 1,
           "score2": 1,
-          "score_ft": null,
+          "score_ft": [
+            1,
+            1
+          ],
           "score_et": [
             1,
             1
           ],
-          "penalty1": null,
-          "penalty2": null,
-          "score_penalties": null,
-          "winner_side": null,
+          "penalty1": 2,
+          "penalty2": 4,
+          "score_penalties": [
+            2,
+            4
+          ],
+          "winner_side": 2,
           "team1": {
             "name_ar": "Australia",
             "name_en": "Australia",
@@ -1230,8 +1200,8 @@
           "timezone": "Asia/Amman",
           "espn_event_id": "760499",
           "espnEventId": "760499",
-          "status_key": "live",
-          "status_ar": "مباشر",
+          "status_key": "finished",
+          "status_ar": "انتهت",
           "team1_score": 1,
           "team2_score": 1,
           "team1Score": 1,
@@ -1241,7 +1211,7 @@
           "homeScore": 1,
           "awayScore": 1,
           "score_text": "1 - 1",
-          "score_source": "espn-live"
+          "score_source": "espn-finished"
         },
         {
           "id": "M087",
@@ -1638,9 +1608,9 @@
             "label_ar": "لم تبدأ",
             "label": "Scheduled"
           },
-          "phase": "",
-          "score1": null,
-          "score2": null,
+          "phase": "scheduled",
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -1700,9 +1670,9 @@
             "label_ar": "لم تبدأ",
             "label": "Scheduled"
           },
-          "phase": "",
-          "score1": null,
-          "score2": null,
+          "phase": "scheduled",
+          "score1": 0,
+          "score2": 0,
           "score_ft": null,
           "score_et": null,
           "penalty1": null,
@@ -2930,7 +2900,7 @@
         "key": "finished",
         "state": "finished",
         "label_ar": "انتهت",
-        "label": "Final"
+        "label": "Full Time"
       },
       "phase": "finished",
       "score1": 3,
@@ -2973,19 +2943,7 @@
       "sort_key_jordan": "2026-07-02T22:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760497",
-      "espnEventId": "760497",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "team1_score": 3,
-      "team2_score": 0,
-      "team1Score": 3,
-      "team2Score": 0,
-      "home_score": 3,
-      "away_score": 0,
-      "homeScore": 3,
-      "awayScore": 0,
-      "score_text": "3 - 0",
-      "score_source": "espn-finished"
+      "espnEventId": "760497"
     },
     {
       "id": "M083",
@@ -3005,7 +2963,7 @@
         "key": "finished",
         "state": "finished",
         "label_ar": "انتهت",
-        "label": "Final"
+        "label": "Full Time"
       },
       "phase": "finished",
       "score1": 2,
@@ -3048,19 +3006,7 @@
       "sort_key_jordan": "2026-07-03T02:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760496",
-      "espnEventId": "760496",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "team1_score": 2,
-      "team2_score": 1,
-      "team1Score": 2,
-      "team2Score": 1,
-      "home_score": 2,
-      "away_score": 1,
-      "homeScore": 2,
-      "awayScore": 1,
-      "score_text": "2 - 1",
-      "score_source": "espn-finished"
+      "espnEventId": "760496"
     },
     {
       "id": "M085",
@@ -3080,7 +3026,7 @@
         "key": "finished",
         "state": "finished",
         "label_ar": "انتهت",
-        "label": "Final"
+        "label": "Full Time"
       },
       "phase": "finished",
       "score1": 2,
@@ -3123,19 +3069,7 @@
       "sort_key_jordan": "2026-07-03T06:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760498",
-      "espnEventId": "760498",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "team1_score": 2,
-      "team2_score": 0,
-      "team1Score": 2,
-      "team2Score": 0,
-      "home_score": 2,
-      "away_score": 0,
-      "homeScore": 2,
-      "awayScore": 0,
-      "score_text": "2 - 0",
-      "score_source": "espn-finished"
+      "espnEventId": "760498"
     },
     {
       "id": "M086",
@@ -3152,23 +3086,29 @@
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
       "status": {
-        "key": "live",
-        "label_ar": "مباشر",
-        "label": "Live",
-        "state": "live"
+        "key": "finished",
+        "label_ar": "انتهت",
+        "state": "finished",
+        "label": "Final"
       },
-      "phase": "live",
+      "phase": "finished",
       "score1": 1,
       "score2": 1,
-      "score_ft": null,
+      "score_ft": [
+        1,
+        1
+      ],
       "score_et": [
         1,
         1
       ],
-      "penalty1": null,
-      "penalty2": null,
-      "score_penalties": null,
-      "winner_side": null,
+      "penalty1": 2,
+      "penalty2": 4,
+      "score_penalties": [
+        2,
+        4
+      ],
+      "winner_side": 2,
       "team1": {
         "name_ar": "Australia",
         "name_en": "Australia",
@@ -3199,8 +3139,8 @@
       "timezone": "Asia/Amman",
       "espn_event_id": "760499",
       "espnEventId": "760499",
-      "status_key": "live",
-      "status_ar": "مباشر",
+      "status_key": "finished",
+      "status_ar": "انتهت",
       "team1_score": 1,
       "team2_score": 1,
       "team1Score": 1,
@@ -3210,7 +3150,7 @@
       "homeScore": 1,
       "awayScore": 1,
       "score_text": "1 - 1",
-      "score_source": "espn-live"
+      "score_source": "espn-finished"
     },
     {
       "id": "M087",
@@ -3600,9 +3540,9 @@
         "label_ar": "لم تبدأ",
         "label": "Scheduled"
       },
-      "phase": "",
-      "score1": null,
-      "score2": null,
+      "phase": "scheduled",
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
@@ -3662,9 +3602,9 @@
         "label_ar": "لم تبدأ",
         "label": "Scheduled"
       },
-      "phase": "",
-      "score1": null,
-      "score2": null,
+      "phase": "scheduled",
+      "score1": 0,
+      "score2": 0,
       "score_ft": null,
       "score_et": null,
       "penalty1": null,
