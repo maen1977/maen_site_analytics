@@ -5213,11 +5213,45 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     if(pair&&pair.length>=2&&pair[0]!=null&&pair[1]!=null)return [Number(pair[0])||0,Number(pair[1])||0];
     return null;
   }
-  function hasFinalScore(m){var sc=m&&m.score; var s=String((m&&m.status)||'').toLowerCase(); return !!(sc&&(sc.ft||sc.et||sc.p))||(/finished|completed|complete|full[_\s-]?time|final|ended|ft|انته/.test(s)&&!!scorePair(m));}
+  function wcStatusParts(m){
+    var sc=m&&m.score;
+    var st=m&&m.status;
+    var parts=[];
+    if(st&&typeof st==='object'){
+      parts.push(st.key,st.state,st.status,st.label,st.label_ar,st.name,st.description);
+    }else{
+      parts.push(st);
+    }
+    parts.push(
+      m&&m.status_key,
+      m&&m.statusKey,
+      m&&m.status_ar,
+      m&&m.status_label,
+      m&&m.statusLabel,
+      m&&m.live_phase,
+      m&&m.live_phase_ar,
+      m&&m.live_status_detail,
+      m&&m.phase,
+      m&&m.phase_ar,
+      m&&m.live_clock,
+      sc&&sc.status,
+      sc&&sc.key,
+      sc&&sc.state,
+      sc&&sc.phase,
+      sc&&sc.phase_ar,
+      sc&&sc.status_detail,
+      sc&&sc.clock
+    );
+    return parts.filter(function(v){return v!==null&&v!==undefined&&v!=='';}).join(' ').toLowerCase();
+  }
+  function wcStatusKey(m){
+    var st=m&&m.status;
+    if(st&&typeof st==='object')return String(st.key||st.state||st.status||'').toLowerCase();
+    return String(st||'').toLowerCase();
+  }
+  function hasFinalScore(m){var sc=m&&m.score; var s=wcStatusParts(m); return !!(sc&&(sc.ft||sc.et||sc.p))||(/finished|completed|complete|full[_\s-]?time|final|ended|ft|انته/.test(s)&&!!scorePair(m));}
   function hasStartedOrFinishedScore(m){
-    var s=String((m&&m.status)||'scheduled').toLowerCase();
-    var phase=String((m&&(m.live_phase||(m.score&&m.score.phase)))||'').toLowerCase();
-    var all=s+' '+phase;
+    var all=wcStatusParts(m);
     if(hasFinalScore(m))return true;
     if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|penalty|live|in[_\s-]?play|playing|started|halftime|half[_\s-]?time|first_half|second_half|extra[_\s-]?time/.test(all))return true;
     return !!(m&&(m.is_live===true||m.live===true||m.in_play===true||m.started===true));
@@ -5225,7 +5259,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function hasVisibleScore(m){return hasStartedOrFinishedScore(m);}
   function scoreText(m){if(!hasVisibleScore(m))return '—'; var pair=scorePair(m)||[0,0]; var pen=penaltyPair(m); return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');}
   function scoreClass(m){return hasVisibleScore(m)?'wc-score':'wc-score pending';}
-  function statusText(m){var s=String((m&&m.status)||'scheduled').toLowerCase(); var sc=m&&m.score; var phase=String((m&&(m.live_phase||(sc&&sc.phase)))||'').toLowerCase(); var detail=String((m&&(m.live_status_detail||(sc&&sc.status_detail)))||'').toLowerCase(); var all=s+' '+phase+' '+detail; if(s.includes('pending_verification')||s.includes('pending-verification'))return lang()==='en'?'Pending verification':'بانتظار التحديث'; if(penaltyPair(m)&&(/finished|ended|complete|ft|final|انته/.test(all)||sc&&sc.p))return tr('finishedPenalties'); if(/penalties|penalty|shootout|ترجيح/.test(all))return lang()==='en'?'Penalties':'ركلات الترجيح'; if(/extra_time_first/.test(all))return lang()==='en'?'Extra time 1st half':'الشوط الإضافي الأول'; if(/extra_time_second/.test(all))return lang()==='en'?'Extra time 2nd half':'الشوط الإضافي الثاني'; if((sc&&sc.et)||/finished_after_extra_time|after\s+extra|aet|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(all))return tr('finishedExtra'); if((sc&&sc.ft)||s.includes('finished')||s==='ft')return tr('finished'); if(s.includes('live')||s==='in_play'||/first_half|second_half|half_time/.test(all))return tr('live'); if(s.includes('post'))return tr('postponed'); if(s.includes('cancel'))return tr('cancelled'); return tr('scheduled');}
+  function statusText(m){var s=wcStatusKey(m); var sc=m&&m.score; var all=wcStatusParts(m); if(penaltyPair(m)&&(/finished|ended|complete|ft|final|انته/.test(all)||sc&&sc.p))return tr('finishedPenalties'); if(/penalties|penalty|shootout|ترجيح/.test(all)&&/finished|ended|complete|ft|final|انته/.test(all))return tr('finishedPenalties'); if(/extra_time_first/.test(all))return lang()==='en'?'Extra time 1st half':'الشوط الإضافي الأول'; if(/extra_time_second/.test(all))return lang()==='en'?'Extra time 2nd half':'الشوط الإضافي الثاني'; if((sc&&sc.et)||/finished_after_extra_time|after\s+extra|aet|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(all))return tr('finishedExtra'); if((sc&&sc.ft)||/finished|completed|complete|full[_\s-]?time|final|ended|ft|انته/.test(all))return tr('finished'); if(hasVisibleScore(m)||/live|in[_\s-]?play|playing|started|first_half|second_half|half_time|halftime|extra[_\s-]?time|مباشر|الشوط/.test(all))return tr('live'); if(/penalties|penalty|shootout|ترجيح/.test(all))return lang()==='en'?'Penalties':'ركلات الترجيح'; if(s.includes('post')||/postpon/.test(all))return tr('postponed'); if(s.includes('cancel')||/cancel/.test(all))return tr('cancelled'); if(/pending_verification|pending-verification|pending_update|pending-update/.test(all))return lang()==='en'?'Awaiting update':'بانتظار التحديث'; return tr('scheduled');}
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}
   function broadcastStatusText(c){var s=String((c&&c.status)||'').toLowerCase(); if(s==='confirmed')return tr('confirmed'); if(s==='to_be_confirmed'||s==='tbc'||s==='channel_tbc')return tr('toBeConfirmed'); if(s==='pending_official_announcement'||s==='pending'||s==='pending_official')return tr('pendingOfficial'); return s?esc(s):'';}
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
@@ -5347,8 +5381,8 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   };
   function wcMatchDate(m){var t=wcMatchTime(m); if(t===Number.MAX_SAFE_INTEGER)return null; var d=new Date(t); return d&&!isNaN(d.getTime())?d:null;}
   function wcMatchEstimatedEnd(m){var start=wcMatchDate(m); if(!start)return null; var stage=String((m&&(m.stage||m.round||m.stage_ar))||'').toLowerCase(); var n=wcMatchNumber(m); var isKnockout=(n>=73)||(stage&&stage.indexOf('group')<0&&stage.indexOf('مجموع')<0); var minutes=isKnockout?240:150; return new Date(start.getTime()+minutes*60000);}
-  function wcIsFinishedForNext(m,now){var status=String((m&&m.status)||'').toLowerCase(); if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|انته/.test(status))return true; var sc=m&&m.score; if(sc&&(sc.ft||sc.et||sc.p))return true; var end=wcMatchEstimatedEnd(m); return !!(end&&end.getTime()<=Number(now));}
-  function wcIsCurrentForNext(m,now){if(!m||wcIsFinishedForNext(m,now))return false; var status=String((m&&m.status)||'').toLowerCase(); if(/live|in[_\s-]?play|playing|first[_\s-]?half|second[_\s-]?half|halftime|مباشر|الشوط/.test(status))return true; var start=wcMatchTime(m); var end=wcMatchEstimatedEnd(m); return Number.isFinite(start)&&end&&start<=Number(now)&&end.getTime()>=Number(now);}
+  function wcIsFinishedForNext(m,now){var status=wcStatusParts(m); if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|انته/.test(status))return true; var sc=m&&m.score; if(sc&&(sc.ft||sc.et||sc.p))return true; var end=wcMatchEstimatedEnd(m); return !!(end&&end.getTime()<=Number(now));}
+  function wcIsCurrentForNext(m,now){if(!m||wcIsFinishedForNext(m,now))return false; var status=wcStatusParts(m); if(/live|in[_\s-]?play|playing|first[_\s-]?half|second[_\s-]?half|halftime|مباشر|الشوط/.test(status))return true; var start=wcMatchTime(m); var end=wcMatchEstimatedEnd(m); return Number.isFinite(start)&&end&&start<=Number(now)&&end.getTime()>=Number(now);}
   function wcIsKnockoutForNext(m){var n=wcMatchNumber(m); var stage=String((m&&(m.stage||m.round||m.stage_ar))||'').toLowerCase(); return (n>=73)||/round|knockout|quarter|semi|final|دور|ربع|نصف|نهائي/.test(stage);}
   function wcNextMatch(matches){
     var now=new Date();

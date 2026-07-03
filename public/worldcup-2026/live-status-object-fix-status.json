@@ -1,0 +1,11 @@
+{
+  "name": "World Cup live status object fix",
+  "version": "20260703-status-object-v1",
+  "purpose": "Fixes inline World Cup cards that showed 'لم تبدأ' even when match status is stored as an object with key/state live or live_phase=live.",
+  "files_changed": [
+    "public/index.html",
+    "public/index_phone.html"
+  ],
+  "safe_scope": "Only changes World Cup status parsing/rendering in the inline cards. It does not change card design, colors, teams, match order, numbers, or update workflow.",
+  "expected_result": "A live match with score/current/live_phase/status object now displays الحالة: مباشر instead of لم تبدأ."
+}
