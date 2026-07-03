@@ -70,7 +70,8 @@ jobs:
             scripts/worldcup-live-zero-score-guard.mjs \
             scripts/worldcup-finished-score-backfill.mjs \
             scripts/worldcup-jordan-order-consistency.mjs \
-            scripts/worldcup-final-live-reconciliation.mjs
+            scripts/worldcup-final-live-reconciliation.mjs \
+            scripts/worldcup-stale-live-finalizer.mjs
           do
             if [ -f "$file" ]; then
               node --check "$file"
@@ -147,6 +148,12 @@ jobs:
           # هذه آخر خطوة قبل الكومت: لا نسمح لأي سكربت لاحق يرجع مباراة بدأت إلى "لم تبدأ".
           node scripts/worldcup-final-live-reconciliation.mjs
 
+      - name: Finalize stale live matches after penalties
+        shell: bash
+        run: |
+          # حماية أخيرة: إذا انتهت مباراة بالترجيح وبقيت live بسبب تأخر المصدر، لا نترك الكرت مباشر.
+          node scripts/worldcup-stale-live-finalizer.mjs
+
       - name: Commit changed World Cup data files
         id: commit
         shell: bash
@@ -166,6 +173,7 @@ jobs:
             public/worldcup-2026/finished-score-backfill-status.json \
             public/worldcup-2026/jordan-order-consistency-status.json \
             public/worldcup-2026/final-live-reconciliation-status.json \
+            public/worldcup-2026/stale-live-finalizer-status.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \
