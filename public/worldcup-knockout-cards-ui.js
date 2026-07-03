@@ -1,27 +1,40 @@
 (() => {
   'use strict';
 
-  const VERSION = '20260702-knockout-live-cards-zero-score-v2';
+  const VERSION = '20260703-knockout-live-cards-final-live-guard-v1';
   const DATA_URL = '/worldcup-2026/knockout-live.json';
   const REFRESH_MS = 60 * 1000;
   const TAB_TEXT = 'الأدوار';
-
+  const LIVE_WINDOW_MS = 270 * 60 * 1000;
   let cache = null;
   let lastRenderKey = '';
 
   const esc = (value) => String(value ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const norm = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+  const toEnglishDigits = (value) => String(value ?? '')
+    .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
+    .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
   const numberOrNull = (value) => {
     if (value === null || value === undefined || value === '') return null;
     if (typeof value === 'number') return Number.isFinite(value) ? value : null;
-    const cleaned = String(value)
-      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
-      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
-    const m = cleaned.match(/-?\d+(?:\.\d+)?/);
+    const m = toEnglishDigits(value).match(/-?\d+(?:\.\d+)?/);
     if (!m) return null;
     const n = Number(m[0]);
     return Number.isFinite(n) ? n : null;
   };
+
+  function parseDate(value) {
+    if (!value) return null;
+    const d = new Date(String(value).trim());
+    return Number.isFinite(d.getTime()) ? d : null;
+  }
+
+  function kickoffDate(m) {
+    return parseDate(m?.kickoff_utc || m?.kickoffUtc || m?.kickoff_jordan || m?.kickoffJordan || m?.kickoff || m?.start_time || m?.startTime || m?.datetime)
+      || ((m?.date_jordan || m?.date) && (m?.time_jordan || m?.time || m?.time_ar)
+        ? parseDate(`${toEnglishDigits(m.date_jordan || m.date)}T${toEnglishDigits(m.time_jordan || m.time || m.time_ar)}:00+03:00`)
+        : null);
+  }
 
   function findWorldCupRoot() {
     const candidates = Array.from(document.querySelectorAll('section, article, main, div[id], div[class]'));
@@ -29,7 +42,7 @@
       const t = norm(el.textContent || '');
       return t.includes('كأس العالم 2026') && t.includes('الأدوار') && t.includes('المجموعات');
     });
-    filtered.sort((a, b) => (norm(a.textContent).length - norm(b.textContent).length));
+    filtered.sort((a, b) => norm(a.textContent).length - norm(b.textContent).length);
     return filtered[0] || null;
   }
 
@@ -82,10 +95,7 @@
     let sib = tabbar?.nextElementSibling || null;
     let guard = 0;
     while (sib && guard++ < 5) {
-      if (sib === panel) {
-        sib = sib.nextElementSibling;
-        continue;
-      }
+      if (sib === panel) { sib = sib.nextElementSibling; continue; }
       const t = norm(sib.textContent || '');
       if (t.includes('جاري تحميل بيانات كأس العالم') || t.includes('1A') || t.includes('2B') || t.includes('3B/E') || t.includes('W73') || t.includes('الفائز من مباراة')) {
         if (!sib.dataset.wcOldDisplay) sib.dataset.wcOldDisplay = sib.style.display || '';
@@ -109,52 +119,64 @@
     return s || 'لم يتحدد بعد';
   }
 
-  function cardTeam(team, side) {
+  function cardTeam(team) {
     const name = team?.name_ar || team?.name || team?.name_en || (team?.slot ? slotLabel(team.slot) : 'لم يتحدد بعد');
     const cls = team?.unresolved ? ' wc-team-pending' : '';
     const group = team?.group ? `<span class="wc-team-group">المجموعة ${esc(team.group)}</span>` : '';
-    return `<div class="wc-team wc-team-${side}${cls}"><strong>${esc(name)}</strong>${group}</div>`;
+    return `<div class="wc-team${cls}"><strong>${esc(name)}</strong>${group}</div>`;
   }
 
   function matchStatusKey(m) {
-    return String(m?.status?.key || m?.status?.state || m?.status || '').toLowerCase();
+    return String(m?.status?.key || m?.status?.state || m?.status_key || m?.phase || m?.status || '').toLowerCase();
+  }
+
+  function statusText(m) {
+    return [m?.status?.key, m?.status?.state, m?.status?.label_ar, m?.status?.label, m?.status_key, m?.status_ar, m?.status, m?.phase]
+      .map(v => typeof v === 'object' ? '' : String(v || '').toLowerCase()).join(' ');
+  }
+
+  function isFinishedMatch(m) {
+    return /\b(final|finished|complete|completed|post)\b|انته|نهائي/.test(statusText(m));
+  }
+
+  function isLiveByTime(m) {
+    if (isFinishedMatch(m)) return false;
+    const d = kickoffDate(m);
+    if (!d) return false;
+    const diff = Date.now() - d.getTime();
+    return diff >= 0 && diff <= LIVE_WINDOW_MS;
   }
 
   function isLiveMatch(m) {
-    const text = [m?.status?.key, m?.status?.state, m?.status?.label_ar, m?.status?.label, m?.status, m?.phase]
-      .map(v => String(v || '').toLowerCase()).join(' ');
-    return /\b(live|in|progress|halftime|extra|penalty)\b|مباشر|الشوط|استراحة|ركلات|ترجيح/.test(text)
-      && !/\b(final|finished|complete|completed|post)\b|انته/.test(text);
+    const text = statusText(m);
+    const explicitLive = /\b(live|in|progress|halftime|extra|penalty)\b|مباشر|الشوط|استراحة|ركلات|ترجيح/.test(text) && !isFinishedMatch(m);
+    return explicitLive || isLiveByTime(m);
   }
 
   function readScorePair(m) {
     let s1 = numberOrNull(m.score1 ?? m.team1_score ?? m.team1Score ?? m.home_score ?? m.homeScore);
     let s2 = numberOrNull(m.score2 ?? m.team2_score ?? m.team2Score ?? m.away_score ?? m.awayScore);
-
     if (s1 !== null || s2 !== null) return [s1 ?? 0, s2 ?? 0];
-
-    const textScore = String(m.score_text || m.scoreText || m.display_score || m.displayScore || m.result || m.score || '');
-    const cleaned = textScore
-      .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)))
-      .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)));
-    const pair = cleaned.match(/(\d+)\s*[-–—:]\s*(\d+)/);
+    const textScore = toEnglishDigits(m.score_text || m.scoreText || m.display_score || m.displayScore || m.result || m.score || '');
+    const pair = textScore.match(/(\d+)\s*[-–—:]\s*(\d+)/);
     if (pair) return [Number(pair[1]), Number(pair[2])];
-
     return null;
+  }
+
+  function statusLabel(m) {
+    if (isFinishedMatch(m)) return m?.status?.label_ar || m?.status_ar || 'انتهت';
+    if (isLiveMatch(m)) return 'مباشر';
+    return m?.status?.label_ar || m?.status_ar || 'لم تبدأ';
   }
 
   function scoreHtml(m) {
     const pair = readScorePair(m);
     const live = isLiveMatch(m);
     const score = pair || (live ? [0, 0] : null);
-    const pen = Number.isFinite(numberOrNull(m.penalty1)) && Number.isFinite(numberOrNull(m.penalty2))
-      ? `<small>ركلات ${esc(m.penalty1)} - ${esc(m.penalty2)}</small>`
-      : '';
-
-    if (!score) {
-      return `<div class="wc-score wc-score-empty">${esc(m.status?.label_ar || 'لم تبدأ')}</div>`;
-    }
-
+    const p1 = numberOrNull(m.penalty1);
+    const p2 = numberOrNull(m.penalty2);
+    const pen = p1 !== null && p2 !== null ? `<small>ركلات ${esc(p1)} - ${esc(p2)}</small>` : '';
+    if (!score) return `<div class="wc-score wc-score-empty">${esc(statusLabel(m))}</div>`;
     return `<div class="wc-score"><span>${esc(score[0])}-${esc(score[1])}</span>${pen}</div>`;
   }
 
@@ -165,12 +187,20 @@
   }
 
   function matchCard(m) {
-    const when = [m.date, m.time].filter(Boolean).join(' • ') || (m.kickoff ? m.kickoff : 'الموعد حسب الجدول');
+    const when = [m.date_ar || m.date_jordan || m.date, m.time_ar || m.time_jordan || m.time].filter(Boolean).join(' • ') || (m.kickoff_jordan || m.kickoff || 'الموعد حسب الجدول');
     const venue = [m.venue_ar, m.city_ar].filter(Boolean).join(' • ');
     return `<article class="wc-knockout-card ${statusClass(m)}">
-      <div class="wc-card-top"><span class="wc-stage-pill">${esc(m.stage_ar || 'الأدوار')}</span><span class="wc-match-no">مباراة ${esc(m.number || m.id || '')}</span><span class="wc-status">${esc(m.status?.label_ar || 'لم تبدأ')}</span></div>
-      <div class="wc-card-body">${cardTeam(m.team1, 'one')} ${scoreHtml(m)} ${cardTeam(m.team2, 'two')}</div>
-      <div class="wc-card-meta"><span>${esc(when)}</span>${venue ? `<span>${esc(venue)}</span>` : ''}</div>
+      <div class="wc-card-top">
+        <span class="wc-stage-pill">${esc(m.stage_ar || 'الأدوار')}</span>
+        <span class="wc-match-no">مباراة ${esc(m.number || m.match_number || m.id || '')}</span>
+        <span class="wc-status">${esc(statusLabel(m))}</span>
+      </div>
+      <div class="wc-card-body">
+        ${cardTeam(m.team1)} ${scoreHtml(m)} ${cardTeam(m.team2)}
+      </div>
+      <div class="wc-card-meta">
+        <span>${esc(when)}</span>${venue ? `<span>${esc(venue)}</span>` : ''}
+      </div>
     </article>`;
   }
 
