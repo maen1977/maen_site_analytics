@@ -1,13 +1,13 @@
 (() => {
   'use strict';
 
-  const VERSION = '20260703-real-dom-live-status-guard-v1';
+  const VERSION = '20260703-real-dom-live-extra-time-fix-v2';
   const DATA_URL = '/worldcup-2026/knockout-live.json';
   const REFRESH_MS = 30 * 1000;
   const LIVE_EARLY_MS = 5 * 60 * 1000;
   const LIVE_WINDOW_MS = 4 * 60 * 60 * 1000;
   const LIVE_LABEL = 'مباشر';
-  const SCHEDULED_LABELS = new Set(['لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا']);
+  const WRONG_LIVE_LABELS = new Set(['لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا', 'انتهت', 'انتهت بعد التمديد', 'انتهت بركلات الترجيح']);
 
   let liveMatches = [];
   let lastRunAt = 0;
@@ -65,14 +65,19 @@
   }
 
   function statusText(match) {
-    return [
-      match?.status?.key,
-      match?.status?.state,
-      match?.status?.label_ar,
-      match?.status?.label,
-      match?.status,
-      match?.phase,
-    ].map((v) => String(v || '').toLowerCase()).join(' ');
+    const parts = [];
+    const add = (value) => {
+      if (value === null || value === undefined) return;
+      if (typeof value === 'object') {
+        if (Array.isArray(value)) return value.forEach(add);
+        return Object.keys(value).forEach((key) => add(value[key]));
+      }
+      parts.push(String(value));
+    };
+    add(match?.status); add(match?.status_key); add(match?.status_ar); add(match?.phase);
+    add(match?.live_phase); add(match?.live_phase_ar); add(match?.live_status_detail); add(match?.live_clock);
+    add(match?.score?.status); add(match?.score?.phase); add(match?.score?.phase_ar); add(match?.score?.status_detail); add(match?.score?.clock);
+    return parts.join(' ').toLowerCase();
   }
 
   function readScorePair(match) {
@@ -91,12 +96,14 @@
 
   function isFinished(match) {
     const text = statusText(match);
-    return /\b(final|finished|complete|completed|full\s*time|post|closed)\b|انته|نهائي|بعد التمديد|ركلات الترجيح/.test(text);
+    const hasLive = /\b(live|in[-\s]?progress|in[_\s-]?play|playing|progress|halftime|half[-\s]?time|extra[_\s-]?time|penalty|period)\b|مباشر|الشوط|استراحه|استراحة|ترجيح/.test(text);
+    const hasFinal = /\b(final|finished|complete|completed|full\s*time|full_time|ended|ft|aet|closed)\b|انته/.test(text);
+    return hasFinal && !hasLive;
   }
 
   function isExplicitLive(match) {
     const text = statusText(match);
-    return !isFinished(match) && (/\b(live|in[-\s]?progress|progress|halftime|half[-\s]?time|extra|penalty|period)\b|مباشر|الشوط|استراحه|استراحة|ركلات|ترجيح/.test(text));
+    return !isFinished(match) && (/\b(live|in[-\s]?progress|in[_\s-]?play|playing|progress|halftime|half[-\s]?time|extra[_\s-]?time|penalty|period)\b|مباشر|الشوط|استراحه|استراحة|ركلات|ترجيح/.test(text));
   }
 
   function inKickoffWindow(match) {
@@ -186,7 +193,7 @@
     const nodes = Array.from(card.querySelectorAll('*'));
     for (const node of nodes) {
       const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
-      if (SCHEDULED_LABELS.has(text)) {
+      if (WRONG_LIVE_LABELS.has(text)) {
         node.textContent = LIVE_LABEL;
         node.dataset.maenWcStatusFixed = VERSION;
         changed += 1;

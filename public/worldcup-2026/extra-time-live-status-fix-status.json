@@ -1,0 +1,17 @@
+{
+  "name": "extra-time-live-status-fix",
+  "version": "20260703-extra-time-live-status-v2",
+  "purpose": "Prevent live World Cup matches in extra time or penalties from being displayed as finished before ESPN reports final/full time.",
+  "files": [
+    "public/index.html",
+    "public/index_phone.html",
+    "public/worldcup-live-status-dom-guard.js",
+    "functions/_middleware.js"
+  ],
+  "rules": [
+    "If status/phase says live, in play, extra time, penalties, first half, second half, or has live flags: display مباشر.",
+    "Do not display انتهت بعد التمديد just because score.et exists; only display it when the status is actually final/AET/finished.",
+    "During live matches, prefer score.current/live/et before ft so the visible score follows the live score.",
+    "If a live match has no score yet, display 0 - 0 instead of a dash or a wrong status label."
+  ]
+}
