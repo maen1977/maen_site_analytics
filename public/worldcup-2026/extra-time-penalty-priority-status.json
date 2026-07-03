@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "fix": "extra-time-penalty-priority",
+  "version": "20260703-extra-time-penalty-priority-v2",
+  "summary_ar": "تعديل أولوية حالة مباريات كأس العالم: المباشر والتمديد وركلات الترجيح أثناء اللعب تغلب أي تسمية نهائية قديمة، ولا يتم اعتبار score.et أو score.p دليلاً على انتهاء المباراة بدون حالة final صريحة.",
+  "rules": {
+    "live_priority": "live / in_play / extra_time / penalties يساوي مباشر حتى لو بقي label قديم",
+    "final_after_extra": "انتهت بعد التمديد فقط عند وجود final/finished/AET صريح",
+    "final_penalties": "انتهت بركلات الترجيح فقط عند وجود final/finished مع بيانات ترجيح",
+    "score_p": "score.p يستخدم كركلات ترجيح فقط وليس كنتيجة أصلية",
+    "score_et": "score.et يمكن أن يكون نتيجة حالية في التمديد ولا يعني النهاية وحده"
+  },
+  "files": [
+    "public/index.html",
+    "public/index_phone.html",
+    "public/worldcup-live-status-dom-guard.js",
+    "functions/_middleware.js"
+  ]
+}
