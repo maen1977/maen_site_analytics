@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "feature": "cloudflare-full-daily-reports",
+  "worker": "workers/maen-cloudflare-cron-worker.js",
+  "timezone": "Asia/Amman",
+  "cronUtc": "15 5 * * *",
+  "cronJordanApprox": "08:15",
+  "storage": "Cloudflare D1: frequency_cache + cloudflare_cron_status; analytics_events already used by track-visit",
+  "email": "Resend via Cloudflare Worker"
+}

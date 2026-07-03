@@ -1,0 +1,25 @@
+# Cloudflare Worker Cron for Maen site daily reports.
+# Replace the database_id with your real Cloudflare D1 database id before running wrangler deploy.
+
+name = "maen-cloudflare-daily-cron"
+main = "workers/maen-cloudflare-cron-worker.js"
+compatibility_date = "2026-07-03"
+
+[triggers]
+# 05:15 UTC = 08:15 Jordan time when Jordan is UTC+3.
+crons = ["15 5 * * *"]
+
+[vars]
+ANALYTICS_TIMEZONE = "Asia/Amman"
+PUBLIC_BASE_URL = "https://maensat.pages.dev"
+# REPORT_EMAIL and REPORT_FROM can be set as encrypted variables/secrets in Cloudflare dashboard.
+
+[[d1_databases]]
+binding = "MAEN_DB"
+database_name = "maen_site_analytics"
+database_id = "PUT_YOUR_CLOUDFLARE_D1_DATABASE_ID_HERE"
+
+# Optional. If you already use KV for frequency cache, uncomment and add the namespace id.
+# [[kv_namespaces]]
+# binding = "MAEN_FREQUENCY_KV"
+# id = "PUT_YOUR_KV_NAMESPACE_ID_HERE"
