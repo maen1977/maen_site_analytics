@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-03T08:00:47+03:00",
+  "last_updated_at": "2026-07-03T08:01:17+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -11,7 +11,6 @@
     "unresolved_future_slots": [
       "W86",
       "W88",
-      "W85",
       "W87",
       "W89",
       "W90",
@@ -152,8 +151,8 @@
       "match": "M096",
       "side": "team1",
       "source_slot": "W85",
-      "resolved_team_ar": "الفائز من مباراة 85",
-      "unresolved": true,
+      "resolved_team_ar": "Switzerland",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1086,19 +1085,22 @@
           "city_ar": "",
           "status": {
             "key": "finished",
+            "state": "finished",
             "label_ar": "انتهت",
-            "label": "Full Time",
-            "state": "finished"
+            "label": "Full Time"
           },
-          "phase": "live",
+          "phase": "finished",
           "score1": 2,
           "score2": 0,
-          "score_ft": null,
+          "score_ft": [
+            2,
+            0
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 1,
           "team1": {
             "name_ar": "Switzerland",
             "name_en": "Switzerland",
@@ -1128,13 +1130,7 @@
           "sort_key_jordan": "2026-07-03T06:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760498",
-          "espnEventId": "760498",
-          "team1_score": 2,
-          "team2_score": 0,
-          "home_score": 2,
-          "away_score": 0,
-          "score_text": "2-0",
-          "score_updated_by": "canonical-sync-final"
+          "espnEventId": "760498"
         },
         {
           "id": "M086",
@@ -1769,10 +1765,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 85",
-            "name_en": "Winner of match 85",
+            "name_ar": "Switzerland",
+            "name_en": "Switzerland",
+            "group": "",
+            "position": "",
             "slot": "W85",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W85"
           },
           "team2": {
             "name_ar": "الفائز من مباراة 87",
@@ -3004,19 +3003,22 @@
       "city_ar": "",
       "status": {
         "key": "finished",
+        "state": "finished",
         "label_ar": "انتهت",
-        "label": "Full Time",
-        "state": "finished"
+        "label": "Full Time"
       },
-      "phase": "live",
+      "phase": "finished",
       "score1": 2,
       "score2": 0,
-      "score_ft": null,
+      "score_ft": [
+        2,
+        0
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 1,
       "team1": {
         "name_ar": "Switzerland",
         "name_en": "Switzerland",
@@ -3046,13 +3048,7 @@
       "sort_key_jordan": "2026-07-03T06:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760498",
-      "espnEventId": "760498",
-      "team1_score": 2,
-      "team2_score": 0,
-      "home_score": 2,
-      "away_score": 0,
-      "score_text": "2-0",
-      "score_updated_by": "canonical-sync-final"
+      "espnEventId": "760498"
     },
     {
       "id": "M086",
@@ -3680,10 +3676,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 85",
-        "name_en": "Winner of match 85",
+        "name_ar": "Switzerland",
+        "name_en": "Switzerland",
+        "group": "",
+        "position": "",
         "slot": "W85",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W85"
       },
       "team2": {
         "name_ar": "الفائز من مباراة 87",
