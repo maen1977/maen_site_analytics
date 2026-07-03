@@ -1,16 +1,16 @@
 {
-  "version": "1adc4bca26b9",
-  "generated_at": "2026-07-03T00:00:40+03:00",
-  "next_expected_check_at": "2026-07-03T00:15:41+03:00",
+  "version": "f9cdf4edf8bb",
+  "generated_at": "2026-07-03T12:30:38+03:00",
+  "next_expected_check_at": "2026-07-03T12:45:39+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 10,
       "events_seen": 92,
-      "matched": 90,
-      "bracket_matched": 18,
-      "score_changed": 9,
+      "matched": 92,
+      "bracket_matched": 20,
+      "score_changed": 92,
       "future_openfootball_zero_scores_cleared": 0,
       "time_fallback_status_applied": 0,
       "bracket_time_fallback_status_applied": 0
@@ -19,22 +19,8 @@
       "changed": 1,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 20,
+      "winnerResolved": 26,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M093",
-          "side": "team1",
-          "slot": "W83",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M093",
-          "side": "team2",
-          "slot": "W84",
-          "reason": "winner-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M095",
@@ -47,13 +33,6 @@
           "match": "M095",
           "side": "team2",
           "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M096",
-          "side": "team1",
-          "slot": "W85",
           "reason": "winner-not-ready"
         },
         {
@@ -177,20 +156,6 @@
         },
         {
           "file": "bracket.json",
-          "match": "M093",
-          "side": "team1",
-          "slot": "W83",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M093",
-          "side": "team2",
-          "slot": "W84",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
           "match": "M095",
           "side": "team1",
           "slot": "W86",
@@ -201,13 +166,6 @@
           "match": "M095",
           "side": "team2",
           "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M096",
-          "side": "team1",
-          "slot": "W85",
           "reason": "winner-not-ready"
         },
         {
@@ -407,7 +365,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-03T00:00:41+03:00",
+    "corrected_at": "2026-07-03T12:30:39+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -560,6 +518,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "4cabf0b53b64",
-  "last_updated": "2026-07-03T00:00:41+03:00"
+  "cache_buster": "e1ff39a625bb",
+  "last_updated": "2026-07-03T12:30:39+03:00"
 }
