@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-04T00:00:42+03:00",
+  "last_updated_at": "2026-07-04T00:06:22+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W86",
       "W88",
       "W87",
       "W89",
@@ -135,8 +134,8 @@
       "match": "M095",
       "side": "team1",
       "source_slot": "W86",
-      "resolved_team_ar": "الفائز من مباراة 86",
-      "unresolved": true,
+      "resolved_team_ar": "Egypt",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1148,8 +1147,8 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
             "state": "finished",
+            "label_ar": "انتهت",
             "label": "Final"
           },
           "phase": "finished",
@@ -1737,10 +1736,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 86",
-            "name_en": "Winner of match 86",
+            "name_ar": "Egypt",
+            "name_en": "Egypt",
+            "group": "",
+            "position": "",
             "slot": "W86",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W86"
           },
           "team2": {
             "name_ar": "الفائز من مباراة 88",
@@ -3087,8 +3089,8 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
         "state": "finished",
+        "label_ar": "انتهت",
         "label": "Final"
       },
       "phase": "finished",
@@ -3669,10 +3671,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 86",
-        "name_en": "Winner of match 86",
+        "name_ar": "Egypt",
+        "name_en": "Egypt",
+        "group": "",
+        "position": "",
         "slot": "W86",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W86"
       },
       "team2": {
         "name_ar": "الفائز من مباراة 88",
