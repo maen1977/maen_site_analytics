@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-04T01:00:38+03:00",
+  "last_updated_at": "2026-07-04T01:15:38+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -509,7 +509,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+          "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -598,7 +598,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+          "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -921,7 +921,7 @@
           "status_key": "finished",
           "status_ar": "انتهت",
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+          "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1271,7 +1271,7 @@
             "phase": "finished_penalties"
           },
           "winnerSide": 2,
-          "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+          "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1294,7 +1294,7 @@
             "label": "Live",
             "state": "live"
           },
-          "phase": "scheduled",
+          "phase": "live",
           "score1": 0,
           "score2": 0,
           "score_ft": null,
@@ -1332,7 +1332,19 @@
           "sort_key_jordan": "2026-07-04T01:00:00+03:00",
           "timezone": "Asia/Amman",
           "espn_event_id": "760500",
-          "espnEventId": "760500"
+          "espnEventId": "760500",
+          "status_key": "live",
+          "status_ar": "مباشر",
+          "team1_score": 0,
+          "team2_score": 0,
+          "team1Score": 0,
+          "team2Score": 0,
+          "home_score": 0,
+          "away_score": 0,
+          "homeScore": 0,
+          "awayScore": 0,
+          "score_text": "0 - 0",
+          "score_source": "espn-live"
         },
         {
           "id": "M088",
@@ -2513,7 +2525,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+      "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2602,7 +2614,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+      "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2925,7 +2937,7 @@
       "status_key": "finished",
       "status_ar": "انتهت",
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+      "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3275,7 +3287,7 @@
         "phase": "finished_penalties"
       },
       "winnerSide": 2,
-      "stale_live_finalized_at": "2026-07-04T01:00:39+03:00",
+      "stale_live_finalized_at": "2026-07-04T01:15:39+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3298,7 +3310,7 @@
         "label": "Live",
         "state": "live"
       },
-      "phase": "scheduled",
+      "phase": "live",
       "score1": 0,
       "score2": 0,
       "score_ft": null,
@@ -3336,7 +3348,19 @@
       "sort_key_jordan": "2026-07-04T01:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760500",
-      "espnEventId": "760500"
+      "espnEventId": "760500",
+      "status_key": "live",
+      "status_ar": "مباشر",
+      "team1_score": 0,
+      "team2_score": 0,
+      "team1Score": 0,
+      "team2Score": 0,
+      "home_score": 0,
+      "away_score": 0,
+      "homeScore": 0,
+      "awayScore": 0,
+      "score_text": "0 - 0",
+      "score_source": "espn-live"
     },
     {
       "id": "M088",
