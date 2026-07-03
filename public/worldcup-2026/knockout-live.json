@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-03T04:15:44+03:00",
+  "last_updated_at": "2026-07-03T04:18:45+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W83",
       "W86",
       "W88",
       "W85",
@@ -105,8 +104,8 @@
       "match": "M093",
       "side": "team1",
       "source_slot": "W83",
-      "resolved_team_ar": "الفائز من مباراة 83",
-      "unresolved": true,
+      "resolved_team_ar": "Portugal",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1024,19 +1023,20 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time",
-            "state": "finished"
+            "label_ar": "انتهت"
           },
-          "phase": "live",
+          "phase": "finished",
           "score1": 2,
           "score2": 1,
-          "score_ft": null,
+          "score_ft": [
+            2,
+            1
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 1,
           "team1": {
             "name_ar": "Portugal",
             "name_en": "Portugal",
@@ -1064,15 +1064,7 @@
           "date_jordan": "2026-07-03",
           "time_jordan": "02:00",
           "sort_key_jordan": "2026-07-03T02:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760496",
-          "espnEventId": "760496",
-          "team1_score": 2,
-          "team2_score": 1,
-          "home_score": 2,
-          "away_score": 1,
-          "score_text": "2-1",
-          "score_updated_by": "canonical-sync-final"
+          "timezone": "Asia/Amman"
         },
         {
           "id": "M085",
@@ -1594,10 +1586,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 83",
-            "name_en": "Winner of match 83",
+            "name_ar": "Portugal",
+            "name_en": "Portugal",
+            "group": "",
+            "position": "",
             "slot": "W83",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W83"
           },
           "team2": {
             "name_ar": "Spain",
@@ -2929,19 +2924,20 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time",
-        "state": "finished"
+        "label_ar": "انتهت"
       },
-      "phase": "live",
+      "phase": "finished",
       "score1": 2,
       "score2": 1,
-      "score_ft": null,
+      "score_ft": [
+        2,
+        1
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 1,
       "team1": {
         "name_ar": "Portugal",
         "name_en": "Portugal",
@@ -2969,15 +2965,7 @@
       "date_jordan": "2026-07-03",
       "time_jordan": "02:00",
       "sort_key_jordan": "2026-07-03T02:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760496",
-      "espnEventId": "760496",
-      "team1_score": 2,
-      "team2_score": 1,
-      "home_score": 2,
-      "away_score": 1,
-      "score_text": "2-1",
-      "score_updated_by": "canonical-sync-final"
+      "timezone": "Asia/Amman"
     },
     {
       "id": "M085",
@@ -3492,10 +3480,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 83",
-        "name_en": "Winner of match 83",
+        "name_ar": "Portugal",
+        "name_en": "Portugal",
+        "group": "",
+        "position": "",
         "slot": "W83",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W83"
       },
       "team2": {
         "name_ar": "Spain",
