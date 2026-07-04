@@ -1,7 +1,7 @@
 {
   "script": "worldcup-final-live-reconciliation.mjs",
   "version": "20260703-final-live-reconciliation-v1",
-  "checked_at_jordan": "2026-07-05T02:00:38+03:00",
+  "checked_at_jordan": "2026-07-05T02:05:23+03:00",
   "timezone": "Asia/Amman",
   "live_window_minutes": 270,
   "espn": {
@@ -13,7 +13,7 @@
       "exists": true,
       "scanned": 104,
       "espn_matched": 2,
-      "status_updates": 1,
+      "status_updates": 2,
       "score_updates": 2,
       "id_updates": 0,
       "time_live_fallbacks": 0,
@@ -22,8 +22,8 @@
     "bracket.json": {
       "exists": true,
       "scanned": 32,
-      "espn_matched": 1,
-      "status_updates": 1,
+      "espn_matched": 2,
+      "status_updates": 2,
       "score_updates": 1,
       "id_updates": 0,
       "time_live_fallbacks": 0,
@@ -33,7 +33,7 @@
       "exists": true,
       "scanned": 64,
       "espn_matched": 4,
-      "status_updates": 2,
+      "status_updates": 4,
       "score_updates": 4,
       "id_updates": 0,
       "time_live_fallbacks": 0,
@@ -42,8 +42,8 @@
   },
   "totals": {
     "scanned": 200,
-    "espn_matched": 7,
-    "status_updates": 4,
+    "espn_matched": 8,
+    "status_updates": 8,
     "score_updates": 7,
     "id_updates": 0,
     "time_live_fallbacks": 0,
