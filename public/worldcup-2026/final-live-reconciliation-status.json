@@ -1,52 +1,52 @@
 {
   "script": "worldcup-final-live-reconciliation.mjs",
   "version": "20260703-final-live-reconciliation-v1",
-  "checked_at_jordan": "2026-07-04T23:59:58+03:00",
+  "checked_at_jordan": "2026-07-05T00:00:41+03:00",
   "timezone": "Asia/Amman",
   "live_window_minutes": 270,
   "espn": {
-    "fetched_events": 7,
+    "fetched_events": 6,
     "errors": []
   },
   "files": {
     "matches.json": {
       "exists": true,
       "scanned": 104,
-      "espn_matched": 4,
-      "status_updates": 5,
-      "score_updates": 4,
+      "espn_matched": 1,
+      "status_updates": 1,
+      "score_updates": 1,
       "id_updates": 0,
-      "time_live_fallbacks": 1,
+      "time_live_fallbacks": 0,
       "changed": true
     },
     "bracket.json": {
       "exists": true,
       "scanned": 32,
-      "espn_matched": 4,
-      "status_updates": 5,
-      "score_updates": 4,
+      "espn_matched": 1,
+      "status_updates": 1,
+      "score_updates": 1,
       "id_updates": 0,
-      "time_live_fallbacks": 1,
+      "time_live_fallbacks": 0,
       "changed": true
     },
     "knockout-live.json": {
       "exists": true,
       "scanned": 64,
-      "espn_matched": 10,
-      "status_updates": 10,
-      "score_updates": 8,
-      "id_updates": 2,
-      "time_live_fallbacks": 2,
+      "espn_matched": 2,
+      "status_updates": 2,
+      "score_updates": 2,
+      "id_updates": 0,
+      "time_live_fallbacks": 0,
       "changed": true
     }
   },
   "totals": {
     "scanned": 200,
-    "espn_matched": 18,
-    "status_updates": 20,
-    "score_updates": 16,
-    "id_updates": 2,
-    "time_live_fallbacks": 4,
+    "espn_matched": 4,
+    "status_updates": 4,
+    "score_updates": 4,
+    "id_updates": 0,
+    "time_live_fallbacks": 0,
     "changed_files": 3
   },
   "rule_ar": "هذه آخر خطوة في تحديث كأس العالم: إذا ESPN أو وقت الأردن يقول إن المباراة مباشرة، لا تترك الكرت على لم تبدأ، وتعرض 0-0 إذا لم تصل نتيجة بعد."

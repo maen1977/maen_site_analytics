@@ -1,30 +1,30 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-04T23:59:54+03:00",
-  "last_updated": "2026-07-04T23:59:54+03:00",
-  "next_expected_check_at": "2026-07-05T00:14:54+03:00",
+  "last_checked_at": "2026-07-05T00:00:37+03:00",
+  "last_updated": "2026-07-05T00:00:37+03:00",
+  "next_expected_check_at": "2026-07-05T00:15:37+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28719485914",
-    "run_number": "1941",
+    "run_id": "28719506008",
+    "run_number": "1942",
     "workflow": "Update World Cup 2026 every 15 minutes",
-    "event_name": "schedule",
+    "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "cc5f05fce601de33bdab49632fc927dafdabafe6",
-    "trigger_source": "schedule",
+    "sha": "b7b48f3dec26175cfce3f6ea9999d9591135dd5b",
+    "trigger_source": "manual",
     "forced_at": ""
   },
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 10,
-      "events_seen": 94,
-      "matched": 94,
-      "bracket_matched": 22,
-      "score_changed": 94,
+      "events_seen": 96,
+      "matched": 96,
+      "bracket_matched": 24,
+      "score_changed": 96,
       "future_openfootball_zero_scores_cleared": 0,
       "time_fallback_status_applied": 0,
       "bracket_time_fallback_status_applied": 0
@@ -320,12 +320,12 @@
     ],
     "errors": []
   },
-  "cache_buster": "3d9787793606",
+  "cache_buster": "5bba6e1d22d6",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-04T23:59:54+03:00",
+    "corrected_at": "2026-07-05T00:00:38+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
