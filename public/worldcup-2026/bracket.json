@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-07-03T22:45:37+03:00",
-    "last_checked_at": "2026-07-03T22:45:37+03:00",
+    "last_updated": "2026-07-04T22:45:37+03:00",
+    "last_checked_at": "2026-07-04T22:45:37+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -523,44 +523,16 @@
     },
     "knockout_integrated_patch": true,
     "knockout_summary": {
-      "changed": 1,
+      "changed": 35,
       "directResolved": 48,
       "thirdResolved": 16,
-      "winnerResolved": 26,
+      "winnerResolved": 34,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M095",
-          "side": "team1",
-          "slot": "W86",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M095",
-          "side": "team2",
-          "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M096",
-          "side": "team2",
-          "slot": "W87",
-          "reason": "winner-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M097",
           "side": "team1",
           "slot": "W89",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M097",
-          "side": "team2",
-          "slot": "W90",
           "reason": "winner-not-ready"
         },
         {
@@ -663,37 +635,9 @@
         },
         {
           "file": "bracket.json",
-          "match": "M095",
-          "side": "team1",
-          "slot": "W86",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M095",
-          "side": "team2",
-          "slot": "W88",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M096",
-          "side": "team2",
-          "slot": "W87",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
           "match": "M097",
           "side": "team1",
           "slot": "W89",
-          "reason": "winner-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M097",
-          "side": "team2",
-          "slot": "W90",
           "reason": "winner-not-ready"
         },
         {
@@ -855,11 +799,11 @@
         }
       ]
     },
-    "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+    "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
     "r32_official_pairings_version": "2026-06-29-v1",
     "universal_penalties_patch": true,
     "dynamic_knockout_advancement_patch": true,
-    "r32_r16_official_finalized_at": "2026-07-04T09:56:15+03:00",
+    "r32_r16_official_finalized_at": "2026-07-04T22:45:41+03:00",
     "r32_r16_official_finalizer_version": "20260704-r32-r16-official-finalizer-v1"
   },
   "matches": [
@@ -898,7 +842,7 @@
           0,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 2,
         "ft": [
           0,
@@ -926,12 +870,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2A",
       "team2_source_slot": "2B",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760486",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -964,7 +908,7 @@
       "team2Score": 1,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M076",
@@ -1001,7 +945,7 @@
           2,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -1029,12 +973,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1C",
       "team2_source_slot": "2F",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760487",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -1067,7 +1011,7 @@
       "team2Score": 1,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M074",
@@ -1104,7 +1048,7 @@
           1,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 2,
         "ft": [
           1,
@@ -1146,16 +1090,16 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1E",
       "team2_source_slot": "3A/B/C/D/F",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760489",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
       "live_score_source": "r32-r16-official-finalizer",
       "live_period": 5,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "penalty_home_score": 3,
       "home_penalties": 3,
       "team1_penalties": 3,
@@ -1192,7 +1136,7 @@
       "penalty2": 4,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M075",
@@ -1229,7 +1173,7 @@
           1,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 2,
         "ft": [
           1,
@@ -1271,12 +1215,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1F",
       "team2_source_slot": "2C",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760488",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
@@ -1317,7 +1261,7 @@
       "penalty2": 3,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M078",
@@ -1354,7 +1298,7 @@
           1,
           2
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 2,
         "ft": [
           1,
@@ -1382,12 +1326,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2E",
       "team2_source_slot": "2I",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760490",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -1422,7 +1366,7 @@
       "team2Score": 2,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M077",
@@ -1459,7 +1403,7 @@
           3,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           3,
@@ -1487,11 +1431,11 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1I",
       "team2_source_slot": "3C/D/F/G/H",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
       "score1": 3,
       "score2": 0,
       "team1_score": 3,
@@ -1505,7 +1449,7 @@
       "loser": 2,
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760492",
       "date_ar": "الأربعاء، ١ تموز",
       "time_ar": "١٢:٠٠ ص",
@@ -1527,7 +1471,7 @@
       "team2Score": 0,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M079",
@@ -1564,7 +1508,7 @@
           2,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -1592,11 +1536,11 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1A",
       "team2_source_slot": "3C/E/F/H/I",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
       "score1": 2,
       "score2": 0,
       "team1_score": 2,
@@ -1606,7 +1550,7 @@
       "status_ar": "انتهت",
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "winner_side": 1,
       "loser_side": 2,
       "winner": 1,
@@ -1632,7 +1576,7 @@
       "team2Score": 0,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M080",
@@ -1669,7 +1613,7 @@
           2,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -1697,12 +1641,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1L",
       "team2_source_slot": "3E/H/I/J/K",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760495",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -1737,7 +1681,7 @@
       "team2Score": 1,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M082",
@@ -1774,7 +1718,7 @@
           3,
           2
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           3,
@@ -1802,11 +1746,11 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1G",
       "team2_source_slot": "3A/E/H/I/J",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
       "score1": 3,
       "score2": 2,
       "team1_score": 3,
@@ -1816,7 +1760,7 @@
       "status_ar": "انتهت",
       "live_phase_ar": "انتهت",
       "live_period": 4,
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "winner_side": 1,
       "loser_side": 2,
       "winner": 1,
@@ -1842,7 +1786,7 @@
       "team2Score": 2,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M081",
@@ -1879,7 +1823,7 @@
           2,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -1903,15 +1847,15 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1D",
       "team2_source_slot": "3B/E/F/I/J",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team2_resolved_from": "3B/E/F/I/J",
       "team2_resolved_group": "B",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "3B/E/F/I/J",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
       "score1": 2,
       "score2": 0,
       "team1_score": 2,
@@ -1929,7 +1873,7 @@
       "loser": 2,
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760494",
       "date_ar": "الخميس، ٢ تموز",
       "time_ar": "٣:٠٠ ص",
@@ -1948,7 +1892,7 @@
       "team2Score": 0,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M084",
@@ -1985,7 +1929,7 @@
           3,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           3,
@@ -2013,12 +1957,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1H",
       "team2_source_slot": "2J",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760497",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -2053,7 +1997,7 @@
       "team2Score": 0,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M083",
@@ -2090,7 +2034,7 @@
           2,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -2118,12 +2062,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2K",
       "team2_source_slot": "2L",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "espn_event_id": "760496",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -2158,7 +2102,7 @@
       "team2Score": 1,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M085",
@@ -2195,7 +2139,7 @@
           2,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           2,
@@ -2219,12 +2163,12 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1B",
       "team2_source_slot": "3E/F/G/I/J",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team2_resolved_from": "3E/F/G/I/J",
       "team2_resolved_group": "J",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "3E/F/G/I/J",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760498",
       "espnEventId": "760498",
@@ -2242,8 +2186,8 @@
       "live_phase_ar": "انتهت",
       "live_score_source": "r32-r16-official-finalizer",
       "live_period": 2,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "score1": 2,
       "score2": 0,
       "homeScore": 2,
@@ -2263,7 +2207,7 @@
       "team2Score": 0,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M088",
@@ -2300,7 +2244,7 @@
           1,
           1
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 2,
         "ft": [
           1,
@@ -2342,16 +2286,16 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "2D",
       "team2_source_slot": "2G",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760499",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_period": 2,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_period": 5,
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760499",
       "date_ar": "الجمعة، ٣ تموز",
       "time_ar": "٩:٠٠ م",
@@ -2388,7 +2332,7 @@
       "team2_penalties": 4,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M086",
@@ -2425,7 +2369,7 @@
           3,
           2
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "et": [
           3,
@@ -2453,16 +2397,16 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1J",
       "team2_source_slot": "2H",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760500",
       "live_phase": "finished_after_extra_time",
       "live_phase_ar": "انتهت بعد التمديد",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_period": 4,
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760500",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "١:٠٠ ص",
@@ -2490,7 +2434,8 @@
       "loser_side": 2,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00",
+      "score_updated_by": "espn-jordan-order-consistency"
     },
     {
       "id": "M087",
@@ -2527,7 +2472,7 @@
           1,
           0
         ],
-        "checked_at": "2026-07-04T09:56:15+03:00",
+        "checked_at": "2026-07-04T22:45:41+03:00",
         "winner_side": 1,
         "ft": [
           1,
@@ -2555,16 +2500,16 @@
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
       "team1_source_slot": "1K",
       "team2_source_slot": "3D/E/I/J/L",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
-      "r32_official_corrected_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
+      "r32_official_corrected_at": "2026-07-04T22:45:38+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760501",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "r32-r16-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760501",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "٤:٣٠ ص",
@@ -2592,7 +2537,8 @@
       "loser_side": 2,
       "verified": true,
       "locked": true,
-      "official_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_finalized_at": "2026-07-04T22:45:41+03:00",
+      "score_updated_by": "espn-jordan-order-consistency"
     },
     {
       "id": "M090",
@@ -2631,16 +2577,16 @@
       "team2_original_slot": "W75",
       "team2_seed": "W75",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W73",
       "team2_source_slot": "W75",
       "espn_event_id": "760502",
       "live_phase": "scheduled",
       "live_phase_ar": "لم تبدأ",
-      "live_score_source": "espn",
-      "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_score_source": "espn-live-score-repair",
+      "live_period": 2,
+      "live_checked_at": "2026-07-04T22:45:38+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760502",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "٨:٠٠ م",
@@ -2662,7 +2608,20 @@
       "status_key": "scheduled",
       "status_ar": "لم تبدأ",
       "phase": "scheduled",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00",
+      "score1": null,
+      "score2": null,
+      "homeScore": null,
+      "awayScore": null,
+      "team1_score": null,
+      "team2_score": null,
+      "score_updated_by": "espn-jordan-order-consistency",
+      "team1Score": null,
+      "team2Score": null,
+      "winner_side": null,
+      "loser_side": null,
+      "winner": 2,
+      "loser": 1
     },
     {
       "id": "M089",
@@ -2701,7 +2660,7 @@
       "team2_original_slot": "W77",
       "team2_seed": "W77",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W74",
       "team2_source_slot": "W77",
       "date_ar": "الأحد، ٥ تموز",
@@ -2720,8 +2679,8 @@
       "live_phase_ar": "لم تبدأ",
       "live_score_source": "espn",
       "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "team1_resolved_from": "W74",
       "team2_resolved_from": "W77",
       "team1_resolution_status": "resolved",
@@ -2732,7 +2691,7 @@
       "status_key": "scheduled",
       "status_ar": "لم تبدأ",
       "phase": "scheduled",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M091",
@@ -2771,7 +2730,7 @@
       "team2_original_slot": "W78",
       "team2_seed": "W78",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W76",
       "team2_source_slot": "W78",
       "espn_event_id": "760504",
@@ -2779,8 +2738,8 @@
       "live_phase_ar": "لم تبدأ",
       "live_score_source": "espn",
       "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760504",
       "date_ar": "الأحد، ٥ تموز",
       "time_ar": "١١:٠٠ م",
@@ -2802,7 +2761,7 @@
       "status_key": "scheduled",
       "status_ar": "لم تبدأ",
       "phase": "scheduled",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M092",
@@ -2841,7 +2800,7 @@
       "team2_original_slot": "W80",
       "team2_seed": "W80",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W79",
       "team2_source_slot": "W80",
       "espn_event_id": "760505",
@@ -2849,8 +2808,8 @@
       "live_phase_ar": "لم تبدأ",
       "live_score_source": "espn",
       "live_period": null,
-      "live_checked_at": "2026-07-03T22:45:37+03:00",
-      "last_live_update": "2026-07-03T22:45:37+03:00",
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00",
       "espnEventId": "760505",
       "date_ar": "الاثنين، ٦ تموز",
       "time_ar": "٣:٠٠ ص",
@@ -2872,7 +2831,7 @@
       "status_key": "scheduled",
       "status_ar": "لم تبدأ",
       "phase": "scheduled",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00"
     },
     {
       "id": "M093",
@@ -2911,7 +2870,7 @@
       "team2_original_slot": "W84",
       "team2_seed": "W84",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W83",
       "team2_source_slot": "W84",
       "date_ar": "الاثنين، ٦ تموز",
@@ -2938,7 +2897,11 @@
       "phase": "scheduled",
       "live_phase": "scheduled",
       "live_phase_ar": "لم تبدأ",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00",
+      "live_score_source": "espn",
+      "live_period": null,
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00"
     },
     {
       "id": "M094",
@@ -2977,7 +2940,7 @@
       "team2_original_slot": "W82",
       "team2_seed": "W82",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W81",
       "team2_source_slot": "W82",
       "espn_event_id": "760507",
@@ -3004,7 +2967,11 @@
       "phase": "scheduled",
       "live_phase": "scheduled",
       "live_phase_ar": "لم تبدأ",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00",
+      "live_score_source": "espn",
+      "live_period": null,
+      "live_checked_at": "2026-07-04T22:45:37+03:00",
+      "last_live_update": "2026-07-04T22:45:37+03:00"
     },
     {
       "id": "M095",
@@ -3043,7 +3010,7 @@
       "team2_original_slot": "W88",
       "team2_seed": "W88",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W86",
       "team2_source_slot": "W88",
       "date_ar": "الثلاثاء، ٧ تموز",
@@ -3068,7 +3035,9 @@
       "phase": "scheduled",
       "live_phase": "scheduled",
       "live_phase_ar": "لم تبدأ",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00",
+      "espn_event_id": "760509",
+      "espnEventId": "760509"
     },
     {
       "id": "M096",
@@ -3107,7 +3076,7 @@
       "team2_original_slot": "W87",
       "team2_seed": "W87",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W85",
       "team2_source_slot": "W87",
       "date_ar": "الثلاثاء، ٧ تموز",
@@ -3132,7 +3101,9 @@
       "phase": "scheduled",
       "live_phase": "scheduled",
       "live_phase_ar": "لم تبدأ",
-      "official_pairing_finalized_at": "2026-07-04T09:56:15+03:00"
+      "official_pairing_finalized_at": "2026-07-04T22:45:41+03:00",
+      "espn_event_id": "760508",
+      "espnEventId": "760508"
     },
     {
       "id": "M097",
@@ -3146,9 +3117,9 @@
       "kickoff_utc": "2026-07-09T20:00:00.000Z",
       "kickoff_jordan": "2026-07-09T23:00:00+03:00",
       "team1": "Winner of match 89",
-      "team2": "Winner of match 90",
+      "team2": "Canada",
       "team1_ar": "الفائز من مباراة 89",
-      "team2_ar": "الفائز من مباراة 90",
+      "team2_ar": "كندا",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
       "status": "scheduled",
@@ -3158,7 +3129,7 @@
       "score_source": "scheduled",
       "live_clock": null,
       "live_status_detail": null,
-      "search_text": "Winner of match 89 Winner of match 90 الفائز من مباراة 89 الفائز من مباراة 90 Boston Stadium / Gillette Stadium Boston (Foxborough) Quarter-final Quarter-final ربع النهائي Match 97",
+      "search_text": "Winner of match 89 Canada الفائز من مباراة 89 كندا Boston Stadium / Gillette Stadium Boston (Foxborough) Quarter-final Quarter-final ربع النهائي Match 97",
       "team1_slot": "W89",
       "team1_original_slot": "W89",
       "team1_seed": "W89",
@@ -3166,7 +3137,7 @@
       "team2_original_slot": "W90",
       "team2_seed": "W90",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W89",
       "team2_source_slot": "W90",
       "date_ar": "الخميس، ٩ تموز",
@@ -3212,7 +3183,7 @@
       "team2_original_slot": "W94",
       "team2_seed": "W94",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W93",
       "team2_source_slot": "W94",
       "date_ar": "الجمعة، ١٠ تموز",
@@ -3258,7 +3229,7 @@
       "team2_original_slot": "W92",
       "team2_seed": "W92",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W91",
       "team2_source_slot": "W92",
       "date_ar": "الأحد، ١٢ تموز",
@@ -3304,7 +3275,7 @@
       "team2_original_slot": "W96",
       "team2_seed": "W96",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W95",
       "team2_source_slot": "W96",
       "date_ar": "الأحد، ١٢ تموز",
@@ -3350,7 +3321,7 @@
       "team2_original_slot": "W98",
       "team2_seed": "W98",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W97",
       "team2_source_slot": "W98",
       "date_ar": "الثلاثاء، ١٤ تموز",
@@ -3396,7 +3367,7 @@
       "team2_original_slot": "W100",
       "team2_seed": "W100",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W99",
       "team2_source_slot": "W100",
       "date_ar": "الأربعاء، ١٥ تموز",
@@ -3442,7 +3413,7 @@
       "team2_original_slot": "L102",
       "team2_seed": "L102",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "L101",
       "team2_source_slot": "L102",
       "date_ar": "الأحد، ١٩ تموز",
@@ -3488,7 +3459,7 @@
       "team2_original_slot": "W102",
       "team2_seed": "W102",
       "bracket_linked_at": "2026-06-28T21:45:16+03:00",
-      "knockout_linked_at": "2026-07-03T22:45:37+03:00",
+      "knockout_linked_at": "2026-07-04T22:45:37+03:00",
       "team1_source_slot": "W101",
       "team2_source_slot": "W102",
       "date_ar": "الأحد، ١٩ تموز",
@@ -3505,7 +3476,7 @@
   ],
   "live_zero_score_guard": {
     "version": "2026-07-02-live-zero-score-guard-v1",
-    "checked_at": "2026-07-03T22:45:38+03:00",
+    "checked_at": "2026-07-04T22:15:35+03:00",
     "note_ar": "أثناء المباريات المباشرة تعرض النتيجة 0 - 0 إذا لم تصل النتيجة بعد، ولا يتم وضع 0 - 0 قبل بداية المباراة."
   },
   "finished_score_backfill": {
