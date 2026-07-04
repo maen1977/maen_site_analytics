@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-04T03:45:47+03:00",
+  "last_updated_at": "2026-07-04T04:00:39+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -10,7 +10,6 @@
     "best_third_resolved": 0,
     "unresolved_future_slots": [
       "W88",
-      "W87",
       "W89",
       "W90",
       "W93",
@@ -158,8 +157,8 @@
       "match": "M096",
       "side": "team2",
       "source_slot": "W87",
-      "resolved_team_ar": "الفائز من مباراة 87",
-      "unresolved": true,
+      "resolved_team_ar": "Argentina",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -509,7 +508,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+          "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -598,7 +597,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+          "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -921,7 +920,7 @@
           "status_key": "finished",
           "status_ar": "انتهت",
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+          "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1271,7 +1270,7 @@
             "phase": "finished_penalties"
           },
           "winnerSide": 2,
-          "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+          "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1290,8 +1289,8 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
             "state": "finished",
+            "label_ar": "انتهت",
             "label": "Final"
           },
           "phase": "finished",
@@ -1877,10 +1876,13 @@
             "resolved_from": "W85"
           },
           "team2": {
-            "name_ar": "الفائز من مباراة 87",
-            "name_en": "Winner of match 87",
+            "name_ar": "Argentina",
+            "name_en": "Argentina",
+            "group": "",
+            "position": "",
             "slot": "W87",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W87"
           },
           "source_slot1": "W85",
           "source_slot2": "W87",
@@ -2531,7 +2533,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+      "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2620,7 +2622,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+      "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2943,7 +2945,7 @@
       "status_key": "finished",
       "status_ar": "انتهت",
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+      "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3293,7 +3295,7 @@
         "phase": "finished_penalties"
       },
       "winnerSide": 2,
-      "stale_live_finalized_at": "2026-07-04T03:45:48+03:00",
+      "stale_live_finalized_at": "2026-07-04T04:00:40+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3312,8 +3314,8 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
         "state": "finished",
+        "label_ar": "انتهت",
         "label": "Final"
       },
       "phase": "finished",
@@ -3892,10 +3894,13 @@
         "resolved_from": "W85"
       },
       "team2": {
-        "name_ar": "الفائز من مباراة 87",
-        "name_en": "Winner of match 87",
+        "name_ar": "Argentina",
+        "name_en": "Argentina",
+        "group": "",
+        "position": "",
         "slot": "W87",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W87"
       },
       "source_slot1": "W85",
       "source_slot2": "W87",
