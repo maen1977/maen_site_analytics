@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-07-03T15:04:38.489Z",
-  "updatedAt": "2026-07-03T15:04:38.185Z",
-  "totalFrequencies": 809,
+  "generatedAt": "2026-07-04T08:06:01.659Z",
+  "updatedAt": "2026-07-04T08:06:01.270Z",
+  "totalFrequencies": 817,
   "removedCount": 0,
-  "candidateCount": 1546,
-  "closedCandidateCount": 2884,
+  "candidateCount": 2523,
+  "closedCandidateCount": 2879,
   "closedConsensusCount": 325,
-  "successfulSourceCount": 46,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 21,
+  "sourcesFailed": 22,
   "changes": {
-    "updated": 33,
-    "added": 0,
+    "updated": 119,
+    "added": 8,
     "removed": 0,
-    "reviewedOnly": 1513,
+    "reviewedOnly": 2396,
     "channelNamesAdded": 0,
-    "channelNamesRemoved": 0,
+    "channelNamesRemoved": 14,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 27,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 1513,
+    "incompleteNewSkipped": 2396,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 2563 من 2612 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3555 من 3616 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -95,8 +95,8 @@
     },
     {
       "satelliteGroup": "Yahsat",
-      "frequencies": 10,
-      "services": 72
+      "frequencies": 18,
+      "services": 92
     }
   ],
   "satelliteIdentityCounts": [
@@ -370,8 +370,8 @@
       "satelliteGroup": "Yahsat",
       "orbitalSlot": "52.5E",
       "satelliteName": "Al Yah 1",
-      "frequencies": 10,
-      "services": 72
+      "frequencies": 18,
+      "services": 92
     }
   ],
   "satellitePositionPolicy": "v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.",
@@ -477,16 +477,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-yahsat",
-      "name": "LyngSat Al Yah 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-hellas",
       "name": "LyngSat Hellas Sat 3/4",
       "ok": false,
@@ -581,6 +571,26 @@
       "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "dthsat-nilesat",
+      "name": "DTHSat Nilesat 7W current channel table",
+      "ok": false,
+      "status": 404,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "dthsat-azerspace",
+      "name": "DTHSat Azerspace 1 46E current channel table",
+      "ok": false,
+      "status": 404,
       "candidates": 0,
       "closedCandidates": 0,
       "coverageOnly": false,
