@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-04T06:45:42+03:00",
+  "last_updated_at": "2026-07-04T07:00:42+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,6 +9,7 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
+      "W88",
       "W89",
       "W90",
       "W93",
@@ -140,8 +141,8 @@
       "match": "M095",
       "side": "team2",
       "source_slot": "W88",
-      "resolved_team_ar": "Colombia",
-      "unresolved": false,
+      "resolved_team_ar": "الفائز من مباراة 88",
+      "unresolved": true,
       "ok": true
     },
     {
@@ -507,7 +508,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+          "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -596,7 +597,7 @@
           },
           "winnerSide": 2,
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+          "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -919,7 +920,7 @@
           "status_key": "finished",
           "status_ar": "انتهت",
           "score_source": "stale-live-finalizer",
-          "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+          "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1269,7 +1270,7 @@
             "phase": "finished_penalties"
           },
           "winnerSide": 2,
-          "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+          "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
           "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
         },
         {
@@ -1366,8 +1367,8 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
             "state": "finished",
+            "label_ar": "انتهت",
             "label": "Final"
           },
           "phase": "finished",
@@ -1838,13 +1839,10 @@
             "resolved_from": "W86"
           },
           "team2": {
-            "name_ar": "Colombia",
-            "name_en": "Colombia",
-            "group": "",
-            "position": "",
+            "name_ar": "الفائز من مباراة 88",
+            "name_en": "Winner of match 88",
             "slot": "W88",
-            "unresolved": false,
-            "resolved_from": "W88"
+            "unresolved": true
           },
           "source_slot1": "W86",
           "source_slot2": "W88",
@@ -2550,7 +2548,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+      "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2639,7 +2637,7 @@
       },
       "winnerSide": 2,
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+      "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -2962,7 +2960,7 @@
       "status_key": "finished",
       "status_ar": "انتهت",
       "score_source": "stale-live-finalizer",
-      "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+      "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3312,7 +3310,7 @@
         "phase": "finished_penalties"
       },
       "winnerSide": 2,
-      "stale_live_finalized_at": "2026-07-04T06:45:42+03:00",
+      "stale_live_finalized_at": "2026-07-04T07:00:43+03:00",
       "stale_live_finalizer_version": "20260704-stale-live-final-penalty-v1"
     },
     {
@@ -3409,8 +3407,8 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
         "state": "finished",
+        "label_ar": "انتهت",
         "label": "Final"
       },
       "phase": "finished",
@@ -3874,13 +3872,10 @@
         "resolved_from": "W86"
       },
       "team2": {
-        "name_ar": "Colombia",
-        "name_en": "Colombia",
-        "group": "",
-        "position": "",
+        "name_ar": "الفائز من مباراة 88",
+        "name_en": "Winner of match 88",
         "slot": "W88",
-        "unresolved": false,
-        "resolved_from": "W88"
+        "unresolved": true
       },
       "source_slot1": "W86",
       "source_slot2": "W88",
