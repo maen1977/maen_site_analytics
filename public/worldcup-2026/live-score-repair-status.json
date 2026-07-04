@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-04T04:15:37+03:00",
+  "checked_at": "2026-07-04T04:17:24+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -22,6 +22,90 @@
     }
   ],
   "updates": [
+    {
+      "file": "matches.json",
+      "match": "M086",
+      "event_id": "760499",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "australia",
+        "egypt"
+      ],
+      "before_score": [
+        1,
+        1
+      ],
+      "after_score": [
+        1,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT-Pens"
+    },
+    {
+      "file": "matches.json",
+      "match": "M087",
+      "event_id": "760500",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "argentina",
+        "capeverde"
+      ],
+      "before_score": [
+        3,
+        2
+      ],
+      "after_score": [
+        3,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M086",
+      "event_id": "760499",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "australia",
+        "egypt"
+      ],
+      "before_score": [
+        1,
+        1
+      ],
+      "after_score": [
+        1,
+        1
+      ],
+      "event_status": "finished",
+      "event_detail": "FT-Pens"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M087",
+      "event_id": "760500",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "argentina",
+        "capeverde"
+      ],
+      "before_score": [
+        3,
+        2
+      ],
+      "after_score": [
+        3,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
+    },
     {
       "file": "knockout-live.json",
       "match": "M086",
@@ -109,6 +193,6 @@
   ],
   "errors": [],
   "espn_events": 3,
-  "updated_matches": 4,
+  "updated_matches": 8,
   "ok": true
 }
