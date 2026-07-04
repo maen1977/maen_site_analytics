@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-05T01:45:35+03:00",
+  "checked_at": "2026-07-05T02:00:35+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 1
+      "updated": 0
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 1
+      "updated": 0
     },
     {
       "file": "knockout-live.json",
@@ -23,10 +23,31 @@
   ],
   "updates": [
     {
-      "file": "matches.json",
+      "file": "knockout-live.json",
+      "match": "M090",
+      "event_id": "760502",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "canada",
+        "morocco"
+      ],
+      "before_score": [
+        0,
+        3
+      ],
+      "after_score": [
+        0,
+        3
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "knockout-live.json",
       "match": "M089",
       "event_id": "760503",
-      "reason": "explicit-id",
+      "reason": "team-match",
       "orientation": "same",
       "teams": [
         "paraguay",
@@ -34,35 +55,14 @@
       ],
       "before_score": [
         0,
-        0
+        1
       ],
       "after_score": [
         0,
         1
       ],
       "event_status": "live",
-      "event_detail": "81'"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M089",
-      "event_id": "760503",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "bosniaandherzegovina",
-        "france"
-      ],
-      "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
-        0,
-        1
-      ],
-      "event_status": "live",
-      "event_detail": "81'"
+      "event_detail": "90'+6'"
     },
     {
       "file": "knockout-live.json",
@@ -97,60 +97,18 @@
       ],
       "before_score": [
         0,
-        0
+        1
       ],
       "after_score": [
         0,
         1
       ],
       "event_status": "live",
-      "event_detail": "81'"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M090",
-      "event_id": "760502",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "canada",
-        "morocco"
-      ],
-      "before_score": [
-        0,
-        3
-      ],
-      "after_score": [
-        0,
-        3
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M089",
-      "event_id": "760503",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "paraguay",
-        "france"
-      ],
-      "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
-        0,
-        1
-      ],
-      "event_status": "live",
-      "event_detail": "81'"
+      "event_detail": "90'+6'"
     }
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 6,
+  "updated_matches": 4,
   "ok": true
 }
