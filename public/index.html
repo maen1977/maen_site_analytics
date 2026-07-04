@@ -5252,38 +5252,8 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     var all=[statusCore,statusLabels,runtime,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status)].join(' ');
     return {core:wcLower(statusCore),labels:wcLower(statusLabels),runtime:wcLower(runtime),all:wcLower(all)};
   }
-  function wcElapsedMinutes(m){
-    var d=wcMatchStartDate(m);
-    if(!d)return null;
-    var mins=(Date.now()-d.getTime())/60000;
-    return isFinite(mins)?mins:null;
-  }
-  function wcHasWinnerSignal(m){
-    return !!(m&&(m.winner_side!==null&&m.winner_side!==undefined||m.winnerSide!==null&&m.winnerSide!==undefined||m.winner_team||m.winnerTeam||m.winner_team_id||m.winnerTeamId||m.advancing_team||m.advancingTeam||m.qualified_team||m.qualifiedTeam));
-  }
-  function wcHasExplicitFinalSignal(m){
-    if(!m)return false;
-    var sc=m&&m.score||{};
-    var t=wcStatusTexts(m);
-    var scoreText=[sc.status,sc.phase,sc.phase_ar,sc.status_detail,sc.detail,sc.result_status,sc.match_status].map(wcStatusPart).join(' ').toLowerCase();
-    var hard=[t.core,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status),scoreText].join(' ').toLowerCase();
-    var finalRe=/\b(finished|completed|complete|full[_\s-]?time|fulltime|final|ended|closed|post|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/;
-    var liveRe=/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout)\b|مباشر|الشوط|استراحه|استراحة/;
-    if(finalRe.test(hard))return true;
-    if(finalRe.test(t.labels)&&!liveRe.test(t.runtime))return true;
-    return false;
-  }
-  function wcPenaltyFinalFallback(m){
-    if(!penaltyPair(m))return false;
-    if(wcHasExplicitFinalSignal(m)||wcHasWinnerSignal(m))return true;
-    var elapsed=wcElapsedMinutes(m);
-    // في الأدوار الإقصائية، إذا ظهرت نتيجة الترجيح وبقيت الحالة live بعد أكثر من 175 دقيقة، فالـ JSON متأخر ويجب اعتبارها نهائية.
-    if(elapsed!==null&&elapsed>=175)return true;
-    return false;
-  }
   function wcActuallyLive(m){
     if(!m)return false;
-    if(wcPenaltyFinalFallback(m)||wcHasExplicitFinalSignal(m))return false;
     if(m.is_live===true||m.live===true||m.in_play===true||m.started===true)return true;
     var t=wcStatusTexts(m);
     if(/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|extra[_\s-]?time[_\s-]?(first|second)|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(t.runtime))return true;
@@ -5293,7 +5263,6 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   }
   function wcActuallyFinal(m){
     if(!m)return false;
-    if(wcPenaltyFinalFallback(m)||wcHasExplicitFinalSignal(m))return true;
     if(wcActuallyLive(m))return false;
     var t=wcStatusTexts(m);
     return /\b(finished|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/.test(t.all);
@@ -5370,14 +5339,14 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function scoreClass(m){return (hasVisibleScore(m)||wcIsTimeFallbackLive(m)||wcIsTimeFallbackPending(m)||wcHasLiveStatus(m))?'wc-score':'wc-score pending';}
   function statusText(m){
     var t=wcStatusTexts(m);
+    if(wcActuallyLive(m)||wcIsTimeFallbackLive(m))return tr('live');
     if(t.all.includes('pending_verification')||t.all.includes('pending-verification')||t.all.includes('pending_update')||t.all.includes('pending-update'))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
     if(/postpon/.test(t.all))return tr('postponed');
     if(/cancel/.test(t.all))return tr('cancelled');
     if(wcFinalOnPenalties(m))return tr('finishedPenalties');
     if(wcFinalAfterExtra(m))return tr('finishedExtra');
     if(wcActuallyFinal(m))return tr('finished');
-    if(wcActuallyLive(m)||wcIsTimeFallbackLive(m))return tr('live');
-    if(wcIsTimeFallbackPending&&wcIsTimeFallbackPending(m))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
+    if(wcIsTimeFallbackPending(m))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
     return tr('scheduled');
   }
 

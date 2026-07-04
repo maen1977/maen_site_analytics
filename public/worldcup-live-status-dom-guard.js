@@ -1,30 +1,17 @@
 (() => {
   'use strict';
 
-  const VERSION = '20260704-stale-live-final-penalty-v1';
+  const VERSION = '20260703-extra-time-penalty-priority-v2';
   const DATA_URL = '/worldcup-2026/knockout-live.json';
   const REFRESH_MS = 30 * 1000;
   const LIVE_EARLY_MS = 5 * 60 * 1000;
   const LIVE_WINDOW_MS = 4 * 60 * 60 * 1000;
-  const PENALTY_FINAL_AFTER_MS = 175 * 60 * 1000;
-  const SCORE_FINAL_AFTER_MS = 230 * 60 * 1000;
-  const STATUS_LABELS = new Set([
-    'لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا',
-    'مباشر', 'انتهت', 'انتهت بعد التمديد', 'انتهت بركلات الترجيح',
-    'Scheduled', 'Awaiting update', 'Live', 'Finished', 'Finished after extra time', 'Finished on penalties'
-  ]);
+  const LIVE_LABEL_AR = 'مباشر';
+  const LIVE_LABEL_EN = 'Live';
+  const BAD_LIVE_LABELS = new Set(['لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا', 'انتهت بعد التمديد', 'انتهت بركلات الترجيح', 'انتهت']);
 
-  let targetMatches = [];
+  let liveMatches = [];
   let lastRunAt = 0;
-
-  const ar = () => !(document.documentElement.lang || '').toLowerCase().startsWith('en');
-  const labels = {
-    live: () => ar() ? 'مباشر' : 'Live',
-    finished: () => ar() ? 'انتهت' : 'Finished',
-    finishedExtra: () => ar() ? 'انتهت بعد التمديد' : 'Finished after extra time',
-    finishedPenalties: () => ar() ? 'انتهت بركلات الترجيح' : 'Finished on penalties',
-    pending: () => ar() ? 'بانتظار التحديث' : 'Awaiting update',
-  };
 
   const norm = (value) => String(value || '')
     .replace(/[\u064B-\u065F\u0670]/g, '')
@@ -61,16 +48,32 @@
     const score = match?.score || {};
     const status = match?.status;
     let core = '';
-    let labelsText = '';
+    let labels = '';
     if (status && typeof status === 'object') {
       core = [status.key, status.state, status.status, status.name, status.phase].map(part).join(' ');
-      labelsText = [status.label, status.label_ar, status.label_en].map(part).join(' ');
+      labels = [status.label, status.label_ar, status.label_en].map(part).join(' ');
     } else {
       core = part(status);
     }
     const runtime = [core, match?.live_phase, match?.phase, match?.live_status, match?.live_status_detail, score.status, score.phase, score.phase_ar, score.status_detail, score.clock, score.period].map(part).join(' ');
-    const all = [core, labelsText, runtime, part(match?.result_status), part(match?.match_status)].join(' ');
-    return { core: core.toLowerCase(), labels: labelsText.toLowerCase(), runtime: runtime.toLowerCase(), all: all.toLowerCase() };
+    const all = [core, labels, runtime, part(match?.result_status), part(match?.match_status)].join(' ');
+    return { core: core.toLowerCase(), labels: labels.toLowerCase(), runtime: runtime.toLowerCase(), all: all.toLowerCase() };
+  }
+
+  function isActuallyLive(match) {
+    if (!match) return false;
+    if (match.is_live === true || match.live === true || match.in_play === true || match.started === true) return true;
+    const text = statusTexts(match);
+    if (/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(text.runtime)) return true;
+    if (/\b(live|in[_\s-]?play)\b|مباشر/.test(text.core)) return true;
+    if (/\blive\b|مباشر/.test(text.labels) && !/finished|completed|complete|full[_\s-]?time|final|ended|انته|بركلات|بعد\s*التمديد/.test(text.labels)) return true;
+    return false;
+  }
+
+  function isActuallyFinal(match) {
+    if (!match || isActuallyLive(match)) return false;
+    const text = statusTexts(match).all;
+    return /\b(finished|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/.test(text);
   }
 
   function parseKickoffMs(match) {
@@ -94,12 +97,8 @@
     return null;
   }
 
-  function elapsedMs(match) {
-    const kickoffMs = parseKickoffMs(match);
-    return Number.isFinite(kickoffMs) ? Date.now() - kickoffMs : null;
-  }
-
   function inKickoffWindow(match) {
+    if (isActuallyFinal(match)) return false;
     const kickoffMs = parseKickoffMs(match);
     if (!Number.isFinite(kickoffMs)) return false;
     const now = Date.now();
@@ -111,69 +110,6 @@
     const a = numberOrNull(value[0]);
     const b = numberOrNull(value[1]);
     return a !== null && b !== null ? [a, b] : null;
-  }
-
-  function readPenaltyPair(match) {
-    const score = match?.score || {};
-    const candidates = [score.p, score.penalties];
-    for (const candidate of candidates) {
-      const pair = pairFromArray(candidate);
-      if (pair) return pair;
-    }
-    if (score.penalties && typeof score.penalties === 'object') {
-      const pair = pairFromArray([score.penalties.home ?? score.penalties.team1, score.penalties.away ?? score.penalties.team2]);
-      if (pair) return pair;
-    }
-    return pairFromArray([
-      match.penalty_home_score ?? match.home_penalties ?? match.team1_penalties ?? match.penalty1,
-      match.penalty_away_score ?? match.away_penalties ?? match.team2_penalties ?? match.penalty2,
-    ]);
-  }
-
-  function hasWinnerSignal(match) {
-    return Boolean(match && (
-      match.winner_side !== null && match.winner_side !== undefined ||
-      match.winnerSide !== null && match.winnerSide !== undefined ||
-      match.winner_team || match.winnerTeam || match.winner_team_id || match.winnerTeamId ||
-      match.advancing_team || match.advancingTeam || match.qualified_team || match.qualifiedTeam
-    ));
-  }
-
-  function hasExplicitFinalSignal(match) {
-    const score = match?.score || {};
-    const text = statusTexts(match);
-    const scoreText = [score.status, score.phase, score.phase_ar, score.status_detail, score.detail, score.result_status, score.match_status].map(part).join(' ').toLowerCase();
-    const hard = [text.core, part(match?.result_status), part(match?.match_status), scoreText].join(' ').toLowerCase();
-    const finalRe = /\b(finished|completed|complete|full[_\s-]?time|fulltime|final|ended|closed|post|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/;
-    const liveRe = /\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout)\b|مباشر|الشوط|استراحه|استراحة/;
-    if (finalRe.test(hard)) return true;
-    if (finalRe.test(text.labels) && !liveRe.test(text.runtime)) return true;
-    return false;
-  }
-
-  function isPenaltyFinalFallback(match) {
-    if (!readPenaltyPair(match)) return false;
-    if (hasExplicitFinalSignal(match) || hasWinnerSignal(match)) return true;
-    const elapsed = elapsedMs(match);
-    return Number.isFinite(elapsed) && elapsed >= PENALTY_FINAL_AFTER_MS;
-  }
-
-  function isActuallyLive(match) {
-    if (!match || isPenaltyFinalFallback(match) || hasExplicitFinalSignal(match)) return false;
-    if (match.is_live === true || match.live === true || match.in_play === true || match.started === true) return true;
-    const text = statusTexts(match);
-    if (/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(text.runtime)) return true;
-    if (/\b(live|in[_\s-]?play)\b|مباشر/.test(text.core)) return true;
-    if (/\blive\b|مباشر/.test(text.labels) && !/finished|completed|complete|full[_\s-]?time|final|ended|انته|بركلات|بعد\s*التمديد/.test(text.labels)) return true;
-    return false;
-  }
-
-  function isActuallyFinal(match) {
-    if (!match) return false;
-    if (isPenaltyFinalFallback(match) || hasExplicitFinalSignal(match)) return true;
-    if (isActuallyLive(match)) return false;
-    const text = statusTexts(match).all;
-    return /\b(finished|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/.test(text);
   }
 
   function readScorePair(match) {
@@ -197,30 +133,25 @@
     return null;
   }
 
-  function finalKind(match) {
-    const text = statusTexts(match).all;
-    if (isPenaltyFinalFallback(match) || (/\b(penalties|penalty|shootout|pens)\b|بركلات\s*الترجيح|ركلات\s*الترجيح|ترجيح/.test(text) && isActuallyFinal(match) && readPenaltyPair(match))) return 'finished_penalties';
-    if (isActuallyFinal(match) && (/\b(aet|after[_\s-]?extra|finished[_\s-]?after[_\s-]?extra[_\s-]?time)\b|بعد\s*التمديد|وقت\s*إضاف|وقت\s*اضاف/.test(text) || match?.score?.et)) return 'finished_extra';
-    if (isActuallyFinal(match)) return 'finished';
-    const elapsed = elapsedMs(match);
-    if (readScorePair(match) && Number.isFinite(elapsed) && elapsed >= SCORE_FINAL_AFTER_MS) return 'finished';
-    return '';
+  function readPenaltyPair(match) {
+    const score = match?.score || {};
+    const candidates = [score.p, score.penalties];
+    for (const candidate of candidates) {
+      const pair = pairFromArray(candidate);
+      if (pair) return pair;
+    }
+    if (score.penalties && typeof score.penalties === 'object') {
+      const pair = pairFromArray([score.penalties.home ?? score.penalties.team1, score.penalties.away ?? score.penalties.team2]);
+      if (pair) return pair;
+    }
+    return pairFromArray([
+      match.penalty_home_score ?? match.home_penalties ?? match.team1_penalties,
+      match.penalty_away_score ?? match.away_penalties ?? match.team2_penalties,
+    ]);
   }
 
-  function displayState(match) {
-    const fk = finalKind(match);
-    if (fk) return fk;
-    if (isActuallyLive(match) || inKickoffWindow(match) || (!!readScorePair(match) && !isActuallyFinal(match))) return 'live';
-    return 'scheduled';
-  }
-
-  function labelForState(state) {
-    if (state === 'finished_penalties') return labels.finishedPenalties();
-    if (state === 'finished_extra') return labels.finishedExtra();
-    if (state === 'finished') return labels.finished();
-    if (state === 'live') return labels.live();
-    if (state === 'pending') return labels.pending();
-    return '';
+  function isLive(match) {
+    return isActuallyLive(match) || inKickoffWindow(match) || (!!readScorePair(match) && !isActuallyFinal(match));
   }
 
   function namesForTeam(team) {
@@ -233,29 +164,24 @@
     const rounds = Array.isArray(data?.rounds) ? data.rounds : [];
     for (const round of rounds) for (const match of (round.matches || [])) out.push(match);
     if (Array.isArray(data?.matches)) out.push(...data.matches);
-    return out.map((match) => {
-      const state = displayState(match);
-      return {
-        raw: match,
-        state,
-        label: labelForState(state),
-        number: String(match.number || match.match_number || match.num || match.id || '').replace(/\D+/g, '').trim(),
-        team1Names: namesForTeam(match.team1 || match.home || match.homeTeam),
-        team2Names: namesForTeam(match.team2 || match.away || match.awayTeam),
-        score: readScorePair(match),
-        penalties: readPenaltyPair(match),
-      };
-    }).filter((match) => match.state !== 'scheduled' && match.label && match.team1Names.length && match.team2Names.length);
+    return out.filter(isLive).map((match) => ({
+      raw: match,
+      number: String(match.number || match.match_number || match.num || match.id || '').replace(/\D+/g, '').trim(),
+      team1Names: namesForTeam(match.team1 || match.home || match.homeTeam),
+      team2Names: namesForTeam(match.team2 || match.away || match.awayTeam),
+      score: readScorePair(match),
+      penalties: readPenaltyPair(match),
+    })).filter((match) => match.team1Names.length && match.team2Names.length);
   }
 
-  async function loadMatches() {
+  async function loadLiveMatches() {
     const res = await fetch(`${DATA_URL}?v=${Date.now()}`, { cache: 'no-store' });
     if (!res.ok) throw new Error(`World Cup JSON ${res.status}`);
     const data = await res.json();
-    targetMatches = flattenMatches(data);
+    liveMatches = flattenMatches(data);
     window.MaenSatWorldCupLiveStatusGuard = {
       version: VERSION,
-      matches: targetMatches.map((m) => ({ number: m.number, state: m.state, label: m.label, score: m.score, penalties: m.penalties })),
+      liveMatches: liveMatches.map((m) => ({ number: m.number, score: m.score, penalties: m.penalties })),
       refresh: () => runGuard(true),
     };
   }
@@ -287,12 +213,12 @@
     return candidates.filter((el) => !candidates.some((other) => other !== el && el.contains(other))).slice(0, 3);
   }
 
-  function replaceStatusLabels(card, label) {
+  function replaceBadLabels(card) {
     let changed = 0;
     for (const node of Array.from(card.querySelectorAll('*'))) {
       const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
-      if (STATUS_LABELS.has(text) && text !== label) {
-        node.textContent = label;
+      if (BAD_LIVE_LABELS.has(text)) {
+        node.textContent = document.documentElement.lang === 'en' ? LIVE_LABEL_EN : LIVE_LABEL_AR;
         node.dataset.maenWcStatusFixed = VERSION;
         changed += 1;
       }
@@ -315,17 +241,17 @@
   }
 
   function applyDomGuard() {
-    if (!targetMatches.length) return;
+    if (!liveMatches.length) return;
     const root = findWorldCupRoot();
     let fixed = 0;
-    for (const match of targetMatches) {
+    for (const match of liveMatches) {
       for (const card of findSmallestCards(root, match)) {
-        fixed += replaceStatusLabels(card, match.label);
+        fixed += replaceBadLabels(card);
         fixed += patchScoreDash(card, match.score, match.penalties);
         card.dataset.maenWcLiveGuard = VERSION;
       }
     }
-    if (fixed) console.info(`[MaenSat] World Cup status guard fixed ${fixed} visible item(s).`);
+    if (fixed) console.info(`[MaenSat] World Cup live status guard fixed ${fixed} visible item(s).`);
   }
 
   async function runGuard(force = false) {
@@ -333,10 +259,10 @@
     if (!force && now - lastRunAt < 1500) return;
     lastRunAt = now;
     try {
-      await loadMatches();
+      await loadLiveMatches();
       applyDomGuard();
     } catch (err) {
-      console.warn('[MaenSat] World Cup status DOM guard failed:', err);
+      console.warn('[MaenSat] World Cup live status DOM guard failed:', err);
     }
   }
 

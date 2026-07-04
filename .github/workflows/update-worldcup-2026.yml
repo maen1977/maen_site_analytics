@@ -71,7 +71,7 @@ jobs:
             scripts/worldcup-finished-score-backfill.mjs \
             scripts/worldcup-jordan-order-consistency.mjs \
             scripts/worldcup-final-live-reconciliation.mjs \
-            scripts/worldcup-stale-live-finalizer.mjs
+            scripts/worldcup-r32-r16-official-finalizer.mjs
           do
             if [ -f "$file" ]; then
               node --check "$file"
@@ -148,11 +148,12 @@ jobs:
           # هذه آخر خطوة قبل الكومت: لا نسمح لأي سكربت لاحق يرجع مباراة بدأت إلى "لم تبدأ".
           node scripts/worldcup-final-live-reconciliation.mjs
 
-      - name: Finalize stale live matches after penalties
+
+      - name: Finalize official R32 results and R16 pairings
         shell: bash
         run: |
-          # حماية أخيرة: إذا انتهت مباراة بالترجيح وبقيت live بسبب تأخر المصدر، لا نترك الكرت مباشر.
-          node scripts/worldcup-stale-live-finalizer.mjs
+          # آخر قفل رسمي بعد كل مزامنة: يمنع رجوع نتائج دور 32 أو أزواج دور 16 للقيم القديمة.
+          node scripts/worldcup-r32-r16-official-finalizer.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -173,7 +174,8 @@ jobs:
             public/worldcup-2026/finished-score-backfill-status.json \
             public/worldcup-2026/jordan-order-consistency-status.json \
             public/worldcup-2026/final-live-reconciliation-status.json \
-            public/worldcup-2026/stale-live-finalizer-status.json \
+            public/worldcup-2026/r32-r16-official-finalizer-status.json \
+            public/worldcup-2026/manual-results-overrides.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \

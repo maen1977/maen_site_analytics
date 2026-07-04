@@ -3,9 +3,10 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-06-30T14:00:00+03:00",
-    "note_ar": "تصحيحات يدوية موثقة للنتائج التي لم تلتقطها المصادر الآلية، وتُطبّق داخل نفس تحديث الربع ساعة.",
-    "m074_penalty_hotfix": true
+    "updated_at": "2026-07-04T09:56:15+03:00",
+    "note_ar": "تصحيحات نهائية موثقة لدور 32 وتمرير فائزين صحيحين لدور 16.",
+    "m074_penalty_hotfix": true,
+    "r32_r16_official_finalizer_version": "20260704-r32-r16-official-finalizer-v1"
   },
   "results": [
     {
@@ -92,6 +93,155 @@
       "locked": true,
       "force": true,
       "note_ar": "تصحيح موثق لمباراة ألمانيا وباراغواي: 1-1، باراغواي فازت 4-3 بركلات الترجيح."
+    },
+    {
+      "id": "M086",
+      "num": 86,
+      "number": 86,
+      "match_number": 86,
+      "team1": "Argentina",
+      "team2": "Cape Verde",
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "الرأس الأخضر",
+      "stage": "Round of 32",
+      "stage_ar": "دور 32",
+      "status": "finished_after_extra_time",
+      "home_score": 3,
+      "away_score": 2,
+      "score1": 3,
+      "score2": 2,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished_after_extra_time",
+        "phase_ar": "انتهت بعد التمديد",
+        "status_detail": "Finished after extra time",
+        "current": [
+          3,
+          2
+        ],
+        "winner_side": 1,
+        "et": [
+          3,
+          2
+        ]
+      },
+      "score_source": "manual-official-finalizer",
+      "live_phase": "finished_after_extra_time",
+      "live_phase_ar": "انتهت بعد التمديد",
+      "live_status_detail": "انتهت بعد التمديد",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "تثبيت رسمي: الأرجنتين 3-2 الرأس الأخضر."
+    },
+    {
+      "id": "M087",
+      "num": 87,
+      "number": 87,
+      "match_number": 87,
+      "team1": "Colombia",
+      "team2": "Ghana",
+      "team1_ar": "كولومبيا",
+      "team2_ar": "غانا",
+      "stage": "Round of 32",
+      "stage_ar": "دور 32",
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 0,
+      "score1": 1,
+      "score2": 0,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "Finished",
+        "current": [
+          1,
+          0
+        ],
+        "winner_side": 1,
+        "ft": [
+          1,
+          0
+        ]
+      },
+      "score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "تثبيت رسمي: كولومبيا 1-0 غانا."
+    },
+    {
+      "id": "M088",
+      "num": 88,
+      "number": 88,
+      "match_number": 88,
+      "team1": "Australia",
+      "team2": "Egypt",
+      "team1_ar": "أستراليا",
+      "team2_ar": "مصر",
+      "stage": "Round of 32",
+      "stage_ar": "دور 32",
+      "status": "finished_on_penalties",
+      "home_score": 1,
+      "away_score": 1,
+      "score1": 1,
+      "score2": 1,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished_on_penalties",
+        "phase_ar": "انتهت بركلات الترجيح",
+        "status_detail": "Finished on penalties",
+        "current": [
+          1,
+          1
+        ],
+        "winner_side": 2,
+        "ft": [
+          1,
+          1
+        ],
+        "et": [
+          1,
+          1
+        ],
+        "p": [
+          2,
+          4
+        ],
+        "penalties": {
+          "home": 2,
+          "away": 4,
+          "team1": 2,
+          "team2": 4
+        }
+      },
+      "score_source": "manual-official-finalizer",
+      "live_phase": "finished_on_penalties",
+      "live_phase_ar": "انتهت بركلات الترجيح",
+      "live_status_detail": "انتهت بركلات الترجيح",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "تثبيت رسمي: أستراليا 1-1 مصر، الترجيح 2-4.",
+      "penalty_home_score": 2,
+      "penalty_away_score": 4,
+      "home_penalties": 2,
+      "away_penalties": 4,
+      "team1_penalties": 2,
+      "team2_penalties": 4
     }
   ]
 }

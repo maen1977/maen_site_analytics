@@ -2,7 +2,7 @@
 // Injects the World Cup live status DOM guard into HTML pages so the visible cards
 // cannot remain "لم تبدأ" when a match is already live or has a live score.
 
-const GUARD_SRC = '/worldcup-live-status-dom-guard.js?v=20260704-stale-live-final-penalty-v1';
+const GUARD_SRC = '/worldcup-live-status-dom-guard.js?v=20260703-extra-time-penalty-priority-v2';
 
 export async function onRequest(context) {
   const response = await context.next();
