@@ -71,7 +71,8 @@ jobs:
             scripts/worldcup-finished-score-backfill.mjs \
             scripts/worldcup-jordan-order-consistency.mjs \
             scripts/worldcup-final-live-reconciliation.mjs \
-            scripts/worldcup-r32-r16-official-finalizer.mjs
+            scripts/worldcup-canonical-finalizer.mjs \
+            scripts/worldcup-state-validator.mjs
           do
             if [ -f "$file" ]; then
               node --check "$file"
@@ -145,15 +146,20 @@ jobs:
       - name: Final live status reconciliation
         shell: bash
         run: |
-          # هذه آخر خطوة قبل الكومت: لا نسمح لأي سكربت لاحق يرجع مباراة بدأت إلى "لم تبدأ".
+          # هذه خطوة قبل التثبيت النهائي.
           node scripts/worldcup-final-live-reconciliation.mjs
 
-
-      - name: Finalize official R32 results and R16 pairings
+      - name: Canonical final World Cup state
         shell: bash
         run: |
-          # آخر قفل رسمي بعد كل مزامنة: يمنع رجوع نتائج دور 32 أو أزواج دور 16 للقيم القديمة.
-          node scripts/worldcup-r32-r16-official-finalizer.mjs
+          # آخر سكربت يكتب النتائج: يثبت النتائج النهائية، يمرر الفائزين، ويمسح 0-0 من المباريات المستقبلية.
+          node scripts/worldcup-canonical-finalizer.mjs
+
+      - name: Validate canonical World Cup state
+        shell: bash
+        run: |
+          # إذا رجعت مباراة منتهية إلى مباشر، أو بقيت 0-0 قبل البداية، يفشل التحديث ولا ينشر بيانات غلط.
+          node scripts/worldcup-state-validator.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -174,7 +180,8 @@ jobs:
             public/worldcup-2026/finished-score-backfill-status.json \
             public/worldcup-2026/jordan-order-consistency-status.json \
             public/worldcup-2026/final-live-reconciliation-status.json \
-            public/worldcup-2026/r32-r16-official-finalizer-status.json \
+            public/worldcup-2026/canonical-finalizer-status.json \
+            public/worldcup-2026/state-validator-status.json \
             public/worldcup-2026/manual-results-overrides.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \

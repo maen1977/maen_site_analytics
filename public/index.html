@@ -5188,13 +5188,27 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     if(now<=start+liveWindow)return 'time_live';
     return 'time_pending';
   }
-  function wcIsSourceScheduled(m){
-    if(!m||wcActuallyLive(m)||wcActuallyFinal(m))return false;
-    var t=wcStatusTexts(m);
-    if(/postpon|cancel/.test(t.all))return false;
-    return !t.all||/scheduled|not[_\s-]?started|pre|pending_verification|pending-update|pending_update|awaiting|لم\s*تبدأ/.test(t.all);
+  function wcStatusBlob(m,fallback){
+    var parts=[];
+    var st=m&&m.status;
+    if(typeof st==='string')parts.push(st);
+    else if(st&&typeof st==='object')parts.push(st.key,st.state,st.label,st.label_ar);
+    var sc=m&&m.score;
+    if(sc&&typeof sc==='object')parts.push(sc.status,sc.phase,sc.phase_ar,sc.status_detail);
+    parts.push(m&&m.status_key,m&&m.status_ar,m&&m.phase,m&&m.live_phase,m&&m.live_phase_ar,m&&m.live_status_detail);
+    var out=parts.filter(Boolean).join(' ').toLowerCase();
+    return out || String(fallback||'').toLowerCase();
   }
-
+  function wcIsSourceScheduled(m){
+    if(!m||hasFinalScore(m))return false;
+    var sc=m&&m.score;
+    var s=wcStatusBlob(m,'scheduled');
+    var phase=String((m&&(m.live_phase||(sc&&sc.phase)))||'').toLowerCase();
+    var detail=String((m&&(m.live_status_detail||(sc&&sc.status_detail)))||'').toLowerCase();
+    var all=s+' '+phase+' '+detail;
+    if(/postpon|cancel|finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|penalty|shootout|live|in[_\s-]?play|playing|started|halftime|half[_\s-]?time|first_half|second_half|extra[_\s-]?time|انته|مباشر|ترجيح/.test(all))return false;
+    return !s||/scheduled|not[_\s-]?started|pre|pending_verification|pending-update|pending_update|awaiting|لم\s*تبدأ/.test(all);
+  }
   function wcTimeFallbackState(m){
     if(!wcIsSourceScheduled(m))return 'source';
     return wcMatchTimeState(m);
@@ -5202,9 +5216,12 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function wcIsTimeFallbackLive(m){return wcTimeFallbackState(m)==='time_live';}
   function wcIsTimeFallbackPending(m){return wcTimeFallbackState(m)==='time_pending';}
   function wcHasLiveStatus(m){
-    return wcActuallyLive(m);
+    var sc=m&&m.score;
+    var s=wcStatusBlob(m,'');
+    var phase=String((m&&(m.live_phase||(sc&&sc.phase)))||'').toLowerCase();
+    var detail=String((m&&(m.live_status_detail||(sc&&sc.status_detail)))||'').toLowerCase();
+    return /live|in[_\s-]?play|playing|started|first_half|second_half|half_time|extra[_\s-]?time|penalties|penalty|shootout|مباشر|الشوط|ترجيح/.test(s+' '+phase+' '+detail);
   }
-
   function isInTodayJordanWindow(m){
     var d=wcMatchStartDate(m);
     if(!d)return false;
@@ -5225,76 +5242,18 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     var n=Number(String(v).replace(/[٠-٩]/g,function(d){return '٠١٢٣٤٥٦٧٨٩'.indexOf(d);}).replace(/[۰-۹]/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d);}));
     return isFinite(n)?n:null;
   }
-  function wcStatusPart(v){
-    if(v===null||v===undefined)return '';
-    if(typeof v==='object'){
-      var out=[];
-      ['key','state','status','name','label','label_ar','label_en','phase','phase_ar','detail','status_detail','short_detail','clock'].forEach(function(k){
-        if(v&&v[k]!==null&&v[k]!==undefined)out.push(wcStatusPart(v[k]));
-      });
-      return out.join(' ');
-    }
-    return String(v||'');
-  }
-  function wcLower(s){return String(s||'').toLowerCase();}
-  function wcStatusTexts(m){
-    var sc=m&&m.score||{};
-    var st=m&&m.status;
-    var statusCore='';
-    var statusLabels='';
-    if(st&&typeof st==='object'){
-      statusCore=[st.key,st.state,st.status,st.name,st.phase].map(wcStatusPart).join(' ');
-      statusLabels=[st.label,st.label_ar,st.label_en].map(wcStatusPart).join(' ');
-    }else{
-      statusCore=wcStatusPart(st);
-    }
-    var runtime=[statusCore,m&&m.live_phase,m&&m.phase,m&&m.live_status,m&&m.live_status_detail,sc.status,sc.phase,sc.phase_ar,sc.status_detail,sc.clock,sc.period].map(wcStatusPart).join(' ');
-    var all=[statusCore,statusLabels,runtime,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status)].join(' ');
-    return {core:wcLower(statusCore),labels:wcLower(statusLabels),runtime:wcLower(runtime),all:wcLower(all)};
-  }
-  function wcHasExplicitFinalStatus(m){
-    if(!m)return false;
-    var t=wcStatusTexts(m);
-    var finalText=[t.core,t.runtime,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status)].join(' ').toLowerCase();
-    return /\b(finished|finished[_\s-]?on[_\s-]?penalties|finished[_\s-]?after[_\s-]?extra[_\s-]?time|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي/.test(finalText);
-  }
-  function wcActuallyLive(m){
-    if(!m)return false;
-    if(wcHasExplicitFinalStatus(m))return false;
-    if(m.is_live===true||m.live===true||m.in_play===true||m.started===true)return true;
-    var t=wcStatusTexts(m);
-    var liveText=[t.core,t.runtime].join(' ');
-    if(/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|extra[_\s-]?time[_\s-]?(first|second)|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(liveText))return true;
-    if(/\b(live|in[_\s-]?play)\b|مباشر/.test(t.core))return true;
-    if(/\blive\b|مباشر/.test(t.labels)&&!/finished|completed|complete|full[_\s-]?time|final|ended|انته|بركلات|بعد\s*التمديد/.test(t.labels))return true;
-    return false;
-  }
-  function wcActuallyFinal(m){
-    return wcHasExplicitFinalStatus(m);
-  }
   function scorePair(m){
     var sc=m&&m.score;
     var source=String((sc&&sc.source)||(m&&m.score_source)||(m&&m.live_score_source)||'').toLowerCase();
     var placeholder=!!(sc&&(sc.placeholder_score===true||sc.score_pending===true))||source.indexOf('time-fallback')>-1;
-    var pairs=[];
-    if(!placeholder&&sc){
-      if(wcActuallyLive(m))pairs.push(sc.current,sc.live,sc.et,sc.ft);
-      else pairs.push(sc.ft,sc.et,sc.current,sc.live);
-      if(sc.full_time)pairs.push(sc.full_time);
-      if(sc.regular_time)pairs.push(sc.regular_time);
-    }
-    for(var i=0;i<pairs.length;i++){
-      var pair=pairs[i];
-      if(pair&&pair.length>=2){var a=wcScoreNum(pair[0]);var b=wcScoreNum(pair[1]);if(a!==null&&b!==null)return [a,b];}
-    }
-    if(!placeholder&&m&&(m.score1!=null||m.score2!=null||m.team1_score!=null||m.team2_score!=null||m.home_score!=null||m.away_score!=null)){
-      var h=m.score1!=null?m.score1:(m.team1_score!=null?m.team1_score:m.home_score);
-      var a2=m.score2!=null?m.score2:(m.team2_score!=null?m.team2_score:m.away_score);
-      var ha=wcScoreNum(h);var aw=wcScoreNum(a2);if(ha!==null&&aw!==null)return [ha,aw];
-    }
+    var pair=null;
+    if(!placeholder&&sc&&Array.isArray(sc.ft))pair=sc.ft;
+    else if(!placeholder&&sc&&Array.isArray(sc.et))pair=sc.et;
+    else if(!placeholder&&sc&&Array.isArray(sc.current))pair=sc.current;
+        if(pair&&pair.length>=2){var a=wcScoreNum(pair[0]);var b=wcScoreNum(pair[1]);if(a!==null&&b!==null)return [a,b];}
+    if(!placeholder&&m&&(m.home_score!=null || m.away_score!=null)){var ha=wcScoreNum(m.home_score);var aw=wcScoreNum(m.away_score);if(ha!==null&&aw!==null)return [ha,aw];}
     return null;
   }
-
   function penaltyPair(m){
     var sc=m&&m.score;
     var pair=null;
@@ -5305,56 +5264,49 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     if(pair&&pair.length>=2&&pair[0]!=null&&pair[1]!=null)return [Number(pair[0])||0,Number(pair[1])||0];
     return null;
   }
-  function wcFinalOnPenalties(m){
-    if(!wcActuallyFinal(m))return false;
-    var t=wcStatusTexts(m);
-    return !!penaltyPair(m)||/\b(penalties|penalty|shootout|pens)\b|بركلات\s*الترجيح|ركلات\s*الترجيح|ترجيح/.test(t.all);
-  }
-  function wcFinalAfterExtra(m){
-    if(!wcActuallyFinal(m)||wcFinalOnPenalties(m))return false;
-    var sc=m&&m.score;
-    var t=wcStatusTexts(m);
-    return !!(sc&&sc.et)||/\b(aet|after[_\s-]?extra|finished[_\s-]?after[_\s-]?extra[_\s-]?time)\b|بعد\s*التمديد|وقت\s*إضاف|وقت\s*اضاف/.test(t.all);
-  }
-  function hasFinalScore(m){
-    return wcActuallyFinal(m)&&(!!scorePair(m)||!!penaltyPair(m));
-  }
-
+  function hasFinalScore(m){var sc=m&&m.score; var s=wcStatusBlob(m,''); return !!(sc&&(sc.ft||sc.et||sc.p))||(/finished|completed|complete|full[_\s-]?time|final|ended|ft|انته/.test(s)&&!!scorePair(m));}
   function hasStartedOrFinishedScore(m){
-    if(wcActuallyLive(m)||wcActuallyFinal(m)||wcIsTimeFallbackLive(m))return true;
-    var t=wcStatusTexts(m);
-    if(/\b(started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime)\b|الشوط|مباشر/.test(t.all))return true;
+    var s=wcStatusBlob(m,'scheduled');
+    var phase=String((m&&(m.live_phase||(m.score&&m.score.phase)))||'').toLowerCase();
+    var all=s+' '+phase;
+    if(hasFinalScore(m))return true;
+    if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|penalty|live|in[_\s-]?play|playing|started|halftime|half[_\s-]?time|first_half|second_half|extra[_\s-]?time/.test(all))return true;
     return !!(m&&(m.is_live===true||m.live===true||m.in_play===true||m.started===true));
   }
-
   function hasVisibleScore(m){return !!scorePair(m)&&hasStartedOrFinishedScore(m);}
   function wcLiveScoreFallbackPair(m){
     return null;
   }
   function scoreText(m){
     var pair=scorePair(m);
-    var pen=penaltyPair(m);
-    if(pair&&hasStartedOrFinishedScore(m))return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');
-    if(pen&&(wcActuallyLive(m)||wcActuallyFinal(m)||wcIsTimeFallbackLive(m)))return '— ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')';
-    if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m))return '0 - 0';
+    if(pair&&hasStartedOrFinishedScore(m)){var pen=penaltyPair(m); return pair[0]+' - '+pair[1]+(pen?' ('+pen[0]+' - '+pen[1]+' '+(lang()==='en'?'pens':'ترجيح')+')':'');}
+    if(wcIsTimeFallbackLive(m)||wcHasLiveStatus(m))return lang()==='en'?'Live':'مباشر';
     if(wcIsTimeFallbackPending(m))return lang()==='en'?'Update':'تحديث';
     return '—';
   }
-
   function scoreClass(m){return (hasVisibleScore(m)||wcIsTimeFallbackLive(m)||wcIsTimeFallbackPending(m)||wcHasLiveStatus(m))?'wc-score':'wc-score pending';}
   function statusText(m){
-    var t=wcStatusTexts(m);
-    if(/postpon/.test(t.all))return tr('postponed');
-    if(/cancel/.test(t.all))return tr('cancelled');
-    if(wcFinalOnPenalties(m))return tr('finishedPenalties');
-    if(wcFinalAfterExtra(m))return tr('finishedExtra');
-    if(wcActuallyFinal(m))return tr('finished');
-    if(wcActuallyLive(m)||wcIsTimeFallbackLive(m))return tr('live');
-    if(t.all.includes('pending_verification')||t.all.includes('pending-verification')||t.all.includes('pending_update')||t.all.includes('pending-update'))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
+    var sc=m&&m.score;
+    var all=wcStatusBlob(m,'scheduled');
+    var hasPen=!!penaltyPair(m);
+    var isPending=/pending_verification|pending-verification|pending_update|pending-update|awaiting/.test(all);
+    var isFinal=/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|انته/.test(all);
+    var isPenaltyText=/penalties|penalty|shootout|ترجيح/.test(all);
+    var isExtraText=/finished_after_extra_time|after\s+extra|aet|extra_time|extra[_\s-]?time|تمديد|وقت\s*إضاف|وقت\s*اضاف/.test(all);
+    var isLive=/live|in[_\s-]?play|playing|started|first_half|second_half|half_time|halftime|مباشر|الشوط/.test(all);
+    if(isPending)return lang()==='en'?'Awaiting update':'بانتظار التحديث';
+    if(isFinal && (hasPen||isPenaltyText))return tr('finishedPenalties');
+    if(isFinal && (sc&&sc.et||isExtraText))return tr('finishedExtra');
+    if(isFinal||sc&&sc.ft)return tr('finished');
+    if(isLive||wcIsTimeFallbackLive(m))return tr('live');
+    if(isPenaltyText)return lang()==='en'?'Penalties':'ركلات الترجيح';
+    if(/extra_time_first/.test(all))return lang()==='en'?'Extra time 1st half':'الشوط الإضافي الأول';
+    if(/extra_time_second/.test(all))return lang()==='en'?'Extra time 2nd half':'الشوط الإضافي الثاني';
+    if(/post/.test(all))return tr('postponed');
+    if(/cancel/.test(all))return tr('cancelled');
     if(wcIsTimeFallbackPending(m))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
     return tr('scheduled');
   }
-
   function broadcastName(c){return lang()==='en'?(c.name_en||c.name||c.name_ar||''):(c.name_ar||c.name||c.name_en||'');}
   function broadcastStatusText(c){var s=String((c&&c.status)||'').toLowerCase(); if(s==='confirmed')return tr('confirmed'); if(s==='to_be_confirmed'||s==='tbc'||s==='channel_tbc')return tr('toBeConfirmed'); if(s==='pending_official_announcement'||s==='pending'||s==='pending_official')return tr('pendingOfficial'); return s?esc(s):'';}
   function broadcastTypeLabel(c){var t=String((c&&c.type)||'').toLowerCase(); if(t==='free'||t==='fta'||t==='free_to_air')return '🟢 '+tr('freeToAir'); return '🔒 '+tr('encrypted');}
@@ -5476,21 +5428,8 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   };
   function wcMatchDate(m){var t=wcMatchTime(m); if(t===Number.MAX_SAFE_INTEGER)return null; var d=new Date(t); return d&&!isNaN(d.getTime())?d:null;}
   function wcMatchEstimatedEnd(m){var start=wcMatchDate(m); if(!start)return null; var stage=String((m&&(m.stage||m.round||m.stage_ar))||'').toLowerCase(); var n=wcMatchNumber(m); var isKnockout=(n>=73)||(stage&&stage.indexOf('group')<0&&stage.indexOf('مجموع')<0); var minutes=isKnockout?240:150; return new Date(start.getTime()+minutes*60000);}
-  function wcIsFinishedForNext(m,now){
-    if(!m)return false;
-    if(wcActuallyLive(m))return false;
-    if(wcActuallyFinal(m))return true;
-    var end=wcMatchEstimatedEnd(m);
-    return !!(end&&end.getTime()<=Number(now));
-  }
-
-  function wcIsCurrentForNext(m,now){
-    if(!m||wcIsFinishedForNext(m,now))return false;
-    if(wcActuallyLive(m))return true;
-    var start=wcMatchTime(m); var end=wcMatchEstimatedEnd(m);
-    return Number.isFinite(start)&&end&&start<=Number(now)&&end.getTime()>=Number(now);
-  }
-
+  function wcIsFinishedForNext(m,now){var status=String((m&&m.status)||'').toLowerCase(); if(/finished|completed|complete|full[_\s-]?time|final|ended|ft|aet|penalties|انته/.test(status))return true; var sc=m&&m.score; if(sc&&(sc.ft||sc.et||sc.p))return true; var end=wcMatchEstimatedEnd(m); return !!(end&&end.getTime()<=Number(now));}
+  function wcIsCurrentForNext(m,now){if(!m||wcIsFinishedForNext(m,now))return false; var status=String((m&&m.status)||'').toLowerCase(); if(/live|in[_\s-]?play|playing|first[_\s-]?half|second[_\s-]?half|halftime|مباشر|الشوط/.test(status))return true; var start=wcMatchTime(m); var end=wcMatchEstimatedEnd(m); return Number.isFinite(start)&&end&&start<=Number(now)&&end.getTime()>=Number(now);}
   function wcIsKnockoutForNext(m){var n=wcMatchNumber(m); var stage=String((m&&(m.stage||m.round||m.stage_ar))||'').toLowerCase(); return (n>=73)||/round|knockout|quarter|semi|final|دور|ربع|نصف|نهائي/.test(stage);}
   function wcNextMatch(matches){
     var now=new Date();

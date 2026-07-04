@@ -3,10 +3,10 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-07-04T23:15:44+03:00",
-    "note_ar": "تصحيحات نهائية موثقة لدور 32 وتمرير فائزين صحيحين لدور 16.",
+    "updated_at": "2026-07-04T23:07:25+03:00",
+    "note_ar": "تصحيحات رسمية مثبتة تمنع عودة المباريات المنتهية إلى مباشر أو 0-0.",
     "m074_penalty_hotfix": true,
-    "r32_r16_official_finalizer_version": "20260704-r32-r16-final-status-priority-v2"
+    "canonical_finalizer_version": "2026-07-04-stable-results-v1"
   },
   "results": [
     {
@@ -97,19 +97,23 @@
     {
       "id": "M086",
       "num": 86,
-      "number": 86,
-      "match_number": 86,
       "team1": "Argentina",
       "team2": "Cape Verde",
       "team1_ar": "الأرجنتين",
       "team2_ar": "الرأس الأخضر",
       "stage": "Round of 32",
       "stage_ar": "دور 32",
-      "status": "finished_after_extra_time",
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score1": 3,
       "score2": 2,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
       "winner_side": 1,
       "loser_side": 2,
       "score": {
@@ -117,31 +121,35 @@
         "status": "finished",
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
-        "status_detail": "Finished after extra time",
+        "status_detail": "انتهت بعد التمديد",
         "current": [
           3,
           2
         ],
-        "winner_side": 1,
+        "ft": [
+          3,
+          2
+        ],
         "et": [
           3,
           2
-        ]
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-04T23:07:25+03:00"
       },
       "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
       "live_phase": "finished_after_extra_time",
       "live_phase_ar": "انتهت بعد التمديد",
       "live_status_detail": "انتهت بعد التمديد",
       "verified": true,
       "locked": true,
       "force": true,
-      "note_ar": "تثبيت رسمي: الأرجنتين 3-2 الرأس الأخضر."
+      "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد."
     },
     {
       "id": "M087",
       "num": 87,
-      "number": 87,
-      "match_number": 87,
       "team1": "Colombia",
       "team2": "Ghana",
       "team1_ar": "كولومبيا",
@@ -153,6 +161,12 @@
       "away_score": 0,
       "score1": 1,
       "score2": 0,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
       "winner_side": 1,
       "loser_side": 2,
       "score": {
@@ -160,42 +174,48 @@
         "status": "finished",
         "phase": "finished",
         "phase_ar": "انتهت",
-        "status_detail": "Finished",
+        "status_detail": "انتهت",
         "current": [
           1,
           0
         ],
-        "winner_side": 1,
         "ft": [
           1,
           0
-        ]
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-04T23:07:25+03:00"
       },
       "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_status_detail": "انتهت",
       "verified": true,
       "locked": true,
       "force": true,
-      "note_ar": "تثبيت رسمي: كولومبيا 1-0 غانا."
+      "note_ar": "كولومبيا فازت 1-0 على غانا."
     },
     {
       "id": "M088",
       "num": 88,
-      "number": 88,
-      "match_number": 88,
       "team1": "Australia",
       "team2": "Egypt",
       "team1_ar": "أستراليا",
       "team2_ar": "مصر",
       "stage": "Round of 32",
       "stage_ar": "دور 32",
-      "status": "finished_on_penalties",
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score1": 1,
       "score2": 1,
+      "penalty_home_score": 2,
+      "penalty_away_score": 4,
+      "home_penalties": 2,
+      "away_penalties": 4,
+      "team1_penalties": 2,
+      "team2_penalties": 4,
       "winner_side": 2,
       "loser_side": 1,
       "score": {
@@ -203,12 +223,11 @@
         "status": "finished",
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
-        "status_detail": "Finished on penalties",
+        "status_detail": "انتهت بركلات الترجيح",
         "current": [
           1,
           1
         ],
-        "winner_side": 2,
         "ft": [
           1,
           1
@@ -221,27 +240,67 @@
           2,
           4
         ],
-        "penalties": {
-          "home": 2,
-          "away": 4,
-          "team1": 2,
-          "team2": 4
-        }
+        "winner_side": 2,
+        "checked_at": "2026-07-04T23:07:25+03:00"
       },
       "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
       "live_status_detail": "انتهت بركلات الترجيح",
       "verified": true,
       "locked": true,
       "force": true,
-      "note_ar": "تثبيت رسمي: أستراليا 1-1 مصر، الترجيح 2-4.",
-      "penalty_home_score": 2,
-      "penalty_away_score": 4,
-      "home_penalties": 2,
-      "away_penalties": 4,
-      "team1_penalties": 2,
-      "team2_penalties": 4
+      "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1."
+    },
+    {
+      "id": "M090",
+      "num": 90,
+      "team1": "Canada",
+      "team2": "Morocco",
+      "team1_ar": "كندا",
+      "team2_ar": "المغرب",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 0,
+      "away_score": 3,
+      "score1": 0,
+      "score2": 3,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          0,
+          3
+        ],
+        "ft": [
+          0,
+          3
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-04T23:07:25+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي."
     }
   ]
 }

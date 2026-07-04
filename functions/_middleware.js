@@ -1,8 +1,8 @@
 // MaenSat Cloudflare Pages middleware
 // Injects the World Cup live status DOM guard into HTML pages so the visible cards
-// cannot keep stale live/scheduled labels after a match is officially final.
+// cannot remain "لم تبدأ" when a match is already live or has a live score.
 
-const GUARD_SRC = '/worldcup-live-status-dom-guard.js?v=20260704-final-status-priority-v1';
+const GUARD_SRC = '/worldcup-live-status-dom-guard.js?v=20260704-canonical-stable-guard-v1';
 
 export async function onRequest(context) {
   const response = await context.next();
