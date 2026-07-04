@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '20260704-r32-r16-official-finalizer-v1';
+const VERSION = '20260704-r32-r16-final-status-priority-v2';
 const ROOT = process.cwd();
 const WC_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const FILES = {
@@ -174,6 +174,18 @@ function applyTextMatch(m, fix, nowIso, round) {
     m.live_clock = null;
     m.verified = true;
     m.locked = true;
+    m.is_live = false;
+    m.live = false;
+    m.in_play = false;
+    m.started = false;
+    m.final = true;
+    m.finished = true;
+    m.is_live = false;
+    m.live = false;
+    m.in_play = false;
+    m.started = false;
+    m.final = true;
+    m.finished = true;
     m.official_finalized_at = nowIso;
   } else {
     clearScores(m);
@@ -223,6 +235,12 @@ function applyLiveMatch(m, fix, nowIso, round) {
       m.penalty_home_score = m.penalty_away_score = m.home_penalties = m.away_penalties = m.team1_penalties = m.team2_penalties = null;
     }
     m.score_source = 'r32-r16-official-finalizer';
+    m.is_live = false;
+    m.live = false;
+    m.in_play = false;
+    m.started = false;
+    m.final = true;
+    m.finished = true;
     m.official_finalized_at = nowIso;
   } else {
     clearScores(m);

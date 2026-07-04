@@ -1,14 +1,14 @@
 (() => {
   'use strict';
 
-  const VERSION = '20260703-extra-time-penalty-priority-v2';
+  const VERSION = '20260704-final-status-priority-v1';
   const DATA_URL = '/worldcup-2026/knockout-live.json';
   const REFRESH_MS = 30 * 1000;
   const LIVE_EARLY_MS = 5 * 60 * 1000;
   const LIVE_WINDOW_MS = 4 * 60 * 60 * 1000;
   const LIVE_LABEL_AR = 'مباشر';
   const LIVE_LABEL_EN = 'Live';
-  const BAD_LIVE_LABELS = new Set(['لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا', 'انتهت بعد التمديد', 'انتهت بركلات الترجيح', 'انتهت']);
+  const STATUS_LABELS = new Set(['لم تبدأ', 'بانتظار التحديث', 'قريباً', 'قريبا', 'مباشر', 'Live', 'انتهت', 'انتهت بعد التمديد', 'انتهت بركلات الترجيح', 'Finished', 'Finished after extra time', 'Finished on penalties']);
 
   let liveMatches = [];
   let lastRunAt = 0;
@@ -60,20 +60,27 @@
     return { core: core.toLowerCase(), labels: labels.toLowerCase(), runtime: runtime.toLowerCase(), all: all.toLowerCase() };
   }
 
+  function hasExplicitFinalStatus(match) {
+    if (!match) return false;
+    const text = statusTexts(match);
+    const finalText = [text.core, text.runtime, part(match?.result_status), part(match?.match_status)].join(' ').toLowerCase();
+    return /\b(finished|finished[_\s-]?on[_\s-]?penalties|finished[_\s-]?after[_\s-]?extra[_\s-]?time|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي/.test(finalText);
+  }
+
   function isActuallyLive(match) {
     if (!match) return false;
+    if (hasExplicitFinalStatus(match)) return false;
     if (match.is_live === true || match.live === true || match.in_play === true || match.started === true) return true;
     const text = statusTexts(match);
-    if (/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(text.runtime)) return true;
+    const liveText = [text.core, text.runtime].join(' ');
+    if (/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(liveText)) return true;
     if (/\b(live|in[_\s-]?play)\b|مباشر/.test(text.core)) return true;
     if (/\blive\b|مباشر/.test(text.labels) && !/finished|completed|complete|full[_\s-]?time|final|ended|انته|بركلات|بعد\s*التمديد/.test(text.labels)) return true;
     return false;
   }
 
   function isActuallyFinal(match) {
-    if (!match || isActuallyLive(match)) return false;
-    const text = statusTexts(match).all;
-    return /\b(finished|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/.test(text);
+    return hasExplicitFinalStatus(match);
   }
 
   function parseKickoffMs(match) {
@@ -150,6 +157,28 @@
     ]);
   }
 
+  function isFinalOnPenalties(match) {
+    if (!isActuallyFinal(match)) return false;
+    const text = statusTexts(match).all;
+    return !!readPenaltyPair(match) || /\b(penalties|penalty|shootout|pens)\b|بركلات\s*الترجيح|ركلات\s*الترجيح|ترجيح/.test(text);
+  }
+
+  function isFinalAfterExtra(match) {
+    if (!isActuallyFinal(match) || isFinalOnPenalties(match)) return false;
+    const score = match?.score || {};
+    const text = statusTexts(match).all;
+    return !!score.et || /\b(aet|after[_\s-]?extra|finished[_\s-]?after[_\s-]?extra[_\s-]?time)\b|بعد\s*التمديد/.test(text);
+  }
+
+  function displayStatusLabel(match) {
+    const english = document.documentElement.lang === 'en';
+    if (isFinalOnPenalties(match)) return english ? 'Finished on penalties' : 'انتهت بركلات الترجيح';
+    if (isFinalAfterExtra(match)) return english ? 'Finished after extra time' : 'انتهت بعد التمديد';
+    if (isActuallyFinal(match)) return english ? 'Finished' : 'انتهت';
+    if (isActuallyLive(match) || inKickoffWindow(match)) return english ? LIVE_LABEL_EN : LIVE_LABEL_AR;
+    return null;
+  }
+
   function isLive(match) {
     return isActuallyLive(match) || inKickoffWindow(match) || (!!readScorePair(match) && !isActuallyFinal(match));
   }
@@ -164,14 +193,16 @@
     const rounds = Array.isArray(data?.rounds) ? data.rounds : [];
     for (const round of rounds) for (const match of (round.matches || [])) out.push(match);
     if (Array.isArray(data?.matches)) out.push(...data.matches);
-    return out.filter(isLive).map((match) => ({
+    return out.map((match) => ({
       raw: match,
       number: String(match.number || match.match_number || match.num || match.id || '').replace(/\D+/g, '').trim(),
       team1Names: namesForTeam(match.team1 || match.home || match.homeTeam),
       team2Names: namesForTeam(match.team2 || match.away || match.awayTeam),
       score: readScorePair(match),
       penalties: readPenaltyPair(match),
-    })).filter((match) => match.team1Names.length && match.team2Names.length);
+      statusLabel: displayStatusLabel(match),
+      isLive: isLive(match),
+    })).filter((match) => match.statusLabel && match.team1Names.length && match.team2Names.length);
   }
 
   async function loadLiveMatches() {
@@ -181,7 +212,7 @@
     liveMatches = flattenMatches(data);
     window.MaenSatWorldCupLiveStatusGuard = {
       version: VERSION,
-      liveMatches: liveMatches.map((m) => ({ number: m.number, score: m.score, penalties: m.penalties })),
+      liveMatches: liveMatches.map((m) => ({ number: m.number, score: m.score, penalties: m.penalties, statusLabel: m.statusLabel })),
       refresh: () => runGuard(true),
     };
   }
@@ -213,12 +244,13 @@
     return candidates.filter((el) => !candidates.some((other) => other !== el && el.contains(other))).slice(0, 3);
   }
 
-  function replaceBadLabels(card) {
+  function replaceStatusLabels(card, desiredLabel) {
     let changed = 0;
+    if (!desiredLabel) return changed;
     for (const node of Array.from(card.querySelectorAll('*'))) {
       const text = (node.textContent || '').replace(/\s+/g, ' ').trim();
-      if (BAD_LIVE_LABELS.has(text)) {
-        node.textContent = document.documentElement.lang === 'en' ? LIVE_LABEL_EN : LIVE_LABEL_AR;
+      if (STATUS_LABELS.has(text) && text !== desiredLabel) {
+        node.textContent = desiredLabel;
         node.dataset.maenWcStatusFixed = VERSION;
         changed += 1;
       }
@@ -246,7 +278,7 @@
     let fixed = 0;
     for (const match of liveMatches) {
       for (const card of findSmallestCards(root, match)) {
-        fixed += replaceBadLabels(card);
+        fixed += replaceStatusLabels(card, match.statusLabel);
         fixed += patchScoreDash(card, match.score, match.penalties);
         card.dataset.maenWcLiveGuard = VERSION;
       }

@@ -5224,31 +5224,25 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     var all=[statusCore,statusLabels,runtime,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status)].join(' ');
     return {core:wcLower(statusCore),labels:wcLower(statusLabels),runtime:wcLower(runtime),all:wcLower(all)};
   }
+  function wcHasExplicitFinalStatus(m){
+    if(!m)return false;
+    var t=wcStatusTexts(m);
+    var finalText=[t.core,t.runtime,wcStatusPart(m&&m.result_status),wcStatusPart(m&&m.match_status)].join(' ').toLowerCase();
+    return /\b(finished|finished[_\s-]?on[_\s-]?penalties|finished[_\s-]?after[_\s-]?extra[_\s-]?time|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي/.test(finalText);
+  }
   function wcActuallyLive(m){
     if(!m)return false;
+    if(wcHasExplicitFinalStatus(m))return false;
     if(m.is_live===true||m.live===true||m.in_play===true||m.started===true)return true;
     var t=wcStatusTexts(m);
-    if(/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|extra[_\s-]?time[_\s-]?(first|second)|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(t.runtime))return true;
+    var liveText=[t.core,t.runtime].join(' ');
+    if(/\b(live|in[_\s-]?play|playing|started|first[_\s-]?half|second[_\s-]?half|half[_\s-]?time|halftime|extra[_\s-]?time|extra[_\s-]?time[_\s-]?(first|second)|penalties|penalty[_\s-]?shootout|shootout|period)\b|مباشر|الشوط|استراحه|استراحة|وقت\s*إضاف|وقت\s*اضاف|ركلات\s*الترجيح|ترجيح/.test(liveText))return true;
     if(/\b(live|in[_\s-]?play)\b|مباشر/.test(t.core))return true;
     if(/\blive\b|مباشر/.test(t.labels)&&!/finished|completed|complete|full[_\s-]?time|final|ended|انته|بركلات|بعد\s*التمديد/.test(t.labels))return true;
     return false;
   }
   function wcActuallyFinal(m){
-    if(!m)return false;
-    if(wcActuallyLive(m))return false;
-    var t=wcStatusTexts(m);
-    return /\b(finished|completed|complete|full[_\s-]?time|final|ended|closed|ft|aet)\b|انته|نهائي|بعد\s*التمديد|بركلات\s*الترجيح|ركلات\s*الترجيح/.test(t.all);
-  }
-  function wcFinalOnPenalties(m){
-    if(!wcActuallyFinal(m))return false;
-    var t=wcStatusTexts(m);
-    return !!penaltyPair(m)||/\b(penalties|penalty|shootout|pens)\b|بركلات\s*الترجيح|ركلات\s*الترجيح|ترجيح/.test(t.all);
-  }
-  function wcFinalAfterExtra(m){
-    if(!wcActuallyFinal(m)||wcFinalOnPenalties(m))return false;
-    var sc=m&&m.score;
-    var t=wcStatusTexts(m);
-    return !!(sc&&sc.et)||/\b(aet|after[_\s-]?extra|finished[_\s-]?after[_\s-]?extra[_\s-]?time)\b|بعد\s*التمديد|وقت\s*إضاف|وقت\s*اضاف/.test(t.all);
+    return wcHasExplicitFinalStatus(m);
   }
   function scorePair(m){
     var sc=m&&m.score;
@@ -5283,6 +5277,17 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     if(pair&&pair.length>=2&&pair[0]!=null&&pair[1]!=null)return [Number(pair[0])||0,Number(pair[1])||0];
     return null;
   }
+  function wcFinalOnPenalties(m){
+    if(!wcActuallyFinal(m))return false;
+    var t=wcStatusTexts(m);
+    return !!penaltyPair(m)||/\b(penalties|penalty|shootout|pens)\b|بركلات\s*الترجيح|ركلات\s*الترجيح|ترجيح/.test(t.all);
+  }
+  function wcFinalAfterExtra(m){
+    if(!wcActuallyFinal(m)||wcFinalOnPenalties(m))return false;
+    var sc=m&&m.score;
+    var t=wcStatusTexts(m);
+    return !!(sc&&sc.et)||/\b(aet|after[_\s-]?extra|finished[_\s-]?after[_\s-]?extra[_\s-]?time)\b|بعد\s*التمديد|وقت\s*إضاف|وقت\s*اضاف/.test(t.all);
+  }
   function hasFinalScore(m){
     return wcActuallyFinal(m)&&(!!scorePair(m)||!!penaltyPair(m));
   }
@@ -5307,13 +5312,13 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function scoreClass(m){return hasVisibleScore(m)?'wc-score':'wc-score pending';}
   function statusText(m){
     var t=wcStatusTexts(m);
-    if(wcActuallyLive(m))return tr('live');
-    if(t.all.includes('pending_verification')||t.all.includes('pending-verification')||t.all.includes('pending_update')||t.all.includes('pending-update'))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
     if(/postpon/.test(t.all))return tr('postponed');
     if(/cancel/.test(t.all))return tr('cancelled');
     if(wcFinalOnPenalties(m))return tr('finishedPenalties');
     if(wcFinalAfterExtra(m))return tr('finishedExtra');
     if(wcActuallyFinal(m))return tr('finished');
+    if(wcActuallyLive(m))return tr('live');
+    if(t.all.includes('pending_verification')||t.all.includes('pending-verification')||t.all.includes('pending_update')||t.all.includes('pending-update'))return lang()==='en'?'Awaiting update':'بانتظار التحديث';
     return tr('scheduled');
   }
 

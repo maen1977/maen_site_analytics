@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "name": "MaenSat World Cup final status priority fix",
+  "version": "20260704-final-status-priority-v1",
+  "fixed": [
+    "Final states now win over stale live labels in World Cup cards.",
+    "Finished on penalties is shown as انتهت بركلات الترجيح, not مباشر.",
+    "Finished after extra time is shown as انتهت بعد التمديد, not مباشر.",
+    "Live extra time / live penalties still show مباشر until an explicit final status arrives."
+  ],
+  "commit_message": "Fix World Cup final status priority over live labels"
+}
