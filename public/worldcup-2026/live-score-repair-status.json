@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-06T01:15:32+03:00",
+  "checked_at": "2026-07-06T01:30:33+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -33,15 +33,15 @@
         "norway"
       ],
       "before_score": [
-        0,
+        1,
         2
       ],
       "after_score": [
-        0,
+        1,
         2
       ],
-      "event_status": "live",
-      "event_detail": "90'+8'"
+      "event_status": "finished",
+      "event_detail": "FT"
     },
     {
       "file": "knockout-live.json",
@@ -54,15 +54,15 @@
         "norway"
       ],
       "before_score": [
-        0,
+        1,
         2
       ],
       "after_score": [
-        0,
+        1,
         2
       ],
-      "event_status": "live",
-      "event_detail": "90'+8'"
+      "event_status": "finished",
+      "event_detail": "FT"
     }
   ],
   "errors": [],
