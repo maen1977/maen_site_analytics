@@ -1,7 +1,7 @@
 {
   "name": "MaenSat knockout live update health",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_checked_at": "2026-07-06T06:45:52+03:00",
+  "last_checked_at": "2026-07-06T07:00:38+03:00",
   "timezone": "Asia/Amman",
   "workflow_hint_ar": "هذا الملف يتحدث من نفس Workflow الأصلي كل 15 دقيقة، ويغذي تبويب الأدوار بالكروت والنتائج والتمديد وركلات الترجيح.",
   "matches": 32,
@@ -10,6 +10,7 @@
   "unresolved_future_slots": [
     "W93",
     "W94",
+    "W92",
     "W95",
     "W96",
     "W97",
@@ -23,7 +24,7 @@
   ],
   "dynamic_advancement_slots_checked": 32,
   "matches_json_synced": true,
-  "matches_json_updated": 2,
+  "matches_json_updated": 3,
   "dynamic_advancement_checks": [
     {
       "match": "M090",
@@ -197,8 +198,8 @@
       "match": "M099",
       "side": "team2",
       "source_slot": "W92",
-      "resolved_team_ar": "England",
-      "unresolved": false,
+      "resolved_team_ar": "الفائز من مباراة 92",
+      "unresolved": true,
       "ok": true
     },
     {
