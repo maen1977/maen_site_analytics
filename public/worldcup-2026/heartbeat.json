@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-06T23:45:39+03:00",
-  "last_updated": "2026-07-06T23:45:39+03:00",
-  "next_expected_check_at": "2026-07-07T00:00:40+03:00",
+  "last_checked_at": "2026-07-07T00:00:32+03:00",
+  "last_updated": "2026-07-07T00:00:32+03:00",
+  "next_expected_check_at": "2026-07-07T00:15:33+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "28822069700",
-    "run_number": "2156",
+    "run_id": "28822923017",
+    "run_number": "2157",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "175dfdd955023de3a59110bd42831168a232a409",
+    "sha": "9fc5d6e8d2680df96442df90d22fd4053b46d4ed",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -21,10 +21,10 @@
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 10,
-      "events_seen": 96,
-      "matched": 96,
-      "bracket_matched": 24,
-      "score_changed": 96,
+      "events_seen": 97,
+      "matched": 97,
+      "bracket_matched": 25,
+      "score_changed": 97,
       "future_openfootball_zero_scores_cleared": 0,
       "time_fallback_status_applied": 0,
       "bracket_time_fallback_status_applied": 0
@@ -278,12 +278,12 @@
     ],
     "errors": []
   },
-  "cache_buster": "2f4bd427eee8",
+  "cache_buster": "2644b05d6979",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-06T23:45:40+03:00",
+    "corrected_at": "2026-07-07T00:00:33+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
