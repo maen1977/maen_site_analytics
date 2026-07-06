@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-07T00:02:05+03:00",
+  "last_updated_at": "2026-07-07T00:15:41+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W93",
       "W94",
       "W95",
       "W96",
@@ -25,7 +24,7 @@
     "dynamic_advancement_slots_checked": 32,
     "matches_json_synced": true,
     "matches_json_updated": 2,
-    "canonical_finalizer_at": "2026-07-07T00:02:05+03:00"
+    "canonical_finalizer_at": "2026-07-07T00:15:41+03:00"
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -177,8 +176,8 @@
       "match": "M098",
       "side": "team1",
       "source_slot": "W93",
-      "resolved_team_ar": "الفائز من مباراة 93",
-      "unresolved": true,
+      "resolved_team_ar": "Spain",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1606,20 +1605,23 @@
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
           "status": {
-            "key": "live",
-            "label_ar": "مباشر",
-            "label": "Live",
-            "state": "live"
+            "key": "finished",
+            "state": "finished",
+            "label_ar": "انتهت",
+            "label": "Final"
           },
-          "phase": "live",
+          "phase": "finished",
           "score1": 0,
           "score2": 1,
-          "score_ft": null,
+          "score_ft": [
+            0,
+            1
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 2,
           "team1": {
             "name_ar": "Portugal",
             "name_en": "Portugal",
@@ -1652,8 +1654,8 @@
           "match_number": 93,
           "matchNumber": 93,
           "display_number": 93,
-          "status_key": "live",
-          "status_ar": "مباشر",
+          "status_key": "finished",
+          "status_ar": "انتهت",
           "team1_score": 0,
           "team2_score": 1,
           "team1Score": 0,
@@ -1663,7 +1665,7 @@
           "homeScore": 0,
           "awayScore": 1,
           "score_text": "0 - 1",
-          "score_source": "espn-live"
+          "score_source": "espn-finished"
         },
         {
           "id": "M094",
@@ -1945,10 +1947,13 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "الفائز من مباراة 93",
-            "name_en": "Winner of match 93",
+            "name_ar": "Spain",
+            "name_en": "Spain",
+            "group": "",
+            "position": "",
             "slot": "W93",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W93"
           },
           "team2": {
             "name_ar": "الفائز من مباراة 94",
@@ -3219,7 +3224,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T00:02:05+03:00",
+      "official_result_checked_at": "2026-07-07T00:15:41+03:00",
       "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد.",
       "status_key": "finished",
       "status_ar": "انتهت بعد التمديد",
@@ -3234,7 +3239,7 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-07T00:02:05+03:00",
+        "checked_at": "2026-07-07T00:15:41+03:00",
         "current": [
           3,
           2
@@ -3334,7 +3339,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T00:02:05+03:00",
+      "official_result_checked_at": "2026-07-07T00:15:41+03:00",
       "note_ar": "كولومبيا فازت 1-0 على غانا.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3349,7 +3354,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-07T00:02:05+03:00",
+        "checked_at": "2026-07-07T00:15:41+03:00",
         "current": [
           1,
           0
@@ -3451,7 +3456,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T00:02:05+03:00",
+      "official_result_checked_at": "2026-07-07T00:15:41+03:00",
       "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1.",
       "status_key": "finished",
       "status_ar": "انتهت بركلات الترجيح",
@@ -3466,7 +3471,7 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-07T00:02:05+03:00",
+        "checked_at": "2026-07-07T00:15:41+03:00",
         "current": [
           1,
           1
@@ -3573,7 +3578,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T00:02:05+03:00",
+      "official_result_checked_at": "2026-07-07T00:15:41+03:00",
       "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3588,7 +3593,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-07T00:02:05+03:00",
+        "checked_at": "2026-07-07T00:15:41+03:00",
         "current": [
           0,
           3
@@ -3810,20 +3815,23 @@
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
       "status": {
-        "key": "live",
-        "state": "live",
-        "label_ar": "مباشر",
-        "label": "Live"
+        "key": "finished",
+        "state": "finished",
+        "label_ar": "انتهت",
+        "label": "Final"
       },
-      "phase": "live",
+      "phase": "finished",
       "score1": 0,
       "score2": 1,
-      "score_ft": null,
+      "score_ft": [
+        0,
+        1
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 2,
       "team1": {
         "name_ar": "البرتغال",
         "name_en": "Portugal",
@@ -3856,8 +3864,8 @@
       "match_number": 93,
       "matchNumber": 93,
       "display_number": 93,
-      "status_key": "live",
-      "status_ar": "مباشر",
+      "status_key": "finished",
+      "status_ar": "انتهت",
       "team1_score": 0,
       "team2_score": 1,
       "team1Score": 0,
@@ -3867,21 +3875,7 @@
       "homeScore": 0,
       "awayScore": 1,
       "score_text": "0 - 1",
-      "score_source": "espn-live",
-      "live_phase": "live",
-      "live_phase_ar": "مباشر",
-      "live_status_detail": "مباشر",
-      "score": {
-        "source": "time-live-fallback",
-        "status": "live",
-        "phase": "live",
-        "phase_ar": "مباشر",
-        "current": [
-          0,
-          1
-        ],
-        "checked_at": "2026-07-07T00:02:05+03:00"
-      }
+      "score_source": "espn-finished"
     },
     {
       "id": "M094",
@@ -4203,10 +4197,13 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "الفائز من مباراة 93",
-        "name_en": "Winner of match 93",
+        "name_ar": "Spain",
+        "name_en": "Spain",
+        "group": "",
+        "position": "",
         "slot": "W93",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W93"
       },
       "team2": {
         "name_ar": "الفائز من مباراة 94",
