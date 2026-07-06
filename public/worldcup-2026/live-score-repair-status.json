@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-06T04:30:34+03:00",
+  "checked_at": "2026-07-06T04:45:34+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -23,6 +23,90 @@
   ],
   "updates": [
     {
+      "file": "matches.json",
+      "match": "M091",
+      "event_id": "760504",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "brazil",
+        "norway"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "matches.json",
+      "match": "M092",
+      "event_id": "760505",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "mexico",
+        "england"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "live",
+      "event_detail": "45'+1'"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M091",
+      "event_id": "760504",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "brazil",
+        "norway"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M092",
+      "event_id": "760505",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "mexico",
+        "england"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "live",
+      "event_detail": "45'+1'"
+    },
+    {
       "file": "knockout-live.json",
       "match": "M091",
       "event_id": "760504",
@@ -54,15 +138,15 @@
         "england"
       ],
       "before_score": [
-        0,
-        0
+        1,
+        2
       ],
       "after_score": [
-        0,
-        0
+        1,
+        2
       ],
       "event_status": "live",
-      "event_detail": "31'"
+      "event_detail": "45'+1'"
     },
     {
       "file": "knockout-live.json",
@@ -96,19 +180,19 @@
         "england"
       ],
       "before_score": [
-        0,
-        0
+        1,
+        2
       ],
       "after_score": [
-        0,
-        0
+        1,
+        2
       ],
       "event_status": "live",
-      "event_detail": "31'"
+      "event_detail": "45'+1'"
     }
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 4,
+  "updated_matches": 8,
   "ok": true
 }
