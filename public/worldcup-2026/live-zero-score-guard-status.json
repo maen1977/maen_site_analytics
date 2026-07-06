@@ -1,6 +1,6 @@
 {
   "version": "2026-07-02-live-zero-score-guard-v1",
-  "checked_at": "2026-07-06T05:15:35+03:00",
+  "checked_at": "2026-07-06T05:30:32+03:00",
   "timezone": "Asia/Amman",
   "live_window_minutes": 270,
   "rule_ar": "وقت المباراة المباشرة: إذا لا توجد نتيجة موثوقة، تظهر 0 - 0 مكان النتيجة، وتبقى كلمة مباشر كحالة فقط.",
@@ -10,7 +10,7 @@
       "exists": true,
       "changed": true,
       "liveZeroFilled": 0,
-      "preservedScore": 0,
+      "preservedScore": 1,
       "futureLiveCleared": 0,
       "scanned": 104
     },
@@ -19,7 +19,7 @@
       "exists": true,
       "changed": true,
       "liveZeroFilled": 0,
-      "preservedScore": 0,
+      "preservedScore": 1,
       "futureLiveCleared": 0,
       "scanned": 32
     },
@@ -36,7 +36,7 @@
   "totals": {
     "scanned": 200,
     "live_zero_filled": 0,
-    "preserved_score": 2,
+    "preserved_score": 4,
     "future_live_cleared": 0,
     "changed_files": 3
   }
