@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-06T04:00:32+03:00",
+  "checked_at": "2026-07-06T04:15:32+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -18,7 +18,7 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-      "updated": 2
+      "updated": 4
     }
   ],
   "updates": [
@@ -45,6 +45,27 @@
     },
     {
       "file": "knockout-live.json",
+      "match": "M092",
+      "event_id": "760505",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "mexico",
+        "england"
+      ],
+      "before_score": [
+        0,
+        0
+      ],
+      "after_score": [
+        0,
+        0
+      ],
+      "event_status": "live",
+      "event_detail": "16'"
+    },
+    {
+      "file": "knockout-live.json",
       "match": "M091",
       "event_id": "760504",
       "reason": "team-match",
@@ -63,10 +84,31 @@
       ],
       "event_status": "finished",
       "event_detail": "FT"
+    },
+    {
+      "file": "knockout-live.json",
+      "match": "M092",
+      "event_id": "760505",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "mexico",
+        "england"
+      ],
+      "before_score": [
+        0,
+        0
+      ],
+      "after_score": [
+        0,
+        0
+      ],
+      "event_status": "live",
+      "event_detail": "16'"
     }
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 2,
+  "updated_matches": 4,
   "ok": true
 }
