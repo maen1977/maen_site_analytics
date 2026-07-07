@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-07T04:45:32+03:00",
+  "checked_at": "2026-07-07T05:00:32+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 1
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 1
     },
     {
       "file": "knockout-live.json",
@@ -23,6 +23,48 @@
   ],
   "updates": [
     {
+      "file": "matches.json",
+      "match": "M094",
+      "event_id": "760507",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "unitedstates",
+        "belgium"
+      ],
+      "before_score": [
+        1,
+        3
+      ],
+      "after_score": [
+        1,
+        4
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M094",
+      "event_id": "760507",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "unitedstates",
+        "belgium"
+      ],
+      "before_score": [
+        1,
+        3
+      ],
+      "after_score": [
+        1,
+        4
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
       "file": "knockout-live.json",
       "match": "M093",
       "event_id": "760506",
@@ -59,10 +101,10 @@
       ],
       "after_score": [
         1,
-        3
+        4
       ],
-      "event_status": "live",
-      "event_detail": "66'"
+      "event_status": "finished",
+      "event_detail": "FT"
     },
     {
       "file": "knockout-live.json",
@@ -101,14 +143,14 @@
       ],
       "after_score": [
         1,
-        3
+        4
       ],
-      "event_status": "live",
-      "event_detail": "66'"
+      "event_status": "finished",
+      "event_detail": "FT"
     }
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 4,
+  "updated_matches": 6,
   "ok": true
 }
