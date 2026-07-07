@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-07T05:00:38+03:00",
+  "last_updated_at": "2026-07-07T05:15:40+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W94",
       "W95",
       "W96",
       "W97",
@@ -24,7 +23,7 @@
     "dynamic_advancement_slots_checked": 32,
     "matches_json_synced": true,
     "matches_json_updated": 2,
-    "canonical_finalizer_at": "2026-07-07T05:00:38+03:00"
+    "canonical_finalizer_at": "2026-07-07T05:15:40+03:00"
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -184,8 +183,8 @@
       "match": "M098",
       "side": "team2",
       "source_slot": "W94",
-      "resolved_team_ar": "الفائز من مباراة 94",
-      "unresolved": true,
+      "resolved_team_ar": "Belgium",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1683,8 +1682,8 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
             "state": "finished",
+            "label_ar": "انتهت",
             "label": "Final"
           },
           "phase": "finished",
@@ -1728,6 +1727,9 @@
           "timezone": "Asia/Amman",
           "espn_event_id": "760507",
           "espnEventId": "760507",
+          "match_number": 94,
+          "matchNumber": 94,
+          "display_number": 94,
           "status_key": "finished",
           "status_ar": "انتهت",
           "team1_score": 1,
@@ -1968,10 +1970,13 @@
             "resolved_from": "W93"
           },
           "team2": {
-            "name_ar": "الفائز من مباراة 94",
-            "name_en": "Winner of match 94",
+            "name_ar": "Belgium",
+            "name_en": "Belgium",
+            "group": "",
+            "position": "",
             "slot": "W94",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W94"
           },
           "source_slot1": "W93",
           "source_slot2": "W94",
@@ -3236,7 +3241,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T05:00:38+03:00",
+      "official_result_checked_at": "2026-07-07T05:15:40+03:00",
       "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد.",
       "status_key": "finished",
       "status_ar": "انتهت بعد التمديد",
@@ -3251,7 +3256,7 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-07T05:00:38+03:00",
+        "checked_at": "2026-07-07T05:15:40+03:00",
         "current": [
           3,
           2
@@ -3351,7 +3356,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T05:00:38+03:00",
+      "official_result_checked_at": "2026-07-07T05:15:40+03:00",
       "note_ar": "كولومبيا فازت 1-0 على غانا.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3366,7 +3371,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-07T05:00:38+03:00",
+        "checked_at": "2026-07-07T05:15:40+03:00",
         "current": [
           1,
           0
@@ -3468,7 +3473,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T05:00:38+03:00",
+      "official_result_checked_at": "2026-07-07T05:15:40+03:00",
       "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1.",
       "status_key": "finished",
       "status_ar": "انتهت بركلات الترجيح",
@@ -3483,7 +3488,7 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-07T05:00:38+03:00",
+        "checked_at": "2026-07-07T05:15:40+03:00",
         "current": [
           1,
           1
@@ -3590,7 +3595,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-07T05:00:38+03:00",
+      "official_result_checked_at": "2026-07-07T05:15:40+03:00",
       "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3605,7 +3610,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-07T05:00:38+03:00",
+        "checked_at": "2026-07-07T05:15:40+03:00",
         "current": [
           0,
           3
@@ -3905,8 +3910,8 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
         "state": "finished",
+        "label_ar": "انتهت",
         "label": "Final"
       },
       "phase": "finished",
@@ -3948,11 +3953,11 @@
       "time_jordan": "03:00",
       "sort_key_jordan": "2026-07-07T03:00:00+03:00",
       "timezone": "Asia/Amman",
+      "espn_event_id": "760507",
+      "espnEventId": "760507",
       "match_number": 94,
       "matchNumber": 94,
       "display_number": 94,
-      "espn_event_id": "760507",
-      "espnEventId": "760507",
       "status_key": "finished",
       "status_ar": "انتهت",
       "team1_score": 1,
@@ -4221,10 +4226,13 @@
         "resolved_from": "W93"
       },
       "team2": {
-        "name_ar": "الفائز من مباراة 94",
-        "name_en": "Winner of match 94",
+        "name_ar": "Belgium",
+        "name_en": "Belgium",
+        "group": "",
+        "position": "",
         "slot": "W94",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W94"
       },
       "source_slot1": "W93",
       "source_slot2": "W94",
