@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-07T19:00:33+03:00",
+  "checked_at": "2026-07-07T19:15:35+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -18,12 +18,55 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-      "updated": 0
+      "updated": 2
     }
   ],
-  "updates": [],
+  "updates": [
+    {
+      "file": "knockout-live.json",
+      "match": "M095",
+      "event_id": "760509",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "argentina",
+        "egypt"
+      ],
+      "before_score": [
+        0,
+        0
+      ],
+      "after_score": [
+        0,
+        0
+      ],
+      "event_status": "live",
+      "event_detail": "12'"
+    },
+    {
+      "file": "knockout-live.json",
+      "match": "M095",
+      "event_id": "760509",
+      "reason": "team-match",
+      "orientation": "same",
+      "teams": [
+        "argentina",
+        "egypt"
+      ],
+      "before_score": [
+        0,
+        0
+      ],
+      "after_score": [
+        0,
+        0
+      ],
+      "event_status": "live",
+      "event_detail": "12'"
+    }
+  ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 0,
+  "updated_matches": 2,
   "ok": true
 }
