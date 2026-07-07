@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-07T10:15:34+03:00",
+  "checked_at": "2026-07-07T10:30:32+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -18,97 +18,12 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-      "updated": 4
+      "updated": 0
     }
   ],
-  "updates": [
-    {
-      "file": "knockout-live.json",
-      "match": "M093",
-      "event_id": "760506",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "portugal",
-        "spain"
-      ],
-      "before_score": [
-        0,
-        1
-      ],
-      "after_score": [
-        0,
-        1
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M094",
-      "event_id": "760507",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "unitedstates",
-        "belgium"
-      ],
-      "before_score": [
-        1,
-        4
-      ],
-      "after_score": [
-        1,
-        4
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M093",
-      "event_id": "760506",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "portugal",
-        "spain"
-      ],
-      "before_score": [
-        0,
-        1
-      ],
-      "after_score": [
-        0,
-        1
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M094",
-      "event_id": "760507",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "unitedstates",
-        "belgium"
-      ],
-      "before_score": [
-        1,
-        4
-      ],
-      "after_score": [
-        1,
-        4
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    }
-  ],
+  "updates": [],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 4,
+  "updated_matches": 0,
   "ok": true
 }
