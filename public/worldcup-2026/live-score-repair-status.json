@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-07T21:00:38+03:00",
+  "checked_at": "2026-07-07T21:15:37+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -40,8 +40,8 @@
         3,
         2
       ],
-      "event_status": "live",
-      "event_detail": "90'+5'"
+      "event_status": "finished",
+      "event_detail": "FT"
     },
     {
       "file": "knockout-live.json",
@@ -61,8 +61,8 @@
         3,
         2
       ],
-      "event_status": "live",
-      "event_detail": "90'+5'"
+      "event_status": "finished",
+      "event_detail": "FT"
     }
   ],
   "errors": [],
