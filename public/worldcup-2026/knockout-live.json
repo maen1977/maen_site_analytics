@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-08T02:15:01+03:00",
+  "last_updated_at": "2026-07-08T02:15:37+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -21,7 +21,7 @@
     "dynamic_advancement_slots_checked": 32,
     "matches_json_synced": true,
     "matches_json_updated": 3,
-    "canonical_finalizer_at": "2026-07-08T02:15:01+03:00"
+    "canonical_finalizer_at": "2026-07-08T02:15:37+03:00"
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -1817,16 +1817,19 @@
           "phase": "finished",
           "score1": 0,
           "score2": 0,
-          "score_ft": null,
+          "score_ft": [
+            0,
+            0
+          ],
           "score_et": [
             0,
             0
           ],
-          "penalty1": 2,
-          "penalty2": 1,
+          "penalty1": 4,
+          "penalty2": 3,
           "score_penalties": [
-            2,
-            1
+            4,
+            3
           ],
           "winner_side": 1,
           "team1": {
@@ -2081,8 +2084,13 @@
           "kickoff_utc": "2026-07-12T01:00:00.000Z",
           "venue_ar": "Kansas City Stadium / Arrowhead Stadium",
           "city_ar": "",
-          "status": "scheduled",
-          "phase": "scheduled",
+          "status": {
+            "key": "scheduled",
+            "state": "scheduled",
+            "label_ar": "لم تبدأ",
+            "label": "Scheduled"
+          },
+          "phase": "",
           "score1": null,
           "score2": null,
           "score_ft": null,
@@ -2118,6 +2126,8 @@
           "time_jordan": "04:00",
           "sort_key_jordan": "2026-07-12T04:00:00+03:00",
           "timezone": "Asia/Amman",
+          "espn_event_id": "760513",
+          "espnEventId": "760513",
           "match_number": 100,
           "matchNumber": 100,
           "display_number": 100
@@ -3261,7 +3271,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-08T02:15:01+03:00",
+      "official_result_checked_at": "2026-07-08T02:15:37+03:00",
       "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد.",
       "status_key": "finished",
       "status_ar": "انتهت بعد التمديد",
@@ -3276,7 +3286,7 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-08T02:15:01+03:00",
+        "checked_at": "2026-07-08T02:15:37+03:00",
         "current": [
           3,
           2
@@ -3376,7 +3386,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-08T02:15:01+03:00",
+      "official_result_checked_at": "2026-07-08T02:15:37+03:00",
       "note_ar": "كولومبيا فازت 1-0 على غانا.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3391,7 +3401,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-08T02:15:01+03:00",
+        "checked_at": "2026-07-08T02:15:37+03:00",
         "current": [
           1,
           0
@@ -3493,7 +3503,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-08T02:15:01+03:00",
+      "official_result_checked_at": "2026-07-08T02:15:37+03:00",
       "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1.",
       "status_key": "finished",
       "status_ar": "انتهت بركلات الترجيح",
@@ -3508,7 +3518,7 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-08T02:15:01+03:00",
+        "checked_at": "2026-07-08T02:15:37+03:00",
         "current": [
           1,
           1
@@ -3615,7 +3625,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-08T02:15:01+03:00",
+      "official_result_checked_at": "2026-07-08T02:15:37+03:00",
       "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3630,7 +3640,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-08T02:15:01+03:00",
+        "checked_at": "2026-07-08T02:15:37+03:00",
         "current": [
           0,
           3
@@ -4067,16 +4077,19 @@
       "phase": "finished",
       "score1": 0,
       "score2": 0,
-      "score_ft": null,
+      "score_ft": [
+        0,
+        0
+      ],
       "score_et": [
         0,
         0
       ],
-      "penalty1": 2,
-      "penalty2": 1,
+      "penalty1": 4,
+      "penalty2": 3,
       "score_penalties": [
-        2,
-        1
+        4,
+        3
       ],
       "winner_side": 1,
       "team1": {
@@ -4335,8 +4348,13 @@
       "kickoff_utc": "2026-07-12T01:00:00.000Z",
       "venue_ar": "Kansas City Stadium / Arrowhead Stadium",
       "city_ar": "",
-      "status": "scheduled",
-      "phase": "scheduled",
+      "status": {
+        "key": "scheduled",
+        "state": "scheduled",
+        "label_ar": "لم تبدأ",
+        "label": "Scheduled"
+      },
+      "phase": "",
       "score1": null,
       "score2": null,
       "score_ft": null,
@@ -4372,6 +4390,8 @@
       "time_jordan": "04:00",
       "sort_key_jordan": "2026-07-12T04:00:00+03:00",
       "timezone": "Asia/Amman",
+      "espn_event_id": "760513",
+      "espnEventId": "760513",
       "match_number": 100,
       "matchNumber": 100,
       "display_number": 100
