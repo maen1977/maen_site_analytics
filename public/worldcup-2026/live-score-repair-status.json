@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-10T00:30:32+03:00",
+  "checked_at": "2026-07-10T00:45:32+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -33,15 +33,15 @@
         "morocco"
       ],
       "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
         1,
         0
       ],
+      "after_score": [
+        2,
+        0
+      ],
       "event_status": "live",
-      "event_detail": "66'"
+      "event_detail": "81'"
     },
     {
       "file": "bracket.json",
@@ -54,15 +54,15 @@
         "morocco"
       ],
       "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
         1,
         0
       ],
+      "after_score": [
+        2,
+        0
+      ],
       "event_status": "live",
-      "event_detail": "66'"
+      "event_detail": "81'"
     },
     {
       "file": "knockout-live.json",
@@ -75,15 +75,15 @@
         "morocco"
       ],
       "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
         1,
         0
       ],
+      "after_score": [
+        2,
+        0
+      ],
       "event_status": "live",
-      "event_detail": "66'"
+      "event_detail": "81'"
     },
     {
       "file": "knockout-live.json",
@@ -96,15 +96,15 @@
         "morocco"
       ],
       "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
         1,
         0
       ],
+      "after_score": [
+        2,
+        0
+      ],
       "event_status": "live",
-      "event_detail": "66'"
+      "event_detail": "81'"
     }
   ],
   "errors": [],
