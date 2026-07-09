@@ -1,1 +1,6 @@
-Stabilize World Cup results and knockout updates
+fix(worldcup-2026): prevent queued updater runs and limit deploy hook wait
+
+- Cancel older World Cup updater runs when a newer run starts
+- Prevent 15-minute update jobs from stacking in GitHub Actions queue
+- Add a timeout and one retry to the Cloudflare Pages deploy hook request
+- Keep automatic World Cup updates stable for manual and scheduled runs

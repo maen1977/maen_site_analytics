@@ -1,0 +1,18 @@
+--- /mnt/data/maen_site/.github/workflows/update-worldcup-2026.yml	2026-07-09 08:28:46.481194359 +0000
++++ /mnt/data/worldcup_workflow_queue_fix_2026_07_09/.github/workflows/update-worldcup-2026.yml	2026-07-09 09:39:37.603196591 +0000
+@@ -20,7 +20,7 @@
+ 
+ concurrency:
+   group: worldcup-2026-quarter-hour
+-  cancel-in-progress: false
++  cancel-in-progress: true
+ 
+ env:
+   TZ: Asia/Amman
+@@ -212,5 +212,5 @@
+             exit 0
+           fi
+           echo "Triggering Cloudflare Pages deploy hook..."
+-          curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
++          curl --fail --show-error --silent --location --max-time 20 --retry 1 --retry-delay 3 --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+           echo "Cloudflare Pages deploy hook triggered."
