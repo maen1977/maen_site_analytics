@@ -10,9 +10,18 @@ const EXPECTED = {
   M086: { teams:['Argentina','Cape Verde'], score:[3,2], status:/انتهت بعد التمديد|after extra|aet|extra/i, winnerSide:1 },
   M087: { teams:['Colombia','Ghana'], score:[1,0], status:/انتهت|finished|final|full/i, winnerSide:1 },
   M088: { teams:['Australia','Egypt'], score:[1,1], penalties:[2,4], status:/ترجيح|penalt|shootout/i, winnerSide:2 },
+  M089: { teams:['Paraguay','France'], score:[0,1], status:/انتهت|finished|final|full/i, winnerSide:2 },
   M090: { teams:['Canada','Morocco'], score:[0,3], status:/انتهت|finished|final|full/i, winnerSide:2 },
-  M095: { teams:['Argentina','Egypt'], scheduled:true },
-  M096: { teams:['Switzerland','Colombia'], scheduled:true },
+  M091: { teams:['Brazil','Norway'], score:[1,2], status:/انتهت|finished|final|full/i, winnerSide:2 },
+  M092: { teams:['Mexico','England'], score:[2,3], status:/انتهت|finished|final|full/i, winnerSide:2 },
+  M093: { teams:['Portugal','Spain'], score:[0,1], status:/انتهت|finished|final|full/i, winnerSide:2 },
+  M094: { teams:['USA','Belgium'], score:[1,4], status:/انتهت|finished|final|full/i, winnerSide:2 },
+  M095: { teams:['Argentina','Egypt'], score:[3,2], status:/انتهت|finished|final|full/i, winnerSide:1 },
+  M096: { teams:['Switzerland','Colombia'], score:[0,0], penalties:[4,3], status:/ترجيح|penalt|shootout/i, winnerSide:1 },
+  M097: { teams:['France','Morocco'] },
+  M098: { teams:['Spain','Belgium'] },
+  M099: { teams:['Norway','England'] },
+  M100: { teams:['Argentina','Switzerland'] },
 };
 
 function readJson(file){ return JSON.parse(fs.readFileSync(path.join(DATA_DIR,file),'utf8')); }
@@ -82,7 +91,7 @@ function checkFile(file){
 }
 
 for (const f of files) if(fs.existsSync(path.join(DATA_DIR,f))) checkFile(f);
-const status = { ok: errors.length===0, name:'World Cup state validator', version:'2026-07-04-stable-results-v1', checked_at:new Date().toISOString(), errors };
+const status = { ok: errors.length===0, name:'World Cup state validator', version:'2026-07-09-quarterfinals-official-fix-v1', checked_at:new Date().toISOString(), errors };
 fs.writeFileSync(path.join(DATA_DIR,'state-validator-status.json'), JSON.stringify(status,null,2)+'\n');
 if(errors.length){
   console.error(errors.join('\n'));

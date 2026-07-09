@@ -3,10 +3,11 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-07-09T11:36:14+03:00",
+    "updated_at": "2026-07-09T11:39:31+03:00",
     "note_ar": "تصحيحات رسمية مثبتة تمنع عودة المباريات المنتهية إلى مباشر أو 0-0.",
     "m074_penalty_hotfix": true,
-    "canonical_finalizer_version": "2026-07-04-stable-results-v1"
+    "canonical_finalizer_version": "2026-07-09-quarterfinals-official-fix-v1",
+    "quarterfinals_official_fix_version": "2026-07-09-quarterfinals-official-fix-v1"
   },
   "results": [
     {
@@ -135,7 +136,7 @@
           2
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-09T11:36:14+03:00"
+        "checked_at": "2026-07-09T11:39:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -184,7 +185,7 @@
           0
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-09T11:36:14+03:00"
+        "checked_at": "2026-07-09T11:39:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -241,7 +242,7 @@
           4
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-09T11:36:14+03:00"
+        "checked_at": "2026-07-09T11:39:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -252,6 +253,55 @@
       "locked": true,
       "force": true,
       "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1."
+    },
+    {
+      "id": "M089",
+      "num": 89,
+      "team1": "Paraguay",
+      "team2": "France",
+      "team1_ar": "باراغواي",
+      "team2_ar": "فرنسا",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 0,
+      "away_score": 1,
+      "score1": 0,
+      "score2": 1,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          0,
+          1
+        ],
+        "ft": [
+          0,
+          1
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "فرنسا فازت 1-0 على باراغواي وتأهلت إلى ربع النهائي."
     },
     {
       "id": "M090",
@@ -290,7 +340,7 @@
           3
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-09T11:36:14+03:00"
+        "checked_at": "2026-07-09T11:39:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -301,6 +351,308 @@
       "locked": true,
       "force": true,
       "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي."
+    },
+    {
+      "id": "M091",
+      "num": 91,
+      "team1": "Brazil",
+      "team2": "Norway",
+      "team1_ar": "البرازيل",
+      "team2_ar": "النرويج",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 2,
+      "score1": 1,
+      "score2": 2,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          1,
+          2
+        ],
+        "ft": [
+          1,
+          2
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "النرويج فازت 2-1 على البرازيل وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M092",
+      "num": 92,
+      "team1": "Mexico",
+      "team2": "England",
+      "team1_ar": "المكسيك",
+      "team2_ar": "إنجلترا",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 2,
+      "away_score": 3,
+      "score1": 2,
+      "score2": 3,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          2,
+          3
+        ],
+        "ft": [
+          2,
+          3
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "إنجلترا فازت 3-2 على المكسيك وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M093",
+      "num": 93,
+      "team1": "Portugal",
+      "team2": "Spain",
+      "team1_ar": "البرتغال",
+      "team2_ar": "إسبانيا",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 0,
+      "away_score": 1,
+      "score1": 0,
+      "score2": 1,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          0,
+          1
+        ],
+        "ft": [
+          0,
+          1
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "إسبانيا فازت 1-0 على البرتغال وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M094",
+      "num": 94,
+      "team1": "USA",
+      "team2": "Belgium",
+      "team1_ar": "أمريكا",
+      "team2_ar": "بلجيكا",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 4,
+      "score1": 1,
+      "score2": 4,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          1,
+          4
+        ],
+        "ft": [
+          1,
+          4
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "بلجيكا فازت 4-1 على أمريكا وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M095",
+      "num": 95,
+      "team1": "Argentina",
+      "team2": "Egypt",
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "مصر",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 3,
+      "away_score": 2,
+      "score1": 3,
+      "score2": 2,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          3,
+          2
+        ],
+        "ft": [
+          3,
+          2
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "الأرجنتين فازت 3-2 على مصر وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M096",
+      "num": 96,
+      "team1": "Switzerland",
+      "team2": "Colombia",
+      "team1_ar": "سويسرا",
+      "team2_ar": "كولومبيا",
+      "stage": "Round of 16",
+      "stage_ar": "دور 16",
+      "status": "finished",
+      "home_score": 0,
+      "away_score": 0,
+      "score1": 0,
+      "score2": 0,
+      "penalty_home_score": 4,
+      "penalty_away_score": 3,
+      "home_penalties": 4,
+      "away_penalties": 3,
+      "team1_penalties": 4,
+      "team2_penalties": 3,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished_on_penalties",
+        "phase_ar": "انتهت بركلات الترجيح",
+        "status_detail": "انتهت بركلات الترجيح",
+        "current": [
+          0,
+          0
+        ],
+        "ft": [
+          0,
+          0
+        ],
+        "et": [
+          0,
+          0
+        ],
+        "p": [
+          4,
+          3
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-09T11:39:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished_on_penalties",
+      "live_phase_ar": "انتهت بركلات الترجيح",
+      "live_status_detail": "انتهت بركلات الترجيح",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي."
     }
   ]
 }
