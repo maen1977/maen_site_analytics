@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-11T00:00:31+03:00",
+  "last_updated_at": "2026-07-11T00:15:28+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -9,7 +9,6 @@
     "direct_resolved": 0,
     "best_third_resolved": 0,
     "unresolved_future_slots": [
-      "W98",
       "W99",
       "W100",
       "L101",
@@ -20,7 +19,7 @@
     "dynamic_advancement_slots_checked": 38,
     "matches_json_synced": true,
     "matches_json_updated": 2,
-    "canonical_finalizer_at": "2026-07-11T00:00:31+03:00"
+    "canonical_finalizer_at": "2026-07-11T00:15:28+03:00"
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -276,8 +275,8 @@
       "match": "M101",
       "side": "team2",
       "source_slot": "W98",
-      "resolved_team_ar": "الفائز من مباراة 98",
-      "unresolved": true,
+      "resolved_team_ar": "Spain",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -1981,8 +1980,8 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "label_ar": "انتهت",
             "state": "finished",
+            "label_ar": "انتهت",
             "label": "Final"
           },
           "phase": "finished",
@@ -2026,6 +2025,9 @@
           "timezone": "Asia/Amman",
           "espn_event_id": "760511",
           "espnEventId": "760511",
+          "match_number": 98,
+          "matchNumber": 98,
+          "display_number": 98,
           "status_key": "finished",
           "status_ar": "انتهت",
           "team1_score": 2,
@@ -2199,10 +2201,13 @@
             "resolved_from": "W97"
           },
           "team2": {
-            "name_ar": "الفائز من مباراة 98",
-            "name_en": "Winner of match 98",
+            "name_ar": "Spain",
+            "name_en": "Spain",
+            "group": "",
+            "position": "",
             "slot": "W98",
-            "unresolved": true
+            "unresolved": false,
+            "resolved_from": "W98"
           },
           "source_slot1": "W97",
           "source_slot2": "W98",
@@ -3300,7 +3305,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد.",
       "status_key": "finished",
       "status_ar": "انتهت بعد التمديد",
@@ -3315,7 +3320,7 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           3,
           2
@@ -3415,7 +3420,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "كولومبيا فازت 1-0 على غانا.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3430,7 +3435,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           1,
           0
@@ -3532,7 +3537,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1.",
       "status_key": "finished",
       "status_ar": "انتهت بركلات الترجيح",
@@ -3547,7 +3552,7 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           1,
           1
@@ -3654,7 +3659,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3669,7 +3674,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           0,
           3
@@ -3762,7 +3767,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "فرنسا فازت 1-0 على باراغواي وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3777,7 +3782,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           0,
           1
@@ -3870,7 +3875,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "النرويج فازت 2-1 على البرازيل وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3885,7 +3890,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           1,
           2
@@ -3978,7 +3983,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "إنجلترا فازت 3-2 على المكسيك وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -3993,7 +3998,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           2,
           3
@@ -4086,7 +4091,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "إسبانيا فازت 1-0 على البرتغال وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -4101,7 +4106,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           0,
           1
@@ -4194,7 +4199,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "بلجيكا فازت 4-1 على أمريكا وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -4209,7 +4214,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           1,
           4
@@ -4301,7 +4306,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "الأرجنتين فازت 3-2 على مصر وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -4316,7 +4321,7 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           3,
           2
@@ -4419,7 +4424,7 @@
       "score_updated_by": "worldcup-canonical-finalizer",
       "canonical_locked": true,
       "official_result_locked": true,
-      "official_result_checked_at": "2026-07-11T00:00:31+03:00",
+      "official_result_checked_at": "2026-07-11T00:15:28+03:00",
       "note_ar": "سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي.",
       "status_key": "finished",
       "status_ar": "انتهت بركلات الترجيح",
@@ -4434,7 +4439,7 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-11T00:00:31+03:00",
+        "checked_at": "2026-07-11T00:15:28+03:00",
         "current": [
           0,
           0
@@ -4541,8 +4546,8 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "label_ar": "انتهت",
         "state": "finished",
+        "label_ar": "انتهت",
         "label": "Final"
       },
       "phase": "finished",
@@ -4584,11 +4589,11 @@
       "time_jordan": "22:00",
       "sort_key_jordan": "2026-07-10T22:00:00+03:00",
       "timezone": "Asia/Amman",
+      "espn_event_id": "760511",
+      "espnEventId": "760511",
       "match_number": 98,
       "matchNumber": 98,
       "display_number": 98,
-      "espn_event_id": "760511",
-      "espnEventId": "760511",
       "status_key": "finished",
       "status_ar": "انتهت",
       "team1_score": 2,
@@ -4784,10 +4789,13 @@
         "resolved_from": "W97"
       },
       "team2": {
-        "name_ar": "الفائز من مباراة 98",
-        "name_en": "Winner of match 98",
+        "name_ar": "Spain",
+        "name_en": "Spain",
+        "group": "",
+        "position": "",
         "slot": "W98",
-        "unresolved": true
+        "unresolved": false,
+        "resolved_from": "W98"
       },
       "source_slot1": "W97",
       "source_slot2": "W98",
