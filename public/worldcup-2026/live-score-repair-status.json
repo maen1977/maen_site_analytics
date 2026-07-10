@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-10T03:19:21+03:00",
+  "checked_at": "2026-07-10T03:30:57+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 1
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 1
     },
     {
       "file": "knockout-live.json",
@@ -22,6 +22,48 @@
     }
   ],
   "updates": [
+    {
+      "file": "matches.json",
+      "match": "M097",
+      "event_id": "760510",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "france",
+        "morocco"
+      ],
+      "before_score": [
+        2,
+        0
+      ],
+      "after_score": [
+        2,
+        0
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M097",
+      "event_id": "760510",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "france",
+        "morocco"
+      ],
+      "before_score": [
+        2,
+        0
+      ],
+      "after_score": [
+        2,
+        0
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
     {
       "file": "knockout-live.json",
       "match": "M097",
@@ -67,6 +109,6 @@
   ],
   "errors": [],
   "espn_events": 1,
-  "updated_matches": 2,
+  "updated_matches": 4,
   "ok": true
 }
