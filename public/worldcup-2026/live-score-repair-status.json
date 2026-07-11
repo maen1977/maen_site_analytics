@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-11T07:01:17+03:00",
+  "checked_at": "2026-07-11T07:16:11+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 1
+      "updated": 0
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 1
+      "updated": 0
     },
     {
       "file": "knockout-live.json",
@@ -22,48 +22,6 @@
     }
   ],
   "updates": [
-    {
-      "file": "matches.json",
-      "match": "M098",
-      "event_id": "760511",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "belgium"
-      ],
-      "before_score": [
-        2,
-        1
-      ],
-      "after_score": [
-        2,
-        1
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M098",
-      "event_id": "760511",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "belgium"
-      ],
-      "before_score": [
-        2,
-        1
-      ],
-      "after_score": [
-        2,
-        1
-      ],
-      "event_status": "finished",
-      "event_detail": "FT"
-    },
     {
       "file": "knockout-live.json",
       "match": "M098",
@@ -109,6 +67,6 @@
   ],
   "errors": [],
   "espn_events": 1,
-  "updated_matches": 4,
+  "updated_matches": 2,
   "ok": true
 }
