@@ -2,7 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-12T07:01:13+03:00",
+  "checked_at": "2026-07-12T07:16:10+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -18,55 +18,12 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-      "updated": 2
+      "updated": 0
     }
   ],
-  "updates": [
-    {
-      "file": "knockout-live.json",
-      "match": "M099",
-      "event_id": "760512",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "norway",
-        "england"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M099",
-      "event_id": "760512",
-      "reason": "team-match",
-      "orientation": "same",
-      "teams": [
-        "norway",
-        "england"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    }
-  ],
+  "updates": [],
   "errors": [],
-  "espn_events": 2,
-  "updated_matches": 2,
+  "espn_events": 1,
+  "updated_matches": 0,
   "ok": true
 }
