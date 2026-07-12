@@ -72,7 +72,8 @@ jobs:
             scripts/worldcup-jordan-order-consistency.mjs \
             scripts/worldcup-final-live-reconciliation.mjs \
             scripts/worldcup-canonical-finalizer.mjs \
-            scripts/worldcup-state-validator.mjs
+            scripts/worldcup-state-validator.mjs \
+            scripts/worldcup-semifinal-lock-test.mjs
           do
             if [ -f "$file" ]; then
               node --check "$file"
@@ -80,6 +81,10 @@ jobs:
               echo "Skipping missing optional script: $file"
             fi
           done
+
+      - name: Test permanent semifinal lock regression
+        shell: bash
+        run: node scripts/worldcup-semifinal-lock-test.mjs
 
       - name: Run original quarter-hour updater
         shell: bash

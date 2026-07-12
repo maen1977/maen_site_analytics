@@ -1,49 +1,82 @@
-name: World Cup knockout live cards
+name: World Cup knockout live cards (manual only)
 
+# The scheduled quarter-hour update lives only in update-worldcup-2026.yml.
+# Keeping a second schedule here previously allowed stale bracket data to race
+# the canonical finalizer and restore Switzerland in semifinal M102.
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '2,17,32,47 * * * *'
 
 permissions:
   contents: write
 
 concurrency:
-  group: worldcup-knockout-live-cards
-  cancel-in-progress: false
+  group: worldcup-2026-quarter-hour
+  cancel-in-progress: true
+
+env:
+  TZ: Asia/Amman
+  WORLD_CUP_2026_INTERVAL_MINUTES: "15"
 
 jobs:
   update-knockout-cards:
     runs-on: ubuntu-latest
+    timeout-minutes: 14
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT_FOR_AUTOMATION || github.token }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "24"
 
-      - name: Run existing World Cup updater if available
+      - name: Validate permanent semifinal scripts
+        shell: bash
         run: |
-          if [ -f scripts/update-worldcup-2026.mjs ]; then
-            node scripts/update-worldcup-2026.mjs || echo "Existing updater failed; continuing with current JSON files."
-          fi
+          set -euo pipefail
+          node --check scripts/worldcup-knockout-live-sync.mjs
+          node --check scripts/worldcup-canonical-finalizer.mjs
+          node --check scripts/worldcup-state-validator.mjs
+          node --check scripts/worldcup-semifinal-lock-test.mjs
+          node scripts/worldcup-semifinal-lock-test.mjs
 
       - name: Build knockout live data
         run: node scripts/worldcup-knockout-live-sync.mjs
+
+      - name: Re-apply canonical quarterfinal results and semifinal paths
+        run: node scripts/worldcup-canonical-finalizer.mjs
+
+      - name: Reject stale semifinal data
+        run: node scripts/worldcup-state-validator.mjs
 
       - name: Install knockout cards UI safely
         run: node scripts/install-worldcup-knockout-cards-ui.mjs
 
       - name: Commit updated World Cup knockout cards
+        shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/worldcup-2026/knockout-live.json public/worldcup-2026/knockout-live-health.json public/worldcup-knockout-cards-ui.js public/index.html public/index_phone.html public/_headers scripts/worldcup-knockout-live-sync.mjs scripts/install-worldcup-knockout-cards-ui.mjs .github/workflows/worldcup-knockout-live-cards.yml
+          git add \
+            public/worldcup-2026/matches.json \
+            public/worldcup-2026/bracket.json \
+            public/worldcup-2026/knockout-live.json \
+            public/worldcup-2026/knockout-live-health.json \
+            public/worldcup-2026/manual-results-overrides.json \
+            public/worldcup-2026/canonical-finalizer-status.json \
+            public/worldcup-2026/state-validator-status.json \
+            public/worldcup-knockout-cards-ui.js \
+            public/index.html \
+            public/index_phone.html \
+            public/_headers
           if git diff --cached --quiet; then
             echo "No changes to commit."
-          else
-            git commit -m "Update World Cup knockout live cards"
-            git push
+            exit 0
           fi
+          git commit -m "Update World Cup knockout cards with canonical semifinal lock"
+          git pull --rebase --autostash origin main || true
+          git push origin HEAD:main || { git pull --rebase --autostash origin main; git push origin HEAD:main; }

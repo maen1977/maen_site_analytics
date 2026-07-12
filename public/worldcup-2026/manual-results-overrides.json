@@ -3,12 +3,14 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-07-12T20:46:46+03:00",
-    "note_ar": "تصحيحات رسمية مثبتة تمنع عودة النتائج أو المتأهلين إلى بيانات قديمة؛ الأرجنتين هي الفائز من مباراة 100 والمتأهلة لمواجهة إنجلترا.",
+    "updated_at": "2026-07-12T21:41:31+03:00",
+    "note_ar": "تصحيحات رسمية مقفلة تمنع عودة نتائج ربع النهائي أو أسماء المتأهلين إلى بيانات قديمة؛ نصف النهائي M102 هو إنجلترا ضد الأرجنتين.",
     "m074_penalty_hotfix": true,
-    "canonical_finalizer_version": "2026-07-09-quarterfinals-official-fix-v1",
+    "canonical_finalizer_version": "2026-07-12-semifinals-official-lock-v2",
     "quarterfinals_official_fix_version": "2026-07-09-quarterfinals-official-fix-v1",
-    "semifinal_advancement_fix_version": "2026-07-12-m100-argentina-advancement-v1"
+    "semifinal_advancement_fix_version": "2026-07-12-m100-argentina-advancement-v1",
+    "semifinals_official_lock_at": "2026-07-12T21:41:31+03:00",
+    "semifinals_official_lock_version": "2026-07-12-semifinals-official-lock-v2"
   },
   "results": [
     {
@@ -137,7 +139,7 @@
           2
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -186,7 +188,7 @@
           0
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -243,7 +245,7 @@
           4
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -292,7 +294,7 @@
           1
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -341,7 +343,7 @@
           3
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -390,7 +392,7 @@
           2
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -439,7 +441,7 @@
           3
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -488,7 +490,7 @@
           1
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -537,7 +539,7 @@
           4
         ],
         "winner_side": 2,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -586,7 +588,7 @@
           2
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -643,7 +645,7 @@
           3
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-12T20:19:01+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -654,6 +656,153 @@
       "locked": true,
       "force": true,
       "note_ar": "سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M097",
+      "num": 97,
+      "team1": "France",
+      "team2": "Morocco",
+      "team1_ar": "فرنسا",
+      "team2_ar": "المغرب",
+      "stage": "Quarter-final",
+      "stage_ar": "ربع النهائي",
+      "status": "finished",
+      "home_score": 2,
+      "away_score": 0,
+      "score1": 2,
+      "score2": 0,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          2,
+          0
+        ],
+        "ft": [
+          2,
+          0
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-12T21:41:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "فرنسا فازت 2-0 على المغرب وتأهلت إلى نصف النهائي."
+    },
+    {
+      "id": "M098",
+      "num": 98,
+      "team1": "Spain",
+      "team2": "Belgium",
+      "team1_ar": "إسبانيا",
+      "team2_ar": "بلجيكا",
+      "stage": "Quarter-final",
+      "stage_ar": "ربع النهائي",
+      "status": "finished",
+      "home_score": 2,
+      "away_score": 1,
+      "score1": 2,
+      "score2": 1,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          2,
+          1
+        ],
+        "ft": [
+          2,
+          1
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-12T21:41:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "إسبانيا فازت 2-1 على بلجيكا وتأهلت إلى نصف النهائي."
+    },
+    {
+      "id": "M099",
+      "num": 99,
+      "team1": "Norway",
+      "team2": "England",
+      "team1_ar": "النرويج",
+      "team2_ar": "إنجلترا",
+      "stage": "Quarter-final",
+      "stage_ar": "ربع النهائي",
+      "status": "finished",
+      "home_score": 1,
+      "away_score": 2,
+      "score1": 1,
+      "score2": 2,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
+      "winner_side": 2,
+      "loser_side": 1,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "انتهت",
+        "current": [
+          1,
+          2
+        ],
+        "ft": [
+          1,
+          2
+        ],
+        "winner_side": 2,
+        "checked_at": "2026-07-12T21:41:31+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_status_detail": "انتهت",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "إنجلترا فازت 2-1 على النرويج وتأهلت إلى نصف النهائي."
     },
     {
       "id": "M100",
@@ -669,6 +818,12 @@
       "away_score": 1,
       "score1": 3,
       "score2": 1,
+      "penalty_home_score": null,
+      "penalty_away_score": null,
+      "home_penalties": null,
+      "away_penalties": null,
+      "team1_penalties": null,
+      "team2_penalties": null,
       "winner_side": 1,
       "loser_side": 2,
       "score": {
@@ -690,7 +845,7 @@
           1
         ],
         "winner_side": 1,
-        "checked_at": "2026-07-12T20:46:46+03:00"
+        "checked_at": "2026-07-12T21:41:31+03:00"
       },
       "score_source": "manual-official-finalizer",
       "live_score_source": "manual-official-finalizer",
@@ -700,7 +855,7 @@
       "verified": true,
       "locked": true,
       "force": true,
-      "note_ar": "الأرجنتين فازت 3-1 على سويسرا وتأهلت لمواجهة إنجلترا في نصف النهائي."
+      "note_ar": "الأرجنتين فازت 3-1 على سويسرا بعد التمديد وتأهلت لمواجهة إنجلترا في نصف النهائي."
     }
   ]
 }

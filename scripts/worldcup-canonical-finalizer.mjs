@@ -4,6 +4,7 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const NOW = new Date();
+const VERSION = '2026-07-12-semifinals-official-lock-v2';
 const nowAmman = new Intl.DateTimeFormat('sv-SE', {
   timeZone: 'Asia/Amman', year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
 }).format(NOW).replace(' ', 'T') + '+03:00';
@@ -32,7 +33,11 @@ const OFFICIAL_RESULTS = {
   M093: { number:93, stage:'Round of 16', team1:'Portugal', team2:'Spain', slot1:'W83', slot2:'W84', score:[0,1], winnerSide:2, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'إسبانيا فازت 1-0 على البرتغال وتأهلت إلى ربع النهائي.' },
   M094: { number:94, stage:'Round of 16', team1:'USA', team2:'Belgium', slot1:'W81', slot2:'W82', score:[1,4], winnerSide:2, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'بلجيكا فازت 4-1 على أمريكا وتأهلت إلى ربع النهائي.' },
   M095: { number:95, stage:'Round of 16', team1:'Argentina', team2:'Egypt', slot1:'W86', slot2:'W88', score:[3,2], winnerSide:1, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'الأرجنتين فازت 3-2 على مصر وتأهلت إلى ربع النهائي.' },
-  M096: { number:96, stage:'Round of 16', team1:'Switzerland', team2:'Colombia', slot1:'W85', slot2:'W87', score:[0,0], penalties:[4,3], winnerSide:1, phase:'finished_on_penalties', phaseAr:'انتهت بركلات الترجيح', status:FINAL_PEN_STATUS, note_ar:'سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي.' }
+  M096: { number:96, stage:'Round of 16', team1:'Switzerland', team2:'Colombia', slot1:'W85', slot2:'W87', score:[0,0], penalties:[4,3], winnerSide:1, phase:'finished_on_penalties', phaseAr:'انتهت بركلات الترجيح', status:FINAL_PEN_STATUS, note_ar:'سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي.' },
+  M097: { number:97, stage:'Quarter-final', team1:'France', team2:'Morocco', slot1:'W89', slot2:'W90', score:[2,0], winnerSide:1, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'فرنسا فازت 2-0 على المغرب وتأهلت إلى نصف النهائي.' },
+  M098: { number:98, stage:'Quarter-final', team1:'Spain', team2:'Belgium', slot1:'W93', slot2:'W94', score:[2,1], winnerSide:1, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'إسبانيا فازت 2-1 على بلجيكا وتأهلت إلى نصف النهائي.' },
+  M099: { number:99, stage:'Quarter-final', team1:'Norway', team2:'England', slot1:'W91', slot2:'W92', score:[1,2], winnerSide:2, phase:'finished', phaseAr:'انتهت', status:FINAL_STATUS, note_ar:'إنجلترا فازت 2-1 على النرويج وتأهلت إلى نصف النهائي.' },
+  M100: { number:100, stage:'Quarter-final', team1:'Argentina', team2:'Switzerland', slot1:'W95', slot2:'W96', score:[3,1], winnerSide:1, phase:'finished_after_extra_time', phaseAr:'انتهت بعد التمديد', status:FINAL_AET_STATUS, note_ar:'الأرجنتين فازت 3-1 على سويسرا بعد التمديد وتأهلت لمواجهة إنجلترا في نصف النهائي.' }
 };
 
 const OFFICIAL_PAIRINGS = {
@@ -47,11 +52,20 @@ const OFFICIAL_PAIRINGS = {
   M097: { number:97, team1:'France', team2:'Morocco', slot1:'W89', slot2:'W90' },
   M098: { number:98, team1:'Spain', team2:'Belgium', slot1:'W93', slot2:'W94' },
   M099: { number:99, team1:'Norway', team2:'England', slot1:'W91', slot2:'W92' },
-  M100: { number:100, team1:'Argentina', team2:'Switzerland', slot1:'W95', slot2:'W96' }
+  M100: { number:100, team1:'Argentina', team2:'Switzerland', slot1:'W95', slot2:'W96' },
+  M101: { number:101, team1:'France', team2:'Spain', slot1:'W97', slot2:'W98' },
+  M102: { number:102, team1:'England', team2:'Argentina', slot1:'W99', slot2:'W100' }
 };
 
 function readJson(file) { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), 'utf8')); }
-function writeJson(file, data) { fs.writeFileSync(path.join(DATA_DIR, file), JSON.stringify(data, null, 2) + '\n'); }
+function writeJson(file, data) {
+  const target = path.join(DATA_DIR, file);
+  let eol = '\n';
+  try {
+    if (fs.readFileSync(target, 'utf8').includes('\r\n')) eol = '\r\n';
+  } catch {}
+  fs.writeFileSync(target, JSON.stringify(data, null, 2).replace(/\n/g, eol) + eol);
+}
 function clone(x) { return JSON.parse(JSON.stringify(x)); }
 function teamAr(name) { return TEAM_AR[name] || name; }
 function matchNumFromId(id) { const n = Number(String(id || '').replace(/^M0*/, '')); return Number.isFinite(n) ? n : null; }
@@ -233,24 +247,34 @@ function updateDataFile(file) {
   const map = indexById(list);
   for (const [id,p] of Object.entries(OFFICIAL_PAIRINGS)) if (map.has(id)) applyPairing(map.get(id), p, isKoObjectMatch(map.get(id)));
   for (const [id,r] of Object.entries(OFFICIAL_RESULTS)) if (map.has(id)) applyOfficialResult(map.get(id), r, isKoObjectMatch(map.get(id)));
-  // Pass resolved Round of 16 winners forward to quarter-finals.
-  const qf = {
+  // Re-apply every resolved knockout path after locking results. This is the final guard
+  // against stale scheduled names being written by an earlier updater or a racing workflow.
+  const resolvedKnockoutPairings = {
     M097: ['France','Morocco','W89','W90'],
     M098: ['Spain','Belgium','W93','W94'],
     M099: ['Norway','England','W91','W92'],
     M100: ['Argentina','Switzerland','W95','W96'],
+    M101: ['France','Spain','W97','W98'],
+    M102: ['England','Argentina','W99','W100'],
   };
-  for (const [id, [team1, team2, slot1, slot2]] of Object.entries(qf)) {
+  for (const [id, [team1, team2, slot1, slot2]] of Object.entries(resolvedKnockoutPairings)) {
     const qm = map.get(id);
     if (qm && !isKoObjectMatch(qm)) setFlatTeams(qm, team1, team2, slot1, slot2, false, false);
     if (qm && isKoObjectMatch(qm)) setKoTeams(qm, team1, team2, slot1, slot2, false, false);
   }
   if (data.metadata) {
     data.metadata.canonical_finalizer_at = nowAmman;
-    data.metadata.canonical_finalizer_version = '2026-07-09-quarterfinals-official-fix-v1';
+    data.metadata.canonical_finalizer_version = VERSION;
+    data.metadata.semifinals_official_lock_at = nowAmman;
+    data.metadata.semifinals_official_lock_version = VERSION;
   }
   if ('last_updated_at' in data) data.last_updated_at = nowAmman;
-  if (data.summary) data.summary.canonical_finalizer_at = nowAmman;
+  if (data.summary) {
+    data.summary.canonical_finalizer_at = nowAmman;
+    data.summary.canonical_finalizer_version = VERSION;
+    data.summary.semifinals_official_lock_at = nowAmman;
+    data.summary.semifinals_official_lock_version = VERSION;
+  }
   writeJson(file, data);
   return list.length;
 }
@@ -259,13 +283,15 @@ function updateManualOverrides() {
   const data = readJson(file);
   data.metadata = data.metadata || {};
   data.metadata.updated_at = nowAmman;
-  data.metadata.canonical_finalizer_version = '2026-07-09-quarterfinals-official-fix-v1';
-  data.metadata.note_ar = 'تصحيحات رسمية مثبتة تمنع عودة المباريات المنتهية إلى مباشر أو 0-0.';
+  data.metadata.canonical_finalizer_version = VERSION;
+  data.metadata.semifinals_official_lock_at = nowAmman;
+  data.metadata.semifinals_official_lock_version = VERSION;
+  data.metadata.note_ar = 'تصحيحات رسمية مقفلة تمنع عودة نتائج ربع النهائي أو أسماء المتأهلين إلى بيانات قديمة؛ نصف النهائي M102 هو إنجلترا ضد الأرجنتين.';
   const byId = new Map((data.results || []).map(r => [r.id, r]));
   for (const [id, r] of Object.entries(OFFICIAL_RESULTS)) {
     byId.set(id, {
       id, num: r.number, team1: r.team1, team2: r.team2, team1_ar: teamAr(r.team1), team2_ar: teamAr(r.team2),
-      stage: r.stage, stage_ar: r.stage === 'Round of 16' ? 'دور 16' : 'دور 32',
+      stage: r.stage, stage_ar: ({ 'Round of 32':'دور 32', 'Round of 16':'دور 16', 'Quarter-final':'ربع النهائي', 'Semi-final':'نصف النهائي' }[r.stage] || r.stage),
       status: 'finished', home_score: r.score[0], away_score: r.score[1], score1: r.score[0], score2: r.score[1],
       penalty_home_score: r.penalties?.[0] ?? null, penalty_away_score: r.penalties?.[1] ?? null,
       home_penalties: r.penalties?.[0] ?? null, away_penalties: r.penalties?.[1] ?? null,
@@ -288,6 +314,6 @@ for (const file of ['matches.json', 'bracket.json', 'knockout-live.json']) {
   }
 }
 updateManualOverrides();
-const status = { ok:true, name:'World Cup canonical finalizer', version:'2026-07-09-quarterfinals-official-fix-v1', updated_at:nowAmman, touched:[...touched,'manual-results-overrides.json'], official_results:Object.keys(OFFICIAL_RESULTS), official_pairings:Object.keys(OFFICIAL_PAIRINGS), note_ar:'يثبت النتائج النهائية الموثقة، ويمنع المباريات المنتهية من الرجوع إلى مباشر، ويمسح 0-0 من المباريات المستقبلية.' };
+const status = { ok:true, name:'World Cup canonical finalizer', version:VERSION, updated_at:nowAmman, touched:[...touched,'manual-results-overrides.json'], official_results:Object.keys(OFFICIAL_RESULTS), official_pairings:Object.keys(OFFICIAL_PAIRINGS), note_ar:'يثبت نتائج ربع النهائي M097-M100 ومسار نصف النهائي، ويقفل M102 على إنجلترا ضد الأرجنتين بعد كل تحديث.' };
 writeJson('canonical-finalizer-status.json', status);
 console.log(JSON.stringify(status, null, 2));

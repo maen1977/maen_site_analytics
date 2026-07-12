@@ -10,12 +10,13 @@
     "check:cloudflare": "node --check functions/_lib/analytics.js && node --check functions/_lib/frequency-utils.js && node --check functions/api/track-visit.js && node --check functions/api/search-feedback.js",
     "github:update-frequencies": "node scripts/github-daily-frequency-update.mjs",
     "github:analytics-report": "node scripts/github-daily-analytics-report.mjs",
-    "check:github": "node --check scripts/github-daily-frequency-update.mjs && node --check scripts/github-daily-analytics-report.mjs && node --check scripts/generate-seo-files.mjs && node --check scripts/generate-frequency-assets.mjs && node --check scripts/search-smoke-tests.mjs && node --check scripts/worldcup-quarter-hour-force.mjs && node --check scripts/worldcup-knockout-live-sync.mjs && node --check scripts/worldcup-r32-official-fix.mjs",
+    "check:github": "node --check scripts/github-daily-frequency-update.mjs && node --check scripts/github-daily-analytics-report.mjs && node --check scripts/generate-seo-files.mjs && node --check scripts/generate-frequency-assets.mjs && node --check scripts/search-smoke-tests.mjs && node --check scripts/worldcup-quarter-hour-force.mjs && node --check scripts/worldcup-knockout-live-sync.mjs && node --check scripts/worldcup-r32-official-fix.mjs && node --check scripts/worldcup-canonical-finalizer.mjs && node --check scripts/worldcup-state-validator.mjs && node --check scripts/worldcup-semifinal-lock-test.mjs",
     "github:seo": "node scripts/generate-seo-files.mjs",
     "build:static": "node scripts/generate-seo-files.mjs && node scripts/generate-frequency-assets.mjs",
     "check:client": "node --check scripts/search-smoke-tests.mjs",
     "github:frequency-assets": "node scripts/generate-frequency-assets.mjs",
-    "github:update-worldcup": "node scripts/worldcup-quarter-hour-force.mjs && node scripts/worldcup-r32-official-fix.mjs && node scripts/worldcup-knockout-live-sync.mjs"
+    "github:update-worldcup": "node scripts/worldcup-quarter-hour-force.mjs && node scripts/worldcup-r32-official-fix.mjs && node scripts/worldcup-knockout-live-sync.mjs && node scripts/worldcup-canonical-finalizer.mjs && node scripts/worldcup-state-validator.mjs",
+    "test:worldcup-semifinal-lock": "node scripts/worldcup-semifinal-lock-test.mjs"
   },
   "dependencies": {
     "@netlify/blobs": "10.7.9",
