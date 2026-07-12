@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-12T04:31:10+03:00",
+  "checked_at": "2026-07-12T04:46:10+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 2
+      "updated": 0
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 2
+      "updated": 0
     },
     {
       "file": "knockout-live.json",
@@ -22,90 +22,6 @@
     }
   ],
   "updates": [
-    {
-      "file": "matches.json",
-      "match": "M099",
-      "event_id": "760512",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "norway",
-        "england"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "matches.json",
-      "match": "M100",
-      "event_id": "760513",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "winnerofmatch86",
-        "switzerland"
-      ],
-      "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "live",
-      "event_detail": "30'"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M099",
-      "event_id": "760512",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "norway",
-        "england"
-      ],
-      "before_score": [
-        1,
-        2
-      ],
-      "after_score": [
-        1,
-        2
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M100",
-      "event_id": "760513",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "argentina",
-        "switzerland"
-      ],
-      "before_score": [
-        0,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "live",
-      "event_detail": "30'"
-    },
     {
       "file": "knockout-live.json",
       "match": "M099",
@@ -151,6 +67,6 @@
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 6,
+  "updated_matches": 2,
   "ok": true
 }
