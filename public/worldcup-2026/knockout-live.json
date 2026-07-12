@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-12T20:19:01+03:00",
+  "last_updated_at": "2026-07-12T20:46:46+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -17,7 +17,8 @@
     "dynamic_advancement_slots_checked": 38,
     "matches_json_synced": true,
     "matches_json_updated": 3,
-    "canonical_finalizer_at": "2026-07-12T20:19:01+03:00"
+    "canonical_finalizer_at": "2026-07-12T20:19:01+03:00",
+    "manual_semifinal_fix_at": "2026-07-12T20:46:46+03:00"
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -169,7 +170,7 @@
       "match": "M095",
       "side": "team1",
       "source_slot": "W86",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "Argentina",
       "unresolved": false,
       "ok": true
     },
@@ -177,7 +178,7 @@
       "match": "M095",
       "side": "team2",
       "source_slot": "W88",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "Egypt",
       "unresolved": false,
       "ok": true
     },
@@ -193,7 +194,7 @@
       "match": "M096",
       "side": "team2",
       "source_slot": "W87",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "Colombia",
       "unresolved": false,
       "ok": true
     },
@@ -249,7 +250,7 @@
       "match": "M100",
       "side": "team1",
       "source_slot": "W95",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "Argentina",
       "unresolved": false,
       "ok": true
     },
@@ -289,7 +290,7 @@
       "match": "M102",
       "side": "team2",
       "source_slot": "W100",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "Argentina",
       "unresolved": false,
       "ok": true
     },
@@ -2143,8 +2144,8 @@
           "score_penalties": null,
           "winner_side": 1,
           "team1": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الأرجنتين",
+            "name_en": "Argentina",
             "group": "",
             "position": "",
             "slot": "W95",
@@ -2152,7 +2153,7 @@
             "resolved_from": "W95"
           },
           "team2": {
-            "name_ar": "Switzerland",
+            "name_ar": "سويسرا",
             "name_en": "Switzerland",
             "group": "",
             "position": "",
@@ -2224,7 +2225,7 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "France",
+            "name_ar": "فرنسا",
             "name_en": "France",
             "group": "",
             "position": "",
@@ -2233,7 +2234,7 @@
             "resolved_from": "W97"
           },
           "team2": {
-            "name_ar": "Spain",
+            "name_ar": "إسبانيا",
             "name_en": "Spain",
             "group": "",
             "position": "",
@@ -2281,7 +2282,7 @@
           "score_penalties": null,
           "winner_side": null,
           "team1": {
-            "name_ar": "England",
+            "name_ar": "إنجلترا",
             "name_en": "England",
             "group": "",
             "position": "",
@@ -2290,8 +2291,8 @@
             "resolved_from": "W99"
           },
           "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الأرجنتين",
+            "name_en": "Argentina",
             "group": "",
             "position": "",
             "slot": "W100",
@@ -4825,7 +4826,7 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "France",
+        "name_ar": "فرنسا",
         "name_en": "France",
         "group": "",
         "position": "",
@@ -4834,7 +4835,7 @@
         "resolved_from": "W97"
       },
       "team2": {
-        "name_ar": "Spain",
+        "name_ar": "إسبانيا",
         "name_en": "Spain",
         "group": "",
         "position": "",
@@ -4882,7 +4883,7 @@
       "score_penalties": null,
       "winner_side": null,
       "team1": {
-        "name_ar": "England",
+        "name_ar": "إنجلترا",
         "name_en": "England",
         "group": "",
         "position": "",
@@ -4891,8 +4892,8 @@
         "resolved_from": "W99"
       },
       "team2": {
-        "name_ar": "Switzerland",
-        "name_en": "Switzerland",
+        "name_ar": "الأرجنتين",
+        "name_en": "Argentina",
         "group": "",
         "position": "",
         "slot": "W100",

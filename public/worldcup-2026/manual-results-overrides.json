@@ -3,11 +3,12 @@
     "name": "Manual World Cup 2026 result overrides",
     "name_ar": "تصحيحات يدوية لنتائج كأس العالم 2026",
     "updated_by": "Maen",
-    "updated_at": "2026-07-12T20:19:01+03:00",
-    "note_ar": "تصحيحات رسمية مثبتة تمنع عودة المباريات المنتهية إلى مباشر أو 0-0.",
+    "updated_at": "2026-07-12T20:46:46+03:00",
+    "note_ar": "تصحيحات رسمية مثبتة تمنع عودة النتائج أو المتأهلين إلى بيانات قديمة؛ الأرجنتين هي الفائز من مباراة 100 والمتأهلة لمواجهة إنجلترا.",
     "m074_penalty_hotfix": true,
     "canonical_finalizer_version": "2026-07-09-quarterfinals-official-fix-v1",
-    "quarterfinals_official_fix_version": "2026-07-09-quarterfinals-official-fix-v1"
+    "quarterfinals_official_fix_version": "2026-07-09-quarterfinals-official-fix-v1",
+    "semifinal_advancement_fix_version": "2026-07-12-m100-argentina-advancement-v1"
   },
   "results": [
     {
@@ -653,6 +654,53 @@
       "locked": true,
       "force": true,
       "note_ar": "سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي."
+    },
+    {
+      "id": "M100",
+      "num": 100,
+      "team1": "Argentina",
+      "team2": "Switzerland",
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "سويسرا",
+      "stage": "Quarter-final",
+      "stage_ar": "ربع النهائي",
+      "status": "finished",
+      "home_score": 3,
+      "away_score": 1,
+      "score1": 3,
+      "score2": 1,
+      "winner_side": 1,
+      "loser_side": 2,
+      "score": {
+        "source": "manual-official-finalizer",
+        "status": "finished",
+        "phase": "finished_after_extra_time",
+        "phase_ar": "انتهت بعد التمديد",
+        "status_detail": "انتهت بعد التمديد",
+        "current": [
+          3,
+          1
+        ],
+        "ft": [
+          3,
+          1
+        ],
+        "et": [
+          3,
+          1
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-12T20:46:46+03:00"
+      },
+      "score_source": "manual-official-finalizer",
+      "live_score_source": "manual-official-finalizer",
+      "live_phase": "finished_after_extra_time",
+      "live_phase_ar": "انتهت بعد التمديد",
+      "live_status_detail": "انتهت بعد التمديد",
+      "verified": true,
+      "locked": true,
+      "force": true,
+      "note_ar": "الأرجنتين فازت 3-1 على سويسرا وتأهلت لمواجهة إنجلترا في نصف النهائي."
     }
   ]
 }
