@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-12T05:46:14+03:00",
+  "checked_at": "2026-07-12T06:01:14+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 1
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 1
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -22,6 +22,27 @@
     }
   ],
   "updates": [
+    {
+      "file": "matches.json",
+      "match": "M099",
+      "event_id": "760512",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "norway",
+        "england"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
+    },
     {
       "file": "matches.json",
       "match": "M100",
@@ -34,14 +55,35 @@
       ],
       "before_score": [
         1,
-        0
+        1
       ],
       "after_score": [
         1,
         1
       ],
       "event_status": "live",
-      "event_detail": "84'"
+      "event_detail": "90'+10'"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M099",
+      "event_id": "760512",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "norway",
+        "england"
+      ],
+      "before_score": [
+        1,
+        2
+      ],
+      "after_score": [
+        1,
+        2
+      ],
+      "event_status": "finished",
+      "event_detail": "AET"
     },
     {
       "file": "bracket.json",
@@ -55,14 +97,14 @@
       ],
       "before_score": [
         1,
-        0
+        1
       ],
       "after_score": [
         1,
         1
       ],
       "event_status": "live",
-      "event_detail": "84'"
+      "event_detail": "90'+10'"
     },
     {
       "file": "knockout-live.json",
@@ -109,6 +151,6 @@
   ],
   "errors": [],
   "espn_events": 2,
-  "updated_matches": 4,
+  "updated_matches": 6,
   "ok": true
 }
