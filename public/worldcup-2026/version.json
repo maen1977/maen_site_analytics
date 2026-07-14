@@ -1,7 +1,7 @@
 {
-  "version": "a16112f46002",
-  "generated_at": "2026-07-15T00:00:52+03:00",
-  "next_expected_check_at": "2026-07-15T00:15:53+03:00",
+  "version": "5aab73894c41",
+  "generated_at": "2026-07-15T00:15:51+03:00",
+  "next_expected_check_at": "2026-07-15T00:30:52+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
@@ -19,28 +19,14 @@
       "changed": 7,
       "directResolved": 38,
       "thirdResolved": 14,
-      "winnerResolved": 68,
+      "winnerResolved": 72,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M103",
           "side": "team2",
           "slot": "L102",
           "reason": "loser-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
         },
         {
           "file": "matches.json",
@@ -52,23 +38,9 @@
         {
           "file": "bracket.json",
           "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M103",
           "side": "team2",
           "slot": "L102",
           "reason": "loser-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
         },
         {
           "file": "bracket.json",
@@ -148,7 +120,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-15T00:00:53+03:00",
+    "corrected_at": "2026-07-15T00:15:52+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -301,6 +273,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "4b21ce130d0a",
-  "last_updated": "2026-07-15T00:00:53+03:00"
+  "cache_buster": "c9933d1f8234",
+  "last_updated": "2026-07-15T00:15:52+03:00"
 }
