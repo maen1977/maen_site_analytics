@@ -1,27 +1,27 @@
 {
-  "version": "2096e64693b9",
-  "generated_at": "2026-07-16T22:41:11+03:00",
-  "next_expected_check_at": "2026-07-16T22:56:12+03:00",
+  "version": "105f5355d33d",
+  "generated_at": "2026-07-16T22:45:27+03:00",
+  "next_expected_check_at": "2026-07-16T23:00:28+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
       "ok": true,
       "urls_checked": 12,
       "events_seen": 103,
-      "matched": 102,
-      "bracket_matched": 30,
-      "score_changed": 102,
+      "matched": 104,
+      "bracket_matched": 32,
+      "score_changed": 20,
       "future_openfootball_zero_scores_cleared": 0,
       "time_fallback_status_applied": 0,
       "bracket_time_fallback_status_applied": 0
     },
     "knockout": {
-      "changed": 7,
-      "directResolved": 38,
-      "thirdResolved": 14,
-      "winnerResolved": 76,
+      "changed": 10,
+      "directResolved": 48,
+      "thirdResolved": 16,
+      "winnerResolved": 64,
       "unresolved": [],
-      "third_assignment_count": 7,
+      "third_assignment_count": 8,
       "third_assignments": [
         {
           "key": "M077:2",
@@ -71,6 +71,13 @@
           "team": "Ecuador",
           "team_ar": "الإكوادور",
           "fallback": false
+        },
+        {
+          "key": "M087:2",
+          "group": "L",
+          "team": "Ghana",
+          "team_ar": "غانا",
+          "fallback": false
         }
       ]
     },
@@ -91,7 +98,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-16T22:41:12+03:00",
+    "corrected_at": "2026-07-16T22:45:28+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -244,6 +251,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "948640648094",
-  "last_updated": "2026-07-16T22:41:12+03:00"
+  "cache_buster": "b79d105288cb",
+  "last_updated": "2026-07-16T22:45:28+03:00"
 }

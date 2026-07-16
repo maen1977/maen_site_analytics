@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-16T22:41:12+03:00",
+  "last_updated_at": "2026-07-16T22:45:28+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -11,7 +11,7 @@
     "unresolved_future_slots": [],
     "dynamic_advancement_slots_checked": 38,
     "matches_json_synced": true,
-    "matches_json_updated": 5
+    "matches_json_updated": 7
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
@@ -291,7 +291,7 @@
       "match": "M103",
       "side": "team1",
       "source_slot": "L101",
-      "resolved_team_ar": "France",
+      "resolved_team_ar": "Spain",
       "unresolved": false,
       "ok": true
     },
@@ -299,7 +299,7 @@
       "match": "M103",
       "side": "team2",
       "source_slot": "L102",
-      "resolved_team_ar": "England",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
@@ -307,7 +307,7 @@
       "match": "M104",
       "side": "team1",
       "source_slot": "W101",
-      "resolved_team_ar": "Spain",
+      "resolved_team_ar": "France",
       "unresolved": false,
       "ok": true
     },
@@ -315,7 +315,7 @@
       "match": "M104",
       "side": "team2",
       "source_slot": "W102",
-      "resolved_team_ar": "الفائز من مباراة 86",
+      "resolved_team_ar": "England",
       "unresolved": false,
       "ok": true
     }
@@ -1026,7 +1026,7 @@
             2,
             4
           ],
-          "winner_side": 1,
+          "winner_side": 2,
           "team1": {
             "name_ar": "الفائز من مباراة 86",
             "name_en": "Winner of match 86",
@@ -1126,14 +1126,14 @@
           "score1": 1,
           "score2": 0,
           "score_ft": [
-            0,
-            1
+            1,
+            0
           ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": 2,
+          "winner_side": 1,
           "team1": {
             "name_ar": "Switzerland",
             "name_en": "Switzerland",
@@ -1860,13 +1860,13 @@
             ],
             "source": "manual-official-final-four-fix",
             "status_detail": "STATUS_FULL_TIME",
-            "checked_at": "2026-07-16T19:41:13.057Z"
+            "checked_at": "2026-07-16T19:45:28.890Z"
           },
           "score_source": "manual-official-final-four-fix",
           "live_status_detail": "STATUS_FULL_TIME",
           "manual_override": true,
           "manual_override_key": "official-final-four-M101",
-          "manual_override_at": "2026-07-16T19:41:13.057Z"
+          "manual_override_at": "2026-07-16T19:45:28.890Z"
         },
         {
           "id": "M102",
@@ -1915,13 +1915,13 @@
             ],
             "source": "manual-official-final-four-fix",
             "status_detail": "STATUS_FULL_TIME",
-            "checked_at": "2026-07-16T19:41:13.057Z"
+            "checked_at": "2026-07-16T19:45:28.890Z"
           },
           "score_source": "manual-official-final-four-fix",
           "live_status_detail": "STATUS_FULL_TIME",
           "manual_override": true,
           "manual_override_key": "official-final-four-M102",
-          "manual_override_at": "2026-07-16T19:41:13.057Z"
+          "manual_override_at": "2026-07-16T19:45:28.890Z"
         }
       ]
     },
@@ -1963,7 +1963,7 @@
           "team2_ar": "إنجلترا",
           "manual_override": true,
           "manual_override_key": "official-final-four-M103",
-          "manual_override_at": "2026-07-16T19:41:13.057Z"
+          "manual_override_at": "2026-07-16T19:45:28.890Z"
         }
       ]
     },
@@ -2005,7 +2005,7 @@
           "team2_ar": "الأرجنتين",
           "manual_override": true,
           "manual_override_key": "official-final-four-M104",
-          "manual_override_at": "2026-07-16T19:41:13.057Z"
+          "manual_override_at": "2026-07-16T19:45:28.890Z"
         }
       ]
     }
@@ -2711,7 +2711,7 @@
         2,
         4
       ],
-      "winner_side": 1,
+      "winner_side": 2,
       "team1": {
         "name_ar": "الفائز من مباراة 86",
         "name_en": "Winner of match 86",
@@ -2811,14 +2811,14 @@
       "score1": 1,
       "score2": 0,
       "score_ft": [
-        0,
-        1
+        1,
+        0
       ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": 2,
+      "winner_side": 1,
       "team1": {
         "name_ar": "Switzerland",
         "name_en": "Switzerland",
@@ -3524,13 +3524,13 @@
         ],
         "source": "manual-official-final-four-fix",
         "status_detail": "STATUS_FULL_TIME",
-        "checked_at": "2026-07-16T19:41:13.059Z"
+        "checked_at": "2026-07-16T19:45:28.891Z"
       },
       "score_source": "manual-official-final-four-fix",
       "live_status_detail": "STATUS_FULL_TIME",
       "manual_override": true,
       "manual_override_key": "official-final-four-M101",
-      "manual_override_at": "2026-07-16T19:41:13.059Z"
+      "manual_override_at": "2026-07-16T19:45:28.891Z"
     },
     {
       "id": "M102",
@@ -3579,13 +3579,13 @@
         ],
         "source": "manual-official-final-four-fix",
         "status_detail": "STATUS_FULL_TIME",
-        "checked_at": "2026-07-16T19:41:13.059Z"
+        "checked_at": "2026-07-16T19:45:28.891Z"
       },
       "score_source": "manual-official-final-four-fix",
       "live_status_detail": "STATUS_FULL_TIME",
       "manual_override": true,
       "manual_override_key": "official-final-four-M102",
-      "manual_override_at": "2026-07-16T19:41:13.059Z"
+      "manual_override_at": "2026-07-16T19:45:28.891Z"
     },
     {
       "id": "M103",
@@ -3620,7 +3620,7 @@
       "team2_ar": "إنجلترا",
       "manual_override": true,
       "manual_override_key": "official-final-four-M103",
-      "manual_override_at": "2026-07-16T19:41:13.059Z"
+      "manual_override_at": "2026-07-16T19:45:28.891Z"
     },
     {
       "id": "M104",
@@ -3655,7 +3655,7 @@
       "team2_ar": "الأرجنتين",
       "manual_override": true,
       "manual_override_key": "official-final-four-M104",
-      "manual_override_at": "2026-07-16T19:41:13.059Z"
+      "manual_override_at": "2026-07-16T19:45:28.891Z"
     }
   ]
 }
