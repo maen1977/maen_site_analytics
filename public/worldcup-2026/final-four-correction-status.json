@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "corrected_at": "2026-07-16T19:41:13.060Z",
+  "timezone": "Asia/Amman",
+  "fixtures": {
+    "M101": {
+      "team1": "Spain",
+      "team2": "France",
+      "score": [
+        2,
+        0
+      ],
+      "stage": "Semi-finals"
+    },
+    "M102": {
+      "team1": "Argentina",
+      "team2": "England",
+      "score": [
+        2,
+        1
+      ],
+      "stage": "Semi-finals"
+    },
+    "M103": {
+      "team1": "France",
+      "team2": "England",
+      "score": null,
+      "stage": "Third-place play-off"
+    },
+    "M104": {
+      "team1": "Spain",
+      "team2": "Argentina",
+      "score": null,
+      "stage": "Final"
+    }
+  },
+  "files": [
+    {
+      "relativePath": "public/worldcup-2026/matches.json",
+      "counts": {
+        "M101": 1,
+        "M102": 1,
+        "M103": 1,
+        "M104": 1
+      },
+      "total": 4
+    },
+    {
+      "relativePath": "public/worldcup-2026/bracket.json",
+      "counts": {
+        "M101": 1,
+        "M102": 1,
+        "M103": 1,
+        "M104": 1
+      },
+      "total": 4
+    },
+    {
+      "relativePath": "public/worldcup-2026/knockout-live.json",
+      "counts": {
+        "M101": 2,
+        "M102": 2,
+        "M103": 2,
+        "M104": 2
+      },
+      "total": 8
+    }
+  ],
+  "note_ar": "تثبيت نصف النهائي: إسبانيا 2-0 فرنسا، الأرجنتين 2-1 إنجلترا؛ المركز الثالث فرنسا ضد إنجلترا؛ النهائي إسبانيا ضد الأرجنتين."
+}
