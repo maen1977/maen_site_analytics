@@ -1,16 +1,14 @@
 {
   "name": "MaenSat knockout live update health",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_checked_at": "2026-07-13T23:45:59+03:00",
+  "last_checked_at": "2026-07-16T00:15:28+03:00",
   "timezone": "Asia/Amman",
   "workflow_hint_ar": "هذا الملف يتحدث من نفس Workflow الأصلي كل 15 دقيقة، ويغذي تبويب الأدوار بالكروت والنتائج والتمديد وركلات الترجيح.",
   "matches": 32,
   "rounds": 6,
   "best_third_resolved": 0,
   "unresolved_future_slots": [
-    "L101",
     "L102",
-    "W101",
     "W102"
   ],
   "dynamic_advancement_slots_checked": 38,
@@ -293,8 +291,8 @@
       "match": "M103",
       "side": "team1",
       "source_slot": "L101",
-      "resolved_team_ar": "الخاسر من مباراة 101",
-      "unresolved": true,
+      "resolved_team_ar": "France",
+      "unresolved": false,
       "ok": true
     },
     {
@@ -309,8 +307,8 @@
       "match": "M104",
       "side": "team1",
       "source_slot": "W101",
-      "resolved_team_ar": "الفائز من مباراة 101",
-      "unresolved": true,
+      "resolved_team_ar": "Spain",
+      "unresolved": false,
       "ok": true
     },
     {

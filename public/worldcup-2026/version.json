@@ -1,13 +1,13 @@
 {
-  "version": "e49bd8431682",
-  "generated_at": "2026-07-13T23:45:54+03:00",
-  "next_expected_check_at": "2026-07-14T00:00:54+03:00",
+  "version": "69083d0424c8",
+  "generated_at": "2026-07-16T00:15:24+03:00",
+  "next_expected_check_at": "2026-07-16T00:30:24+03:00",
   "refresh_interval_minutes": 15,
   "checks": {
     "espn_scoreboard": {
       "ok": true,
-      "urls_checked": 11,
-      "events_seen": 102,
+      "urls_checked": 12,
+      "events_seen": 103,
       "matched": 101,
       "bracket_matched": 29,
       "score_changed": 101,
@@ -19,28 +19,14 @@
       "changed": 7,
       "directResolved": 38,
       "thirdResolved": 14,
-      "winnerResolved": 68,
+      "winnerResolved": 72,
       "unresolved": [
-        {
-          "file": "matches.json",
-          "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
         {
           "file": "matches.json",
           "match": "M103",
           "side": "team2",
           "slot": "L102",
           "reason": "loser-not-ready"
-        },
-        {
-          "file": "matches.json",
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
         },
         {
           "file": "matches.json",
@@ -52,23 +38,9 @@
         {
           "file": "bracket.json",
           "match": "M103",
-          "side": "team1",
-          "slot": "L101",
-          "reason": "loser-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M103",
           "side": "team2",
           "slot": "L102",
           "reason": "loser-not-ready"
-        },
-        {
-          "file": "bracket.json",
-          "match": "M104",
-          "side": "team1",
-          "slot": "W101",
-          "reason": "winner-not-ready"
         },
         {
           "file": "bracket.json",
@@ -148,7 +120,7 @@
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-13T23:45:54+03:00",
+    "corrected_at": "2026-07-16T00:15:24+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
@@ -301,6 +273,6 @@
     ],
     "note_ar": "هذا التصحيح يركب بعد التحديث الأصلي كل ربع ساعة حتى لا ترجع أخطاء توزيع دور الـ32."
   },
-  "cache_buster": "98e6f40baf10",
-  "last_updated": "2026-07-13T23:45:54+03:00"
+  "cache_buster": "ba64213bf9e6",
+  "last_updated": "2026-07-16T00:15:24+03:00"
 }
