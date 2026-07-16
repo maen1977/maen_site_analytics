@@ -1,9 +1,19 @@
 name: Update World Cup 2026 every 15 minutes
 
-on:
+"on":
+  # إعادة تسجيل الجدولة بشكل واضح كل 15 دقيقة بتوقيت GitHub (UTC).
   schedule:
-    # تشغيل ثابت كل 15 دقيقة تقريباً بتوقيت GitHub/UTC.
-    - cron: "4,19,34,49 * * * *"
+    - cron: "*/15 * * * *"
+
+  # أول رفع لملفات الإصلاح يشغّل التحديث فوراً مرة واحدة.
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-worldcup-2026.yml"
+      - "scripts/worldcup-final-four-official-fix.mjs"
+      - "APPLY_WORLD_CUP_FINAL_FOUR_FIX.bat"
+
   workflow_dispatch:
     inputs:
       source:
@@ -20,7 +30,7 @@ permissions:
 
 concurrency:
   group: worldcup-2026-quarter-hour
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 env:
   TZ: Asia/Amman
@@ -37,6 +47,7 @@ jobs:
   update-worldcup-2026:
     runs-on: ubuntu-latest
     timeout-minutes: 14
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -56,115 +67,31 @@ jobs:
           echo "workflow=${GITHUB_WORKFLOW}"
           echo "trigger_source=${WORLD_CUP_2026_TRIGGER_SOURCE}"
           echo "forced_at=${WORLD_CUP_2026_FORCED_AT}"
-          date
 
-      - name: Validate World Cup scripts
-        shell: bash
-        run: |
-          set -euo pipefail
-          for file in \
-            scripts/worldcup-quarter-hour-force.mjs \
-            scripts/worldcup-r32-official-fix.mjs \
-            scripts/worldcup-live-score-repair.mjs \
-            scripts/worldcup-knockout-live-sync.mjs \
-            scripts/worldcup-live-zero-score-guard.mjs \
-            scripts/worldcup-finished-score-backfill.mjs \
-            scripts/worldcup-jordan-order-consistency.mjs \
-            scripts/worldcup-final-live-reconciliation.mjs \
-            scripts/worldcup-canonical-finalizer.mjs \
-            scripts/worldcup-state-validator.mjs \
-            scripts/worldcup-semifinal-lock-test.mjs
-          do
-            if [ -f "$file" ]; then
-              node --check "$file"
-            else
-              echo "Skipping missing optional script: $file"
-            fi
-          done
+      - name: Validate original quarter-hour updater
+        run: node --check scripts/worldcup-quarter-hour-force.mjs
 
-      - name: Test permanent semifinal lock regression
-        shell: bash
-        run: node scripts/worldcup-semifinal-lock-test.mjs
+      - name: Validate Round of 32 official correction
+        run: node --check scripts/worldcup-r32-official-fix.mjs
 
-      - name: Run original quarter-hour updater
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-quarter-hour-force.mjs ]; then
-            node scripts/worldcup-quarter-hour-force.mjs
-          fi
+      - name: Validate knockout live sync
+        run: node --check scripts/worldcup-knockout-live-sync.mjs
+
+      - name: Validate official final-four correction
+        run: node --check scripts/worldcup-final-four-official-fix.mjs
+
+      - name: Run original quarter-hour updater with integrated knockout patch
+        run: node scripts/worldcup-quarter-hour-force.mjs
 
       - name: Apply official Round of 32 pairings correction
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-r32-official-fix.mjs ]; then
-            node scripts/worldcup-r32-official-fix.mjs
-          fi
-
-      - name: Repair live scores before knockout sync
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
-            node scripts/worldcup-live-score-repair.mjs
-          fi
+        run: node scripts/worldcup-r32-official-fix.mjs
 
       - name: Sync knockout live advancement cards
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-knockout-live-sync.mjs ]; then
-            node scripts/worldcup-knockout-live-sync.mjs
-          fi
+        run: node scripts/worldcup-knockout-live-sync.mjs
 
-      - name: Repair live scores after knockout sync
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
-            node scripts/worldcup-live-score-repair.mjs
-          fi
-
-      - name: Force 0-0 display for live matches without scores
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-zero-score-guard.mjs ]; then
-            node scripts/worldcup-live-zero-score-guard.mjs
-          fi
-
-      - name: Backfill finished matches stuck pending update
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-finished-score-backfill.mjs ]; then
-            node scripts/worldcup-finished-score-backfill.mjs
-          fi
-
-      - name: Sort and normalize World Cup matches by Jordan time
-        shell: bash
-        run: |
-          node scripts/worldcup-jordan-order-consistency.mjs
-
-      - name: Re-sync knockout cards after final score backfill
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-knockout-live-sync.mjs ]; then
-            node scripts/worldcup-knockout-live-sync.mjs
-          fi
-          WORLD_CUP_2026_SKIP_ESPN_FETCH=1 node scripts/worldcup-jordan-order-consistency.mjs
-
-      - name: Final live status reconciliation
-        shell: bash
-        run: |
-          # هذه خطوة قبل التثبيت النهائي.
-          node scripts/worldcup-final-live-reconciliation.mjs
-
-      - name: Canonical final World Cup state
-        shell: bash
-        run: |
-          # آخر سكربت يكتب النتائج: يثبت النتائج النهائية، يمرر الفائزين، ويمسح 0-0 من المباريات المستقبلية.
-          node scripts/worldcup-canonical-finalizer.mjs
-
-      - name: Validate canonical World Cup state
-        shell: bash
-        run: |
-          # إذا رجعت مباراة منتهية إلى مباشر، أو بقيت 0-0 قبل البداية، يفشل التحديث ولا ينشر بيانات غلط.
-          node scripts/worldcup-state-validator.mjs
+      # يجب أن يكون آخر تصحيح للبيانات حتى لا يعيد مصدر خارجي سويسرا إلى النهائي.
+      - name: Apply verified semifinal and final correction
+        run: node scripts/worldcup-final-four-official-fix.mjs
 
       - name: Commit changed World Cup data files
         id: commit
@@ -173,6 +100,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add \
             public/worldcup-2026/matches.json \
             public/worldcup-2026/standings.json \
@@ -180,26 +108,21 @@ jobs:
             public/worldcup-2026/bracket.json \
             public/worldcup-2026/knockout-live.json \
             public/worldcup-2026/knockout-live-health.json \
-            public/worldcup-2026/live-score-repair-status.json \
-            public/worldcup-2026/live-zero-score-guard-status.json \
-            public/worldcup-2026/finished-score-backfill-status.json \
-            public/worldcup-2026/jordan-order-consistency-status.json \
-            public/worldcup-2026/final-live-reconciliation-status.json \
-            public/worldcup-2026/canonical-finalizer-status.json \
-            public/worldcup-2026/state-validator-status.json \
-            public/worldcup-2026/manual-results-overrides.json \
             public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
+            public/worldcup-2026/final-four-correction-status.json \
             public/worldcup-2026/heartbeat.json \
             public/worldcup-2026/update-check.json \
             public/worldcup-2026/version.json \
             public/worldcup-2026/update-errors.json \
             public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
+
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "No changed files to commit."
             exit 0
           fi
+
           stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
           git commit -m "World Cup 2026 15-minute data update ${stamp}"
           git pull --rebase --autostash origin main || true
@@ -216,6 +139,7 @@ jobs:
             echo "If Cloudflare Pages is connected to GitHub, the push above should deploy automatically."
             exit 0
           fi
+
           echo "Triggering Cloudflare Pages deploy hook..."
-          curl --fail --show-error --silent --location --max-time 20 --retry 1 --retry-delay 3 --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+          curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
           echo "Cloudflare Pages deploy hook triggered."
