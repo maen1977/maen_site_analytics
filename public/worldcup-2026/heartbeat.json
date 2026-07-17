@@ -1,19 +1,19 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-17T04:15:26+03:00",
-  "last_updated": "2026-07-17T04:15:26+03:00",
-  "next_expected_check_at": "2026-07-17T04:30:27+03:00",
+  "last_checked_at": "2026-07-17T04:30:27+03:00",
+  "last_updated": "2026-07-17T04:30:27+03:00",
+  "next_expected_check_at": "2026-07-17T04:45:28+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "29546963070",
-    "run_number": "3282",
+    "run_id": "29547587988",
+    "run_number": "3283",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "bda79691ee2e5e5e76512b69263bb640e90e151f",
+    "sha": "4eeb40a5037dcd151155d1ef35a62a9bd8247130",
     "trigger_source": "manual",
     "forced_at": ""
   },
@@ -109,12 +109,12 @@
     ],
     "errors": []
   },
-  "cache_buster": "1cefd1e20821",
+  "cache_buster": "5dabdaa0d3fc",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-17T04:15:27+03:00",
+    "corrected_at": "2026-07-17T04:30:28+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
