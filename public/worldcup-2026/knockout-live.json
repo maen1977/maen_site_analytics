@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-19T02:15:27+03:00",
+  "last_updated_at": "2026-07-19T02:30:28+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -1860,13 +1860,13 @@
             ],
             "source": "manual-official-final-four-fix",
             "status_detail": "STATUS_FULL_TIME",
-            "checked_at": "2026-07-18T23:15:27.780Z"
+            "checked_at": "2026-07-18T23:30:28.236Z"
           },
           "score_source": "manual-official-final-four-fix",
           "live_status_detail": "STATUS_FULL_TIME",
           "manual_override": true,
           "manual_override_key": "official-final-four-M101",
-          "manual_override_at": "2026-07-18T23:15:27.780Z"
+          "manual_override_at": "2026-07-18T23:30:28.236Z"
         },
         {
           "id": "M102",
@@ -1915,13 +1915,13 @@
             ],
             "source": "manual-official-final-four-fix",
             "status_detail": "STATUS_FULL_TIME",
-            "checked_at": "2026-07-18T23:15:27.780Z"
+            "checked_at": "2026-07-18T23:30:28.236Z"
           },
           "score_source": "manual-official-final-four-fix",
           "live_status_detail": "STATUS_FULL_TIME",
           "manual_override": true,
           "manual_override_key": "official-final-four-M102",
-          "manual_override_at": "2026-07-18T23:15:27.780Z"
+          "manual_override_at": "2026-07-18T23:30:28.236Z"
         }
       ]
     },
@@ -1945,15 +1945,18 @@
           "venue_ar": "Miami Stadium / Hard Rock Stadium",
           "city_ar": "",
           "status": "scheduled",
-          "phase": "second_half",
+          "phase": "finished",
           "score1": null,
           "score2": null,
-          "score_ft": null,
+          "score_ft": [
+            6,
+            4
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 1,
           "team1": "France",
           "team2": "England",
           "source_slot1": "L101",
@@ -1963,7 +1966,7 @@
           "team2_ar": "إنجلترا",
           "manual_override": true,
           "manual_override_key": "official-final-four-M103",
-          "manual_override_at": "2026-07-18T23:15:27.780Z"
+          "manual_override_at": "2026-07-18T23:30:28.236Z"
         }
       ]
     },
@@ -1987,15 +1990,18 @@
           "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
           "city_ar": "",
           "status": "scheduled",
-          "phase": "second_half",
+          "phase": "finished",
           "score1": null,
           "score2": null,
-          "score_ft": null,
+          "score_ft": [
+            4,
+            6
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
+          "winner_side": 2,
           "team1": "Spain",
           "team2": "Argentina",
           "source_slot1": "W101",
@@ -2005,7 +2011,7 @@
           "team2_ar": "الأرجنتين",
           "manual_override": true,
           "manual_override_key": "official-final-four-M104",
-          "manual_override_at": "2026-07-18T23:15:27.780Z"
+          "manual_override_at": "2026-07-18T23:30:28.236Z"
         }
       ]
     }
@@ -3524,13 +3530,13 @@
         ],
         "source": "manual-official-final-four-fix",
         "status_detail": "STATUS_FULL_TIME",
-        "checked_at": "2026-07-18T23:15:27.782Z"
+        "checked_at": "2026-07-18T23:30:28.237Z"
       },
       "score_source": "manual-official-final-four-fix",
       "live_status_detail": "STATUS_FULL_TIME",
       "manual_override": true,
       "manual_override_key": "official-final-four-M101",
-      "manual_override_at": "2026-07-18T23:15:27.782Z"
+      "manual_override_at": "2026-07-18T23:30:28.237Z"
     },
     {
       "id": "M102",
@@ -3579,13 +3585,13 @@
         ],
         "source": "manual-official-final-four-fix",
         "status_detail": "STATUS_FULL_TIME",
-        "checked_at": "2026-07-18T23:15:27.782Z"
+        "checked_at": "2026-07-18T23:30:28.237Z"
       },
       "score_source": "manual-official-final-four-fix",
       "live_status_detail": "STATUS_FULL_TIME",
       "manual_override": true,
       "manual_override_key": "official-final-four-M102",
-      "manual_override_at": "2026-07-18T23:15:27.782Z"
+      "manual_override_at": "2026-07-18T23:30:28.237Z"
     },
     {
       "id": "M103",
@@ -3602,15 +3608,18 @@
       "venue_ar": "Miami Stadium / Hard Rock Stadium",
       "city_ar": "",
       "status": "scheduled",
-      "phase": "second_half",
+      "phase": "finished",
       "score1": null,
       "score2": null,
-      "score_ft": null,
+      "score_ft": [
+        6,
+        4
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 1,
       "team1": "France",
       "team2": "England",
       "source_slot1": "L101",
@@ -3620,7 +3629,7 @@
       "team2_ar": "إنجلترا",
       "manual_override": true,
       "manual_override_key": "official-final-four-M103",
-      "manual_override_at": "2026-07-18T23:15:27.782Z"
+      "manual_override_at": "2026-07-18T23:30:28.237Z"
     },
     {
       "id": "M104",
@@ -3637,15 +3646,18 @@
       "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
       "city_ar": "",
       "status": "scheduled",
-      "phase": "second_half",
+      "phase": "finished",
       "score1": null,
       "score2": null,
-      "score_ft": null,
+      "score_ft": [
+        4,
+        6
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
+      "winner_side": 2,
       "team1": "Spain",
       "team2": "Argentina",
       "source_slot1": "W101",
@@ -3655,7 +3667,7 @@
       "team2_ar": "الأرجنتين",
       "manual_override": true,
       "manual_override_key": "official-final-four-M104",
-      "manual_override_at": "2026-07-18T23:15:27.782Z"
+      "manual_override_at": "2026-07-18T23:30:28.237Z"
     }
   ]
 }
