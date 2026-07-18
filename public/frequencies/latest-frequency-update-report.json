@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-07-16T07:33:06.702Z",
-  "updatedAt": "2026-07-16T07:33:06.494Z",
+  "generatedAt": "2026-07-18T07:09:30.411Z",
+  "updatedAt": "2026-07-18T07:09:30.046Z",
   "totalFrequencies": 830,
   "removedCount": 0,
-  "candidateCount": 1080,
-  "closedCandidateCount": 0,
-  "closedConsensusCount": 0,
-  "successfulSourceCount": 15,
+  "candidateCount": 2509,
+  "closedCandidateCount": 2827,
+  "closedConsensusCount": 318,
+  "successfulSourceCount": 47,
   "sourcesChecked": 67,
-  "sourcesFailed": 52,
+  "sourcesFailed": 20,
   "changes": {
-    "updated": 86,
+    "updated": 122,
     "added": 0,
     "removed": 0,
-    "reviewedOnly": 994,
+    "reviewedOnly": 2387,
     "channelNamesAdded": 0,
-    "channelNamesRemoved": 14,
+    "channelNamesRemoved": 17,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 0,
+    "closedConsensusReviewed": 26,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 994,
+    "incompleteNewSkipped": 2387,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1076 من 1080 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3532 من 3588 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -31,7 +31,7 @@
     {
       "satelliteGroup": "Amos",
       "frequencies": 52,
-      "services": 210
+      "services": 209
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -46,7 +46,7 @@
     {
       "satelliteGroup": "Azerspace",
       "frequencies": 71,
-      "services": 105
+      "services": 104
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -61,7 +61,7 @@
     {
       "satelliteGroup": "Eutelsat 36E",
       "frequencies": 153,
-      "services": 256
+      "services": 255
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -119,7 +119,7 @@
       "orbitalSlot": "4W",
       "satelliteName": "Dror 1",
       "frequencies": 3,
-      "services": 9
+      "services": 8
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -203,7 +203,7 @@
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
       "frequencies": 71,
-      "services": 105
+      "services": 104
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -238,7 +238,7 @@
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
       "frequencies": 145,
-      "services": 231
+      "services": 230
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -397,26 +397,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-7w-all",
-      "name": "KingOfSat 7W all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-8w-all",
-      "name": "KingOfSat 8W all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-badr-4-5-6",
       "name": "LyngSat Badr 4/5/6",
       "ok": false,
@@ -447,26 +427,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-26e-all",
-      "name": "KingOfSat 26E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-25e-all",
-      "name": "KingOfSat 25.5E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-hotbird-13e",
       "name": "LyngSat Hot Bird 13F/13G",
       "ok": false,
@@ -475,26 +435,6 @@
       "closedCandidates": 0,
       "coverageOnly": false,
       "error": null
-    },
-    {
-      "id": "kingofsat-hotbird-13e-all",
-      "name": "KingOfSat Hot Bird 13E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-hotbird-13e-arabic",
-      "name": "KingOfSat Hot Bird 13E Arabic services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
     },
     {
       "id": "lyngsat-eutelsat-16a",
@@ -507,26 +447,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-16e-all",
-      "name": "KingOfSat 16E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-16e-freqs-all",
-      "name": "KingOfSat 16E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-eutelsat-9b",
       "name": "LyngSat Eutelsat 9B / Ka-Sat 9A",
       "ok": false,
@@ -535,26 +455,6 @@
       "closedCandidates": 0,
       "coverageOnly": false,
       "error": null
-    },
-    {
-      "id": "kingofsat-9e-all",
-      "name": "KingOfSat 9E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-9e-freqs-all",
-      "name": "KingOfSat 9E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
     },
     {
       "id": "lyngsat-turksat-3a-4a-5b",
@@ -577,26 +477,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-42e-all",
-      "name": "KingOfSat 42E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-42e-freqs-all",
-      "name": "KingOfSat 42E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-yahsat",
       "name": "LyngSat Al Yah 1",
       "ok": false,
@@ -605,26 +485,6 @@
       "closedCandidates": 0,
       "coverageOnly": false,
       "error": null
-    },
-    {
-      "id": "kingofsat-52e-all",
-      "name": "KingOfSat 52.5E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-52e-freqs-all",
-      "name": "KingOfSat 52.5E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
     },
     {
       "id": "lyngsat-hellas",
@@ -637,26 +497,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-39e-all",
-      "name": "KingOfSat 39E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-39e-freqs-all",
-      "name": "KingOfSat 39E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-eutelsat-36d-express",
       "name": "LyngSat Eutelsat 36D / Express AMU1",
       "ok": false,
@@ -665,26 +505,6 @@
       "closedCandidates": 0,
       "coverageOnly": false,
       "error": null
-    },
-    {
-      "id": "kingofsat-36e-all",
-      "name": "KingOfSat 36E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-36e-freqs-all",
-      "name": "KingOfSat 36E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
     },
     {
       "id": "lyngsat-astra-19",
@@ -707,46 +527,6 @@
       "error": null
     },
     {
-      "id": "kingofsat-19e-all",
-      "name": "KingOfSat Astra 19.2E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-28e-all",
-      "name": "KingOfSat Astra 28.2E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-19e-freqs-all",
-      "name": "KingOfSat Astra 19.2E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-28e-freqs-all",
-      "name": "KingOfSat Astra 28.2E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-amos",
       "name": "LyngSat Amos 3 / Dror 1",
       "ok": false,
@@ -755,26 +535,6 @@
       "closedCandidates": 0,
       "coverageOnly": false,
       "error": null
-    },
-    {
-      "id": "kingofsat-4w-all",
-      "name": "KingOfSat Amos 4W all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-4w-freqs-all",
-      "name": "KingOfSat Amos 4W frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
     },
     {
       "id": "lyngsat-intelsat-20",
@@ -787,88 +547,8 @@
       "error": null
     },
     {
-      "id": "kingofsat-68e-all",
-      "name": "KingOfSat 68.5E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-68e-freqs-all",
-      "name": "KingOfSat 68.5E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "kingofsat-46e-all",
-      "name": "KingOfSat 46E all services",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "kingofsat-46e-freqs-all",
-      "name": "KingOfSat 46E frequency rows",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "fetch failed"
-    },
-    {
-      "id": "satbeams-hotbird-13e-chart",
-      "name": "SatBeams Hot Bird 13E transponder chart",
-      "ok": false,
-      "status": null,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": "This operation was aborted"
-    },
-    {
-      "id": "lyngsat-amos3-mux-10806",
-      "name": "LyngSat Amos 3 10806 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10842",
-      "name": "LyngSat Amos 3 10842 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-yes-dror1-package",
-      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
