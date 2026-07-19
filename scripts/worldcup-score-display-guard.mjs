@@ -3,7 +3,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '20260719-score-display-guard-v1';
+const VERSION = '20260719-score-display-guard-v2';
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const WC_DIR = path.join(PUBLIC_DIR, 'worldcup-2026');
@@ -404,17 +404,107 @@ async function patchTodayUi() {
     return pair ? pair[0] + ' - ' + pair[1] : '';
   }`;
 
-  const functionPattern = /function getScore\(match\) \{[\s\S]*?return ''; \}/;
+  function matchingBraceEnd(text, openBraceIndex) {
+    let depth = 0;
+    let mode = 'code';
+    let quote = '';
+
+    for (let i = openBraceIndex; i < text.length; i += 1) {
+      const ch = text[i];
+      const next = text[i + 1];
+
+      if (mode === 'string') {
+        if (ch === '\\') {
+          i += 1;
+          continue;
+        }
+        if (ch === quote) {
+          mode = 'code';
+          quote = '';
+        }
+        continue;
+      }
+
+      if (mode === 'line-comment') {
+        if (ch === '\n' || ch === '\r') mode = 'code';
+        continue;
+      }
+
+      if (mode === 'block-comment') {
+        if (ch === '*' && next === '/') {
+          mode = 'code';
+          i += 1;
+        }
+        continue;
+      }
+
+      if (ch === '/' && next === '/') {
+        mode = 'line-comment';
+        i += 1;
+        continue;
+      }
+      if (ch === '/' && next === '*') {
+        mode = 'block-comment';
+        i += 1;
+        continue;
+      }
+      if (ch === "'" || ch === '"' || ch === '`') {
+        mode = 'string';
+        quote = ch;
+        continue;
+      }
+      if (ch === '{') depth += 1;
+      if (ch === '}') {
+        depth -= 1;
+        if (depth === 0) return i + 1;
+      }
+    }
+
+    return -1;
+  }
+
+  function replaceGetScoreFunction(text) {
+    // يدعم النسخة المصغّرة، النسخة المنسّقة، أو تحويل الدالة إلى function expression.
+    const signatures = [
+      /function\s+getScore\s*\(\s*match\s*\)\s*\{/g,
+      /(?:var|let|const)\s+getScore\s*=\s*function\s*\(\s*match\s*\)\s*\{/g,
+      /(?:var|let|const)\s+getScore\s*=\s*\(?\s*match\s*\)?\s*=>\s*\{/g,
+    ];
+
+    for (const signature of signatures) {
+      const match = signature.exec(text);
+      if (!match) continue;
+      const openBraceIndex = match.index + match[0].lastIndexOf('{');
+      const endIndex = matchingBraceEnd(text, openBraceIndex);
+      if (endIndex < 0) {
+        throw new Error('Located getScore(match), but could not find its closing brace');
+      }
+      return text.slice(0, match.index) + replacement + text.slice(endIndex);
+    }
+
+    return null;
+  }
+
   let updated = source;
-  if (functionPattern.test(updated)) {
-    updated = updated.replace(functionPattern, replacement);
-  } else if (!updated.includes("function scoreNumber(value)")) {
-    throw new Error('Could not locate the old getScore(match) function in public/worldcup-2026-today-fix.js');
+  const alreadyPatched = updated.includes('function scoreNumber(value)') &&
+    updated.includes('pairFromObject(value)') &&
+    updated.includes("pair[0] + ' - ' + pair[1]");
+
+  if (!alreadyPatched) {
+    const replaced = replaceGetScoreFunction(updated);
+    if (replaced === null) {
+      const getScoreOffset = updated.indexOf('getScore');
+      throw new Error(
+        'Could not locate getScore(match) in public/worldcup-2026-today-fix.js' +
+        `; first getScore offset=${getScoreOffset}; fileLength=${updated.length}`
+      );
+    }
+    updated = replaced;
   }
 
   updated = updated.replace(
-    /var SCRIPT_VERSION = '[^']+';/,
-    "var SCRIPT_VERSION = '2026-07-19-live-score-v4';"
+    /var\s+SCRIPT_VERSION\s*=\s*(['"])[^'"]*\1\s*;/,
+    "var SCRIPT_VERSION = '2026-07-19-live-score-v5';"
   );
 
   if (updated === source) return { exists: true, changed: false };

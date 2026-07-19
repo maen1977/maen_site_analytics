@@ -1,14 +1,12 @@
-ارفع الملفين مع الحفاظ على نفس المسارات داخل المستودع:
+الإصدار المصحح: 20260719-score-display-guard-v2
 
-1) scripts/worldcup-score-display-guard.mjs
-2) .github/workflows/update-worldcup-2026.yml
+استبدل الملف التالي فقط لإصلاح خطأ GitHub Actions الحالي:
 
-بعد الرفع افتح GitHub Actions وشغّل يدوياً:
-Update World Cup 2026 every 15 minutes → Run workflow
+scripts/worldcup-score-display-guard.mjs
 
-الحارس سيقوم تلقائياً بما يلي:
-- إصلاح دالة عرض النتيجة بين اسمي المنتخبين في بطاقة "اليوم".
-- تثبيت نتيجة مباراة المركز الثالث: فرنسا 4 - 6 إنجلترا.
-- إبقاء كلمة "مباشر" في خانة الحالة، والنتيجة وحدها في الوسط.
-- نسخ نتيجة إسبانيا والأرجنتين إلى الحقول التي تقرؤها الواجهة عند كل تحديث.
-- إبقاء التحديث فعالاً حتى 20 يوليو في حال امتد النهائي لوقت إضافي أو ركلات ترجيح.
+ملف الـ Workflow مرفق أيضاً كما هو للمشروع الكامل:
+
+.github/workflows/update-worldcup-2026.yml
+
+بعد الرفع شغّل:
+Actions > Update World Cup 2026 every 15 minutes > Run workflow
