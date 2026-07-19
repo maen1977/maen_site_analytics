@@ -3,7 +3,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const VERSION = '20260719-score-display-guard-v2';
+const VERSION = '20260719-score-display-guard-v3-final-isolation';
 const ROOT = process.cwd();
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const WC_DIR = path.join(PUBLIC_DIR, 'worldcup-2026');
@@ -22,9 +22,9 @@ function englishDigits(value) {
 function numberOrNull(value) {
   if (value === null || value === undefined || value === '') return null;
   if (typeof value === 'number') return Number.isFinite(value) ? value : null;
-  const match = englishDigits(value).match(/-?\d+/);
-  if (!match) return null;
-  const number = Number(match[0]);
+  const found = englishDigits(value).match(/-?\d+/);
+  if (!found) return null;
+  const number = Number(found[0]);
   return Number.isFinite(number) ? number : null;
 }
 
@@ -74,7 +74,7 @@ function teamKeys(match) {
 }
 
 function matchNumber(match) {
-  return numberOrNull(match?.number ?? match?.match_number ?? match?.matchNumber ??
+  return numberOrNull(match?.number ?? match?.num ?? match?.match_number ?? match?.matchNumber ??
     match?.match_no ?? match?.matchNo ?? match?.id);
 }
 
@@ -84,42 +84,62 @@ function matchDateText(match) {
 }
 
 function roundText(match) {
-  const status = typeof match?.status === 'object' ? '' : match?.status;
+  const plainStatus = typeof match?.status === 'object' ? '' : match?.status;
   return normalize([
     match?.round_ar,
     match?.round,
     match?.stage_ar,
     match?.stage,
     match?.phase,
-    status,
+    plainStatus,
   ].filter(Boolean).join(' '));
 }
 
 function statusText(match) {
   const status = match?.status;
+  const score = match?.score;
   return normalize([
     status?.key,
     status?.state,
+    status?.type,
     status?.label_ar,
     status?.label,
     typeof status === 'object' ? '' : status,
+    score?.status,
+    score?.phase,
+    score?.phase_ar,
+    score?.status_detail,
     match?.status_key,
     match?.status_ar,
     match?.state,
     match?.phase,
+    match?.live_phase,
+    match?.live_phase_ar,
+    match?.live_status_detail,
   ].filter(Boolean).join(' '));
 }
 
 function isLive(match) {
   const text = statusText(match);
-  return /(^| )(live|in progress|halftime|extra time|penalty)( |$)|مباشر|الشوط|استراحه|ترجيح/.test(text) &&
-    !/finished|final|completed|post|انته/.test(text);
+  return /(^| )(live|in progress|in_progress|halftime|half time|extra time|penalty|playing)( |$)|مباشر|الشوط|استراحه|ترجيح/.test(text) &&
+    !/finished|completed|full time|full_time|post|انته/.test(text);
+}
+
+function isFinished(match) {
+  const text = statusText(match);
+  return /finished|completed|full time|full_time|post|انته/.test(text) || match?.finished === true;
+}
+
+function isScheduled(match) {
+  const text = statusText(match);
+  return /scheduled|fixture|upcoming|pre match|prematch|not started|قادمه|لم تبدا/.test(text) &&
+    !isLive(match) && !isFinished(match);
 }
 
 function scoreFromText(value) {
   if (value === null || value === undefined || typeof value === 'object') return null;
-  const match = englishDigits(value).match(/(\d+)\s*[-–—:]\s*(\d+)/);
-  return match ? [Number(match[1]), Number(match[2])] : null;
+  const found = englishDigits(value).match(/(\d+)\s*[-–—:]\s*(\d+)/);
+  return found ? [Number(found[1]), Number(found[2])] : null;
 }
 
 function pairFromObject(value) {
@@ -152,15 +172,14 @@ function readScore(match) {
   }
 
   const score = match?.score;
-  const nestedCandidates = [
+  for (const candidate of [
     score?.current,
     score?.ft,
     score?.fulltime,
     score?.fullTime,
     score?.regular,
     score,
-  ];
-  for (const candidate of nestedCandidates) {
+  ]) {
     const pair = pairFromObject(candidate) || scoreFromText(candidate);
     if (pair) return pair;
   }
@@ -181,21 +200,40 @@ function readScore(match) {
   return null;
 }
 
+function scoreSourceText(match) {
+  const score = match?.score;
+  const sources = Array.isArray(match?.score_sources)
+    ? match.score_sources.map((item) => [item?.source_name, item?.source, item?.source_url].filter(Boolean).join(' '))
+    : [];
+  return normalize([
+    match?.score_source,
+    match?.live_score_source,
+    match?.result_source,
+    score?.source,
+    score?.provider,
+    ...sources,
+  ].filter(Boolean).join(' '));
+}
+
+function hasTrustedScoreSource(match) {
+  return /espn|fifa|official|api football|sofascore|flashscore/.test(scoreSourceText(match));
+}
+
+function preferredScoreSource(match, fallback) {
+  for (const value of [
+    match?.score_source,
+    match?.live_score_source,
+    match?.result_source,
+    match?.score?.source,
+    match?.score?.provider,
+  ]) {
+    if (typeof value === 'string' && value.trim()) return value.trim();
+  }
+  return fallback;
+}
+
 function writeScore(match, first, second, source) {
-  const before = JSON.stringify({
-    score1: match.score1,
-    score2: match.score2,
-    team1_score: match.team1_score,
-    team2_score: match.team2_score,
-    team1Score: match.team1Score,
-    team2Score: match.team2Score,
-    home_score: match.home_score,
-    away_score: match.away_score,
-    homeScore: match.homeScore,
-    awayScore: match.awayScore,
-    score_text: match.score_text,
-    score_source: match.score_source,
-  });
+  const before = JSON.stringify(match);
 
   match.score1 = first;
   match.score2 = second;
@@ -210,63 +248,116 @@ function writeScore(match, first, second, source) {
   match.score_text = `${first} - ${second}`;
   match.score_source = source;
 
-  return before !== JSON.stringify({
-    score1: match.score1,
-    score2: match.score2,
-    team1_score: match.team1_score,
-    team2_score: match.team2_score,
-    team1Score: match.team1Score,
-    team2Score: match.team2Score,
-    home_score: match.home_score,
-    away_score: match.away_score,
-    homeScore: match.homeScore,
-    awayScore: match.awayScore,
-    score_text: match.score_text,
-    score_source: match.score_source,
-  });
+  if (match.score && typeof match.score === 'object' && !Array.isArray(match.score)) {
+    match.score.current = [first, second];
+    if (isFinished(match)) match.score.ft = [first, second];
+  }
+
+  return before !== JSON.stringify(match);
+}
+
+const SCORE_FIELDS = [
+  'score1', 'score2', 'team1_score', 'team2_score', 'team1Score', 'team2Score',
+  'home_score', 'away_score', 'homeScore', 'awayScore', 'score_home', 'score_away',
+  'score_text', 'scoreText', 'display_score', 'displayScore', 'result',
+  'fulltime_score', 'fullTimeScore', 'score_source', 'winner_side', 'loser_side',
+  'live_clock', 'live_period', 'live_status_detail',
+];
+
+function clearScore(match) {
+  const before = JSON.stringify(match);
+  for (const key of SCORE_FIELDS) delete match[key];
+  match.score = null;
+  if (Array.isArray(match.score_sources)) delete match.score_sources;
+  return before !== JSON.stringify(match);
+}
+
+function setScheduled(match) {
+  const before = JSON.stringify(match);
+  if (match.status && typeof match.status === 'object' && !Array.isArray(match.status)) {
+    match.status = {
+      ...match.status,
+      key: 'scheduled',
+      state: 'scheduled',
+      label_ar: 'قادمة',
+      label: 'Scheduled',
+    };
+  } else {
+    match.status = 'scheduled';
+  }
+  match.status_key = 'scheduled';
+  match.status_ar = 'قادمة';
+  match.phase = 'scheduled';
+  match.finished = false;
+  match.is_live = false;
+  delete match.live_phase;
+  delete match.live_phase_ar;
+  return before !== JSON.stringify(match);
 }
 
 function setFinished(match) {
-  const before = JSON.stringify({
-    status: match.status,
-    status_key: match.status_key,
-    status_ar: match.status_ar,
-    phase: match.phase,
-    finished: match.finished,
-    is_live: match.is_live,
-  });
-
-  const oldStatus = match.status && typeof match.status === 'object' && !Array.isArray(match.status)
-    ? match.status
-    : {};
-  match.status = {
-    ...oldStatus,
-    key: 'finished',
-    state: 'finished',
-    label_ar: 'انتهت',
-    label: 'Final',
-  };
+  const before = JSON.stringify(match);
+  if (match.status && typeof match.status === 'object' && !Array.isArray(match.status)) {
+    match.status = {
+      ...match.status,
+      key: 'finished',
+      state: 'finished',
+      label_ar: 'انتهت',
+      label: 'Final',
+    };
+  } else {
+    match.status = 'finished';
+  }
   match.status_key = 'finished';
   match.status_ar = 'انتهت';
   match.phase = 'finished';
   match.finished = true;
   match.is_live = false;
+  return before !== JSON.stringify(match);
+}
 
-  return before !== JSON.stringify({
-    status: match.status,
-    status_key: match.status_key,
-    status_ar: match.status_ar,
-    phase: match.phase,
-    finished: match.finished,
-    is_live: match.is_live,
-  });
+function parseKickoff(match) {
+  for (const value of [
+    match?.kickoff_jordan,
+    match?.kickoff_utc,
+    match?.kickoff_at,
+    match?.kickoffAt,
+    match?.kickoff,
+    match?.datetime,
+    match?.date_time,
+    match?.dateTime,
+    match?.start_at,
+    match?.startAt,
+  ]) {
+    if (!value) continue;
+    const parsed = new Date(String(value));
+    if (!Number.isNaN(parsed.getTime())) return parsed;
+  }
+
+  const date = String(match?.date_jordan ?? match?.date ?? '').match(/\d{4}-\d{2}-\d{2}/)?.[0];
+  const timeValue = String(match?.time_jordan ?? match?.jordan_time ?? match?.local_time ?? match?.localTime ?? '');
+  const time = englishDigits(timeValue).match(/(?:^|\s)([01]?\d|2[0-3]):([0-5]\d)(?:\s|$)/);
+  if (date && time) {
+    const parsed = new Date(`${date}T${String(time[1]).padStart(2, '0')}:${time[2]}:00+03:00`);
+    if (!Number.isNaN(parsed.getTime())) return parsed;
+  }
+  return null;
+}
+
+function nowInstant() {
+  const override = process.env.MAENSAT_NOW;
+  if (override) {
+    const parsed = new Date(override);
+    if (!Number.isNaN(parsed.getTime())) return parsed;
+  }
+  return new Date();
 }
 
 function looksLikeMatch(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
   const [first, second] = teamObjects(value);
   return Boolean(first && second) && Boolean(
-    value.number || value.match_number || value.id || value.date || value.date_jordan ||
+    value.number || value.num || value.match_number || value.id || value.date || value.date_jordan ||
     value.kickoff || value.kickoff_utc || value.kickoff_jordan || value.status || value.phase
   );
 }
@@ -309,10 +400,15 @@ function isSpainArgentinaFinal(match) {
   return number === 104 || date.includes('2026-07-19') || /(^| )final( |$)|النهائي/.test(round);
 }
 
-function applyDataGuard(document) {
-  let changed = 0;
+function isThirdPlaceScore(score) {
+  return Boolean(score) && ((score[0] === 4 && score[1] === 6) || (score[0] === 6 && score[1] === 4));
+}
+
+function applyDataGuard(document, now = nowInstant()) {
+  let mutations = 0;
   let thirdPlaceMatches = 0;
   let finalMatches = 0;
+  let clearedPrematchFinals = 0;
 
   visitMatches(document, (match) => {
     if (isThirdPlaceFranceEngland(match)) {
@@ -320,19 +416,115 @@ function applyDataGuard(document) {
       const [firstTeam] = teamKeys(match);
       const firstScore = firstTeam === 'france' ? 4 : 6;
       const secondScore = firstTeam === 'france' ? 6 : 4;
-      if (writeScore(match, firstScore, secondScore, 'verified-third-place-2026-07-18')) changed += 1;
-      if (setFinished(match)) changed += 1;
+      if (writeScore(match, firstScore, secondScore, 'verified-third-place-2026-07-18')) mutations += 1;
+      if (setFinished(match)) mutations += 1;
       return;
     }
 
-    if (isSpainArgentinaFinal(match)) {
-      finalMatches += 1;
-      const score = readScore(match) || (isLive(match) ? [0, 0] : null);
-      if (score && writeScore(match, score[0], score[1], 'final-score-display-guard')) changed += 1;
+    if (!isSpainArgentinaFinal(match)) return;
+    finalMatches += 1;
+
+    const kickoff = parseKickoff(match);
+    const beforeKickoff = Boolean(kickoff && now.getTime() < kickoff.getTime());
+    const live = isLive(match);
+    const finished = isFinished(match);
+    const scheduled = isScheduled(match);
+    const score = readScore(match);
+    const trusted = hasTrustedScoreSource(match);
+    const pollutedThirdPlaceScore = isThirdPlaceScore(score) && !trusted;
+
+    // قبل انطلاق النهائي: لا توجد نتيجة نهائياً، حتى لو تسربت 4-6 أو 6-4 من مباراة المركز الثالث.
+    if (beforeKickoff || scheduled || (!live && !finished) || pollutedThirdPlaceScore) {
+      if (clearScore(match)) mutations += 1;
+      if (beforeKickoff || pollutedThirdPlaceScore) {
+        if (setScheduled(match)) mutations += 1;
+      }
+      clearedPrematchFinals += 1;
+      return;
+    }
+
+    // أثناء النهائي: نعرض نتيجة المصدر الحي الموثوق فقط. قبل أول هدف تكون 0-0.
+    if (live) {
+      const liveScore = trusted ? score : null;
+      const pair = liveScore || [0, 0];
+      if (writeScore(match, pair[0], pair[1], trusted ? preferredScoreSource(match, 'trusted-live-source') : 'live-zero-before-first-goal')) {
+        mutations += 1;
+      }
+      return;
+    }
+
+    // بعد النهاية: نحفظ النتيجة الموثوقة، ولا نخترع نتيجة.
+    if (finished && score) {
+      if (writeScore(match, score[0], score[1], trusted ? preferredScoreSource(match, 'trusted-final-source') : 'existing-final-result')) {
+        mutations += 1;
+      }
     }
   });
 
-  return { mutations: changed, thirdPlaceMatches, finalMatches };
+  return { mutations, thirdPlaceMatches, finalMatches, clearedPrematchFinals };
+}
+
+function findNamedFunctionRange(source, functionName) {
+  const pattern = new RegExp(`function\\s+${functionName}\\s*\\(\\s*match\\s*\\)\\s*\\{`, 'g');
+  const match = pattern.exec(source);
+  if (!match) return null;
+
+  const start = match.index;
+  const openBrace = source.indexOf('{', start);
+  let depth = 0;
+  let quote = null;
+  let lineComment = false;
+  let blockComment = false;
+  let escaped = false;
+
+  for (let index = openBrace; index < source.length; index += 1) {
+    const char = source[index];
+    const next = source[index + 1];
+
+    if (lineComment) {
+      if (char === '\n') lineComment = false;
+      continue;
+    }
+    if (blockComment) {
+      if (char === '*' && next === '/') {
+        blockComment = false;
+        index += 1;
+      }
+      continue;
+    }
+    if (quote) {
+      if (escaped) {
+        escaped = false;
+        continue;
+      }
+      if (char === '\\') {
+        escaped = true;
+        continue;
+      }
+      if (char === quote) quote = null;
+      continue;
+    }
+    if (char === '/' && next === '/') {
+      lineComment = true;
+      index += 1;
+      continue;
+    }
+    if (char === '/' && next === '*') {
+      blockComment = true;
+      index += 1;
+      continue;
+    }
+    if (char === '"' || char === "'" || char === '`') {
+      quote = char;
+      continue;
+    }
+    if (char === '{') depth += 1;
+    if (char === '}') {
+      depth -= 1;
+      if (depth === 0) return { start, end: index + 1 };
+    }
+  }
+  return null;
 }
 
 async function patchTodayUi() {
@@ -344,19 +536,19 @@ async function patchTodayUi() {
     throw error;
   }
 
-  const replacement = `function getScore(match) {
+  const replacement = `/* MAENSAT_SCORE_READER_V6_FINAL_ISOLATION */ function getScore(match) {
     function scoreNumber(value) {
       if (value === null || value === undefined || value === '') return null;
       var text = String(value)
         .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
         .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
-      var m = text.match(/-?\\d+/);
-      return m ? Number(m[0]) : null;
+      var found = text.match(/-?\\d+/);
+      return found ? Number(found[0]) : null;
     }
     function scorePair(left, right) {
-      var a = scoreNumber(left);
-      var b = scoreNumber(right);
-      return a !== null && b !== null ? [a, b] : null;
+      var first = scoreNumber(left);
+      var second = scoreNumber(right);
+      return first !== null && second !== null ? [first, second] : null;
     }
     function pairFromObject(value) {
       if (!value || typeof value !== 'object') return null;
@@ -371,9 +563,37 @@ async function patchTodayUi() {
       var text = String(value)
         .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
         .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
-      var m = text.match(/(\\d+)\\s*[-–—:]\\s*(\\d+)/);
-      return m ? [Number(m[1]), Number(m[2])] : null;
+      var found = text.match(/(\\d+)\\s*[-–—:]\\s*(\\d+)/);
+      return found ? [Number(found[1]), Number(found[2])] : null;
     }
+    function scoreStatusText(value) {
+      var status = value && value.status;
+      var nested = value && value.score;
+      return [
+        status && status.key,
+        status && status.state,
+        status && status.label_ar,
+        status && status.label,
+        status && typeof status !== 'object' ? status : '',
+        nested && nested.status,
+        nested && nested.phase,
+        nested && nested.phase_ar,
+        value && value.status_key,
+        value && value.status_ar,
+        value && value.state,
+        value && value.phase,
+        value && value.live_phase,
+        value && value.live_phase_ar
+      ].filter(Boolean).join(' ').toLowerCase();
+    }
+
+    var kickoff = parseMatchDate(match);
+    if (kickoff && kickoff.getTime() > Date.now()) return '';
+
+    var statusText = scoreStatusText(match);
+    var active = /live|in progress|in_progress|halftime|extra time|penalty|finished|completed|full time|post|مباشر|الشوط|ترجيح|انته/.test(statusText);
+    var waiting = /scheduled|fixture|upcoming|pre match|prematch|not started|قادمة|لم تبدأ/.test(statusText);
+    if (waiting && !active) return '';
 
     var pair = scorePair(
       firstValue(match, ['home_score', 'homeScore', 'score_home']),
@@ -384,132 +604,46 @@ async function patchTodayUi() {
       firstValue(match, ['score2', 'team2_score', 'team2Score'])
     );
 
-    var nested = match && match.score;
-    if (!pair && nested && typeof nested === 'object') {
-      pair = pairFromObject(nested.current) || pairFromObject(nested.ft) ||
-        pairFromObject(nested.fulltime) || pairFromObject(nested.fullTime) ||
-        pairFromObject(nested.regular) || pairFromObject(nested);
-      if (!pair) pair = pairFromText(nested.current) || pairFromText(nested.ft) ||
-        pairFromText(nested.fulltime) || pairFromText(nested.fullTime);
+    var nestedScore = match && match.score;
+    if (!pair && nestedScore && typeof nestedScore === 'object') {
+      pair = pairFromObject(nestedScore.current) || pairFromObject(nestedScore.ft) ||
+        pairFromObject(nestedScore.fulltime) || pairFromObject(nestedScore.fullTime) ||
+        pairFromObject(nestedScore.regular) || pairFromObject(nestedScore);
+      if (!pair) pair = pairFromText(nestedScore.current) || pairFromText(nestedScore.ft) ||
+        pairFromText(nestedScore.fulltime) || pairFromText(nestedScore.fullTime);
     }
 
     if (!pair) {
-      var direct = firstValue(match, [
+      pair = pairFromText(firstValue(match, [
         'score_text', 'scoreText', 'display_score', 'displayScore',
         'result', 'fulltime_score', 'fullTimeScore'
-      ]);
-      pair = pairFromText(direct);
+      ]));
     }
-    if (!pair && typeof nested === 'string') pair = pairFromText(nested);
+    if (!pair && typeof nestedScore === 'string') pair = pairFromText(nestedScore);
     return pair ? pair[0] + ' - ' + pair[1] : '';
   }`;
 
-  function matchingBraceEnd(text, openBraceIndex) {
-    let depth = 0;
-    let mode = 'code';
-    let quote = '';
-
-    for (let i = openBraceIndex; i < text.length; i += 1) {
-      const ch = text[i];
-      const next = text[i + 1];
-
-      if (mode === 'string') {
-        if (ch === '\\') {
-          i += 1;
-          continue;
-        }
-        if (ch === quote) {
-          mode = 'code';
-          quote = '';
-        }
-        continue;
-      }
-
-      if (mode === 'line-comment') {
-        if (ch === '\n' || ch === '\r') mode = 'code';
-        continue;
-      }
-
-      if (mode === 'block-comment') {
-        if (ch === '*' && next === '/') {
-          mode = 'code';
-          i += 1;
-        }
-        continue;
-      }
-
-      if (ch === '/' && next === '/') {
-        mode = 'line-comment';
-        i += 1;
-        continue;
-      }
-      if (ch === '/' && next === '*') {
-        mode = 'block-comment';
-        i += 1;
-        continue;
-      }
-      if (ch === "'" || ch === '"' || ch === '`') {
-        mode = 'string';
-        quote = ch;
-        continue;
-      }
-      if (ch === '{') depth += 1;
-      if (ch === '}') {
-        depth -= 1;
-        if (depth === 0) return i + 1;
-      }
-    }
-
-    return -1;
-  }
-
-  function replaceGetScoreFunction(text) {
-    // يدعم النسخة المصغّرة، النسخة المنسّقة، أو تحويل الدالة إلى function expression.
-    const signatures = [
-      /function\s+getScore\s*\(\s*match\s*\)\s*\{/g,
-      /(?:var|let|const)\s+getScore\s*=\s*function\s*\(\s*match\s*\)\s*\{/g,
-      /(?:var|let|const)\s+getScore\s*=\s*\(?\s*match\s*\)?\s*=>\s*\{/g,
-    ];
-
-    for (const signature of signatures) {
-      const match = signature.exec(text);
-      if (!match) continue;
-      const openBraceIndex = match.index + match[0].lastIndexOf('{');
-      const endIndex = matchingBraceEnd(text, openBraceIndex);
-      if (endIndex < 0) {
-        throw new Error('Located getScore(match), but could not find its closing brace');
-      }
-      return text.slice(0, match.index) + replacement + text.slice(endIndex);
-    }
-
-    return null;
-  }
-
+  const marker = 'MAENSAT_SCORE_READER_V6_FINAL_ISOLATION';
+  const range = source.includes(marker) ? null : findNamedFunctionRange(source, 'getScore');
   let updated = source;
-  const alreadyPatched = updated.includes('function scoreNumber(value)') &&
-    updated.includes('pairFromObject(value)') &&
-    updated.includes("pair[0] + ' - ' + pair[1]");
+  let warning = null;
 
-  if (!alreadyPatched) {
-    const replaced = replaceGetScoreFunction(updated);
-    if (replaced === null) {
-      const getScoreOffset = updated.indexOf('getScore');
-      throw new Error(
-        'Could not locate getScore(match) in public/worldcup-2026-today-fix.js' +
-        `; first getScore offset=${getScoreOffset}; fileLength=${updated.length}`
-      );
-    }
-    updated = replaced;
+  if (source.includes(marker)) {
+    updated = source;
+  } else if (range) {
+    updated = source.slice(0, range.start) + replacement + source.slice(range.end);
+  } else {
+    warning = 'getScore(match) was not found; data repair continued without failing the workflow.';
   }
 
   updated = updated.replace(
-    /var\s+SCRIPT_VERSION\s*=\s*(['"])[^'"]*\1\s*;/,
-    "var SCRIPT_VERSION = '2026-07-19-live-score-v5';"
+    /var SCRIPT_VERSION = '[^']+';/,
+    "var SCRIPT_VERSION = '2026-07-19-final-isolation-v6';"
   );
 
-  if (updated === source) return { exists: true, changed: false };
+  if (updated === source) return { exists: true, changed: false, warning };
   await fs.writeFile(TODAY_UI_FILE, updated, 'utf8');
-  return { exists: true, changed: true };
+  return { exists: true, changed: true, warning };
 }
 
 async function readJson(filePath) {
@@ -531,9 +665,15 @@ async function writeJsonIfChanged(filePath, document, before) {
 async function main() {
   const report = {
     version: VERSION,
+    now: nowInstant().toISOString(),
     ui: await patchTodayUi(),
     files: {},
-    totals: { changedFiles: 0, thirdPlaceMatches: 0, finalMatches: 0 },
+    totals: {
+      changedFiles: 0,
+      thirdPlaceMatches: 0,
+      finalMatches: 0,
+      clearedPrematchFinals: 0,
+    },
   };
 
   for (const name of DATA_FILES) {
@@ -549,6 +689,7 @@ async function main() {
     if (changed) report.totals.changedFiles += 1;
     report.totals.thirdPlaceMatches += result.thirdPlaceMatches;
     report.totals.finalMatches += result.finalMatches;
+    report.totals.clearedPrematchFinals += result.clearedPrematchFinals;
     report.files[name] = { exists: true, changed, ...result };
   }
 
