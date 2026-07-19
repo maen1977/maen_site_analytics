@@ -1,15 +1,22 @@
 {
   "ok": true,
-  "name": "World Cup canonical finalizer",
-  "version": "2026-07-12-semifinals-official-lock-v2",
-  "updated_at": "2026-07-16T18:35:59+03:00",
-  "touched": [
-    "matches.json",
-    "bracket.json",
-    "knockout-live.json",
-    "manual-results-overrides.json"
-  ],
-  "official_results": [
+  "name": "World Cup complete canonical knockout lock",
+  "version": "2026-07-20-complete-knockout-canonical-lock-v3",
+  "locked_at": "2026-07-20T01:00:00+03:00",
+  "matches": [
+    "M073",
+    "M074",
+    "M075",
+    "M076",
+    "M077",
+    "M078",
+    "M079",
+    "M080",
+    "M081",
+    "M082",
+    "M083",
+    "M084",
+    "M085",
     "M086",
     "M087",
     "M088",
@@ -24,23 +31,27 @@
     "M097",
     "M098",
     "M099",
-    "M100"
-  ],
-  "official_pairings": [
-    "M089",
-    "M090",
-    "M091",
-    "M092",
-    "M093",
-    "M094",
-    "M095",
-    "M096",
-    "M097",
-    "M098",
-    "M099",
     "M100",
     "M101",
-    "M102"
+    "M102",
+    "M103",
+    "M104"
   ],
-  "note_ar": "يثبت نتائج ربع النهائي M097-M100 ومسار نصف النهائي، ويقفل M102 على إنجلترا ضد الأرجنتين بعد كل تحديث."
+  "final": {
+    "id": "M104",
+    "team1": "Spain",
+    "team2": "Argentina",
+    "score": [
+      1,
+      0
+    ],
+    "status": "finished"
+  },
+  "touched": [
+    "matches.json",
+    "bracket.json",
+    "knockout-live.json",
+    "manual-results-overrides.json",
+    "knockout-live-health.json"
+  ]
 }

@@ -1,14 +1,16 @@
 {
   "ok": true,
-  "name": "World Cup state validator",
-  "version": "2026-07-12-semifinals-official-lock-v2",
-  "checked_at": "2026-07-16T15:35:59.984Z",
-  "protected_semifinal": "M102 England vs Argentina",
-  "protected_source_matches": [
-    "M097",
-    "M098",
-    "M099",
-    "M100"
-  ],
+  "version": "2026-07-20-complete-knockout-canonical-lock-v3",
+  "checked_at": "2026-07-20T01:00:00+03:00",
+  "final": {
+    "id": "M104",
+    "team1": "Spain",
+    "team2": "Argentina",
+    "score": [
+      1,
+      0
+    ],
+    "status": "finished"
+  },
   "errors": []
 }

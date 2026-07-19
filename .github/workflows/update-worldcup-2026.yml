@@ -4,39 +4,22 @@ on:
   schedule:
     - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
-    inputs:
-      source:
-        description: "Trigger source: manual / github-watchdog / cloudflare-cron"
-        required: false
-        default: "manual"
-      forced_at:
-        description: "External scheduler timestamp, if any"
-        required: false
-        default: ""
 
 permissions:
   contents: write
 
 concurrency:
   group: worldcup-2026-quarter-hour
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 env:
   TZ: Asia/Amman
-  WORLD_CUP_2026_FORCE_UPDATE: "1"
-  WORLD_CUP_2026_INTERVAL_MINUTES: "15"
-  WORLD_CUP_2026_START_DATE: "2026-06-11"
-  WORLD_CUP_2026_END_DATE: "2026-07-19"
-  WORLD_CUP_2026_TRIGGER_SOURCE: ${{ github.event.inputs.source || github.event_name }}
-  WORLD_CUP_2026_FORCED_AT: ${{ github.event.inputs.forced_at || '' }}
-  WORLD_CUP_2026_ESPN_SCOREBOARD_URL: ${{ vars.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950' }}
   CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
 
 jobs:
-  update-worldcup-2026:
+  enforce-canonical-world-cup-data:
     runs-on: ubuntu-latest
-    timeout-minutes: 14
-
+    timeout-minutes: 8
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,125 +32,47 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Print trigger info
-        shell: bash
-        run: |
-          echo "event=${GITHUB_EVENT_NAME}"
-          echo "workflow=${GITHUB_WORKFLOW}"
-          echo "trigger_source=${WORLD_CUP_2026_TRIGGER_SOURCE}"
-          echo "forced_at=${WORLD_CUP_2026_FORCED_AT}"
-          date
-
-      - name: Validate World Cup scripts
+      - name: Validate canonical scripts
         shell: bash
         run: |
           set -euo pipefail
-          for file in \
-            scripts/worldcup-quarter-hour-force.mjs \
-            scripts/worldcup-r32-official-fix.mjs \
-            scripts/worldcup-live-score-repair.mjs \
-            scripts/worldcup-live-zero-score-guard.mjs \
-            scripts/worldcup-finished-score-backfill.mjs \
-            scripts/worldcup-jordan-order-consistency.mjs \
-            scripts/worldcup-final-live-reconciliation.mjs \
-            scripts/worldcup-final-team-preserver.mjs \
-            scripts/worldcup-knockout-team-integrity.mjs \
-            scripts/worldcup-knockout-live-sync.mjs
-          do
-            node --check "$file"
-          done
+          node --check scripts/worldcup-canonical-finalizer.mjs
+          node --check scripts/worldcup-state-validator.mjs
 
-      - name: Preserve final match teams
+      - name: Enforce all knockout matches and final result
         shell: bash
-        run: node scripts/worldcup-final-team-preserver.mjs snapshot "$RUNNER_TEMP/worldcup-m104-teams.json"
+        run: node scripts/worldcup-canonical-finalizer.mjs
 
-      - name: Fetch and update World Cup source data
+      - name: Reject any wrong pairing, score, or leaked Switzerland name
         shell: bash
-        run: node scripts/worldcup-quarter-hour-force.mjs
+        run: node scripts/worldcup-state-validator.mjs
 
-      - name: Apply official Round of 32 correction
-        shell: bash
-        run: node scripts/worldcup-r32-official-fix.mjs
-
-      - name: Repair and backfill scores
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/worldcup-live-score-repair.mjs
-          node scripts/worldcup-live-zero-score-guard.mjs
-          node scripts/worldcup-finished-score-backfill.mjs
-          node scripts/worldcup-jordan-order-consistency.mjs
-          node scripts/worldcup-final-live-reconciliation.mjs
-
-      - name: Repair knockout team paths before sync
-        shell: bash
-        run: node scripts/worldcup-knockout-team-integrity.mjs
-
-      - name: Build knockout cards once
-        shell: bash
-        run: node scripts/worldcup-knockout-live-sync.mjs
-
-      - name: Final score and team integrity gate
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/worldcup-final-live-reconciliation.mjs
-          node scripts/worldcup-final-team-preserver.mjs restore "$RUNNER_TEMP/worldcup-m104-teams.json"
-          node scripts/worldcup-knockout-team-integrity.mjs
-          node scripts/worldcup-knockout-team-integrity.mjs --check
-
-      - name: Commit changed World Cup data files
+      - name: Commit corrected World Cup data
         id: commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           git add \
             public/worldcup-2026/matches.json \
-            public/worldcup-2026/standings.json \
-            public/worldcup-2026/groups.json \
             public/worldcup-2026/bracket.json \
             public/worldcup-2026/knockout-live.json \
             public/worldcup-2026/knockout-live-health.json \
-            public/worldcup-2026/live-score-repair-status.json \
-            public/worldcup-2026/live-zero-score-guard-status.json \
-            public/worldcup-2026/finished-score-backfill-status.json \
-            public/worldcup-2026/jordan-order-consistency-status.json \
-            public/worldcup-2026/final-live-reconciliation-status.json \
-            public/worldcup-2026/r32-correction-status.json \
-            public/worldcup-2026/heartbeat.json \
-            public/worldcup-2026/update-check.json \
-            public/worldcup-2026/version.json \
-            public/worldcup-2026/update-errors.json \
-            public/worldcup-2026/deploy-marker.txt \
-            2>/dev/null || true
-
+            public/worldcup-2026/manual-results-overrides.json \
+            public/worldcup-2026/canonical-finalizer-status.json \
+            public/worldcup-2026/state-validator-status.json
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No changed files to commit."
+            echo "Canonical World Cup data already correct."
             exit 0
           fi
-
-          stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
-          git commit -m "World Cup 2026 15-minute data update ${stamp}"
-          git pull --rebase --autostash origin main || true
-          git push origin HEAD:main || {
-            git pull --rebase --autostash origin main
-            git push origin HEAD:main
-          }
+          git commit -m "Fix all World Cup knockout matches and final Spain 1-0 Argentina"
+          git pull --rebase --autostash origin main
+          git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
-      - name: Trigger Cloudflare Pages deploy hook if configured
-        if: always()
+      - name: Trigger Cloudflare Pages deploy hook
+        if: steps.commit.outputs.changed == 'true' && env.CLOUDFLARE_PAGES_DEPLOY_HOOK != ''
         shell: bash
-        run: |
-          set -euo pipefail
-          if [ -z "${CLOUDFLARE_PAGES_DEPLOY_HOOK:-}" ]; then
-            echo "CLOUDFLARE_PAGES_DEPLOY_HOOK is not set; skipping deploy hook."
-            echo "If Cloudflare Pages is connected to GitHub, the push above should deploy automatically."
-            exit 0
-          fi
-          curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
-          echo "Cloudflare Pages deploy hook triggered."
+        run: curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
