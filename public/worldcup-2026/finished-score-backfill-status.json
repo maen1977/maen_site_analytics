@@ -2,13 +2,32 @@
   "name": "World Cup 2026 finished score backfill",
   "name_ar": "إصلاح نتائج المباريات المنتهية العالقة بانتظار التحديث",
   "version": "2026-07-02-finished-score-backfill-v1",
-  "checked_at": "2026-07-20T00:45:48+03:00",
+  "checked_at": "2026-07-20T00:57:22+03:00",
   "timezone": "Asia/Amman",
   "finished_grace_minutes": 135,
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
-  "date_keys_fetched": [],
-  "espn_urls_requested": [],
-  "espn_events_seen": 0,
+  "date_keys_fetched": [
+    "20260628",
+    "20260629",
+    "20260630",
+    "20260701",
+    "20260702",
+    "20260703",
+    "20260704",
+    "20260705"
+  ],
+  "espn_urls_requested": [
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260628",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260629",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260630",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260701",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260702",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260703",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260704",
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950&dates=20260705"
+  ],
+  "espn_events_seen": 21,
   "errors": [],
   "files": [
     {
@@ -34,22 +53,359 @@
     {
       "file": "knockout-live.json",
       "scanned": 64,
-      "stale_missing_scores": 0,
-      "local_updates": 0,
+      "stale_missing_scores": 28,
+      "local_updates": 28,
       "espn_updates": 0,
-      "changed": false,
+      "changed": true,
       "unresolved": [],
       "unresolved_count": 0
     }
   ],
   "totals": {
     "scanned": 200,
-    "stale_missing_scores": 0,
-    "local_updates": 0,
+    "stale_missing_scores": 28,
+    "local_updates": 28,
     "espn_updates": 0,
-    "changed_files": 0,
+    "changed_files": 1,
     "unresolved": 0
   },
-  "updates": [],
+  "updates": [
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[2]",
+      "match": "M074",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[3]",
+      "match": "M075",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[4]",
+      "match": "M078",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[5]",
+      "match": "M077",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[6]",
+      "match": "M079",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[7]",
+      "match": "M080",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[8]",
+      "match": "M082",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[9]",
+      "match": "M081",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[10]",
+      "match": "M084",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[11]",
+      "match": "M083",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[12]",
+      "match": "M085",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[13]",
+      "match": "M086",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[14]",
+      "match": "M087",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.rounds[0].matches[15]",
+      "match": "M088",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[2]",
+      "match": "M074",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[3]",
+      "match": "M075",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[4]",
+      "match": "M078",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[5]",
+      "match": "M077",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[6]",
+      "match": "M079",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[7]",
+      "match": "M080",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[8]",
+      "match": "M082",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[9]",
+      "match": "M081",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[10]",
+      "match": "M084",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[11]",
+      "match": "M083",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[12]",
+      "match": "M085",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        2,
+        0
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[13]",
+      "match": "M086",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        1
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[14]",
+      "match": "M087",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        3,
+        2
+      ]
+    },
+    {
+      "file": "knockout-live.json",
+      "path": "$.matches[15]",
+      "match": "M088",
+      "reason": "local-same-match",
+      "from_file": "matches.json",
+      "before_score": null,
+      "after_score": [
+        1,
+        0
+      ]
+    }
+  ],
   "ok": true
 }

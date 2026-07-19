@@ -1,33 +1,36 @@
 {
   "script": "worldcup-jordan-order-consistency.mjs",
-  "ran_at_jordan": "2026-07-20T00:45:50+03:00",
+  "ran_at_jordan": "2026-07-20T00:57:22+03:00",
   "timezone": "Asia/Amman",
   "files": {
     "matches.json": {
+      "espn_matched": 104,
       "sorted_arrays": 0
     },
     "bracket.json": {
+      "espn_matched": 32,
       "sorted_arrays": 0
     },
     "knockout-live.json": {
-      "sorted_arrays": 0
+      "espn_matched": 62,
+      "sorted_arrays": 2
     }
   },
   "espn": {
-    "fetched_events": 0,
+    "fetched_events": 104,
     "errors": [],
-    "skipped": true
+    "skipped": false
   },
   "counters": {
-    "espn_matched": 0,
-    "score_updates": 0,
-    "status_updates": 0,
-    "number_updates": 26,
-    "time_updates": 64,
-    "visible_time_updates": 64,
-    "time_state_updates": 2,
+    "espn_matched": 198,
+    "score_updates": 43,
+    "status_updates": 198,
+    "number_updates": 32,
+    "time_updates": 62,
+    "visible_time_updates": 62,
+    "time_state_updates": 6,
     "zero_score_fills": 0,
-    "canonical_sync_changes": 226,
-    "sorted_arrays": 0
+    "canonical_sync_changes": 96,
+    "sorted_arrays": 2
   }
 }
