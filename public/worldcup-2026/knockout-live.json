@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-16T18:35:59+03:00",
+  "last_updated_at": "2026-07-19T09:00:31+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -11,48 +11,44 @@
     "unresolved_future_slots": [],
     "dynamic_advancement_slots_checked": 38,
     "matches_json_synced": true,
-    "matches_json_updated": 4,
-    "canonical_finalizer_at": "2026-07-16T18:35:59+03:00",
-    "canonical_finalizer_version": "2026-07-12-semifinals-official-lock-v2",
-    "semifinals_official_lock_at": "2026-07-16T18:35:59+03:00",
-    "semifinals_official_lock_version": "2026-07-12-semifinals-official-lock-v2"
+    "matches_json_updated": 7
   },
   "third_assignments": [],
   "dynamic_advancement_checks": [
     {
-      "match": "M086",
+      "match": "M088",
       "side": "team1",
       "source_slot": "W86",
-      "resolved_team_ar": "Switzerland",
-      "unresolved": false,
-      "ok": true
-    },
-    {
-      "match": "M086",
-      "side": "team2",
-      "source_slot": "W88",
-      "resolved_team_ar": "Switzerland",
-      "unresolved": false,
-      "ok": true
-    },
-    {
-      "match": "M087",
-      "side": "team1",
-      "source_slot": "W86",
-      "resolved_team_ar": "Switzerland",
-      "unresolved": false,
-      "ok": true
-    },
-    {
-      "match": "M087",
-      "side": "team2",
-      "source_slot": "W88",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
     {
       "match": "M088",
+      "side": "team2",
+      "source_slot": "W88",
+      "resolved_team_ar": "الفائز من مباراة 88",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M086",
+      "side": "team1",
+      "source_slot": "W86",
+      "resolved_team_ar": "الفائز من مباراة 86",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M086",
+      "side": "team2",
+      "source_slot": "W88",
+      "resolved_team_ar": "الفائز من مباراة 88",
+      "unresolved": false,
+      "ok": true
+    },
+    {
+      "match": "M087",
       "side": "team1",
       "source_slot": "W85",
       "resolved_team_ar": "Switzerland",
@@ -60,7 +56,7 @@
       "ok": true
     },
     {
-      "match": "M088",
+      "match": "M087",
       "side": "team2",
       "source_slot": "W87",
       "resolved_team_ar": "Switzerland",
@@ -167,7 +163,7 @@
       "match": "M095",
       "side": "team1",
       "source_slot": "W86",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
@@ -175,7 +171,7 @@
       "match": "M095",
       "side": "team2",
       "source_slot": "W88",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "الفائز من مباراة 88",
       "unresolved": false,
       "ok": true
     },
@@ -247,7 +243,7 @@
       "match": "M100",
       "side": "team1",
       "source_slot": "W95",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
@@ -287,7 +283,7 @@
       "match": "M102",
       "side": "team2",
       "source_slot": "W100",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
@@ -295,7 +291,7 @@
       "match": "M103",
       "side": "team1",
       "source_slot": "L101",
-      "resolved_team_ar": "France",
+      "resolved_team_ar": "Spain",
       "unresolved": false,
       "ok": true
     },
@@ -303,7 +299,7 @@
       "match": "M103",
       "side": "team2",
       "source_slot": "L102",
-      "resolved_team_ar": "England",
+      "resolved_team_ar": "الفائز من مباراة 86",
       "unresolved": false,
       "ok": true
     },
@@ -311,7 +307,7 @@
       "match": "M104",
       "side": "team1",
       "source_slot": "W101",
-      "resolved_team_ar": "Spain",
+      "resolved_team_ar": "France",
       "unresolved": false,
       "ok": true
     },
@@ -319,7 +315,7 @@
       "match": "M104",
       "side": "team2",
       "source_slot": "W102",
-      "resolved_team_ar": "Switzerland",
+      "resolved_team_ar": "England",
       "unresolved": false,
       "ok": true
     }
@@ -346,9 +342,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 0,
@@ -380,18 +374,7 @@
           },
           "source_slot1": "2A",
           "source_slot2": "2B",
-          "channels": [],
-          "match_number": 73,
-          "matchNumber": 73,
-          "display_number": 73,
-          "date_ar": "الأحد، ٢٨ حزيران",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-06-28",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-06-28T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760486",
-          "espnEventId": "760486"
+          "channels": []
         },
         {
           "id": "M076",
@@ -409,9 +392,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -443,18 +424,7 @@
           },
           "source_slot1": "1C",
           "source_slot2": "2F",
-          "channels": [],
-          "match_number": 76,
-          "matchNumber": 76,
-          "display_number": 76,
-          "date_ar": "الاثنين، ٢٩ حزيران",
-          "time_ar": "٨:٠٠ م",
-          "date_jordan": "2026-06-29",
-          "time_jordan": "20:00",
-          "sort_key_jordan": "2026-06-29T20:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760487",
-          "espnEventId": "760487"
+          "channels": []
         },
         {
           "id": "M074",
@@ -471,10 +441,8 @@
           "venue_ar": "Boston Stadium / Gillette Stadium",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Penalties"
+            "key": "finished_on_penalties",
+            "label_ar": "انتهت بركلات الترجيح"
           },
           "phase": "finished_on_penalties",
           "score1": 1,
@@ -512,18 +480,7 @@
           },
           "source_slot1": "1E",
           "source_slot2": "3A/B/C/D/F",
-          "channels": [],
-          "match_number": 74,
-          "matchNumber": 74,
-          "display_number": 74,
-          "date_ar": "الاثنين، ٢٩ حزيران",
-          "time_ar": "١١:٣٠ م",
-          "date_jordan": "2026-06-29",
-          "time_jordan": "23:30",
-          "sort_key_jordan": "2026-06-29T23:30:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760489",
-          "espnEventId": "760489"
+          "channels": []
         },
         {
           "id": "M075",
@@ -540,10 +497,8 @@
           "venue_ar": "Estadio Monterrey / Estadio BBVA",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Penalties"
+            "key": "finished_on_penalties",
+            "label_ar": "انتهت بركلات الترجيح"
           },
           "phase": "finished_on_penalties",
           "score1": 1,
@@ -581,18 +536,7 @@
           },
           "source_slot1": "1F",
           "source_slot2": "2C",
-          "channels": [],
-          "match_number": 75,
-          "matchNumber": 75,
-          "display_number": 75,
-          "date_ar": "الثلاثاء، ٣٠ حزيران",
-          "time_ar": "٤:٠٠ ص",
-          "date_jordan": "2026-06-30",
-          "time_jordan": "04:00",
-          "sort_key_jordan": "2026-06-30T04:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760488",
-          "espnEventId": "760488"
+          "channels": []
         },
         {
           "id": "M078",
@@ -610,9 +554,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 1,
@@ -644,18 +586,7 @@
           },
           "source_slot1": "2E",
           "source_slot2": "2I",
-          "channels": [],
-          "match_number": 78,
-          "matchNumber": 78,
-          "display_number": 78,
-          "date_ar": "الثلاثاء، ٣٠ حزيران",
-          "time_ar": "٨:٠٠ م",
-          "date_jordan": "2026-06-30",
-          "time_jordan": "20:00",
-          "sort_key_jordan": "2026-06-30T20:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760490",
-          "espnEventId": "760490"
+          "channels": []
         },
         {
           "id": "M077",
@@ -673,9 +604,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 3,
@@ -707,18 +636,7 @@
           },
           "source_slot1": "1I",
           "source_slot2": "3C/D/F/G/H",
-          "channels": [],
-          "match_number": 77,
-          "matchNumber": 77,
-          "display_number": 77,
-          "date_ar": "الأربعاء، ١ تموز",
-          "time_ar": "١٢:٠٠ ص",
-          "date_jordan": "2026-07-01",
-          "time_jordan": "00:00",
-          "sort_key_jordan": "2026-07-01T00:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760492",
-          "espnEventId": "760492"
+          "channels": []
         },
         {
           "id": "M079",
@@ -736,9 +654,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -770,18 +686,7 @@
           },
           "source_slot1": "1A",
           "source_slot2": "3C/E/F/H/I",
-          "channels": [],
-          "match_number": 79,
-          "matchNumber": 79,
-          "display_number": 79,
-          "date_ar": "الأربعاء، ١ تموز",
-          "time_ar": "٥:٠٠ ص",
-          "date_jordan": "2026-07-01",
-          "time_jordan": "05:00",
-          "sort_key_jordan": "2026-07-01T05:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760491",
-          "espnEventId": "760491"
+          "channels": []
         },
         {
           "id": "M080",
@@ -799,9 +704,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -833,18 +736,7 @@
           },
           "source_slot1": "1L",
           "source_slot2": "3E/H/I/J/K",
-          "channels": [],
-          "match_number": 80,
-          "matchNumber": 80,
-          "display_number": 80,
-          "date_ar": "الأربعاء، ١ تموز",
-          "time_ar": "٧:٠٠ م",
-          "date_jordan": "2026-07-01",
-          "time_jordan": "19:00",
-          "sort_key_jordan": "2026-07-01T19:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760495",
-          "espnEventId": "760495"
+          "channels": []
         },
         {
           "id": "M082",
@@ -861,10 +753,8 @@
           "venue_ar": "Seattle Stadium / Lumen Field",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Extra Time"
+            "key": "finished_after_extra_time",
+            "label_ar": "انتهت بعد التمديد"
           },
           "phase": "finished_after_extra_time",
           "score1": 3,
@@ -899,18 +789,7 @@
           },
           "source_slot1": "1G",
           "source_slot2": "3A/E/H/I/J",
-          "channels": [],
-          "match_number": 82,
-          "matchNumber": 82,
-          "display_number": 82,
-          "date_ar": "الأربعاء، ١ تموز",
-          "time_ar": "١١:٠٠ م",
-          "date_jordan": "2026-07-01",
-          "time_jordan": "23:00",
-          "sort_key_jordan": "2026-07-01T23:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760493",
-          "espnEventId": "760493"
+          "channels": []
         },
         {
           "id": "M081",
@@ -928,9 +807,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -962,18 +839,7 @@
           },
           "source_slot1": "1D",
           "source_slot2": "3B/E/F/I/J",
-          "channels": [],
-          "match_number": 81,
-          "matchNumber": 81,
-          "display_number": 81,
-          "date_ar": "الخميس، ٢ تموز",
-          "time_ar": "٣:٠٠ ص",
-          "date_jordan": "2026-07-02",
-          "time_jordan": "03:00",
-          "sort_key_jordan": "2026-07-02T03:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760494",
-          "espnEventId": "760494"
+          "channels": []
         },
         {
           "id": "M084",
@@ -991,9 +857,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 3,
@@ -1025,18 +889,7 @@
           },
           "source_slot1": "1H",
           "source_slot2": "2J",
-          "channels": [],
-          "match_number": 84,
-          "matchNumber": 84,
-          "display_number": 84,
-          "date_ar": "الخميس، ٢ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-02",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-02T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760497",
-          "espnEventId": "760497"
+          "channels": []
         },
         {
           "id": "M083",
@@ -1054,9 +907,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -1088,18 +939,7 @@
           },
           "source_slot1": "2K",
           "source_slot2": "2L",
-          "channels": [],
-          "match_number": 83,
-          "matchNumber": 83,
-          "display_number": 83,
-          "date_ar": "الجمعة، ٣ تموز",
-          "time_ar": "٢:٠٠ ص",
-          "date_jordan": "2026-07-03",
-          "time_jordan": "02:00",
-          "sort_key_jordan": "2026-07-03T02:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760496",
-          "espnEventId": "760496"
+          "channels": []
         },
         {
           "id": "M085",
@@ -1117,9 +957,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -1151,22 +989,11 @@
           },
           "source_slot1": "1B",
           "source_slot2": "3E/F/G/I/J",
-          "channels": [],
-          "match_number": 85,
-          "matchNumber": 85,
-          "display_number": 85,
-          "date_ar": "الجمعة، ٣ تموز",
-          "time_ar": "٦:٠٠ ص",
-          "date_jordan": "2026-07-03",
-          "time_jordan": "06:00",
-          "sort_key_jordan": "2026-07-03T06:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760498",
-          "espnEventId": "760498"
+          "channels": []
         },
         {
-          "id": "M086",
-          "number": 86,
+          "id": "M088",
+          "number": 88,
           "stage_key": "round32",
           "stage_ar": "دور الـ32",
           "stage_order": 1,
@@ -1179,10 +1006,8 @@
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Penalties"
+            "key": "finished_on_penalties",
+            "label_ar": "انتهت بركلات الترجيح"
           },
           "phase": "finished_on_penalties",
           "score1": 1,
@@ -1201,10 +1026,10 @@
             2,
             4
           ],
-          "winner_side": 1,
+          "winner_side": 2,
           "team1": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 86",
+            "name_en": "Winner of match 86",
             "group": "",
             "position": "",
             "slot": "W86",
@@ -1212,8 +1037,8 @@
             "resolved_from": "W86"
           },
           "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 88",
+            "name_en": "Winner of match 88",
             "group": "",
             "position": "",
             "slot": "W88",
@@ -1222,22 +1047,11 @@
           },
           "source_slot1": "W86",
           "source_slot2": "W88",
-          "channels": [],
-          "date_ar": "الجمعة، ٣ تموز",
-          "time_ar": "٩:٠٠ م",
-          "date_jordan": "2026-07-03",
-          "time_jordan": "21:00",
-          "sort_key_jordan": "2026-07-03T21:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760499",
-          "espnEventId": "760499",
-          "match_number": 86,
-          "matchNumber": 86,
-          "display_number": 86
+          "channels": []
         },
         {
-          "id": "M087",
-          "number": 87,
+          "id": "M086",
+          "number": 86,
           "stage_key": "round32",
           "stage_ar": "دور الـ32",
           "stage_order": 1,
@@ -1250,10 +1064,8 @@
           "venue_ar": "Miami Stadium / Hard Rock Stadium",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Extra Time"
+            "key": "finished_after_extra_time",
+            "label_ar": "انتهت بعد التمديد"
           },
           "phase": "finished_after_extra_time",
           "score1": 3,
@@ -1271,8 +1083,8 @@
           "score_penalties": null,
           "winner_side": 1,
           "team1": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 86",
+            "name_en": "Winner of match 86",
             "group": "",
             "position": "",
             "slot": "W86",
@@ -1280,8 +1092,8 @@
             "resolved_from": "W86"
           },
           "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 88",
+            "name_en": "Winner of match 88",
             "group": "",
             "position": "",
             "slot": "W88",
@@ -1290,22 +1102,11 @@
           },
           "source_slot1": "W86",
           "source_slot2": "W88",
-          "channels": [],
-          "date_ar": "السبت، ٤ تموز",
-          "time_ar": "١:٠٠ ص",
-          "date_jordan": "2026-07-04",
-          "time_jordan": "01:00",
-          "sort_key_jordan": "2026-07-04T01:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760500",
-          "espnEventId": "760500",
-          "match_number": 87,
-          "matchNumber": 87,
-          "display_number": 87
+          "channels": []
         },
         {
-          "id": "M088",
-          "number": 88,
+          "id": "M087",
+          "number": 87,
           "stage_key": "round32",
           "stage_ar": "دور الـ32",
           "stage_order": 1,
@@ -1319,22 +1120,20 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 1,
           "score2": 0,
           "score_ft": [
-            0,
-            1
+            1,
+            0
           ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": 2,
+          "winner_side": 1,
           "team1": {
             "name_ar": "Switzerland",
             "name_en": "Switzerland",
@@ -1355,18 +1154,7 @@
           },
           "source_slot1": "W85",
           "source_slot2": "W87",
-          "channels": [],
-          "date_ar": "السبت، ٤ تموز",
-          "time_ar": "٤:٣٠ ص",
-          "date_jordan": "2026-07-04",
-          "time_jordan": "04:30",
-          "sort_key_jordan": "2026-07-04T04:30:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760501",
-          "espnEventId": "760501",
-          "match_number": 88,
-          "matchNumber": 88,
-          "display_number": 88
+          "channels": []
         }
       ]
     },
@@ -1391,9 +1179,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 0,
@@ -1427,18 +1213,7 @@
           },
           "source_slot1": "W73",
           "source_slot2": "W75",
-          "channels": [],
-          "date_ar": "السبت، ٤ تموز",
-          "time_ar": "٨:٠٠ م",
-          "date_jordan": "2026-07-04",
-          "time_jordan": "20:00",
-          "sort_key_jordan": "2026-07-04T20:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760502",
-          "espnEventId": "760502",
-          "match_number": 90,
-          "matchNumber": 90,
-          "display_number": 90
+          "channels": []
         },
         {
           "id": "M089",
@@ -1456,9 +1231,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 0,
@@ -1492,18 +1265,7 @@
           },
           "source_slot1": "W74",
           "source_slot2": "W77",
-          "channels": [],
-          "date_ar": "الأحد، ٥ تموز",
-          "time_ar": "١٢:٠٠ ص",
-          "date_jordan": "2026-07-05",
-          "time_jordan": "00:00",
-          "sort_key_jordan": "2026-07-05T00:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760503",
-          "espnEventId": "760503",
-          "match_number": 89,
-          "matchNumber": 89,
-          "display_number": 89
+          "channels": []
         },
         {
           "id": "M091",
@@ -1521,9 +1283,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 1,
@@ -1557,18 +1317,7 @@
           },
           "source_slot1": "W76",
           "source_slot2": "W78",
-          "channels": [],
-          "date_ar": "الأحد، ٥ تموز",
-          "time_ar": "١١:٠٠ م",
-          "date_jordan": "2026-07-05",
-          "time_jordan": "23:00",
-          "sort_key_jordan": "2026-07-05T23:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760504",
-          "espnEventId": "760504",
-          "match_number": 91,
-          "matchNumber": 91,
-          "display_number": 91
+          "channels": []
         },
         {
           "id": "M092",
@@ -1586,9 +1335,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -1622,18 +1369,7 @@
           },
           "source_slot1": "W79",
           "source_slot2": "W80",
-          "channels": [],
-          "date_ar": "الاثنين، ٦ تموز",
-          "time_ar": "٤:٠٠ ص",
-          "date_jordan": "2026-07-06",
-          "time_jordan": "04:00",
-          "sort_key_jordan": "2026-07-06T04:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760505",
-          "espnEventId": "760505",
-          "match_number": 92,
-          "matchNumber": 92,
-          "display_number": 92
+          "channels": []
         },
         {
           "id": "M093",
@@ -1651,9 +1387,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 0,
@@ -1687,18 +1421,7 @@
           },
           "source_slot1": "W83",
           "source_slot2": "W84",
-          "channels": [],
-          "date_ar": "الاثنين، ٦ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-06",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-06T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760506",
-          "espnEventId": "760506",
-          "match_number": 93,
-          "matchNumber": 93,
-          "display_number": 93
+          "channels": []
         },
         {
           "id": "M094",
@@ -1716,9 +1439,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 1,
@@ -1752,18 +1473,7 @@
           },
           "source_slot1": "W81",
           "source_slot2": "W82",
-          "channels": [],
-          "date_ar": "الثلاثاء، ٧ تموز",
-          "time_ar": "٣:٠٠ ص",
-          "date_jordan": "2026-07-07",
-          "time_jordan": "03:00",
-          "sort_key_jordan": "2026-07-07T03:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760507",
-          "espnEventId": "760507",
-          "match_number": 94,
-          "matchNumber": 94,
-          "display_number": 94
+          "channels": []
         },
         {
           "id": "M095",
@@ -1779,7 +1489,10 @@
           "kickoff_utc": "2026-07-07T16:00:00.000Z",
           "venue_ar": "Atlanta Stadium / Mercedes-Benz Stadium",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished",
+            "label_ar": "انتهت"
+          },
           "phase": "finished",
           "score1": 3,
           "score2": 2,
@@ -1793,8 +1506,8 @@
           "score_penalties": null,
           "winner_side": 1,
           "team1": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 86",
+            "name_en": "Winner of match 86",
             "group": "",
             "position": "",
             "slot": "W86",
@@ -1802,8 +1515,8 @@
             "resolved_from": "W86"
           },
           "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 88",
+            "name_en": "Winner of match 88",
             "group": "",
             "position": "",
             "slot": "W88",
@@ -1812,17 +1525,7 @@
           },
           "source_slot1": "W86",
           "source_slot2": "W88",
-          "channels": [],
-          "date_ar": "الثلاثاء، ٧ تموز",
-          "time_ar": "٧:٠٠ م",
-          "date_jordan": "2026-07-07",
-          "time_jordan": "19:00",
-          "sort_key_jordan": "2026-07-07T19:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760509",
-          "match_number": 95,
-          "matchNumber": 95,
-          "display_number": 95
+          "channels": []
         },
         {
           "id": "M096",
@@ -1838,7 +1541,10 @@
           "kickoff_utc": "2026-07-07T20:00:00.000Z",
           "venue_ar": "Vancouver Stadium / BC Place",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished_on_penalties",
+            "label_ar": "انتهت بركلات الترجيح"
+          },
           "phase": "finished_on_penalties",
           "score1": 0,
           "score2": 0,
@@ -1877,16 +1583,7 @@
           },
           "source_slot1": "W85",
           "source_slot2": "W87",
-          "channels": [],
-          "date_ar": "الثلاثاء، ٧ تموز",
-          "time_ar": "١١:٠٠ م",
-          "date_jordan": "2026-07-07",
-          "time_jordan": "23:00",
-          "sort_key_jordan": "2026-07-07T23:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "match_number": 96,
-          "matchNumber": 96,
-          "display_number": 96
+          "channels": []
         }
       ]
     },
@@ -1911,9 +1608,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -1947,18 +1642,7 @@
           },
           "source_slot1": "W89",
           "source_slot2": "W90",
-          "channels": [],
-          "date_ar": "الخميس، ٩ تموز",
-          "time_ar": "١١:٠٠ م",
-          "date_jordan": "2026-07-09",
-          "time_jordan": "23:00",
-          "sort_key_jordan": "2026-07-09T23:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760510",
-          "espnEventId": "760510",
-          "match_number": 97,
-          "matchNumber": 97,
-          "display_number": 97
+          "channels": []
         },
         {
           "id": "M098",
@@ -1976,9 +1660,7 @@
           "city_ar": "",
           "status": {
             "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
+            "label_ar": "انتهت"
           },
           "phase": "finished",
           "score1": 2,
@@ -2012,18 +1694,7 @@
           },
           "source_slot1": "W93",
           "source_slot2": "W94",
-          "channels": [],
-          "date_ar": "الجمعة، ١٠ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-10",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-10T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760511",
-          "espnEventId": "760511",
-          "match_number": 98,
-          "matchNumber": 98,
-          "display_number": 98
+          "channels": []
         },
         {
           "id": "M099",
@@ -2040,10 +1711,8 @@
           "venue_ar": "Miami Stadium / Hard Rock Stadium",
           "city_ar": "",
           "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final Score - After Extra Time"
+            "key": "finished_after_extra_time",
+            "label_ar": "انتهت بعد التمديد"
           },
           "phase": "finished_after_extra_time",
           "score1": 1,
@@ -2080,18 +1749,7 @@
           },
           "source_slot1": "W91",
           "source_slot2": "W92",
-          "channels": [],
-          "date_ar": "الأحد، ١٢ تموز",
-          "time_ar": "١٢:٠٠ ص",
-          "date_jordan": "2026-07-12",
-          "time_jordan": "00:00",
-          "sort_key_jordan": "2026-07-12T00:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760512",
-          "espnEventId": "760512",
-          "match_number": 99,
-          "matchNumber": 99,
-          "display_number": 99
+          "channels": []
         },
         {
           "id": "M100",
@@ -2107,7 +1765,10 @@
           "kickoff_utc": "2026-07-12T01:00:00.000Z",
           "venue_ar": "Kansas City Stadium / Arrowhead Stadium",
           "city_ar": "",
-          "status": "finished",
+          "status": {
+            "key": "finished_after_extra_time",
+            "label_ar": "انتهت بعد التمديد"
+          },
           "phase": "finished_after_extra_time",
           "score1": 3,
           "score2": 1,
@@ -2124,8 +1785,8 @@
           "score_penalties": null,
           "winner_side": 1,
           "team1": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
+            "name_ar": "الفائز من مباراة 86",
+            "name_en": "Winner of match 86",
             "group": "",
             "position": "",
             "slot": "W95",
@@ -2143,18 +1804,7 @@
           },
           "source_slot1": "W95",
           "source_slot2": "W96",
-          "channels": [],
-          "date_ar": "الأحد، ١٢ تموز",
-          "time_ar": "٤:٠٠ ص",
-          "date_jordan": "2026-07-12",
-          "time_jordan": "04:00",
-          "sort_key_jordan": "2026-07-12T04:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760513",
-          "espnEventId": "760513",
-          "match_number": 100,
-          "matchNumber": 100,
-          "display_number": 100
+          "channels": []
         }
       ]
     },
@@ -2177,15 +1827,10 @@
           "kickoff_utc": "2026-07-14T19:00:00.000Z",
           "venue_ar": "Dallas Stadium / AT&T Stadium",
           "city_ar": "",
-          "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Full Time"
-          },
+          "status": "finished",
           "phase": "finished",
-          "score1": 0,
-          "score2": 2,
+          "score1": 2,
+          "score2": 0,
           "score_ft": [
             0,
             2
@@ -2195,38 +1840,33 @@
           "penalty2": null,
           "score_penalties": null,
           "winner_side": 2,
-          "team1": {
-            "name_ar": "France",
-            "name_en": "France",
-            "group": "",
-            "position": "",
-            "slot": "W97",
-            "unresolved": false,
-            "resolved_from": "W97"
-          },
-          "team2": {
-            "name_ar": "Spain",
-            "name_en": "Spain",
-            "group": "",
-            "position": "",
-            "slot": "W98",
-            "unresolved": false,
-            "resolved_from": "W98"
-          },
+          "team1": "Spain",
+          "team2": "France",
           "source_slot1": "W97",
           "source_slot2": "W98",
           "channels": [],
-          "date_ar": "الثلاثاء، ١٤ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-14",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-14T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760514",
-          "espnEventId": "760514",
-          "match_number": 101,
-          "matchNumber": 101,
-          "display_number": 101
+          "team1_ar": "إسبانيا",
+          "team2_ar": "فرنسا",
+          "home_score": 2,
+          "away_score": 0,
+          "score": {
+            "current": [
+              2,
+              0
+            ],
+            "ft": [
+              2,
+              0
+            ],
+            "source": "manual-official-final-four-fix",
+            "status_detail": "STATUS_FULL_TIME",
+            "checked_at": "2026-07-19T06:00:31.640Z"
+          },
+          "score_source": "manual-official-final-four-fix",
+          "live_status_detail": "STATUS_FULL_TIME",
+          "manual_override": true,
+          "manual_override_key": "official-final-four-M101",
+          "manual_override_at": "2026-07-19T06:00:31.640Z"
         },
         {
           "id": "M102",
@@ -2242,15 +1882,10 @@
           "kickoff_utc": "2026-07-15T19:00:00.000Z",
           "venue_ar": "Atlanta Stadium / Mercedes-Benz Stadium",
           "city_ar": "",
-          "status": {
-            "key": "finished",
-            "state": "finished",
-            "label_ar": "انتهت",
-            "label": "Final"
-          },
+          "status": "finished",
           "phase": "finished",
-          "score1": 1,
-          "score2": 2,
+          "score1": 2,
+          "score2": 1,
           "score_ft": [
             1,
             2
@@ -2260,50 +1895,33 @@
           "penalty2": null,
           "score_penalties": null,
           "winner_side": 2,
-          "team1": {
-            "name_ar": "England",
-            "name_en": "England",
-            "group": "",
-            "position": "",
-            "slot": "W99",
-            "unresolved": false,
-            "resolved_from": "W99"
-          },
-          "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
-            "group": "",
-            "position": "",
-            "slot": "W100",
-            "unresolved": false,
-            "resolved_from": "W100"
-          },
+          "team1": "Argentina",
+          "team2": "England",
           "source_slot1": "W99",
           "source_slot2": "W100",
           "channels": [],
-          "date_ar": "الأربعاء، ١٥ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-15",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-15T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760515",
-          "match_number": 102,
-          "matchNumber": 102,
-          "display_number": 102,
-          "espnEventId": "760515",
-          "status_key": "finished",
-          "status_ar": "انتهت",
-          "team1_score": 1,
-          "team2_score": 2,
-          "team1Score": 1,
-          "team2Score": 2,
-          "home_score": 1,
-          "away_score": 2,
-          "homeScore": 1,
-          "awayScore": 2,
-          "score_text": "1 - 2",
-          "score_source": "espn-finished"
+          "team1_ar": "الأرجنتين",
+          "team2_ar": "إنجلترا",
+          "home_score": 2,
+          "away_score": 1,
+          "score": {
+            "current": [
+              2,
+              1
+            ],
+            "ft": [
+              2,
+              1
+            ],
+            "source": "manual-official-final-four-fix",
+            "status_detail": "STATUS_FULL_TIME",
+            "checked_at": "2026-07-19T06:00:31.640Z"
+          },
+          "score_source": "manual-official-final-four-fix",
+          "live_status_detail": "STATUS_FULL_TIME",
+          "manual_override": true,
+          "manual_override_key": "official-final-four-M102",
+          "manual_override_at": "2026-07-19T06:00:31.640Z"
         }
       ]
     },
@@ -2326,53 +1944,29 @@
           "kickoff_utc": "2026-07-18T21:00:00.000Z",
           "venue_ar": "Miami Stadium / Hard Rock Stadium",
           "city_ar": "",
-          "status": {
-            "key": "scheduled",
-            "state": "scheduled",
-            "label_ar": "لم تبدأ",
-            "label": "Scheduled"
-          },
-          "phase": "",
+          "status": "scheduled",
+          "phase": "finished",
           "score1": null,
           "score2": null,
-          "score_ft": null,
+          "score_ft": [
+            6,
+            4
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
-          "team1": {
-            "name_ar": "France",
-            "name_en": "France",
-            "group": "",
-            "position": "",
-            "slot": "L101",
-            "unresolved": false,
-            "resolved_from": "L101"
-          },
-          "team2": {
-            "name_ar": "England",
-            "name_en": "England",
-            "group": "",
-            "position": "",
-            "slot": "L102",
-            "unresolved": false,
-            "resolved_from": "L102"
-          },
+          "winner_side": 1,
+          "team1": "France",
+          "team2": "England",
           "source_slot1": "L101",
           "source_slot2": "L102",
           "channels": [],
-          "date_ar": "الأحد، ١٩ تموز",
-          "time_ar": "١٢:٠٠ ص",
-          "date_jordan": "2026-07-19",
-          "time_jordan": "00:00",
-          "sort_key_jordan": "2026-07-19T00:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "espn_event_id": "760516",
-          "espnEventId": "760516",
-          "match_number": 103,
-          "matchNumber": 103,
-          "display_number": 103
+          "team1_ar": "فرنسا",
+          "team2_ar": "إنجلترا",
+          "manual_override": true,
+          "manual_override_key": "official-final-four-M103",
+          "manual_override_at": "2026-07-19T06:00:31.640Z"
         }
       ]
     },
@@ -2396,45 +1990,28 @@
           "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
           "city_ar": "",
           "status": "scheduled",
-          "phase": "scheduled",
+          "phase": "finished",
           "score1": null,
           "score2": null,
-          "score_ft": null,
+          "score_ft": [
+            4,
+            6
+          ],
           "score_et": null,
           "penalty1": null,
           "penalty2": null,
           "score_penalties": null,
-          "winner_side": null,
-          "team1": {
-            "name_ar": "Spain",
-            "name_en": "Spain",
-            "group": "",
-            "position": "",
-            "slot": "W101",
-            "unresolved": false,
-            "resolved_from": "W101"
-          },
-          "team2": {
-            "name_ar": "Switzerland",
-            "name_en": "Switzerland",
-            "group": "",
-            "position": "",
-            "slot": "W102",
-            "unresolved": false,
-            "resolved_from": "W102"
-          },
+          "winner_side": 2,
+          "team1": "Spain",
+          "team2": "Argentina",
           "source_slot1": "W101",
           "source_slot2": "W102",
           "channels": [],
-          "date_ar": "الأحد، ١٩ تموز",
-          "time_ar": "١٠:٠٠ م",
-          "date_jordan": "2026-07-19",
-          "time_jordan": "22:00",
-          "sort_key_jordan": "2026-07-19T22:00:00+03:00",
-          "timezone": "Asia/Amman",
-          "match_number": 104,
-          "matchNumber": 104,
-          "display_number": 104
+          "team1_ar": "إسبانيا",
+          "team2_ar": "الأرجنتين",
+          "manual_override": true,
+          "manual_override_key": "official-final-four-M104",
+          "manual_override_at": "2026-07-19T06:00:31.640Z"
         }
       ]
     }
@@ -2456,9 +2033,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 0,
@@ -2490,18 +2065,7 @@
       },
       "source_slot1": "2A",
       "source_slot2": "2B",
-      "channels": [],
-      "match_number": 73,
-      "matchNumber": 73,
-      "display_number": 73,
-      "date_ar": "الأحد، ٢٨ حزيران",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-06-28",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-06-28T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760486",
-      "espnEventId": "760486"
+      "channels": []
     },
     {
       "id": "M076",
@@ -2519,9 +2083,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -2553,18 +2115,7 @@
       },
       "source_slot1": "1C",
       "source_slot2": "2F",
-      "channels": [],
-      "match_number": 76,
-      "matchNumber": 76,
-      "display_number": 76,
-      "date_ar": "الاثنين، ٢٩ حزيران",
-      "time_ar": "٨:٠٠ م",
-      "date_jordan": "2026-06-29",
-      "time_jordan": "20:00",
-      "sort_key_jordan": "2026-06-29T20:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760487",
-      "espnEventId": "760487"
+      "channels": []
     },
     {
       "id": "M074",
@@ -2581,10 +2132,8 @@
       "venue_ar": "Boston Stadium / Gillette Stadium",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Penalties"
+        "key": "finished_on_penalties",
+        "label_ar": "انتهت بركلات الترجيح"
       },
       "phase": "finished_on_penalties",
       "score1": 1,
@@ -2622,18 +2171,7 @@
       },
       "source_slot1": "1E",
       "source_slot2": "3A/B/C/D/F",
-      "channels": [],
-      "match_number": 74,
-      "matchNumber": 74,
-      "display_number": 74,
-      "date_ar": "الاثنين، ٢٩ حزيران",
-      "time_ar": "١١:٣٠ م",
-      "date_jordan": "2026-06-29",
-      "time_jordan": "23:30",
-      "sort_key_jordan": "2026-06-29T23:30:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760489",
-      "espnEventId": "760489"
+      "channels": []
     },
     {
       "id": "M075",
@@ -2650,10 +2188,8 @@
       "venue_ar": "Estadio Monterrey / Estadio BBVA",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Penalties"
+        "key": "finished_on_penalties",
+        "label_ar": "انتهت بركلات الترجيح"
       },
       "phase": "finished_on_penalties",
       "score1": 1,
@@ -2691,18 +2227,7 @@
       },
       "source_slot1": "1F",
       "source_slot2": "2C",
-      "channels": [],
-      "match_number": 75,
-      "matchNumber": 75,
-      "display_number": 75,
-      "date_ar": "الثلاثاء، ٣٠ حزيران",
-      "time_ar": "٤:٠٠ ص",
-      "date_jordan": "2026-06-30",
-      "time_jordan": "04:00",
-      "sort_key_jordan": "2026-06-30T04:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760488",
-      "espnEventId": "760488"
+      "channels": []
     },
     {
       "id": "M078",
@@ -2720,9 +2245,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 1,
@@ -2754,18 +2277,7 @@
       },
       "source_slot1": "2E",
       "source_slot2": "2I",
-      "channels": [],
-      "match_number": 78,
-      "matchNumber": 78,
-      "display_number": 78,
-      "date_ar": "الثلاثاء، ٣٠ حزيران",
-      "time_ar": "٨:٠٠ م",
-      "date_jordan": "2026-06-30",
-      "time_jordan": "20:00",
-      "sort_key_jordan": "2026-06-30T20:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760490",
-      "espnEventId": "760490"
+      "channels": []
     },
     {
       "id": "M077",
@@ -2783,9 +2295,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 3,
@@ -2817,18 +2327,7 @@
       },
       "source_slot1": "1I",
       "source_slot2": "3C/D/F/G/H",
-      "channels": [],
-      "match_number": 77,
-      "matchNumber": 77,
-      "display_number": 77,
-      "date_ar": "الأربعاء، ١ تموز",
-      "time_ar": "١٢:٠٠ ص",
-      "date_jordan": "2026-07-01",
-      "time_jordan": "00:00",
-      "sort_key_jordan": "2026-07-01T00:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760492",
-      "espnEventId": "760492"
+      "channels": []
     },
     {
       "id": "M079",
@@ -2846,9 +2345,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -2880,18 +2377,7 @@
       },
       "source_slot1": "1A",
       "source_slot2": "3C/E/F/H/I",
-      "channels": [],
-      "match_number": 79,
-      "matchNumber": 79,
-      "display_number": 79,
-      "date_ar": "الأربعاء، ١ تموز",
-      "time_ar": "٥:٠٠ ص",
-      "date_jordan": "2026-07-01",
-      "time_jordan": "05:00",
-      "sort_key_jordan": "2026-07-01T05:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760491",
-      "espnEventId": "760491"
+      "channels": []
     },
     {
       "id": "M080",
@@ -2909,9 +2395,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -2943,18 +2427,7 @@
       },
       "source_slot1": "1L",
       "source_slot2": "3E/H/I/J/K",
-      "channels": [],
-      "match_number": 80,
-      "matchNumber": 80,
-      "display_number": 80,
-      "date_ar": "الأربعاء، ١ تموز",
-      "time_ar": "٧:٠٠ م",
-      "date_jordan": "2026-07-01",
-      "time_jordan": "19:00",
-      "sort_key_jordan": "2026-07-01T19:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760495",
-      "espnEventId": "760495"
+      "channels": []
     },
     {
       "id": "M082",
@@ -2971,10 +2444,8 @@
       "venue_ar": "Seattle Stadium / Lumen Field",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Extra Time"
+        "key": "finished_after_extra_time",
+        "label_ar": "انتهت بعد التمديد"
       },
       "phase": "finished_after_extra_time",
       "score1": 3,
@@ -3009,18 +2480,7 @@
       },
       "source_slot1": "1G",
       "source_slot2": "3A/E/H/I/J",
-      "channels": [],
-      "match_number": 82,
-      "matchNumber": 82,
-      "display_number": 82,
-      "date_ar": "الأربعاء، ١ تموز",
-      "time_ar": "١١:٠٠ م",
-      "date_jordan": "2026-07-01",
-      "time_jordan": "23:00",
-      "sort_key_jordan": "2026-07-01T23:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760493",
-      "espnEventId": "760493"
+      "channels": []
     },
     {
       "id": "M081",
@@ -3038,9 +2498,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -3072,18 +2530,7 @@
       },
       "source_slot1": "1D",
       "source_slot2": "3B/E/F/I/J",
-      "channels": [],
-      "match_number": 81,
-      "matchNumber": 81,
-      "display_number": 81,
-      "date_ar": "الخميس، ٢ تموز",
-      "time_ar": "٣:٠٠ ص",
-      "date_jordan": "2026-07-02",
-      "time_jordan": "03:00",
-      "sort_key_jordan": "2026-07-02T03:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760494",
-      "espnEventId": "760494"
+      "channels": []
     },
     {
       "id": "M084",
@@ -3101,9 +2548,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 3,
@@ -3135,18 +2580,7 @@
       },
       "source_slot1": "1H",
       "source_slot2": "2J",
-      "channels": [],
-      "match_number": 84,
-      "matchNumber": 84,
-      "display_number": 84,
-      "date_ar": "الخميس، ٢ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-02",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-02T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760497",
-      "espnEventId": "760497"
+      "channels": []
     },
     {
       "id": "M083",
@@ -3164,9 +2598,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -3198,18 +2630,7 @@
       },
       "source_slot1": "2K",
       "source_slot2": "2L",
-      "channels": [],
-      "match_number": 83,
-      "matchNumber": 83,
-      "display_number": 83,
-      "date_ar": "الجمعة، ٣ تموز",
-      "time_ar": "٢:٠٠ ص",
-      "date_jordan": "2026-07-03",
-      "time_jordan": "02:00",
-      "sort_key_jordan": "2026-07-03T02:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760496",
-      "espnEventId": "760496"
+      "channels": []
     },
     {
       "id": "M085",
@@ -3227,9 +2648,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -3261,22 +2680,11 @@
       },
       "source_slot1": "1B",
       "source_slot2": "3E/F/G/I/J",
-      "channels": [],
-      "match_number": 85,
-      "matchNumber": 85,
-      "display_number": 85,
-      "date_ar": "الجمعة، ٣ تموز",
-      "time_ar": "٦:٠٠ ص",
-      "date_jordan": "2026-07-03",
-      "time_jordan": "06:00",
-      "sort_key_jordan": "2026-07-03T06:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760498",
-      "espnEventId": "760498"
+      "channels": []
     },
     {
-      "id": "M086",
-      "number": 86,
+      "id": "M088",
+      "number": 88,
       "stage_key": "round32",
       "stage_ar": "دور الـ32",
       "stage_order": 1,
@@ -3289,14 +2697,12 @@
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بعد التمديد",
-        "label": "Final Score - After Extra Time"
+        "key": "finished_on_penalties",
+        "label_ar": "انتهت بركلات الترجيح"
       },
-      "phase": "finished_after_extra_time",
-      "score1": 3,
-      "score2": 2,
+      "phase": "finished_on_penalties",
+      "score1": 1,
+      "score2": 1,
       "score_ft": [
         1,
         1
@@ -3305,13 +2711,16 @@
         1,
         1
       ],
-      "penalty1": null,
-      "penalty2": null,
-      "score_penalties": null,
-      "winner_side": 1,
+      "penalty1": 2,
+      "penalty2": 4,
+      "score_penalties": [
+        2,
+        4
+      ],
+      "winner_side": 2,
       "team1": {
-        "name_ar": "الأرجنتين",
-        "name_en": "Argentina",
+        "name_ar": "الفائز من مباراة 86",
+        "name_en": "Winner of match 86",
         "group": "",
         "position": "",
         "slot": "W86",
@@ -3319,8 +2728,8 @@
         "resolved_from": "W86"
       },
       "team2": {
-        "name_ar": "الرأس الأخضر",
-        "name_en": "Cape Verde",
+        "name_ar": "الفائز من مباراة 88",
+        "name_en": "Winner of match 88",
         "group": "",
         "position": "",
         "slot": "W88",
@@ -3329,69 +2738,11 @@
       },
       "source_slot1": "W86",
       "source_slot2": "W88",
-      "channels": [],
-      "date_ar": "الجمعة، ٣ تموز",
-      "time_ar": "٩:٠٠ م",
-      "date_jordan": "2026-07-03",
-      "time_jordan": "21:00",
-      "sort_key_jordan": "2026-07-03T21:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760499",
-      "espnEventId": "760499",
-      "match_number": 86,
-      "matchNumber": 86,
-      "display_number": 86,
-      "home_score": 3,
-      "away_score": 2,
-      "homeScore": 3,
-      "awayScore": 2,
-      "team1_score": 3,
-      "team2_score": 2,
-      "team1Score": 3,
-      "team2Score": 2,
-      "score_text": "3 - 2",
-      "loser_side": 2,
-      "winner": "Argentina",
-      "winner_ar": "الأرجنتين",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "الأرجنتين فازت 3-2 على الرأس الأخضر بعد التمديد.",
-      "status_key": "finished",
-      "status_ar": "انتهت بعد التمديد",
-      "live_phase": "finished_after_extra_time",
-      "live_phase_ar": "انتهت بعد التمديد",
-      "live_status_detail": "انتهت بعد التمديد",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished_after_extra_time",
-        "phase_ar": "انتهت بعد التمديد",
-        "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          3,
-          2
-        ],
-        "ft": [
-          3,
-          2
-        ],
-        "winner_side": 1,
-        "et": [
-          3,
-          2
-        ]
-      }
+      "channels": []
     },
     {
-      "id": "M087",
-      "number": 87,
+      "id": "M086",
+      "number": 86,
       "stage_key": "round32",
       "stage_ar": "دور الـ32",
       "stage_order": 1,
@@ -3404,14 +2755,12 @@
       "venue_ar": "Miami Stadium / Hard Rock Stadium",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "key": "finished_after_extra_time",
+        "label_ar": "انتهت بعد التمديد"
       },
-      "phase": "finished",
-      "score1": 1,
-      "score2": 0,
+      "phase": "finished_after_extra_time",
+      "score1": 3,
+      "score2": 2,
       "score_ft": [
         3,
         2
@@ -3425,84 +2774,30 @@
       "score_penalties": null,
       "winner_side": 1,
       "team1": {
-        "name_ar": "كولومبيا",
-        "name_en": "Colombia",
+        "name_ar": "الفائز من مباراة 86",
+        "name_en": "Winner of match 86",
         "group": "",
         "position": "",
-        "slot": "W85",
+        "slot": "W86",
         "unresolved": false,
-        "resolved_from": "W85"
+        "resolved_from": "W86"
       },
       "team2": {
-        "name_ar": "غانا",
-        "name_en": "Ghana",
+        "name_ar": "الفائز من مباراة 88",
+        "name_en": "Winner of match 88",
         "group": "",
         "position": "",
-        "slot": "W87",
+        "slot": "W88",
         "unresolved": false,
-        "resolved_from": "W87"
+        "resolved_from": "W88"
       },
-      "source_slot1": "W85",
-      "source_slot2": "W87",
-      "channels": [],
-      "date_ar": "السبت، ٤ تموز",
-      "time_ar": "١:٠٠ ص",
-      "date_jordan": "2026-07-04",
-      "time_jordan": "01:00",
-      "sort_key_jordan": "2026-07-04T01:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760500",
-      "espnEventId": "760500",
-      "match_number": 87,
-      "matchNumber": 87,
-      "display_number": 87,
-      "home_score": 1,
-      "away_score": 0,
-      "homeScore": 1,
-      "awayScore": 0,
-      "team1_score": 1,
-      "team2_score": 0,
-      "team1Score": 1,
-      "team2Score": 0,
-      "score_text": "1 - 0",
-      "loser_side": 2,
-      "winner": "Colombia",
-      "winner_ar": "كولومبيا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "كولومبيا فازت 1-0 على غانا.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          1,
-          0
-        ],
-        "ft": [
-          1,
-          0
-        ],
-        "winner_side": 1
-      }
+      "source_slot1": "W86",
+      "source_slot2": "W88",
+      "channels": []
     },
     {
-      "id": "M088",
-      "number": 88,
+      "id": "M087",
+      "number": 87,
       "stage_key": "round32",
       "stage_ar": "دور الـ32",
       "stage_order": 1,
@@ -3516,120 +2811,41 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بركلات الترجيح",
-        "label": "Final Score - After Penalties"
+        "label_ar": "انتهت"
       },
-      "phase": "finished_on_penalties",
+      "phase": "finished",
       "score1": 1,
-      "score2": 1,
+      "score2": 0,
       "score_ft": [
-        0,
-        1
+        1,
+        0
       ],
       "score_et": null,
-      "penalty1": 2,
-      "penalty2": 4,
-      "score_penalties": [
-        2,
-        4
-      ],
-      "winner_side": 2,
+      "penalty1": null,
+      "penalty2": null,
+      "score_penalties": null,
+      "winner_side": 1,
       "team1": {
-        "name_ar": "أستراليا",
-        "name_en": "Australia",
+        "name_ar": "Switzerland",
+        "name_en": "Switzerland",
         "group": "",
         "position": "",
-        "slot": "W86",
+        "slot": "W85",
         "unresolved": false,
-        "resolved_from": "W86"
+        "resolved_from": "W85"
       },
       "team2": {
-        "name_ar": "مصر",
-        "name_en": "Egypt",
+        "name_ar": "Switzerland",
+        "name_en": "Switzerland",
         "group": "",
         "position": "",
-        "slot": "W88",
+        "slot": "W87",
         "unresolved": false,
-        "resolved_from": "W88"
+        "resolved_from": "W87"
       },
-      "source_slot1": "W86",
-      "source_slot2": "W88",
-      "channels": [],
-      "date_ar": "السبت، ٤ تموز",
-      "time_ar": "٤:٣٠ ص",
-      "date_jordan": "2026-07-04",
-      "time_jordan": "04:30",
-      "sort_key_jordan": "2026-07-04T04:30:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760501",
-      "espnEventId": "760501",
-      "match_number": 88,
-      "matchNumber": 88,
-      "display_number": 88,
-      "home_score": 1,
-      "away_score": 1,
-      "homeScore": 1,
-      "awayScore": 1,
-      "team1_score": 1,
-      "team2_score": 1,
-      "team1Score": 1,
-      "team2Score": 1,
-      "score_text": "1 - 1 (2 - 4 ترجيح)",
-      "penalty_home_score": 2,
-      "penalty_away_score": 4,
-      "home_penalties": 2,
-      "away_penalties": 4,
-      "team1_penalties": 2,
-      "team2_penalties": 4,
-      "loser_side": 1,
-      "winner": "Egypt",
-      "winner_ar": "مصر",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "مصر فازت 4-2 على أستراليا بركلات الترجيح بعد التعادل 1-1.",
-      "status_key": "finished",
-      "status_ar": "انتهت بركلات الترجيح",
-      "live_phase": "finished_on_penalties",
-      "live_phase_ar": "انتهت بركلات الترجيح",
-      "live_status_detail": "انتهت بركلات الترجيح",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished_on_penalties",
-        "phase_ar": "انتهت بركلات الترجيح",
-        "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          1,
-          1
-        ],
-        "ft": [
-          1,
-          1
-        ],
-        "winner_side": 2,
-        "et": [
-          1,
-          1
-        ],
-        "p": [
-          2,
-          4
-        ],
-        "penalties": {
-          "home": 2,
-          "away": 4,
-          "team1": 2,
-          "team2": 4
-        }
-      }
+      "source_slot1": "W85",
+      "source_slot2": "W87",
+      "channels": []
     },
     {
       "id": "M090",
@@ -3647,9 +2863,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 0,
@@ -3664,7 +2878,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "كندا",
+        "name_ar": "Canada",
         "name_en": "Canada",
         "group": "",
         "position": "",
@@ -3673,7 +2887,7 @@
         "resolved_from": "W73"
       },
       "team2": {
-        "name_ar": "المغرب",
+        "name_ar": "Morocco",
         "name_en": "Morocco",
         "group": "",
         "position": "",
@@ -3683,61 +2897,7 @@
       },
       "source_slot1": "W73",
       "source_slot2": "W75",
-      "channels": [],
-      "date_ar": "السبت، ٤ تموز",
-      "time_ar": "٨:٠٠ م",
-      "date_jordan": "2026-07-04",
-      "time_jordan": "20:00",
-      "sort_key_jordan": "2026-07-04T20:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760502",
-      "espnEventId": "760502",
-      "match_number": 90,
-      "matchNumber": 90,
-      "display_number": 90,
-      "home_score": 0,
-      "away_score": 3,
-      "homeScore": 0,
-      "awayScore": 3,
-      "team1_score": 0,
-      "team2_score": 3,
-      "team1Score": 0,
-      "team2Score": 3,
-      "score_text": "0 - 3",
-      "loser_side": 1,
-      "winner": "Morocco",
-      "winner_ar": "المغرب",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "المغرب فاز 3-0 على كندا وتأهل إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          0,
-          3
-        ],
-        "ft": [
-          0,
-          3
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M089",
@@ -3755,9 +2915,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 0,
@@ -3770,9 +2928,9 @@
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": 2,
+      "winner_side": 1,
       "team1": {
-        "name_ar": "باراغواي",
+        "name_ar": "Paraguay",
         "name_en": "Paraguay",
         "group": "",
         "position": "",
@@ -3781,7 +2939,7 @@
         "resolved_from": "W74"
       },
       "team2": {
-        "name_ar": "فرنسا",
+        "name_ar": "France",
         "name_en": "France",
         "group": "",
         "position": "",
@@ -3791,61 +2949,7 @@
       },
       "source_slot1": "W74",
       "source_slot2": "W77",
-      "channels": [],
-      "date_ar": "الأحد، ٥ تموز",
-      "time_ar": "١٢:٠٠ ص",
-      "date_jordan": "2026-07-05",
-      "time_jordan": "00:00",
-      "sort_key_jordan": "2026-07-05T00:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760503",
-      "espnEventId": "760503",
-      "match_number": 89,
-      "matchNumber": 89,
-      "display_number": 89,
-      "home_score": 0,
-      "away_score": 1,
-      "homeScore": 0,
-      "awayScore": 1,
-      "team1_score": 0,
-      "team2_score": 1,
-      "team1Score": 0,
-      "team2Score": 1,
-      "score_text": "0 - 1",
-      "loser_side": 1,
-      "winner": "France",
-      "winner_ar": "فرنسا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "فرنسا فازت 1-0 على باراغواي وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          0,
-          1
-        ],
-        "ft": [
-          0,
-          1
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M091",
@@ -3863,9 +2967,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 1,
@@ -3880,7 +2982,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "البرازيل",
+        "name_ar": "Brazil",
         "name_en": "Brazil",
         "group": "",
         "position": "",
@@ -3889,7 +2991,7 @@
         "resolved_from": "W76"
       },
       "team2": {
-        "name_ar": "النرويج",
+        "name_ar": "Norway",
         "name_en": "Norway",
         "group": "",
         "position": "",
@@ -3899,61 +3001,7 @@
       },
       "source_slot1": "W76",
       "source_slot2": "W78",
-      "channels": [],
-      "date_ar": "الأحد، ٥ تموز",
-      "time_ar": "١١:٠٠ م",
-      "date_jordan": "2026-07-05",
-      "time_jordan": "23:00",
-      "sort_key_jordan": "2026-07-05T23:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760504",
-      "espnEventId": "760504",
-      "match_number": 91,
-      "matchNumber": 91,
-      "display_number": 91,
-      "home_score": 1,
-      "away_score": 2,
-      "homeScore": 1,
-      "awayScore": 2,
-      "team1_score": 1,
-      "team2_score": 2,
-      "team1Score": 1,
-      "team2Score": 2,
-      "score_text": "1 - 2",
-      "loser_side": 1,
-      "winner": "Norway",
-      "winner_ar": "النرويج",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "النرويج فازت 2-1 على البرازيل وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          1,
-          2
-        ],
-        "ft": [
-          1,
-          2
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M092",
@@ -3971,9 +3019,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -3988,7 +3034,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "المكسيك",
+        "name_ar": "Mexico",
         "name_en": "Mexico",
         "group": "",
         "position": "",
@@ -3997,7 +3043,7 @@
         "resolved_from": "W79"
       },
       "team2": {
-        "name_ar": "إنجلترا",
+        "name_ar": "England",
         "name_en": "England",
         "group": "",
         "position": "",
@@ -4007,61 +3053,7 @@
       },
       "source_slot1": "W79",
       "source_slot2": "W80",
-      "channels": [],
-      "date_ar": "الاثنين، ٦ تموز",
-      "time_ar": "٤:٠٠ ص",
-      "date_jordan": "2026-07-06",
-      "time_jordan": "04:00",
-      "sort_key_jordan": "2026-07-06T04:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760505",
-      "espnEventId": "760505",
-      "match_number": 92,
-      "matchNumber": 92,
-      "display_number": 92,
-      "home_score": 2,
-      "away_score": 3,
-      "homeScore": 2,
-      "awayScore": 3,
-      "team1_score": 2,
-      "team2_score": 3,
-      "team1Score": 2,
-      "team2Score": 3,
-      "score_text": "2 - 3",
-      "loser_side": 1,
-      "winner": "England",
-      "winner_ar": "إنجلترا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "إنجلترا فازت 3-2 على المكسيك وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          2,
-          3
-        ],
-        "ft": [
-          2,
-          3
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M093",
@@ -4079,9 +3071,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 0,
@@ -4096,7 +3086,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "البرتغال",
+        "name_ar": "Portugal",
         "name_en": "Portugal",
         "group": "",
         "position": "",
@@ -4105,7 +3095,7 @@
         "resolved_from": "W83"
       },
       "team2": {
-        "name_ar": "إسبانيا",
+        "name_ar": "Spain",
         "name_en": "Spain",
         "group": "",
         "position": "",
@@ -4115,61 +3105,7 @@
       },
       "source_slot1": "W83",
       "source_slot2": "W84",
-      "channels": [],
-      "date_ar": "الاثنين، ٦ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-06",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-06T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760506",
-      "espnEventId": "760506",
-      "match_number": 93,
-      "matchNumber": 93,
-      "display_number": 93,
-      "home_score": 0,
-      "away_score": 1,
-      "homeScore": 0,
-      "awayScore": 1,
-      "team1_score": 0,
-      "team2_score": 1,
-      "team1Score": 0,
-      "team2Score": 1,
-      "score_text": "0 - 1",
-      "loser_side": 1,
-      "winner": "Spain",
-      "winner_ar": "إسبانيا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "إسبانيا فازت 1-0 على البرتغال وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          0,
-          1
-        ],
-        "ft": [
-          0,
-          1
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M094",
@@ -4187,9 +3123,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 1,
@@ -4204,7 +3138,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "أمريكا",
+        "name_ar": "USA",
         "name_en": "USA",
         "group": "",
         "position": "",
@@ -4213,7 +3147,7 @@
         "resolved_from": "W81"
       },
       "team2": {
-        "name_ar": "بلجيكا",
+        "name_ar": "Belgium",
         "name_en": "Belgium",
         "group": "",
         "position": "",
@@ -4223,61 +3157,7 @@
       },
       "source_slot1": "W81",
       "source_slot2": "W82",
-      "channels": [],
-      "date_ar": "الثلاثاء، ٧ تموز",
-      "time_ar": "٣:٠٠ ص",
-      "date_jordan": "2026-07-07",
-      "time_jordan": "03:00",
-      "sort_key_jordan": "2026-07-07T03:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760507",
-      "espnEventId": "760507",
-      "match_number": 94,
-      "matchNumber": 94,
-      "display_number": 94,
-      "home_score": 1,
-      "away_score": 4,
-      "homeScore": 1,
-      "awayScore": 4,
-      "team1_score": 1,
-      "team2_score": 4,
-      "team1Score": 1,
-      "team2Score": 4,
-      "score_text": "1 - 4",
-      "loser_side": 1,
-      "winner": "Belgium",
-      "winner_ar": "بلجيكا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "بلجيكا فازت 4-1 على أمريكا وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          1,
-          4
-        ],
-        "ft": [
-          1,
-          4
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M095",
@@ -4295,9 +3175,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 3,
@@ -4312,8 +3190,8 @@
       "score_penalties": null,
       "winner_side": 1,
       "team1": {
-        "name_ar": "الأرجنتين",
-        "name_en": "Argentina",
+        "name_ar": "الفائز من مباراة 86",
+        "name_en": "Winner of match 86",
         "group": "",
         "position": "",
         "slot": "W86",
@@ -4321,8 +3199,8 @@
         "resolved_from": "W86"
       },
       "team2": {
-        "name_ar": "مصر",
-        "name_en": "Egypt",
+        "name_ar": "الفائز من مباراة 88",
+        "name_en": "Winner of match 88",
         "group": "",
         "position": "",
         "slot": "W88",
@@ -4331,60 +3209,7 @@
       },
       "source_slot1": "W86",
       "source_slot2": "W88",
-      "channels": [],
-      "date_ar": "الثلاثاء، ٧ تموز",
-      "time_ar": "٧:٠٠ م",
-      "date_jordan": "2026-07-07",
-      "time_jordan": "19:00",
-      "sort_key_jordan": "2026-07-07T19:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760509",
-      "match_number": 95,
-      "matchNumber": 95,
-      "display_number": 95,
-      "home_score": 3,
-      "away_score": 2,
-      "homeScore": 3,
-      "awayScore": 2,
-      "team1_score": 3,
-      "team2_score": 2,
-      "team1Score": 3,
-      "team2Score": 2,
-      "score_text": "3 - 2",
-      "loser_side": 2,
-      "winner": "Argentina",
-      "winner_ar": "الأرجنتين",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "الأرجنتين فازت 3-2 على مصر وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          3,
-          2
-        ],
-        "ft": [
-          3,
-          2
-        ],
-        "winner_side": 1
-      }
+      "channels": []
     },
     {
       "id": "M096",
@@ -4401,10 +3226,8 @@
       "venue_ar": "Vancouver Stadium / BC Place",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بركلات الترجيح",
-        "label": "Final Score - After Penalties"
+        "key": "finished_on_penalties",
+        "label_ar": "انتهت بركلات الترجيح"
       },
       "phase": "finished_on_penalties",
       "score1": 0,
@@ -4425,7 +3248,7 @@
       ],
       "winner_side": 1,
       "team1": {
-        "name_ar": "سويسرا",
+        "name_ar": "Switzerland",
         "name_en": "Switzerland",
         "group": "",
         "position": "",
@@ -4434,8 +3257,8 @@
         "resolved_from": "W85"
       },
       "team2": {
-        "name_ar": "كولومبيا",
-        "name_en": "Colombia",
+        "name_ar": "Switzerland",
+        "name_en": "Switzerland",
         "group": "",
         "position": "",
         "slot": "W87",
@@ -4444,79 +3267,7 @@
       },
       "source_slot1": "W85",
       "source_slot2": "W87",
-      "channels": [],
-      "date_ar": "الثلاثاء، ٧ تموز",
-      "time_ar": "١١:٠٠ م",
-      "date_jordan": "2026-07-07",
-      "time_jordan": "23:00",
-      "sort_key_jordan": "2026-07-07T23:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "match_number": 96,
-      "matchNumber": 96,
-      "display_number": 96,
-      "home_score": 0,
-      "away_score": 0,
-      "homeScore": 0,
-      "awayScore": 0,
-      "team1_score": 0,
-      "team2_score": 0,
-      "team1Score": 0,
-      "team2Score": 0,
-      "score_text": "0 - 0 (4 - 3 ترجيح)",
-      "penalty_home_score": 4,
-      "penalty_away_score": 3,
-      "home_penalties": 4,
-      "away_penalties": 3,
-      "team1_penalties": 4,
-      "team2_penalties": 3,
-      "loser_side": 2,
-      "winner": "Switzerland",
-      "winner_ar": "سويسرا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "سويسرا فازت 4-3 على كولومبيا بركلات الترجيح بعد التعادل 0-0 وتأهلت إلى ربع النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت بركلات الترجيح",
-      "live_phase": "finished_on_penalties",
-      "live_phase_ar": "انتهت بركلات الترجيح",
-      "live_status_detail": "انتهت بركلات الترجيح",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished_on_penalties",
-        "phase_ar": "انتهت بركلات الترجيح",
-        "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          0,
-          0
-        ],
-        "ft": [
-          0,
-          0
-        ],
-        "winner_side": 1,
-        "et": [
-          0,
-          0
-        ],
-        "p": [
-          4,
-          3
-        ],
-        "penalties": {
-          "home": 4,
-          "away": 3,
-          "team1": 4,
-          "team2": 3
-        }
-      }
+      "channels": []
     },
     {
       "id": "M097",
@@ -4534,9 +3285,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -4551,7 +3300,7 @@
       "score_penalties": null,
       "winner_side": 1,
       "team1": {
-        "name_ar": "فرنسا",
+        "name_ar": "France",
         "name_en": "France",
         "group": "",
         "position": "",
@@ -4560,7 +3309,7 @@
         "resolved_from": "W89"
       },
       "team2": {
-        "name_ar": "المغرب",
+        "name_ar": "Morocco",
         "name_en": "Morocco",
         "group": "",
         "position": "",
@@ -4570,61 +3319,7 @@
       },
       "source_slot1": "W89",
       "source_slot2": "W90",
-      "channels": [],
-      "date_ar": "الخميس، ٩ تموز",
-      "time_ar": "١١:٠٠ م",
-      "date_jordan": "2026-07-09",
-      "time_jordan": "23:00",
-      "sort_key_jordan": "2026-07-09T23:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760510",
-      "espnEventId": "760510",
-      "match_number": 97,
-      "matchNumber": 97,
-      "display_number": 97,
-      "home_score": 2,
-      "away_score": 0,
-      "homeScore": 2,
-      "awayScore": 0,
-      "team1_score": 2,
-      "team2_score": 0,
-      "team1Score": 2,
-      "team2Score": 0,
-      "score_text": "2 - 0",
-      "loser_side": 2,
-      "winner": "France",
-      "winner_ar": "فرنسا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "فرنسا فازت 2-0 على المغرب وتأهلت إلى نصف النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          2,
-          0
-        ],
-        "ft": [
-          2,
-          0
-        ],
-        "winner_side": 1
-      }
+      "channels": []
     },
     {
       "id": "M098",
@@ -4642,9 +3337,7 @@
       "city_ar": "",
       "status": {
         "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "label_ar": "انتهت"
       },
       "phase": "finished",
       "score1": 2,
@@ -4659,7 +3352,7 @@
       "score_penalties": null,
       "winner_side": 1,
       "team1": {
-        "name_ar": "إسبانيا",
+        "name_ar": "Spain",
         "name_en": "Spain",
         "group": "",
         "position": "",
@@ -4668,7 +3361,7 @@
         "resolved_from": "W93"
       },
       "team2": {
-        "name_ar": "بلجيكا",
+        "name_ar": "Belgium",
         "name_en": "Belgium",
         "group": "",
         "position": "",
@@ -4678,61 +3371,7 @@
       },
       "source_slot1": "W93",
       "source_slot2": "W94",
-      "channels": [],
-      "date_ar": "الجمعة، ١٠ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-10",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-10T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760511",
-      "espnEventId": "760511",
-      "match_number": 98,
-      "matchNumber": 98,
-      "display_number": 98,
-      "home_score": 2,
-      "away_score": 1,
-      "homeScore": 2,
-      "awayScore": 1,
-      "team1_score": 2,
-      "team2_score": 1,
-      "team1Score": 2,
-      "team2Score": 1,
-      "score_text": "2 - 1",
-      "loser_side": 2,
-      "winner": "Spain",
-      "winner_ar": "إسبانيا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "إسبانيا فازت 2-1 على بلجيكا وتأهلت إلى نصف النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          2,
-          1
-        ],
-        "ft": [
-          2,
-          1
-        ],
-        "winner_side": 1
-      }
+      "channels": []
     },
     {
       "id": "M099",
@@ -4749,12 +3388,10 @@
       "venue_ar": "Miami Stadium / Hard Rock Stadium",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
+        "key": "finished_after_extra_time",
+        "label_ar": "انتهت بعد التمديد"
       },
-      "phase": "finished",
+      "phase": "finished_after_extra_time",
       "score1": 1,
       "score2": 2,
       "score_ft": [
@@ -4770,7 +3407,7 @@
       "score_penalties": null,
       "winner_side": 2,
       "team1": {
-        "name_ar": "النرويج",
+        "name_ar": "Norway",
         "name_en": "Norway",
         "group": "",
         "position": "",
@@ -4779,7 +3416,7 @@
         "resolved_from": "W91"
       },
       "team2": {
-        "name_ar": "إنجلترا",
+        "name_ar": "England",
         "name_en": "England",
         "group": "",
         "position": "",
@@ -4789,61 +3426,7 @@
       },
       "source_slot1": "W91",
       "source_slot2": "W92",
-      "channels": [],
-      "date_ar": "الأحد، ١٢ تموز",
-      "time_ar": "١٢:٠٠ ص",
-      "date_jordan": "2026-07-12",
-      "time_jordan": "00:00",
-      "sort_key_jordan": "2026-07-12T00:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760512",
-      "espnEventId": "760512",
-      "match_number": 99,
-      "matchNumber": 99,
-      "display_number": 99,
-      "home_score": 1,
-      "away_score": 2,
-      "homeScore": 1,
-      "awayScore": 2,
-      "team1_score": 1,
-      "team2_score": 2,
-      "team1Score": 1,
-      "team2Score": 2,
-      "score_text": "1 - 2",
-      "loser_side": 1,
-      "winner": "England",
-      "winner_ar": "إنجلترا",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "إنجلترا فازت 2-1 على النرويج وتأهلت إلى نصف النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "live_phase": "finished",
-      "live_phase_ar": "انتهت",
-      "live_status_detail": "انتهت",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished",
-        "phase_ar": "انتهت",
-        "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          1,
-          2
-        ],
-        "ft": [
-          1,
-          2
-        ],
-        "winner_side": 2
-      }
+      "channels": []
     },
     {
       "id": "M100",
@@ -4860,10 +3443,8 @@
       "venue_ar": "Kansas City Stadium / Arrowhead Stadium",
       "city_ar": "",
       "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بعد التمديد",
-        "label": "Final Score - After Extra Time"
+        "key": "finished_after_extra_time",
+        "label_ar": "انتهت بعد التمديد"
       },
       "phase": "finished_after_extra_time",
       "score1": 3,
@@ -4881,8 +3462,8 @@
       "score_penalties": null,
       "winner_side": 1,
       "team1": {
-        "name_ar": "الأرجنتين",
-        "name_en": "Argentina",
+        "name_ar": "الفائز من مباراة 86",
+        "name_en": "Winner of match 86",
         "group": "",
         "position": "",
         "slot": "W95",
@@ -4890,7 +3471,7 @@
         "resolved_from": "W95"
       },
       "team2": {
-        "name_ar": "سويسرا",
+        "name_ar": "Switzerland",
         "name_en": "Switzerland",
         "group": "",
         "position": "",
@@ -4900,65 +3481,7 @@
       },
       "source_slot1": "W95",
       "source_slot2": "W96",
-      "channels": [],
-      "date_ar": "الأحد، ١٢ تموز",
-      "time_ar": "٤:٠٠ ص",
-      "date_jordan": "2026-07-12",
-      "time_jordan": "04:00",
-      "sort_key_jordan": "2026-07-12T04:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760513",
-      "espnEventId": "760513",
-      "match_number": 100,
-      "matchNumber": 100,
-      "display_number": 100,
-      "home_score": 3,
-      "away_score": 1,
-      "homeScore": 3,
-      "awayScore": 1,
-      "team1_score": 3,
-      "team2_score": 1,
-      "team1Score": 3,
-      "team2Score": 1,
-      "score_text": "3 - 1",
-      "loser_side": 2,
-      "winner": "Argentina",
-      "winner_ar": "الأرجنتين",
-      "score_source": "manual-official-finalizer",
-      "live_score_source": "manual-official-finalizer",
-      "score_updated_by": "worldcup-canonical-finalizer",
-      "canonical_locked": true,
-      "official_result_locked": true,
-      "official_result_checked_at": "2026-07-16T18:35:59+03:00",
-      "note_ar": "الأرجنتين فازت 3-1 على سويسرا بعد التمديد وتأهلت لمواجهة إنجلترا في نصف النهائي.",
-      "status_key": "finished",
-      "status_ar": "انتهت بعد التمديد",
-      "live_phase": "finished_after_extra_time",
-      "live_phase_ar": "انتهت بعد التمديد",
-      "live_status_detail": "انتهت بعد التمديد",
-      "live_clock": "FT",
-      "live_period": null,
-      "score": {
-        "source": "manual-official-finalizer",
-        "status": "finished",
-        "phase": "finished_after_extra_time",
-        "phase_ar": "انتهت بعد التمديد",
-        "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-16T18:35:59+03:00",
-        "current": [
-          3,
-          1
-        ],
-        "ft": [
-          3,
-          1
-        ],
-        "winner_side": 1,
-        "et": [
-          3,
-          1
-        ]
-      }
+      "channels": []
     },
     {
       "id": "M101",
@@ -4974,15 +3497,10 @@
       "kickoff_utc": "2026-07-14T19:00:00.000Z",
       "venue_ar": "Dallas Stadium / AT&T Stadium",
       "city_ar": "",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "phase": "finished",
-      "score1": 0,
-      "score2": 2,
+      "score1": 2,
+      "score2": 0,
       "score_ft": [
         0,
         2
@@ -4992,38 +3510,33 @@
       "penalty2": null,
       "score_penalties": null,
       "winner_side": 2,
-      "team1": {
-        "name_ar": "فرنسا",
-        "name_en": "France",
-        "group": "",
-        "position": "",
-        "slot": "W97",
-        "unresolved": false,
-        "resolved_from": "W97"
-      },
-      "team2": {
-        "name_ar": "إسبانيا",
-        "name_en": "Spain",
-        "group": "",
-        "position": "",
-        "slot": "W98",
-        "unresolved": false,
-        "resolved_from": "W98"
-      },
+      "team1": "Spain",
+      "team2": "France",
       "source_slot1": "W97",
       "source_slot2": "W98",
       "channels": [],
-      "date_ar": "الثلاثاء، ١٤ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-14",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-14T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760514",
-      "espnEventId": "760514",
-      "match_number": 101,
-      "matchNumber": 101,
-      "display_number": 101
+      "team1_ar": "إسبانيا",
+      "team2_ar": "فرنسا",
+      "home_score": 2,
+      "away_score": 0,
+      "score": {
+        "current": [
+          2,
+          0
+        ],
+        "ft": [
+          2,
+          0
+        ],
+        "source": "manual-official-final-four-fix",
+        "status_detail": "STATUS_FULL_TIME",
+        "checked_at": "2026-07-19T06:00:31.641Z"
+      },
+      "score_source": "manual-official-final-four-fix",
+      "live_status_detail": "STATUS_FULL_TIME",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M101",
+      "manual_override_at": "2026-07-19T06:00:31.641Z"
     },
     {
       "id": "M102",
@@ -5039,15 +3552,10 @@
       "kickoff_utc": "2026-07-15T19:00:00.000Z",
       "venue_ar": "Atlanta Stadium / Mercedes-Benz Stadium",
       "city_ar": "",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final"
-      },
+      "status": "finished",
       "phase": "finished",
-      "score1": 1,
-      "score2": 2,
+      "score1": 2,
+      "score2": 1,
       "score_ft": [
         1,
         2
@@ -5057,50 +3565,33 @@
       "penalty2": null,
       "score_penalties": null,
       "winner_side": 2,
-      "team1": {
-        "name_ar": "إنجلترا",
-        "name_en": "England",
-        "group": "",
-        "position": "",
-        "slot": "W99",
-        "unresolved": false,
-        "resolved_from": "W99"
-      },
-      "team2": {
-        "name_ar": "الأرجنتين",
-        "name_en": "Argentina",
-        "group": "",
-        "position": "",
-        "slot": "W100",
-        "unresolved": false,
-        "resolved_from": "W100"
-      },
+      "team1": "Argentina",
+      "team2": "England",
       "source_slot1": "W99",
       "source_slot2": "W100",
       "channels": [],
-      "date_ar": "الأربعاء، ١٥ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-15",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-15T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760515",
-      "match_number": 102,
-      "matchNumber": 102,
-      "display_number": 102,
-      "espnEventId": "760515",
-      "status_key": "finished",
-      "status_ar": "انتهت",
-      "team1_score": 1,
-      "team2_score": 2,
-      "team1Score": 1,
-      "team2Score": 2,
-      "home_score": 1,
-      "away_score": 2,
-      "homeScore": 1,
-      "awayScore": 2,
-      "score_text": "1 - 2",
-      "score_source": "espn-finished"
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "إنجلترا",
+      "home_score": 2,
+      "away_score": 1,
+      "score": {
+        "current": [
+          2,
+          1
+        ],
+        "ft": [
+          2,
+          1
+        ],
+        "source": "manual-official-final-four-fix",
+        "status_detail": "STATUS_FULL_TIME",
+        "checked_at": "2026-07-19T06:00:31.641Z"
+      },
+      "score_source": "manual-official-final-four-fix",
+      "live_status_detail": "STATUS_FULL_TIME",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M102",
+      "manual_override_at": "2026-07-19T06:00:31.641Z"
     },
     {
       "id": "M103",
@@ -5116,53 +3607,29 @@
       "kickoff_utc": "2026-07-18T21:00:00.000Z",
       "venue_ar": "Miami Stadium / Hard Rock Stadium",
       "city_ar": "",
-      "status": {
-        "key": "scheduled",
-        "state": "scheduled",
-        "label_ar": "لم تبدأ",
-        "label": "Scheduled"
-      },
-      "phase": "",
+      "status": "scheduled",
+      "phase": "finished",
       "score1": null,
       "score2": null,
-      "score_ft": null,
+      "score_ft": [
+        6,
+        4
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
-      "team1": {
-        "name_ar": "France",
-        "name_en": "France",
-        "group": "",
-        "position": "",
-        "slot": "L101",
-        "unresolved": false,
-        "resolved_from": "L101"
-      },
-      "team2": {
-        "name_ar": "England",
-        "name_en": "England",
-        "group": "",
-        "position": "",
-        "slot": "L102",
-        "unresolved": false,
-        "resolved_from": "L102"
-      },
+      "winner_side": 1,
+      "team1": "France",
+      "team2": "England",
       "source_slot1": "L101",
       "source_slot2": "L102",
       "channels": [],
-      "date_ar": "الأحد، ١٩ تموز",
-      "time_ar": "١٢:٠٠ ص",
-      "date_jordan": "2026-07-19",
-      "time_jordan": "00:00",
-      "sort_key_jordan": "2026-07-19T00:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "espn_event_id": "760516",
-      "espnEventId": "760516",
-      "match_number": 103,
-      "matchNumber": 103,
-      "display_number": 103
+      "team1_ar": "فرنسا",
+      "team2_ar": "إنجلترا",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M103",
+      "manual_override_at": "2026-07-19T06:00:31.641Z"
     },
     {
       "id": "M104",
@@ -5179,45 +3646,28 @@
       "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
       "city_ar": "",
       "status": "scheduled",
-      "phase": "scheduled",
+      "phase": "finished",
       "score1": null,
       "score2": null,
-      "score_ft": null,
+      "score_ft": [
+        4,
+        6
+      ],
       "score_et": null,
       "penalty1": null,
       "penalty2": null,
       "score_penalties": null,
-      "winner_side": null,
-      "team1": {
-        "name_ar": "Spain",
-        "name_en": "Spain",
-        "group": "",
-        "position": "",
-        "slot": "W101",
-        "unresolved": false,
-        "resolved_from": "W101"
-      },
-      "team2": {
-        "name_ar": "Switzerland",
-        "name_en": "Switzerland",
-        "group": "",
-        "position": "",
-        "slot": "W102",
-        "unresolved": false,
-        "resolved_from": "W102"
-      },
+      "winner_side": 2,
+      "team1": "Spain",
+      "team2": "Argentina",
       "source_slot1": "W101",
       "source_slot2": "W102",
       "channels": [],
-      "date_ar": "الأحد، ١٩ تموز",
-      "time_ar": "١٠:٠٠ م",
-      "date_jordan": "2026-07-19",
-      "time_jordan": "22:00",
-      "sort_key_jordan": "2026-07-19T22:00:00+03:00",
-      "timezone": "Asia/Amman",
-      "match_number": 104,
-      "matchNumber": 104,
-      "display_number": 104
+      "team1_ar": "إسبانيا",
+      "team2_ar": "الأرجنتين",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M104",
+      "manual_override_at": "2026-07-19T06:00:31.641Z"
     }
   ]
 }

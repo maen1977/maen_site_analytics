@@ -7,8 +7,8 @@
     "live_score_source": "espn",
     "live_score_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
     "official_reference": "https://digitalhub.fifa.com/m/1be9ce37eb98fcc5/original/FWC26-Match-Schedule_English.pdf",
-    "last_updated": "2026-07-16T18:35:54+03:00",
-    "last_checked_at": "2026-07-16T18:35:54+03:00",
+    "last_updated": "2026-07-19T09:00:30+03:00",
+    "last_checked_at": "2026-07-19T09:00:30+03:00",
     "update_policy": "every 15 minutes only during near/live match windows, every 12 hours otherwise",
     "timezone": "Asia/Amman",
     "total_matches": 104,
@@ -25,7 +25,7 @@
     },
     "manual_overrides_applied": 16,
     "manual_overrides_file": "public/worldcup-2026/manual-results-overrides.json",
-    "last_data_change_at": "2026-07-16T18:35:54+03:00",
+    "last_data_change_at": "2026-07-19T09:00:30+03:00",
     "automation_heartbeat": true,
     "automation_heartbeat_at": "2026-06-19T15:30:18+03:00",
     "force_quarter_hour_update": true,
@@ -43,12 +43,12 @@
     "quarter_hour_match_check": true,
     "quarter_hour_match_check_at": "2026-06-19T15:30:18+03:00",
     "espn_scoreboard_ok": true,
-    "espn_events_seen": 103,
+    "espn_events_seen": 104,
     "espn_matches_updated": 3,
     "github_trigger_source": "manual",
     "external_forced_at": "",
-    "espn_urls_checked": 12,
-    "espn_matches_applied": 101,
+    "espn_urls_checked": 10,
+    "espn_matches_applied": 104,
     "stale_unverified_scores_cleared": 0,
     "verified_results_only": true,
     "groups_live_repair": {
@@ -103,15 +103,15 @@
       "note_ar": "إصلاح خاص لقسم كأس العالم: تحديث النتائج والترتيب للمجموعات من ESPN، مع إعادة بناء standings.json وكسر الكاش."
     },
     "bracket_team_name_linked_at": "2026-06-28T20:57:57+03:00",
-    "bracket_matches_applied": 29,
+    "bracket_matches_applied": 32,
     "future_openfootball_zero_scores_cleared": 0,
     "original_15_minute_workflow": true,
     "knockout_integrated_patch": true,
-    "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+    "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
     "r32_official_pairings_version": "2026-06-29-v1",
     "universal_penalties_patch": true,
     "dynamic_knockout_advancement_patch": true,
-    "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+    "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
     "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
     "time_fallback_status_applied": 0,
     "bracket_time_fallback_status_applied": 0,
@@ -120,7 +120,44 @@
     "quarterfinals_official_fix_at": "2026-07-09T11:40:00+03:00",
     "quarterfinals_official_fix_version": "2026-07-09-quarterfinals-official-fix-v1",
     "semifinals_official_lock_at": "2026-07-16T18:35:59+03:00",
-    "semifinals_official_lock_version": "2026-07-12-semifinals-official-lock-v2"
+    "semifinals_official_lock_version": "2026-07-12-semifinals-official-lock-v2",
+    "final_four_official_fix": {
+      "enabled": true,
+      "applied_at": "2026-07-19T06:00:31.628Z",
+      "source": "manual verified correction",
+      "fixtures": {
+        "M101": {
+          "team1": "Spain",
+          "team2": "France",
+          "score": [
+            2,
+            0
+          ],
+          "stage": "Semi-finals"
+        },
+        "M102": {
+          "team1": "Argentina",
+          "team2": "England",
+          "score": [
+            2,
+            1
+          ],
+          "stage": "Semi-finals"
+        },
+        "M103": {
+          "team1": "France",
+          "team2": "England",
+          "score": null,
+          "stage": "Third-place play-off"
+        },
+        "M104": {
+          "team1": "Spain",
+          "team2": "Argentina",
+          "score": null,
+          "stage": "Final"
+        }
+      }
+    }
   },
   "groups": {
     "A": [
@@ -284,12 +321,7 @@
       "team2_ar": "جنوب أفريقيا",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -301,7 +333,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -318,8 +350,8 @@
       "search_text": "Mexico South Africa المكسيك جنوب أفريقيا Mexico City Stadium / Estadio Azteca Mexico City Matchday 1 Group Stage دور المجموعات Group A Match 1",
       "espn_event_id": "760415",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760415",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -358,12 +390,7 @@
       "team2_ar": "التشيك",
       "ground": "Guadalajara (Zapopan)",
       "stadium": "Estadio Guadalajara / Estadio Akron",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -375,7 +402,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -392,8 +419,8 @@
       "search_text": "South Korea Czech Republic كوريا الجنوبية التشيك Estadio Guadalajara / Estadio Akron Guadalajara (Zapopan) Matchday 1 Group Stage دور المجموعات Group A Match 2",
       "espn_event_id": "760414",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760414",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -432,12 +459,7 @@
       "team2_ar": "البوسنة والهرسك",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -449,7 +471,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -465,8 +487,8 @@
       "search_text": "Canada Bosnia & Herzegovina كندا البوسنة والهرسك Toronto Stadium / BMO Field Toronto Matchday 2 Group Stage دور المجموعات Group B Match 7",
       "espn_event_id": "760416",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760416",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -503,12 +525,7 @@
       "team2_ar": "باراغواي",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 4,
       "away_score": 1,
       "score": {
@@ -520,7 +537,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           4,
           1
@@ -537,8 +554,8 @@
       "search_text": "USA Paraguay الولايات المتحدة باراغواي Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Matchday 2 Group Stage دور المجموعات Group D Match 19",
       "espn_event_id": "760417",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760417",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -577,12 +594,7 @@
       "team2_ar": "سويسرا",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -594,7 +606,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -610,8 +622,8 @@
       "search_text": "Qatar Switzerland قطر سويسرا San Francisco Bay Area Stadium / Levi's Stadium San Francisco Bay Area (Santa Clara) Matchday 3 Group Stage دور المجموعات Group B Match 8",
       "espn_event_id": "760420",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760420",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -648,12 +660,7 @@
       "team2_ar": "المغرب",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -665,7 +672,7 @@
         "status_detail": "Full Time",
         "clock": "90'+25'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -681,8 +688,8 @@
       "search_text": "Brazil Morocco البرازيل المغرب New York New Jersey Stadium / MetLife Stadium New York/New Jersey (East Rutherford) Matchday 3 Group Stage دور المجموعات Group C Match 13",
       "espn_event_id": "760419",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760419",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -719,12 +726,7 @@
       "team2_ar": "اسكتلندا",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -736,7 +738,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           1
@@ -753,8 +755,8 @@
       "search_text": "Haiti Scotland هايتي اسكتلندا Boston Stadium / Gillette Stadium Boston (Foxborough) Matchday 3 Group Stage دور المجموعات Group C Match 14",
       "espn_event_id": "760418",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760418",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -793,12 +795,7 @@
       "team2_ar": "تركيا",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -810,7 +807,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -827,8 +824,8 @@
       "search_text": "Australia Turkey أستراليا تركيا Vancouver Stadium / BC Place Vancouver Matchday 3 Group Stage دور المجموعات Group D Match 20",
       "espn_event_id": "760421",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_period": 2,
@@ -865,12 +862,7 @@
       "team2_ar": "كوراساو",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 7,
       "away_score": 1,
       "score": {
@@ -882,7 +874,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           7,
           1
@@ -899,8 +891,8 @@
       "search_text": "Germany Curaçao ألمانيا كوراساو Houston Stadium / NRG Stadium Houston Matchday 4 Group Stage دور المجموعات Group E Match 25",
       "espn_event_id": "760422",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760422",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -939,12 +931,7 @@
       "team2_ar": "اليابان",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 2,
       "score": {
@@ -956,7 +943,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           2
@@ -972,8 +959,8 @@
       "search_text": "Netherlands Japan هولندا اليابان Dallas Stadium / AT&T Stadium Dallas (Arlington) Matchday 4 Group Stage دور المجموعات Group F Match 31",
       "espn_event_id": "760425",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760425",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1010,12 +997,7 @@
       "team2_ar": "الإكوادور",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -1027,7 +1009,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           0
@@ -1044,8 +1026,8 @@
       "search_text": "Ivory Coast Ecuador كوت ديفوار الإكوادور Philadelphia Stadium / Lincoln Financial Field Philadelphia Matchday 4 Group Stage دور المجموعات Group E Match 26",
       "espn_event_id": "760423",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760423",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1084,12 +1066,7 @@
       "team2_ar": "تونس",
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 5,
       "away_score": 1,
       "score": {
@@ -1101,7 +1078,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           5,
           1
@@ -1118,8 +1095,8 @@
       "search_text": "Sweden Tunisia السويد تونس Estadio Monterrey / Estadio BBVA Monterrey (Guadalupe) Matchday 4 Group Stage دور المجموعات Group F Match 32",
       "espn_event_id": "760424",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760424",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1158,12 +1135,7 @@
       "team2_ar": "الرأس الأخضر",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -1175,7 +1147,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -1202,8 +1174,8 @@
       ],
       "espn_event_id": "760428",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760428",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1240,12 +1212,7 @@
       "team2_ar": "مصر",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -1257,7 +1224,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -1284,8 +1251,8 @@
       ],
       "espn_event_id": "760426",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760426",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1322,12 +1289,7 @@
       "team2_ar": "الأوروغواي",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -1339,7 +1301,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -1366,8 +1328,8 @@
       ],
       "espn_event_id": "760429",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760429",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1404,12 +1366,7 @@
       "team2_ar": "نيوزيلندا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 2,
       "score": {
@@ -1421,7 +1378,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           2
@@ -1448,8 +1405,8 @@
       ],
       "espn_event_id": "760427",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760427",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1486,12 +1443,7 @@
       "team2_ar": "السنغال",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 1,
       "score": {
@@ -1503,7 +1455,7 @@
         "status_detail": "Full Time",
         "clock": "90'+10'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           1
@@ -1531,8 +1483,8 @@
       ],
       "espn_event_id": "760432",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760432",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1571,12 +1523,7 @@
       "team2_ar": "النرويج",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 4,
       "score": {
@@ -1588,7 +1535,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           4
@@ -1616,8 +1563,8 @@
       ],
       "espn_event_id": "760430",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760430",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1656,12 +1603,7 @@
       "team2_ar": "الجزائر",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 0,
       "score": {
@@ -1673,7 +1615,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           0
@@ -1701,8 +1643,8 @@
       ],
       "espn_event_id": "760433",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760433",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1741,12 +1683,7 @@
       "team2_ar": "الأردن",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 1,
       "score": {
@@ -1758,7 +1695,7 @@
         "status_detail": "Full Time",
         "clock": "90'+14'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           1
@@ -1784,11 +1721,11 @@
           "collected_at": "2026-06-17T23:31:30+03:00"
         }
       ],
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760431",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760431",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1827,12 +1764,7 @@
       "team2_ar": "الكونغو الديمقراطية",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -1844,7 +1776,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -1871,8 +1803,8 @@
       ],
       "espn_event_id": "760435",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760435",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1909,12 +1841,7 @@
       "team2_ar": "كرواتيا",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 4,
       "away_score": 2,
       "score": {
@@ -1926,7 +1853,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           4,
           2
@@ -1952,11 +1879,11 @@
           "collected_at": "2026-06-17T23:31:30+03:00"
         }
       ],
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760437",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760437",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -1995,12 +1922,7 @@
       "team2_ar": "بنما",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -2012,7 +1934,7 @@
         "status_detail": "Full Time",
         "clock": "90'+11'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           0
@@ -2027,11 +1949,11 @@
       "live_clock": "90'+11'",
       "live_status_detail": "Full Time",
       "search_text": "Ghana Panama غانا بنما Toronto Stadium / BMO Field Toronto Matchday 7 Group Stage دور المجموعات Group L Match 68",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760434",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760434",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2070,12 +1992,7 @@
       "team2_ar": "كولومبيا",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 3,
       "score": {
@@ -2087,7 +2004,7 @@
         "status_detail": "Full Time",
         "clock": "90'+11'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           3
@@ -2102,11 +2019,11 @@
       "live_clock": "90'+11'",
       "live_status_detail": "Full Time",
       "search_text": "Uzbekistan Colombia أوزبكستان كولومبيا Mexico City Stadium / Estadio Azteca Mexico City Matchday 7 Group Stage دور المجموعات Group K Match 62",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760436",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760436",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2145,12 +2062,7 @@
       "team2_ar": "جنوب أفريقيا",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -2162,7 +2074,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -2178,8 +2090,8 @@
       "search_text": "Czech Republic South Africa التشيك جنوب أفريقيا Atlanta Stadium / Mercedes-Benz Stadium Atlanta Matchday 8 Group Stage دور المجموعات Group A Match 3",
       "espn_event_id": "760438",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760438",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2216,12 +2128,7 @@
       "team2_ar": "البوسنة والهرسك",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 4,
       "away_score": 1,
       "score": {
@@ -2233,7 +2140,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           4,
           1
@@ -2248,11 +2155,11 @@
       "live_clock": "90'+8'",
       "live_status_detail": "Full Time",
       "search_text": "Switzerland Bosnia & Herzegovina سويسرا البوسنة والهرسك Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Matchday 8 Group Stage دور المجموعات Group B Match 9",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760439",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760439",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2291,12 +2198,7 @@
       "team2_ar": "قطر",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 6,
       "away_score": 0,
       "score": {
@@ -2308,7 +2210,7 @@
         "status_detail": "Full Time",
         "clock": "90'+10'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           6,
           0
@@ -2323,11 +2225,11 @@
       "live_clock": "90'+10'",
       "live_status_detail": "Full Time",
       "search_text": "Canada Qatar كندا قطر Vancouver Stadium / BC Place Vancouver Matchday 8 Group Stage دور المجموعات Group B Match 10",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760440",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760440",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2366,12 +2268,7 @@
       "team2_ar": "كوريا الجنوبية",
       "ground": "Guadalajara (Zapopan)",
       "stadium": "Estadio Guadalajara / Estadio Akron",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -2383,7 +2280,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           0
@@ -2398,11 +2295,11 @@
       "live_clock": "90'+6'",
       "live_status_detail": "Full Time",
       "search_text": "Mexico South Korea المكسيك كوريا الجنوبية Estadio Guadalajara / Estadio Akron Guadalajara (Zapopan) Matchday 8 Group Stage دور المجموعات Group A Match 4",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760441",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760441",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2441,12 +2338,7 @@
       "team2_ar": "أستراليا",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -2458,7 +2350,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -2473,11 +2365,11 @@
       "live_clock": "90'+8'",
       "live_status_detail": "Full Time",
       "search_text": "USA Australia أمريكا أستراليا Seattle Stadium / Lumen Field Seattle Matchday 9 Group Stage دور المجموعات Group D Match 21",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
       "espn_event_id": "760442",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760442",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2516,12 +2408,7 @@
       "team2_ar": "المغرب",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -2533,7 +2420,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           1
@@ -2548,10 +2435,10 @@
       "live_clock": "90'+7'",
       "live_status_detail": "Full Time",
       "search_text": "Scotland Morocco اسكتلندا المغرب Boston Stadium / Gillette Stadium Boston (Foxborough) Matchday 9 Group Stage دور المجموعات Group C Match 15",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_event_id": "760445",
       "espn_id": "760445",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
@@ -2591,12 +2478,7 @@
       "team2_ar": "هايتي",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 0,
       "score": {
@@ -2608,7 +2490,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           0
@@ -2623,10 +2505,10 @@
       "live_clock": "90'+5'",
       "live_status_detail": "Full Time",
       "search_text": "Brazil Haiti البرازيل هايتي Philadelphia Stadium / Lincoln Financial Field Philadelphia Matchday 9 Group Stage دور المجموعات Group C Match 16",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "live_score_source": "espn",
       "live_score_source_url": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=200",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_event_id": "760444",
       "espn_id": "760444",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
@@ -2666,12 +2548,7 @@
       "team2_ar": "باراغواي",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -2683,7 +2560,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           1
@@ -2700,8 +2577,8 @@
       "search_text": "Turkey Paraguay تركيا باراغواي San Francisco Bay Area Stadium / Levi's Stadium San Francisco Bay Area (Santa Clara) Matchday 9 Group Stage دور المجموعات Group D Match 22",
       "espn_event_id": "760443",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_period": 2,
@@ -2738,12 +2615,7 @@
       "team2_ar": "السويد",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 5,
       "away_score": 1,
       "score": {
@@ -2755,7 +2627,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           5,
           1
@@ -2772,8 +2644,8 @@
       "search_text": "Netherlands Sweden هولندا السويد Houston Stadium / NRG Stadium Houston Matchday 10 Group Stage دور المجموعات Group F Match 33",
       "espn_event_id": "760447",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760447",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2812,12 +2684,7 @@
       "team2_ar": "كوت ديفوار",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -2829,7 +2696,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -2846,8 +2713,8 @@
       "search_text": "Germany Ivory Coast ألمانيا كوت ديفوار Toronto Stadium / BMO Field Toronto Matchday 10 Group Stage دور المجموعات Group E Match 27",
       "espn_event_id": "760448",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760448",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2886,12 +2753,7 @@
       "team2_ar": "كوراساو",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -2903,7 +2765,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -2919,8 +2781,8 @@
       "search_text": "Ecuador Curaçao الإكوادور كوراساو Kansas City Stadium / Arrowhead Stadium Kansas City Matchday 10 Group Stage دور المجموعات Group E Match 28",
       "espn_event_id": "760446",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760446",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -2957,12 +2819,7 @@
       "team2_ar": "اليابان",
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 4,
       "score": {
@@ -2974,7 +2831,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           4
@@ -2991,8 +2848,8 @@
       "search_text": "Tunisia Japan تونس اليابان Estadio Monterrey / Estadio BBVA Monterrey (Guadalupe) Matchday 10 Group Stage دور المجموعات Group F Match 34",
       "espn_event_id": "760449",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760449",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3031,12 +2888,7 @@
       "team2_ar": "السعودية",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 4,
       "away_score": 0,
       "score": {
@@ -3048,7 +2900,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           4,
           0
@@ -3065,8 +2917,8 @@
       "search_text": "Spain Saudi Arabia إسبانيا السعودية Atlanta Stadium / Mercedes-Benz Stadium Atlanta Matchday 11 Group Stage دور المجموعات Group H Match 45",
       "espn_event_id": "760453",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760453",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3105,12 +2957,7 @@
       "team2_ar": "إيران",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -3122,7 +2969,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -3138,8 +2985,8 @@
       "search_text": "Belgium Iran بلجيكا إيران Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Matchday 11 Group Stage دور المجموعات Group G Match 39",
       "espn_event_id": "760451",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760451",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3176,12 +3023,7 @@
       "team2_ar": "الرأس الأخضر",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 2,
       "score": {
@@ -3193,7 +3035,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           2
@@ -3209,8 +3051,8 @@
       "search_text": "Uruguay Cape Verde الأوروغواي الرأس الأخضر Miami Stadium / Hard Rock Stadium Miami (Miami Gardens) Matchday 11 Group Stage دور المجموعات Group H Match 46",
       "espn_event_id": "760450",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760450",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3247,12 +3089,7 @@
       "team2_ar": "مصر",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 3,
       "score": {
@@ -3264,7 +3101,7 @@
         "status_detail": "Full Time",
         "clock": "90'+10'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           3
@@ -3281,8 +3118,8 @@
       "search_text": "New Zealand Egypt نيوزيلندا مصر Vancouver Stadium / BC Place Vancouver Matchday 11 Group Stage دور المجموعات Group G Match 40",
       "espn_event_id": "760452",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760452",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3321,12 +3158,7 @@
       "team2_ar": "النمسا",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -3338,7 +3170,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -3355,8 +3187,8 @@
       "search_text": "Argentina Austria الأرجنتين النمسا Dallas Stadium / AT&T Stadium Dallas (Arlington) Matchday 12 Group Stage دور المجموعات Group J Match 57",
       "espn_event_id": "760456",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760456",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3395,12 +3227,7 @@
       "team2_ar": "العراق",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 0,
       "score": {
@@ -3412,7 +3239,7 @@
         "status_detail": "Full Time",
         "clock": "90'+2'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           0
@@ -3429,8 +3256,8 @@
       "search_text": "France Iraq فرنسا العراق Philadelphia Stadium / Lincoln Financial Field Philadelphia Matchday 12 Group Stage دور المجموعات Group I Match 51",
       "espn_event_id": "760457",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760457",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3469,12 +3296,7 @@
       "team2_ar": "السنغال",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score": {
@@ -3486,7 +3308,7 @@
         "status_detail": "Full Time",
         "clock": "90'+10'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           2
@@ -3503,8 +3325,8 @@
       "search_text": "Norway Senegal النرويج السنغال New York New Jersey Stadium / MetLife Stadium New York/New Jersey (East Rutherford) Matchday 12 Group Stage دور المجموعات Group I Match 52",
       "espn_event_id": "760454",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760454",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3543,12 +3365,7 @@
       "team2_ar": "الجزائر",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 2,
       "score": {
@@ -3560,7 +3377,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           2
@@ -3577,8 +3394,8 @@
       "search_text": "Jordan Algeria الأردن الجزائر San Francisco Bay Area Stadium / Levi's Stadium San Francisco Bay Area (Santa Clara) Matchday 12 Group Stage دور المجموعات Group J Match 58",
       "espn_event_id": "760455",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760455",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3617,12 +3434,7 @@
       "team2_ar": "أوزبكستان",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 5,
       "away_score": 0,
       "score": {
@@ -3634,7 +3446,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           5,
           0
@@ -3651,8 +3463,8 @@
       "search_text": "Portugal Uzbekistan البرتغال أوزبكستان Houston Stadium / NRG Stadium Houston Matchday 13 Group Stage دور المجموعات Group K Match 63",
       "espn_event_id": "760461",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760461",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3691,12 +3503,7 @@
       "team2_ar": "غانا",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -3708,7 +3515,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -3724,8 +3531,8 @@
       "search_text": "England Ghana إنجلترا غانا Boston Stadium / Gillette Stadium Boston (Foxborough) Matchday 13 Group Stage دور المجموعات Group L Match 69",
       "espn_event_id": "760458",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760458",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3762,12 +3569,7 @@
       "team2_ar": "كرواتيا",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -3779,7 +3581,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           1
@@ -3796,8 +3598,8 @@
       "search_text": "Panama Croatia بنما كرواتيا Toronto Stadium / BMO Field Toronto Matchday 13 Group Stage دور المجموعات Group L Match 70",
       "espn_event_id": "760460",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760460",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3836,12 +3638,7 @@
       "team2_ar": "الكونغو الديمقراطية",
       "ground": "Guadalajara (Zapopan)",
       "stadium": "Estadio Guadalajara / Estadio Akron",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -3853,7 +3650,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           0
@@ -3870,8 +3667,8 @@
       "search_text": "Colombia DR Congo كولومبيا الكونغو الديمقراطية Estadio Guadalajara / Estadio Akron Guadalajara (Zapopan) Matchday 13 Group Stage دور المجموعات Group K Match 64",
       "espn_event_id": "760459",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760459",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3910,12 +3707,7 @@
       "team2_ar": "كندا",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -3927,7 +3719,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -3944,8 +3736,8 @@
       "search_text": "Switzerland Canada سويسرا كندا Vancouver Stadium / BC Place Vancouver Matchday 14 Group Stage دور المجموعات Group B Match 11",
       "espn_event_id": "760463",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760463",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -3984,12 +3776,7 @@
       "team2_ar": "قطر",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 1,
       "score": {
@@ -4001,7 +3788,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           1
@@ -4018,8 +3805,8 @@
       "search_text": "Bosnia & Herzegovina Qatar البوسنة والهرسك قطر Seattle Stadium / Lumen Field Seattle Matchday 14 Group Stage دور المجموعات Group B Match 12",
       "espn_event_id": "760462",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760462",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4058,12 +3845,7 @@
       "team2_ar": "البرازيل",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 3,
       "score": {
@@ -4075,7 +3857,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           3
@@ -4092,8 +3874,8 @@
       "search_text": "Scotland Brazil اسكتلندا البرازيل Miami Stadium / Hard Rock Stadium Miami (Miami Gardens) Matchday 14 Group Stage دور المجموعات Group C Match 17",
       "espn_event_id": "760465",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760465",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4132,12 +3914,7 @@
       "team2_ar": "هايتي",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 4,
       "away_score": 2,
       "score": {
@@ -4149,7 +3926,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           4,
           2
@@ -4166,8 +3943,8 @@
       "search_text": "Morocco Haiti المغرب هايتي Atlanta Stadium / Mercedes-Benz Stadium Atlanta Matchday 14 Group Stage دور المجموعات Group C Match 18",
       "espn_event_id": "760464",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760464",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4206,12 +3983,7 @@
       "team2_ar": "المكسيك",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 3,
       "score": {
@@ -4223,7 +3995,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           3
@@ -4240,8 +4012,8 @@
       "search_text": "Czech Republic Mexico التشيك المكسيك Mexico City Stadium / Estadio Azteca Mexico City Matchday 14 Group Stage دور المجموعات Group A Match 5",
       "espn_event_id": "760467",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760467",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4280,12 +4052,7 @@
       "team2_ar": "كوريا الجنوبية",
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -4297,7 +4064,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           0
@@ -4314,8 +4081,8 @@
       "search_text": "South Africa South Korea جنوب أفريقيا كوريا الجنوبية Estadio Monterrey / Estadio BBVA Monterrey (Guadalupe) Matchday 14 Group Stage دور المجموعات Group A Match 6",
       "espn_event_id": "760466",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760466",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4354,12 +4121,7 @@
       "team2_ar": "كوت ديفوار",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 2,
       "score": {
@@ -4371,7 +4133,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           2
@@ -4388,8 +4150,8 @@
       "search_text": "Curaçao Ivory Coast كوراساو كوت ديفوار Philadelphia Stadium / Lincoln Financial Field Philadelphia Matchday 15 Group Stage دور المجموعات Group E Match 29",
       "espn_event_id": "760473",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760473",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4428,12 +4190,7 @@
       "team2_ar": "ألمانيا",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -4445,7 +4202,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -4462,8 +4219,8 @@
       "search_text": "Ecuador Germany الإكوادور ألمانيا New York New Jersey Stadium / MetLife Stadium New York/New Jersey (East Rutherford) Matchday 15 Group Stage دور المجموعات Group E Match 30",
       "espn_event_id": "760468",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760468",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4502,12 +4259,7 @@
       "team2_ar": "السويد",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -4519,7 +4271,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -4535,8 +4287,8 @@
       "search_text": "Japan Sweden اليابان السويد Dallas Stadium / AT&T Stadium Dallas (Arlington) Matchday 15 Group Stage دور المجموعات Group F Match 35",
       "espn_event_id": "760471",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760471",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4573,12 +4325,7 @@
       "team2_ar": "هولندا",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 3,
       "score": {
@@ -4590,7 +4337,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           3
@@ -4607,8 +4354,8 @@
       "search_text": "Tunisia Netherlands تونس هولندا Kansas City Stadium / Arrowhead Stadium Kansas City Matchday 15 Group Stage دور المجموعات Group F Match 36",
       "espn_event_id": "760472",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760472",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4647,12 +4394,7 @@
       "team2_ar": "أمريكا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score": {
@@ -4664,7 +4406,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           2
@@ -4681,8 +4423,8 @@
       "search_text": "Turkey USA تركيا أمريكا Los Angeles Stadium / SoFi Stadium Los Angeles (Inglewood) Matchday 15 Group Stage دور المجموعات Group D Match 23",
       "espn_event_id": "760470",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_period": 2,
@@ -4719,12 +4461,7 @@
       "team2_ar": "أستراليا",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -4736,7 +4473,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -4752,8 +4489,8 @@
       "search_text": "Paraguay Australia باراغواي أستراليا San Francisco Bay Area Stadium / Levi's Stadium San Francisco Bay Area (Santa Clara) Matchday 15 Group Stage دور المجموعات Group D Match 24",
       "espn_event_id": "760469",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760469",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4790,12 +4527,7 @@
       "team2_ar": "فرنسا",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 4,
       "score": {
@@ -4807,7 +4539,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           4
@@ -4824,8 +4556,8 @@
       "search_text": "Norway France النرويج فرنسا Boston Stadium / Gillette Stadium Boston (Foxborough) Matchday 16 Group Stage دور المجموعات Group I Match 53",
       "espn_event_id": "760475",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760475",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4864,12 +4596,7 @@
       "team2_ar": "العراق",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 5,
       "away_score": 0,
       "score": {
@@ -4881,7 +4608,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           5,
           0
@@ -4898,8 +4625,8 @@
       "search_text": "Senegal Iraq السنغال العراق Toronto Stadium / BMO Field Toronto Matchday 16 Group Stage دور المجموعات Group I Match 54",
       "espn_event_id": "760474",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760474",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -4938,12 +4665,7 @@
       "team2_ar": "السعودية",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -4955,7 +4677,7 @@
         "status_detail": "Full Time",
         "clock": "90'+5'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -4971,8 +4693,8 @@
       "search_text": "Cape Verde Saudi Arabia الرأس الأخضر السعودية Houston Stadium / NRG Stadium Houston Matchday 16 Group Stage دور المجموعات Group H Match 47",
       "espn_event_id": "760478",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760478",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5009,12 +4731,7 @@
       "team2_ar": "إسبانيا",
       "ground": "Guadalajara (Zapopan)",
       "stadium": "Estadio Guadalajara / Estadio Akron",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -5026,7 +4743,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           1
@@ -5043,8 +4760,8 @@
       "search_text": "Uruguay Spain الأوروغواي إسبانيا Estadio Guadalajara / Estadio Akron Guadalajara (Zapopan) Matchday 16 Group Stage دور المجموعات Group H Match 48",
       "espn_event_id": "760479",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760479",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5083,12 +4800,7 @@
       "team2_ar": "إيران",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -5100,7 +4812,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -5116,8 +4828,8 @@
       "search_text": "Egypt Iran مصر إيران Seattle Stadium / Lumen Field Seattle Matchday 16 Group Stage دور المجموعات Group G Match 41",
       "espn_event_id": "760476",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760476",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5154,12 +4866,7 @@
       "team2_ar": "بلجيكا",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 5,
       "score": {
@@ -5171,7 +4878,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           5
@@ -5188,8 +4895,8 @@
       "search_text": "New Zealand Belgium نيوزيلندا بلجيكا Vancouver Stadium / BC Place Vancouver Matchday 16 Group Stage دور المجموعات Group G Match 42",
       "espn_event_id": "760477",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760477",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5228,12 +4935,7 @@
       "team2_ar": "إنجلترا",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 2,
       "score": {
@@ -5245,7 +4947,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           2
@@ -5262,8 +4964,8 @@
       "search_text": "Panama England بنما إنجلترا New York New Jersey Stadium / MetLife Stadium New York/New Jersey (East Rutherford) Matchday 17 Group Stage دور المجموعات Group L Match 71",
       "espn_event_id": "760485",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760485",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5302,12 +5004,7 @@
       "team2_ar": "غانا",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -5319,7 +5016,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -5336,8 +5033,8 @@
       "search_text": "Croatia Ghana كرواتيا غانا Philadelphia Stadium / Lincoln Financial Field Philadelphia Matchday 17 Group Stage دور المجموعات Group L Match 72",
       "espn_event_id": "760480",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760480",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5376,12 +5073,7 @@
       "team2_ar": "البرتغال",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -5393,7 +5085,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           0,
           0
@@ -5409,8 +5101,8 @@
       "search_text": "Colombia Portugal كولومبيا البرتغال Miami Stadium / Hard Rock Stadium Miami (Miami Gardens) Matchday 17 Group Stage دور المجموعات Group K Match 65",
       "espn_event_id": "760481",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760481",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5447,12 +5139,7 @@
       "team2_ar": "أوزبكستان",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 1,
       "score": {
@@ -5464,7 +5151,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           1
@@ -5481,8 +5168,8 @@
       "search_text": "DR Congo Uzbekistan الكونغو الديمقراطية أوزبكستان Atlanta Stadium / Mercedes-Benz Stadium Atlanta Matchday 17 Group Stage دور المجموعات Group K Match 66",
       "espn_event_id": "760482",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760482",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5521,12 +5208,7 @@
       "team2_ar": "النمسا",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 3,
       "score": {
@@ -5538,7 +5220,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           3
@@ -5554,8 +5236,8 @@
       "search_text": "Algeria Austria الجزائر النمسا Kansas City Stadium / Arrowhead Stadium Kansas City Matchday 17 Group Stage دور المجموعات Group J Match 59",
       "espn_event_id": "760484",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760484",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5592,12 +5274,7 @@
       "team2_ar": "الأرجنتين",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 3,
       "score": {
@@ -5609,7 +5286,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           3
@@ -5626,8 +5303,8 @@
       "search_text": "Jordan Argentina الأردن الأرجنتين Dallas Stadium / AT&T Stadium Dallas (Arlington) Matchday 17 Group Stage دور المجموعات Group J Match 60",
       "espn_event_id": "760483",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espn_id": "760483",
       "last_score_check_at": "2026-06-28T16:58:39+03:00",
       "live_phase": "finished",
@@ -5666,19 +5343,14 @@
       "team2_ar": "كندا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
         "source": "r32-official-correction",
         "status_detail": "Full Time",
         "clock": "90'",
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:31+03:00",
         "current": [
           0,
           1
@@ -5709,12 +5381,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "espn_event_id": "760486",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "2A",
       "team2_source_slot": "2B",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -5756,19 +5428,14 @@
       "team2_ar": "اليابان",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
         "source": "r32-official-correction",
         "status_detail": "Full Time",
         "clock": "90'",
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:31+03:00",
         "current": [
           2,
           1
@@ -5799,12 +5466,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "espn_event_id": "760487",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "1C",
       "team2_source_slot": "2F",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -5846,12 +5513,7 @@
       "team2_ar": "باراغواي",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Penalties"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -5907,16 +5569,16 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1E",
       "team2_source_slot": "3A/B/C/D/F",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760489",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
       "live_score_source": "manual-override",
       "live_period": 5,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "penalty_home_score": 3,
       "home_penalties": 3,
       "team1_penalties": 3,
@@ -5965,12 +5627,7 @@
       "team2_ar": "المغرب",
       "ground": "Monterrey (Guadalupe)",
       "stadium": "Estadio Monterrey / Estadio BBVA",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Penalties"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -5982,7 +5639,7 @@
         "status_detail": "Final Score - After Penalties",
         "clock": "120'",
         "period": 5,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           1
@@ -6028,12 +5685,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "espn_event_id": "760488",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "1F",
       "team2_source_slot": "2C",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
@@ -6081,12 +5738,7 @@
       "team2_ar": "النرويج",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 2,
       "score": {
@@ -6098,7 +5750,7 @@
         "status_detail": "Full Time",
         "clock": "90'+8'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           1,
           2
@@ -6130,12 +5782,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "espn_event_id": "760490",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "2E",
       "team2_source_slot": "2I",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -6180,12 +5832,7 @@
       "team2_ar": "السويد",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 0,
       "score": {
@@ -6197,7 +5844,7 @@
         "status_detail": "Full Time",
         "clock": "90'+4'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           0
@@ -6229,11 +5876,11 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1I",
       "team2_source_slot": "3C/D/F/G/H",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "score1": 3,
       "score2": 0,
       "team1_score": 3,
@@ -6247,7 +5894,7 @@
       "loser": 2,
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760492",
       "date_ar": "الأربعاء، ١ تموز",
       "time_ar": "١٢:٠٠ ص",
@@ -6279,12 +5926,7 @@
       "team2_ar": "الإكوادور",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -6296,7 +5938,7 @@
         "status_detail": "Full Time",
         "clock": "90'+9'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -6328,11 +5970,11 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1A",
       "team2_source_slot": "3C/E/F/H/I",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "score1": 2,
       "score2": 0,
       "team1_score": 2,
@@ -6342,7 +5984,7 @@
       "status_ar": "انتهت",
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "winner_side": 1,
       "loser_side": 2,
       "winner": 1,
@@ -6378,12 +6020,7 @@
       "team2_ar": "الكونغو الديمقراطية",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -6395,7 +6032,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -6427,12 +6064,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1L",
       "team2_source_slot": "3E/H/I/J/K",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "espn_event_id": "760495",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -6477,12 +6114,7 @@
       "team2_ar": "السنغال",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final Score - After Extra Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score": {
@@ -6494,7 +6126,7 @@
         "status_detail": "Final Score - After Extra Time",
         "clock": "120'+12'",
         "period": 4,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           2
@@ -6530,11 +6162,11 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1G",
       "team2_source_slot": "3A/E/H/I/J",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "score1": 3,
       "score2": 2,
       "team1_score": 3,
@@ -6544,7 +6176,7 @@
       "status_ar": "انتهت",
       "live_phase_ar": "انتهت بعد التمديد",
       "live_period": 4,
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "winner_side": 1,
       "loser_side": 2,
       "winner": 1,
@@ -6580,12 +6212,7 @@
       "team2_ar": "البوسنة والهرسك",
       "ground": "San Francisco Bay Area (Santa Clara)",
       "stadium": "San Francisco Bay Area Stadium / Levi's Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -6597,7 +6224,7 @@
         "status_detail": "Full Time",
         "clock": "90'+10'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -6625,15 +6252,15 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1D",
       "team2_source_slot": "3B/E/F/I/J",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team2_resolved_from": "3B/E/F/I/J",
       "team2_resolved_group": "B",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "best-third-B",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
       "score1": 2,
       "score2": 0,
       "team1_score": 2,
@@ -6651,7 +6278,7 @@
       "loser": 2,
       "live_phase_ar": "انتهت",
       "live_period": 2,
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760494",
       "date_ar": "الخميس، ٢ تموز",
       "time_ar": "٣:٠٠ ص",
@@ -6682,12 +6309,7 @@
       "team2_ar": "النمسا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 0,
       "score": {
@@ -6699,7 +6321,7 @@
         "status_detail": "Full Time",
         "clock": "90'+6'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           3,
           0
@@ -6731,12 +6353,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1H",
       "team2_source_slot": "2J",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "espn_event_id": "760497",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -6787,12 +6409,7 @@
       "team2_ar": "كرواتيا",
       "ground": "Toronto",
       "stadium": "Toronto Stadium / BMO Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -6804,7 +6421,7 @@
         "status_detail": "Full Time",
         "clock": "90'+19'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           1
@@ -6836,12 +6453,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "2K",
       "team2_source_slot": "2L",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "espn_event_id": "760496",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
@@ -6892,12 +6509,7 @@
       "team2_ar": "الجزائر",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -6909,7 +6521,7 @@
         "status_detail": "Full Time",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T09:00:30+03:00",
         "current": [
           2,
           0
@@ -6937,12 +6549,12 @@
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
       "team1_source_slot": "1B",
       "team2_source_slot": "3E/F/G/I/J",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team2_resolved_from": "3E/F/G/I/J",
       "team2_resolved_group": "J",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "best-third-J",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760498",
       "espnEventId": "760498",
@@ -6960,8 +6572,8 @@
       "live_phase_ar": "انتهت",
       "live_score_source": "espn",
       "live_period": 2,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "score1": 2,
       "score2": 0,
       "homeScore": 2,
@@ -6997,12 +6609,7 @@
       "team2_ar": "مصر",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بركلات الترجيح",
-        "label": "Final Score - After Penalties"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 1,
       "score": {
@@ -7011,7 +6618,6 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           1,
           1
@@ -7020,7 +6626,6 @@
           1,
           1
         ],
-        "winner_side": 2,
         "et": [
           1,
           1
@@ -7029,44 +6634,40 @@
           2,
           4
         ],
-        "penalties": {
-          "home": 2,
-          "away": 4,
-          "team1": 2,
-          "team2": 4
-        }
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "120'",
       "live_status_detail": "انتهت بركلات الترجيح",
       "search_text": "Australia Egypt أستراليا مصر Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 32 Round of 32 دور 32 Match 88",
       "team1_slot": "W86",
       "team1_original_slot": "W86",
-      "team1_seed": "W86",
-      "team1_resolved_from": "W86",
+      "team1_seed": "2D",
+      "team1_resolved_from": "2D",
       "team1_resolved_group": "D",
       "team1_resolution_status": "resolved",
       "team1_resolution_source": "group-D-rank-2",
       "team2_slot": "W88",
       "team2_original_slot": "W88",
-      "team2_seed": "W88",
-      "team2_resolved_from": "W88",
+      "team2_seed": "2G",
+      "team2_resolved_from": "2G",
       "team2_resolved_group": "G",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "group-G-rank-2",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "team1_source_slot": "W86",
-      "team2_source_slot": "W88",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "team1_source_slot": "2D",
+      "team2_source_slot": "2G",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760499",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 5,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760499",
       "date_ar": "الجمعة، ٣ تموز",
       "time_ar": "٩:٠٠ م",
@@ -7135,12 +6736,7 @@
       "team2_ar": "الرأس الأخضر",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بعد التمديد",
-        "label": "Final Score - After Extra Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score": {
@@ -7149,7 +6745,6 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           3,
           2
@@ -7158,43 +6753,44 @@
           3,
           2
         ],
-        "winner_side": 1,
         "et": [
           3,
           2
-        ]
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "120'+3'",
       "live_status_detail": "انتهت بعد التمديد",
       "search_text": "Argentina Cape Verde الأرجنتين الرأس الأخضر Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Round of 32 Round of 32 دور 32 Match 86",
       "team1_slot": "W86",
       "team1_original_slot": "W86",
-      "team1_seed": "W86",
-      "team1_resolved_from": "W86",
+      "team1_seed": "1J",
+      "team1_resolved_from": "1J",
       "team1_resolved_group": "J",
       "team1_resolution_status": "resolved",
       "team1_resolution_source": "group-J-rank-1",
       "team2_slot": "W88",
       "team2_original_slot": "W88",
-      "team2_seed": "W88",
-      "team2_resolved_from": "W88",
+      "team2_seed": "2H",
+      "team2_resolved_from": "2H",
       "team2_resolved_group": "H",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "group-H-rank-2",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "team1_source_slot": "W86",
-      "team2_source_slot": "W88",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "team1_source_slot": "1J",
+      "team2_source_slot": "2H",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760500",
       "live_phase": "finished_after_extra_time",
       "live_phase_ar": "انتهت بعد التمديد",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 4,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760500",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "١:٠٠ ص",
@@ -7258,12 +6854,7 @@
       "team2_ar": "غانا",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 0,
       "score": {
@@ -7272,7 +6863,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           1,
           0
@@ -7281,39 +6871,40 @@
           1,
           0
         ],
-        "winner_side": 1
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+8'",
       "live_status_detail": "انتهت",
       "search_text": "Colombia Ghana كولومبيا غانا Kansas City Kansas City Stadium / Arrowhead Stadium Round of 32 Round of 32 دور 32 Match 87",
       "team1_slot": "W85",
       "team1_original_slot": "W85",
-      "team1_seed": "W85",
-      "team1_resolved_from": "W85",
+      "team1_seed": "1K",
+      "team1_resolved_from": "1K",
       "team1_resolved_group": "K",
       "team1_resolution_status": "resolved",
       "team1_resolution_source": "group-K-rank-1",
       "team2_slot": "W87",
       "team2_original_slot": "W87",
-      "team2_seed": "W87",
-      "team2_resolved_from": "W87",
+      "team2_seed": "3D/E/I/J/L",
+      "team2_resolved_from": "3D/E/I/J/L",
       "team2_resolved_group": "L",
       "team2_resolution_status": "resolved",
       "team2_resolution_source": "best-third-L",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "team1_source_slot": "W85",
-      "team2_source_slot": "W87",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
-      "r32_official_corrected_at": "2026-07-16T18:35:54+03:00",
+      "team1_source_slot": "1K",
+      "team2_source_slot": "3D/E/I/J/L",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
+      "r32_official_corrected_at": "2026-07-19T09:00:31+03:00",
       "r32_official_pairing": true,
       "espn_event_id": "760501",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760501",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "٤:٣٠ ص",
@@ -7377,12 +6968,7 @@
       "team2_ar": "المغرب",
       "ground": "Houston",
       "stadium": "Houston Stadium / NRG Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 3,
       "score": {
@@ -7391,7 +6977,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           0,
           3
@@ -7400,10 +6985,11 @@
           0,
           3
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+9'",
       "live_status_detail": "انتهت",
       "search_text": "Canada Morocco كندا المغرب Houston Houston Stadium / NRG Stadium Round of 16 Round of 16 دور 16 Match 90",
       "team1_slot": "W73",
@@ -7413,22 +6999,22 @@
       "team2_original_slot": "W75",
       "team2_seed": "W75",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W73",
       "team2_source_slot": "W75",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W73",
       "team2_resolved_from": "W75",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "espn_event_id": "760502",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760502",
       "date_ar": "السبت، ٤ تموز",
       "time_ar": "٨:٠٠ م",
@@ -7503,12 +7089,7 @@
       "team2_ar": "فرنسا",
       "ground": "Philadelphia",
       "stadium": "Philadelphia Stadium / Lincoln Financial Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -7517,7 +7098,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           0,
           1
@@ -7526,10 +7106,11 @@
           0,
           1
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+11'",
       "live_status_detail": "انتهت",
       "search_text": "Paraguay France باراغواي فرنسا Philadelphia Philadelphia Stadium / Lincoln Financial Field Round of 16 Round of 16 دور 16 Match 89",
       "team1_slot": "W74",
@@ -7539,14 +7120,14 @@
       "team2_original_slot": "W77",
       "team2_seed": "W77",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W74",
       "team2_source_slot": "W77",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W74",
       "team2_resolved_from": "W77",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "espn_event_id": "760503",
       "espnEventId": "760503",
@@ -7559,9 +7140,9 @@
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "number": 89,
       "match_number": 89,
       "matchNumber": 89,
@@ -7629,12 +7210,7 @@
       "team2_ar": "النرويج",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 2,
       "score": {
@@ -7643,7 +7219,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           1,
           2
@@ -7652,10 +7227,11 @@
           1,
           2
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+11'",
       "live_status_detail": "انتهت",
       "search_text": "Brazil Norway البرازيل النرويج New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Round of 16 Round of 16 دور 16 Match 91",
       "team1_slot": "W76",
@@ -7665,22 +7241,22 @@
       "team2_original_slot": "W78",
       "team2_seed": "W78",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W76",
       "team2_source_slot": "W78",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W76",
       "team2_resolved_from": "W78",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "espn_event_id": "760504",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760504",
       "date_ar": "الأحد، ٥ تموز",
       "time_ar": "١١:٠٠ م",
@@ -7755,12 +7331,7 @@
       "team2_ar": "إنجلترا",
       "ground": "Mexico City",
       "stadium": "Mexico City Stadium / Estadio Azteca",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 3,
       "score": {
@@ -7769,7 +7340,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           2,
           3
@@ -7778,10 +7348,11 @@
           2,
           3
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+12'",
       "live_status_detail": "انتهت",
       "search_text": "Mexico England المكسيك إنجلترا Mexico City Mexico City Stadium / Estadio Azteca Round of 16 Round of 16 دور 16 Match 92",
       "team1_slot": "W79",
@@ -7791,22 +7362,22 @@
       "team2_original_slot": "W80",
       "team2_seed": "W80",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W79",
       "team2_source_slot": "W80",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W79",
       "team2_resolved_from": "W80",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "espn_event_id": "760505",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
       "live_score_source": "manual-official-finalizer",
-      "live_period": null,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760505",
       "date_ar": "الاثنين، ٦ تموز",
       "time_ar": "٤:٠٠ ص",
@@ -7881,12 +7452,7 @@
       "team2_ar": "إسبانيا",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 1,
       "score": {
@@ -7895,7 +7461,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           0,
           1
@@ -7904,10 +7469,11 @@
           0,
           1
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+9'",
       "live_status_detail": "انتهت",
       "search_text": "Portugal Spain البرتغال إسبانيا Dallas (Arlington) Dallas Stadium / AT&T Stadium Round of 16 Round of 16 دور 16 Match 93",
       "team1_slot": "W83",
@@ -7917,14 +7483,14 @@
       "team2_original_slot": "W84",
       "team2_seed": "W84",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W83",
       "team2_source_slot": "W84",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W83",
       "team2_resolved_from": "W84",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الاثنين، ٦ تموز",
       "time_ar": "١٠:٠٠ م",
@@ -7956,7 +7522,7 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 2,
       "score1": 0,
       "score2": 1,
       "homeScore": 0,
@@ -7980,8 +7546,8 @@
       "started": false,
       "final": true,
       "finished": true,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "penalty_home_score": null,
       "penalty_away_score": null,
       "home_penalties": null,
@@ -8007,12 +7573,7 @@
       "team2_ar": "بلجيكا",
       "ground": "Seattle",
       "stadium": "Seattle Stadium / Lumen Field",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 4,
       "score": {
@@ -8021,7 +7582,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           1,
           4
@@ -8030,10 +7590,11 @@
           1,
           4
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+4'",
       "live_status_detail": "انتهت",
       "search_text": "USA Belgium أمريكا بلجيكا Seattle Seattle Stadium / Lumen Field Round of 16 Round of 16 دور 16 Match 94",
       "team1_slot": "W81",
@@ -8043,14 +7604,14 @@
       "team2_original_slot": "W82",
       "team2_seed": "W82",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W81",
       "team2_source_slot": "W82",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W81",
       "team2_resolved_from": "W82",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "espn_event_id": "760507",
       "espnEventId": "760507",
@@ -8082,7 +7643,7 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 2,
       "score1": 1,
       "score2": 4,
       "homeScore": 1,
@@ -8106,8 +7667,8 @@
       "started": false,
       "final": true,
       "finished": true,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "penalty_home_score": null,
       "penalty_away_score": null,
       "home_penalties": null,
@@ -8127,18 +7688,13 @@
       "time": "12:00 UTC-4",
       "kickoff_utc": "2026-07-07T16:00:00.000Z",
       "kickoff_jordan": "2026-07-07T19:00:00+03:00",
-      "team1": "Argentina",
-      "team2": "Egypt",
-      "team1_ar": "الأرجنتين",
-      "team2_ar": "مصر",
+      "team1": "Winner of match 86",
+      "team2": "Winner of match 88",
+      "team1_ar": "الفائز من مباراة 86",
+      "team2_ar": "الفائز من مباراة 88",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 2,
       "score": {
@@ -8147,7 +7703,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           3,
           2
@@ -8156,12 +7711,13 @@
           3,
           2
         ],
-        "winner_side": 1
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+11'",
       "live_status_detail": "انتهت",
-      "search_text": "Switzerland Switzerland سويسرا سويسرا Atlanta Atlanta Stadium / Mercedes-Benz Stadium Round of 16 Round of 16 دور 16 Match 95",
+      "search_text": "Winner of match 86 Winner of match 88 الفائز من مباراة 86 الفائز من مباراة 88 Atlanta Atlanta Stadium / Mercedes-Benz Stadium Round of 16 Round of 16 دور 16 Match 95",
       "team1_slot": "W86",
       "team1_original_slot": "W86",
       "team1_seed": "W86",
@@ -8169,14 +7725,14 @@
       "team2_original_slot": "W88",
       "team2_seed": "W88",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W86",
       "team2_source_slot": "W88",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W86",
       "team2_resolved_from": "W88",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الثلاثاء، ٧ تموز",
       "time_ar": "٧:٠٠ م",
@@ -8206,7 +7762,7 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 2,
       "score1": 3,
       "score2": 2,
       "homeScore": 3,
@@ -8231,8 +7787,8 @@
       "final": true,
       "finished": true,
       "espn_event_id": "760509",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "penalty_home_score": null,
       "penalty_away_score": null,
       "home_penalties": null,
@@ -8253,17 +7809,12 @@
       "kickoff_utc": "2026-07-07T20:00:00.000Z",
       "kickoff_jordan": "2026-07-07T23:00:00+03:00",
       "team1": "Switzerland",
-      "team2": "Colombia",
+      "team2": "Switzerland",
       "team1_ar": "سويسرا",
-      "team2_ar": "كولومبيا",
+      "team2_ar": "سويسرا",
       "ground": "Vancouver",
       "stadium": "Vancouver Stadium / BC Place",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بركلات الترجيح",
-        "label": "Final Score - After Penalties"
-      },
+      "status": "finished",
       "home_score": 0,
       "away_score": 0,
       "score": {
@@ -8272,7 +7823,6 @@
         "phase": "finished_on_penalties",
         "phase_ar": "انتهت بركلات الترجيح",
         "status_detail": "انتهت بركلات الترجيح",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           0,
           0
@@ -8281,7 +7831,6 @@
           0,
           0
         ],
-        "winner_side": 1,
         "et": [
           0,
           0
@@ -8290,15 +7839,11 @@
           4,
           3
         ],
-        "penalties": {
-          "home": 4,
-          "away": 3,
-          "team1": 4,
-          "team2": 3
-        }
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "120'",
       "live_status_detail": "انتهت بركلات الترجيح",
       "search_text": "Switzerland Switzerland سويسرا سويسرا Vancouver Vancouver Stadium / BC Place Round of 16 Round of 16 دور 16 Match 96",
       "team1_slot": "W85",
@@ -8308,14 +7853,14 @@
       "team2_original_slot": "W87",
       "team2_seed": "W87",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W85",
       "team2_source_slot": "W87",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W85",
       "team2_resolved_from": "W87",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الثلاثاء، ٧ تموز",
       "time_ar": "١١:٠٠ م",
@@ -8351,7 +7896,7 @@
       "phase": "finished_on_penalties",
       "live_phase": "finished_on_penalties",
       "live_phase_ar": "انتهت بركلات الترجيح",
-      "live_period": null,
+      "live_period": 5,
       "score1": 0,
       "score2": 0,
       "homeScore": 0,
@@ -8383,8 +7928,10 @@
       "started": false,
       "final": true,
       "finished": true,
-      "last_live_update": "2026-07-16T18:35:54+03:00",
-      "manual_override_locked": true
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "manual_override_locked": true,
+      "espn_event_id": "760508",
+      "live_checked_at": "2026-07-19T09:00:30+03:00"
     },
     {
       "id": "M097",
@@ -8403,12 +7950,7 @@
       "team2_ar": "المغرب",
       "ground": "Boston (Foxborough)",
       "stadium": "Boston Stadium / Gillette Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 0,
       "score": {
@@ -8417,7 +7959,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           2,
           0
@@ -8426,10 +7967,11 @@
           2,
           0
         ],
-        "winner_side": 1
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+6'",
       "live_status_detail": "انتهت",
       "search_text": "France Morocco فرنسا المغرب Boston (Foxborough) Boston Stadium / Gillette Stadium Quarter-final Quarter-final ربع النهائي Match 97",
       "team1_slot": "W89",
@@ -8439,14 +7981,14 @@
       "team2_original_slot": "W90",
       "team2_seed": "W90",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W89",
       "team2_source_slot": "W90",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W89",
       "team2_resolved_from": "W90",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الخميس، ٩ تموز",
       "time_ar": "١١:٠٠ م",
@@ -8473,12 +8015,12 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 2,
       "quarterfinal_pairing_verified_at": "2026-07-09T11:40:00+03:00",
       "espn_event_id": "760510",
       "live_score_source": "manual-official-finalizer",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760510",
       "score1": 2,
       "score2": 0,
@@ -8522,12 +8064,7 @@
       "team2_ar": "بلجيكا",
       "ground": "Los Angeles (Inglewood)",
       "stadium": "Los Angeles Stadium / SoFi Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 2,
       "away_score": 1,
       "score": {
@@ -8536,7 +8073,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           2,
           1
@@ -8545,10 +8081,11 @@
           2,
           1
         ],
-        "winner_side": 1
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "90'+7'",
       "live_status_detail": "انتهت",
       "search_text": "Spain Belgium إسبانيا بلجيكا Los Angeles (Inglewood) Los Angeles Stadium / SoFi Stadium Quarter-final Quarter-final ربع النهائي Match 98",
       "team1_slot": "W93",
@@ -8558,14 +8095,14 @@
       "team2_original_slot": "W94",
       "team2_seed": "W94",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W93",
       "team2_source_slot": "W94",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W93",
       "team2_resolved_from": "W94",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الجمعة، ١٠ تموز",
       "time_ar": "١٠:٠٠ م",
@@ -8587,7 +8124,7 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 2,
       "quarterfinal_pairing_verified_at": "2026-07-09T11:40:00+03:00",
       "score_ft": null,
       "score_et": null,
@@ -8596,8 +8133,8 @@
       "loser_side": 2,
       "espn_event_id": "760511",
       "live_score_source": "manual-official-finalizer",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760511",
       "score1": 2,
       "score2": 1,
@@ -8641,12 +8178,7 @@
       "team2_ar": "إنجلترا",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
+      "status": "finished",
       "home_score": 1,
       "away_score": 2,
       "score": {
@@ -8655,7 +8187,6 @@
         "phase": "finished",
         "phase_ar": "انتهت",
         "status_detail": "انتهت",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           1,
           2
@@ -8664,10 +8195,11 @@
           1,
           2
         ],
-        "winner_side": 2
+        "winner_side": 2,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "120'+2'",
       "live_status_detail": "انتهت",
       "search_text": "Norway England النرويج إنجلترا Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Quarter-final Quarter-final ربع النهائي Match 99",
       "team1_slot": "W91",
@@ -8677,14 +8209,14 @@
       "team2_original_slot": "W92",
       "team2_seed": "W92",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W91",
       "team2_source_slot": "W92",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W91",
       "team2_resolved_from": "W92",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الأحد، ١٢ تموز",
       "time_ar": "١٢:٠٠ ص",
@@ -8706,7 +8238,7 @@
       "phase": "finished",
       "live_phase": "finished",
       "live_phase_ar": "انتهت",
-      "live_period": null,
+      "live_period": 4,
       "quarterfinal_pairing_verified_at": "2026-07-09T11:40:00+03:00",
       "score_ft": null,
       "score_et": null,
@@ -8715,8 +8247,8 @@
       "loser_side": 1,
       "espn_event_id": "760512",
       "live_score_source": "manual-official-finalizer",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760512",
       "score1": 1,
       "score2": 2,
@@ -8754,18 +8286,13 @@
       "time": "20:00 UTC-5",
       "kickoff_utc": "2026-07-12T01:00:00.000Z",
       "kickoff_jordan": "2026-07-12T04:00:00+03:00",
-      "team1": "Argentina",
+      "team1": "Winner of match 86",
       "team2": "Switzerland",
-      "team1_ar": "الأرجنتين",
+      "team1_ar": "الفائز من مباراة 86",
       "team2_ar": "سويسرا",
       "ground": "Kansas City",
       "stadium": "Kansas City Stadium / Arrowhead Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت بعد التمديد",
-        "label": "Final Score - After Extra Time"
-      },
+      "status": "finished",
       "home_score": 3,
       "away_score": 1,
       "score": {
@@ -8774,7 +8301,6 @@
         "phase": "finished_after_extra_time",
         "phase_ar": "انتهت بعد التمديد",
         "status_detail": "انتهت بعد التمديد",
-        "checked_at": "2026-07-16T18:35:59+03:00",
         "current": [
           3,
           1
@@ -8783,16 +8309,17 @@
           3,
           1
         ],
-        "winner_side": 1,
         "et": [
           3,
           1
-        ]
+        ],
+        "winner_side": 1,
+        "checked_at": "2026-07-16T18:35:59+03:00"
       },
       "score_source": "manual-official-finalizer",
-      "live_clock": "FT",
+      "live_clock": "120'+4'",
       "live_status_detail": "انتهت بعد التمديد",
-      "search_text": "Switzerland Switzerland سويسرا سويسرا Kansas City Kansas City Stadium / Arrowhead Stadium Quarter-final Quarter-final ربع النهائي Match 100",
+      "search_text": "Winner of match 86 Switzerland الفائز من مباراة 86 سويسرا Kansas City Kansas City Stadium / Arrowhead Stadium Quarter-final Quarter-final ربع النهائي Match 100",
       "team1_slot": "W95",
       "team1_original_slot": "W95",
       "team1_seed": "W95",
@@ -8800,14 +8327,14 @@
       "team2_original_slot": "W96",
       "team2_seed": "W96",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W95",
       "team2_source_slot": "W96",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W95",
       "team2_resolved_from": "W96",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الأحد، ١٢ تموز",
       "time_ar": "٤:٠٠ ص",
@@ -8829,7 +8356,7 @@
       "phase": "finished_after_extra_time",
       "live_phase": "finished_after_extra_time",
       "live_phase_ar": "انتهت بعد التمديد",
-      "live_period": null,
+      "live_period": 4,
       "quarterfinal_pairing_verified_at": "2026-07-09T11:40:00+03:00",
       "score_ft": null,
       "score_et": null,
@@ -8838,8 +8365,8 @@
       "loser_side": 2,
       "espn_event_id": "760513",
       "live_score_source": "manual-official-finalizer",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760513",
       "score1": 3,
       "score2": 1,
@@ -8877,44 +8404,39 @@
       "time": "14:00 UTC-5",
       "kickoff_utc": "2026-07-14T19:00:00.000Z",
       "kickoff_jordan": "2026-07-14T22:00:00+03:00",
-      "team1": "France",
-      "team2": "Spain",
-      "team1_ar": "فرنسا",
-      "team2_ar": "إسبانيا",
+      "team1": "Spain",
+      "team2": "France",
+      "team1_ar": "إسبانيا",
+      "team2_ar": "فرنسا",
       "ground": "Dallas (Arlington)",
       "stadium": "Dallas Stadium / AT&T Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Full Time"
-      },
-      "home_score": 0,
-      "away_score": 2,
+      "status": "finished",
+      "home_score": 2,
+      "away_score": 0,
       "score": {
-        "source": "espn",
+        "source": "manual-official-final-four-fix",
         "event_id": "760514",
         "status": "finished",
         "phase": "finished",
         "phase_ar": "انتهت",
-        "status_detail": "Full Time",
+        "status_detail": "STATUS_FULL_TIME",
         "clock": "90'+7'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T06:00:31.628Z",
         "current": [
-          0,
-          2
+          2,
+          0
         ],
         "ft": [
-          0,
-          2
+          2,
+          0
         ],
         "winner_side": 2
       },
-      "score_source": "espn",
+      "score_source": "manual-official-final-four-fix",
       "live_clock": "90'+7'",
-      "live_status_detail": "Full Time",
-      "search_text": "France Spain فرنسا إسبانيا Dallas (Arlington) Dallas Stadium / AT&T Stadium Semi-final Semi-final نصف النهائي Match 101",
+      "live_status_detail": "STATUS_FULL_TIME",
+      "search_text": "Spain France إسبانيا فرنسا France Spain فرنسا إسبانيا Dallas (Arlington) Dallas Stadium / AT&T Stadium Semi-final Semi-final نصف النهائي Match 101",
       "team1_slot": "W97",
       "team1_original_slot": "W97",
       "team1_seed": "W97",
@@ -8922,14 +8444,14 @@
       "team2_original_slot": "W98",
       "team2_seed": "W98",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W97",
       "team2_source_slot": "W98",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W97",
       "team2_resolved_from": "W98",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الثلاثاء، ١٤ تموز",
       "time_ar": "١٠:٠٠ م",
@@ -8943,8 +8465,8 @@
       "live_phase_ar": "انتهت",
       "live_score_source": "espn",
       "live_period": 2,
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "number": 101,
       "match_number": 101,
       "matchNumber": 101,
@@ -8957,16 +8479,19 @@
       "score_text": "0-2",
       "winner_side": 2,
       "loser_side": 1,
-      "winner": null,
+      "winner": "Spain",
       "winner_ar": null,
       "status_key": "scheduled",
       "status_ar": "لم تبدأ",
       "phase": "scheduled",
-      "score1": 0,
-      "score2": 2,
-      "team1_score": 0,
-      "team2_score": 2,
-      "score_updated_by": "espn-jordan-order-consistency"
+      "score1": 2,
+      "score2": 0,
+      "team1_score": 2,
+      "team2_score": 0,
+      "score_updated_by": "espn-jordan-order-consistency",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M101",
+      "manual_override_at": "2026-07-19T06:00:31.628Z"
     },
     {
       "id": "M102",
@@ -8979,44 +8504,39 @@
       "time": "15:00 UTC-4",
       "kickoff_utc": "2026-07-15T19:00:00.000Z",
       "kickoff_jordan": "2026-07-15T22:00:00+03:00",
-      "team1": "England",
-      "team2": "Argentina",
-      "team1_ar": "إنجلترا",
-      "team2_ar": "الأرجنتين",
+      "team1": "Argentina",
+      "team2": "England",
+      "team1_ar": "الأرجنتين",
+      "team2_ar": "إنجلترا",
       "ground": "Atlanta",
       "stadium": "Atlanta Stadium / Mercedes-Benz Stadium",
-      "status": {
-        "key": "finished",
-        "state": "finished",
-        "label_ar": "انتهت",
-        "label": "Final"
-      },
-      "home_score": 1,
-      "away_score": 2,
+      "status": "finished",
+      "home_score": 2,
+      "away_score": 1,
       "score": {
-        "source": "espn",
+        "source": "manual-official-final-four-fix",
         "event_id": "760515",
         "status": "finished",
         "phase": "finished",
         "phase_ar": "انتهت",
-        "status_detail": "Full Time",
+        "status_detail": "STATUS_FULL_TIME",
         "clock": "90'+12'",
         "period": 2,
-        "checked_at": "2026-07-16T18:35:54+03:00",
+        "checked_at": "2026-07-19T06:00:31.628Z",
         "current": [
-          1,
-          2
+          2,
+          1
         ],
         "ft": [
-          1,
-          2
+          2,
+          1
         ],
         "winner_side": 2
       },
-      "score_source": "espn-finished",
+      "score_source": "manual-official-final-four-fix",
       "live_clock": "90'+12'",
-      "live_status_detail": "Full Time",
-      "search_text": "England Switzerland إنجلترا سويسرا Atlanta Atlanta Stadium / Mercedes-Benz Stadium Semi-final Semi-final نصف النهائي Match 102",
+      "live_status_detail": "STATUS_FULL_TIME",
+      "search_text": "Argentina England الأرجنتين إنجلترا England Winner of match 86 إنجلترا الفائز من مباراة 86 Atlanta Atlanta Stadium / Mercedes-Benz Stadium Semi-final Semi-final نصف النهائي Match 102",
       "team1_slot": "W99",
       "team1_original_slot": "W99",
       "team1_seed": "W99",
@@ -9024,14 +8544,14 @@
       "team2_original_slot": "W100",
       "team2_seed": "W100",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W99",
       "team2_source_slot": "W100",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W99",
       "team2_resolved_from": "W100",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الأربعاء، ١٥ تموز",
       "time_ar": "١٠:٠٠ م",
@@ -9051,7 +8571,7 @@
       "score_text": "1 - 2",
       "winner_side": 2,
       "loser_side": 1,
-      "winner": null,
+      "winner": "Argentina",
       "winner_ar": null,
       "status_key": "finished",
       "status_ar": "انتهت",
@@ -9061,17 +8581,20 @@
       "live_period": 2,
       "espn_event_id": "760515",
       "live_score_source": "espn",
-      "live_checked_at": "2026-07-16T18:35:54+03:00",
-      "last_live_update": "2026-07-16T18:35:54+03:00",
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
       "espnEventId": "760515",
-      "score1": 1,
-      "score2": 2,
-      "team1_score": 1,
-      "team2_score": 2,
+      "score1": 2,
+      "score2": 1,
+      "team1_score": 2,
+      "team2_score": 1,
       "team1Score": 1,
       "team2Score": 2,
-      "homeScore": 1,
-      "awayScore": 2
+      "homeScore": 2,
+      "awayScore": 1,
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M102",
+      "manual_override_at": "2026-07-19T06:00:31.628Z"
     },
     {
       "id": "M103",
@@ -9090,19 +8613,27 @@
       "team2_ar": "إنجلترا",
       "ground": "Miami (Miami Gardens)",
       "stadium": "Miami Stadium / Hard Rock Stadium",
-      "status": {
-        "key": "scheduled",
-        "state": "scheduled",
-        "label_ar": "لم تبدأ",
-        "label": "Scheduled"
-      },
+      "status": "scheduled",
       "home_score": null,
       "away_score": null,
-      "score": null,
-      "score_source": "scheduled",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "France England فرنسا إنجلترا Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Match for third place Match for third place المركز الثالث Match 103",
+      "score": {
+        "source": "espn",
+        "event_id": "760516",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "Full Time",
+        "clock": "90'+9'",
+        "period": 2,
+        "checked_at": "2026-07-19T09:00:30+03:00",
+        "current": null,
+        "ft": null,
+        "winner_side": 1
+      },
+      "score_source": "espn",
+      "live_clock": "90'+9'",
+      "live_status_detail": "STATUS_SCHEDULED",
+      "search_text": "France England فرنسا إنجلترا Spain Winner of match 86 إسبانيا الفائز من مباراة 86 Miami (Miami Gardens) Miami Stadium / Hard Rock Stadium Match for third place Match for third place المركز الثالث Match 103",
       "team1_slot": "L101",
       "team1_original_slot": "L101",
       "team1_seed": "L101",
@@ -9110,14 +8641,14 @@
       "team2_original_slot": "L102",
       "team2_seed": "L102",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "L101",
       "team2_source_slot": "L102",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "L101",
       "team2_resolved_from": "L102",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الأحد، ١٩ تموز",
       "time_ar": "١٢:٠٠ ص",
@@ -9126,7 +8657,18 @@
       "sort_key_jordan": "2026-07-19T00:00:00+03:00",
       "timezone": "Asia/Amman",
       "espn_event_id": "760516",
-      "espnEventId": "760516"
+      "espnEventId": "760516",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_score_source": "espn",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M103",
+      "manual_override_at": "2026-07-19T06:00:31.628Z",
+      "winner_side": 1,
+      "loser_side": 2
     },
     {
       "id": "M104",
@@ -9140,19 +8682,32 @@
       "kickoff_utc": "2026-07-19T19:00:00.000Z",
       "kickoff_jordan": "2026-07-19T22:00:00+03:00",
       "team1": "Spain",
-      "team2": "Switzerland",
+      "team2": "Argentina",
       "team1_ar": "إسبانيا",
-      "team2_ar": "سويسرا",
+      "team2_ar": "الأرجنتين",
       "ground": "New York/New Jersey (East Rutherford)",
       "stadium": "New York New Jersey Stadium / MetLife Stadium",
       "status": "scheduled",
       "home_score": null,
       "away_score": null,
-      "score": null,
-      "score_source": "scheduled",
-      "live_clock": null,
-      "live_status_detail": null,
-      "search_text": "Spain Switzerland إسبانيا سويسرا New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Final Final النهائي Match 104",
+      "score": {
+        "source": "espn",
+        "event_id": "760516",
+        "status": "finished",
+        "phase": "finished",
+        "phase_ar": "انتهت",
+        "status_detail": "Full Time",
+        "clock": "90'+9'",
+        "period": 2,
+        "checked_at": "2026-07-19T09:00:30+03:00",
+        "current": null,
+        "ft": null,
+        "winner_side": 2
+      },
+      "score_source": "espn",
+      "live_clock": "90'+9'",
+      "live_status_detail": "STATUS_SCHEDULED",
+      "search_text": "Spain Argentina إسبانيا الأرجنتين France England فرنسا إنجلترا New York/New Jersey (East Rutherford) New York New Jersey Stadium / MetLife Stadium Final Final النهائي Match 104",
       "team1_slot": "W101",
       "team1_original_slot": "W101",
       "team1_seed": "W101",
@@ -9160,21 +8715,33 @@
       "team2_original_slot": "W102",
       "team2_seed": "W102",
       "bracket_linked_at": "2026-06-28T20:57:57+03:00",
-      "knockout_linked_at": "2026-07-16T18:35:54+03:00",
+      "knockout_linked_at": "2026-07-19T09:00:30+03:00",
       "team1_source_slot": "W101",
       "team2_source_slot": "W102",
       "team1_resolution_status": "resolved",
       "team2_resolution_status": "resolved",
       "team1_resolved_from": "W101",
       "team2_resolved_from": "W102",
-      "knockout_advancement_synced_at": "2026-07-16T18:35:59+03:00",
+      "knockout_advancement_synced_at": "2026-07-19T09:00:31+03:00",
       "knockout_advancement_sync_version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
       "date_ar": "الأحد، ١٩ تموز",
       "time_ar": "١٠:٠٠ م",
       "date_jordan": "2026-07-19",
       "time_jordan": "22:00",
       "sort_key_jordan": "2026-07-19T22:00:00+03:00",
-      "timezone": "Asia/Amman"
+      "timezone": "Asia/Amman",
+      "manual_override": true,
+      "manual_override_key": "official-final-four-M104",
+      "manual_override_at": "2026-07-19T06:00:31.628Z",
+      "espn_event_id": "760516",
+      "live_phase": "finished",
+      "live_phase_ar": "انتهت",
+      "live_score_source": "espn",
+      "live_period": 2,
+      "live_checked_at": "2026-07-19T09:00:30+03:00",
+      "last_live_update": "2026-07-19T09:00:30+03:00",
+      "winner_side": 2,
+      "loser_side": 1
     }
   ],
   "live_zero_score_guard": {

@@ -1,41 +1,41 @@
 {
   "name": "MaenSat World Cup 2026 original 15-minute updater",
   "timezone": "Asia/Amman",
-  "last_checked_at": "2026-07-16T18:35:54+03:00",
-  "last_updated": "2026-07-16T18:35:54+03:00",
-  "next_expected_check_at": "2026-07-16T18:50:54+03:00",
+  "last_checked_at": "2026-07-19T09:00:30+03:00",
+  "last_updated": "2026-07-19T09:00:30+03:00",
+  "next_expected_check_at": "2026-07-19T09:15:31+03:00",
   "refresh_interval_minutes": 15,
   "source": "github-actions-original-workflow",
   "github": {
-    "run_id": "29511839479",
-    "run_number": "3233",
+    "run_id": "29675716494",
+    "run_number": "3525",
     "workflow": "Update World Cup 2026 every 15 minutes",
     "event_name": "workflow_dispatch",
     "repository": "maen1977/maen_site_analytics",
     "ref": "refs/heads/main",
-    "sha": "d04f1751e5405cbe4a64c98aa23f8f001e677b59",
+    "sha": "74cec58ee2765bec4394397b3bf1220744c7acd6",
     "trigger_source": "manual",
     "forced_at": ""
   },
   "checks": {
     "espn_scoreboard": {
       "ok": true,
-      "urls_checked": 12,
-      "events_seen": 103,
-      "matched": 101,
-      "bracket_matched": 29,
-      "score_changed": 101,
+      "urls_checked": 10,
+      "events_seen": 104,
+      "matched": 104,
+      "bracket_matched": 32,
+      "score_changed": 20,
       "future_openfootball_zero_scores_cleared": 0,
       "time_fallback_status_applied": 0,
       "bracket_time_fallback_status_applied": 0
     },
     "knockout": {
-      "changed": 15,
-      "directResolved": 38,
-      "thirdResolved": 14,
-      "winnerResolved": 76,
+      "changed": 10,
+      "directResolved": 48,
+      "thirdResolved": 16,
+      "winnerResolved": 64,
       "unresolved": [],
-      "third_assignment_count": 7,
+      "third_assignment_count": 8,
       "third_assignments": [
         {
           "key": "M077:2",
@@ -85,6 +85,13 @@
           "team": "Ecuador",
           "team_ar": "الإكوادور",
           "fallback": false
+        },
+        {
+          "key": "M087:2",
+          "group": "L",
+          "team": "Ghana",
+          "team_ar": "غانا",
+          "fallback": false
         }
       ]
     },
@@ -102,12 +109,12 @@
     ],
     "errors": []
   },
-  "cache_buster": "eb03573a15f8",
+  "cache_buster": "58b57a457ca8",
   "note_ar": "هذا الملف يتغير كل تشغيل ضمن التحديث الأصلي كل 15 دقيقة؛ لا يوجد Action جديد ولا تعديل على واجهة الموقع.",
   "r32_official_correction": {
     "ok": true,
     "name": "MaenSat World Cup 2026 Round of 32 official correction",
-    "corrected_at": "2026-07-16T18:35:54+03:00",
+    "corrected_at": "2026-07-19T09:00:31+03:00",
     "timezone": "Asia/Amman",
     "version": "2026-06-29-v1",
     "matches_file": {
