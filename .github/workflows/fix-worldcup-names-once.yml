@@ -1,0 +1,316 @@
+name: Fix World Cup team names (skip final)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-worldcup-names:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Correct Arabic team names without touching the final
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+
+          const FILES = [
+            'public/worldcup-2026/matches.json',
+            'public/worldcup-2026/bracket.json',
+            'public/worldcup-2026/knockout-live.json',
+          ];
+
+          const aliases = new Map();
+          const add = (arabic, ...englishNames) => {
+            for (const name of englishNames) {
+              aliases.set(normalize(name), arabic);
+            }
+          };
+
+          function normalize(value) {
+            return String(value ?? '')
+              .normalize('NFKD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .replace(/[’‘]/g, "'")
+              .replace(/\s+/g, ' ')
+              .trim()
+              .toLowerCase();
+          }
+
+          add('المكسيك', 'Mexico');
+          add('جنوب أفريقيا', 'South Africa');
+          add('كوريا الجنوبية', 'South Korea', 'Korea Republic');
+          add('التشيك', 'Czech Republic', 'Czechia');
+          add('كندا', 'Canada');
+          add('البوسنة والهرسك', 'Bosnia & Herzegovina', 'Bosnia and Herzegovina');
+          add('قطر', 'Qatar');
+          add('سويسرا', 'Switzerland');
+          add('البرازيل', 'Brazil');
+          add('المغرب', 'Morocco');
+          add('هايتي', 'Haiti');
+          add('اسكتلندا', 'Scotland');
+          add('الولايات المتحدة', 'USA', 'United States', 'United States of America');
+          add('باراغواي', 'Paraguay');
+          add('أستراليا', 'Australia');
+          add('تركيا', 'Turkey', 'Türkiye', 'Turkiye');
+          add('ألمانيا', 'Germany');
+          add('كوراساو', 'Curaçao', 'Curacao');
+          add('كوت ديفوار', "Côte d'Ivoire", "Cote d'Ivoire", 'Ivory Coast');
+          add('الإكوادور', 'Ecuador');
+          add('هولندا', 'Netherlands', 'Holland');
+          add('اليابان', 'Japan');
+          add('السويد', 'Sweden');
+          add('تونس', 'Tunisia');
+          add('بلجيكا', 'Belgium');
+          add('مصر', 'Egypt');
+          add('إيران', 'Iran');
+          add('نيوزيلندا', 'New Zealand');
+          add('إسبانيا', 'Spain');
+          add('الرأس الأخضر', 'Cape Verde', 'Cabo Verde');
+          add('السعودية', 'Saudi Arabia');
+          add('الأوروغواي', 'Uruguay');
+          add('فرنسا', 'France');
+          add('السنغال', 'Senegal');
+          add('العراق', 'Iraq');
+          add('النرويج', 'Norway');
+          add('الأرجنتين', 'Argentina');
+          add('الجزائر', 'Algeria');
+          add('النمسا', 'Austria');
+          add('الأردن', 'Jordan');
+          add('البرتغال', 'Portugal');
+          add('الكونغو الديمقراطية', 'DR Congo', 'Congo DR', 'Democratic Republic of the Congo');
+          add('أوزبكستان', 'Uzbekistan');
+          add('كولومبيا', 'Colombia');
+          add('إنجلترا', 'England');
+          add('كرواتيا', 'Croatia');
+          add('غانا', 'Ghana');
+          add('بنما', 'Panama');
+
+          function translateTeam(value) {
+            if (typeof value !== 'string') return null;
+            return aliases.get(normalize(value)) ?? null;
+          }
+
+          function scalar(value) {
+            if (value == null) return '';
+            if (typeof value === 'string' || typeof value === 'number') return String(value);
+            return '';
+          }
+
+          function teamName(value) {
+            if (typeof value === 'string') return value;
+            if (!value || typeof value !== 'object') return '';
+            return scalar(value.name_en || value.name || value.team_en || value.code);
+          }
+
+          function exactFinalStage(value) {
+            const v = normalize(value);
+            return v === 'final' || v === 'the final' || v === 'النهائي' || v === 'المباراة النهائية';
+          }
+
+          function isFinalMatch(node) {
+            if (!node || typeof node !== 'object' || Array.isArray(node)) return false;
+
+            const idValues = [
+              node.id,
+              node.match,
+              node.match_id,
+              node.matchId,
+              node.fixture_id,
+              node.fixtureId,
+              node.game_id,
+              node.gameId,
+            ].map(scalar).map(v => v.trim().toUpperCase());
+
+            if (idValues.some(v => v === 'M104' || v === 'MATCH-104' || v === 'MATCH_104')) {
+              return true;
+            }
+
+            const numberValues = [
+              node.match_number,
+              node.matchNumber,
+              node.display_number,
+              node.displayNumber,
+              node.number,
+            ];
+            if (numberValues.some(v => Number(v) === 104)) return true;
+
+            const stageValues = [
+              node.stage_key,
+              node.stageKey,
+              node.stage,
+              node.stage_en,
+              node.stage_ar,
+              node.round,
+              node.round_en,
+              node.round_ar,
+            ];
+            if (stageValues.some(exactFinalStage)) return true;
+
+            const dateValue = scalar(node.date || node.date_iso || node.dateIso || node.kickoff || node.start_time);
+            const names = [
+              teamName(node.team1),
+              teamName(node.team2),
+              teamName(node.home),
+              teamName(node.away),
+              teamName(node.home_team),
+              teamName(node.away_team),
+              scalar(node.team1_en),
+              scalar(node.team2_en),
+              scalar(node.home_en),
+              scalar(node.away_en),
+            ].map(normalize);
+
+            const hasSpain = names.includes(normalize('Spain')) || names.includes(normalize('إسبانيا'));
+            const hasArgentina = names.includes(normalize('Argentina')) || names.includes(normalize('الأرجنتين'));
+            return dateValue.startsWith('2026-07-19') && hasSpain && hasArgentina;
+          }
+
+          function collectFinalSignatures(node, currentPath = '$', output = []) {
+            if (Array.isArray(node)) {
+              node.forEach((item, index) => collectFinalSignatures(item, `${currentPath}[${index}]`, output));
+              return output;
+            }
+            if (!node || typeof node !== 'object') return output;
+            if (isFinalMatch(node)) {
+              output.push([currentPath, JSON.stringify(node)]);
+              return output;
+            }
+            for (const [key, value] of Object.entries(node)) {
+              collectFinalSignatures(value, `${currentPath}.${key}`, output);
+            }
+            return output;
+          }
+
+          const pairedFields = [
+            ['name_en', 'name_ar'],
+            ['team_en', 'team_ar'],
+            ['team1', 'team1_ar'],
+            ['team2', 'team2_ar'],
+            ['team1_en', 'team1_ar'],
+            ['team2_en', 'team2_ar'],
+            ['home', 'home_ar'],
+            ['away', 'away_ar'],
+            ['home_en', 'home_ar'],
+            ['away_en', 'away_ar'],
+            ['home_team', 'home_team_ar'],
+            ['away_team', 'away_team_ar'],
+            ['home_team_en', 'home_team_ar'],
+            ['away_team_en', 'away_team_ar'],
+            ['resolved_team', 'resolved_team_ar'],
+            ['winner_team', 'winner_team_ar'],
+            ['loser_team', 'loser_team_ar'],
+          ];
+
+          function patchNode(node, stats) {
+            if (Array.isArray(node)) {
+              for (const item of node) patchNode(item, stats);
+              return;
+            }
+            if (!node || typeof node !== 'object') return;
+
+            // Absolute protection: never enter or alter the final match subtree.
+            if (isFinalMatch(node)) {
+              stats.skippedFinalObjects += 1;
+              return;
+            }
+
+            for (const [sourceKey, targetKey] of pairedFields) {
+              if (!(sourceKey in node) || !(targetKey in node)) continue;
+              const sourceValue = teamName(node[sourceKey]) || scalar(node[sourceKey]);
+              const translated = translateTeam(sourceValue);
+              if (translated && node[targetKey] !== translated) {
+                node[targetKey] = translated;
+                stats.fieldsChanged += 1;
+              }
+            }
+
+            // Fix English team names accidentally stored in any Arabic team-name field.
+            for (const [key, value] of Object.entries(node)) {
+              if (typeof value !== 'string') continue;
+              const isArabicNameField = key.endsWith('_ar') || key === 'arabic_name' || key === 'nameArabic';
+              if (!isArabicNameField) continue;
+              const translated = translateTeam(value);
+              if (translated && value !== translated) {
+                node[key] = translated;
+                stats.fieldsChanged += 1;
+              }
+            }
+
+            for (const value of Object.values(node)) {
+              patchNode(value, stats);
+            }
+          }
+
+          let changedFiles = 0;
+          let totalFieldsChanged = 0;
+
+          for (const relativeFile of FILES) {
+            const absoluteFile = path.resolve(relativeFile);
+            if (!fs.existsSync(absoluteFile)) {
+              console.log(`[worldcup-names] optional file not found: ${relativeFile}`);
+              continue;
+            }
+
+            const originalText = fs.readFileSync(absoluteFile, 'utf8');
+            const data = JSON.parse(originalText);
+            const beforeFinal = collectFinalSignatures(data);
+            const stats = { fieldsChanged: 0, skippedFinalObjects: 0 };
+
+            patchNode(data, stats);
+
+            const afterFinal = collectFinalSignatures(data);
+            if (JSON.stringify(beforeFinal) !== JSON.stringify(afterFinal)) {
+              throw new Error(`Safety check failed: final match changed in ${relativeFile}`);
+            }
+
+            if (stats.fieldsChanged === 0) {
+              console.log(`[worldcup-names] unchanged: ${relativeFile}; final objects protected=${stats.skippedFinalObjects}`);
+              continue;
+            }
+
+            const nextText = `${JSON.stringify(data, null, 2)}\n`;
+            const tempFile = `${absoluteFile}.tmp`;
+            fs.writeFileSync(tempFile, nextText, 'utf8');
+            fs.renameSync(tempFile, absoluteFile);
+
+            changedFiles += 1;
+            totalFieldsChanged += stats.fieldsChanged;
+            console.log(`[worldcup-names] fixed ${stats.fieldsChanged} fields in ${relativeFile}; final objects protected=${stats.skippedFinalObjects}`);
+          }
+
+          console.log(`[worldcup-names] completed: changedFiles=${changedFiles}, fieldsChanged=${totalFieldsChanged}`);
+          NODE
+
+      - name: Commit corrected World Cup names
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            public/worldcup-2026/matches.json \
+            public/worldcup-2026/bracket.json \
+            public/worldcup-2026/knockout-live.json
+
+          if git diff --cached --quiet; then
+            echo "No World Cup team-name corrections were needed."
+            exit 0
+          fi
+
+          git commit -m "Fix World Cup team names without touching final"
+          git push
