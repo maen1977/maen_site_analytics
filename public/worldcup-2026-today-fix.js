@@ -18,7 +18,7 @@
   var TOURNAMENT_START = '2026-06-11';
   var PANEL_ID = 'maensat-wc-today-24h-panel';
   var STYLE_ID = 'maensat-wc-today-fix-style';
-  var SCRIPT_VERSION = '2026-06-25-safe-v3';
+  var SCRIPT_VERSION = '2026-07-19-live-score-v5';
 
   function textOf(el) {
     return (el && (el.textContent || el.innerText) || '').replace(/\s+/g, ' ').trim();
@@ -206,12 +206,63 @@
   }
 
   function getScore(match) {
-    var direct = firstValue(match, ['score', 'result', 'fulltime_score', 'fullTimeScore']);
-    if (direct) return pickName(direct);
-    var hs = firstValue(match, ['home_score', 'homeScore', 'score_home']);
-    var as = firstValue(match, ['away_score', 'awayScore', 'score_away']);
-    if (hs !== null && hs !== undefined && as !== null && as !== undefined) return hs + ' - ' + as;
-    return '';
+    function scoreNumber(value) {
+      if (value === null || value === undefined || value === '') return null;
+      var text = String(value)
+        .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
+        .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
+      var m = text.match(/-?\d+/);
+      return m ? Number(m[0]) : null;
+    }
+    function scorePair(left, right) {
+      var a = scoreNumber(left);
+      var b = scoreNumber(right);
+      return a !== null && b !== null ? [a, b] : null;
+    }
+    function pairFromObject(value) {
+      if (!value || typeof value !== 'object') return null;
+      if (Array.isArray(value) && value.length >= 2) return scorePair(value[0], value[1]);
+      return scorePair(
+        firstValue(value, ['home', 'home_score', 'homeScore', 'team1', 'team1_score', 'team1Score', 'score1', 'a']),
+        firstValue(value, ['away', 'away_score', 'awayScore', 'team2', 'team2_score', 'team2Score', 'score2', 'b'])
+      );
+    }
+    function pairFromText(value) {
+      if (value === null || value === undefined || typeof value === 'object') return null;
+      var text = String(value)
+        .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
+        .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
+      var m = text.match(/(\d+)\s*[-–—:]\s*(\d+)/);
+      return m ? [Number(m[1]), Number(m[2])] : null;
+    }
+
+    var pair = scorePair(
+      firstValue(match, ['home_score', 'homeScore', 'score_home']),
+      firstValue(match, ['away_score', 'awayScore', 'score_away'])
+    );
+    if (!pair) pair = scorePair(
+      firstValue(match, ['score1', 'team1_score', 'team1Score']),
+      firstValue(match, ['score2', 'team2_score', 'team2Score'])
+    );
+
+    var nested = match && match.score;
+    if (!pair && nested && typeof nested === 'object') {
+      pair = pairFromObject(nested.current) || pairFromObject(nested.ft) ||
+        pairFromObject(nested.fulltime) || pairFromObject(nested.fullTime) ||
+        pairFromObject(nested.regular) || pairFromObject(nested);
+      if (!pair) pair = pairFromText(nested.current) || pairFromText(nested.ft) ||
+        pairFromText(nested.fulltime) || pairFromText(nested.fullTime);
+    }
+
+    if (!pair) {
+      var direct = firstValue(match, [
+        'score_text', 'scoreText', 'display_score', 'displayScore',
+        'result', 'fulltime_score', 'fullTimeScore'
+      ]);
+      pair = pairFromText(direct);
+    }
+    if (!pair && typeof nested === 'string') pair = pairFromText(nested);
+    return pair ? pair[0] + ' - ' + pair[1] : '';
   }
 
   function getRound(match) {
