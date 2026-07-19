@@ -18,7 +18,7 @@
   var TOURNAMENT_START = '2026-06-11';
   var PANEL_ID = 'maensat-wc-today-24h-panel';
   var STYLE_ID = 'maensat-wc-today-fix-style';
-  var SCRIPT_VERSION = '2026-07-19-live-score-v5';
+  var SCRIPT_VERSION = '2026-07-19-final-isolation-v6';
 
   function textOf(el) {
     return (el && (el.textContent || el.innerText) || '').replace(/\s+/g, ' ').trim();
@@ -205,19 +205,19 @@
     return map[s.toLowerCase()] || s;
   }
 
-  function getScore(match) {
+  /* MAENSAT_SCORE_READER_V6_FINAL_ISOLATION */ function getScore(match) {
     function scoreNumber(value) {
       if (value === null || value === undefined || value === '') return null;
       var text = String(value)
         .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
         .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
-      var m = text.match(/-?\d+/);
-      return m ? Number(m[0]) : null;
+      var found = text.match(/-?\d+/);
+      return found ? Number(found[0]) : null;
     }
     function scorePair(left, right) {
-      var a = scoreNumber(left);
-      var b = scoreNumber(right);
-      return a !== null && b !== null ? [a, b] : null;
+      var first = scoreNumber(left);
+      var second = scoreNumber(right);
+      return first !== null && second !== null ? [first, second] : null;
     }
     function pairFromObject(value) {
       if (!value || typeof value !== 'object') return null;
@@ -232,9 +232,37 @@
       var text = String(value)
         .replace(/[٠-٩]/g, function (d) { return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); })
         .replace(/[۰-۹]/g, function (d) { return '۰۱۲۳۴۵۶۷۸۹'.indexOf(d); });
-      var m = text.match(/(\d+)\s*[-–—:]\s*(\d+)/);
-      return m ? [Number(m[1]), Number(m[2])] : null;
+      var found = text.match(/(\d+)\s*[-–—:]\s*(\d+)/);
+      return found ? [Number(found[1]), Number(found[2])] : null;
     }
+    function scoreStatusText(value) {
+      var status = value && value.status;
+      var nested = value && value.score;
+      return [
+        status && status.key,
+        status && status.state,
+        status && status.label_ar,
+        status && status.label,
+        status && typeof status !== 'object' ? status : '',
+        nested && nested.status,
+        nested && nested.phase,
+        nested && nested.phase_ar,
+        value && value.status_key,
+        value && value.status_ar,
+        value && value.state,
+        value && value.phase,
+        value && value.live_phase,
+        value && value.live_phase_ar
+      ].filter(Boolean).join(' ').toLowerCase();
+    }
+
+    var kickoff = parseMatchDate(match);
+    if (kickoff && kickoff.getTime() > Date.now()) return '';
+
+    var statusText = scoreStatusText(match);
+    var active = /live|in progress|in_progress|halftime|extra time|penalty|finished|completed|full time|post|مباشر|الشوط|ترجيح|انته/.test(statusText);
+    var waiting = /scheduled|fixture|upcoming|pre match|prematch|not started|قادمة|لم تبدأ/.test(statusText);
+    if (waiting && !active) return '';
 
     var pair = scorePair(
       firstValue(match, ['home_score', 'homeScore', 'score_home']),
@@ -245,23 +273,22 @@
       firstValue(match, ['score2', 'team2_score', 'team2Score'])
     );
 
-    var nested = match && match.score;
-    if (!pair && nested && typeof nested === 'object') {
-      pair = pairFromObject(nested.current) || pairFromObject(nested.ft) ||
-        pairFromObject(nested.fulltime) || pairFromObject(nested.fullTime) ||
-        pairFromObject(nested.regular) || pairFromObject(nested);
-      if (!pair) pair = pairFromText(nested.current) || pairFromText(nested.ft) ||
-        pairFromText(nested.fulltime) || pairFromText(nested.fullTime);
+    var nestedScore = match && match.score;
+    if (!pair && nestedScore && typeof nestedScore === 'object') {
+      pair = pairFromObject(nestedScore.current) || pairFromObject(nestedScore.ft) ||
+        pairFromObject(nestedScore.fulltime) || pairFromObject(nestedScore.fullTime) ||
+        pairFromObject(nestedScore.regular) || pairFromObject(nestedScore);
+      if (!pair) pair = pairFromText(nestedScore.current) || pairFromText(nestedScore.ft) ||
+        pairFromText(nestedScore.fulltime) || pairFromText(nestedScore.fullTime);
     }
 
     if (!pair) {
-      var direct = firstValue(match, [
+      pair = pairFromText(firstValue(match, [
         'score_text', 'scoreText', 'display_score', 'displayScore',
         'result', 'fulltime_score', 'fullTimeScore'
-      ]);
-      pair = pairFromText(direct);
+      ]));
     }
-    if (!pair && typeof nested === 'string') pair = pairFromText(nested);
+    if (!pair && typeof nestedScore === 'string') pair = pairFromText(nestedScore);
     return pair ? pair[0] + ' - ' + pair[1] : '';
   }
 
