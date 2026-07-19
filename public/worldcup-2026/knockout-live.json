@@ -1,7 +1,7 @@
 {
   "name": "MaenSat World Cup 2026 knockout live cards",
   "version": "2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync",
-  "last_updated_at": "2026-07-20T01:00:55+03:00",
+  "last_updated_at": "2026-07-20T01:15:58+03:00",
   "timezone": "Asia/Amman",
   "summary": {
     "matches": 32,
@@ -1976,12 +1976,12 @@
           "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
           "city_ar": "",
           "status": {
-            "key": "live",
-            "state": "live",
-            "label_ar": "مباشر",
-            "label": "Live"
+            "key": "finished",
+            "state": "finished",
+            "label_ar": "انتهت",
+            "label": "Final"
           },
-          "phase": "live",
+          "phase": "finished",
           "score1": 1,
           "score2": 0,
           "score_ft": null,
@@ -2022,8 +2022,8 @@
           "match_number": 104,
           "matchNumber": 104,
           "display_number": 104,
-          "status_key": "live",
-          "status_ar": "مباشر",
+          "status_key": "finished",
+          "status_ar": "انتهت",
           "team1_score": 1,
           "team2_score": 0,
           "team1Score": 1,
@@ -2033,14 +2033,14 @@
           "homeScore": 1,
           "awayScore": 0,
           "score_text": "1 - 0",
-          "score_source": "espn-live",
+          "score_source": "espn-finished",
           "score": {
             "source": "espn-live-score-repair",
             "event_id": "760517",
-            "status": "live",
-            "phase": "live",
-            "status_detail": "120'+1'",
-            "checked_at": "2026-07-20T01:00:45+03:00",
+            "status": "finished",
+            "phase": "finished",
+            "status_detail": "AET",
+            "checked_at": "2026-07-20T01:15:49+03:00",
             "current": [
               1,
               0
@@ -2049,13 +2049,21 @@
               1,
               0
             ],
-            "clock": "120'+1'",
-            "period": 4
+            "clock": "120'+5'",
+            "period": 4,
+            "ft": [
+              1,
+              0
+            ],
+            "winner_side": 1
           },
           "live_score_source": "espn-live-score-repair",
-          "live_checked_at": "2026-07-20T01:00:45+03:00",
-          "live_status_detail": "120'+1'",
-          "live_phase": "live"
+          "live_checked_at": "2026-07-20T01:15:49+03:00",
+          "live_status_detail": "AET",
+          "live_phase": "finished",
+          "loser_side": 2,
+          "winner": 1,
+          "loser": 2
         }
       ]
     }
@@ -3724,12 +3732,12 @@
       "venue_ar": "New York New Jersey Stadium / MetLife Stadium",
       "city_ar": "",
       "status": {
-        "key": "live",
-        "state": "live",
-        "label_ar": "مباشر",
-        "label": "Live"
+        "key": "finished",
+        "state": "finished",
+        "label_ar": "انتهت",
+        "label": "Final"
       },
-      "phase": "live",
+      "phase": "finished",
       "score1": 1,
       "score2": 0,
       "score_ft": null,
@@ -3770,8 +3778,8 @@
       "match_number": 104,
       "matchNumber": 104,
       "display_number": 104,
-      "status_key": "live",
-      "status_ar": "مباشر",
+      "status_key": "finished",
+      "status_ar": "انتهت",
       "team1_score": 1,
       "team2_score": 0,
       "team1Score": 1,
@@ -3781,14 +3789,14 @@
       "homeScore": 1,
       "awayScore": 0,
       "score_text": "1 - 0",
-      "score_source": "espn-live",
+      "score_source": "espn-finished",
       "score": {
         "source": "espn-live-score-repair",
         "event_id": "760517",
-        "status": "live",
-        "phase": "live",
-        "status_detail": "120'+1'",
-        "checked_at": "2026-07-20T01:00:45+03:00",
+        "status": "finished",
+        "phase": "finished",
+        "status_detail": "AET",
+        "checked_at": "2026-07-20T01:15:49+03:00",
         "current": [
           1,
           0
@@ -3797,13 +3805,21 @@
           1,
           0
         ],
-        "clock": "120'+1'",
-        "period": 4
+        "clock": "120'+5'",
+        "period": 4,
+        "ft": [
+          1,
+          0
+        ],
+        "winner_side": 1
       },
       "live_score_source": "espn-live-score-repair",
-      "live_checked_at": "2026-07-20T01:00:45+03:00",
-      "live_status_detail": "120'+1'",
-      "live_phase": "live"
+      "live_checked_at": "2026-07-20T01:15:49+03:00",
+      "live_status_detail": "AET",
+      "live_phase": "finished",
+      "loser_side": 2,
+      "winner": 1,
+      "loser": 2
     }
   ]
 }
