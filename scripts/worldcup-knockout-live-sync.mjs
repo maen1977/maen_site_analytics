@@ -6,6 +6,7 @@ const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'public', 'worldcup-2026');
 const TZ = 'Asia/Amman';
 const VERSION = '2026-06-30-dynamic-knockout-advancement-force-v5-ui-matches-sync';
+let TEAM_AR_LOOKUP = {};
 
 function nowAmmanIso() {
   const parts = new Intl.DateTimeFormat('en-CA', {
@@ -98,9 +99,16 @@ function matchNumber(m) {
   return fromId ? Number(fromId[1]) : 0;
 }
 
+function matchReferenceNumber(m) {
+  const explicit = text(deepGet(m, ['id', 'match_id', 'matchId', 'code', 'key']));
+  const fromId = westernDigits(explicit).match(/(?:^|\b)M?(\d{2,3})(?:\b|$)/i);
+  if (fromId) return Number(fromId[1]);
+  return matchNumber(m);
+}
+
 function matchCode(m) {
-  const n = matchNumber(m);
-  return n ? `M${String(n).padStart(3, '0')}` : (text(m.id || m.match_id || m.code || m.key) || `M${Math.random().toString(36).slice(2, 8)}`);
+  const ref = matchReferenceNumber(m);
+  return ref ? `M${String(ref).padStart(3, '0')}` : `M${Math.random().toString(36).slice(2, 8)}`;
 }
 
 function parseMatchTimeMs(m) {
@@ -196,8 +204,8 @@ function extractTeam(match, side) {
   const raw = deepGet(match, side === 1 ? side1 : side2);
   const t = teamFromRaw(raw, `team${side}`);
   const slotPaths = side === 1
-    ? ['team1_slot', 'team_1_slot', 'team1_source_slot', 'team1_original_slot', 'team1_seed', 'home_slot', 'home_seed', 'slot1', 'seed1', 'team1Seed', 'team1_placeholder']
-    : ['team2_slot', 'team_2_slot', 'team2_source_slot', 'team2_original_slot', 'team2_seed', 'away_slot', 'away_seed', 'slot2', 'seed2', 'team2Seed', 'team2_placeholder'];
+    ? ['team1_source_slot', 'team1_original_slot', 'source_slot1', 'team1_seed', 'team1_slot', 'team_1_slot', 'home_slot', 'home_seed', 'slot1', 'seed1', 'team1Seed', 'team1_placeholder']
+    : ['team2_source_slot', 'team2_original_slot', 'source_slot2', 'team2_seed', 'team2_slot', 'team_2_slot', 'away_slot', 'away_seed', 'slot2', 'seed2', 'team2Seed', 'team2_placeholder'];
   const slot = deepGet(match, slotPaths);
   if (text(slot)) t.slot = normalizeSlot(slot);
   return t;
@@ -358,9 +366,12 @@ function makePlaceholder(slot) {
 }
 
 function teamObject(t, extra = {}) {
+  const nameEn = t?.name_en || t?.team_en || t?.english || t?.name || t?.team || t?.name_ar || '';
+  const rawAr = t?.name_ar || t?.team_ar || t?.arabic || '';
+  const nameAr = TEAM_AR_LOOKUP[nameEn] || (rawAr && rawAr !== nameEn ? rawAr : '') || nameEn;
   return {
-    name_ar: t?.name_ar || t?.team_ar || t?.arabic || t?.name || t?.name_en || t?.team || '',
-    name_en: t?.name_en || t?.team_en || t?.english || t?.name || t?.team || t?.name_ar || '',
+    name_ar: nameAr,
+    name_en: nameEn,
     group: t?.group || '',
     position: t?.position || '',
     slot: t?.slot || '',
@@ -372,6 +383,15 @@ function teamObject(t, extra = {}) {
 function main() {
   const matchesJson = readJson('matches.json');
   const bracketJson = readJson('bracket.json');
+  const existingKnockoutJson = readJson('knockout-live.json');
+  const existingFinalMatch = structuredClone(collectMatches(existingKnockoutJson).find((raw) => matchNumber(raw) === 104) || null);
+  if (existingFinalMatch) {
+    delete existingFinalMatch.__hintRound;
+    delete existingFinalMatch.__normalized;
+    delete existingFinalMatch.__resolvedTeam1;
+    delete existingFinalMatch.__resolvedTeam2;
+  }
+  TEAM_AR_LOOKUP = matchesJson && typeof matchesJson.team_ar === 'object' ? matchesJson.team_ar : {};
   const standingsJson = readJson('standings.json') || readJson('groups.json');
   const standings = extractStandings(standingsJson || {});
   const standingSlot = new Map();
@@ -382,7 +402,10 @@ function main() {
   }
   const thirdRanking = standings.filter(t => t.position === 3).sort(compareThird).slice(0, 8);
 
-  const allRaw = [...collectMatches(matchesJson), ...collectMatches(bracketJson)];
+  const matchesSource = collectMatches(matchesJson);
+  const bracketSource = collectMatches(bracketJson);
+  const finalFromMatches = matchesSource.find((raw) => matchNumber(raw) === 104) || null;
+  const allRaw = [...matchesSource, ...bracketSource];
   const byCodeRaw = new Map();
   for (const raw of allRaw) {
     const n = matchNumber(raw);
@@ -392,8 +415,13 @@ function main() {
     byCodeRaw.set(code, mergePreferScoredMatch(current, raw));
   }
 
+  // The final is owned by the live score pipeline. Never replace its teams with
+  // bracket-derived W101/W102 resolution here.
+  if (finalFromMatches) byCodeRaw.set(matchCode(finalFromMatches), finalFromMatches);
+
   const rawMatches = [...byCodeRaw.values()].sort((a, b) => parseMatchTimeMs(a) - parseMatchTimeMs(b) || matchNumber(a) - matchNumber(b));
   const byNumber = new Map();
+  const byReferenceNumber = new Map();
   const usedThirdGroups = new Set();
   const assignedThird = [];
 
@@ -410,7 +438,7 @@ function main() {
       assignedThird.push({ key: `${matchCodeValue}:team${side}`, group, team_ar: teamDisplayName(standingSlot.get(slot)), slot });
       return teamObject(standingSlot.get(slot), { slot, resolved_from: slot });
     }
-    if (team.name_ar || team.name_en) return teamObject(team, { slot: team.slot || '' });
+    if (team.name_ar || team.name_en) return teamObject(team, { slot: team.slot || '', resolved_from: team.resolved_from || team.slot || '' });
     return makePlaceholder(slot || '');
   }
 
@@ -419,11 +447,14 @@ function main() {
     const n = matchNumber(raw);
     const code = matchCode(raw);
     const stage = stageFromNumber(n, raw.__hintRound || deepGet(raw, ['stage', 'round', 'phase', 'stage_ar', 'round_ar']));
-    const t1 = resolveInitialTeam(extractTeam(raw, 1), code, 1);
-    const t2 = resolveInitialTeam(extractTeam(raw, 2), code, 2);
-    const normalized = { raw, n, code, stage, team1: t1, team2: t2 };
+    const extracted1 = extractTeam(raw, 1);
+    const extracted2 = extractTeam(raw, 2);
+    const t1 = n === 104 ? teamObject(extracted1, { slot: extracted1.slot || '', unresolved: false }) : resolveInitialTeam(extracted1, code, 1);
+    const t2 = n === 104 ? teamObject(extracted2, { slot: extracted2.slot || '', unresolved: false }) : resolveInitialTeam(extracted2, code, 2);
+    const normalized = { raw, n, code, refNumber: matchReferenceNumber(raw), stage, team1: t1, team2: t2 };
     raw.__normalized = normalized;
     byNumber.set(n, normalized);
+    byReferenceNumber.set(normalized.refNumber, normalized);
   }
 
   // Second pass: multi best-third slots, keeping every best-third group used only once.
@@ -440,6 +471,7 @@ function main() {
     return teamObject(candidate, { slot, resolved_from: `best-third:${candidate.group}` });
   }
   for (const norm of byNumber.values()) {
+    if (norm.n === 104) continue;
     norm.team1 = resolveBestThirdIfNeeded(norm.team1, norm.code, 1);
     norm.team2 = resolveBestThirdIfNeeded(norm.team2, norm.code, 2);
   }
@@ -449,7 +481,7 @@ function main() {
     const slot = normalizeSlot(team.slot || '');
     const ref = slot.match(/^([WL])(\d{2,3})$/);
     if (!ref) return team;
-    const prev = byNumber.get(Number(ref[2]));
+    const prev = byReferenceNumber.get(Number(ref[2]));
     if (!prev) return makePlaceholder(slot);
     const side = ref[1] === 'W' ? winnerSide(prev.raw) : loserSide(prev.raw);
     if (side === 1) return teamObject(prev.team1, { slot, resolved_from: slot, unresolved: false });
@@ -458,6 +490,7 @@ function main() {
   }
   for (let i = 0; i < 3; i++) {
     for (const norm of [...byNumber.values()].sort((a, b) => a.n - b.n)) {
+      if (norm.n === 104) continue;
       norm.team1 = resolveWinnerLoser(norm.team1);
       norm.team2 = resolveWinnerLoser(norm.team2);
       norm.raw.__resolvedTeam1 = norm.team1;
@@ -508,7 +541,7 @@ function main() {
     const s = normalizeSlot(slot || '');
     const ref = s.match(/^([WL])(\d{2,3})$/);
     if (!ref) return null;
-    const prev = byNumber.get(Number(ref[2]));
+    const prev = byReferenceNumber.get(Number(ref[2]));
     if (!prev) return makePlaceholder(s);
     const side = ref[1] === 'W' ? winnerSide(prev.raw) : loserSide(prev.raw);
     if (side === 1) return teamObject(prev.team1, { slot: s, resolved_from: s, unresolved: false });
@@ -517,6 +550,7 @@ function main() {
   }
 
   for (const m of normalizedMatches) {
+    if (m.number === 104) continue;
     const forced1 = forcedDynamicTeam(m.source_slot1);
     if (forced1) m.team1 = forced1;
     const forced2 = forcedDynamicTeam(m.source_slot2);
@@ -562,12 +596,12 @@ function main() {
 
     for (const raw of matchesJson.matches) {
       const n = matchNumber(raw);
-      if (n < 89 || n > 104) continue;
+      if (n < 89 || n > 103) continue;
       const resolved = byNum.get(n);
       if (!resolved) continue;
 
-      const slot1 = normalizeSlot(raw.team1_slot || raw.team1_source_slot || raw.team1_original_slot || raw.team1_seed || resolved.source_slot1 || raw.team1 || '');
-      const slot2 = normalizeSlot(raw.team2_slot || raw.team2_source_slot || raw.team2_original_slot || raw.team2_seed || resolved.source_slot2 || raw.team2 || '');
+      const slot1 = normalizeSlot(raw.team1_source_slot || raw.team1_original_slot || raw.source_slot1 || raw.team1_seed || resolved.source_slot1 || raw.team1_slot || raw.team1 || '');
+      const slot2 = normalizeSlot(raw.team2_source_slot || raw.team2_original_slot || raw.source_slot2 || raw.team2_seed || resolved.source_slot2 || raw.team2_slot || raw.team2 || '');
       const next1 = teamForMatchesJson(resolved.team1, slot1 || resolved.source_slot1);
       const next2 = teamForMatchesJson(resolved.team2, slot2 || resolved.source_slot2);
 
@@ -623,6 +657,11 @@ function main() {
   }
 
   const matchesJsonSync = applyResolvedKnockoutTeamsToMatchesJson();
+
+  if (existingFinalMatch) {
+    const finalIndex = normalizedMatches.findIndex((match) => Number(match.number) === 104);
+    if (finalIndex >= 0) normalizedMatches[finalIndex] = existingFinalMatch;
+  }
 
   const roundMap = new Map();
   for (const m of normalizedMatches) {

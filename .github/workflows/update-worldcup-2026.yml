@@ -2,7 +2,6 @@ name: Update World Cup 2026 every 15 minutes
 
 on:
   schedule:
-    # تشغيل ثابت كل 15 دقيقة تقريباً بتوقيت GitHub/UTC.
     - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
     inputs:
@@ -27,8 +26,7 @@ env:
   WORLD_CUP_2026_FORCE_UPDATE: "1"
   WORLD_CUP_2026_INTERVAL_MINUTES: "15"
   WORLD_CUP_2026_START_DATE: "2026-06-11"
-  # نُبقي التحديث حتى اليوم التالي كي لا تتوقف نتيجة النهائي إذا امتدت لوقت إضافي أو ركلات ترجيح.
-  WORLD_CUP_2026_END_DATE: "2026-07-20"
+  WORLD_CUP_2026_END_DATE: "2026-07-19"
   WORLD_CUP_2026_TRIGGER_SOURCE: ${{ github.event.inputs.source || github.event_name }}
   WORLD_CUP_2026_FORCED_AT: ${{ github.event.inputs.forced_at || '' }}
   WORLD_CUP_2026_ESPN_SCOREBOARD_URL: ${{ vars.WORLD_CUP_2026_ESPN_SCOREBOARD_URL || 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950' }}
@@ -68,97 +66,57 @@ jobs:
             scripts/worldcup-quarter-hour-force.mjs \
             scripts/worldcup-r32-official-fix.mjs \
             scripts/worldcup-live-score-repair.mjs \
-            scripts/worldcup-knockout-live-sync.mjs \
             scripts/worldcup-live-zero-score-guard.mjs \
             scripts/worldcup-finished-score-backfill.mjs \
             scripts/worldcup-jordan-order-consistency.mjs \
             scripts/worldcup-final-live-reconciliation.mjs \
-            scripts/worldcup-score-display-guard.mjs
+            scripts/worldcup-final-team-preserver.mjs \
+            scripts/worldcup-knockout-team-integrity.mjs \
+            scripts/worldcup-knockout-live-sync.mjs
           do
-            if [ -f "$file" ]; then
-              node --check "$file"
-            else
-              echo "Skipping missing optional script: $file"
-            fi
+            node --check "$file"
           done
 
-      - name: Run original quarter-hour updater
+      - name: Preserve final match teams
         shell: bash
-        run: |
-          if [ -f scripts/worldcup-quarter-hour-force.mjs ]; then
-            node scripts/worldcup-quarter-hour-force.mjs
-          fi
+        run: node scripts/worldcup-final-team-preserver.mjs snapshot "$RUNNER_TEMP/worldcup-m104-teams.json"
 
-      - name: Apply official Round of 32 pairings correction
+      - name: Fetch and update World Cup source data
         shell: bash
-        run: |
-          if [ -f scripts/worldcup-r32-official-fix.mjs ]; then
-            node scripts/worldcup-r32-official-fix.mjs
-          fi
+        run: node scripts/worldcup-quarter-hour-force.mjs
 
-      - name: Repair live scores before knockout sync
+      - name: Apply official Round of 32 correction
         shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
-            node scripts/worldcup-live-score-repair.mjs
-          fi
+        run: node scripts/worldcup-r32-official-fix.mjs
 
-      - name: Sync knockout live advancement cards
+      - name: Repair and backfill scores
         shell: bash
         run: |
-          if [ -f scripts/worldcup-knockout-live-sync.mjs ]; then
-            node scripts/worldcup-knockout-live-sync.mjs
-          fi
-
-      - name: Repair live scores after knockout sync
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-score-repair.mjs ]; then
-            node scripts/worldcup-live-score-repair.mjs
-          fi
-
-      - name: Force 0-0 display for live matches without scores
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-live-zero-score-guard.mjs ]; then
-            node scripts/worldcup-live-zero-score-guard.mjs
-          fi
-
-      - name: Backfill finished matches stuck pending update
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-finished-score-backfill.mjs ]; then
-            node scripts/worldcup-finished-score-backfill.mjs
-          fi
-
-      - name: Sort and normalize World Cup matches by Jordan time
-        shell: bash
-        run: |
+          set -euo pipefail
+          node scripts/worldcup-live-score-repair.mjs
+          node scripts/worldcup-live-zero-score-guard.mjs
+          node scripts/worldcup-finished-score-backfill.mjs
           node scripts/worldcup-jordan-order-consistency.mjs
-
-      - name: Re-sync knockout cards after final score backfill
-        shell: bash
-        run: |
-          if [ -f scripts/worldcup-knockout-live-sync.mjs ]; then
-            node scripts/worldcup-knockout-live-sync.mjs
-          fi
-          WORLD_CUP_2026_SKIP_ESPN_FETCH=1 node scripts/worldcup-jordan-order-consistency.mjs
-
-      - name: Final live status reconciliation
-        shell: bash
-        run: |
-          # آخر مزامنة من المصدر قبل الحارس المحلي.
           node scripts/worldcup-final-live-reconciliation.mjs
 
-      - name: Preserve third-place result and expose live score to the UI
+      - name: Repair knockout team paths before sync
+        shell: bash
+        run: node scripts/worldcup-knockout-team-integrity.mjs
+
+      - name: Build knockout cards once
+        shell: bash
+        run: node scripts/worldcup-knockout-live-sync.mjs
+
+      - name: Final score and team integrity gate
         shell: bash
         run: |
-          # هذه آخر خطوة قبل الكومت: تصلح قارئ النتيجة في بطاقة اليوم،
-          # تثبّت فرنسا 4-6 إنجلترا، وتنسخ نتيجة النهائي إلى الحقول التي تقرؤها الواجهة.
-          node scripts/worldcup-score-display-guard.mjs
-          node --check public/worldcup-2026-today-fix.js
+          set -euo pipefail
+          node scripts/worldcup-final-live-reconciliation.mjs
+          node scripts/worldcup-final-team-preserver.mjs restore "$RUNNER_TEMP/worldcup-m104-teams.json"
+          node scripts/worldcup-knockout-team-integrity.mjs
+          node scripts/worldcup-knockout-team-integrity.mjs --check
 
-      - name: Commit changed World Cup data and UI files
+      - name: Commit changed World Cup data files
         id: commit
         shell: bash
         run: |
@@ -167,7 +125,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add \
-            public/worldcup-2026-today-fix.js \
             public/worldcup-2026/matches.json \
             public/worldcup-2026/standings.json \
             public/worldcup-2026/groups.json \
@@ -179,13 +136,13 @@ jobs:
             public/worldcup-2026/finished-score-backfill-status.json \
             public/worldcup-2026/jordan-order-consistency-status.json \
             public/worldcup-2026/final-live-reconciliation-status.json \
-            public/worldcup-2026/bracket-linker-status.json \
             public/worldcup-2026/r32-correction-status.json \
             public/worldcup-2026/heartbeat.json \
             public/worldcup-2026/update-check.json \
             public/worldcup-2026/version.json \
             public/worldcup-2026/update-errors.json \
-            public/worldcup-2026/deploy-marker.txt 2>/dev/null || true
+            public/worldcup-2026/deploy-marker.txt \
+            2>/dev/null || true
 
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -194,7 +151,7 @@ jobs:
           fi
 
           stamp="$(TZ=Asia/Amman date +'%Y-%m-%d %H:%M:%S %Z')"
-          git commit -m "World Cup 2026 live score display fix ${stamp}"
+          git commit -m "World Cup 2026 15-minute data update ${stamp}"
           git pull --rebase --autostash origin main || true
           git push origin HEAD:main || {
             git pull --rebase --autostash origin main
@@ -212,6 +169,5 @@ jobs:
             echo "If Cloudflare Pages is connected to GitHub, the push above should deploy automatically."
             exit 0
           fi
-          echo "Triggering Cloudflare Pages deploy hook..."
           curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
           echo "Cloudflare Pages deploy hook triggered."
