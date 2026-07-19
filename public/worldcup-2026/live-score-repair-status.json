@@ -2,18 +2,18 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-  "checked_at": "2026-07-19T09:14:59+03:00",
+  "checked_at": "2026-07-19T09:15:28+03:00",
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
       "file": "matches.json",
       "matches_seen": 104,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "bracket.json",
       "matches_seen": 32,
-      "updated": 0
+      "updated": 2
     },
     {
       "file": "knockout-live.json",
@@ -23,8 +23,92 @@
   ],
   "updates": [
     {
-      "file": "knockout-live.json",
+      "file": "matches.json",
+      "match": "M103",
+      "event_id": "760516",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "france",
+        "england"
+      ],
+      "before_score": [
+        4,
+        6
+      ],
+      "after_score": [
+        4,
+        6
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "matches.json",
       "match": "M104",
+      "event_id": "760516",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "spain",
+        "switzerland"
+      ],
+      "before_score": [
+        4,
+        6
+      ],
+      "after_score": [
+        4,
+        6
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M103",
+      "event_id": "760516",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "france",
+        "england"
+      ],
+      "before_score": [
+        4,
+        6
+      ],
+      "after_score": [
+        4,
+        6
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "bracket.json",
+      "match": "M104",
+      "event_id": "760516",
+      "reason": "explicit-id",
+      "orientation": "same",
+      "teams": [
+        "spain",
+        "argentina"
+      ],
+      "before_score": [
+        4,
+        6
+      ],
+      "after_score": [
+        4,
+        6
+      ],
+      "event_status": "finished",
+      "event_detail": "FT"
+    },
+    {
+      "file": "knockout-live.json",
+      "match": "M103",
       "event_id": "760516",
       "reason": "team-match",
       "orientation": "same",
@@ -45,7 +129,7 @@
     },
     {
       "file": "knockout-live.json",
-      "match": "M104",
+      "match": "M103",
       "event_id": "760516",
       "reason": "team-match",
       "orientation": "same",
@@ -67,6 +151,6 @@
   ],
   "errors": [],
   "espn_events": 1,
-  "updated_matches": 2,
+  "updated_matches": 6,
   "ok": true
 }
