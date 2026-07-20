@@ -1,80 +1,35 @@
-name: World Cup 2026 Final Archive (manual only)
+name: World Cup 2026 updates disabled
 
+# انتهت البطولة. لا توجد جدولة تلقائية ولا تحديث كل 15 دقيقة.
+# أبقينا التشغيل اليدوي فقط كصفحة حالة، ولا يتم تعديل أي ملفات.
 on:
   workflow_dispatch:
+    inputs:
+      source:
+        description: "Ignored: World Cup 2026 updates are disabled"
+        required: false
+        default: "manual"
+      forced_at:
+        description: "Ignored external scheduler timestamp"
+        required: false
+        default: ""
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: worldcup-2026-final-archive
-  cancel-in-progress: false
-
-env:
-  TZ: Asia/Amman
-  CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
+  group: worldcup-2026-updates-disabled
+  cancel-in-progress: true
 
 jobs:
-  finalize-world-cup-archive:
+  updates-disabled:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.GH_PAT_FOR_AUTOMATION || github.token }}
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-
-      - name: Validate final archive scripts
+      - name: World Cup 2026 archive is final
         shell: bash
         run: |
-          set -euo pipefail
-          node --check scripts/worldcup-canonical-finalizer.mjs
-          node --check scripts/worldcup-state-validator.mjs
-
-      - name: Recover conflict-marked JSON and finalize archive
-        shell: bash
-        run: node scripts/worldcup-canonical-finalizer.mjs
-
-      - name: Validate all knockout matches and final result
-        shell: bash
-        run: node scripts/worldcup-state-validator.mjs
-
-      - name: Reject remaining merge-conflict markers
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -RInE '^(<<<<<<<|=======|>>>>>>>|\|\|\|\|\|\|\|)' public/worldcup-2026; then
-            echo "Merge-conflict markers still exist in World Cup files."
-            exit 1
-          fi
-          echo "No merge-conflict markers remain."
-
-      - name: Commit final static World Cup archive
-        id: commit
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/worldcup-2026
-          if git diff --cached --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Final World Cup archive is already correct."
-            exit 0
-          fi
-          git commit -m "Finalize World Cup 2026 archive - Spain champions"
-          git pull --rebase --autostash origin main
-          git push origin HEAD:main
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-
-      - name: Trigger Cloudflare Pages deploy hook
-        if: steps.commit.outputs.changed == 'true' && env.CLOUDFLARE_PAGES_DEPLOY_HOOK != ''
-        shell: bash
-        run: curl --fail --show-error --silent --request POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+          echo "World Cup 2026 automatic updates are permanently disabled."
+          echo "Tournament status: finished"
+          echo "Champion: Spain"
+          echo "Final: Spain 1-0 Argentina"
+          echo "No repository files were changed."
