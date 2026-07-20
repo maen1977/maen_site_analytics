@@ -635,6 +635,21 @@ body.lang-en #frequencies .station-frequency-meta span{
 @media(max-width:390px){.wc-stat.jordan-next.wc-next-match-stat{min-height:122px;padding:9px 7px}#wcNextJordan.wc-next-match-title{font-size:13.2px!important}.wc-next-fixture .wc-next-team{font-size:13px}.wc-next-fixture .wc-flag-img{width:22px;height:16px}.wc-next-match-time.wc-next-match-details{font-size:9.5px;max-height:30px}}
 </style>
 <script src="/assets/maensat-first-load-safe.js?v=20260629-first-load-safe"></script>
+
+<style id="worldcup-2026-final-archive-style">
+#worldcup2026 .wc-hero{background:linear-gradient(135deg,#101113 0%,#7a111a 46%,#b8860b 100%)!important}
+#worldcup2026 .wc-archive-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 18px}
+#worldcup2026 .wc-archive-card{background:#fff;border:1px solid rgba(17,17,17,.09);border-radius:22px;padding:17px;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.08)}
+#worldcup2026 .wc-archive-card small{display:block;color:#6b7280;font-weight:900;margin-bottom:7px}
+#worldcup2026 .wc-archive-card strong{display:block;font-size:21px;font-weight:1000;color:#111}
+#worldcup2026 .wc-archive-card span{display:block;margin-top:6px;color:#007a3d;font-weight:900;font-size:13px}
+#worldcup2026 .wc-archive-card.champion{border-color:rgba(184,134,11,.45);background:linear-gradient(145deg,#fffdf3,#fff7cf)}
+#worldcup2026 .wc-stat.wc-update-stat{border-color:rgba(184,134,11,.35)!important;box-shadow:0 14px 34px rgba(184,134,11,.12)!important}
+#worldcup2026 .wc-update-hint{color:#7a111a!important}
+@media(max-width:820px){#worldcup2026 .wc-archive-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:430px){#worldcup2026 .wc-archive-summary{grid-template-columns:1fr}}
+</style>
+
 </head>
 <body>
 <!-- Mobile UX upgrade: compact contact header + thumb-friendly bottom navigation -->
@@ -1624,26 +1639,32 @@ body.lang-en #frequencies .station-frequency-meta span{
 
 <section class="page inner-page worldcup-page" id="worldcup2026">
 <header>
-<div class="logo"><div class="logo-icon">🏆</div><div><strong>كأس العالم 2026</strong><span>الأردن في قلب الحدث</span></div></div>
+<div class="logo"><div class="logo-icon">🏆</div><div><strong>كأس العالم 2026</strong><span>أرشيف البطولة النهائي</span></div></div>
 <div class="nav-actions"><button class="pill dark" onclick="showPage('home')">رجوع</button><button class="pill" onclick="showPage('frequencies')">ترددات القنوات</button><button class="pill" onclick="showPage('contact')">تواصل معنا</button></div>
 </header>
 <div class="section">
 <div class="wc-hero">
 <div class="wc-hero-grid">
 <div class="wc-flag-wrap" aria-label="علم الأردن متحرك"><div class="wc-pole"></div><div class="wc-flag"><span class="wc-flag-shine"></span></div></div>
-<div><span class="wc-mini-tag">مونديال 2026</span><h2>الأردن في قلب الحدث</h2><p>من أرض الحضارة إلى مسرح العالم — تابع مشوار النشامى، نتائج البطولة، المجموعات، وأحلى لحظات كأس العالم 2026 بتوقيت الأردن.</p></div>
+<div><span class="wc-mini-tag">مونديال 2026</span><h2>إسبانيا بطلة كأس العالم 2026</h2><p>انتهت البطولة بتتويج إسبانيا بعد الفوز على الأرجنتين 1 - 0 في النهائي. تصفح جميع النتائج والترتيب النهائي من هذا الأرشيف الثابت.</p></div>
 </div>
 </div>
 <div class="wc-stats">
-<div class="wc-stat jordan-next wc-next-match-stat"><small>المباراة القادمة</small><strong id="wcNextJordan" class="wc-next-match-title">جاري التحميل...</strong><span id="wcNextJordanTime" class="wc-next-match-time wc-next-match-details">—</span></div>
-<div class="wc-stat"><small>حالة البطولة</small><strong id="wcCountdown" class="wc-countdown">—</strong></div>
-<div class="wc-stat wc-update-stat"><small>آخر تحديث للموقع</small><strong id="wcLastUpdated">—</strong><span id="wcUpdateHint" class="wc-update-hint">يتحدث تلقائياً كل 15 دقيقة</span></div>
+<div class="wc-stat jordan-next wc-next-match-stat"><small>المباراة القادمة</small><strong id="wcNextJordan" class="wc-next-match-title">لا يوجد</strong><span id="wcNextJordanTime" class="wc-next-match-time wc-next-match-details">انتهت البطولة</span></div>
+<div class="wc-stat"><small>حالة البطولة</small><strong id="wcCountdown" class="wc-countdown">انتهت</strong></div>
+<div class="wc-stat wc-update-stat"><small>بطل البطولة</small><strong id="wcLastUpdated">إسبانيا</strong><span id="wcUpdateHint" class="wc-update-hint">فازت في النهائي 1 - 0 على الأرجنتين</span></div>
 <div class="wc-stat"><small>نظام البطولة</small><strong>48 منتخب / 104 مباراة</strong></div>
+</div>
+<div class="wc-archive-summary" aria-label="الترتيب النهائي لكأس العالم 2026">
+<div class="wc-archive-card champion"><small id="wcArchiveChampionLabel">البطل</small><strong id="wcArchiveChampion">إسبانيا</strong><span id="wcArchiveChampionNote">فازت 1 - 0 في النهائي</span></div>
+<div class="wc-archive-card"><small id="wcArchiveRunnerLabel">الوصيف</small><strong id="wcArchiveRunner">الأرجنتين</strong><span id="wcArchiveRunnerNote">المركز الثاني</span></div>
+<div class="wc-archive-card"><small id="wcArchiveThirdLabel">المركز الثالث</small><strong id="wcArchiveThird">إنجلترا</strong><span id="wcArchiveThirdNote">فازت 6 - 4 على فرنسا</span></div>
+<div class="wc-archive-card"><small id="wcArchiveStatusLabel">حالة البطولة</small><strong id="wcArchiveStatus">انتهت</strong><span id="wcArchiveStatusNote">أرشيف نهائي ثابت</span></div>
 </div>
 <div class="wc-toolbar">
 <input id="wcSearchInput" class="wc-search" type="search" placeholder="ابحث عن الأردن، Argentina، ملعب، مدينة، مجموعة..." oninput="renderWorldCup2026()" aria-label="بحث كأس العالم 2026">
 <div class="wc-tabs" role="tablist" aria-label="فلاتر كأس العالم 2026">
-<button type="button" data-wc-filter="today" onclick="setWorldCupFilter('today', this)">اليوم</button>
+<button type="button" data-wc-filter="final" onclick="setWorldCupFilter('final', this)">النهائي</button>
 <button type="button" data-wc-filter="jordan" onclick="setWorldCupFilter('jordan', this)">الأردن</button>
 <button type="button" data-wc-filter="all" onclick="setWorldCupFilter('all', this)">كل المباريات</button>
 <button type="button" data-wc-filter="groups" onclick="setWorldCupFilter('groups', this)">المجموعات</button>
@@ -5123,15 +5144,16 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 </script>
 <!-- /MAEN_CREDIT_SAFE_ANALYTICS_2026_05_30 -->
 
+<script src="/worldcup-2026/archive-data.js?v=20260720-final-archive"></script>
 <script>
 (function(){
-  var WC_STATE={loaded:false,filter:'today',data:null,standings:null,broadcasts:null};
+  var WC_STATE={loaded:false,filter:'bracket',data:null,standings:null,broadcasts:null};
   var TEAM_AR={};
   var TEAM_FLAGS={'Mexico':'🇲🇽','South Africa':'🇿🇦','South Korea':'🇰🇷','Czech Republic':'🇨🇿','Canada':'🇨🇦','Bosnia & Herzegovina':'🇧🇦','Qatar':'🇶🇦','Switzerland':'🇨🇭','Brazil':'🇧🇷','Morocco':'🇲🇦','Haiti':'🇭🇹','Scotland':'🏴','USA':'🇺🇸','Paraguay':'🇵🇾','Australia':'🇦🇺','Turkey':'🇹🇷','Germany':'🇩🇪','Curaçao':'🇨🇼','Ivory Coast':'🇨🇮','Ecuador':'🇪🇨','Netherlands':'🇳🇱','Japan':'🇯🇵','Sweden':'🇸🇪','Tunisia':'🇹🇳','Belgium':'🇧🇪','Egypt':'🇪🇬','Iran':'🇮🇷','New Zealand':'🇳🇿','Spain':'🇪🇸','Cape Verde':'🇨🇻','Saudi Arabia':'🇸🇦','Uruguay':'🇺🇾','France':'🇫🇷','Senegal':'🇸🇳','Iraq':'🇮🇶','Norway':'🇳🇴','Argentina':'🇦🇷','Algeria':'🇩🇿','Austria':'🇦🇹','Jordan':'🇯🇴','Portugal':'🇵🇹','DR Congo':'🇨🇩','Uzbekistan':'🇺🇿','Colombia':'🇨🇴','England':'🏴','Croatia':'🇭🇷','Ghana':'🇬🇭','Panama':'🇵🇦'};
   var TEAM_FLAG_CODES={'Mexico':'mx','South Africa':'za','South Korea':'kr','Czech Republic':'cz','Canada':'ca','Bosnia & Herzegovina':'ba','Qatar':'qa','Switzerland':'ch','Brazil':'br','Morocco':'ma','Haiti':'ht','Scotland':'gb-sct','USA':'us','Paraguay':'py','Australia':'au','Turkey':'tr','Germany':'de','Curaçao':'cw','Ivory Coast':'ci','Ecuador':'ec','Netherlands':'nl','Japan':'jp','Sweden':'se','Tunisia':'tn','Belgium':'be','Egypt':'eg','Iran':'ir','New Zealand':'nz','Spain':'es','Cape Verde':'cv','Saudi Arabia':'sa','Uruguay':'uy','France':'fr','Senegal':'sn','Iraq':'iq','Norway':'no','Argentina':'ar','Algeria':'dz','Austria':'at','Jordan':'jo','Portugal':'pt','DR Congo':'cd','Uzbekistan':'uz','Colombia':'co','England':'gb-eng','Croatia':'hr','Ghana':'gh','Panama':'pa'};
   var WC_I18N={
-    ar:{title:'كأس العالم 2026',subtitle:'الأردن في قلب الحدث',back:'رجوع',frequencies:'ترددات القنوات',contact:'تواصل معنا',heroTag:'مونديال 2026',heroTitle:'الأردن في قلب الحدث',heroText:'من أرض الحضارة إلى مسرح العالم — تابع مشوار النشامى، نتائج البطولة، المجموعات، وأحلى لحظات كأس العالم 2026 بتوقيت الأردن.',badgeJordan:'🇯🇴 مشوار الأردن',badgeMatches:'104 مباراة',badgeUpdate:'تحديث ذكي',badgeSearch:'بحث عربي/إنجليزي',nextJordan:'المباراة القادمة',loading:'جاري التحميل...',countdownTitle:'حالة البطولة',lastUpdated:'آخر تحديث للموقع',tournamentSystem:'نظام البطولة',tournamentValue:'48 منتخب / 104 مباراة',searchPlaceholder:'ابحث عن الأردن، Argentina، ملعب، مدينة، مجموعة...',searchAria:'بحث كأس العالم 2026',tabsAria:'فلاتر كأس العالم 2026',today:'اليوم',jordan:'الأردن',all:'كل المباريات',groups:'المجموعات',thirds:'أفضل الثوالث',bracket:'الأدوار',loadingData:'جاري تحميل بيانات كأس العالم 2026...',noMatches:'لا توجد مباريات مطابقة حالياً.',noJordan:'لا توجد مباريات للأردن حالياً.',noToday:'لا توجد مباريات اليوم أو خلال 24 ساعة القادمة.',noTodaySearch:'لا توجد مباريات اليوم أو خلال 24 ساعة القادمة مطابقة للبحث.',loadError:'تعذر تحميل بيانات كأس العالم حالياً.',jordanMatchesTitle:'مباريات الأردن في كأس العالم 2026',group:'المجموعة',match:'مباراة',team:'المنتخب',played:'لعب',wins:'ف',draws:'ت',losses:'خ',goalDiff:'فارق',points:'نقاط',status:'الحالة',bestThirdsPending:'ترتيب أفضل الثوالث سيظهر تلقائياً بعد تسجيل نتائج دور المجموعات.',bestThirdsTitle:'أفضل أصحاب المركز الثالث',currentlyQualified:'متأهل حالياً',currentlyOut:'خارج حالياً',knockoutPending:'الأدوار الإقصائية ستظهر هنا عند توفر الجدول.',scheduled:'لم تبدأ',finished:'انتهت',live:'مباشر',postponed:'مؤجلة',cancelled:'ملغاة',tournamentStarted:'انطلقت البطولة',day:'يوم',hour:'ساعة',minute:'دقيقة',tbd:'بانتظار التحديد',winner:'الفائز من مباراة ',loser:'الخاسر من مباراة ',first:'أول',second:'ثاني',third:'ثالث',oneMatch:'مباراة واحدة',twoMatches:'مباراتان',matchesCount:'مباريات',singleMatchCount:'مباراة',finishedExtra:'انتهت بعد التمديد',finishedPenalties:'انتهت بركلات الترجيح',broadcasters:'القنوات الناقلة',encrypted:'مشفرة',freeToAir:'مجانية',pendingOfficial:'بانتظار الإعلان الرسمي',toBeConfirmed:'بانتظار تحديد القناة',confirmed:'مؤكدة',broadcastRegion:'الأردن / الشرق الأوسط وشمال أفريقيا'},
-    en:{title:'World Cup 2026',subtitle:'Jordan at the Heart of the Event',back:'Back',frequencies:'Channel Frequencies',contact:'Contact Us',heroTag:'World Cup 2026',heroTitle:'Jordan at the Heart of the Event',heroText:'From the land of heritage to the world stage — follow Jordan’s journey, match results, groups, and the biggest moments of World Cup 2026 in Jordan time.',badgeJordan:'🇯🇴 Jordan’s Journey',badgeMatches:'104 Matches',badgeUpdate:'Smart Updates',badgeSearch:'Arabic/English Search',nextJordan:'Next Match',loading:'Loading...',countdownTitle:'Tournament Status',lastUpdated:'Last Checked',tournamentSystem:'Tournament Format',tournamentValue:'48 Teams / 104 Matches',searchPlaceholder:'Search Jordan, Argentina, stadium, city, group...',searchAria:'World Cup 2026 search',tabsAria:'World Cup 2026 filters',today:'Today',jordan:'Jordan',all:'All Matches',groups:'Groups',thirds:'Best Thirds',bracket:'Knockout',loadingData:'Loading World Cup 2026 data...',noMatches:'No matching matches right now.',noJordan:'No Jordan matches right now.',noToday:'No matches today or in the next 24 hours.',noTodaySearch:'No matches today or in the next 24 hours match your search.',loadError:'Could not load World Cup data right now.',jordanMatchesTitle:'Jordan Matches at World Cup 2026',group:'Group',match:'Match',team:'Team',played:'P',wins:'W',draws:'D',losses:'L',goalDiff:'GD',points:'Pts',status:'Status',bestThirdsPending:'Best third-place standings will appear automatically after group-stage results are recorded.',bestThirdsTitle:'Best Third-Place Teams',currentlyQualified:'Currently Qualified',currentlyOut:'Currently Out',knockoutPending:'Knockout rounds will appear here when the schedule is available.',scheduled:'Scheduled',finished:'Finished',live:'Live',postponed:'Postponed',cancelled:'Cancelled',tournamentStarted:'Tournament Started',day:'days',hour:'hrs',minute:'min',tbd:'TBD',winner:'Winner of Match ',loser:'Loser of Match ',first:'1st',second:'2nd',third:'3rd',oneMatch:'1 match',twoMatches:'2 matches',matchesCount:'matches',singleMatchCount:'match',finishedExtra:'Finished after extra time',finishedPenalties:'Finished on penalties',broadcasters:'Broadcasters',encrypted:'Encrypted',freeToAir:'Free-to-air',pendingOfficial:'Pending official confirmation',toBeConfirmed:'Channel TBC',confirmed:'Confirmed',broadcastRegion:'Jordan / MENA'}
+    ar:{title:'كأس العالم 2026',subtitle:'أرشيف البطولة النهائي',back:'رجوع',frequencies:'ترددات القنوات',contact:'تواصل معنا',heroTag:'مونديال 2026',heroTitle:'إسبانيا بطلة كأس العالم 2026',heroText:'انتهت البطولة بتتويج إسبانيا بعد الفوز على الأرجنتين 1 - 0 في النهائي. تصفح جميع النتائج والترتيب النهائي من هذا الأرشيف الثابت.',badgeJordan:'🇯🇴 مشوار الأردن',badgeMatches:'104 مباراة',badgeUpdate:'تحديث ذكي',badgeSearch:'بحث عربي/إنجليزي',nextJordan:'المباراة القادمة',loading:'جاري التحميل...',noNextMatch:'لا يوجد',tournamentEnded:'انتهت البطولة',countdownTitle:'حالة البطولة',lastUpdated:'آخر تحديث للموقع',championTitle:'بطل البطولة',championName:'إسبانيا',finalResultText:'فازت في النهائي 1 - 0 على الأرجنتين',runnerUpTitle:'الوصيف',runnerUpName:'الأرجنتين',runnerUpNote:'المركز الثاني',thirdPlaceTitle:'المركز الثالث',thirdPlaceName:'إنجلترا',thirdPlaceNote:'فازت 6 - 4 على فرنسا',archiveMode:'أرشيف نهائي ثابت',archiveMissing:'تعذر فتح ملف الأرشيف النهائي. تأكد من رفع مجلد worldcup-2026 كاملاً.',tournamentSystem:'نظام البطولة',tournamentValue:'48 منتخب / 104 مباراة',searchPlaceholder:'ابحث عن الأردن، Argentina، ملعب، مدينة، مجموعة...',searchAria:'بحث كأس العالم 2026',tabsAria:'فلاتر كأس العالم 2026',today:'اليوم',final:'النهائي',jordan:'الأردن',all:'كل المباريات',groups:'المجموعات',thirds:'أفضل الثوالث',bracket:'الأدوار',loadingData:'جاري تحميل بيانات كأس العالم 2026...',noMatches:'لا توجد مباريات مطابقة حالياً.',noJordan:'لا توجد مباريات للأردن حالياً.',noToday:'لا توجد مباريات اليوم أو خلال 24 ساعة القادمة.',noTodaySearch:'لا توجد مباريات اليوم أو خلال 24 ساعة القادمة مطابقة للبحث.',loadError:'تعذر تحميل بيانات كأس العالم حالياً.',jordanMatchesTitle:'مباريات الأردن في كأس العالم 2026',group:'المجموعة',match:'مباراة',team:'المنتخب',played:'لعب',wins:'ف',draws:'ت',losses:'خ',goalDiff:'فارق',points:'نقاط',status:'الحالة',bestThirdsPending:'ترتيب أفضل الثوالث سيظهر تلقائياً بعد تسجيل نتائج دور المجموعات.',bestThirdsTitle:'أفضل أصحاب المركز الثالث',currentlyQualified:'متأهل حالياً',currentlyOut:'خارج حالياً',knockoutPending:'الأدوار الإقصائية ستظهر هنا عند توفر الجدول.',scheduled:'لم تبدأ',finished:'انتهت',live:'مباشر',postponed:'مؤجلة',cancelled:'ملغاة',tournamentStarted:'انطلقت البطولة',day:'يوم',hour:'ساعة',minute:'دقيقة',tbd:'بانتظار التحديد',winner:'الفائز من مباراة ',loser:'الخاسر من مباراة ',first:'أول',second:'ثاني',third:'ثالث',oneMatch:'مباراة واحدة',twoMatches:'مباراتان',matchesCount:'مباريات',singleMatchCount:'مباراة',finishedExtra:'انتهت بعد التمديد',finishedPenalties:'انتهت بركلات الترجيح',broadcasters:'القنوات الناقلة',encrypted:'مشفرة',freeToAir:'مجانية',pendingOfficial:'بانتظار الإعلان الرسمي',toBeConfirmed:'بانتظار تحديد القناة',confirmed:'مؤكدة',broadcastRegion:'الأردن / الشرق الأوسط وشمال أفريقيا'},
+    en:{title:'World Cup 2026',subtitle:'Final Tournament Archive',back:'Back',frequencies:'Channel Frequencies',contact:'Contact Us',heroTag:'World Cup 2026',heroTitle:'Spain — World Cup 2026 Champions',heroText:'The tournament ended with Spain defeating Argentina 1-0 in the final. Browse every result and the final standings in this permanent archive.',badgeJordan:'🇯🇴 Jordan’s Journey',badgeMatches:'104 Matches',badgeUpdate:'Smart Updates',badgeSearch:'Arabic/English Search',nextJordan:'Next Match',loading:'Loading...',noNextMatch:'None',tournamentEnded:'Tournament finished',countdownTitle:'Tournament Status',lastUpdated:'Last Checked',championTitle:'Champions',championName:'Spain',finalResultText:'Defeated Argentina 1-0 in the final',runnerUpTitle:'Runners-up',runnerUpName:'Argentina',runnerUpNote:'Second place',thirdPlaceTitle:'Third place',thirdPlaceName:'England',thirdPlaceNote:'Defeated France 6-4',archiveMode:'Permanent final archive',archiveMissing:'The final archive file could not be opened. Upload the complete worldcup-2026 folder.',tournamentSystem:'Tournament Format',tournamentValue:'48 Teams / 104 Matches',searchPlaceholder:'Search Jordan, Argentina, stadium, city, group...',searchAria:'World Cup 2026 search',tabsAria:'World Cup 2026 filters',today:'Today',final:'Final',jordan:'Jordan',all:'All Matches',groups:'Groups',thirds:'Best Thirds',bracket:'Knockout',loadingData:'Loading World Cup 2026 data...',noMatches:'No matching matches right now.',noJordan:'No Jordan matches right now.',noToday:'No matches today or in the next 24 hours.',noTodaySearch:'No matches today or in the next 24 hours match your search.',loadError:'Could not load World Cup data right now.',jordanMatchesTitle:'Jordan Matches at World Cup 2026',group:'Group',match:'Match',team:'Team',played:'P',wins:'W',draws:'D',losses:'L',goalDiff:'GD',points:'Pts',status:'Status',bestThirdsPending:'Best third-place standings will appear automatically after group-stage results are recorded.',bestThirdsTitle:'Best Third-Place Teams',currentlyQualified:'Currently Qualified',currentlyOut:'Currently Out',knockoutPending:'Knockout rounds will appear here when the schedule is available.',scheduled:'Scheduled',finished:'Finished',live:'Live',postponed:'Postponed',cancelled:'Cancelled',tournamentStarted:'Tournament Started',day:'days',hour:'hrs',minute:'min',tbd:'TBD',winner:'Winner of Match ',loser:'Loser of Match ',first:'1st',second:'2nd',third:'3rd',oneMatch:'1 match',twoMatches:'2 matches',matchesCount:'matches',singleMatchCount:'match',finishedExtra:'Finished after extra time',finishedPenalties:'Finished on penalties',broadcasters:'Broadcasters',encrypted:'Encrypted',freeToAir:'Free-to-air',pendingOfficial:'Pending official confirmation',toBeConfirmed:'Channel TBC',confirmed:'Confirmed',broadcastRegion:'Jordan / MENA'}
   };
   var STAGE_EN={'دور المجموعات':'Group Stage','دور 32':'Round of 32','دور الـ32':'Round of 32','دور 16':'Round of 16','دور الـ16':'Round of 16','ربع النهائي':'Quarter-finals','نصف النهائي':'Semi-finals','المركز الثالث':'Third-place Match','النهائي':'Final'};
   function lang(){var l=(localStorage.getItem('siteLang')||document.documentElement.getAttribute('lang')||document.documentElement.lang||'ar').toLowerCase(); return l.indexOf('en')===0?'en':'ar';}
@@ -5144,13 +5166,20 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
     setText('#worldcup2026 .logo strong',tr('title')); setText('#worldcup2026 .logo span',tr('subtitle'));
     var nav=document.querySelectorAll('#worldcup2026 .nav-actions .pill'); if(nav[0])nav[0].textContent=tr('back'); if(nav[1])nav[1].textContent=tr('frequencies'); if(nav[2])nav[2].textContent=tr('contact');
     setAttr('#worldcup2026 .wc-flag-wrap','aria-label',lang()==='en'?'Animated Jordan flag':'علم الأردن متحرك'); setText('#worldcup2026 .wc-mini-tag',tr('heroTag')); setText('#worldcup2026 .wc-hero h2',tr('heroTitle')); setText('#worldcup2026 .wc-hero p',tr('heroText'));
-    var stats=document.querySelectorAll('#worldcup2026 .wc-stat'); if(stats[0]){var s0=stats[0].querySelector('small'); if(s0)s0.textContent=tr('nextJordan'); if(!WC_STATE.loaded){var b0=stats[0].querySelector('strong'); var t0=document.getElementById('wcNextJordanTime'); if(b0)b0.textContent=tr('loading'); if(t0)t0.textContent='—';}} if(stats[1]){var s1=stats[1].querySelector('small'); if(s1)s1.textContent=tr('countdownTitle');} if(stats[2]){var s2=stats[2].querySelector('small'); if(s2)s2.textContent=tr('lastUpdated');} if(stats[3]){var s3=stats[3].querySelector('small'); var b3=stats[3].querySelector('strong'); if(s3)s3.textContent=tr('tournamentSystem'); if(b3)b3.textContent=tr('tournamentValue');}
+    var stats=document.querySelectorAll('#worldcup2026 .wc-stat');
+    if(stats[0]){var s0=stats[0].querySelector('small'); if(s0)s0.textContent=tr('nextJordan'); var b0=stats[0].querySelector('strong'); var t0=document.getElementById('wcNextJordanTime'); if(b0)b0.textContent=tr('noNextMatch'); if(t0)t0.textContent=tr('tournamentEnded');}
+    if(stats[1]){var s1=stats[1].querySelector('small'); if(s1)s1.textContent=tr('countdownTitle'); var b1=stats[1].querySelector('strong'); if(b1)b1.textContent=tr('finished');}
+    if(stats[2]){var s2=stats[2].querySelector('small'); if(s2)s2.textContent=tr('championTitle'); var b2=stats[2].querySelector('strong'); if(b2)b2.textContent=tr('championName'); var h2=document.getElementById('wcUpdateHint'); if(h2)h2.textContent=tr('finalResultText');}
+    if(stats[3]){var s3=stats[3].querySelector('small'); var b3=stats[3].querySelector('strong'); if(s3)s3.textContent=tr('tournamentSystem'); if(b3)b3.textContent=tr('tournamentValue');}
+    setText('#wcArchiveChampionLabel',tr('championTitle')); setText('#wcArchiveChampion',tr('championName')); setText('#wcArchiveChampionNote',tr('finalResultText'));
+    setText('#wcArchiveRunnerLabel',tr('runnerUpTitle')); setText('#wcArchiveRunner',tr('runnerUpName')); setText('#wcArchiveRunnerNote',tr('runnerUpNote'));
+    setText('#wcArchiveThirdLabel',tr('thirdPlaceTitle')); setText('#wcArchiveThird',tr('thirdPlaceName')); setText('#wcArchiveThirdNote',tr('thirdPlaceNote'));
+    setText('#wcArchiveStatusLabel',tr('countdownTitle')); setText('#wcArchiveStatus',tr('finished')); setText('#wcArchiveStatusNote',tr('archiveMode'));
     var search=document.getElementById('wcSearchInput'); if(search){search.placeholder=tr('searchPlaceholder'); search.setAttribute('aria-label',tr('searchAria'));} setAttr('#worldcup2026 .wc-tabs','aria-label',tr('tabsAria'));
     document.querySelectorAll('#worldcup2026 .wc-tabs button').forEach(function(btn){var k=btn.getAttribute('data-wc-filter'); if(WC_I18N[lang()][k])btn.textContent=WC_I18N[lang()][k];});
-    if(!WC_STATE.loaded){var out=document.getElementById('wcMainOutput'); if(out)out.innerHTML='<div class="wc-empty">'+esc(tr('loadingData'))+'</div>';}
     document.querySelectorAll('[data-nav-target="worldcup2026"]').forEach(function(btn){var b=btn.querySelector('b'); if(b)b.textContent=lang()==='en'?'World Cup':'كأس العالم'; else btn.textContent=tr('title');});
     document.querySelectorAll('.option-card[onclick*="worldcup2026"] h2').forEach(function(el){el.textContent=tr('title');});
-    document.querySelectorAll('.option-card[onclick*="worldcup2026"] p').forEach(function(el){el.textContent=lang()==='en'?'Follow World Cup matches, results, groups, Jordan’s journey, and knockout rounds in Jordan time.':'تابع مباريات ونتائج كأس العالم، ترتيب المجموعات، مشوار الأردن، والأدوار الإقصائية بتوقيت الأردن.';});
+    document.querySelectorAll('.option-card[onclick*="worldcup2026"] p').forEach(function(el){el.textContent=lang()==='en'?'Browse the completed World Cup 2026 archive and Spain’s championship run.':'تصفح أرشيف كأس العالم 2026 الكامل وتتويج إسبانيا بالبطولة.';});
     document.querySelectorAll('.pill[onclick*="worldcup2026"]').forEach(function(el){el.textContent=tr('title');});
   }
   function slotName(t){t=String(t||'').trim(); if(!t)return tr('tbd'); var m=t.match(/^W(\d+)$/i); if(m)return tr('winner')+m[1]; m=t.match(/^L(\d+)$/i); if(m)return tr('loser')+m[1]; m=t.match(/^([123])([A-L])(?:\/(.+))?$/i); if(m){var rank=m[1]==='1'?tr('first'):(m[1]==='2'?tr('second'):tr('third')); return rank+' '+tr('group')+' '+m[2].toUpperCase();} return t;}
@@ -5355,16 +5384,12 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
       matches=matches.filter(isJordan);
       emptyMessage=tr('noJordan');
       renderMode='time';
-    } else if(f==='today'){
-      matches=matches.filter(isInTodayJordanWindow);
-      emptyMessage=tr('noToday');
-      renderMode='time';
+    } else if(f==='final'){
+      matches=matches.filter(function(m){return wcMatchNumber(m)===104;});
+      renderMode='num';
     }
     matches=applySearch(matches);
-    if(f==='today' && ((document.getElementById('wcSearchInput')||{}).value||'').trim()){
-      emptyMessage=tr('noTodaySearch');
-    }
-    renderMatches(matches, f==='jordan'?tr('jordanMatchesTitle'):'', emptyMessage, renderMode);
+    renderMatches(matches, f==='jordan'?tr('jordanMatchesTitle'):(f==='final'?tr('final'):''), emptyMessage, renderMode);
   };
   function wcMatchDate(m){var t=wcMatchTime(m); if(t===Number.MAX_SAFE_INTEGER)return null; var d=new Date(t); return d&&!isNaN(d.getTime())?d:null;}
   function wcMatchEstimatedEnd(m){var start=wcMatchDate(m); if(!start)return null; var stage=String((m&&(m.stage||m.round||m.stage_ar))||'').toLowerCase(); var n=wcMatchNumber(m); var isKnockout=(n>=73)||(stage&&stage.indexOf('group')<0&&stage.indexOf('مجموع')<0); var minutes=isKnockout?240:150; return new Date(start.getTime()+minutes*60000);}
@@ -5387,95 +5412,29 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function wcNextTeamHtml(t){return '<span class="wc-next-team">'+teamLabel(t)+'</span>';}
   function updateStats(){
     applyStaticLanguage();
-    var matches=(WC_STATE.data&&WC_STATE.data.matches||[]);
-    var sorted=wcSortMatches(matches,'time');
-    var opening=sorted[0];
-    function refreshNextMatchStat(){
-      var next=wcNextMatch(matches);
-      var n=document.getElementById('wcNextJordan');
-      var t=document.getElementById('wcNextJordanTime');
-      if(n&&next){
-        n.innerHTML='<span class="wc-next-fixture">'+wcNextTeamHtml(next.team1)+'<span class="wc-next-vs">×</span>'+wcNextTeamHtml(next.team2)+'</span>';
-        var matchTime=fmtJordan(next.kickoff_jordan||next.kickoff_utc||next.date);
-        var stadium=next.stadium||next.ground||'';
-        var details=[matchTime,stadium].filter(Boolean).join(' · ');
-        if(t)t.textContent=details||'—';
-        var title=wcNextMatchTitle(next);
-        var hint=(title?title+' | ':'')+(details||'');
-        n.title=hint;
-        if(t)t.title=hint;
-      }
-    }
-    refreshNextMatchStat();
-    var lu=document.getElementById('wcLastUpdated');
-    var hint=document.getElementById('wcUpdateHint');
-    var meta=(WC_STATE.data&&WC_STATE.data.metadata)||{};
-    var info=WC_STATE.updateInfo||{};
-    var checked=info.last_checked_at||meta.automation_heartbeat_at||meta.last_checked_at||meta.last_updated||info.generated_at||'';
-    var changed=meta.last_data_change_at||meta.last_updated||info.last_updated||info.generated_at||'';
-    var next=info.next_expected_check_at||meta.next_expected_check_at||'';
-    var interval=info.refresh_interval_minutes||meta.refresh_interval_minutes||15;
-    if(lu){
-      lu.textContent=checked?fmtJordan(checked):'—';
-      lu.title=(lang()==='en'?'Last site check: ':'آخر فحص للموقع: ')+(checked?fmtJordan(checked):'—')+(changed?' | '+(lang()==='en'?'Last data change: ':'آخر تغيير بيانات: ')+fmtJordan(changed):'');
-    }
-    if(hint){
-      hint.textContent=(lang()==='en'?'Auto update every ':'تحديث تلقائي كل ')+interval+(lang()==='en'?' min':' دقيقة')+(next?' · '+(lang()==='en'?'next: ':'التالي: ')+fmtJordan(next):'');
-      hint.title=changed?((lang()==='en'?'Last data change: ':'آخر تغيير بيانات: ')+fmtJordan(changed)):'';
-    }
-    function tick(){
-      refreshNextMatchStat();
-      var c=document.getElementById('wcCountdown');
-      if(!c)return;
-      if(!opening){c.textContent='—';return;}
-      var diff=new Date(opening.kickoff_utc||opening.kickoff_jordan||opening.date)-new Date();
-      if(diff<=0){
-        var openingDate=new Date(opening.kickoff_utc||opening.kickoff_jordan||opening.date);
-        c.textContent=tournamentDayText(openingDate);
-        return;
-      }
-      var d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), mi=Math.floor(diff%3600000/60000);
-      c.textContent=d+' '+tr('day')+' '+h+' '+tr('hour')+' '+mi+' '+tr('minute');
-    }
-    tick();
     clearInterval(window.__wcCountdownTimer);
-    window.__wcCountdownTimer=setInterval(tick,60000);
+    clearInterval(window.__wcAutoRefreshTimer);
   }
   function startWorldCupAutoRefresh(){
     clearInterval(window.__wcAutoRefreshTimer);
-    window.__wcAutoRefreshTimer=setInterval(function(){
-      if(WC_STATE.loaded){
-        window.loadWorldCup2026(true);
-      }
-    },15*60*1000);
   }
-  window.loadWorldCup2026=function(force){
+  window.loadWorldCup2026=function(){
     applyStaticLanguage();
-    var now=Date.now();
-    if(WC_STATE.loaded && !force && WC_STATE.lastFetch && now-WC_STATE.lastFetch<60000){
-      updateStats();
-      renderWorldCup2026();
+    var archive=window.MAEN_WC2026_ARCHIVE;
+    if(!archive||!archive.data||!Array.isArray(archive.data.matches)){
+      var out=document.getElementById('wcMainOutput');
+      if(out)out.innerHTML='<div class="wc-empty">'+esc(tr('archiveMissing'))+'</div>';
       return;
     }
-    Promise.all([
-      fetch(wcDataUrl('worldcup-2026/matches.json'),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('matches '+r.status); return r.json();}),
-      fetch(wcDataUrl('worldcup-2026/standings.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
-      fetch(wcDataUrl('worldcup-2026/broadcasts.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
-      fetch(wcDataUrl('worldcup-2026/update-check.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
-      fetch(wcDataUrl('worldcup-2026/heartbeat.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;}),
-      fetch(wcDataUrl('worldcup-2026/version.json'),{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).catch(function(){return null;})
-    ]).then(function(res){
-      WC_STATE.data=res[0];
-      WC_STATE.standings=res[1];
-      WC_STATE.broadcasts=res[2]||null;
-      WC_STATE.updateInfo=res[3]||res[4]||res[5]||null;
-      WC_STATE.lastFetch=Date.now();
-      TEAM_AR=(WC_STATE.data&&WC_STATE.data.team_ar)||{};
-      WC_STATE.loaded=true;
-      updateStats();
-      renderWorldCup2026();
-      startWorldCupAutoRefresh();
-    }).catch(function(){var out=document.getElementById('wcMainOutput'); if(out)out.innerHTML='<div class="wc-empty">'+esc(tr('loadError'))+'</div>';});
+    WC_STATE.data=archive.data;
+    WC_STATE.standings=archive.standings||null;
+    WC_STATE.broadcasts=null;
+    WC_STATE.updateInfo=archive.summary||null;
+    WC_STATE.lastFetch=Date.now();
+    TEAM_AR=(WC_STATE.data&&WC_STATE.data.team_ar)||{};
+    WC_STATE.loaded=true;
+    updateStats();
+    renderWorldCup2026();
   };
   var oldShow=window.showPage; if(typeof oldShow==='function'&&!window.__wcWrappedShowPage){window.showPage=function(id){var r=oldShow.apply(this,arguments); if(id==='worldcup2026') { resetWorldCupToAll(); setTimeout(window.loadWorldCup2026,0); } return r;}; window.__wcWrappedShowPage=true;}
   var oldSetLanguage=window.setLanguage; if(typeof oldSetLanguage==='function'&&!oldSetLanguage.__worldCupLanguagePatched){var wrapped=function(language){var result=oldSetLanguage.apply(this,arguments); setTimeout(function(){applyStaticLanguage(); if(WC_STATE.loaded){updateStats(); renderWorldCup2026();}},0); return result;}; wrapped.__worldCupLanguagePatched=true; window.setLanguage=wrapped;}

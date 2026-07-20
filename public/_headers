@@ -1,12 +1,7 @@
-# Cloudflare Pages cache rules for the live World Cup section.
-# الهدف: ملفات المباريات والقنوات والنبض لا تنمسك بالكاش، حتى يشوف الزائر آخر تحديث.
-
+# Static archive for the completed World Cup 2026 section.
 /worldcup-2026/*
-  Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
-  CDN-Cache-Control: no-store
-  Cloudflare-CDN-Cache-Control: no-store
+  Cache-Control: public, max-age=3600, must-revalidate
   Access-Control-Allow-Origin: *
-  X-Maen-Refresh-Policy: quarter-hour
 
 /api/*
   Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
@@ -22,21 +17,3 @@
 
 /*.html
   Cache-Control: no-cache, must-revalidate, max-age=0
-
-# MaenSat World Cup live JSON no-cache start
-/worldcup-2026/*.json
-  Cache-Control: no-cache, no-store, must-revalidate
-/worldcup-knockout-cards-ui.js
-  Cache-Control: no-cache, no-store, must-revalidate
-# MaenSat World Cup live JSON no-cache end
-
-# MaenSat World Cup 2026 live JSON no-cache - start
-/worldcup-2026/*.json
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  CDN-Cache-Control: no-store
-  Cloudflare-CDN-Cache-Control: no-store
-/worldcup-2026/*.txt
-  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
-  CDN-Cache-Control: no-store
-  Cloudflare-CDN-Cache-Control: no-store
-# MaenSat World Cup 2026 live JSON no-cache - end
