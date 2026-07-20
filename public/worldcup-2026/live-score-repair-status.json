@@ -2,11 +2,7 @@
   "name": "World Cup 2026 live score repair",
   "name_ar": "إصلاح نتائج مباريات كأس العالم 2026 المباشرة",
   "version": "2026-07-01-live-score-repair-v1",
-<<<<<<< HEAD
   "checked_at": "2026-07-20T00:15:48+03:00",
-=======
-  "checked_at": "2026-07-20T01:15:49+03:00",
->>>>>>> e7f5eb9ebb38f69f6e23069676cb0c424d841f66
   "source": "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?limit=950",
   "files_checked": [
     {
@@ -22,97 +18,7 @@
     {
       "file": "knockout-live.json",
       "matches_seen": 64,
-<<<<<<< HEAD
       "updated": 0
-=======
-      "updated": 2
-    }
-  ],
-  "updates": [
-    {
-      "file": "matches.json",
-      "match": "M104",
-      "event_id": "760517",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "argentina"
-      ],
-      "before_score": [
-        1,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "bracket.json",
-      "match": "M104",
-      "event_id": "760517",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "argentina"
-      ],
-      "before_score": [
-        1,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M104",
-      "event_id": "760517",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "switzerland"
-      ],
-      "before_score": [
-        1,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
-    },
-    {
-      "file": "knockout-live.json",
-      "match": "M104",
-      "event_id": "760517",
-      "reason": "explicit-id",
-      "orientation": "same",
-      "teams": [
-        "spain",
-        "switzerland"
-      ],
-      "before_score": [
-        1,
-        0
-      ],
-      "after_score": [
-        1,
-        0
-      ],
-      "event_status": "finished",
-      "event_detail": "AET"
->>>>>>> e7f5eb9ebb38f69f6e23069676cb0c424d841f66
     }
   ],
   "updates": [],
