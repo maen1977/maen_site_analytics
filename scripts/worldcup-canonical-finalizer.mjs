@@ -60,7 +60,111 @@ const CANONICAL = Object.freeze({
   M104: K(104,'Final','النهائي','Spain','Argentina','W101','W102',[1,0],1,{noteAr:'إسبانيا فازت 1-0 على الأرجنتين في النهائي.'})
 });
 
-function readJson(file) { return JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), 'utf8')); }
+function hasMergeMarkers(text) {
+  return /^(<<<<<<<|=======|>>>>>>>|\|\|\|\|\|\|\|)/m.test(String(text || ''));
+}
+
+function selectConflictSide(text, preferred = 'ours') {
+  const lines = String(text || '').replace(/\r\n/g, '\n').split('\n');
+  const output = [];
+  const stack = [];
+
+  const append = (line) => {
+    if (!stack.length) {
+      output.push(line);
+      return;
+    }
+    const current = stack[stack.length - 1];
+    current[current.section].push(line);
+  };
+
+  for (const line of lines) {
+    if (/^<<<<<<<(?:\s|$)/.test(line)) {
+      stack.push({ ours: [], base: [], theirs: [], section: 'ours' });
+      continue;
+    }
+    if (/^\|\|\|\|\|\|\|(?:\s|$)/.test(line) && stack.length) {
+      stack[stack.length - 1].section = 'base';
+      continue;
+    }
+    if (/^=======$/.test(line) && stack.length) {
+      stack[stack.length - 1].section = 'theirs';
+      continue;
+    }
+    if (/^>>>>>>>(?:\s|$)/.test(line) && stack.length) {
+      const block = stack.pop();
+      const chosen = preferred === 'theirs' ? block.theirs : block.ours;
+      for (const chosenLine of chosen) append(chosenLine);
+      continue;
+    }
+    append(line);
+  }
+
+  if (stack.length) throw new Error('Unclosed Git merge-conflict block');
+  return output.join('\n');
+}
+
+function parseJsonWithConflictRecovery(target, file) {
+  const raw = fs.readFileSync(target, 'utf8').replace(/^\uFEFF/, '');
+  const candidates = [{ name: 'original', text: raw }];
+
+  if (hasMergeMarkers(raw)) {
+    for (const side of ['ours', 'theirs']) {
+      try {
+        candidates.push({ name: side, text: selectConflictSide(raw, side) });
+      } catch (error) {
+        candidates.push({ name: `${side}-failed`, error });
+      }
+    }
+  }
+
+  const failures = [];
+  for (const candidate of candidates) {
+    if (candidate.error) {
+      failures.push(`${candidate.name}: ${candidate.error.message}`);
+      continue;
+    }
+    try {
+      const parsed = JSON.parse(candidate.text);
+      if (candidate.text !== raw) {
+        fs.writeFileSync(target, `${JSON.stringify(parsed, null, 2)}\n`, 'utf8');
+        console.log(`[merge-conflict-recovery] cleaned ${file} using ${candidate.name}`);
+      }
+      return parsed;
+    } catch (error) {
+      failures.push(`${candidate.name}: ${error.message}`);
+    }
+  }
+
+  throw new Error(`Could not recover valid JSON from ${file}. ${failures.join(' | ')}`);
+}
+
+function repairConflictMarkedFiles() {
+  if (!fs.existsSync(DATA_DIR)) return;
+  const entries = fs.readdirSync(DATA_DIR, { withFileTypes: true });
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const target = path.join(DATA_DIR, entry.name);
+    const ext = path.extname(entry.name).toLowerCase();
+    if (!['.json', '.txt'].includes(ext)) continue;
+    const raw = fs.readFileSync(target, 'utf8');
+    if (!hasMergeMarkers(raw)) continue;
+
+    if (ext === '.json') {
+      parseJsonWithConflictRecovery(target, entry.name);
+      continue;
+    }
+
+    const cleaned = selectConflictSide(raw, 'ours');
+    fs.writeFileSync(target, cleaned.endsWith('\n') ? cleaned : `${cleaned}\n`, 'utf8');
+    console.log(`[merge-conflict-recovery] cleaned ${entry.name} using ours`);
+  }
+}
+
+function readJson(file) {
+  const target = path.join(DATA_DIR, file);
+  return parseJsonWithConflictRecovery(target, file);
+}
 function writeJson(file, data) {
   const target = path.join(DATA_DIR, file);
   const next = `${JSON.stringify(data, null, 2)}\n`;
@@ -283,6 +387,8 @@ function patchHealth() {
     dynamic_advancement_checks:checks
   });
 }
+
+repairConflictMarkedFiles();
 
 const results = {};
 for (const file of ['matches.json','bracket.json','knockout-live.json']) {

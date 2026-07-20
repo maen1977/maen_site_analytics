@@ -1,25 +1,24 @@
-name: Update World Cup 2026 every 15 minutes
+name: World Cup 2026 Final Archive (manual only)
 
 on:
-  schedule:
-    - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: worldcup-2026-quarter-hour
-  cancel-in-progress: true
+  group: worldcup-2026-final-archive
+  cancel-in-progress: false
 
 env:
   TZ: Asia/Amman
   CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
 
 jobs:
-  enforce-canonical-world-cup-data:
+  finalize-world-cup-archive:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 10
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,42 +31,45 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Validate canonical scripts
+      - name: Validate final archive scripts
         shell: bash
         run: |
           set -euo pipefail
           node --check scripts/worldcup-canonical-finalizer.mjs
           node --check scripts/worldcup-state-validator.mjs
 
-      - name: Enforce all knockout matches and final result
+      - name: Recover conflict-marked JSON and finalize archive
         shell: bash
         run: node scripts/worldcup-canonical-finalizer.mjs
 
-      - name: Reject any wrong pairing, score, or leaked Switzerland name
+      - name: Validate all knockout matches and final result
         shell: bash
         run: node scripts/worldcup-state-validator.mjs
 
-      - name: Commit corrected World Cup data
+      - name: Reject remaining merge-conflict markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -RInE '^(<<<<<<<|=======|>>>>>>>|\|\|\|\|\|\|\|)' public/worldcup-2026; then
+            echo "Merge-conflict markers still exist in World Cup files."
+            exit 1
+          fi
+          echo "No merge-conflict markers remain."
+
+      - name: Commit final static World Cup archive
         id: commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            public/worldcup-2026/matches.json \
-            public/worldcup-2026/bracket.json \
-            public/worldcup-2026/knockout-live.json \
-            public/worldcup-2026/knockout-live-health.json \
-            public/worldcup-2026/manual-results-overrides.json \
-            public/worldcup-2026/canonical-finalizer-status.json \
-            public/worldcup-2026/state-validator-status.json
+          git add public/worldcup-2026
           if git diff --cached --quiet; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "Canonical World Cup data already correct."
+            echo "Final World Cup archive is already correct."
             exit 0
           fi
-          git commit -m "Fix all World Cup knockout matches and final Spain 1-0 Argentina"
+          git commit -m "Finalize World Cup 2026 archive - Spain champions"
           git pull --rebase --autostash origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
