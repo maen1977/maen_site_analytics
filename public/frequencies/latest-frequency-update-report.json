@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-04T07:49:15.204Z",
-  "updatedAt": "2026-08-04T07:49:14.801Z",
-  "totalFrequencies": 841,
+  "generatedAt": "2026-08-05T07:50:18.530Z",
+  "updatedAt": "2026-08-05T07:50:18.070Z",
+  "totalFrequencies": 842,
   "removedCount": 0,
-  "candidateCount": 2523,
-  "closedCandidateCount": 2903,
-  "closedConsensusCount": 325,
-  "successfulSourceCount": 44,
+  "candidateCount": 2750,
+  "closedCandidateCount": 2929,
+  "closedConsensusCount": 326,
+  "successfulSourceCount": 47,
   "sourcesChecked": 67,
-  "sourcesFailed": 23,
+  "sourcesFailed": 20,
   "changes": {
-    "updated": 116,
-    "added": 0,
+    "updated": 228,
+    "added": 1,
     "removed": 0,
-    "reviewedOnly": 2407,
-    "channelNamesAdded": 0,
+    "reviewedOnly": 2521,
+    "channelNamesAdded": 6,
     "channelNamesRemoved": 14,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 26,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 2407,
+    "incompleteNewSkipped": 2521,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3579 من 3632 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3767 من 3936 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -45,8 +45,8 @@
     },
     {
       "satelliteGroup": "Azerspace",
-      "frequencies": 75,
-      "services": 108
+      "frequencies": 76,
+      "services": 115
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -81,7 +81,7 @@
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 66,
-      "services": 359
+      "services": 364
     },
     {
       "satelliteGroup": "Nilesat",
@@ -202,8 +202,8 @@
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
-      "frequencies": 75,
-      "services": 108
+      "frequencies": 76,
+      "services": 115
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -301,7 +301,7 @@
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 66,
-      "services": 359
+      "services": 364
     },
     {
       "satelliteGroup": "Nilesat",
@@ -507,16 +507,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-astra-19",
-      "name": "LyngSat Astra 19.2E cluster",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-astra-28",
       "name": "LyngSat Astra 28.2E cluster",
       "ok": false,
@@ -529,26 +519,6 @@
     {
       "id": "lyngsat-amos",
       "name": "LyngSat Amos 3 / Dror 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-intelsat-20",
-      "name": "LyngSat Intelsat 20",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-azerspace-1",
-      "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
