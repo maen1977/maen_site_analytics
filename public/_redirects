@@ -7,3 +7,9 @@
 /.netlify/functions/track-visit /api/track-visit 200
 
 /api/search-feedback https://maensat.pages.dev/api/search-feedback 200
+
+# Social/in-app browser compatibility: normalize old/shared development URLs.
+/public / 301
+/public/ / 301
+/public/index.html / 301
+/public/index_phone.html / 301

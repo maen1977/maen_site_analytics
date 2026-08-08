@@ -21,3 +21,9 @@ build/
 Thumbs.db
 .vscode/
 .idea/
+
+# Accidental Android/SMS project and signing material — not part of this website
+/app/
+/keystore.properties
+*.jks
+*.keystore
