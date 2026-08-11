@@ -1,29 +1,29 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-10T06:42:22.019Z",
-  "updatedAt": "2026-08-10T06:42:21.593Z",
-  "totalFrequencies": 842,
+  "generatedAt": "2026-08-11T06:04:32.326Z",
+  "updatedAt": "2026-08-11T06:04:31.876Z",
+  "totalFrequencies": 913,
   "removedCount": 0,
-  "candidateCount": 2501,
-  "closedCandidateCount": 2906,
+  "candidateCount": 2568,
+  "closedCandidateCount": 2904,
   "closedConsensusCount": 326,
-  "successfulSourceCount": 44,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 23,
+  "sourcesFailed": 22,
   "changes": {
     "updated": 117,
-    "added": 0,
+    "added": 71,
     "removed": 0,
-    "reviewedOnly": 2384,
-    "channelNamesAdded": 2,
-    "channelNamesRemoved": 16,
+    "reviewedOnly": 2380,
+    "channelNamesAdded": 1,
+    "channelNamesRemoved": 14,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 31,
+    "closedConsensusReviewed": 35,
     "protectedMissing": 0,
-    "incompleteNewSkipped": 2384,
+    "incompleteNewSkipped": 2380,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3530 من 3583 مرشح ناقص system/mod."
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3553 من 3677 مرشح ناقص system/mod."
   },
   "removedItems": [],
   "reviewedOnlyCount": 200,
@@ -70,8 +70,8 @@
     },
     {
       "satelliteGroup": "Hellas Sat",
-      "frequencies": 22,
-      "services": 60
+      "frequencies": 93,
+      "services": 160
     },
     {
       "satelliteGroup": "Hot Bird",
@@ -265,8 +265,8 @@
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 8,
-      "services": 15
+      "frequencies": 79,
+      "services": 115
     },
     {
       "satelliteGroup": "Hellas Sat",
@@ -479,16 +479,6 @@
     {
       "id": "lyngsat-yahsat",
       "name": "LyngSat Al Yah 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-hellas",
-      "name": "LyngSat Hellas Sat 3/4",
       "ok": false,
       "status": 403,
       "candidates": 0,
