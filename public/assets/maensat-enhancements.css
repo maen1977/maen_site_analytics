@@ -1,0 +1,38 @@
+:root {
+  --maen-focus: #6f4cff;
+  --maen-gold: #ffd23f;
+}
+
+:where(a, button, input, select, summary):focus-visible {
+  outline: 3px solid var(--maen-focus) !important;
+  outline-offset: 3px !important;
+}
+
+:where(a, button):active {
+  transform: scale(0.98);
+}
+
+.maen-image-error {
+  min-height: 120px;
+  background: linear-gradient(135deg, #f1f2f4, #fff) !important;
+  object-fit: contain !important;
+  opacity: 0.72;
+}
+
+#frequencies .frequency-table-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--maen-gold) #111;
+}
+
+#frequencies .frequency-table-wrap:focus-within {
+  box-shadow: 0 0 0 3px rgba(111, 76, 255, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

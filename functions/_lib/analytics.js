@@ -152,7 +152,9 @@ export async function ensureAnalyticsSchema(env = {}) {
     city TEXT,
     continent TEXT,
     colo TEXT,
-    cf_timezone TEXT
+    cf_timezone TEXT,
+    event_type TEXT,
+    event_data TEXT
   )`).run();
   await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN ip_hash TEXT");
   await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN country TEXT");
@@ -161,6 +163,8 @@ export async function ensureAnalyticsSchema(env = {}) {
   await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN continent TEXT");
   await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN colo TEXT");
   await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN cf_timezone TEXT");
+  await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN event_type TEXT");
+  await runOptional(env, "ALTER TABLE analytics_events ADD COLUMN event_data TEXT");
   await env.MAEN_DB.prepare("CREATE INDEX IF NOT EXISTS idx_analytics_events_local_date ON analytics_events(local_date)").run();
   await env.MAEN_DB.prepare("CREATE INDEX IF NOT EXISTS idx_analytics_events_visitor ON analytics_events(visitor_hash)").run();
   await env.MAEN_DB.prepare("CREATE INDEX IF NOT EXISTS idx_analytics_events_session ON analytics_events(session_hash)").run();
@@ -176,8 +180,8 @@ export async function saveAnalyticsRecord(env = {}, record = {}) {
   if (hasD1(env)) {
     await ensureAnalyticsSchema(env);
     await env.MAEN_DB.prepare(`INSERT INTO analytics_events
-      (id, ts, local_date, local_hour, page, title, device, ua_device, lang, timezone, screen, referrer_host, visitor_hash, session_hash, ip_hash, country, region, city, continent, colo, cf_timezone)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`) 
+      (id, ts, local_date, local_hour, page, title, device, ua_device, lang, timezone, screen, referrer_host, visitor_hash, session_hash, ip_hash, country, region, city, continent, colo, cf_timezone, event_type, event_data)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`)
       .bind(
         record.id,
         record.ts,
@@ -199,7 +203,9 @@ export async function saveAnalyticsRecord(env = {}, record = {}) {
         record.city,
         record.continent,
         record.colo,
-        record.cfTimezone
+        record.cfTimezone,
+        record.eventType || "",
+        record.eventData || ""
       )
       .run();
     return { stored: true, backend: "d1" };
@@ -229,6 +235,8 @@ function rowToRecord(r) {
     visitorHash: r.visitor_hash,
     sessionHash: r.session_hash,
     ipHash: r.ip_hash,
+    eventType: r.event_type || "",
+    eventData: r.event_data || "",
     country: r.country,
     region: r.region,
     city: r.city,
@@ -241,7 +249,7 @@ function rowToRecord(r) {
 export async function listRecordsForDate(env = {}, dateKey) {
   if (hasD1(env)) {
     await ensureAnalyticsSchema(env);
-    const result = await env.MAEN_DB.prepare(`SELECT id, ts, local_date, local_hour, page, title, device, ua_device, lang, timezone, screen, referrer_host, visitor_hash, session_hash, ip_hash, country, region, city, continent, colo, cf_timezone FROM analytics_events WHERE local_date = ? ORDER BY ts ASC`)
+    const result = await env.MAEN_DB.prepare(`SELECT id, ts, local_date, local_hour, page, title, device, ua_device, lang, timezone, screen, referrer_host, visitor_hash, session_hash, ip_hash, country, region, city, continent, colo, cf_timezone, event_type, event_data FROM analytics_events WHERE local_date = ? AND (event_type IS NULL OR event_type = '') ORDER BY ts ASC`)
       .bind(dateKey)
       .all();
     return (result.results || []).map(rowToRecord);
@@ -254,7 +262,9 @@ export async function listRecordsForDate(env = {}, dateKey) {
       const record = await env.MAEN_ANALYTICS_KV.get(key.name, { type: "json" });
       if (record) records.push(record);
     }
-    return records.sort((a, b) => String(a.ts || "").localeCompare(String(b.ts || "")));
+    return records
+      .filter((record) => !record.eventType)
+      .sort((a, b) => String(a.ts || "").localeCompare(String(b.ts || "")));
   }
   return [];
 }

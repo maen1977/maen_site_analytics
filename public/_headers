@@ -9,6 +9,15 @@
   Cloudflare-CDN-Cache-Control: no-store
   Access-Control-Allow-Origin: *
 
+/data/products.json
+  Cache-Control: public, max-age=300, must-revalidate
+
+/assets/maensat-enhancements.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/maensat-enhancements.css
+  Cache-Control: public, max-age=31536000, immutable
+
 /
   Cache-Control: no-cache, must-revalidate, max-age=0
 
