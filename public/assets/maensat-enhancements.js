@@ -41,12 +41,12 @@
 
   function currentPage() {
     var active = document.querySelector(".page.active");
-    return (active && active.id) || hashPage() || "home";
+    return (active && active.id) || hashPage() || "maintenance";
   }
 
   function setPageFallback(id) {
     var pages = document.querySelectorAll(".page");
-    var target = document.getElementById(id) || document.getElementById("home");
+    var target = document.getElementById(id) || document.getElementById("maintenance");
     pages.forEach(function (page) {
       page.classList.toggle("active", page === target);
     });
@@ -58,7 +58,7 @@
   function stabilizeInitialPage() {
     if (window.__MAENSAT_INITIAL_PAGE_STABILIZED__) return;
     window.__MAENSAT_INITIAL_PAGE_STABILIZED__ = true;
-    var requested = hashPage() || "home";
+    var requested = "maintenance";
     var useExistingShowPage = typeof window.showPage === "function";
     var apply = function () {
       if (useExistingShowPage) {
@@ -117,6 +117,32 @@
       .catch(function () {
         window.__MAENSAT_CATALOG_LOADING__ = false;
       });
+  }
+
+  function resetFrequencySearchDefaults() {
+    var satellite = document.getElementById("frequencySatellite");
+    var service = document.getElementById("frequencyServiceFilter");
+    if (satellite) satellite.value = "all";
+    if (service) service.value = "all";
+  }
+
+  function installFrequencyAliases() {
+    if (window.__MAENSAT_FREQUENCY_ALIASES__) return;
+    var original = window.channelAliases;
+    if (typeof original !== "function") return;
+    window.channelAliases = function (name) {
+      var aliases = original.apply(this, arguments) || [];
+      var normalized = safeText(name).toLowerCase();
+      if (/thmanyah|thamanya|thamania|الثماني/.test(normalized)) {
+        aliases = aliases.concat([
+          "الثمانية", "الثمانيه", "ثمانية", "ثمانيه", "قنوات الثمانية",
+          "Thmanyah", "Thamanya", "Thamania", "Thmanyah 1", "Thmanyah 2",
+          "Thmanyah 3", "Thmanyah 4"
+        ]);
+      }
+      return aliases;
+    };
+    window.__MAENSAT_FREQUENCY_ALIASES__ = true;
   }
 
   function debounceFrequencySearch() {
@@ -221,6 +247,8 @@
 
   function init() {
     stabilizeInitialPage();
+    resetFrequencySearchDefaults();
+    installFrequencyAliases();
     applyProductCatalog();
     debounceFrequencySearch();
     improveImages();
