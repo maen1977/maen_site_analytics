@@ -2708,7 +2708,8 @@ function channelAliases(name){
   const n = normalizeText(name);
   function add(){ aliases.push(...arguments); }
   addBilingualAliasRules(n, add);
-  if (containsAny(n, ['thmanyah','thamanya','thamania','thmanyah 1','thmanyah 2','thmanyah 3','thmanyah 4'])) add('الثمانية','الثمانيه','ثمانية','ثمانيه','قنوات الثمانية','Thmanyah','Thamanya','Thamania','Thmanyah 1','Thmanyah 2','Thmanyah 3','Thmanyah 4');
+  if (containsAny(n, ['thmanyah','thamanya','thamania','thmanyah 1','thmanyah 2','thmanyah 3','thmanyah 4'])) add('الثمانية','الثمانيه','ثمانية','ثمانيه','محطات الثمانية','قنوات الثمانية','Thmanyah','Thamanya','Thamania','Thmanyah 1','Thmanyah 2','Thmanyah 3','Thmanyah 4');
+  if (containsAny(n, ['bein','be in','بي ان','بي إن','بي أن','بين سبورت','sports news'])) add('beIN','beIN Sports','beIN SPORTS','beIN Sports News','beIN SPORTS NEWS','beIN News','beIN المفتوحة','بي ان','بي إن','بي أن','بين سبورت','بي ان سبورت','بي إن سبورت','بي ان نيوز','بي إن نيوز','قناة بي ان المفتوحة','القناة المفتوحة');
   if (containsAny(n, ['al malakoot','malakoot','malakut','the kingdom sat'])) add('الملكوت','الملكو','ملكوت','malakoot','al malakoot','kingdom tv','قنوات مسيحية');
   if (containsAny(n, ['aghapy'])) add('اغابي','أغابي','aghapy','قنوات مسيحية');
   if (containsAny(n, ['al karma','alkarma'])) add('الكرمة','الكرمه','alkarma','al karma','قنوات مسيحية');
@@ -5637,6 +5638,6 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   window.addEventListener('load', bindCatalogButton);
 })();
 </script>
-<script defer src="/assets/maensat-enhancements.js?v=20260816-frequency-pro-v7"></script>
+<script defer src="/assets/maensat-enhancements.js?v=20260816-search-global-v8"></script>
 </body>
 </html>

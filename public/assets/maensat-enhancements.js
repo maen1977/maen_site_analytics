@@ -170,12 +170,20 @@
       var normalized = safeText(name).toLowerCase();
       if (/thmanyah|thamanya|thamania|الثماني/.test(normalized)) {
         aliases = aliases.concat([
-          "الثمانية", "الثمانيه", "ثمانية", "ثمانيه", "قنوات الثمانية",
+          "الثمانية", "الثمانيه", "ثمانية", "ثمانيه", "محطات الثمانية", "قنوات الثمانية",
           "Thmanyah", "Thamanya", "Thamania", "Thmanyah 1", "Thmanyah 2",
           "Thmanyah 3", "Thmanyah 4"
         ]);
       }
-      return aliases;
+      if (/bein|be in|بي.?ن|بين سبورت|بي.?ان|sports news/.test(normalized)) {
+        aliases = aliases.concat([
+          "beIN", "beIN Sports", "beIN SPORTS", "beIN Sports News", "beIN SPORTS NEWS",
+          "beIN News", "beIN المفتوحة", "بي ان", "بي إن", "بي أن", "بين سبورت",
+          "بي ان سبورت", "بي إن سبورت", "بي ان نيوز", "بي إن نيوز", "قناة بي ان المفتوحة",
+          "القناة المفتوحة"
+        ]);
+      }
+      return Array.from(new Set(aliases));
     };
     window.__MAENSAT_FREQUENCY_ALIASES__ = true;
   }
@@ -239,13 +247,110 @@
       if (empty) {
         empty.setAttribute("aria-live", "polite");
         if (!rows && query) {
-          empty.textContent = english
-            ? "No match in the selected satellite/service scope. Try All satellites or All services without changing your search."
-            : "لا توجد مطابقة ضمن القمر ونوع الخدمة المختارين. جرّب كل الأقمار أو كل الخدمات مع إبقاء عبارة البحث نفسها.";
+          renderGlobalFrequencyFallback(empty, query, satellite, service, english);
         } else {
+          empty.innerHTML = "";
           empty.textContent = english ? "No matching frequency results." : "لا توجد نتائج مطابقة للبحث الحالي.";
         }
       }
+    }
+
+    function fallbackNormalize(value) {
+      return safeText(value).toLowerCase()
+        .replace(/[\u064b-\u065f\u0670\u0640]/g, "")
+        .replace(/[أإآٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي")
+        .replace(/[^\u0600-\u06ffa-z0-9]+/gi, " ").replace(/\s+/g, " ").trim();
+    }
+
+    function fallbackChannels(item) {
+      if (Array.isArray(item && item.channels)) return item.channels.filter(Boolean).map(safeText);
+      return safeText(item && item.channel).split(/[,،|]+/).map(safeText).filter(Boolean);
+    }
+
+    function fallbackSearchText(item) {
+      var channels = fallbackChannels(item);
+      var text = [channels.join(" "), item && item.searchAliases, item && item.category, item && item.package].filter(Boolean).join(" ");
+      var normalized = fallbackNormalize(text);
+      if (/thmanyah|thamanya|thamania|الثماني/.test(normalized)) text += " الثمانية الثمانيه ثمانية ثمانيه محطات الثمانية قنوات الثمانية Thmanyah Thamanya Thamania";
+      if (/bein|be in|بي.?ن|بين سبورت|بي.?ان|sports news/.test(normalized)) text += " beIN beIN Sports beIN Sports News بي ان بي إن بي أن بين سبورت بي ان سبورت بي ان نيوز بي إن نيوز بي ان المفتوحة القناة المفتوحة";
+      return fallbackNormalize(text);
+    }
+
+    function fallbackMatches(item, query) {
+      var q = fallbackNormalize(query);
+      var compact = q.replace(/\s+/g, "");
+      var stop = {"محطات":1,"محطه":1,"قنوات":1,"قناه":1,"قناة":1,"تردد":1,"ترددات":1,"على":1,"في":1,"من":1,"ال":1,"و":1,"او":1,"أو":1,"كل":1,"جميع":1,"القنوات":1};
+      var tokens = q.split(" ").filter(function (token) { return token.length > 1 && !stop[token]; });
+      var blob = fallbackSearchText(item);
+      var blobCompact = blob.replace(/\s+/g, "");
+      if (!tokens.length) return false;
+      return tokens.every(function (token) {
+        var tokenCompact = token.replace(/\s+/g, "");
+        if (blob.includes(token) || blobCompact.includes(tokenCompact)) return true;
+        // Arabic/English brand equivalence for user input such as "بي ان المفتوحة".
+        if (/^(بي|بين|ان|إن|أن)$/.test(token) && /bein|بي ان|بي ان/.test(blob)) return true;
+        if (/^(الثمانيه|الثمانية|ثمانيه|ثمانية)$/.test(token) && /thmanyah|thamanya|thamania/.test(blob)) return true;
+        return false;
+      });
+    }
+
+    function renderGlobalFrequencyFallback(empty, query, satellite, service, english) {
+      var initialData = Array.isArray(window.embeddedFrequencyBackup) ? window.embeddedFrequencyBackup : [];
+      var renderMatches = function (data) {
+        var matches = (Array.isArray(data) ? data : []).filter(function (item) { return fallbackMatches(item, query); }).slice(0, 6);
+        if (!matches.length) {
+          empty.textContent = english
+            ? "No matching frequency results in the complete database. Try the official channel name or frequency number."
+            : "لم يعثر البحث على القناة حتى في قاعدة البيانات الكاملة. جرّب الاسم الرسمي أو رقم التردد.";
+          return;
+        }
+        var satelliteLabel = satellite && satellite.options[satellite.selectedIndex] ? satellite.options[satellite.selectedIndex].text : "";
+        var serviceLabel = service && service.options[service.selectedIndex] ? service.options[service.selectedIndex].text : "";
+        empty.innerHTML = "";
+        var title = document.createElement("strong");
+        title.textContent = english ? "Found outside the selected filters:" : "وجدت مطابقة خارج الفلاتر المختارة:";
+        empty.appendChild(title);
+        var note = document.createElement("div");
+        note.className = "maen-frequency-fallback-note";
+        note.textContent = english ? "Current scope: " + satelliteLabel + " · " + serviceLabel : "النطاق الحالي: " + satelliteLabel + " · " + serviceLabel;
+        empty.appendChild(note);
+        matches.forEach(function (item) {
+          var row = document.createElement("div");
+          row.className = "maen-frequency-fallback-row";
+          var channels = fallbackChannels(item).slice(0, 4).join("، ");
+          row.textContent = (channels || "-") + " — " + (item.satelliteGroup || item.satellite || "") + " — " + (item.frequency || "") + " " + (item.pol || "");
+          empty.appendChild(row);
+        });
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "maen-frequency-expand";
+        button.textContent = english ? "Show these results by expanding filters" : "عرض هذه النتائج بتوسيع الفلاتر";
+        button.addEventListener("click", function () {
+          if (satellite) satellite.value = "all";
+          if (service) service.value = "all";
+          if (typeof window.renderFrequencies === "function") window.renderFrequencies();
+        });
+        empty.appendChild(button);
+      };
+      var initialMatches = initialData.filter(function (item) { return fallbackMatches(item, query); });
+      if (initialMatches.length || window.__MAENSAT_FULL_FREQUENCY_FALLBACK__) {
+        renderMatches(window.__MAENSAT_FULL_FREQUENCY_FALLBACK__ || initialData);
+        return;
+      }
+      empty.textContent = english ? "Searching the complete frequency database…" : "يجري البحث في قاعدة الترددات الكاملة…";
+      if (!window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__) {
+        window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__ = window.fetch("/frequencies/frequency-data.json", { credentials: "same-origin", cache: "force-cache" })
+          .then(function (response) { return response.ok ? response.json() : null; })
+          .then(function (payload) {
+            var data = payload && Array.isArray(payload.items) ? payload.items : [];
+            window.__MAENSAT_FULL_FREQUENCY_FALLBACK__ = data;
+            return data;
+          })
+          .catch(function () { return []; });
+      }
+      window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__.then(function (data) {
+        if (safeText(input.value) === safeText(query)) renderMatches(data);
+      });
     }
 
     var observer = window.MutationObserver ? new MutationObserver(function () {
