@@ -58,7 +58,8 @@
   function stabilizeInitialPage() {
     if (window.__MAENSAT_INITIAL_PAGE_STABILIZED__) return;
     window.__MAENSAT_INITIAL_PAGE_STABILIZED__ = true;
-    var requested = "maintenance";
+    var isMobileVersion = /index_phone\.html$/i.test(window.location.pathname) || (window.matchMedia && window.matchMedia("(max-width: 720px)").matches);
+    var requested = isMobileVersion ? "maintenance" : "home";
     var useExistingShowPage = typeof window.showPage === "function";
     var apply = function () {
       if (useExistingShowPage) {
@@ -194,6 +195,99 @@
     window.__MAENSAT_FREQUENCY_DEBOUNCED__ = true;
   }
 
+  function installProfessionalFrequencyUi() {
+    if (window.__MAENSAT_PRO_FREQUENCY_UI__) return;
+    var input = document.getElementById("frequencySearch");
+    if (!input) {
+      window.setTimeout(installProfessionalFrequencyUi, 0);
+      return;
+    }
+
+    // مسح البحث يجب ألا يلغي القمر أو نوع الخدمة اللذين اختارهما المستخدم.
+    var originalClear = window.clearFrequencySearch;
+    if (typeof originalClear === "function") {
+      window.clearFrequencySearch = function () {
+        var satellite = document.getElementById("frequencySatellite");
+        var service = document.getElementById("frequencyServiceFilter");
+        var satelliteValue = satellite ? satellite.value : "Nilesat";
+        var serviceValue = service ? service.value : "free";
+        originalClear.apply(this, arguments);
+        if (satellite) satellite.value = satelliteValue || "Nilesat";
+        if (service) service.value = serviceValue || "free";
+        if (typeof window.renderFrequencies === "function") window.renderFrequencies();
+      };
+    }
+
+    function updateStatus() {
+      var status = document.getElementById("frequencyLiveStatus");
+      var body = document.getElementById("frequencyTableBody");
+      var empty = document.getElementById("frequencyEmpty");
+      if (!status || !body) return;
+      var rows = body.querySelectorAll("tr").length;
+      var query = safeText(input.value);
+      var satellite = document.getElementById("frequencySatellite");
+      var service = document.getElementById("frequencyServiceFilter");
+      var satelliteLabel = satellite && satellite.options[satellite.selectedIndex] ? satellite.options[satellite.selectedIndex].text : "";
+      var serviceLabel = service && service.options[service.selectedIndex] ? service.options[service.selectedIndex].text : "";
+      var scope = [satelliteLabel, serviceLabel].filter(Boolean).join(" · ");
+      var english = document.body && document.body.classList.contains("lang-en");
+      var prefix = query ? (english ? "Search results" : "نتائج البحث") : (english ? "Available frequencies" : "الترددات المتاحة");
+      var countText = english ? (rows === 1 ? " result" : " results") : (rows === 1 ? " نتيجة" : " نتائج");
+      status.textContent = prefix + ": " + rows + countText + (scope ? " · " + scope : "");
+      status.hidden = false;
+      status.setAttribute("aria-live", "polite");
+      if (empty) {
+        empty.setAttribute("aria-live", "polite");
+        if (!rows && query) {
+          empty.textContent = english
+            ? "No match in the selected satellite/service scope. Try All satellites or All services without changing your search."
+            : "لا توجد مطابقة ضمن القمر ونوع الخدمة المختارين. جرّب كل الأقمار أو كل الخدمات مع إبقاء عبارة البحث نفسها.";
+        } else {
+          empty.textContent = english ? "No matching frequency results." : "لا توجد نتائج مطابقة للبحث الحالي.";
+        }
+      }
+    }
+
+    var observer = window.MutationObserver ? new MutationObserver(function () {
+      window.setTimeout(updateStatus, 0);
+    }) : null;
+    var body = document.getElementById("frequencyTableBody");
+    if (observer && body) observer.observe(body, { childList: true });
+    ["frequencySatellite", "frequencyServiceFilter"].forEach(function (id) {
+      var control = document.getElementById(id);
+      if (control) control.addEventListener("change", updateStatus, { passive: true });
+    });
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && input.value) {
+        event.preventDefault();
+        window.clearFrequencySearch();
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      var target = event.target;
+      var tag = target && target.tagName ? target.tagName.toLowerCase() : "";
+      if (event.key === "/" && tag !== "input" && tag !== "textarea" && tag !== "select" && !event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+        input.focus();
+      }
+    });
+    var originalRender = window.renderFrequencies;
+    if (typeof originalRender === "function" && !originalRender.__maensatProfessionalWrapped) {
+      var wrappedRender = function () {
+        var result = originalRender.apply(this, arguments);
+        window.setTimeout(updateStatus, 0);
+        return result;
+      };
+      wrappedRender.__maensatProfessionalWrapped = true;
+      window.renderFrequencies = wrappedRender;
+    } else if (typeof originalRender !== "function") {
+      window.setTimeout(installProfessionalFrequencyUi, 0);
+      return;
+    }
+    window.setTimeout(updateStatus, 0);
+    window.__MAENSAT_PRO_FREQUENCY_UI__ = true;
+  }
+
   function improveImages() {
     document.querySelectorAll("img").forEach(function (image, index) {
       if (!image.getAttribute("decoding")) image.setAttribute("decoding", "async");
@@ -289,6 +383,7 @@
     debounceFrequencySearch();
     improveImages();
     setupConversionTracking();
+    installProfessionalFrequencyUi();
     syncPageState();
     window.addEventListener("hashchange", syncPageState, { passive: true });
     window.addEventListener("load", function () {
