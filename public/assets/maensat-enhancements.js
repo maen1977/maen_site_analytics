@@ -129,14 +129,21 @@
   function installFrequencyEntryDefaults() {
     if (window.__MAENSAT_FREQUENCY_ENTRY_DEFAULTS__) return;
     var original = window.showPage;
-    if (typeof original !== "function") return;
+    if (typeof original !== "function") {
+      window.setTimeout(installFrequencyEntryDefaults, 0);
+      return;
+    }
     window.showPage = function (id) {
+      var previous = window.__MAENSAT_LAST_SHOWN_PAGE__ || "";
       var result = original.apply(this, arguments);
-      if (id === "frequencies") {
+      window.__MAENSAT_LAST_SHOWN_PAGE__ = id;
+      if (id === "frequencies" && previous !== "frequencies") {
         resetFrequencySearchDefaults();
         var input = document.getElementById("frequencySearch");
         if (input) input.value = "";
-        if (typeof window.renderFrequencies === "function") window.renderFrequencies();
+        if (typeof window.renderFrequencies === "function") {
+          window.setTimeout(window.renderFrequencies, 0);
+        }
       }
       return result;
     };
@@ -147,17 +154,9 @@
     if (window.__MAENSAT_FREQUENCY_SEARCH_SCOPE__) return;
     var search = document.getElementById("frequencySearch");
     if (!search) return;
-    search.addEventListener("input", function () {
-      var query = safeText(search.value);
-      var satellite = document.getElementById("frequencySatellite");
-      var service = document.getElementById("frequencyServiceFilter");
-      if (!query || !satellite || !service) return;
-      if (satellite.value === "Nilesat" && service.value === "free") {
-        satellite.value = "all";
-        service.value = "all";
-        if (typeof window.renderFrequencies === "function") window.renderFrequencies();
-      }
-    }, true);
+    // لا نغيّر القمر أو نوع الخدمة عند الكتابة. محرك البحث الأساسي
+    // يحترم الفلاتر الحالية، ويجب على المستخدم اختيار All Sat/All Services
+    // يدوياً إذا أراد البحث في النطاق الكامل.
     window.__MAENSAT_FREQUENCY_SEARCH_SCOPE__ = true;
   }
 
