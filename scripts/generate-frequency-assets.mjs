@@ -54,6 +54,7 @@ async function main() {
   const versionFileName = `frequency-data.v${version}.json`;
   const versionPath = path.join(outDir, versionFileName);
   const searchIndexPath = path.join(outDir, 'search-index.json');
+  const nilesatFtaPath = path.join(outDir, 'frequency-data-nilesat-fta.json');
   const manifestPath = path.join(outDir, 'frequency-manifest.json');
 
   await writeFile(versionPath, JSON.stringify(payload) + '\n', 'utf8');
@@ -75,6 +76,22 @@ async function main() {
   };
   await writeFile(searchIndexPath, JSON.stringify(searchIndex) + '\n', 'utf8');
 
+  const nilesatFtaItems = payload.items.map(item => {
+    const group = String(item.satelliteGroup || '').trim().toLowerCase();
+    if (group !== 'nilesat' && !group.includes('نايل')) return null;
+    const channels = Array.isArray(item.channels) ? item.channels : String(item.channel || '').split(/[،,]/).map(s => s.trim()).filter(Boolean);
+    const encryption = item.channelEncryption || {};
+    const freeChannels = channels.filter(channel => String(encryption[channel] || '').toLowerCase() === 'free');
+    if (!freeChannels.length) return null;
+    const filtered = { ...item, channels: freeChannels, channel: freeChannels.join('، '), channelCount: freeChannels.length };
+    filtered.channelEncryption = Object.fromEntries(freeChannels.map(channel => [channel, encryption[channel]]));
+    if (item.channelEncryptionReason && typeof item.channelEncryptionReason === 'object') {
+      filtered.channelEncryptionReason = Object.fromEntries(freeChannels.map(channel => [channel, item.channelEncryptionReason[channel] || '']));
+    }
+    return filtered;
+  }).filter(Boolean);
+  await writeFile(nilesatFtaPath, JSON.stringify({ items: nilesatFtaItems, mode: 'nilesat-fta-shard', source: 'frequency-data.json', updatedAt: payload.updatedAt || null, count: nilesatFtaItems.length }) + '\n', 'utf8');
+
   const manifest = {
     ok: true,
     strategy: 'versioned-static-json',
@@ -84,11 +101,12 @@ async function main() {
     dataFile: `/frequencies/${versionFileName}`,
     canonicalFile: '/frequencies/frequency-data.json',
     searchIndexFile: '/frequencies/search-index.json',
+    nilesatFtaFile: '/frequencies/frequency-data-nilesat-fta.json',
     generatedAt: new Date().toISOString(),
     cachePolicy: 'HTML loads this tiny manifest with no-cache, then loads the versioned JSON with normal immutable cache behavior. This lowers repeated Netlify/Cloudflare bandwidth.'
   };
   await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n', 'utf8');
-  console.log(JSON.stringify({ ok: true, versionFileName, count: payload.items.length }, null, 2));
+  console.log(JSON.stringify({ ok: true, versionFileName, count: payload.items.length, nilesatFtaCount: nilesatFtaItems.length }, null, 2));
 }
 
 main().catch(error => {
