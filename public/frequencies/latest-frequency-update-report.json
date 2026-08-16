@@ -1,52 +1,1016 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-16T05:43:42.740Z",
-  "updatedAt": "2026-08-16T05:43:42.294Z",
-  "totalFrequencies": 913,
-  "removedCount": 0,
-  "candidateCount": 2503,
-  "closedCandidateCount": 2895,
-  "closedConsensusCount": 324,
-  "successfulSourceCount": 44,
+  "generatedAt": "2026-08-16T21:00:03.463Z",
+  "updatedAt": "2026-08-16T21:00:02.920Z",
+  "totalFrequencies": 681,
+  "removedCount": 420,
+  "candidateCount": 2537,
+  "closedCandidateCount": 2889,
+  "closedConsensusCount": 325,
+  "successfulSourceCount": 48,
   "sourcesChecked": 67,
-  "sourcesFailed": 23,
+  "sourcesFailed": 19,
   "changes": {
-    "updated": 136,
-    "added": 0,
+    "updated": 140,
+    "added": 1,
     "removed": 0,
-    "reviewedOnly": 2367,
-    "channelNamesAdded": 0,
+    "reviewedOnly": 2396,
+    "channelNamesAdded": 1,
     "channelNamesRemoved": 14,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 35,
-    "protectedMissing": 0,
-    "incompleteNewSkipped": 2367,
+    "closedConsensusReviewed": 19,
+    "protectedMissing": 612,
+    "incompleteNewSkipped": 2396,
     "incompleteExistingProtected": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 3534 من 3587 مرشح ناقص system/mod."
+    "movedChannelsRemoved": 518,
+    "movedRowsRemoved": 234,
+    "removalSkippedReason": "",
+    "moveCleanupSkippedReason": ""
   },
-  "removedItems": [],
+  "removedItems": [
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3",
+      "frequency": "10806",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Live، Sport، Stars، Plus",
+      "channelCount": 4,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3",
+      "frequency": "10842",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Plus",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "10806",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Kan 11، Keshet 12، Reshet 13",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "10842",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "National Geographic Israel، Kan 11",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "10972",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "10998",
+      "pol": "V",
+      "sr": "13750",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11030",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11035",
+      "pol": "H",
+      "sr": "6083",
+      "channel": "KAN، KAN 11، Makan 33، KAN Tarbut، KAN Bet، KAN Gimmel، KAN Makan، KAN Reka، KAN Kol Hamusica، KAN Moreshet، KAN 88",
+      "channelCount": 11,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11052",
+      "pol": "H",
+      "sr": "8518",
+      "channel": "Rashut 2، Keshet 12، Reshet 13",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11058",
+      "pol": "V",
+      "sr": "13750",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11062",
+      "pol": "H",
+      "sr": "4500",
+      "channel": "Middle East TV، It's Supernatural! Network",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11067",
+      "pol": "H",
+      "sr": "3300",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11079",
+      "pol": "V",
+      "sr": "9547",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11103",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11140",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Yes TV Action، Keshet 12، Reshet 13، Kan 11، National Geographic Israel، Kan 88، Kan Bet، Kan Kol HaMusica، Kan Gimmel، Kan Reka",
+      "channelCount": 10,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11212",
+      "pol": "V",
+      "sr": "2963",
+      "channel": "Middle East TV",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11259",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Kan 11، Keshet 12، Reshet 13، 2 قناة أخرى",
+      "channelCount": 4,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11474",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11501",
+      "pol": "V",
+      "sr": "13750",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11510",
+      "pol": "V",
+      "sr": "",
+      "channel": "Kan 11، Keshet 12، Yes TV Action",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11542",
+      "pol": "H",
+      "sr": "3703",
+      "channel": "SBN International، Amazing Discoveries TV، The Word Network، The Overcomer",
+      "channelCount": 4,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11553",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Yes",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11558",
+      "pol": "V",
+      "sr": "3300",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11571",
+      "pol": "H",
+      "sr": "5453",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11585",
+      "pol": "H",
+      "sr": "2604",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11595",
+      "pol": "H",
+      "sr": "3200",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11603",
+      "pol": "H",
+      "sr": "5453",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11645",
+      "pol": "H",
+      "sr": "4609",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11653",
+      "pol": "H",
+      "sr": "3000",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "11657",
+      "pol": "H",
+      "sr": "3272",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12297",
+      "pol": "H",
+      "sr": "45000",
+      "channel": "Starlightmedia، Telekanal STB، ICTV Ukraine، Novy Kanal، M1 Ukraine، M2، Oce، Galychyna TV، Pershyy Zakhidnyy، Rada، Donechchyna TV، ATR، Lale، Boutique TV Ukraina، 8 Kanal Ukraine، Televsesvit، Malyatko TV، Chepe Info، Radio Meydan، 1 قناة أخرى",
+      "channelCount": 20,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12341",
+      "pol": "H",
+      "sr": "17900",
+      "channel": "12 Kanal",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12354",
+      "pol": "H",
+      "sr": "3333",
+      "channel": "România TV",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12361",
+      "pol": "H",
+      "sr": "3200",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12369",
+      "pol": "H",
+      "sr": "8333",
+      "channel": "Test",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12375",
+      "pol": "H",
+      "sr": "3333",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12380",
+      "pol": "H",
+      "sr": "4230",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12391",
+      "pol": "H",
+      "sr": "3200",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Amos 3 / Dror 1",
+      "frequency": "12396",
+      "pol": "H",
+      "sr": "3200",
+      "channel": "Feed",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11259",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Gold، Live، Sport، Stars، Plus، LCN",
+      "channelCount": 6,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11558",
+      "pol": "V",
+      "sr": "2026",
+      "channel": "D Shimoni",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11558",
+      "pol": "V",
+      "sr": "11558",
+      "channel": "D Shimoni",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "10770",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Al Kass",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "10770",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Qatar TV، Qatar TV 2، Al Kass One، Al Kass Two، Al Kass Four، Sout al Khaleej 2، Sout al Khaleej 3، Sout al Khaleej 4، Sout al Khaleej Europe، Qatar Radio، Holy Quran Radio (Qatar)، Oryx FM، QBS Radio، Urdu Radio",
+      "channelCount": 14,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "10890",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "BeIn",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11230",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Saudi Broadcasting Authority، Saudi TV، Riyadiya TV 2، Riyadiya TV 1، Ekhbariya TV، Thikrayat TV، Quran TV (Saudi Arabia)، Sunna TV (Saudi Arabia)، SBC، Riyadiya TV 3، Quran Radio (Saudi Arabia)، Riyadh Radio، Jeddah Radio، Saudia Radio، Neda Radio",
+      "channelCount": 15,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11230",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "My HD",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11270",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "MBC، MBC 4، MBC Drama (UAE)، Citruss TV، MBC Bollywood، MBC 2 (UAE)، MBC Action، MBC Max، MBC 3، Wanasah، Alarabiya",
+      "channelCount": 11,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11310",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Feeds",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11747",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Arabsat، Alkawthar TV",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11785",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Arabsat، Test Card",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11804",
+      "pol": "H",
+      "sr": "30000",
+      "channel": "Abu Dhabi TV، National Geographic Abu Dhabi",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11843",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Arabsat، Rotana Drama، LBC (Saudi Arabia)، Rotana Music، Rotana Khalejia، Rotana Comedy، Rotana Cinema KSA، Rotana Classic، Alresalah TV",
+      "channelCount": 9,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11862",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Etisalat",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11881",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "IRIB، IRIB 1، IRIB 2، IRIB 3، IRIB 4، IRINN، Doc TV، Irkala TV، Namayesh TV، Ofogh TV، IFilm Persian، Tamasha، Varzesh TV، Pooya TV، Salamat TV، Nasim، Sepehr، [Radio Iran info card]، Radio Iran، Radio Javan، Radio Payam، Radio Varzesh، Radio Maaref، Radio Quran (Iran)، Radio Farhang، IRIB World Service Radio 7",
+      "channelCount": 26,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11919",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "My HD",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11938",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Test Card، Alarabiya، 1 قناة أخرى، 2 قناة أخرى",
+      "channelCount": 4,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11977",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Télé Liban، Future International، Expo 2020 Channel",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "11996",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Arabsat، France 24 Arabic، France 24 Français، France 24 English، Radio France Internationale، Monte Carlo Doualiya",
+      "channelCount": 6,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12054",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Test Card، Télé Liban، Radio Orient (Lebanon)",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12073",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Arabsat، France 24 Français، France 24 English، France 24 Arabic، TRT Arabi، Test Card، Monte Carlo Doualiya، Radio France Internationale",
+      "channelCount": 8,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12092",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Expo 2020 Channel، TRT Arabi، Al Hadath",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12111",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Citruss TV",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12130",
+      "pol": "V",
+      "sr": "30000",
+      "channel": "Dubai TV، Sama Dubai، Dubai One، Dubai Sports 2، Dubai Racing 2",
+      "channelCount": 5,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12149",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Saudi Broadcasting Authority، Saudi TV، Thikrayat TV، Riyadiya TV 1، Ekhbariya TV، Quran TV (Saudi Arabia)، Sunna TV (Saudi Arabia)، SBC، Riyadiya TV 3، Riyadiya TV 2، Quran Radio (Saudi Arabia)، Riyadh Radio، Jeddah Radio، Saudia Radio، Neda Radio",
+      "channelCount": 15,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12169",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Sout Alkhaleej 2، Sout Alkhaleej 3، Sout Alkhaleej 4، Sout Alkhaleej Europe، Qatar Radio، Qatar Urdu",
+      "channelCount": 6,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12245",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Al Kass، Al Kass One، Al Kass Two، Al Kass Four",
+      "channelCount": 4,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12265",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "2 قناة أخرى",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12284",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "MBC، Al Hadath، Alarabiya، MBC 4، MBC 3، MBC Action، MBC 2 (UAE)، MBC Max، MBC Bollywood، MBC Drama (UAE)، Wanasah",
+      "channelCount": 11,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12341",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "Rotana Cinema KSA، Rotana Comedy، Rotana Classic، Rotana Khalejia، Rotana Drama، Rotana Music، LBC (Saudi Arabia)، Alresalah TV",
+      "channelCount": 8,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12380",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "FASHIONBOX HD",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12399",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "My HD",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12437",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "7 قناة أخرى، 8 قناة أخرى، 9 قناة أخرى",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12523",
+      "pol": "H",
+      "sr": "27500",
+      "channel": "1 قناة أخرى، 2 قناة أخرى",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12523",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "Sudania 24 TV، 1 قناة أخرى، 2 قناة أخرى",
+      "channelCount": 3,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Arabsat / BADR",
+      "orbitalSlot": "26E",
+      "satelliteName": "Arabsat / BADR position",
+      "frequency": "12563",
+      "pol": "V",
+      "sr": "27500",
+      "channel": "TDM، Test Card",
+      "channelCount": 2,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Astra",
+      "orbitalSlot": "19.2E",
+      "satelliteName": "Astra 1KR/1L/1M/1N/1P",
+      "frequency": "11561",
+      "pol": "V",
+      "sr": "11561",
+      "channel": "Clear",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Astra",
+      "orbitalSlot": "28.2E",
+      "satelliteName": "Astra 2E/2F/2G",
+      "frequency": "10773",
+      "pol": "H",
+      "sr": "6013",
+      "channel": "Eng",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Astra",
+      "orbitalSlot": "28.2E",
+      "satelliteName": "Astra 2E/2F/2G",
+      "frequency": "10788",
+      "pol": "V",
+      "sr": "6015",
+      "channel": "Eng",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    },
+    {
+      "satelliteGroup": "Astra",
+      "orbitalSlot": "28.2E",
+      "satelliteName": "Astra 2E/2F/2G",
+      "frequency": "10818",
+      "pol": "V",
+      "sr": "6019",
+      "channel": "Eng",
+      "channelCount": 1,
+      "removedAt": "2026-08-16T21:00:02.920Z",
+      "removedReason": "channel-confirmed-on-new-frequency"
+    }
+  ],
   "reviewedOnlyCount": 200,
   "groupCounts": [
     {
       "satelliteGroup": "Amos",
-      "frequencies": 52,
-      "services": 210
+      "frequencies": 18,
+      "services": 110
     },
     {
       "satelliteGroup": "Arabsat / BADR",
-      "frequencies": 56,
-      "services": 600
+      "frequencies": 53,
+      "services": 427
     },
     {
       "satelliteGroup": "Astra",
-      "frequencies": 136,
-      "services": 209
+      "frequencies": 95,
+      "services": 151
     },
     {
       "satelliteGroup": "Azerspace",
-      "frequencies": 76,
-      "services": 114
+      "frequencies": 51,
+      "services": 78
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -55,48 +1019,48 @@
     },
     {
       "satelliteGroup": "Eutelsat 16E",
-      "frequencies": 18,
-      "services": 253
+      "frequencies": 16,
+      "services": 212
     },
     {
       "satelliteGroup": "Eutelsat 36E",
-      "frequencies": 153,
-      "services": 255
+      "frequencies": 119,
+      "services": 208
     },
     {
       "satelliteGroup": "Eutelsat 9E",
-      "frequencies": 61,
-      "services": 187
+      "frequencies": 42,
+      "services": 133
     },
     {
       "satelliteGroup": "Hellas Sat",
-      "frequencies": 93,
-      "services": 140
+      "frequencies": 51,
+      "services": 78
     },
     {
       "satelliteGroup": "Hot Bird",
-      "frequencies": 53,
-      "services": 267
+      "frequencies": 44,
+      "services": 230
     },
     {
       "satelliteGroup": "Intelsat",
-      "frequencies": 66,
-      "services": 360
+      "frequencies": 54,
+      "services": 232
     },
     {
       "satelliteGroup": "Nilesat",
       "frequencies": 90,
-      "services": 1142
+      "services": 1139
     },
     {
       "satelliteGroup": "Türksat",
-      "frequencies": 25,
-      "services": 76
+      "frequencies": 14,
+      "services": 35
     },
     {
       "satelliteGroup": "Yahsat",
       "frequencies": 18,
-      "services": 92
+      "services": 66
     }
   ],
   "satelliteIdentityCounts": [
@@ -105,21 +1069,21 @@
       "orbitalSlot": "4W",
       "satelliteName": "Amos 3",
       "frequencies": 2,
-      "services": 7
+      "services": 2
     },
     {
       "satelliteGroup": "Amos",
       "orbitalSlot": "4W",
       "satelliteName": "Amos 3 / Dror 1",
-      "frequencies": 47,
-      "services": 194
+      "frequencies": 15,
+      "services": 106
     },
     {
       "satelliteGroup": "Amos",
       "orbitalSlot": "4W",
       "satelliteName": "Dror 1",
-      "frequencies": 3,
-      "services": 9
+      "frequencies": 1,
+      "services": 2
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -132,8 +1096,8 @@
       "satelliteGroup": "Arabsat / BADR",
       "orbitalSlot": "26E",
       "satelliteName": "Arabsat / BADR position",
-      "frequencies": 47,
-      "services": 543
+      "frequencies": 44,
+      "services": 370
     },
     {
       "satelliteGroup": "Astra",
@@ -141,13 +1105,6 @@
       "satelliteName": "Astra 1KR/1L",
       "frequencies": 1,
       "services": 3
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "19.2E",
-      "satelliteName": "Astra 1KR/1L/1M/1N/1P",
-      "frequencies": 1,
-      "services": 1
     },
     {
       "satelliteGroup": "Astra",
@@ -181,8 +1138,8 @@
       "satelliteGroup": "Astra",
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
-      "frequencies": 126,
-      "services": 170
+      "frequencies": 86,
+      "services": 113
     },
     {
       "satelliteGroup": "Astra",
@@ -202,8 +1159,8 @@
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
-      "frequencies": 76,
-      "services": 114
+      "frequencies": 51,
+      "services": 78
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -223,8 +1180,8 @@
       "satelliteGroup": "Eutelsat 16E",
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
-      "frequencies": 18,
-      "services": 253
+      "frequencies": 16,
+      "services": 212
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -237,8 +1194,8 @@
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
-      "frequencies": 145,
-      "services": 230
+      "frequencies": 111,
+      "services": 183
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -252,35 +1209,35 @@
       "orbitalSlot": "9E",
       "satelliteName": "Eutelsat 9B",
       "frequencies": 13,
-      "services": 59
+      "services": 53
     },
     {
       "satelliteGroup": "Eutelsat 9E",
       "orbitalSlot": "9E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 48,
-      "services": 128
+      "frequencies": 29,
+      "services": 80
     },
     {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 79,
-      "services": 95
+      "frequencies": 40,
+      "services": 43
     },
     {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Hellas Sat 3",
-      "frequencies": 4,
-      "services": 17
+      "frequencies": 3,
+      "services": 10
     },
     {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Hellas Sat 3/4",
-      "frequencies": 8,
-      "services": 23
+      "frequencies": 6,
+      "services": 20
     },
     {
       "satelliteGroup": "Hellas Sat",
@@ -293,21 +1250,21 @@
       "satelliteGroup": "Hot Bird",
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
-      "frequencies": 53,
-      "services": 267
+      "frequencies": 44,
+      "services": 230
     },
     {
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
-      "frequencies": 66,
-      "services": 360
+      "frequencies": 54,
+      "services": 232
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "7W",
       "satelliteName": "7.0W / Eutelsat E7WA",
-      "frequencies": 1,
+      "frequencies": 2,
       "services": 9
     },
     {
@@ -322,7 +1279,7 @@
       "orbitalSlot": "7W",
       "satelliteName": "Nilesat 201/301 + Eutelsat 7 West A",
       "frequencies": 57,
-      "services": 731
+      "services": 729
     },
     {
       "satelliteGroup": "Nilesat",
@@ -335,43 +1292,43 @@
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "8W",
       "satelliteName": "Eutelsat 8 West B",
-      "frequencies": 28,
-      "services": 380
+      "frequencies": 27,
+      "services": 379
     },
     {
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat 3A",
       "frequencies": 1,
-      "services": 6
+      "services": 1
     },
     {
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat 4A",
-      "frequencies": 12,
-      "services": 54
+      "frequencies": 11,
+      "services": 32
     },
     {
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat 6A",
-      "frequencies": 2,
-      "services": 6
+      "frequencies": 1,
+      "services": 1
     },
     {
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
-      "frequencies": 10,
-      "services": 10
+      "frequencies": 1,
+      "services": 1
     },
     {
       "satelliteGroup": "Yahsat",
       "orbitalSlot": "52.5E",
       "satelliteName": "Al Yah 1",
       "frequencies": 18,
-      "services": 92
+      "services": 66
     }
   ],
   "satellitePositionPolicy": "v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.",
@@ -527,16 +1484,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-amos",
-      "name": "LyngSat Amos 3 / Dror 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
       "ok": false,
@@ -549,36 +1496,6 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10806",
-      "name": "LyngSat Amos 3 10806 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10842",
-      "name": "LyngSat Amos 3 10842 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-yes-dror1-package",
-      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -607,7 +1524,7 @@
       "error": null
     }
   ],
-  "note": "Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers.",
+  "note": "Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan after the protected missing streak when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Incomplete scans are refused before publication. Cloudflare Pages and Netlify stay as hosting layers.",
   "generatedBy": "github-actions",
   "staticDataPath": "public/frequencies/frequency-data.json"
 }
