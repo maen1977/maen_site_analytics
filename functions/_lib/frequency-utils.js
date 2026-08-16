@@ -782,10 +782,22 @@ function applyMissingProtection(item = {}, now = "", minMissingStreak = 3) {
 function sourceQualityAllowsRemoval(sourceQuality = {}) {
   const missing = Number(sourceQuality.missingSystemModCount || 0);
   const total = Number(sourceQuality.totalCandidates || 0);
-  if (!total) return true;
+  if (!total) return false;
+  const complete = Math.max(0, total - missing);
   const ratio = missing / total;
+  const validTuning = Number(sourceQuality.validTuningCount || 0);
+  const validTuningRatio = total ? validTuning / total : 0;
   const maxMissing = Number(envValue("FREQUENCY_MAX_INCOMPLETE_SYSTEM_MOD_FOR_REMOVAL") || 25);
   const maxRatio = Number(envValue("FREQUENCY_MAX_INCOMPLETE_SYSTEM_MOD_RATIO_FOR_REMOVAL") || 0.10);
+  const minComplete = Number(envValue("FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL") || 25);
+  const minValidTuning = Number(envValue("FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL") || 50);
+  // Removal matches frequency identity (satellite/orbit/name/frequency/polarity/SR),
+  // not the optional system/mod fields. Some trusted comparison pages omit those
+  // fields while still providing a valid current tuning row. Allow removal when
+  // the scan contains enough valid tuning identities; the existing three-scan
+  // missing streak and source-count gates remain active.
+  if (validTuning >= minValidTuning && validTuningRatio >= 0.50) return true;
+  if (complete >= minComplete) return true;
   return missing <= maxMissing && ratio <= maxRatio;
 }
 

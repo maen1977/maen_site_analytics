@@ -122,8 +122,43 @@
   function resetFrequencySearchDefaults() {
     var satellite = document.getElementById("frequencySatellite");
     var service = document.getElementById("frequencyServiceFilter");
-    if (satellite) satellite.value = "all";
-    if (service) service.value = "all";
+    if (satellite) satellite.value = "Nilesat";
+    if (service) service.value = "free";
+  }
+
+  function installFrequencyEntryDefaults() {
+    if (window.__MAENSAT_FREQUENCY_ENTRY_DEFAULTS__) return;
+    var original = window.showPage;
+    if (typeof original !== "function") return;
+    window.showPage = function (id) {
+      var result = original.apply(this, arguments);
+      if (id === "frequencies") {
+        resetFrequencySearchDefaults();
+        var input = document.getElementById("frequencySearch");
+        if (input) input.value = "";
+        if (typeof window.renderFrequencies === "function") window.renderFrequencies();
+      }
+      return result;
+    };
+    window.__MAENSAT_FREQUENCY_ENTRY_DEFAULTS__ = true;
+  }
+
+  function installFrequencySearchScope() {
+    if (window.__MAENSAT_FREQUENCY_SEARCH_SCOPE__) return;
+    var search = document.getElementById("frequencySearch");
+    if (!search) return;
+    search.addEventListener("input", function () {
+      var query = safeText(search.value);
+      var satellite = document.getElementById("frequencySatellite");
+      var service = document.getElementById("frequencyServiceFilter");
+      if (!query || !satellite || !service) return;
+      if (satellite.value === "Nilesat" && service.value === "free") {
+        satellite.value = "all";
+        service.value = "all";
+        if (typeof window.renderFrequencies === "function") window.renderFrequencies();
+      }
+    }, true);
+    window.__MAENSAT_FREQUENCY_SEARCH_SCOPE__ = true;
   }
 
   function installFrequencyAliases() {
@@ -248,6 +283,8 @@
   function init() {
     stabilizeInitialPage();
     resetFrequencySearchDefaults();
+    installFrequencyEntryDefaults();
+    installFrequencySearchScope();
     installFrequencyAliases();
     applyProductCatalog();
     debounceFrequencySearch();

@@ -29,6 +29,7 @@ function generatedBilingualSmokeAliases(channel) {
   if (hit('on time sports','on time sport','ontime sports','ontime sport','on sport','on sports')) out.push('اون تايم سبورت','أون تايم سبورت','اون تايم','أون تايم','ON Time Sports','ON Sport');
   if (hit('cbc')) out.push('سي بي سي','CBC');
   if (hit('dmc')) out.push('دي ام سي','دي إم سي','DMC');
+  if (hit('thmanyah','thamanya','thamania')) out.push('الثمانية','الثمانيه','ثمانية','ثمانيه','قنوات الثمانية','Thmanyah','Thamanya','Thamania','Thmanyah 1','Thmanyah 2','Thmanyah 3','Thmanyah 4');
   return out;
 }
 function aliasesFor(channel, item) {
@@ -81,6 +82,8 @@ const jazeera = searchChannels('الجزيرة');
 assert('Arabic Al Jazeera query returns Al Jazeera channels', jazeera.some(h => /jazeera/i.test(h.channel)), jazeera.slice(0, 5).map(h => h.channel).join(', '));
 const bein = searchChannels('beinsport');
 assert('beinsport query returns beIN Sports channels', bein.some(h => /bein/i.test(h.channel) && /sport/i.test(h.channel)), bein.slice(0, 5).map(h => h.channel).join(', '));
+const thmanyah = searchChannels('الثمانية');
+assert('Arabic Thmanyah query returns the current Arabsat package', thmanyah.some(h => /thmanyah/i.test(h.channel) && String(h.item.frequency) === '12015' && /arabsat|badr/i.test(h.item.satelliteGroup || '')), thmanyah.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 const rai = searchChannels('rai').slice(0, 20);
 assert('rai short query does not match Bahrain by substring', !rai.some(h => /bahrain/i.test(h.channel)), rai.map(h => h.channel).join(', '));
 assert('natural query: free sports on Nilesat has results', items.some(item => isNilesat(item) && channels(item).some(ch => isSports(ch, item) && isFree(ch, item))));

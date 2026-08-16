@@ -15,6 +15,9 @@ import {
   fetchSourceCandidates,
   mapWithConcurrency,
   mergeFrequencyData,
+  normalizeFrequency,
+  normalizePol,
+  normalizeSr,
   sendFrequencyUpdateEmail,
   setRuntimeContext
 } from '../functions/_lib/frequency-utils.js';
@@ -55,10 +58,13 @@ async function writeJson(file, value) {
 function frequencyCandidateQuality(candidates = []) {
   const totalCandidates = candidates.length;
   const missingSystemMod = candidates.filter(item => !String(item.system || '').trim() || !String(item.mod || '').trim());
+  const validTuning = candidates.filter(item => normalizeFrequency(item.frequency || '') && normalizePol(item.pol || '') && normalizeSr(item.sr || ''));
   return {
     totalCandidates,
     missingSystemModCount: missingSystemMod.length,
     missingSystemModRatio: totalCandidates ? Number((missingSystemMod.length / totalCandidates).toFixed(4)) : 0,
+    validTuningCount: validTuning.length,
+    validTuningRatio: totalCandidates ? Number((validTuning.length / totalCandidates).toFixed(4)) : 0,
     sampleMissingSystemMod: missingSystemMod.slice(0, 20).map(item => ({
       satelliteGroup: item.satelliteGroup || item.satellite || '',
       satelliteName: item.satelliteName || '',
@@ -90,10 +96,16 @@ async function main() {
   const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
   const sourceQuality = frequencyCandidateQuality(candidates);
-  console.log(`[frequency] Source quality: ${sourceQuality.missingSystemModCount}/${sourceQuality.totalCandidates} candidates missing system/mod (${sourceQuality.missingSystemModRatio}).`);
+  console.log(`[frequency] Source quality: ${sourceQuality.missingSystemModCount}/${sourceQuality.totalCandidates} candidates missing system/mod (${sourceQuality.missingSystemModRatio}); valid tuning ${sourceQuality.validTuningCount}/${sourceQuality.totalCandidates} (${sourceQuality.validTuningRatio}).`);
   if (sourceQuality.missingSystemModCount) {
     console.log(`[frequency] Missing system/mod sample: ${JSON.stringify(sourceQuality.sampleMissingSystemMod.slice(0, 8))}`);
   }
+  const minSuccessfulSourcesForPublish = Number(process.env.FREQUENCY_MIN_SUCCESSFUL_SOURCES_FOR_PUBLISH || 5);
+  const minCandidatesForPublish = Number(process.env.FREQUENCY_MIN_CANDIDATES_FOR_PUBLISH || 50);
+  if (successfulSourceCount < minSuccessfulSourcesForPublish || candidates.length < minCandidatesForPublish) {
+    throw new Error(`Refusing to publish an incomplete frequency scan: ${successfulSourceCount} successful sources and ${candidates.length} candidates; required at least ${minSuccessfulSourcesForPublish} sources and ${minCandidatesForPublish} candidates.`);
+  }
+
   const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality });
 
   validateCompleteProgrammingSystems(merged.items);
@@ -130,7 +142,7 @@ async function main() {
     })),
     changes: merged.changes,
     satellites: JORDAN_MENA_SATELLITES,
-    note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers.'
+    note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan after the protected missing streak when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Incomplete scans are refused before publication. Cloudflare Pages and Netlify stay as hosting layers.'
   };
 
   const report = buildFrequencyReport(payload);
