@@ -3,8 +3,7 @@ main = "maensat-github-dispatch-worker.js"
 compatibility_date = "2026-06-18"
 workers_dev = true
 
-[triggers]
-crons = ["*/15 * * * *"]
+# No scheduled trigger. The former quarter-hour World Cup updater is disabled.
 
 [vars]
 GITHUB_OWNER = "maen1977"
