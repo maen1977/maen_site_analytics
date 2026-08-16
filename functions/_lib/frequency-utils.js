@@ -963,6 +963,26 @@ export function dedupeItems(items = []) {
   return [...map.values()];
 }
 
+function channelMoveScope(item = {}) {
+  const meta = hydrateFrequencyItem(item);
+  return [normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit), normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || "")].join("|");
+}
+
+function channelMoveKey(item, channelName) {
+  const normalizedName = safeText(channelName || "", 180).toLowerCase().normalize("NFKC").replace(/[\u064B-\u065F\u0670]/g, "").replace(/[أإآ]/g, "ا").replace(/ة/g, "ه").replace(/[^\p{L}\p{N}]+/gu, "");
+  return `${channelMoveScope(item)}|${normalizedName}`;
+}
+
+function removeChannelMetadata(item, removedNames = []) {
+  const metadataFields = ["channelEncryption", "channelEncryptionReason", "channelCountries", "channelCategories", "channelAliases"];
+  for (const field of metadataFields) {
+    if (!item[field] || typeof item[field] !== "object") continue;
+    for (const key of Object.keys(item[field])) {
+      if (removedNames.some(name => channelNamesOverlap(key, name))) delete item[field][key];
+    }
+  }
+}
+
 export function mergeFrequencyData(baselineItems, sourceCandidates, sources, options = {}) {
   const now = new Date().toISOString();
   const approvedModes = new Set(["auto-approve", "baseline-refresh"]);
@@ -988,7 +1008,10 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     protectedMissing: 0,
     incompleteNewSkipped: 0,
     incompleteExistingProtected: 0,
-    removalSkippedReason: ""
+    movedChannelsRemoved: 0,
+    movedRowsRemoved: 0,
+    removalSkippedReason: "",
+    moveCleanupSkippedReason: ""
   };
   const closedConsensus = buildClosedConsensus(options.closedCandidates || [], candidateGroups);
   const reviewedOnly = [];
@@ -1049,6 +1072,63 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
   const sourceQualityOk = sourceQualityAllowsRemoval(options.sourceQuality || {});
   const canRemoveMissing = removalEnabled && sourceQualityOk && candidateGroups.size >= minCandidates && successfulSourceCount >= minSuccessfulSources;
   const minMissingStreak = Math.max(1, Number(envValue("FREQUENCY_REMOVE_MISSING_AFTER_CHECKS") || 3));
+
+  // A moved channel must not remain duplicated on its old tuning for three days.
+  // Build locations only from an official or multi-source-confirmed current candidate.
+  const currentChannelLocations = new Map();
+  for (const [candidateKey, group] of candidateGroups) {
+    const official = group.find(x => approvedModes.has(x.updatePolicy || x.mode) || x.authority === "official");
+    const chosen = official || (group.length >= 2 ? group[0] : null);
+    if (!chosen) continue;
+    for (const channelName of [...new Set(group.flatMap(channelSet))]) {
+      const moveKey = channelMoveKey(chosen, channelName);
+      if (!currentChannelLocations.has(moveKey)) currentChannelLocations.set(moveKey, []);
+      currentChannelLocations.get(moveKey).push({ candidateKey, channelName });
+    }
+  }
+
+  const moveCleanupEnabled = String(envValue("FREQUENCY_REMOVE_MOVED_CHANNELS") || "1") !== "0";
+  const canCleanupMoved = moveCleanupEnabled && sourceQualityOk && candidateGroups.size >= minCandidates && successfulSourceCount >= minSuccessfulSources;
+  if (canCleanupMoved) {
+    for (const [oldKey, item] of [...byKey.entries()]) {
+      if (item.forceKeep === true || item.keep === true || item.updatePolicy === "manual-keep") continue;
+      const currentKey = itemKey(item);
+      const oldChannels = channelSet(item);
+      const movedChannels = oldChannels.filter(oldChannel => {
+        const locations = currentChannelLocations.get(channelMoveKey(item, oldChannel)) || [];
+        return locations.some(location => location.candidateKey !== currentKey);
+      });
+      if (!movedChannels.length) continue;
+      const remainingChannels = oldChannels.filter(name => !movedChannels.includes(name));
+      removeChannelMetadata(item, movedChannels);
+      if (remainingChannels.length) {
+        item.channels = remainingChannels;
+        item.channel = remainingChannels.slice(0, 18).join("، ") + (remainingChannels.length > 18 ? ` + ${remainingChannels.length - 18} قناة أخرى` : "");
+        item.channelCount = remainingChannels.length;
+        item.movedChannelsRemoved = [...new Set([...(item.movedChannelsRemoved || []), ...movedChannels])];
+        changes.movedChannelsRemoved += movedChannels.length;
+      } else {
+        byKey.delete(oldKey);
+        changes.movedRowsRemoved += 1;
+      }
+      removedItems.push({
+        satelliteGroup: item.satelliteGroup || item.satellite || "",
+        orbitalSlot: item.orbitalSlot || item.orbit || "",
+        satelliteName: item.satelliteName || item.satellite || "",
+        frequency: item.frequency,
+        pol: item.pol,
+        sr: item.sr,
+        channel: movedChannels.join("، "),
+        channelCount: movedChannels.length,
+        removedAt: now,
+        removedReason: "channel-confirmed-on-new-frequency"
+      });
+    }
+  } else if (moveCleanupEnabled) {
+    changes.moveCleanupSkippedReason = !sourceQualityOk
+      ? "Moved-channel cleanup skipped because source quality was unsafe."
+      : "Moved-channel cleanup skipped because daily source coverage was insufficient.";
+  }
 
   let values = [...byKey.values()];
   if (canRemoveMissing) {
