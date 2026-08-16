@@ -3,7 +3,7 @@
   "mode": "github-actions-static",
   "servedFrom": "github-actions-static-json",
   "version": "satellite-orbital-structure-2026-05-28-v5",
-  "updatedAt": "2026-08-16T05:43:42.294Z",
+  "updatedAt": "2026-08-16T20:38:27.092Z",
   "count": 913,
   "removedCount": 0,
   "candidateCount": 2503,
@@ -55590,7 +55590,7 @@
     {
       "satellite": "7.0W / Eutelsat E7WA",
       "orbit": "7W",
-      "channel": "beIN SPORTS NEWS، beIN SPORTS 5، beIN SPORTS 9، beIN SPORTS XTRA 1، beIN SPORTS XTRA 2، beIN SPORTS XTRA 4، beIN SPORTS MAX 1، beIN SPORTS MAX 5، beIN SPORTS MAX 6",
+      "channel": "beIN SPORTS 5، beIN SPORTS 9، beIN SPORTS XTRA 1، beIN SPORTS XTRA 2، beIN SPORTS XTRA 4، beIN SPORTS MAX 1، beIN SPORTS MAX 5، beIN SPORTS MAX 6",
       "frequency": "12187",
       "pol": "H",
       "sr": "27500",
@@ -55601,7 +55601,6 @@
       "source": "beIN official frequencies page + LyngSat BeIn package cross-check",
       "satelliteGroup": "Nilesat",
       "channels": [
-        "beIN SPORTS NEWS",
         "beIN SPORTS 5",
         "beIN SPORTS 9",
         "beIN SPORTS XTRA 1",
@@ -55647,10 +55646,6 @@
       ],
       "channelSource": "beIN official frequencies + LyngSat BeIn package, checked 2026-04-29",
       "channelCategories": {
-        "beIN SPORTS NEWS": [
-          "news",
-          "sports"
-        ],
         "beIN SPORTS 5": [
           "sports"
         ],
@@ -55695,7 +55690,6 @@
       "dataQuality": "cleaned-non-placeholder",
       "dataQualityNote": "تم حذف الصفوف العامة/الوهمية وعدم استخدام أسماء قنوات غير مؤكدة داخل الداتا المخزنة. | v4 all-sat method: live updater parses DTHSat flexible/simple tables for all configured satellites; use run-frequency-update after deploy. | v5 orbital structure: merge keys now include orbitalSlot + satelliteName so several physical satellites at the same orbital position are not collapsed into one transponder row.",
       "channelEncryption": {
-        "beIN SPORTS NEWS": "free",
         "beIN SPORTS 5": "encrypted",
         "beIN SPORTS 9": "encrypted",
         "beIN SPORTS XTRA 1": "encrypted",
@@ -55706,7 +55700,6 @@
         "beIN SPORTS MAX 6": "encrypted"
       },
       "channelEncryptionReason": {
-        "beIN SPORTS NEWS": "channel-explicit-clear",
         "beIN SPORTS 5": "channel-pay-brand",
         "beIN SPORTS 9": "channel-pay-brand",
         "beIN SPORTS XTRA 1": "channel-pay-brand",
@@ -55726,9 +55719,6 @@
       "satelliteMetaVersion": "satellite-orbital-structure-2026-05-28-v5",
       "satelliteMetaPolicy": "واجهة المستخدم تعرض القمر/المدار ببساطة، لكن الدمج الداخلي يستخدم المدار + اسم القمر الفعلي حتى لا تختلط أقمار متعددة على نفس المدار.",
       "channelCountries": {
-        "beIN SPORTS NEWS": [
-          "qatar"
-        ],
         "beIN SPORTS 5": [
           "qatar"
         ],
@@ -55755,18 +55745,6 @@
         ]
       },
       "channelAliases": {
-        "beIN SPORTS NEWS": [
-          "قطر",
-          "قطري",
-          "qatar",
-          "qatari",
-          "بي ان سبورت",
-          "بين سبورت",
-          "beIN Sports",
-          "beIN",
-          "بي ان",
-          "بين"
-        ],
         "beIN SPORTS 5": [
           "قطر",
           "قطري",
@@ -78995,6 +78973,113 @@
       },
       "baseline": true,
       "confidence": 100
+    },
+    {
+      "satellite": "7.0W / Eutelsat E7WA",
+      "orbit": "7W",
+      "channel": "beIN SPORTS NEWS",
+      "frequency": "12245",
+      "pol": "V",
+      "sr": "27500",
+      "fec": "2/3",
+      "system": "DVB-S2",
+      "mod": "8PSK",
+      "notes": "تم تحديث التردد بعد انتقال beIN SPORTS NEWS من 12187 H إلى 12245 V على Eutelsat 7 West A وفق سجل LyngSat بتاريخ 15-08-2026.",
+      "source": "LyngSat BeIn Sports News, checked 2026-08-15",
+      "satelliteGroup": "Nilesat",
+      "channels": [
+        "beIN SPORTS NEWS"
+      ],
+      "channelCount": 9,
+      "sourceUrl": "https://www.lyngsat.com/tvchannels/qa/BeIn-Sports-News.html",
+      "officialSourceUrl": "https://www.bein.com/en/frequencies/",
+      "verifiedOn": "2026-04-29",
+      "lastCheckedAt": "2026-04-29T15:30:00+03:00",
+      "lastCheckedDisplay": "15-08-2026 تدقيق انتقال beIN SPORTS NEWS إلى 12245 V",
+      "frequencyToleranceMHz": 5,
+      "sourceLastUpdated": "beIN official frequencies page crawled 2026-04-26 + LyngSat BeIn package last updated 2026-04-28",
+      "sourceAuditUrl": "https://www.lyngsat.com/packages/BeIn-26E.html",
+      "updatePolicy": "Rebuilt full embedded list; previous frequency database cleared before injecting this generated list.",
+      "matchToleranceMHz": 5,
+      "manualUpdateNote": "تحديث beIN Sports كامل بتاريخ 29-04-2026.",
+      "package": "beIN Sports - Eutelsat E7WA 7W",
+      "searchAliases": [
+        "beIN",
+        "bein",
+        "beIN Sports",
+        "bein sports",
+        "bein sport",
+        "beinsports",
+        "beIN SPORTS MENA",
+        "بي ان",
+        "بي إن",
+        "بي ان سبورت",
+        "بي إن سبورت",
+        "بين سبورت",
+        "بي ان سبورتس",
+        "قنوات beIN Sports",
+        "محطات beIN Sports",
+        "باقة beIN Sports",
+        "قنوات بي ان سبورت",
+        "محطات بي ان سبورت",
+        "beIN Sports - Eutelsat E7WA 7W"
+      ],
+      "channelSource": "beIN official frequencies + LyngSat BeIn package, checked 2026-04-29",
+      "channelCategories": {
+        "beIN SPORTS NEWS": [
+          "sports"
+        ]
+      },
+      "classificationVersion": "smart-country-category-search-2026-06-04-v1",
+      "categorySummary": [
+        "news",
+        "sports"
+      ],
+      "classificationPolicy": "Per-channel country/category tags enriched for precise Arabic/English search. Sensitive religion filters are strict: christian and islamic are not mixed.",
+      "classificationSources": [
+        "KingOfSat channel search country/category/encryption/satellite fields",
+        "KingOfSat frequency tables",
+        "LyngSat channel pages / free TV country lists",
+        "LyngSat current satellite pages",
+        "Nilesat official channel directory",
+        "Nilesat public channel list",
+        "Official channel/network pages where available",
+        "manual high-confidence name rules"
+      ],
+      "dataQuality": "cleaned-non-placeholder",
+      "dataQualityNote": "تم حذف الصفوف العامة/الوهمية وعدم استخدام أسماء قنوات غير مؤكدة داخل الداتا المخزنة. | v4 all-sat method: live updater parses DTHSat flexible/simple tables for all configured satellites; use run-frequency-update after deploy. | v5 orbital structure: merge keys now include orbitalSlot + satelliteName so several physical satellites at the same orbital position are not collapsed into one transponder row.",
+      "channelEncryption": {
+        "beIN SPORTS NEWS": "free"
+      },
+      "channelEncryptionReason": {
+        "beIN SPORTS NEWS": "clear-channel-current-frequency"
+      },
+      "encryptionAuditVersion": "encryption-status-all-sats-2026-05-28-v1",
+      "encryptionLastChecked": "2026-05-28",
+      "encryptionPolicy": "Per-channel status: free / encrypted / unknown. Conservative rules based on public satellite access/encryption listings and package markers; ambiguous rows stay unknown.",
+      "orbitalSlot": "7W",
+      "satelliteName": "7.0W / Eutelsat E7WA",
+      "satelliteCluster": "Nilesat @ 7W",
+      "satelliteIdentityKey": "nilesat|7w|7.0w / eutelsat e7wa",
+      "satelliteMetaVersion": "satellite-orbital-structure-2026-05-28-v5",
+      "satelliteMetaPolicy": "واجهة المستخدم تعرض القمر/المدار ببساطة، لكن الدمج الداخلي يستخدم المدار + اسم القمر الفعلي حتى لا تختلط أقمار متعددة على نفس المدار.",
+      "channelCountries": {
+        "beIN SPORTS NEWS": [
+          "qatar"
+        ]
+      },
+      "channelAliases": {
+        "beIN SPORTS NEWS": [
+          "بي ان سبورت",
+          "بين سبورت",
+          "beIN Sports",
+          "beIN",
+          "بي ان",
+          "بين"
+        ]
+      },
+      "baseline": true,
+      "confidence": 100
     }
   ],
   "removedItems": [],
@@ -88243,5 +88328,6 @@
       ]
     }
   ],
-  "note": "Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers."
+  "note": "Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them, then commits the updated static JSON. Cloudflare Pages and Netlify stay as hosting layers.",
+  "dataQualityNote": "| 2026-08-16: beIN SPORTS NEWS moved to Eutelsat 7 West A 12245 V; stale 12187 H entry removed for this channel."
 }
