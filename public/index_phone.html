@@ -1848,9 +1848,9 @@ let exactPackageMode = null;
 let frequencyRenderFrame = 0;
 let frequencySearchTimer = 0;
 let frequencySuggestionTimer = 0;
-let frequencyVisibleLimit = 20;
-const FREQUENCY_INITIAL_LIMIT = 20;
-const FREQUENCY_SEARCH_LIMIT = 200;
+const FREQUENCY_INITIAL_LIMIT = (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) ? 10 : 20;
+let frequencyVisibleLimit = FREQUENCY_INITIAL_LIMIT;
+const FREQUENCY_SEARCH_LIMIT = (window.matchMedia && window.matchMedia('(max-width: 720px)').matches) ? 120 : 200;
 const STATION_CARD_LIMIT = 360;
 const FREQUENCY_SEARCH_DEBOUNCE_MS = 460;
 const FREQUENCY_SUGGEST_DEBOUNCE_MS = 360;
@@ -3989,7 +3989,9 @@ function initFrequencyFeature(){
   if (initFrequencyFeature.done) return frequencyDataReadyPromise || Promise.resolve(true);
   initFrequencyFeature.done = true;
   frequencyDataReadyPromise = Promise.resolve(loadLiveFrequencyData()).finally(function(){
-    buildAutomaticFrequencyFilters();
+    const buildFiltersWhenIdle = function(){ buildAutomaticFrequencyFilters(); };
+    if (window.requestIdleCallback) window.requestIdleCallback(buildFiltersWhenIdle, { timeout: 900 });
+    else window.setTimeout(buildFiltersWhenIdle, 120);
     // Performance hotfix: do not build the full suggestion index on page/open.
     // It is built lazily on first search focus/typing so the homepage and mobile entry stay smooth.
     cachedSearchSuggestions = [];
@@ -5638,6 +5640,6 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   window.addEventListener('load', bindCatalogButton);
 })();
 </script>
-<script defer src="/assets/maensat-enhancements.js?v=20260816-search-global-v8"></script>
+<script defer src="/assets/maensat-enhancements.js?v=20260817-perf-v9"></script>
 </body>
 </html>

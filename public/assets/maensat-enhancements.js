@@ -339,10 +339,10 @@
       }
       empty.textContent = english ? "Searching the complete frequency database…" : "يجري البحث في قاعدة الترددات الكاملة…";
       if (!window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__) {
-        window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__ = window.fetch("/frequencies/frequency-data.json", { credentials: "same-origin", cache: "force-cache" })
+        window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__ = window.fetch("/frequencies/search-index.json", { credentials: "same-origin", cache: "force-cache" })
           .then(function (response) { return response.ok ? response.json() : null; })
           .then(function (payload) {
-            var data = payload && Array.isArray(payload.items) ? payload.items : [];
+            var data = payload && Array.isArray(payload.items) ? payload.items.filter(function (item) { return !item.isDeprecated && !item.hideFromNamedSearch; }) : [];
             window.__MAENSAT_FULL_FREQUENCY_FALLBACK__ = data;
             return data;
           })
