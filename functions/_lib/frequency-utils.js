@@ -233,7 +233,9 @@ export function normalizeFrequency(value) {
   // C/Ku/Ka band ranges. The previous 13000 MHz ceiling dropped Ka-band rows
   // and some published listings; keep a broad but realistic satellite range.
   if (n < 3000 || n > 50000) return "";
-  return String(Math.round(n));
+  // Satellite listings often expose half-MHz values (for example 12245.50).
+  // Receiver entry and the site's canonical data use the integer MHz part.
+  return String(Math.floor(n));
 }
 
 export function normalizePol(value) {
@@ -575,7 +577,93 @@ function extractTableBlockCandidates(lines, source) {
   return dedupeItems(candidates);
 }
 
+function kingOfSatCellText(value = '') {
+  return decodeHtml(String(value || '').replace(/<br\s*\/?\s*>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
+}
+
+function normalizeKingOfSatSatelliteName(rawName, source) {
+  const text = safeText(rawName, 160);
+  if (/eutelsat\s*(?:7\s*west\s*a|e7wa)|7\.0\s*[°º]?\s*w\s*\/\s*eutelsat\s*e7wa/i.test(text)) return source.id === 'kingofsat-7w-all' ? '7.0W / Eutelsat E7WA' : 'Eutelsat 7 West A';
+  if (/eutelsat\s*(?:7\s*west\s*b|e7wb)|8\.0\s*[°º]?\s*w\s*\/\s*eutelsat\s*e7wb/i.test(text)) return source.id === 'kingofsat-7w-all' ? '7.0W / Eutelsat E7WB' : 'Eutelsat 7 West B';
+  if (/badr\s*8/i.test(text)) return 'BADR-8';
+  if (/badr\s*[456]/i.test(text)) return 'BADR-4/5/6';
+  return safeText(source.satelliteName || text, 160);
+}
+
+function extractKingOfSatCandidates(html, source) {
+  const candidates = [];
+  const frequencyTableRe = /<table[^>]*class=["'][^"']*frequencies-table[^"']*["'][^>]*>[\s\S]*?<\/table>/gi;
+  let tableMatch;
+  while ((tableMatch = frequencyTableRe.exec(String(html || '')))) {
+    const tableHtml = tableMatch[0];
+    const rowMatch = tableHtml.match(/<tr[^>]*data-frequency-id[^>]*>([\s\S]*?)<\/tr>/i);
+    if (!rowMatch) continue;
+    const cells = [...rowMatch[1].matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(m => m[1]);
+    if (cells.length < 9) continue;
+    const frequency = normalizeFrequency(kingOfSatCellText(cells[2]));
+    const pol = normalizePol(kingOfSatCellText(cells[3]));
+    if (!frequency || !pol) continue;
+    const satelliteAnchor = cells[1].match(/<a[^>]*>([\s\S]*?)<\/a>/i);
+    const rawSatelliteName = kingOfSatCellText(satelliteAnchor ? satelliteAnchor[1] : cells[1]).replace(/\s+\d+(?:\.\d+)?[EW]\b/gi, '').trim();
+    const satelliteName = normalizeKingOfSatSatelliteName(rawSatelliteName, source);
+    const system = normalizeSystem(kingOfSatCellText(cells[6]));
+    const mod = normalizeMod(kingOfSatCellText(cells[7]));
+    const tuning = kingOfSatCellText(cells[8]);
+    const sr = normalizeSr(tuning);
+    const fec = normalizeFec(tuning);
+    if (!sr) continue;
+    const end = tableMatch.index + tableMatch[0].length;
+    const next = String(html || '').slice(end).search(/<table[^>]*class=["'][^"']*frequencies-table/i);
+    const serviceSegment = String(html || '').slice(end, next >= 0 ? end + next : end + 250000);
+    const channels = [];
+    const channelEncryption = {};
+    const channelRe = /<tr[^>]*data-channel-id[^>]*>([\s\S]*?)<\/tr>/gi;
+    let channelMatch;
+    while ((channelMatch = channelRe.exec(serviceSegment))) {
+      const body = channelMatch[1];
+      const chCell = body.match(/<td[^>]*class=["'][^"']*\bch\b[^"']*["'][^>]*>([\s\S]*?)<\/td>/i);
+      if (!chCell) continue;
+      const title = chCell[1].match(/title=["']Id:\s*([^"']+)["']/i);
+      const name = kingOfSatCellText(title ? title[1] : chCell[1]);
+      if (!name || /^(VPID|APID|PID|Compression|Network|Provider)$/i.test(name)) continue;
+      if (!channels.some(x => x.toLowerCase() === name.toLowerCase())) channels.push(name);
+      const access = body.match(/<td[^>]*class=["'][^"']*\b(cr|cl)\b[^"']*["'][^>]*>/i);
+      channelEncryption[name] = access && access[1].toLowerCase() === 'cl' ? 'free' : 'encrypted';
+    }
+    if (!channels.length) continue;
+    const hasChannels = true;
+    const item = {
+      ...candidateBase({ ...source, satelliteName }, source.satelliteGroup),
+      channel: hasChannels ? channels.slice(0, 18).join('، ') + (channels.length > 18 ? ` + ${channels.length - 18} قناة أخرى` : '') : '',
+      channels,
+      channelCount: channels.length,
+      channelEncryption,
+      frequency,
+      pol,
+      sr,
+      fec,
+      system,
+      mod,
+      source: source.name,
+      sourceUrl: source.url,
+      sourceAuditUrl: source.url,
+      authority: source.authority || 'reference',
+      trust: source.trust || 'reference',
+      updatePolicy: source.mode || 'compare-only',
+      lastCheckedAt: new Date().toISOString(),
+      confidence: source.mode === 'auto-approve' || source.trust === 'official' ? 96 : 90,
+      dataQuality: 'parsed-kingofsat-frequency-table'
+    };
+    candidates.push(item);
+  }
+  return dedupeItems(candidates);
+}
+
 export function extractCandidatesFromHtml(html, source) {
+  if (/kingofsat/i.test(String(source?.url || source?.name || ''))) {
+    const kingOfSatCandidates = extractKingOfSatCandidates(html, source);
+    if (kingOfSatCandidates.length) return kingOfSatCandidates;
+  }
   const lines = htmlToLines(html);
   const dthSatFlexibleCandidates = extractDthSatFlexibleTableCandidates(lines, source);
   const dthSatCandidates = extractDthSatSimpleTableCandidates(lines, source);
@@ -953,6 +1041,7 @@ export function dedupeItems(items = []) {
       prev.channel = channels.length ? channels.slice(0, 18).join("، ") + (channels.length > 18 ? ` + ${channels.length - 18} قناة أخرى` : "") : prev.channel;
       prev.channelCount = channels.length;
       prev.source = [...new Set([prev.source, item.source].filter(Boolean).flatMap(x => String(x).split(/\s*\+\s*/)))].join(" + ");
+      if (item.channelEncryption && typeof item.channelEncryption === 'object') prev.channelEncryption = { ...(prev.channelEncryption || {}), ...item.channelEncryption };
       prev.confidence = Math.max(Number(prev.confidence || 0), Number(item.confidence || 0));
       if (!prev.sr && item.sr) prev.sr = item.sr;
       if (!prev.fec && item.fec) prev.fec = item.fec;
@@ -965,7 +1054,10 @@ export function dedupeItems(items = []) {
 
 function channelMoveScope(item = {}) {
   const meta = hydrateFrequencyItem(item);
-  return [normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit), normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || "")].join("|");
+  const group = normalizeSatelliteGroup(meta.satelliteGroup || meta.satellite || meta.orbit);
+  const orbit = normalizeOrbitSlot(meta.orbitalSlot || meta.orbit || "");
+  const satelliteIdentity = safeText(meta.satelliteIdentityKey || meta.satelliteName || meta.satellite || "", 160).toLowerCase();
+  return [group, orbit, satelliteIdentity].join("|");
 }
 
 function channelMoveKey(item, channelName) {
@@ -1040,6 +1132,11 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       }
       if (chosen.system && !existing.system) existing.system = chosen.system;
       if (chosen.mod && !existing.mod) existing.mod = chosen.mod;
+      if (chosen.channelEncryption && typeof chosen.channelEncryption === 'object') {
+        existing.channelEncryption = { ...(existing.channelEncryption || {}), ...chosen.channelEncryption };
+        existing.encryptionAuditVersion = 'kingofsat-live-channel-access-v1';
+        existing.encryptionLastChecked = now.slice(0, 10);
+      }
       if (chosen.fec && !existing.fec) existing.fec = chosen.fec;
       if (chosen.sr && !existing.sr) existing.sr = chosen.sr;
       if (!existing.sourceAuditUrl && chosen.sourceUrl) existing.sourceAuditUrl = chosen.sourceUrl;
@@ -1093,6 +1190,9 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     for (const [oldKey, item] of [...byKey.entries()]) {
       if (item.forceKeep === true || item.keep === true || item.updatePolicy === "manual-keep") continue;
       const currentKey = itemKey(item);
+      // Never clean a row that is itself present in the current source set.
+      // Move cleanup is only for an old tuning absent from today's candidates.
+      if (candidateGroups.has(currentKey)) continue;
       const oldChannels = channelSet(item);
       const movedChannels = oldChannels.filter(oldChannel => {
         const locations = currentChannelLocations.get(channelMoveKey(item, oldChannel)) || [];
