@@ -1812,7 +1812,7 @@ async function loadLiveFrequencyData(){
     const selectedSatellite = document.getElementById('frequencySatellite')?.value || 'Nilesat';
     const selectedService = document.getElementById('frequencyServiceFilter')?.value || 'free';
     const defaultNilesatFta = selectedSatellite === 'Nilesat' && selectedService === 'free';
-    let dataUrl = defaultNilesatFta ? '/frequencies/frequency-data-nilesat-fta.json?v=20260816-bein-v2' : '/frequencies/frequency-data.json?v=20260816-bein-v2';
+    let dataUrl = defaultNilesatFta ? '/frequencies/frequency-data-nilesat-fta.json?v=20260817-live-v1' : '/frequencies/frequency-data.json?v=20260817-live-v1';
     let manifest = null;
     try {
       manifest = await fetchFirstAvailable(['/frequencies/frequency-manifest.json', 'frequencies/frequency-manifest.json'], { cache: 'no-cache', timeout: 3500 });
@@ -3974,7 +3974,7 @@ function bindFrequencyControlsOnce(){
 function desiredFrequencyDataUrl(){
   const sat = document.getElementById('frequencySatellite')?.value || 'Nilesat';
   const service = document.getElementById('frequencyServiceFilter')?.value || 'free';
-  return sat === 'Nilesat' && service === 'free' ? '/frequencies/frequency-data-nilesat-fta.json?v=20260816-bein-v2' : '/frequencies/frequency-data.json?v=20260816-bein-v2';
+  return sat === 'Nilesat' && service === 'free' ? '/frequencies/frequency-data-nilesat-fta.json?v=20260817-live-v1' : '/frequencies/frequency-data.json?v=20260817-live-v1';
 }
 function reloadFrequencyDataForCurrentFilters(){
   const desired = desiredFrequencyDataUrl();

@@ -106,7 +106,7 @@ async function main() {
     throw new Error(`Refusing to publish an incomplete frequency scan: ${successfulSourceCount} successful sources and ${candidates.length} candidates; required at least ${minSuccessfulSourcesForPublish} sources and ${minCandidatesForPublish} candidates.`);
   }
 
-  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality });
+  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality, sourceResults });
 
   validateCompleteProgrammingSystems(merged.items);
 

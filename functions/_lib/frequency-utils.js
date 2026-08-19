@@ -798,6 +798,43 @@ function sourceIdentity(value = {}) {
   return safeText(value.id || value.sourceId || value.source || value.name || value.sourceUrl || "unknown-source", 120).toLowerCase();
 }
 
+function sourceHostname(value = {}) {
+  try {
+    const raw = value.url || value.sourceUrl || value.sourceAuditUrl || "";
+    const host = new URL(raw).hostname.toLowerCase().replace(/^www\./, "");
+    return host || sourceIdentity(value);
+  } catch (error) {
+    return sourceIdentity(value);
+  }
+}
+
+function orbitScopeMatches(item = {}, source = {}) {
+  const itemMeta = hydrateFrequencyItem(item);
+  const sourceGroup = normalizeSatelliteGroup(source.satelliteGroup || source.satellite || source.name || source.orbit);
+  const itemGroup = normalizeSatelliteGroup(itemMeta.satelliteGroup || itemMeta.satellite || itemMeta.orbit);
+  if (sourceGroup && itemGroup && sourceGroup !== itemGroup) return false;
+  const itemOrbit = normalizeOrbitSlot(itemMeta.orbitalSlot || itemMeta.orbit || "");
+  const sourceOrbit = normalizeOrbitSlot(source.orbitalSlot || source.orbit || "");
+  if (!itemOrbit || !sourceOrbit) return Boolean(sourceGroup && itemGroup && sourceGroup === itemGroup);
+  const itemSlots = itemOrbit.split("/").filter(Boolean);
+  const sourceSlots = sourceOrbit.split("/").filter(Boolean);
+  return itemSlots.some(slot => sourceSlots.includes(slot));
+}
+
+function missingFrequencyEvidence(item = {}, sourceResults = []) {
+  const matching = (Array.isArray(sourceResults) ? sourceResults : []).filter(result => {
+    if (!result || !result.ok || result.coverageOnly || !Array.isArray(result.candidates) || !result.candidates.length) return false;
+    return orbitScopeMatches(item, result.source || {});
+  });
+  const sites = [...new Set(matching.map(result => sourceHostname(result.source || {})))];
+  return {
+    sourceCount: matching.length,
+    siteCount: sites.length,
+    sites,
+    sources: matching.map(result => sourceIdentity(result.source || {}))
+  };
+}
+
 function uniqueBySource(items = []) {
   const seen = new Set();
   const out = [];
@@ -1098,6 +1135,7 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     closedConsensusChannelNamesRemoved: 0,
     closedConsensusReviewed: 0,
     protectedMissing: 0,
+    missingConfirmationProtected: 0,
     incompleteNewSkipped: 0,
     incompleteExistingProtected: 0,
     movedChannelsRemoved: 0,
@@ -1106,6 +1144,8 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     moveCleanupSkippedReason: ""
   };
   const closedConsensus = buildClosedConsensus(options.closedCandidates || [], candidateGroups);
+  const sourceResults = Array.isArray(options.sourceResults) ? options.sourceResults : [];
+  const minMissingConfirmationSites = Math.max(2, Number(envValue("FREQUENCY_MIN_MISSING_CONFIRMATION_SITES") || 2));
   const reviewedOnly = [];
   const removedItems = [];
   for (const [key, group] of candidateGroups) {
@@ -1236,6 +1276,13 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       const key = itemKey(item);
       const keep = candidateGroups.has(key) || item.forceKeep === true || item.keep === true || item.updatePolicy === "manual-keep";
       if (!keep) {
+        const evidence = missingFrequencyEvidence(item, sourceResults);
+        if (evidence.siteCount < minMissingConfirmationSites) {
+          applyMissingProtection(item, now, minMissingStreak);
+          changes.protectedMissing += 1;
+          changes.missingConfirmationProtected += 1;
+          return true;
+        }
         const nextStreak = Number(item.missingStreak || 0) + 1;
         if (nextStreak < minMissingStreak) {
           applyMissingProtection(item, now, minMissingStreak);
@@ -1253,7 +1300,10 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
           channelCount: item.channelCount,
           removedAt: now,
           missingStreak: nextStreak,
-          removedReason: `missing-from-daily-source-scan-after-${minMissingStreak}-protected-checks`
+          confirmationSiteCount: evidence.siteCount,
+          confirmationSites: evidence.sites,
+          confirmationSourceCount: evidence.sourceCount,
+          removedReason: `missing-from-${evidence.siteCount}-independent-source-sites-after-${minMissingStreak}-protected-checks`
         });
         changes.removed += 1;
       }
@@ -1465,7 +1515,7 @@ export async function runFrequencyUpdate({ sendEmail = true } = {}) {
   const candidates = sourceResults.flatMap(r => r.candidates || []);
   const closedCandidates = sourceResults.flatMap(r => r.closedCandidates || []);
   const successfulSourceCount = sourceResults.filter(r => r.ok && !r.coverageOnly).length;
-  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates });
+  const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceResults });
   const payload = {
     ok: true,
     mode: "live",

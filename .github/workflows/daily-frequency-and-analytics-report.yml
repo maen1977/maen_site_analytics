@@ -47,6 +47,7 @@ jobs:
       FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL: ${{ secrets.FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL || '25' }}
       FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL: ${{ secrets.FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL || '50' }}
       FREQUENCY_REMOVE_MISSING_AFTER_CHECKS: ${{ secrets.FREQUENCY_REMOVE_MISSING_AFTER_CHECKS || '3' }}
+      FREQUENCY_MIN_MISSING_CONFIRMATION_SITES: ${{ secrets.FREQUENCY_MIN_MISSING_CONFIRMATION_SITES || '2' }}
       FREQUENCY_REMOVE_MOVED_CHANNELS: ${{ secrets.FREQUENCY_REMOVE_MOVED_CHANNELS || '1' }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
@@ -85,6 +86,7 @@ jobs:
           node --check scripts/github-daily-analytics-report.mjs
           node --check scripts/verify-daily-report-env.mjs
           node scripts/test-frequency-move-cleanup.mjs
+          node scripts/test-frequency-multi-site-removal.mjs
 
       - name: Run daily frequency update and email report
         id: frequency
