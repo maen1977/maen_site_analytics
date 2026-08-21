@@ -1,1582 +1,88 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-20T05:46:08.314Z",
-  "updatedAt": "2026-08-20T05:46:07.346Z",
-  "totalFrequencies": 786,
-  "removedCount": 785,
-  "candidateCount": 1592,
-  "closedCandidateCount": 2820,
-  "closedConsensusCount": 313,
-  "successfulSourceCount": 45,
+  "generatedAt": "2026-08-21T05:48:01.757Z",
+  "updatedAt": "2026-08-21T05:48:01.208Z",
+  "totalFrequencies": 793,
+  "removedCount": 3,
+  "candidateCount": 1590,
+  "closedCandidateCount": 2804,
+  "closedConsensusCount": 312,
+  "successfulSourceCount": 47,
   "sourcesChecked": 67,
-  "sourcesFailed": 22,
+  "sourcesFailed": 20,
   "changes": {
-    "updated": 699,
-    "added": 0,
-    "removed": 784,
-    "reviewedOnly": 893,
-    "channelNamesAdded": 2,
-    "channelNamesRemoved": 189,
+    "updated": 693,
+    "added": 10,
+    "removed": 3,
+    "reviewedOnly": 887,
+    "channelNamesAdded": 8,
+    "channelNamesRemoved": 258,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 4,
-    "protectedMissing": 87,
-    "missingConfirmationProtected": 87,
-    "incompleteNewSkipped": 893,
+    "closedConsensusReviewed": 5,
+    "protectedMissing": 90,
+    "missingConfirmationProtected": 82,
+    "incompleteNewSkipped": 887,
     "incompleteExistingProtected": 0,
-    "movedChannelsRemoved": 1,
+    "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
     "removalSkippedReason": "",
     "moveCleanupSkippedReason": ""
   },
   "removedItems": [
     {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11305",
-      "pol": "H",
-      "sr": "2354",
-      "channel": "1",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "removedReason": "channel-confirmed-on-new-frequency"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "4080",
-      "pol": "L",
-      "sr": "3600",
-      "channel": "Compression",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "4099",
-      "pol": "L",
-      "sr": "2026",
-      "channel": "Fre",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "4099",
-      "pol": "L",
-      "sr": "4099",
-      "channel": "Global",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "11804",
-      "pol": "H",
-      "sr": "8105",
-      "channel": "Ara، Eng",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "11881",
-      "pol": "H",
-      "sr": "4921",
-      "channel": "Per، Eng، Ara",
-      "channelCount": 3,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "11919",
-      "pol": "H",
-      "sr": "3413",
-      "channel": "Ara، Eng",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "11958",
-      "pol": "H",
-      "sr": "5007",
-      "channel": "Ara",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "11977",
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11259",
       "pol": "V",
-      "sr": "27500",
-      "channel": "Ara",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
+      "sr": "30000",
+      "channel": "S Al Rohaily، Gold، Live، Sport، Stars، Plus، LCN",
+      "channelCount": 7,
+      "removedAt": "2026-08-21T05:48:01.208Z",
       "missingStreak": 3,
-      "confirmationSiteCount": 3,
+      "confirmationSiteCount": 2,
       "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
+        "dthsat.com",
+        "lyngsat.com"
       ],
       "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
+      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
     },
     {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12015",
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11558",
       "pol": "V",
-      "sr": "27500",
-      "channel": "BBC World Service English",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12073",
-      "pol": "H",
-      "sr": "3122",
-      "channel": "Fre، Eng، Ara",
-      "channelCount": 3,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12130",
-      "pol": "V",
-      "sr": "1213",
-      "channel": "Ara، Eng",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12149",
-      "pol": "H",
-      "sr": "1058",
-      "channel": "Ara، Fre، Pus، Ben",
-      "channelCount": 4,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12169",
-      "pol": "V",
-      "sr": "6602",
-      "channel": "Ara، Fre، Eng، Urd، Spa",
-      "channelCount": 5,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12207",
-      "pol": "V",
-      "sr": "27500",
-      "channel": "Hola Qatar Radio",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12226",
-      "pol": "H",
-      "sr": "1400",
-      "channel": "Ara، Eng",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12265",
-      "pol": "H",
-      "sr": "1361",
-      "channel": "Per",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12303",
-      "pol": "H",
-      "sr": "6861",
-      "channel": "Per، Kur، Eng، Ara",
-      "channelCount": 4,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12341",
-      "pol": "H",
-      "sr": "20809",
-      "channel": "Ara",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12380",
-      "pol": "H",
-      "sr": "2012",
-      "channel": "Eng، Ara، Tune Box",
-      "channelCount": 3,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12399",
-      "pol": "V",
-      "sr": "6136",
-      "channel": "Irdeto",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12437",
-      "pol": "V",
-      "sr": "2345",
-      "channel": "Ara",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12476",
-      "pol": "V",
-      "sr": "2026",
-      "channel": "Ara",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12523",
-      "pol": "H",
-      "sr": "1105",
-      "channel": "Ara، Eng",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12523",
-      "pol": "V",
-      "sr": "2001",
-      "channel": "Ara، Fre",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12563",
-      "pol": "V",
-      "sr": "3133",
-      "channel": "Ara، Fre",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12563",
-      "pol": "V",
-      "sr": "12563",
-      "channel": "Radio Oum El Bouaghi",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12576",
-      "pol": "H",
-      "sr": "3330",
-      "channel": "(Mauritania)",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12626",
-      "pol": "V",
-      "sr": "3600",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12638",
-      "pol": "V",
-      "sr": "5000",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12638",
-      "pol": "V",
-      "sr": "12638",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12647",
-      "pol": "V",
-      "sr": "2220",
-      "channel": "Radio Nationale",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12647",
-      "pol": "V",
-      "sr": "12647",
-      "channel": "Radio Nationale",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12686",
-      "pol": "V",
-      "sr": "7400",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12686",
-      "pol": "V",
-      "sr": "12686",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12706",
-      "pol": "H",
-      "sr": "2400",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12729",
-      "pol": "H",
-      "sr": "3330",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12738",
-      "pol": "H",
       "sr": "2026",
       "channel": "News HD",
       "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Arabsat / BADR",
-      "orbitalSlot": "26E",
-      "satelliteName": "BADR-8",
-      "frequency": "12738",
-      "pol": "H",
-      "sr": "3600",
-      "channel": "EMENA FSS",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 3,
-      "confirmationSites": [
-        "arabsat.com",
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-3-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "10773",
-      "pol": "H",
-      "sr": "6013",
-      "channel": "Eng، Wel",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
+      "removedAt": "2026-08-21T05:48:01.208Z",
       "missingStreak": 3,
       "confirmationSiteCount": 2,
       "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
+        "dthsat.com",
+        "lyngsat.com"
       ],
       "confirmationSourceCount": 3,
       "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
     },
     {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "10788",
+      "satelliteGroup": "Amos",
+      "orbitalSlot": "4W",
+      "satelliteName": "Dror 1",
+      "frequency": "11558",
       "pol": "V",
-      "sr": "6015",
-      "channel": "Eng، Wel",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "10818",
-      "pol": "V",
-      "sr": "6019",
-      "channel": "Eng",
+      "sr": "11558",
+      "channel": "D Shimoni",
       "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
+      "removedAt": "2026-08-21T05:48:01.208Z",
       "missingStreak": 3,
       "confirmationSiteCount": 2,
       "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "10847",
-      "pol": "V",
-      "sr": "6009",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "10936",
-      "pol": "V",
-      "sr": "2026",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11023",
-      "pol": "H",
-      "sr": "6006",
-      "channel": "Eng، Gla",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11082",
-      "pol": "H",
-      "sr": "2337",
-      "channel": "Eng، Pan، Hin، Urd",
-      "channelCount": 4,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11095",
-      "pol": "V",
-      "sr": "55325",
-      "channel": "Eng، Fre",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11112",
-      "pol": "H",
-      "sr": "2326",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11119",
-      "pol": "V",
-      "sr": "9600",
-      "channel": "Primal Living",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11119",
-      "pol": "V",
-      "sr": "11119",
-      "channel": "Primal Living",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11135",
-      "pol": "V",
-      "sr": "2510",
-      "channel": "8PSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11136",
-      "pol": "V",
-      "sr": "7200",
-      "channel": "QPSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11136",
-      "pol": "V",
-      "sr": "11136",
-      "channel": "QPSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11141",
-      "pol": "H",
-      "sr": "2069",
-      "channel": "8PSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11178",
-      "pol": "V",
-      "sr": "9600",
-      "channel": "2/3",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11178",
-      "pol": "V",
-      "sr": "11178",
-      "channel": "2/3",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11195",
-      "pol": "V",
-      "sr": "2026",
-      "channel": "8PSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11195",
-      "pol": "V",
-      "sr": "11195",
-      "channel": "8PSK",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11224",
-      "pol": "V",
-      "sr": "2336",
-      "channel": "Eng، Ara، Hin، Urd، Fre، Ger، Ben",
-      "channelCount": 7,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11305",
-      "pol": "H",
-      "sr": "2354",
-      "channel": "USA، Eng، USA +1، Star، Select، Star +1، Action",
-      "channelCount": 7,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11306",
-      "pol": "V",
-      "sr": "2344",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11344",
-      "pol": "H",
-      "sr": "2321",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11344",
-      "pol": "V",
-      "sr": "2320",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11386",
-      "pol": "H",
-      "sr": "2326",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11386",
-      "pol": "V",
-      "sr": "2311",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11426",
-      "pol": "V",
-      "sr": "2026",
-      "channel": "Eng، Wel",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11479",
-      "pol": "V",
-      "sr": "3600",
-      "channel": "tp 90",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11479",
-      "pol": "V",
-      "sr": "11479",
-      "channel": "tp 90",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11509",
-      "pol": "V",
-      "sr": "2310",
-      "channel": "Urd، Ben، Ara",
-      "channelCount": 3,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11523",
-      "pol": "H",
-      "sr": "2337",
-      "channel": "Eng، Pan",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11553",
-      "pol": "H",
-      "sr": "2348",
-      "channel": "Eng، Chi، Spa، Ben، Urd، Pan",
-      "channelCount": 6,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11595",
-      "pol": "V",
-      "sr": "7760",
-      "channel": "Eng، Urd، Yor، Hau",
-      "channelCount": 4,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11597",
-      "pol": "V",
-      "sr": "2098",
-      "channel": "Max TV",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11627",
-      "pol": "V",
-      "sr": "2306",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11635",
-      "pol": "H",
-      "sr": "1216",
-      "channel": "Eng، Music",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11635",
-      "pol": "V",
-      "sr": "1344",
-      "channel": "Eng، Ewe",
-      "channelCount": 2,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11641",
-      "pol": "H",
-      "sr": "2311",
-      "channel": "Chi، Eng، Pan",
-      "channelCount": 3,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11671",
-      "pol": "H",
-      "sr": "2307",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11675",
-      "pol": "H",
-      "sr": "1792",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Astra",
-      "orbitalSlot": "28.2E",
-      "satelliteName": "Astra 2E/2F/2G",
-      "frequency": "11675",
-      "pol": "V",
-      "sr": "1152",
-      "channel": "Eng",
-      "channelCount": 1,
-      "removedAt": "2026-08-20T05:46:07.346Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "en.kingofsat.net",
-        "dthsat.com"
+        "dthsat.com",
+        "lyngsat.com"
       ],
       "confirmationSourceCount": 3,
       "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
@@ -1586,8 +92,8 @@
   "groupCounts": [
     {
       "satelliteGroup": "Amos",
-      "frequencies": 5,
-      "services": 17
+      "frequencies": 2,
+      "services": 7
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -1597,7 +103,7 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 139,
-      "services": 1869
+      "services": 1871
     },
     {
       "satelliteGroup": "Azerspace",
@@ -1611,8 +117,8 @@
     },
     {
       "satelliteGroup": "Eutelsat 16E",
-      "frequencies": 50,
-      "services": 1200
+      "frequencies": 53,
+      "services": 1195
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -1642,12 +148,12 @@
     {
       "satelliteGroup": "Nilesat",
       "frequencies": 91,
-      "services": 1146
+      "services": 1145
     },
     {
       "satelliteGroup": "Türksat",
-      "frequencies": 52,
-      "services": 822
+      "frequencies": 59,
+      "services": 836
     },
     {
       "satelliteGroup": "Yahsat",
@@ -1661,14 +167,7 @@
       "orbitalSlot": "4W",
       "satelliteName": "Amos 3",
       "frequencies": 2,
-      "services": 8
-    },
-    {
-      "satelliteGroup": "Amos",
-      "orbitalSlot": "4W",
-      "satelliteName": "Dror 1",
-      "frequencies": 3,
-      "services": 9
+      "services": 7
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -1689,14 +188,14 @@
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
       "frequencies": 90,
-      "services": 1296
+      "services": 1297
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 49,
-      "services": 573
+      "services": 574
     },
     {
       "satelliteGroup": "Azerspace",
@@ -1723,8 +222,8 @@
       "satelliteGroup": "Eutelsat 16E",
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
-      "frequencies": 50,
-      "services": 1200
+      "frequencies": 53,
+      "services": 1195
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -1780,14 +279,21 @@
       "orbitalSlot": "8W",
       "satelliteName": "Eutelsat 8 West B",
       "frequencies": 32,
-      "services": 415
+      "services": 414
+    },
+    {
+      "satelliteGroup": "Türksat",
+      "orbitalSlot": "42E",
+      "satelliteName": "Türksat 6A",
+      "frequencies": 6,
+      "services": 11
     },
     {
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
-      "frequencies": 52,
-      "services": 822
+      "frequencies": 53,
+      "services": 825
     },
     {
       "satelliteGroup": "Yahsat",
@@ -1890,8 +396,8 @@
       "error": null
     },
     {
-      "id": "lyngsat-turksat-6a",
-      "name": "LyngSat Türksat 6A",
+      "id": "lyngsat-yahsat",
+      "name": "LyngSat Al Yah 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -1962,26 +468,6 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10806",
-      "name": "LyngSat Amos 3 10806 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10842",
-      "name": "LyngSat Amos 3 10842 V mux",
       "ok": false,
       "status": 403,
       "candidates": 0,
