@@ -1812,7 +1812,7 @@ async function loadLiveFrequencyData(){
     const selectedSatellite = document.getElementById('frequencySatellite')?.value || 'Nilesat';
     const selectedService = document.getElementById('frequencyServiceFilter')?.value || 'free';
     const defaultNilesatFta = selectedSatellite === 'Nilesat' && selectedService === 'free';
-    let dataUrl = defaultNilesatFta ? '/frequencies/frequency-data-nilesat-fta.json?v=20260817-live-v1' : '/frequencies/frequency-data.json?v=20260817-live-v1';
+    let dataUrl = defaultNilesatFta ? '/frequencies/frequency-data-nilesat-fta.json?v=20260821-service-filter-v1' : '/frequencies/frequency-data.json?v=20260821-service-filter-v1';
     let manifest = null;
     try {
       manifest = await fetchFirstAvailable(['/frequencies/frequency-manifest.json', 'frequencies/frequency-manifest.json'], { cache: 'no-cache', timeout: 3500 });
@@ -2692,7 +2692,7 @@ function frequencyServiceAllowsChannel(name, item, filter){
   if (f === 'radio') return kind === 'radio';
   if (f === 'free') {
     const encKey = getChannelEncryptionStatus(name, item).key;
-    return kind === 'tv' && (encKey === 'free' || encKey === 'unknown');
+    return kind === 'tv' && (encKey === 'free');
   }
   if (f === 'encrypted') return kind === 'tv' && getChannelEncryptionStatus(name, item).key === 'encrypted';
   return true;
@@ -3974,7 +3974,7 @@ function bindFrequencyControlsOnce(){
 function desiredFrequencyDataUrl(){
   const sat = document.getElementById('frequencySatellite')?.value || 'Nilesat';
   const service = document.getElementById('frequencyServiceFilter')?.value || 'free';
-  return sat === 'Nilesat' && service === 'free' ? '/frequencies/frequency-data-nilesat-fta.json?v=20260817-live-v1' : '/frequencies/frequency-data.json?v=20260817-live-v1';
+  return sat === 'Nilesat' && service === 'free' ? '/frequencies/frequency-data-nilesat-fta.json?v=20260821-service-filter-v1' : '/frequencies/frequency-data.json?v=20260821-service-filter-v1';
 }
 function reloadFrequencyDataForCurrentFilters(){
   const desired = desiredFrequencyDataUrl();

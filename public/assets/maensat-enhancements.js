@@ -267,6 +267,52 @@
       return safeText(item && item.channel).split(/[,،|]+/).map(safeText).filter(Boolean);
     }
 
+    function fallbackChannelEncryptionStatus(name, item) {
+      var meta = item && item.channelEncryption;
+      if (!meta || typeof meta !== "object") return "unknown";
+      var direct = meta[name];
+      if (direct == null) {
+        var wanted = fallbackNormalize(name);
+        Object.keys(meta).some(function (key) {
+          if (fallbackNormalize(key) === wanted) { direct = meta[key]; return true; }
+          return false;
+        });
+      }
+      var value = fallbackNormalize(direct || "");
+      if (value === "free" || value === "fta" || value === "clear" || value === "مفتوحه" || value === "مفتوحة" || value === "غير مشفر" || value === "غير مشفرة") return "free";
+      if (value === "encrypted" || value === "scrambled" || value === "coded" || value === "مشفر" || value === "مشفرة") return "encrypted";
+      return "unknown";
+    }
+
+    function fallbackChannelIsRadio(name, item) {
+      var categories = item && item.channelCategories;
+      if (categories && typeof categories === "object") {
+        var direct = categories[name];
+        if (direct == null) {
+          var wanted = fallbackNormalize(name);
+          Object.keys(categories).some(function (key) {
+            if (fallbackNormalize(key) === wanted) { direct = categories[key]; return true; }
+            return false;
+          });
+        }
+        var values = Array.isArray(direct) ? direct : [direct];
+        if (values.some(function (value) { return fallbackNormalize(value) === "radio"; })) return true;
+      }
+      return /(^| )(radio|راديو|اذاعة|إذاعة|fm|am radio)( |$)/i.test(fallbackNormalize(name));
+    }
+
+    function fallbackChannelsForService(item, filter) {
+      var f = filter || "all";
+      return fallbackChannels(item).filter(function (name) {
+        if (f === "all") return true;
+        if (f === "radio") return fallbackChannelIsRadio(name, item);
+        var status = fallbackChannelEncryptionStatus(name, item);
+        if (f === "free") return status === "free";
+        if (f === "encrypted") return status === "encrypted";
+        return true;
+      });
+    }
+
     function fallbackSearchText(item) {
       var channels = fallbackChannels(item);
       var text = [channels.join(" "), item && item.searchAliases, item && item.category, item && item.package].filter(Boolean).join(" ");
@@ -296,8 +342,11 @@
 
     function renderGlobalFrequencyFallback(empty, query, satellite, service, english) {
       var initialData = Array.isArray(window.embeddedFrequencyBackup) ? window.embeddedFrequencyBackup : [];
+      var serviceFilter = service && service.value ? service.value : "all";
       var renderMatches = function (data) {
-        var matches = (Array.isArray(data) ? data : []).filter(function (item) { return fallbackMatches(item, query); }).slice(0, 6);
+        var matches = (Array.isArray(data) ? data : []).filter(function (item) {
+          return fallbackMatches(item, query) && fallbackChannelsForService(item, serviceFilter).length;
+        }).slice(0, 6);
         if (!matches.length) {
           empty.textContent = english
             ? "No matching frequency results in the complete database. Try the official channel name or frequency number."
@@ -317,7 +366,7 @@
         matches.forEach(function (item) {
           var row = document.createElement("div");
           row.className = "maen-frequency-fallback-row";
-          var channels = fallbackChannels(item).slice(0, 4).join("، ");
+          var channels = fallbackChannelsForService(item, serviceFilter).slice(0, 4).join("، ");
           row.textContent = (channels || "-") + " — " + (item.satelliteGroup || item.satellite || "") + " — " + (item.frequency || "") + " " + (item.pol || "");
           empty.appendChild(row);
         });
@@ -332,7 +381,9 @@
         });
         empty.appendChild(button);
       };
-      var initialMatches = initialData.filter(function (item) { return fallbackMatches(item, query); });
+      var initialMatches = initialData.filter(function (item) {
+        return fallbackMatches(item, query) && fallbackChannelsForService(item, serviceFilter).length;
+      });
       if (initialMatches.length || window.__MAENSAT_FULL_FREQUENCY_FALLBACK__) {
         renderMatches(window.__MAENSAT_FULL_FREQUENCY_FALLBACK__ || initialData);
         return;

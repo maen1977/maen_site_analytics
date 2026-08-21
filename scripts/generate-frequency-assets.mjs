@@ -29,6 +29,7 @@ function compactItem(item = {}) {
     system: item.system || '',
     mod: item.mod || '',
     channels: channels.slice(0, 80),
+    channelEncryption: item.channelEncryption || {},
     aliases: item.channelAliases || {},
     searchAliases: item.searchAliases || '',
     package: item.package || item.packageName || '',
