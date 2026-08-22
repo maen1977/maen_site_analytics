@@ -1,93 +1,35 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-21T05:48:01.757Z",
-  "updatedAt": "2026-08-21T05:48:01.208Z",
-  "totalFrequencies": 793,
-  "removedCount": 3,
-  "candidateCount": 1590,
-  "closedCandidateCount": 2804,
+  "generatedAt": "2026-08-22T05:42:41.097Z",
+  "updatedAt": "2026-08-22T05:42:40.440Z",
+  "totalFrequencies": 859,
+  "removedCount": 0,
+  "candidateCount": 1649,
+  "closedCandidateCount": 2825,
   "closedConsensusCount": 312,
-  "successfulSourceCount": 47,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 20,
+  "sourcesFailed": 22,
   "changes": {
-    "updated": 693,
-    "added": 10,
-    "removed": 3,
-    "reviewedOnly": 887,
-    "channelNamesAdded": 8,
-    "channelNamesRemoved": 258,
+    "updated": 695,
+    "added": 66,
+    "removed": 0,
+    "reviewedOnly": 888,
+    "channelNamesAdded": 35,
+    "channelNamesRemoved": 203,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
-    "closedConsensusReviewed": 5,
-    "protectedMissing": 90,
-    "missingConfirmationProtected": 82,
-    "incompleteNewSkipped": 887,
+    "closedConsensusReviewed": 7,
+    "protectedMissing": 98,
+    "missingConfirmationProtected": 84,
+    "incompleteNewSkipped": 888,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
     "removalSkippedReason": "",
     "moveCleanupSkippedReason": ""
   },
-  "removedItems": [
-    {
-      "satelliteGroup": "Amos",
-      "orbitalSlot": "4W",
-      "satelliteName": "Dror 1",
-      "frequency": "11259",
-      "pol": "V",
-      "sr": "30000",
-      "channel": "S Al Rohaily، Gold، Live، Sport، Stars، Plus، LCN",
-      "channelCount": 7,
-      "removedAt": "2026-08-21T05:48:01.208Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "dthsat.com",
-        "lyngsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Amos",
-      "orbitalSlot": "4W",
-      "satelliteName": "Dror 1",
-      "frequency": "11558",
-      "pol": "V",
-      "sr": "2026",
-      "channel": "News HD",
-      "channelCount": 1,
-      "removedAt": "2026-08-21T05:48:01.208Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "dthsat.com",
-        "lyngsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    },
-    {
-      "satelliteGroup": "Amos",
-      "orbitalSlot": "4W",
-      "satelliteName": "Dror 1",
-      "frequency": "11558",
-      "pol": "V",
-      "sr": "11558",
-      "channel": "D Shimoni",
-      "channelCount": 1,
-      "removedAt": "2026-08-21T05:48:01.208Z",
-      "missingStreak": 3,
-      "confirmationSiteCount": 2,
-      "confirmationSites": [
-        "dthsat.com",
-        "lyngsat.com"
-      ],
-      "confirmationSourceCount": 3,
-      "removedReason": "missing-from-2-independent-source-sites-after-3-protected-checks"
-    }
-  ],
+  "removedItems": [],
   "reviewedOnlyCount": 200,
   "groupCounts": [
     {
@@ -118,7 +60,7 @@
     {
       "satelliteGroup": "Eutelsat 16E",
       "frequencies": 53,
-      "services": 1195
+      "services": 1196
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -132,8 +74,8 @@
     },
     {
       "satelliteGroup": "Hellas Sat",
-      "frequencies": 37,
-      "services": 707
+      "frequencies": 103,
+      "services": 799
     },
     {
       "satelliteGroup": "Hot Bird",
@@ -143,17 +85,17 @@
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 55,
-      "services": 718
+      "services": 722
     },
     {
       "satelliteGroup": "Nilesat",
       "frequencies": 91,
-      "services": 1145
+      "services": 1138
     },
     {
       "satelliteGroup": "Türksat",
       "frequencies": 59,
-      "services": 836
+      "services": 837
     },
     {
       "satelliteGroup": "Yahsat",
@@ -223,7 +165,7 @@
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
       "frequencies": 53,
-      "services": 1195
+      "services": 1196
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -243,8 +185,8 @@
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 37,
-      "services": 707
+      "frequencies": 103,
+      "services": 799
     },
     {
       "satelliteGroup": "Hot Bird",
@@ -258,14 +200,14 @@
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 55,
-      "services": 718
+      "services": 722
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "7W",
       "satelliteName": "7.0W / Eutelsat E7WA",
       "frequencies": 34,
-      "services": 411
+      "services": 404
     },
     {
       "satelliteGroup": "Nilesat",
@@ -293,7 +235,7 @@
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
       "frequencies": 53,
-      "services": 825
+      "services": 826
     },
     {
       "satelliteGroup": "Yahsat",
@@ -396,8 +338,8 @@
       "error": null
     },
     {
-      "id": "lyngsat-yahsat",
-      "name": "LyngSat Al Yah 1",
+      "id": "lyngsat-turksat-6a",
+      "name": "LyngSat Türksat 6A",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -406,8 +348,8 @@
       "error": null
     },
     {
-      "id": "lyngsat-hellas",
-      "name": "LyngSat Hellas Sat 3/4",
+      "id": "lyngsat-yahsat",
+      "name": "LyngSat Al Yah 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -468,6 +410,26 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10806",
+      "name": "LyngSat Amos 3 10806 V mux",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10842",
+      "name": "LyngSat Amos 3 10842 V mux",
       "ok": false,
       "status": 403,
       "candidates": 0,
