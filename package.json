@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Hosting-first Maen website: GitHub Actions updates frequency data and sends reports; Cloudflare Pages tracks visits; Netlify stays static hosting.",
+  "description": "Hosting-first Maen website: GitHub Actions updates frequency data and sends reports; Cloudflare Pages hosts the static site and tracks visits.",
   "scripts": {
-    "dev": "netlify dev",
+    "dev": "node scripts/serve-static.mjs",
     "check": "npm run check:github && npm run check:cloudflare && npm run check:client && npm run check:enhancements",
-    "check:cloudflare": "node --check functions/_lib/analytics.js && node --check functions/_lib/frequency-utils.js && node --check functions/api/track-visit.js && node --check functions/api/track-event.js && node --check functions/api/search-feedback.js",
+    "check:cloudflare": "node --check functions/_lib/analytics.js && node --check functions/_lib/frequency-utils.js && node --check functions/api/track-visit.js && node --check functions/api/track-event.js && node --check functions/api/search-feedback.js && node scripts/test-analytics-security.mjs",
     "github:update-frequencies": "node scripts/github-daily-frequency-update.mjs",
     "github:analytics-report": "node scripts/github-daily-analytics-report.mjs",
     "check:github": "node --check scripts/github-daily-frequency-update.mjs && node --check scripts/github-daily-analytics-report.mjs && node --check scripts/generate-seo-files.mjs && node --check scripts/generate-frequency-assets.mjs && node --check scripts/search-smoke-tests.mjs && node scripts/test-frequency-move-cleanup.mjs && node scripts/test-frequency-multi-site-removal.mjs && node scripts/test-frequency-publish-guard.mjs && node scripts/test-frequency-ui-safety.mjs && node scripts/test-device-image-assets.mjs && node scripts/test-frequency-service-filter.mjs",
@@ -17,11 +17,6 @@
     "github:frequency-assets": "node scripts/generate-frequency-assets.mjs",
     "check:enhancements": "node scripts/verify-site-enhancements.mjs"
   },
-  "dependencies": {
-    "@netlify/blobs": "10.7.9",
-    "@netlify/functions": "5.3.0"
-  },
-  "devDependencies": {
-    "netlify-cli": "26.0.2"
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

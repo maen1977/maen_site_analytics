@@ -52,35 +52,31 @@ jobs:
       FREQUENCY_REMOVE_MISSING_AFTER_CHECKS: ${{ secrets.FREQUENCY_REMOVE_MISSING_AFTER_CHECKS || '3' }}
       FREQUENCY_MIN_MISSING_CONFIRMATION_SITES: ${{ secrets.FREQUENCY_MIN_MISSING_CONFIRMATION_SITES || '2' }}
       FREQUENCY_REMOVE_MOVED_CHANNELS: ${{ secrets.FREQUENCY_REMOVE_MOVED_CHANNELS || '1' }}
-      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-      REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
-      REPORT_FROM: ${{ secrets.REPORT_FROM }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       REPORT_DATE: ${{ github.event.inputs.report_date }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '24'
 
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
+      - name: Verify Node runtime
+        run: node --version
 
       - name: Verify daily report environment
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+          REPORT_FROM: ${{ secrets.REPORT_FROM }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: node scripts/verify-daily-report-env.mjs
 
       - name: Check daily report scripts
@@ -98,10 +94,16 @@ jobs:
         id: frequency
         if: ${{ github.event_name == 'schedule' || github.event.inputs.run_mode == 'all' || github.event.inputs.run_mode == 'frequency_only' }}
         continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+          REPORT_FROM: ${{ secrets.REPORT_FROM }}
         run: npm run github:update-frequencies
 
       - name: Commit frequency JSON changes
         if: ${{ always() && steps.frequency.outcome != 'skipped' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -110,13 +112,20 @@ jobs:
             echo "No frequency changes to commit."
           else
             git commit -m "Update daily frequency data"
-            git push
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
       - name: Run Cloudflare D1 analytics email report
         id: analytics
         if: ${{ always() && (github.event_name == 'schedule' || github.event.inputs.run_mode == 'all' || github.event.inputs.run_mode == 'analytics_only') }}
         continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          REPORT_EMAIL: ${{ secrets.REPORT_EMAIL }}
+          REPORT_FROM: ${{ secrets.REPORT_FROM }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npm run github:analytics-report
 
       - name: Write workflow status file
@@ -149,6 +158,8 @@ jobs:
 
       - name: Commit workflow status file
         if: ${{ always() }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -157,7 +168,7 @@ jobs:
             echo "No status changes to commit."
           else
             git commit -m "Update daily report workflow status"
-            git push
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
       - name: Fail workflow if a daily task failed

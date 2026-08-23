@@ -24,8 +24,14 @@ export function jsonResponse(data, status = 200, extraHeaders = {}) {
 export function corsHeaders(request, env = {}) {
   const origin = request.headers.get("origin") || "";
   const allowedOrigin = envValue(env, "ALLOWED_ORIGIN");
+  if (!origin) return {};
   if (allowedOrigin && origin === allowedOrigin) return { "access-control-allow-origin": origin, "vary": "origin" };
-  if (!allowedOrigin) return { "access-control-allow-origin": "*" };
+  try {
+    const requestOrigin = new URL(request.url).origin;
+    if (!allowedOrigin && origin === requestOrigin) return { "access-control-allow-origin": origin, "vary": "origin" };
+  } catch {
+    // If the request URL is malformed, fail closed and omit CORS permission.
+  }
   return {};
 }
 

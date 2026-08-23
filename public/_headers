@@ -1,3 +1,13 @@
+# Baseline browser security policy for the static site.
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-Permitted-Cross-Domain-Policies: none
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'none'; form-action 'self'; manifest-src 'self'; script-src 'self' 'unsafe-inline'; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://flagcdn.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self'; media-src 'self' blob:; upgrade-insecure-requests
+
 # Static archive for the completed World Cup 2026 section.
 /worldcup-2026/*
   Cache-Control: public, max-age=3600, must-revalidate
@@ -7,7 +17,6 @@
   Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0
   CDN-Cache-Control: no-store
   Cloudflare-CDN-Cache-Control: no-store
-  Access-Control-Allow-Origin: *
 
 /data/products.json
   Cache-Control: public, max-age=300, must-revalidate

@@ -226,7 +226,158 @@
       };
     }
 
+    function frequencyUiIsEnglish() {
+      return document.documentElement.lang === "en" || (document.body && document.body.classList.contains("lang-en"));
+    }
+
+    function frequencyEnglishLabel(value) {
+      var text = safeText(value);
+      var replacements = [
+        ["عربسات / بدر", "Arabsat / Badr"],
+        ["سهيل سات", "Es'hail Sat"],
+        ["هوت بيرد", "Hot Bird"],
+        ["نايل سات", "Nilesat"],
+        ["يوتلسات", "Eutelsat"],
+        ["تركسات", "Türksat"],
+        ["ياه سات", "Yahsat"],
+        ["هيلاس سات", "Hellas Sat"],
+        ["أسترا", "Astra"],
+        ["أموس", "Amos"],
+        ["إنتلسات", "Intelsat"],
+        ["أذر سبيس", "Azerspace"],
+        ["بدر", "Badr"],
+        ["مفتوحة", "FTA"],
+        ["مشفرة", "Scrambled"],
+        ["غير مؤكدة", "Unknown"],
+        ["غير مذكور", "Not specified"],
+        ["النظام:", "System:"],
+        ["عرض المزيد", "Show more"]
+      ];
+      replacements.forEach(function (pair) {
+        text = text.split(pair[0]).join(pair[1]);
+      });
+      return text;
+    }
+
+    function frequencyArabicOriginal(element) {
+      if (!element) return "";
+      var textNode = element.firstChild;
+      if (textNode && textNode.nodeType === 3 && textNode.datasetOriginalText) return textNode.datasetOriginalText;
+      if (textNode && textNode.nodeType === 3 && textNode.dataset && textNode.dataset.originalText) return textNode.dataset.originalText;
+      return element.textContent || "";
+    }
+
+    function setFrequencyLanguageText(element, englishValue) {
+      if (!element) return;
+      if (!element.hasAttribute("data-maen-frequency-ar")) {
+        element.setAttribute("data-maen-frequency-ar", frequencyArabicOriginal(element));
+      }
+      var arabicValue = element.getAttribute("data-maen-frequency-ar") || "";
+      var desired = frequencyUiIsEnglish() ? englishValue(arabicValue) : arabicValue;
+      if (element.textContent !== desired) element.textContent = desired;
+    }
+
+    function setFrequencyLanguageAttribute(element, attribute, englishValue, arabicFallback) {
+      if (!element) return;
+      var key = "data-maen-frequency-ar-" + attribute;
+      if (!element.hasAttribute(key)) {
+        var initialArabic = arabicFallback || element.getAttribute(attribute) || "";
+        if (arabicFallback && (element.id === "frequencySearch" || element.id === "frequencySatellite" || element.id === "frequencyServiceFilter")) initialArabic = arabicFallback;
+        element.setAttribute(key, initialArabic);
+      }
+      var arabicValue = element.getAttribute(key) || arabicFallback || "";
+      if (arabicFallback && (element.id === "frequencySearch" || element.id === "frequencySatellite" || element.id === "frequencyServiceFilter")) arabicValue = arabicFallback;
+      var desired = frequencyUiIsEnglish() ? englishValue : arabicValue;
+      if (element.getAttribute(attribute) !== desired) element.setAttribute(attribute, desired);
+    }
+
+    function translateFrequencyUi() {
+      var english = frequencyUiIsEnglish();
+      var satellite = document.getElementById("frequencySatellite");
+      var service = document.getElementById("frequencyServiceFilter");
+      var satelliteLabels = {
+        all: "All satellites",
+        Nilesat: "Nilesat / Eutelsat 7W-8W",
+        Arabsat: "Arabsat / Badr 26E",
+        "Es'hailSat": "Es'hail Sat 25.5E",
+        "Hot Bird": "Hot Bird 13E",
+        "Eutelsat 16E": "Eutelsat 16E",
+        "Eutelsat 9E": "Eutelsat 9E",
+        "Türksat": "Türksat 42E",
+        Yahsat: "Yahsat 52.5E",
+        "Hellas Sat": "Hellas Sat 39E",
+        "Eutelsat 36E": "Eutelsat 36E",
+        Astra: "Astra 19.2E / 28.2E",
+        Amos: "Amos 4W",
+        Intelsat: "Intelsat 68.5E",
+        Azerspace: "Azerspace 46E"
+      };
+      var serviceLabels = {
+        all: "All",
+        free: "FTA channels",
+        encrypted: "Scrambled channels",
+        radio: "Radio"
+      };
+      if (satellite) {
+        Array.prototype.forEach.call(satellite.options || [], function (option) {
+          if (!option.hasAttribute("data-maen-frequency-ar")) option.setAttribute("data-maen-frequency-ar", frequencyArabicOriginal(option));
+          var arabicValue = option.getAttribute("data-maen-frequency-ar") || "";
+          var desired = english ? (satelliteLabels[option.value] || frequencyEnglishLabel(arabicValue)) : arabicValue;
+          if (option.textContent !== desired) option.textContent = desired;
+        });
+        setFrequencyLanguageAttribute(satellite, "aria-label", "Choose satellite", "اختيار القمر");
+      }
+      var input = document.getElementById("frequencySearch");
+      if (input) {
+        setFrequencyLanguageAttribute(input, "placeholder", "Search: MBC, sports, religious, beIN, or frequency like 11766", "ابحث ذكيًا: MBC، رياضة نايل سات، قنوات مصرية، دينية، beIN، أو كل الأقمار...");
+        setFrequencyLanguageAttribute(input, "aria-label", "Smart frequency search", "بحث ذكي في الترددات");
+      }
+      if (service) {
+        Array.prototype.forEach.call(service.options || [], function (option) {
+          if (!option.hasAttribute("data-maen-frequency-ar")) option.setAttribute("data-maen-frequency-ar", frequencyArabicOriginal(option));
+          var arabicValue = option.getAttribute("data-maen-frequency-ar") || "";
+          var desired = english ? (serviceLabels[option.value] || frequencyEnglishLabel(arabicValue)) : arabicValue;
+          if (option.textContent !== desired) option.textContent = desired;
+        });
+        setFrequencyLanguageAttribute(service, "aria-label", "Choose channel type", "فلتر نوع القنوات");
+        setFrequencyLanguageAttribute(service, "title", "Choose channel type", "فلتر نوع القنوات");
+      }
+
+      document.querySelectorAll("#frequencies thead th").forEach(function (header) {
+        setFrequencyLanguageText(header, function (value) {
+          if (!english) return value;
+          var map = {
+            "القمر": "Satellite",
+            "الساتلايت / المدار": "Satellite / Orbit",
+            "التردد MHz": "Frequency MHz",
+            "الاستقطاب": "Polarity",
+            "أسماء المحطات داخل التردد": "Channel Names inside Frequency",
+            "النظام": "System"
+          };
+          return map[value] || frequencyEnglishLabel(value);
+        });
+      });
+      document.querySelectorAll("#frequencies .frequency-badge").forEach(function (element) {
+        setFrequencyLanguageText(element, frequencyEnglishLabel);
+      });
+      document.querySelectorAll("#frequencies .frequency-system-value, #frequencies .channel-system-mini, #frequencies .channel-encryption-mini, #frequencies .show-more-channels, #frequencies .channels-missing").forEach(function (element) {
+        setFrequencyLanguageText(element, frequencyEnglishLabel);
+      });
+      document.querySelectorAll("#frequencies .frequency-row-trust").forEach(function (root) {
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+        var node;
+        while ((node = walker.nextNode())) {
+          if (!node.nodeValue || !node.nodeValue.trim()) continue;
+          var original = node.__maenFrequencyArOriginal || node.datasetOriginalText || (node.dataset && node.dataset.originalText) || node.nodeValue;
+          node.__maenFrequencyArOriginal = original;
+          var desired = english ? frequencyEnglishLabel(original) : original;
+          if (node.nodeValue !== desired) node.nodeValue = desired;
+        }
+      });
+    }
+
     function updateStatus() {
+      translateFrequencyUi();
       var status = document.getElementById("frequencyLiveStatus");
       var body = document.getElementById("frequencyTableBody");
       var empty = document.getElementById("frequencyEmpty");

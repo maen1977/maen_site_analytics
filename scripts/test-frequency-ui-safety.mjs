@@ -27,6 +27,7 @@ for (const file of htmlFiles) {
   assert.match(html, /if\(lang==='en'\)/);
   assert.match(html, /var languageChanged=previousLanguage!==lang/);
   assert.match(html, /if\(!languageChanged\)return/);
+  assert.match(html, /maensat-enhancements\.js\?v=20260823-security-audit-v2/);
 }
 
 const enhancements = await readFile('public/assets/maensat-enhancements.js', 'utf8');
@@ -34,5 +35,8 @@ assert.match(enhancements, /item && \(item\.channelAliases \|\| item\.aliases\)/
 assert.match(enhancements, /matches\.forEach/);
 assert.match(enhancements, /Thmanyah\.1–3 are currently on Arabsat \/ BADR 8 at 11919 H, not on Nilesat/);
 assert.match(enhancements, /قنوات الثمانية 1–3 متاحة حالياً على عربسات \/ بدر 8 بتردد 11919 H، وليست على نايل سات/);
+assert.match(enhancements, /function translateFrequencyUi\(\)/);
+assert.match(enhancements, /Choose channel type/);
+assert.match(enhancements, /Search: MBC, sports, religious, beIN/);
 
 console.log('✓ desktop/mobile frequency UIs use cancellable rAF batches, lazy channel extras, bounded limits, cancellable filter scans, language-work caching, and correct fallback aliases');
