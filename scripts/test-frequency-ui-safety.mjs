@@ -27,7 +27,7 @@ for (const file of htmlFiles) {
   assert.match(html, /if\(lang==='en'\)/);
   assert.match(html, /var languageChanged=previousLanguage!==lang/);
   assert.match(html, /if\(!languageChanged\)return/);
-  assert.match(html, /maensat-enhancements\.js\?v=20260823-security-audit-v2/);
+  assert.match(html, /maensat-enhancements\.js\?v=20260823-direct-links-v1/);
 }
 
 const enhancements = await readFile('public/assets/maensat-enhancements.js', 'utf8');

@@ -58,8 +58,8 @@
   function stabilizeInitialPage() {
     if (window.__MAENSAT_INITIAL_PAGE_STABILIZED__) return;
     window.__MAENSAT_INITIAL_PAGE_STABILIZED__ = true;
-    var isMobileVersion = /index_phone\.html$/i.test(window.location.pathname) || (window.matchMedia && window.matchMedia("(max-width: 720px)").matches);
-    var requested = isMobileVersion ? "maintenance" : "home";
+    var isMobileVersion = /index_phone(?:\.html)?$/i.test(window.location.pathname) || (window.matchMedia && window.matchMedia("(max-width: 720px)").matches);
+    var requested = hashPage() || (isMobileVersion ? "maintenance" : "home");
     var useExistingShowPage = typeof window.showPage === "function";
     var apply = function () {
       if (useExistingShowPage) {
