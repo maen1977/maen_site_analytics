@@ -1,8 +1,10 @@
 {
-  "ok": true,
-  "generatedAt": "2026-08-23T05:45:19.928Z",
+  "ok": false,
+  "generatedAt": "2026-08-23T06:28:51.934Z",
   "mode": "github-actions-daily-reports-restored",
   "timezone": "Asia/Amman",
   "publicBaseUrl": "https://maensat.pages.dev",
-  "note": "GitHub Actions runs daily frequency update and Cloudflare D1 analytics report. Secrets are not written to this file."
+  "frequencyOutcome": "failure",
+  "analyticsOutcome": "skipped",
+  "note": "One or more daily tasks failed. A frequency publish guard failure keeps the last trusted frequency database in place; review the Action log before changing thresholds."
 }
