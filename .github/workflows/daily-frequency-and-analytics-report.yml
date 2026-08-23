@@ -92,6 +92,7 @@ jobs:
           node scripts/test-frequency-multi-site-removal.mjs
           node scripts/test-frequency-publish-guard.mjs
           node scripts/test-frequency-ui-safety.mjs
+          node scripts/test-device-image-assets.mjs
 
       - name: Run daily frequency update and email report
         id: frequency
