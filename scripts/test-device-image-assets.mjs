@@ -12,6 +12,8 @@ for (const file of htmlFiles) {
   assert.match(html, /function primeDeviceImages\(section\)/, `${file}: missing device image primer`);
   assert.match(html, /img\.loading='eager'/, `${file}: device images are not promoted to eager`);
   assert.match(html, /img\.fetchPriority='low'/, `${file}: device images do not use low fetch priority`);
+  assert.match(html, /img\.cloneNode\(true\)/, `${file}: unloaded images are not retried eagerly`);
+  assert.match(html, /img\.replaceWith\(eager\)/, `${file}: eager retry is not installed in the card`);
   assert.match(html, /if\(id==='devices'\)\{primeDeviceImages\(target\);\}/, `${file}: device image primer is not called on section activation`);
 
   const section = html.match(/<section[^>]+id="devices"[\s\S]*?<\/section>/)?.[0] || '';
