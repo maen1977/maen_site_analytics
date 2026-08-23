@@ -5,6 +5,8 @@ import { fileURLToPath } from 'node:url';
 
 import { spawnSync } from 'node:child_process';
 
+import { assertFrequencyPublishSafe } from '../functions/_lib/frequency-publish-guard.js';
+
 import {
   EXPECTED_SOURCE_SERVICE_COUNTS,
   FREQUENCY_DATA_VERSION,
@@ -107,6 +109,13 @@ async function main() {
   }
 
   const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality, sourceResults });
+  const publishGuard = assertFrequencyPublishSafe({
+    baselineItems: baseline.items || [],
+    mergedItems: merged.items || [],
+    removedItems: merged.removedItems || [],
+    env: process.env
+  });
+  console.log(`[frequency] Publish guard passed: ${JSON.stringify(publishGuard)}`);
 
   validateCompleteProgrammingSystems(merged.items);
 
@@ -123,6 +132,7 @@ async function main() {
     closedConsensusCount: merged.closedConsensusCount || 0,
     successfulSourceCount,
     sourceQuality,
+    publishGuard,
     groupCounts: buildGroupCounts(merged.items),
     satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
     satellitePositionPolicy: 'v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.',

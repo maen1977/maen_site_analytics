@@ -315,25 +315,70 @@
 
     function fallbackSearchText(item) {
       var channels = fallbackChannels(item);
-      var text = [channels.join(" "), item && item.searchAliases, item && item.category, item && item.package].filter(Boolean).join(" ");
+      var aliasText = [];
+      var aliases = item && (item.channelAliases || item.aliases);
+      if (aliases && typeof aliases === "object") {
+        Object.keys(aliases).forEach(function (key) {
+          var values = Array.isArray(aliases[key]) ? aliases[key] : [aliases[key]];
+          aliasText.push(key);
+          values.forEach(function (value) { if (value) aliasText.push(value); });
+        });
+      }
+      var text = [channels.join(" "), aliasText.join(" "), item && item.searchAliases, item && item.category, item && item.package].filter(Boolean).join(" ");
       var normalized = fallbackNormalize(text);
       if (/thmanyah|thamanya|thamania|الثماني/.test(normalized)) text += " الثمانية الثمانيه ثمانية ثمانيه محطات الثمانية قنوات الثمانية Thmanyah Thamanya Thamania";
       if (/bein|be in|بي.?ن|بين سبورت|بي.?ان|sports news/.test(normalized)) text += " beIN beIN Sports beIN Sports News بي ان بي إن بي أن بين سبورت بي ان سبورت بي ان نيوز بي إن نيوز بي ان المفتوحة القناة المفتوحة";
       return fallbackNormalize(text);
     }
 
-    function fallbackMatches(item, query) {
+    function fallbackQueryTokens(query) {
       var q = fallbackNormalize(query);
-      var compact = q.replace(/\s+/g, "");
       var stop = {"محطات":1,"محطه":1,"قنوات":1,"قناه":1,"قناة":1,"تردد":1,"ترددات":1,"على":1,"في":1,"من":1,"ال":1,"و":1,"او":1,"أو":1,"كل":1,"جميع":1,"القنوات":1};
-      var tokens = q.split(" ").filter(function (token) { return token.length > 1 && !stop[token]; });
+      return { q: q, tokens: q.split(" ").filter(function (token) { return token.length > 1 && !stop[token]; }) };
+    }
+
+    function fallbackChannelMatchesQuery(name, item, query) {
+      var parsed = fallbackQueryTokens(query);
+      var q = parsed.q;
+      var tokens = parsed.tokens;
+      var aliasMap = item && (item.channelAliases || item.aliases);
+      var aliases = aliasMap && aliasMap[name];
+      if (aliases == null && aliasMap && typeof aliasMap === "object") {
+        var wantedName = fallbackNormalize(name);
+        Object.keys(aliasMap).some(function (key) {
+          if (fallbackNormalize(key) === wantedName) { aliases = aliasMap[key]; return true; }
+          return false;
+        });
+      }
+      var text = fallbackNormalize([name].concat(Array.isArray(aliases) ? aliases : [aliases]).filter(Boolean).join(" "));
+      var compact = text.replace(/\s+/g, "");
+      if (!tokens.length) return false;
+      return tokens.every(function (token) {
+        var tokenCompact = token.replace(/\s+/g, "");
+        if (text.includes(token) || compact.includes(tokenCompact)) return true;
+        if (/^(بي|بين|ان|إن|أن)$/.test(token) && /bein|بي ان|بي ان/.test(text)) return true;
+        if (/^(الثمانيه|الثمانية|ثمانيه|ثمانية)$/.test(token) && /thmanyah|thamanya|thamania/.test(text)) return true;
+        return false;
+      });
+    }
+
+    function fallbackMatchingChannels(item, query, filter) {
+      var channels = fallbackChannelsForService(item, filter);
+      var matches = channels.filter(function (name) { return fallbackChannelMatchesQuery(name, item, query); });
+      return matches.length ? matches : channels;
+    }
+
+    function fallbackMatches(item, query) {
+      var parsed = fallbackQueryTokens(query);
+      var q = parsed.q;
+      var compact = q.replace(/\s+/g, "");
+      var tokens = parsed.tokens;
       var blob = fallbackSearchText(item);
       var blobCompact = blob.replace(/\s+/g, "");
       if (!tokens.length) return false;
       return tokens.every(function (token) {
         var tokenCompact = token.replace(/\s+/g, "");
         if (blob.includes(token) || blobCompact.includes(tokenCompact)) return true;
-        // Arabic/English brand equivalence for user input such as "بي ان المفتوحة".
         if (/^(بي|بين|ان|إن|أن)$/.test(token) && /bein|بي ان|بي ان/.test(blob)) return true;
         if (/^(الثمانيه|الثمانية|ثمانيه|ثمانية)$/.test(token) && /thmanyah|thamanya|thamania/.test(blob)) return true;
         return false;
@@ -362,11 +407,17 @@
         var note = document.createElement("div");
         note.className = "maen-frequency-fallback-note";
         note.textContent = english ? "Current scope: " + satelliteLabel + " · " + serviceLabel : "النطاق الحالي: " + satelliteLabel + " · " + serviceLabel;
+        if (/thmanyah|thamanya|thamania|الثماني/.test(fallbackNormalize(query))) {
+          var thmanyahNote = english
+            ? "Thmanyah.1–3 are currently on Arabsat / BADR 8 at 11919 H, not on Nilesat."
+            : "قنوات الثمانية 1–3 متاحة حالياً على عربسات / بدر 8 بتردد 11919 H، وليست على نايل سات.";
+          note.textContent += " · " + thmanyahNote;
+        }
         empty.appendChild(note);
         matches.forEach(function (item) {
           var row = document.createElement("div");
           row.className = "maen-frequency-fallback-row";
-          var channels = fallbackChannelsForService(item, serviceFilter).slice(0, 4).join("، ");
+          var channels = fallbackMatchingChannels(item, query, serviceFilter).slice(0, 4).join("، ");
           row.textContent = (channels || "-") + " — " + (item.satelliteGroup || item.satellite || "") + " — " + (item.frequency || "") + " " + (item.pol || "");
           empty.appendChild(row);
         });
@@ -390,7 +441,7 @@
       }
       empty.textContent = english ? "Searching the complete frequency database…" : "يجري البحث في قاعدة الترددات الكاملة…";
       if (!window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__) {
-        window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__ = window.fetch("/frequencies/search-index.json", { credentials: "same-origin", cache: "force-cache" })
+        window.__MAENSAT_FULL_FREQUENCY_FALLBACK_PROMISE__ = window.fetch("/frequencies/search-index.json?v=20260823-freeze-fix-v1", { credentials: "same-origin", cache: "default" })
           .then(function (response) { return response.ok ? response.json() : null; })
           .then(function (payload) {
             var data = payload && Array.isArray(payload.items) ? payload.items.filter(function (item) { return !item.isDeprecated && !item.hideFromNamedSearch; }) : [];

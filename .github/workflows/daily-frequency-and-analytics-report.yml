@@ -44,6 +44,9 @@ jobs:
       FREQUENCY_SOURCE_CONCURRENCY: ${{ secrets.FREQUENCY_SOURCE_CONCURRENCY || '12' }}
       FREQUENCY_MIN_SUCCESSFUL_SOURCES_FOR_PUBLISH: ${{ secrets.FREQUENCY_MIN_SUCCESSFUL_SOURCES_FOR_PUBLISH || '5' }}
       FREQUENCY_MIN_CANDIDATES_FOR_PUBLISH: ${{ secrets.FREQUENCY_MIN_CANDIDATES_FOR_PUBLISH || '50' }}
+      FREQUENCY_MIN_BASELINE_RETAIN_RATIO: ${{ secrets.FREQUENCY_MIN_BASELINE_RETAIN_RATIO || '0.75' }}
+      FREQUENCY_MAX_REMOVALS_PER_RUN: ${{ secrets.FREQUENCY_MAX_REMOVALS_PER_RUN || '250' }}
+      FREQUENCY_ALLOW_PUBLISH_SHRINK: ${{ secrets.FREQUENCY_ALLOW_PUBLISH_SHRINK || '0' }}
       FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL: ${{ secrets.FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL || '25' }}
       FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL: ${{ secrets.FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL || '50' }}
       FREQUENCY_REMOVE_MISSING_AFTER_CHECKS: ${{ secrets.FREQUENCY_REMOVE_MISSING_AFTER_CHECKS || '3' }}
@@ -87,6 +90,8 @@ jobs:
           node --check scripts/verify-daily-report-env.mjs
           node scripts/test-frequency-move-cleanup.mjs
           node scripts/test-frequency-multi-site-removal.mjs
+          node scripts/test-frequency-publish-guard.mjs
+          node scripts/test-frequency-ui-safety.mjs
 
       - name: Run daily frequency update and email report
         id: frequency

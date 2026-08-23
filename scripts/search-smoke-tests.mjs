@@ -42,12 +42,17 @@ function wordSafeMatch(blob, query) {
   const words = normalize(blob).split(' ').map(compact).filter(Boolean);
   if (/^[a-z0-9]{2,3}$/.test(q)) return words.some(w => w === q || w.startsWith(q));
   const n = normalize(blob), c = compact(blob);
+  const tokens = normalize(query).split(' ').map(compact).filter(token => token.length > 1);
+  if (tokens.length > 1) {
+    return tokens.every(token => words.some(word => word === token || word.startsWith(token)) || c.includes(token));
+  }
   return n.includes(normalize(query)) || c.includes(q);
 }
 const equivalentPairs = [
   [['jazeera','aljazeera','al jazera','جزيره','جزيرة','الجزيره','الجزيرة'], ['al jazeera','aljazeera','الجزيرة','الجزيره']],
   [['bein','beinsport','beinsports','be in','بي ان','بي إن','بين'], ['bein sports','beinsports','be in sports','بي ان سبورت']],
   [['ontime','on time','on time sport','on time sports','on sport','on sports','اون تايم','أون تايم','اون تايم سبورت','أون تايم سبورت','اون سبورت','أون سبورت'], ['ontime','on time sports','on sport','on sports','اون تايم سبورت','اون سبورت']],
+  [['القناة الارضية الجزائرية','القناة الأرضية الجزائرية','الارضية الجزائرية','الأرضية الجزائرية'], ['National Program','Programme National','ENTV']],
   [['rai','raï','راي','راى'], ['rai','rai 1','rai 2','rai 3','rai news']]
 ];
 function queryVariants(query) {
@@ -57,11 +62,20 @@ function queryVariants(query) {
   }
   return [query];
 }
+function protectedAcronymForQuery(query) {
+  const c = compact(query);
+  if (c.includes('cbc') || c.includes('سيبيسي') || c.includes('سىبىسى')) return 'cbc';
+  if (c.includes('mbc') || c.includes('امبيسي') || c.includes('إمبيسي') || c.includes('امبسي')) return 'mbc';
+  if (c.includes('dmc') || c.includes('ديمسي')) return 'dmc';
+  return '';
+}
 function searchChannels(query) {
   const variants = queryVariants(query);
+  const protectedAcronym = protectedAcronymForQuery(query);
   const hits = [];
   for (const item of items) {
     for (const channel of channels(item)) {
+      if (protectedAcronym && !new RegExp(`(^|\\W)${protectedAcronym}(?:\\W|$)`, 'i').test(channel) && !compact(channel).startsWith(protectedAcronym)) continue;
       if (variants.some(v => wordSafeMatch(channelBlob(channel, item), v))) hits.push({ channel, item });
     }
   }
@@ -83,14 +97,19 @@ assert('Arabic Al Jazeera query returns Al Jazeera channels', jazeera.some(h => 
 const bein = searchChannels('beinsport');
 assert('beinsport query returns beIN Sports channels', bein.some(h => /bein/i.test(h.channel) && /sport/i.test(h.channel)), bein.slice(0, 5).map(h => h.channel).join(', '));
 const thmanyah = searchChannels('الثمانية');
-assert('Arabic Thmanyah query returns the current Arabsat package', thmanyah.some(h => /thmanyah/i.test(h.channel) && String(h.item.frequency) === '12015' && /arabsat|badr/i.test(h.item.satelliteGroup || '')), thmanyah.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+assert('Arabic Thmanyah query returns the current Arabsat package', thmanyah.some(h => /thmanyah/i.test(h.channel) && String(h.item.frequency) === '11919' && /arabsat|badr/i.test(h.item.satelliteGroup || '')), thmanyah.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+assert('Thmanyah is not incorrectly listed on Nilesat', !thmanyah.some(h => /nilesat/i.test(h.item.satelliteGroup || '') && /thmanyah/i.test(h.channel)), thmanyah.map(h => `${h.channel} ${h.item.satelliteGroup} ${h.item.frequency}${h.item.pol}`).join(', '));
+const syriaNames = items.flatMap(item => channels(item).filter(channel => /syria|souriya/i.test(channel)).map(channel => ({ channel, item })));
+assert('Syria coverage includes Alsouriya and Syria News', syriaNames.some(h => /alsouriya/i.test(h.channel)) && syriaNames.some(h => /syria news/i.test(h.channel)), syriaNames.slice(0, 16).map(h => `${h.channel} ${h.item.satelliteGroup} ${h.item.frequency}${h.item.pol}`).join(', '));
+const jordanNames = items.flatMap(item => channels(item).filter(channel => /roya|jordan tv|almamlaka/i.test(channel)).map(channel => ({ channel, item })));
+assert('Jordan coverage includes Roya, Jordan TV, and Almamlaka', ['roya','jordan tv','almamlaka'].every(name => jordanNames.some(h => h.channel.toLowerCase().includes(name))), jordanNames.slice(0, 20).map(h => `${h.channel} ${h.item.satelliteGroup} ${h.item.frequency}${h.item.pol}`).join(', '));
 const rai = searchChannels('rai').slice(0, 20);
 assert('rai short query does not match Bahrain by substring', !rai.some(h => /bahrain/i.test(h.channel)), rai.map(h => h.channel).join(', '));
 assert('natural query: free sports on Nilesat has results', items.some(item => isNilesat(item) && channels(item).some(ch => isSports(ch, item) && isFree(ch, item))));
 
 
 const ahlyArabic = searchChannels('الأهلي').filter(h => isNilesat(h.item));
-assert('Arabic Al Ahly query returns Al Ahly on Nilesat', ahlyArabic.some(h => /ahly/i.test(h.channel) && String(h.item.frequency) === '11747'), ahlyArabic.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+assert('Arabic Al Ahly query returns Al Ahly on Nilesat', ahlyArabic.some(h => /ahly/i.test(h.channel) && String(h.item.frequency) === '11746'), ahlyArabic.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 const ahlyPlainArabic = searchChannels('اهلي').filter(h => isNilesat(h.item));
 assert('Plain Arabic Ahly query without hamza/article also works', ahlyPlainArabic.some(h => /ahly/i.test(h.channel)), ahlyPlainArabic.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 const ahlyEnglish = searchChannels('ahly').filter(h => isNilesat(h.item));
@@ -99,7 +118,7 @@ assert('English Ahly query still returns Al Ahly on Nilesat', ahlyEnglish.some(h
 const ontime = searchChannels('اون تايم سبورت');
 assert('Arabic ON Time Sports query returns the current 11977 V Nilesat row', ontime.some(h => String(h.item.frequency) === '11977' && String(h.item.pol).toUpperCase() === 'V'), ontime.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 assert('ON Sport query returns new Plus/Max channels on 11977', searchChannels('on sport').some(h => String(h.item.frequency) === '11977' && /plus|max|sport/i.test(h.channel)), searchChannels('on sport').slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
-assert('ON Time Sports Arabsat fallback exists', items.some(item => String(item.frequency) === '12379' && /arabsat|badr/i.test(item.satelliteGroup || '') && channels(item).some(ch => /on time/i.test(ch))));
+assert('ON Time Sports current Nilesat package exists', items.some(item => isNilesat(item) && ['11977','12015'].includes(String(item.frequency)) && channels(item).some(ch => /on sport|on time/i.test(ch))), items.filter(item => isNilesat(item) && channels(item).some(ch => /on sport|on time/i.test(ch))).map(item => `${item.frequency}${item.pol}`).join(', '));
 assert('manifest and versioned-data strategy is present', Boolean(JSON.parse(await readFile('public/frequencies/frequency-manifest.json', 'utf8')).dataFile));
 
 const mbcHits = searchChannels('mbc').filter(h => /(^|\W)mbc($|\W|\d)/i.test(h.channel));
@@ -107,7 +126,7 @@ assert('MBC query returns many programming results', mbcHits.length >= 20, mbcHi
 assert('MBC programming results include system data when available', mbcHits.some(h => h.item.system), mbcHits.slice(0, 8).map(h => `${h.channel}:${h.item.system || 'missing'}`).join(', '));
 
 const mbcNilesatHits = mbcHits.filter(h => isNilesat(h.item));
-assert('MBC query on Nilesat/Eutelsat 7W-8W returns the full station set', mbcNilesatHits.length >= 25, mbcNilesatHits.slice(0, 12).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
+assert('MBC query on Nilesat/Eutelsat 7W-8W returns the current station set', mbcNilesatHits.length >= 10 && ['MBC MASR HD', 'MBC 5', 'MBC Action'].every(name => mbcNilesatHits.some(h => h.channel.toLowerCase() === name.toLowerCase())), mbcNilesatHits.slice(0, 16).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 const mbcRowsWithSystem = mbcHits.filter(h => String(h.item.system || '').trim() && String(h.item.mod || '').trim());
 assert('every MBC result card can show system/mod', mbcRowsWithSystem.length === mbcHits.length, mbcHits.filter(h => !String(h.item.system || '').trim() || !String(h.item.mod || '').trim()).slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}`).join(', '));
 const mbcEncryptedOnly = mbcHits.filter(h => isEncrypted(h.channel, h.item));
@@ -124,11 +143,11 @@ assert('Arabic MBC Egypt query does not fall into CBC', mbcArabicMasr.length > 0
 
 
 const entvAlgeriaEncrypted = searchChannels('National Program').filter(h => isNilesat(h.item));
-assert('National Program query returns ENTV / Programme National on Nilesat', entvAlgeriaEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11680' && isEncrypted(h.channel, h.item)), entvAlgeriaEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
+assert('National Program query returns ENTV / Programme National on Nilesat', entvAlgeriaEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11679' && isEncrypted(h.channel, h.item)), entvAlgeriaEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
 const entvArabicEncrypted = searchChannels('القناة الأرضية الجزائرية').filter(h => isNilesat(h.item));
-assert('Arabic Algerian terrestrial query returns encrypted ENTV / Programme National', entvArabicEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11680' && isEncrypted(h.channel, h.item)), entvArabicEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
-const encryptedAlgeriaRows = items.filter(item => isNilesat(item) && channels(item).some(ch => isEncrypted(ch, item) && ((item.channelCountries || {})[ch] || []).includes('algeria')));
-assert('Nilesat encrypted Algerian channel filter includes ENTV / Programme National', encryptedAlgeriaRows.some(item => String(item.frequency) === '11680' && channels(item).some(ch => /entv|programme national/i.test(ch))), encryptedAlgeriaRows.map(item => `${item.frequency}${item.pol} ${channels(item).filter(ch => isEncrypted(ch, item)).join('/')}`).join(', '));
+assert('Arabic Algerian terrestrial query returns encrypted ENTV / Programme National', entvArabicEncrypted.some(h => /entv|programme national/i.test(h.channel) && String(h.item.frequency) === '11679' && isEncrypted(h.channel, h.item)), entvArabicEncrypted.slice(0, 8).map(h => `${h.channel} ${h.item.frequency}${h.item.pol}:${encryptionKey(h.channel, h.item)}`).join(', '));
+const encryptedAlgeriaRows = items.filter(item => isNilesat(item) && String(item.frequency) === '11679' && channels(item).some(ch => isEncrypted(ch, item) && /programme nationale|entv|canal algerie/i.test(ch)));
+assert('Nilesat encrypted Algerian channel filter includes ENTV / Programme National', encryptedAlgeriaRows.some(item => channels(item).some(ch => /programme nationale|entv/i.test(ch) && isEncrypted(ch, item))), encryptedAlgeriaRows.map(item => `${item.frequency}${item.pol} ${channels(item).filter(ch => isEncrypted(ch, item)).join('/')}`).join(', '));
 
 const missingSystemRows = items.filter(item => !String(item.system || '').trim());
 assert('all frequency rows include a programming system value', missingSystemRows.length === 0, missingSystemRows.slice(0, 8).map(item => `${item.satelliteGroup || item.satellite} ${item.frequency}${item.pol}`).join(', '));

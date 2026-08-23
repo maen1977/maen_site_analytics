@@ -24,7 +24,7 @@ assert.match(shared, /function fallbackChannelsForService/);
 for (const page of pages) {
   assert.match(page, /encKey === 'free'\s*\)/, 'FTA must accept only free channels');
   assert.doesNotMatch(page, /encKey === 'free'\s*\|\|\s*encKey === 'unknown'/, 'unknown must not be silently shown as FTA');
-  assert.match(page, /v=20260821-service-filter-v1/);
+  assert.match(page, /v=20260823-freeze-fix-v1/);
 }
 
 const channelsOf = item => Array.isArray(item.channels)
