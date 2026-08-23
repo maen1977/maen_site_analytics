@@ -121,17 +121,28 @@ jobs:
 
       - name: Write workflow status file
         if: ${{ always() }}
+        env:
+          FREQUENCY_OUTCOME: ${{ steps.frequency.outcome }}
+          ANALYTICS_OUTCOME: ${{ steps.analytics.outcome }}
         run: |
           mkdir -p public/reports
           node - <<'NODE'
           const fs = require('fs');
+          const frequencyOutcome = process.env.FREQUENCY_OUTCOME || 'unknown';
+          const analyticsOutcome = process.env.ANALYTICS_OUTCOME || 'unknown';
+          const failed = ['failure', 'cancelled'];
+          const ok = !failed.includes(frequencyOutcome) && !failed.includes(analyticsOutcome);
           const payload = {
-            ok: true,
+            ok,
             generatedAt: new Date().toISOString(),
             mode: 'github-actions-daily-reports-restored',
             timezone: process.env.ANALYTICS_TIMEZONE || 'Asia/Amman',
             publicBaseUrl: process.env.PUBLIC_BASE_URL || 'https://maensat.pages.dev',
-            note: 'GitHub Actions runs daily frequency update and Cloudflare D1 analytics report. Secrets are not written to this file.'
+            frequencyOutcome,
+            analyticsOutcome,
+            note: ok
+              ? 'GitHub Actions completed the enabled daily tasks. Secrets are not written to this file.'
+              : 'One or more daily tasks failed. A frequency publish guard failure keeps the last trusted frequency database in place; review the Action log before changing thresholds.'
           };
           fs.writeFileSync('public/reports/daily-github-actions-status.json', JSON.stringify(payload, null, 2) + '\n');
           NODE
