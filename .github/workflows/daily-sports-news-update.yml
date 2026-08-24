@@ -62,14 +62,19 @@ jobs:
         continue-on-error: true
         run: npm run github:update-matches
 
-      - name: Validate football news and match datasets
-        id: validate
-        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.matches.outcome == 'success' }}
+      - name: Validate Arabic and English news datasets
+        id: validateNews
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' }}
         continue-on-error: true
         run: |
           node scripts/test-sports-news.mjs
           node scripts/test-sports-news-en.mjs
-          node scripts/test-football-matches.mjs
+
+      - name: Validate football match dataset
+        id: validateMatches
+        if: ${{ always() && steps.matches.outcome == 'success' }}
+        continue-on-error: true
+        run: node scripts/test-football-matches.mjs
 
       - name: Write football workflow status
         if: ${{ always() }}
@@ -77,7 +82,8 @@ jobs:
           ARABIC_OUTCOME: ${{ steps.arabic.outcome }}
           ENGLISH_OUTCOME: ${{ steps.english.outcome }}
           MATCHES_OUTCOME: ${{ steps.matches.outcome }}
-          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+          NEWS_VALIDATE_OUTCOME: ${{ steps.validateNews.outcome }}
+          MATCHES_VALIDATE_OUTCOME: ${{ steps.validateMatches.outcome }}
         run: |
           mkdir -p public/reports
           node --input-type=module <<'NODE'
@@ -85,8 +91,11 @@ jobs:
           const arabicOutcome = process.env.ARABIC_OUTCOME || 'unknown';
           const englishOutcome = process.env.ENGLISH_OUTCOME || 'unknown';
           const matchesOutcome = process.env.MATCHES_OUTCOME || 'unknown';
-          const validateOutcome = process.env.VALIDATE_OUTCOME || 'skipped';
-          const ok = arabicOutcome === 'success' && englishOutcome === 'success' && matchesOutcome === 'success' && validateOutcome === 'success';
+          const newsValidateOutcome = process.env.NEWS_VALIDATE_OUTCOME || 'skipped';
+          const matchesValidateOutcome = process.env.MATCHES_VALIDATE_OUTCOME || 'skipped';
+          const newsOk = arabicOutcome === 'success' && englishOutcome === 'success' && newsValidateOutcome === 'success';
+          const matchesOk = matchesOutcome === 'success' && matchesValidateOutcome === 'success';
+          const ok = newsOk && matchesOk;
           const payload = {
             ok,
             generatedAt: new Date().toISOString(),
@@ -94,26 +103,44 @@ jobs:
             arabicOutcome,
             englishOutcome,
             matchesOutcome,
-            validateOutcome,
+            newsValidateOutcome,
+            matchesValidateOutcome,
+            newsPublished: newsOk,
+            matchesPublished: matchesOk,
             note: ok
               ? 'Arabic and English football news plus the hybrid match schedule were fetched and validated. Broadcasters are shown only when verified in the target countries.'
-              : 'Football news or matches were not published because one fetch or validation failed. The previous trusted datasets remain in place.'
+              : 'One football source or validation failed. Only the affected dataset was retained; any independently valid dataset was published, and the previous trusted data remains for the affected path.'
           };
           fs.writeFileSync('public/reports/daily-sports-news-status.json', `${JSON.stringify(payload, null, 2)}\n`);
           NODE
 
-      - name: Commit validated football data
-        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.matches.outcome == 'success' && steps.validate.outcome == 'success' }}
+      - name: Commit validated football news data
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.validateNews.outcome == 'success' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/sports-news-ar.json public/data/sports-news-en.json public/data/football-matches.json
+          git add public/data/sports-news-ar.json public/data/sports-news-en.json
           if git diff --cached --quiet; then
-            echo "No football data changes to commit."
+            echo "No football news data changes to commit."
           else
             git commit -m "Update daily bilingual football news"
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+          fi
+
+      - name: Commit validated football matches
+        if: ${{ always() && steps.matches.outcome == 'success' && steps.validateMatches.outcome == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/football-matches.json
+          if git diff --cached --quiet; then
+            echo "No football match data changes to commit."
+          else
+            git commit -m "Update daily football match schedule"
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
@@ -133,11 +160,12 @@ jobs:
           fi
 
       - name: Fail workflow if a football dataset or validation failed
-        if: ${{ always() && (steps.arabic.outcome == 'failure' || steps.english.outcome == 'failure' || steps.matches.outcome == 'failure' || steps.validate.outcome == 'failure') }}
+        if: ${{ always() && (steps.arabic.outcome == 'failure' || steps.english.outcome == 'failure' || steps.matches.outcome == 'failure' || steps.validateNews.outcome == 'failure' || steps.validateMatches.outcome == 'failure') }}
         run: |
-          echo "Football news or matches update did not pass all guards. The previous datasets were retained."
+          echo "One football source or validation failed. Independently valid datasets were retained or published."
           echo "Arabic outcome: ${{ steps.arabic.outcome }}"
           echo "English outcome: ${{ steps.english.outcome }}"
           echo "Matches outcome: ${{ steps.matches.outcome }}"
-          echo "Validation outcome: ${{ steps.validate.outcome }}"
+          echo "News validation outcome: ${{ steps.validateNews.outcome }}"
+          echo "Matches validation outcome: ${{ steps.validateMatches.outcome }}"
           exit 1
