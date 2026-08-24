@@ -14,12 +14,13 @@ const sportsScript = read("public/assets/sports-news.js");
 const sportsWorkflow = read(".github/workflows/daily-sports-news-update.yml");
 
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
-assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v5")), "Enhancement stylesheet missing from a page");
-assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v9") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
+assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v6")), "Enhancement stylesheet missing from a page");
+assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v10") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
 assert(pages.every((html) => html.includes('data-sports-mode="news"') && html.includes('data-sports-mode="matches"') && html.includes('data-matches-window="today"') && html.includes('data-matches-window="tomorrow"') && html.includes('data-matches-window="week"')), "Football matches tabs are missing from a page");
 assert(sportsScript.includes("function localizedField") && sportsScript.includes("function installLanguageBridge"), "Football language bridge is missing");
 assert(sportsScript.includes("var DATA_URLS") && sportsScript.includes("/data/sports-news-ar.json") && sportsScript.includes("/data/sports-news-en.json"), "Independent Arabic and English football datasets are missing");
 assert(sportsScript.includes("var MATCHES_URL") && sportsScript.includes("/data/football-matches.json") && sportsScript.includes("function loadMatches") && sportsScript.includes("function setSportsMode"), "Football matches loader or mode switch is missing");
+assert(sportsScript.includes("broadcastFta") && sportsScript.includes("broadcastEncrypted") && sportsScript.includes("broadcastUnknown") && sportsScript.includes("sourceUrl"), "Broadcaster access labels or evidence links are missing");
 assert(sportsScript.includes("if (root.lang !== lang) root.lang = lang") && sportsScript.includes("if (state.renderedLanguage !== lang) setLanguageFields()"), "Sports language observer is not guarded against repeated renders");
 assert(pages.every((html) => html.includes("if(root.lang!==lang) root.lang=lang")), "Global language enhancer still writes unchanged document attributes");
 assert(!sportsScript.includes("titleEn") && !sportsScript.includes("summaryEn") && !sportsScript.includes("contentEn"), "Sports UI still depends on machine-translated fields");

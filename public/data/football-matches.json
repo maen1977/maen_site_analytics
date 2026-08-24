@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T12:23:45.791Z",
+  "generatedAt": "2026-08-24T13:19:56.441Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-24",
@@ -20,6 +20,12 @@
       "name": "TheSportsDB free API",
       "ok": true,
       "requestedDays": 8
+    },
+    {
+      "id": "filgoal-matches",
+      "name": "FilGoal Arabic match schedule",
+      "ok": true,
+      "requestedDays": 8
     }
   ],
   "broadcastCountries": [
@@ -30,7 +36,7 @@
     "Iraq",
     "Egypt"
   ],
-  "coverageNote": "Fixtures are collected from public football schedules. TV channels are shown only when a target-country listing is verified; no channel is inferred.",
+  "coverageNote": "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously; access type is FTA, encrypted, or unknown and is never inferred from a channel name alone.",
   "items": [
     {
       "id": "match-b570ffc0daf273d4068e",
@@ -2022,7 +2028,7 @@
       "awayTeam": "Boca Juniors",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/15.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Presidente Perón (Cilindro de Avellaneda)",
       "broadcasters": [],
@@ -2426,10 +2432,25 @@
       "competition": "Football",
       "country": "Saudi Arabia",
       "venue": "King Khalid Sport City Stadium",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
+      "broadcasters": [
+        {
+          "name": "ثمانية 2",
+          "nameAr": "ثمانية 2",
+          "nameEn": "ثمانية 2",
+          "country": "Egypt",
+          "region": "Egypt",
+          "accessType": "unknown",
+          "verified": true,
+          "evidenceLevel": "editorial",
+          "sourceName": "FilGoal match schedule",
+          "sourceUrl": "https://www.filgoal.com/matches/375129/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%86%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D8%AF%D8%B3%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
+          "verifiedAt": "2026-08-24T13:19:56.432Z"
+        }
+      ],
+      "broadcastStatus": "verified",
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "filgoal-matches"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401900392/al-qadsiah-neom-sc"
     },
@@ -2546,10 +2567,25 @@
       "competition": "Football",
       "country": "Spain",
       "venue": "El Sadar",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3 HD",
+          "nameAr": "beIN SPORTS 3 HD",
+          "nameEn": "beIN SPORTS 3 HD",
+          "country": "Egypt",
+          "region": "Egypt",
+          "accessType": "unknown",
+          "verified": true,
+          "evidenceLevel": "editorial",
+          "sourceName": "FilGoal match schedule",
+          "sourceUrl": "https://www.filgoal.com/matches/375006/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A3%D9%88%D8%B3%D8%A7%D8%B3%D9%88%D9%86%D8%A7-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+          "verifiedAt": "2026-08-24T13:19:56.432Z"
+        }
+      ],
+      "broadcastStatus": "verified",
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "filgoal-matches"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882909/levante-osasuna"
     },
@@ -2566,10 +2602,25 @@
       "competition": "Football",
       "country": "Saudi Arabia",
       "venue": "Prince Abdullah Al-Faisal Stadium",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
+      "broadcasters": [
+        {
+          "name": "ثمانية 1",
+          "nameAr": "ثمانية 1",
+          "nameEn": "ثمانية 1",
+          "country": "Egypt",
+          "region": "Egypt",
+          "accessType": "unknown",
+          "verified": true,
+          "evidenceLevel": "editorial",
+          "sourceName": "FilGoal match schedule",
+          "sourceUrl": "https://www.filgoal.com/matches/375130/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%AD%D8%B2%D9%85-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
+          "verifiedAt": "2026-08-24T13:19:56.432Z"
+        }
+      ],
+      "broadcastStatus": "verified",
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "filgoal-matches"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401900391/al-hazem-al-ittihad"
     },
@@ -2706,10 +2757,25 @@
       "competition": "Football",
       "country": "England",
       "venue": "Craven Cottage",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1 HD",
+          "nameAr": "beIN SPORTS 1 HD",
+          "nameEn": "beIN SPORTS 1 HD",
+          "country": "Egypt",
+          "region": "Egypt",
+          "accessType": "unknown",
+          "verified": true,
+          "evidenceLevel": "editorial",
+          "sourceName": "FilGoal match schedule",
+          "sourceUrl": "https://www.filgoal.com/matches/374409/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%88%D9%84%D8%A7%D9%85-%D8%AA%D8%B4%D9%8A%D9%84%D8%B3%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A-%D8%A7%D9%84%D9%85%D9%85%D8%AA%D8%A7%D8%B2",
+          "verifiedAt": "2026-08-24T13:19:56.431Z"
+        }
+      ],
+      "broadcastStatus": "verified",
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "filgoal-matches"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879318/chelsea-fulham"
     },
@@ -2826,10 +2892,25 @@
       "competition": "Football",
       "country": "Spain",
       "venue": "La Rosaleda",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3 HD",
+          "nameAr": "beIN SPORTS 3 HD",
+          "nameEn": "beIN SPORTS 3 HD",
+          "country": "Egypt",
+          "region": "Egypt",
+          "accessType": "unknown",
+          "verified": true,
+          "evidenceLevel": "editorial",
+          "sourceName": "FilGoal match schedule",
+          "sourceUrl": "https://www.filgoal.com/matches/375005/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%85%D8%A7%D9%84%D8%A7%D8%AC%D8%A7-%D8%AF%D9%8A%D8%A8%D9%88%D8%B1%D8%AA%D9%8A%D9%81%D9%88-%D8%A3%D9%84%D8%A7%D9%81%D9%8A%D8%B3-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+          "verifiedAt": "2026-08-24T13:19:56.432Z"
+        }
+      ],
+      "broadcastStatus": "verified",
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "filgoal-matches"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882910/deportivo-malaga"
     },
@@ -3503,7 +3584,7 @@
       "awayTeam": "Argentinos Juniors",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/12.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Ciudad de Lanús",
       "broadcasters": [],
@@ -6364,7 +6445,7 @@
       "awayTeam": "San Telmo",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10145.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10157.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "La Quema",
       "broadcasters": [],
@@ -6425,7 +6506,7 @@
       "awayTeam": "San Miguel",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11963.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10058.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "Estadio Juan Alberto García",
       "broadcasters": [],
@@ -7186,7 +7267,7 @@
       "awayTeam": "Deportivo Morón",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11993.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10154.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "Padre Ernesto Martearena",
       "broadcasters": [],
@@ -7387,7 +7468,7 @@
       "awayTeam": "Pittsburgh Riverhounds",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19407.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/17827.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Southwest University Park",
       "broadcasters": [],
@@ -7428,7 +7509,7 @@
       "awayTeam": "Lexington",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19408.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21822.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Isotopes Park",
       "broadcasters": [],
@@ -19249,7 +19330,7 @@
       "awayTeam": "Rhode Island FC",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/18446.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/22164.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "ONEOK Field",
       "broadcasters": [],
@@ -19450,7 +19531,7 @@
       "awayTeam": "Loudoun United FC",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19407.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19410.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Southwest University Park",
       "broadcasters": [],
@@ -19671,7 +19752,7 @@
       "awayTeam": "Charleston Battery",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/18987.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9729.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Cashman Field",
       "broadcasters": [],
@@ -26372,7 +26453,7 @@
       "awayTeam": "Racing Club",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/15.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Bautista Gargantini",
       "broadcasters": [],

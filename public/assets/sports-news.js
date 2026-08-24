@@ -78,10 +78,14 @@
     matchesEmpty: { ar: "لا توجد مباريات متاحة لهذه الفترة أو البحث.", en: "No matches are available for this period or search." },
     matchesCount: { ar: "مباراة", en: "matches" },
     matchTime: { ar: "الوقت", en: "Time" },
-    matchBroadcast: { ar: "القنوات الناقلة المؤكدة", en: "Verified broadcasters" },
+    matchBroadcast: { ar: "القنوات الناقلة حسب الدليل", en: "Broadcasters with evidence" },
     matchNoBroadcast: { ar: "لم يتم التحقق من قناة ناقلة في الأردن وفلسطين ولبنان وسوريا والعراق ومصر.", en: "No broadcaster was verified in Jordan, Palestine, Lebanon, Syria, Iraq, or Egypt." },
+    broadcastFta: { ar: "مجاني / FTA", en: "FTA / Free" },
+    broadcastEncrypted: { ar: "مشفر / مدفوع", en: "Encrypted / subscription" },
+    broadcastUnknown: { ar: "نوع البث غير مؤكد", en: "Access type unverified" },
+    broadcastEvidence: { ar: "الدليل", en: "Evidence" },
     matchSource: { ar: "مصدر الموعد", en: "Fixture source" },
-    matchScheduleNote: { ar: "المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث.", en: "Fixtures come from free public schedules. A channel is shown only when verified in the selected countries; broadcast rights are never guessed." },
+    matchScheduleNote: { ar: "المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث أو نوع الوصول.", en: "Fixtures come from free public schedules. A channel is shown only when verified in the selected countries; broadcast rights and access type are never guessed." },
   };
 
   function selectedLanguage() {
@@ -223,6 +227,7 @@
     var names = ids.map(function (id) {
       if (id === "espn-public-soccer") return "ESPN";
       if (id === "thesportsdb-free") return "TheSportsDB";
+      if (id === "filgoal-matches") return "FilGoal";
       return id;
     }).filter(Boolean);
     return names.join(" + ") || "—";
@@ -240,8 +245,54 @@
           : match.date >= today && match.date <= addDateKey(today, 7);
       if (!dateMatch) return false;
       if (!query) return true;
-      return [match.homeTeam, match.awayTeam, match.competition, match.country].join(" ").toLowerCase().indexOf(query) !== -1;
+      var broadcasterText = (Array.isArray(match.broadcasters) ? match.broadcasters : []).map(function (entry) {
+        return [entry.name, entry.nameAr, entry.nameEn, entry.sourceName, entry.country, entry.region].join(" ");
+      }).join(" ");
+      return [match.homeTeam, match.awayTeam, match.competition, match.country, broadcasterText].join(" ").toLowerCase().indexOf(query) !== -1;
     });
+  }
+
+  function broadcasterAccessText(entry) {
+    if (entry && entry.accessType === "fta") return languageText("broadcastFta");
+    if (entry && entry.accessType === "encrypted") return languageText("broadcastEncrypted");
+    return languageText("broadcastUnknown");
+  }
+
+  function broadcasterDisplayName(entry) {
+    if (!entry) return "";
+    var field = isEnglish() ? "nameEn" : "nameAr";
+    return cleanText(entry[field] || entry.name, 120);
+  }
+
+  function renderBroadcasterEntry(entry) {
+    var listItem = document.createElement("li");
+    listItem.className = "sports-match-broadcaster";
+    var row = document.createElement("div");
+    row.className = "sports-match-broadcaster-row";
+    var name = document.createElement("strong");
+    name.className = "sports-match-broadcaster-name";
+    name.textContent = broadcasterDisplayName(entry);
+    row.appendChild(name);
+    var badge = document.createElement("span");
+    badge.className = "sports-match-access sports-match-access-" + cleanText(entry && entry.accessType, 20);
+    badge.textContent = broadcasterAccessText(entry);
+    row.appendChild(badge);
+    listItem.appendChild(row);
+    var meta = document.createElement("span");
+    meta.className = "sports-match-broadcaster-meta";
+    meta.textContent = cleanText(entry && (entry.region || entry.country), 60);
+    listItem.appendChild(meta);
+    var sourceUrl = validUrl(entry && entry.sourceUrl);
+    if (sourceUrl) {
+      var link = document.createElement("a");
+      link.className = "sports-match-broadcaster-source";
+      link.href = sourceUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = languageText("broadcastEvidence") + ": " + cleanText(entry.sourceName || "", 100);
+      listItem.appendChild(link);
+    }
+    return listItem;
   }
 
   function renderMatchCard(match) {
@@ -294,9 +345,7 @@
     if (Array.isArray(match.broadcasters) && match.broadcasters.length) {
       var list = document.createElement("ul");
       match.broadcasters.slice(0, 8).forEach(function (entry) {
-        var listItem = document.createElement("li");
-        listItem.textContent = cleanText(entry.name, 120) + " — " + cleanText(entry.country, 60);
-        list.appendChild(listItem);
+        list.appendChild(renderBroadcasterEntry(entry));
       });
       broadcast.appendChild(list);
     } else {
