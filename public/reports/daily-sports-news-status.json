@@ -1,10 +1,13 @@
 {
-  "ok": false,
-  "generatedAt": "2026-08-24T12:21:32.025Z",
+  "ok": true,
+  "generatedAt": "2026-08-24T12:23:46.056Z",
   "mode": "daily-football-news-update-free-hybrid",
-  "arabicOutcome": "failure",
+  "arabicOutcome": "success",
   "englishOutcome": "success",
   "matchesOutcome": "success",
-  "validateOutcome": "skipped",
-  "note": "Football news or matches were not published because one fetch or validation failed. The previous trusted datasets remain in place."
+  "newsValidateOutcome": "success",
+  "matchesValidateOutcome": "success",
+  "newsPublished": true,
+  "matchesPublished": true,
+  "note": "Arabic and English football news plus the hybrid match schedule were fetched and validated. Broadcasters are shown only when verified in the target countries."
 }
