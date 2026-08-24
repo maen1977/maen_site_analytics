@@ -1,9 +1,10 @@
 {
-  "ok": true,
-  "generatedAt": "2026-08-24T11:18:00.631Z",
-  "mode": "daily-football-news-update-free-bilingual",
-  "arabicOutcome": "success",
+  "ok": false,
+  "generatedAt": "2026-08-24T12:21:32.025Z",
+  "mode": "daily-football-news-update-free-hybrid",
+  "arabicOutcome": "failure",
   "englishOutcome": "success",
-  "validateOutcome": "success",
-  "note": "Arabic and English football datasets were fetched independently and validated. Headlines remain linked to their original publishers."
+  "matchesOutcome": "success",
+  "validateOutcome": "skipped",
+  "note": "Football news or matches were not published because one fetch or validation failed. The previous trusted datasets remain in place."
 }
