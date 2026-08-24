@@ -1,8 +1,8 @@
 {
-  "ok": true,
-  "generatedAt": "2026-08-24T06:44:34.615Z",
+  "ok": false,
+  "generatedAt": "2026-08-24T07:29:48.785Z",
   "mode": "daily-sports-news-update",
   "sportsOutcome": "success",
-  "validateOutcome": "success",
-  "note": "Sports news was fetched and validated. Headlines remain linked to their original publishers."
+  "validateOutcome": "failure",
+  "note": "Sports news was not published because fetching or validation failed. The previous trusted dataset remains in place."
 }
