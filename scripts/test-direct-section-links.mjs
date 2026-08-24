@@ -33,6 +33,9 @@ for (const { file, fallback } of pages) {
   if (!loaderPattern.test(html)) {
     throw new Error(`${file}: load handler must prefer a valid hash and use ${fallback} only as fallback`);
   }
+  if (!html.includes('/assets/maensat-enhancements.js?v=20260824-sports-v1')) {
+    throw new Error(`${file}: latest enhancements cache-buster is missing`);
+  }
   if ((html.match(/maensat-enhancements\.js\?v=/g) || []).length !== 1) {
     throw new Error(`${file}: expected exactly one cache-busted enhancements script`);
   }

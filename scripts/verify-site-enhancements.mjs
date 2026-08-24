@@ -11,7 +11,7 @@ const assert = (condition, message) => {
 const pages = [read("public/index.html"), read("public/index_phone.html")];
 const catalog = JSON.parse(read("public/data/products.json"));
 
-assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260823-direct-links-v1")), "Enhancement script missing from a page");
+assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v1")), "Enhancement stylesheet missing from a page");
 assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v2") && html.includes('id="sports"')), "Sports section assets missing from a page");
 assert(catalog.length >= 1, "Product catalog is empty");
