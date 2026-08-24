@@ -10,6 +10,8 @@ const sources = data.sources || [];
 const sourceIds = new Set(sources.map((source) => source.id));
 const expectedSourceIds = new Set(["okaz-arabic-sport", "masryalyoum-arabic-sport", "almala3b-jordan-sport"]);
 const allowedImageHosts = new Set(["www.okaz.com.sa", "www.al-mala3b.net", "www.almasryalyoum.com"]);
+const nonFootballHeadline = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic|البرلمان|برلماني|parliament|parliamentary|وزير شؤون|minister of parliamentary/i;
+const footballHeadline = /كرة القدم|كرة قدم|football|soccer|فيفا|fifa|يويفا|uefa|الدوري|مباراة|مباريات|منتخب|نادي|لاعب|مدرب|مهاجم|حارس|فريق|شباك|تشكيلة|ركلة|هدف|أهداف|انتقال|قميص|ملعب|بطولة كأس|كأس العالم|الكأس|اتحاد كرة القدم|الفيصلي|الوحدات|الرمثا|الحسين|السلط|الجزيرة|شباب الأردن|الزمالك|الأهلي|بيراميدز|برشلونة|ريال مدريد|ليفربول|مانشستر|نيوكاسل|طرابزون|باشاك شهير|ميسي|رونالدو|اتحاد جدة|نيوم|القادسية|الهلال|النصر|الشباب|التعاون|ضمك|الرائد|الخليج/i;
 
 assert.equal(data.schemaVersion, 1, "sports dataset schema version must be 1");
 assert.equal(sources.length, expectedSourceIds.size, "sports dataset must use exactly the approved Arabic sources");
@@ -40,6 +42,10 @@ for (const item of items) {
   assert.ok(["rss-excerpt", "metadata-excerpt", "publisher-article"].includes(item.contentType), "football item has an unknown content type");
   assert.ok(["global", "europe", "jordan"].includes(item.category), "sports item has an unknown category");
   assert.ok(item.title && item.summary, "sports item title and summary are required");
+  const headline = `${item.title} ${item.summary}`;
+  assert.ok(!nonFootballHeadline.test(headline), "sports dataset contains a non-football headline");
+  assert.ok(footballHeadline.test(headline), "sports dataset headline lacks football context");
+  assert.ok(!/\/esports\//i.test(item.url), "sports dataset must not include esports URLs");
   assert.ok(!/[<>]/.test(item.title) && !/[<>]/.test(item.summary) && !/[<>]/.test(item.content), "sports text must not contain HTML tags");
   assert.ok(!item.image || /^https:\/\//i.test(item.image), "sports image URLs must be HTTPS when present");
   if (item.image) assert.ok(allowedImageHosts.has(new URL(item.image).hostname), "sports image host is not in the CSP allowlist");

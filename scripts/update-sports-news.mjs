@@ -13,7 +13,7 @@ const MALA3B_DETAIL_LIMIT = 18;
 const ARTICLE_CONTENT_MAX = 1800;
 
 const EUROPE_KEYWORDS = /أوروبا|الأوروبي|الإنجليزي|الإنكليزي|الإسباني|الإيطالي|الألماني|الفرنسي|الدوري الإنجليزي|الدوري الإسباني|الدوري الإيطالي|الدوري الألماني|الدوري الفرنسي|دوري أبطال أوروبا|الدوري الأوروبي|البريميرليغ|البريميرليج|الليغا|لاليغا|لا ليغا|تشامبيونز|برشلونة|ريال مدريد|ليفربول|نيوكاسل|مانشستر|تشيلسي|أرسنال|بايرن|بوروسيا|باريس سان جيرمان|ميلان|إنتر ميلان|يوفنتوس|طرابزون|باشاك شهير|uefa|premier league|la liga|bundesliga|serie a|ligue 1/i;
-const NON_FOOTBALL_KEYWORDS = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic/i;
+const NON_FOOTBALL_KEYWORDS = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic|البرلمان|برلماني|parliament|parliamentary|وزير شؤون|minister of parliamentary/i;
 const FOOTBALL_KEYWORDS = /كرة القدم|كرة قدم|football|soccer|فيفا|fifa|يويفا|uefa|الدوري|مباراة|مباريات|منتخب|نادي|لاعب|مدرب|مهاجم|حارس|فريق|شباك|تشكيلة|ركلة|هدف|أهداف|انتقال|قميص|ملعب|بطولة كأس|كأس العالم|الكأس|اتحاد كرة القدم|الفيصلي|الوحدات|الرمثا|الحسين|السلط|الجزيرة|شباب الأردن|الزمالك|الأهلي|بيراميدز|برشلونة|ريال مدريد|ليفربول|مانشستر|نيوكاسل|طرابزون|باشاك شهير|ميسي|رونالدو|اتحاد جدة|نيوم|القادسية|الهلال|النصر|الشباب|التعاون|ضمك|الرائد|الخليج/i;
 
 const SOURCES = [
@@ -25,7 +25,7 @@ const SOURCES = [
     language: "ar",
     isSports(item) {
       try {
-        return /\/(?:sport|esports)\//i.test(new URL(item.url).pathname) && isFootballHeadline(`${item.title} ${item.description}`);
+        return /\/sport\//i.test(new URL(item.url).pathname) && isFootballHeadline(`${item.title} ${item.description}`);
       } catch {
         return false;
       }
@@ -217,6 +217,7 @@ function toNewsItem(raw, source, overrides = {}) {
   const publishedMs = overrides.publishedMs ?? raw.publishedMs;
   if (!url || !title || !summary || !content || !Number.isFinite(publishedMs) || publishedMs <= 0) return null;
   if (/[<>]/.test(title) || /[<>]/.test(summary) || !/[\u0600-\u06FF]/.test(`${title} ${summary}`)) return null;
+  if (/\/esports\//i.test(url) || !isFootballHeadline(`${title} ${summary}`)) return null;
   const id = crypto.createHash("sha256").update(`${source.id}\n${url}\n${title}`).digest("hex").slice(0, 20);
   return {
     id,
