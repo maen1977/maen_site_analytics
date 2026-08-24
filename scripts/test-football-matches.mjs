@@ -8,7 +8,6 @@ const assert = (condition, message) => { if (!condition) throw new Error(message
 const targetCountries = new Set(["Jordan", "Palestine", "Lebanon", "Syria", "Iraq", "Egypt"]);
 const accessTypes = new Set(["fta", "encrypted", "unknown"]);
 const evidenceLevels = new Set(["official", "editorial", "corroborated"]);
-const statuses = new Set(["scheduled", "live", "completed", "postponed", "cancelled"]);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
 const allowedSourceDomains = [
   "filgoal.com",
@@ -65,11 +64,11 @@ for (const item of data.items) {
   keys.add(key);
   assert(typeof item.competition === "string" && item.competition.length > 0 && item.competition.length <= 140, "Competition is invalid");
   assert(typeof item.time === "string" && /^\d{2}:\d{2}$/.test(item.time), "Match time must be HH:MM");
-  assert(statuses.has(item.status), "Match status is invalid");
+  assert(!Object.prototype.hasOwnProperty.call(item, "status"), "Match status must not be published");
+  assert(!Object.prototype.hasOwnProperty.call(item, "broadcastStatus"), "Broadcast status must not be published as a match result state");
   assert(Array.isArray(item.sourceIds) && item.sourceIds.length > 0, "Every match must include a source");
   assert(Array.isArray(item.broadcasters), "Broadcasters must be an array");
   assert(item.broadcasters.length <= 8, "Broadcaster list must be bounded");
-  assert(item.broadcastStatus === (item.broadcasters.length ? "verified" : "not-verified"), "Broadcast status must reflect verified entries");
   for (const broadcaster of item.broadcasters) {
     assert(broadcaster && broadcaster.verified === true, "Every broadcaster must be explicitly verified");
     assert(typeof broadcaster.name === "string" && broadcaster.name.length > 0 && broadcaster.name.length <= 120, "Broadcaster name is invalid");

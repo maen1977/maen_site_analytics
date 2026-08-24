@@ -488,15 +488,6 @@ function mergeMatch(primary, secondary) {
   };
 }
 
-function statusLabel(value) {
-  const status = String(value || "").toLowerCase();
-  if (status.includes("postpon")) return "postponed";
-  if (status.includes("cancel")) return "cancelled";
-  if (status.includes("in_progress") || status === "live") return "live";
-  if (status.includes("final") || status === "post") return "completed";
-  return "scheduled";
-}
-
 const today = localToday();
 const startDate = isoDate(today);
 const endDate = isoDate(addDays(today, DAYS_AHEAD));
@@ -595,7 +586,6 @@ const items = [...merged.values()]
       date: match.date,
       start: match.start,
       time: match.time,
-      status: statusLabel(match.status),
       homeTeam: match.homeTeam,
       awayTeam: match.awayTeam,
       homeLogo: match.homeLogo || "",
@@ -604,7 +594,6 @@ const items = [...merged.values()]
       country: match.country || "",
       venue: match.venue || "",
       broadcasters,
-      broadcastStatus: broadcasters.length ? "verified" : "not-verified",
       sourceIds,
       sourceUrl: match.sourceUrl || "",
     };
@@ -639,4 +628,4 @@ fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
 const temporary = `${OUTPUT}.tmp-${process.pid}`;
 fs.writeFileSync(temporary, `${JSON.stringify(payload, null, 2)}\n`);
 fs.renameSync(temporary, OUTPUT);
-console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; verified regional TV listings: ${items.filter((item) => item.broadcastStatus === "verified").length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}; Kooora matched broadcaster listings: ${[...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0)}.`);
+console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; matches with regional TV listings: ${items.filter((item) => item.broadcasters.length > 0).length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}; Kooora matched broadcaster listings: ${[...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0)}.`);

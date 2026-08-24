@@ -87,7 +87,7 @@
     broadcastEvidence: { ar: "الدليل", en: "Evidence" },
     broadcastAccessEvidence: { ar: "مصدر نوع البث", en: "Access source" },
     matchSource: { ar: "مصدر الموعد", en: "Fixture source" },
-    matchScheduleNote: { ar: "المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث أو نوع الوصول.", en: "Fixtures come from free public schedules. A channel is shown only when verified in the selected countries; broadcast rights and access type are never guessed." },
+    matchScheduleNote: { ar: "هذا جدول للمواعيد والقنوات فقط: نعرض وقت المباراة والقناة عند توفر دليل موثوق، ولا نتابع النتائج.", en: "This is a schedule of match times and broadcasters only. We show a channel when reliable evidence is available and do not track results." },
   };
 
   function selectedLanguage() {
@@ -212,18 +212,6 @@
     }
   }
 
-  function matchStatusText(status) {
-    var labels = {
-      scheduled: { ar: "لم تبدأ", en: "Scheduled" },
-      live: { ar: "مباشرة", en: "Live" },
-      completed: { ar: "انتهت", en: "Completed" },
-      postponed: { ar: "مؤجلة", en: "Postponed" },
-      cancelled: { ar: "ألغيت", en: "Cancelled" },
-    };
-    var item = labels[status] || labels.scheduled;
-    return isEnglish() ? item.en : item.ar;
-  }
-
   function matchSourceText(match) {
     var ids = Array.isArray(match.sourceIds) ? match.sourceIds : [];
     var names = ids.map(function (id) {
@@ -331,10 +319,6 @@
     date.className = "sports-match-date";
     date.textContent = formatMatchDate(match.date);
     top.appendChild(date);
-    var status = document.createElement("span");
-    status.className = "sports-match-status sports-match-status-" + cleanText(match.status, 20);
-    status.textContent = matchStatusText(match.status);
-    top.appendChild(status);
     card.appendChild(top);
 
     var competition = document.createElement("p");

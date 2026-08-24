@@ -2,8 +2,9 @@ name: Daily Football News Update
 
 on:
   schedule:
-    # Once every 24 hours; 05:35 UTC is about 08:35 in Jordan when UTC+3 applies.
-    - cron: '35 5 * * *'
+    # Once every 24 hours at 03:37 Asia/Amman. GitHub Actions cron is UTC;
+    # Jordan is UTC+3 year-round, so 00:37 UTC runs at 03:37 Jordan time.
+    - cron: '37 0 * * *'
   workflow_dispatch:
 
 permissions:
