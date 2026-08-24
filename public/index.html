@@ -4857,10 +4857,13 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   function applyEnhancedLanguage(lang){
     lang=lang || currentLang();
     var languageChanged=window.__maenAppliedLanguage!==lang;
-    document.documentElement.lang=lang;
-    document.documentElement.dir=lang==='en' ? 'ltr' : 'rtl';
-    document.body.classList.toggle('lang-en', lang==='en');
-    document.body.classList.toggle('lang-ar', lang!=='en');
+    var root=document.documentElement;
+    var direction=lang==='en' ? 'ltr' : 'rtl';
+    if(root.lang!==lang) root.lang=lang;
+    if(root.dir!==direction) root.dir=direction;
+    var wantsEnglish=lang==='en';
+    if(document.body.classList.contains('lang-en')!==wantsEnglish) document.body.classList.toggle('lang-en',wantsEnglish);
+    if(document.body.classList.contains('lang-ar')===wantsEnglish) document.body.classList.toggle('lang-ar',!wantsEnglish);
     // Walking the entire hidden multi-page DOM is expensive on weak phones.
     // Re-translate only when the selected language actually changes; newly
     // inserted Arabic content is already in its source language.
@@ -6863,7 +6866,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
 })();
 </script>
 
-<script defer src="/assets/sports-news.js?v=20260824-v6"></script>
+<script defer src="/assets/sports-news.js?v=20260824-v7"></script>
 <script defer src="/assets/maensat-enhancements.js?v=20260824-sports-v1"></script>
 </body>
 </html>

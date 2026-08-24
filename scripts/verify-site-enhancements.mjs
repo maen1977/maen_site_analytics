@@ -15,8 +15,10 @@ const sportsWorkflow = read(".github/workflows/daily-sports-news-update.yml");
 
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v4")), "Enhancement stylesheet missing from a page");
-assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v6") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
+assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v7") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
 assert(sportsScript.includes("function localizedField") && sportsScript.includes("function installLanguageBridge"), "Football language bridge is missing");
+assert(sportsScript.includes("if (root.lang !== lang) root.lang = lang") && sportsScript.includes("if (state.renderedLanguage !== lang) setLanguageFields()"), "Sports language observer is not guarded against repeated renders");
+assert(pages.every((html) => html.includes("if(root.lang!==lang) root.lang=lang")), "Global language enhancer still writes unchanged document attributes");
 assert(sportsScript.includes("titleEn") && sportsScript.includes("summaryEn") && sportsScript.includes("contentEn"), "English football fields are not wired into the reader");
 assert(sportsScript.includes("sports-article-back") && sportsScript.includes("Back to football"), "Internal football reader back button is missing");
 assert(sportsWorkflow.includes("35 5 * * *") && sportsWorkflow.includes("OPENAI_API_KEY"), "Daily football translation workflow is missing");

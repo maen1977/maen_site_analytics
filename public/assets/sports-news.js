@@ -11,6 +11,7 @@
     query: "",
     visibleCount: VISIBLE_STEP,
     generatedAt: "",
+    renderedLanguage: "",
   };
 
   var TEXT = {
@@ -67,11 +68,18 @@
 
   function syncDocumentLanguage() {
     var lang = selectedLanguage();
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+    var direction = lang === "en" ? "ltr" : "rtl";
+    var root = document.documentElement;
+    if (root.lang !== lang) root.lang = lang;
+    if (root.dir !== direction) root.dir = direction;
     if (document.body) {
-      document.body.classList.toggle("lang-en", lang === "en");
-      document.body.classList.toggle("lang-ar", lang !== "en");
+      var wantsEnglish = lang === "en";
+      if (document.body.classList.contains("lang-en") !== wantsEnglish) {
+        document.body.classList.toggle("lang-en", wantsEnglish);
+      }
+      if (document.body.classList.contains("lang-ar") === wantsEnglish) {
+        document.body.classList.toggle("lang-ar", !wantsEnglish);
+      }
     }
     return lang;
   }
@@ -133,8 +141,10 @@
     }
   }
 
-  function setLanguageFields() {
-    syncDocumentLanguage();
+  function setLanguageFields(force) {
+    var lang = syncDocumentLanguage();
+    if (!force && state.renderedLanguage === lang) return;
+    state.renderedLanguage = lang;
     document.querySelectorAll("[data-sports-key]").forEach(function (element) {
       var key = element.getAttribute("data-sports-key");
       element.textContent = languageText(key);
@@ -481,16 +491,12 @@
         if (typeof window.maenStorageSet === "function") window.maenStorageSet("siteLang", normalized);
         else window.localStorage.setItem("siteLang", normalized);
       } catch (error) {}
-      syncDocumentLanguage();
       var result = originalSetLanguage.apply(this, arguments);
-      [0, 80, 240].forEach(function (delay) {
-        window.setTimeout(function () {
-          syncDocumentLanguage();
-          setLanguageFields();
-          var articleId = articleIdFromHash();
-          if (articleId && state.loaded) renderArticle(state.items.find(function (item) { return item.id === articleId; }));
-        }, delay);
-      });
+      window.setTimeout(function () {
+        setLanguageFields(true);
+        var articleId = articleIdFromHash();
+        if (articleId && state.loaded) renderArticle(state.items.find(function (item) { return item.id === articleId; }));
+      }, 0);
       return result;
     };
     window.setLanguage.__sportsLanguageBridge = true;
@@ -518,7 +524,10 @@
       }, 0);
     }, true);
     if (window.MutationObserver) {
-      var observer = new MutationObserver(function () { setLanguageFields(); });
+      var observer = new MutationObserver(function () {
+        var lang = selectedLanguage();
+        if (state.renderedLanguage !== lang) setLanguageFields();
+      });
       observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
       if (document.body) observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
     }
