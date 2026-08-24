@@ -10,10 +10,16 @@ const assert = (condition, message) => {
 
 const pages = [read("public/index.html"), read("public/index_phone.html")];
 const catalog = JSON.parse(read("public/data/products.json"));
+const sportsScript = read("public/assets/sports-news.js");
+const sportsWorkflow = read(".github/workflows/daily-sports-news-update.yml");
 
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
-assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v3")), "Enhancement stylesheet missing from a page");
-assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v4") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
+assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v4")), "Enhancement stylesheet missing from a page");
+assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v6") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
+assert(sportsScript.includes("function localizedField") && sportsScript.includes("function installLanguageBridge"), "Football language bridge is missing");
+assert(sportsScript.includes("titleEn") && sportsScript.includes("summaryEn") && sportsScript.includes("contentEn"), "English football fields are not wired into the reader");
+assert(sportsScript.includes("sports-article-back") && sportsScript.includes("Back to football"), "Internal football reader back button is missing");
+assert(sportsWorkflow.includes("35 5 * * *") && sportsWorkflow.includes("OPENAI_API_KEY"), "Daily football translation workflow is missing");
 assert(catalog.length >= 1, "Product catalog is empty");
 assert(catalog.every((item) => item.id && item.name && item.image), "Product catalog contains an incomplete item");
 assert(fs.existsSync(path.join(root, "functions/api/track-event.js")), "Track-event endpoint missing");

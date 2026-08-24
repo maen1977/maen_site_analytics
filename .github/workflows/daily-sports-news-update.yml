@@ -38,19 +38,34 @@ jobs:
       - name: Verify Node runtime
         run: node --version
 
-      - name: Check sports updater and dataset validator
+      - name: Check sports updater, translator, and dataset validator
         run: |
           node --check scripts/update-sports-news.mjs
+          node --check scripts/translate-sports-news.mjs
           node --check scripts/test-sports-news.mjs
+
+      - name: Save previous sports dataset for translation reuse
+        if: ${{ always() }}
+        run: cp public/data/sports-news.json "$RUNNER_TEMP/sports-news-previous.json"
 
       - name: Update sports news dataset
         id: sports
         continue-on-error: true
         run: npm run github:update-sports
 
-      - name: Validate sports news dataset
-        id: validate
+      - name: Translate football news to English
+        id: translate
         if: ${{ always() && steps.sports.outcome == 'success' }}
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5-mini
+          SPORTS_PREVIOUS_DATA: ${{ runner.temp }}/sports-news-previous.json
+        run: node scripts/translate-sports-news.mjs
+
+      - name: Validate sports dataset and translations
+        id: validate
+        if: ${{ always() && steps.sports.outcome == 'success' && steps.translate.outcome == 'success' }}
         continue-on-error: true
         run: node scripts/test-sports-news.mjs
 
@@ -58,19 +73,22 @@ jobs:
         if: ${{ always() }}
         env:
           SPORTS_OUTCOME: ${{ steps.sports.outcome }}
+          TRANSLATE_OUTCOME: ${{ steps.translate.outcome }}
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           mkdir -p public/reports
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const sportsOutcome = process.env.SPORTS_OUTCOME || 'unknown';
+          const translateOutcome = process.env.TRANSLATE_OUTCOME || 'skipped';
           const validateOutcome = process.env.VALIDATE_OUTCOME || 'skipped';
-          const ok = sportsOutcome === 'success' && validateOutcome === 'success';
+          const ok = sportsOutcome === 'success' && translateOutcome === 'success' && validateOutcome === 'success';
           const payload = {
             ok,
             generatedAt: new Date().toISOString(),
             mode: 'daily-sports-news-update',
             sportsOutcome,
+            translateOutcome,
             validateOutcome,
             note: ok
               ? 'Sports news was fetched and validated. Headlines remain linked to their original publishers.'
@@ -109,10 +127,11 @@ jobs:
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
-      - name: Fail workflow if sports update failed
-        if: ${{ always() && (steps.sports.outcome == 'failure' || steps.validate.outcome == 'failure') }}
+      - name: Fail workflow if sports update or translation failed
+        if: ${{ always() && (steps.sports.outcome == 'failure' || steps.translate.outcome == 'failure' || steps.validate.outcome == 'failure') }}
         run: |
           echo "Sports news update did not pass all guards. The previous dataset was retained."
           echo "sports outcome: ${{ steps.sports.outcome }}"
+          echo "translation outcome: ${{ steps.translate.outcome }}"
           echo "validation outcome: ${{ steps.validate.outcome }}"
           exit 1

@@ -38,6 +38,7 @@
     unavailable: { ar: "تعذر تحميل أخبار كرة القدم حالياً. سنحاول مجدداً لاحقاً.", en: "Football news is temporarily unavailable. We will try again later." },
     source: { ar: "المصدر", en: "Source" },
     sourceNote: { ar: "يعرض القارئ الداخلي النص المتاح من الناشر مع ذكر المصدر؛ لا ننسخ المقالات الكاملة بلا ترخيص.", en: "The internal reader shows the publisher-provided text with attribution; full articles are not mirrored without permission." },
+    translationPending: { ar: "الترجمة الإنجليزية غير متاحة لهذا الخبر حالياً.", en: "The English translation is not available for this story yet." },
     articles: { ar: "خبر كرة قدم", en: "football stories" },
     articleLabel: { ar: "خبر كرة القدم", en: "Football story" },
     articleInternal: { ar: "قراءة داخل الموقع", en: "Internal reader" },
@@ -49,13 +50,49 @@
     sourceOriginal: { ar: "المصدر الأصلي", en: "Original source" },
   };
 
+  function selectedLanguage() {
+    try {
+      var stored = typeof window.maenStorageGet === "function"
+        ? window.maenStorageGet("siteLang")
+        : window.localStorage.getItem("siteLang");
+      return stored === "en" ? "en" : "ar";
+    } catch (error) {
+      return document.documentElement.lang === "en" ? "en" : "ar";
+    }
+  }
+
   function isEnglish() {
-    return document.documentElement.lang === "en" || (document.body && document.body.classList.contains("lang-en"));
+    return selectedLanguage() === "en";
+  }
+
+  function syncDocumentLanguage() {
+    var lang = selectedLanguage();
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+    if (document.body) {
+      document.body.classList.toggle("lang-en", lang === "en");
+      document.body.classList.toggle("lang-ar", lang !== "en");
+    }
+    return lang;
   }
 
   function languageText(key) {
     var item = TEXT[key] || { ar: key, en: key };
     return isEnglish() ? item.en : item.ar;
+  }
+
+  function localizedField(item, field, fallback) {
+    if (!item) return fallback || "";
+    if (!isEnglish()) return item[field] || fallback || "";
+    return item[field + "En"] || fallback || languageText("translationPending");
+  }
+
+  function localizedSourceName(item) {
+    return localizedField(item, "sourceName", languageText("source"));
+  }
+
+  function displayDirection() {
+    return isEnglish() ? "ltr" : "rtl";
   }
 
   function cleanText(value, maxLength) {
@@ -97,6 +134,7 @@
   }
 
   function setLanguageFields() {
+    syncDocumentLanguage();
     document.querySelectorAll("[data-sports-key]").forEach(function (element) {
       var key = element.getAttribute("data-sports-key");
       element.textContent = languageText(key);
@@ -130,7 +168,7 @@
     }
     var image = document.createElement("img");
     image.src = imageUrl;
-    image.alt = cleanText(item.title, 160);
+    image.alt = cleanText(localizedField(item, "title", languageText("football")), 160);
     image.loading = featured ? "eager" : "lazy";
     image.decoding = "async";
     image.referrerPolicy = "no-referrer";
@@ -174,16 +212,16 @@
     setArticleStatus("", false);
     var article = document.createElement("article");
     article.className = "sports-article-card";
-    article.setAttribute("dir", item.language === "ar" ? "rtl" : "ltr");
-    article.setAttribute("lang", item.language === "ar" ? "ar" : "en");
+    article.setAttribute("dir", displayDirection());
+    article.setAttribute("lang", isEnglish() ? "en" : "ar");
 
     var meta = document.createElement("div");
     meta.className = "sports-article-meta";
-    meta.textContent = cleanText(item.sourceName, 100) + " · " + formatDate(item.publishedAt);
+    meta.textContent = cleanText(localizedSourceName(item), 120) + " · " + formatDate(item.publishedAt);
     article.appendChild(meta);
 
     var title = document.createElement("h1");
-    title.textContent = cleanText(item.title, 180);
+    title.textContent = cleanText(localizedField(item, "title", languageText("translationPending")), 180);
     article.appendChild(title);
 
     var imageUrl = validUrl(item.image);
@@ -191,7 +229,7 @@
       var image = document.createElement("img");
       image.className = "sports-article-image";
       image.src = imageUrl;
-      image.alt = cleanText(item.title, 160);
+      image.alt = cleanText(localizedField(item, "title", languageText("football")), 160);
       image.loading = "eager";
       image.decoding = "async";
       image.referrerPolicy = "no-referrer";
@@ -204,12 +242,12 @@
     article.appendChild(label);
     var content = document.createElement("p");
     content.className = "sports-article-body";
-    content.textContent = cleanText(item.content || item.summary, 1800);
+    content.textContent = cleanText(localizedField(item, "content", localizedField(item, "summary", "")), 1800);
     article.appendChild(content);
 
     var attribution = document.createElement("p");
     attribution.className = "sports-article-attribution";
-    attribution.textContent = languageText("articleAttribution") + " " + cleanText(item.sourceName, 100);
+    attribution.textContent = languageText("articleAttribution") + " " + cleanText(localizedSourceName(item), 120);
     article.appendChild(attribution);
 
     var sourceLink = document.createElement("a");
@@ -218,8 +256,22 @@
     sourceLink.target = "_blank";
     sourceLink.rel = "noopener noreferrer";
     sourceLink.textContent = languageText("sourceOriginal");
-    sourceLink.setAttribute("aria-label", languageText("sourceOriginal") + ": " + cleanText(item.title, 120));
+    sourceLink.setAttribute("aria-label", languageText("sourceOriginal") + ": " + cleanText(localizedField(item, "title", ""), 120));
     article.appendChild(sourceLink);
+
+    var backButton = document.createElement("button");
+    backButton.type = "button";
+    backButton.className = "sports-article-back";
+    backButton.textContent = languageText("backToSports");
+    backButton.setAttribute("aria-label", languageText("backToSports"));
+    backButton.addEventListener("click", function () {
+      if (window.history && window.history.pushState) {
+        window.history.pushState({ page: "sports" }, "", "#sports");
+      }
+      if (typeof window.showPage === "function") window.showPage("sports", true);
+      loadSportsFeature(false);
+    });
+    article.appendChild(backButton);
     root.appendChild(article);
   }
 
@@ -247,9 +299,8 @@
   function createCard(item, featured) {
     var article = document.createElement("article");
     article.className = featured ? "sports-card sports-card-featured" : "sports-card";
-    var itemLanguage = item.language === "ar" ? "ar" : "en";
-    article.setAttribute("dir", itemLanguage === "ar" ? "rtl" : "ltr");
-    article.setAttribute("lang", itemLanguage);
+    article.setAttribute("dir", displayDirection());
+    article.setAttribute("lang", isEnglish() ? "en" : "ar");
     article.appendChild(createImage(item, featured));
 
     var body = document.createElement("div");
@@ -263,21 +314,21 @@
     body.appendChild(meta);
 
     var title = document.createElement("h3");
-    title.textContent = cleanText(item.title, 180);
+    title.textContent = cleanText(localizedField(item, "title", languageText("translationPending")), 180);
     body.appendChild(title);
     var summary = document.createElement("p");
-    summary.textContent = cleanText(item.summary, featured ? 420 : 260);
+    summary.textContent = cleanText(localizedField(item, "summary", ""), featured ? 420 : 260);
     body.appendChild(summary);
 
     var footer = document.createElement("div");
     footer.className = "sports-card-footer";
     var source = document.createElement("span");
-    source.textContent = cleanText(item.sourceName, 80) + " · " + formatDate(item.publishedAt);
+    source.textContent = cleanText(localizedSourceName(item), 120) + " · " + formatDate(item.publishedAt);
     footer.appendChild(source);
     var link = document.createElement("a");
     link.href = item.id ? "#sports-news/" + item.id : "#sports";
     link.textContent = languageText("read");
-    link.setAttribute("aria-label", languageText("read") + ": " + cleanText(item.title, 120));
+    link.setAttribute("aria-label", languageText("read") + ": " + cleanText(localizedField(item, "title", ""), 120));
     link.addEventListener("click", function (event) {
       if (!item.id) return;
       event.preventDefault();
@@ -295,7 +346,7 @@
       var categoryMatch = state.filter === "all" || item.category === state.filter;
       if (!categoryMatch) return false;
       if (!query) return true;
-      var haystack = [item.title, item.summary, item.sourceName, item.sport, item.category].join(" ").toLowerCase();
+      var haystack = [item.title, item.summary, item.content, item.titleEn, item.summaryEn, item.contentEn, item.sourceName, item.sourceNameEn, item.sport, item.category].join(" ").toLowerCase();
       return haystack.indexOf(query) !== -1;
     });
   }
@@ -349,11 +400,15 @@
         id: cleanText(item.id, 80),
         title: title,
         summary: summary,
+        titleEn: cleanText(item.titleEn, 180) || "",
+        summaryEn: cleanText(item.summaryEn, 360) || "",
         content: cleanText(item.content || item.summary, 1800),
+        contentEn: cleanText(item.contentEn, 1800) || "",
         contentType: cleanText(item.contentType, 40) || "rss-excerpt",
         url: validUrl(item.url),
         image: validUrl(item.image),
         sourceName: cleanText(item.sourceName, 100) || "Sports source",
+        sourceNameEn: cleanText(item.sourceNameEn, 120) || "",
         category: ["global", "europe", "jordan"].indexOf(item.category) >= 0 ? item.category : "global",
         sport: cleanText(item.sport, 40) || "other",
         publishedAt: cleanText(item.publishedAt, 60),
@@ -417,7 +472,33 @@
     });
   }
 
+  function installLanguageBridge() {
+    if (window.__sportsLanguageBridgeInstalled || typeof window.setLanguage !== "function") return;
+    var originalSetLanguage = window.setLanguage;
+    window.setLanguage = function (language) {
+      var normalized = language === "en" ? "en" : "ar";
+      try {
+        if (typeof window.maenStorageSet === "function") window.maenStorageSet("siteLang", normalized);
+        else window.localStorage.setItem("siteLang", normalized);
+      } catch (error) {}
+      syncDocumentLanguage();
+      var result = originalSetLanguage.apply(this, arguments);
+      [0, 80, 240].forEach(function (delay) {
+        window.setTimeout(function () {
+          syncDocumentLanguage();
+          setLanguageFields();
+          var articleId = articleIdFromHash();
+          if (articleId && state.loaded) renderArticle(state.items.find(function (item) { return item.id === articleId; }));
+        }, delay);
+      });
+      return result;
+    };
+    window.setLanguage.__sportsLanguageBridge = true;
+    window.__sportsLanguageBridgeInstalled = true;
+  }
+
   function init() {
+    installLanguageBridge();
     bindControls();
     setLanguageFields();
     window.addEventListener("hashchange", function () {

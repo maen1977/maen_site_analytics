@@ -20,6 +20,7 @@ const SOURCES = [
   {
     id: "okaz-arabic-sport",
     name: "عكاظ - كرة القدم",
+    nameEn: "Okaz - Football",
     url: "https://www.okaz.com.sa/rssFeed/0",
     language: "ar",
     isSports(item) {
@@ -36,6 +37,7 @@ const SOURCES = [
   {
     id: "masryalyoum-arabic-sport",
     name: "المصري اليوم - كرة القدم",
+    nameEn: "Al-Masry Al-Youm - Football",
     url: "https://www.almasryalyoum.com/rss/rssfeed",
     language: "ar",
     isSports(item) {
@@ -48,6 +50,7 @@ const SOURCES = [
   {
     id: "almala3b-jordan-sport",
     name: "الملاعب الرياضي - الأردن - كرة القدم",
+    nameEn: "Al-Mala3b Sports - Jordan - Football",
     url: "https://www.al-mala3b.net/rss.php",
     language: "ar",
     kind: "mala3b",
@@ -225,6 +228,7 @@ function toNewsItem(raw, source, overrides = {}) {
     image: image || null,
     sourceId: source.id,
     sourceName: source.name,
+    sourceNameEn: source.nameEn || source.name,
     category: source.categoryFor(raw),
     sport: "football",
     categories: raw.categories.slice(0, 8),
@@ -355,6 +359,7 @@ const payload = {
   sources: results.map((result) => ({
     id: result.source.id,
     name: result.source.name,
+    nameEn: result.source.nameEn || result.source.name,
     feedUrl: result.source.url,
     itemCount: result.items.length,
     ok: !result.error && result.items.length > 0,

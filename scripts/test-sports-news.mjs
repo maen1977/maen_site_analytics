@@ -21,7 +21,8 @@ assert.ok(sources.every((source) => source.id && source.feedUrl && /^https:\/\//
 assert.ok(sources.some((source) => source.ok && source.itemCount > 0), "at least one Arabic football source must provide items");
 const jordanSource = sources.find((source) => source.id === "almala3b-jordan-sport");
 assert.ok(jordanSource && jordanSource.ok && jordanSource.itemCount > 0, "the Jordan football source must be live and non-empty");
-assert.ok(sources.every((source) => /كرة القدم/i.test(source.name)), "every sports source must be labelled football");
+assert.ok(sources.every((source) => /كرة القدم/i.test(source.name) && source.nameEn), "every sports source must have Arabic and English football labels");
+assert.equal(data.translationStatus, "complete", "sports dataset must have complete English translations");
 
 const ids = new Set();
 const urls = new Set();
@@ -33,6 +34,9 @@ for (const item of items) {
   assert.equal(item.sport, "football", "every sports item must be football");
   assert.ok(/[\u0600-\u06FF]/.test(`${item.title} ${item.summary}`), "every sports item must contain Arabic text");
   assert.ok(item.content && item.content.length <= 1800, "every football item must have bounded internal content");
+  assert.ok(item.titleEn && item.summaryEn && item.contentEn, "every football item must have English title, summary, and content");
+  assert.ok(item.titleEn.length <= 180 && item.summaryEn.length <= 360 && item.contentEn.length <= 1800, "English football fields must stay bounded");
+  assert.ok(/[A-Za-z]/.test(`${item.titleEn} ${item.summaryEn} ${item.contentEn}`), "English football fields must contain Latin text");
   assert.ok(["rss-excerpt", "metadata-excerpt", "publisher-article"].includes(item.contentType), "football item has an unknown content type");
   assert.ok(["global", "europe", "jordan"].includes(item.category), "sports item has an unknown category");
   assert.ok(item.title && item.summary, "sports item title and summary are required");

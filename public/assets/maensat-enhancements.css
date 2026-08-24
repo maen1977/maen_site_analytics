@@ -546,3 +546,35 @@
     line-height: 1.9;
   }
 }
+
+
+#sportsArticle .sports-article-back {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  margin: 18px auto 0;
+  padding: 8px 14px;
+  color: #36516b;
+  border: 1px solid rgba(7, 19, 34, .14);
+  border-radius: 999px;
+  background: #f4f7fa;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 1000;
+  cursor: pointer;
+}
+
+#sportsArticle .sports-article-back:hover {
+  color: #07546a;
+  border-color: rgba(8, 127, 140, .38);
+  background: #e4f6f2;
+}
+
+@media (max-width: 900px) {
+  #sportsArticle .sports-article-back {
+    width: fit-content;
+    min-width: 132px;
+    margin-top: 16px;
+  }
+}
