@@ -119,7 +119,7 @@ function parseRss(xml, source) {
       .filter(Boolean);
     const url = cleanText(tagText(block, "link") || tagText(block, "guid"), 900);
     const title = cleanText(tagText(block, "title"), 220);
-    const description = cleanText(tagText(block, "description") || tagText(block, "summary"), 420);
+    const description = cleanText(tagText(block, "description") || tagText(block, "summary"), ARTICLE_CONTENT_MAX);
     const publishedRaw = cleanText(tagText(block, "pubDate") || tagText(block, "published") || tagText(block, "updated"), 120);
     const publishedMs = Date.parse(publishedRaw);
     const image = cleanText(
