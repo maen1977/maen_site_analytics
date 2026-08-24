@@ -42,8 +42,10 @@ jobs:
         run: |
           node --check scripts/update-sports-news.mjs
           node --check scripts/update-sports-news-en.mjs
+          node --check scripts/update-football-matches.mjs
           node --check scripts/test-sports-news.mjs
           node --check scripts/test-sports-news-en.mjs
+          node --check scripts/test-football-matches.mjs
 
       - name: Update Arabic football news
         id: arabic
@@ -55,19 +57,26 @@ jobs:
         continue-on-error: true
         run: npm run github:update-sports-en
 
-      - name: Validate both language datasets
+      - name: Update football matches
+        id: matches
+        continue-on-error: true
+        run: npm run github:update-matches
+
+      - name: Validate football news and match datasets
         id: validate
-        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' }}
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.matches.outcome == 'success' }}
         continue-on-error: true
         run: |
           node scripts/test-sports-news.mjs
           node scripts/test-sports-news-en.mjs
+          node scripts/test-football-matches.mjs
 
       - name: Write football workflow status
         if: ${{ always() }}
         env:
           ARABIC_OUTCOME: ${{ steps.arabic.outcome }}
           ENGLISH_OUTCOME: ${{ steps.english.outcome }}
+          MATCHES_OUTCOME: ${{ steps.matches.outcome }}
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           mkdir -p public/reports
@@ -75,30 +84,32 @@ jobs:
           import fs from 'node:fs';
           const arabicOutcome = process.env.ARABIC_OUTCOME || 'unknown';
           const englishOutcome = process.env.ENGLISH_OUTCOME || 'unknown';
+          const matchesOutcome = process.env.MATCHES_OUTCOME || 'unknown';
           const validateOutcome = process.env.VALIDATE_OUTCOME || 'skipped';
-          const ok = arabicOutcome === 'success' && englishOutcome === 'success' && validateOutcome === 'success';
+          const ok = arabicOutcome === 'success' && englishOutcome === 'success' && matchesOutcome === 'success' && validateOutcome === 'success';
           const payload = {
             ok,
             generatedAt: new Date().toISOString(),
-            mode: 'daily-football-news-update-free-bilingual',
+            mode: 'daily-football-news-update-free-hybrid',
             arabicOutcome,
             englishOutcome,
+            matchesOutcome,
             validateOutcome,
             note: ok
-              ? 'Arabic and English football datasets were fetched independently and validated. Headlines remain linked to their original publishers.'
-              : 'Football news was not published because one language fetch or validation failed. The previous trusted datasets remain in place.'
+              ? 'Arabic and English football news plus the hybrid match schedule were fetched and validated. Broadcasters are shown only when verified in the target countries.'
+              : 'Football news or matches were not published because one fetch or validation failed. The previous trusted datasets remain in place.'
           };
           fs.writeFileSync('public/reports/daily-sports-news-status.json', `${JSON.stringify(payload, null, 2)}\n`);
           NODE
 
       - name: Commit validated football data
-        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.validate.outcome == 'success' }}
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.matches.outcome == 'success' && steps.validate.outcome == 'success' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/sports-news-ar.json public/data/sports-news-en.json
+          git add public/data/sports-news-ar.json public/data/sports-news-en.json public/data/football-matches.json
           if git diff --cached --quiet; then
             echo "No football data changes to commit."
           else
@@ -121,11 +132,12 @@ jobs:
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
-      - name: Fail workflow if either language or validation failed
-        if: ${{ always() && (steps.arabic.outcome == 'failure' || steps.english.outcome == 'failure' || steps.validate.outcome == 'failure') }}
+      - name: Fail workflow if a football dataset or validation failed
+        if: ${{ always() && (steps.arabic.outcome == 'failure' || steps.english.outcome == 'failure' || steps.matches.outcome == 'failure' || steps.validate.outcome == 'failure') }}
         run: |
-          echo "Football news update did not pass all guards. The previous datasets were retained."
+          echo "Football news or matches update did not pass all guards. The previous datasets were retained."
           echo "Arabic outcome: ${{ steps.arabic.outcome }}"
           echo "English outcome: ${{ steps.english.outcome }}"
+          echo "Matches outcome: ${{ steps.matches.outcome }}"
           echo "Validation outcome: ${{ steps.validate.outcome }}"
           exit 1

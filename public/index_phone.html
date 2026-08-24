@@ -677,7 +677,7 @@ body.lang-en #frequencies .station-frequency-meta span{
 @media(max-width:430px){#worldcup2026 .wc-archive-summary{grid-template-columns:1fr}}
 </style>
 
-<link rel="stylesheet" href="/assets/maensat-enhancements.css?v=20260824-sports-v4">
+<link rel="stylesheet" href="/assets/maensat-enhancements.css?v=20260824-sports-v5">
 </head>
 <body>
 <!-- Mobile UX upgrade: compact contact header + thumb-friendly bottom navigation -->
@@ -1678,6 +1678,11 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div class="sports-hero-copy"><span class="sports-kicker" data-sports-key="eyebrow">أخبار كرة القدم</span><h2 data-sports-key="title">القسم الرياضي لكرة القدم</h2><p data-sports-key="heroIntro">ننتقي أخبار كرة القدم من مصادر موثوقة، وتفتح كل بطاقة قارئاً داخلياً داخل الموقع.</p></div>
 <div class="sports-hero-orb" aria-hidden="true"><span>⚽</span><small data-sports-key="daily">تحديث يومي</small></div>
 </div>
+<div class="sports-mode-switch" role="tablist" aria-label="محتوى قسم كرة القدم">
+<button type="button" data-sports-mode="news" data-sports-key="newsTab" aria-selected="true" aria-pressed="true">أخبار كرة القدم</button>
+<button type="button" data-sports-mode="matches" data-sports-key="matchesTab" aria-selected="false" aria-pressed="false">المباريات</button>
+</div>
+<div id="sportsNewsPanel">
 <div class="sports-toolbar">
 <div class="sports-filters" role="group" aria-label="تصنيف أخبار كرة القدم">
 <button type="button" data-sports-filter="all" data-sports-key="all" aria-pressed="true">الكل</button>
@@ -1694,6 +1699,23 @@ body.lang-en #frequencies .station-frequency-meta span{
 <div id="sportsEmpty" class="sports-empty" hidden></div>
 <button id="sportsShowMore" class="sports-show-more" type="button" hidden>عرض المزيد</button>
 <p class="sports-source-note"><span data-sports-key="sourceNote">يعرض القارئ الداخلي النص المتاح من الناشر مع ذكر المصدر؛ لا ننسخ المقالات الكاملة بلا ترخيص.</span></p>
+</div>
+<div id="sportsMatchesPanel" hidden>
+<div class="sports-matches-toolbar">
+<div class="sports-matches-windows" role="group" aria-label="فترة المباريات">
+<button type="button" data-matches-window="today" data-sports-key="today" aria-pressed="true">مباريات اليوم</button>
+<button type="button" data-matches-window="tomorrow" data-sports-key="tomorrow" aria-pressed="false">مباريات غداً</button>
+<button type="button" data-matches-window="week" data-sports-key="week" aria-pressed="false">هذا الأسبوع</button>
+</div>
+<div class="sports-matches-actions"><input id="matchesSearch" type="search" placeholder="ابحث عن فريق أو بطولة..." aria-label="ابحث عن فريق أو بطولة..."><button id="matchesRefresh" type="button"><span data-sports-key="matchesRefresh">تحديث المباريات</span></button></div>
+</div>
+<div class="sports-status-row"><span id="sportsMatchesCount"></span><span><span data-sports-key="updated">آخر تحديث</span>: <strong id="sportsMatchesLastUpdated">—</strong></span></div>
+<div id="sportsMatchesStatus" class="sports-status" role="status" aria-live="polite" hidden></div>
+<div id="sportsMatchesGrid" class="sports-matches-grid"></div>
+<div id="sportsMatchesEmpty" class="sports-empty" hidden></div>
+<button id="sportsMatchesShowMore" class="sports-show-more" type="button" hidden>عرض المزيد</button>
+<p class="sports-source-note"><span data-sports-key="matchScheduleNote">المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث.</span></p>
+</div>
 </div>
 </section>
 
@@ -5816,7 +5838,7 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   window.addEventListener('load', bindCatalogButton);
 })();
 </script>
-<script defer src="/assets/sports-news.js?v=20260824-v8"></script>
+<script defer src="/assets/sports-news.js?v=20260824-v9"></script>
 <script defer src="/assets/maensat-enhancements.js?v=20260824-sports-v1"></script>
 </body>
 </html>

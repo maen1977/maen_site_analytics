@@ -5,7 +5,9 @@
     ar: "/data/sports-news-ar.json",
     en: "/data/sports-news-en.json",
   };
+  var MATCHES_URL = "/data/football-matches.json";
   var VISIBLE_STEP = 12;
+  var MATCHES_VISIBLE_STEP = 20;
   var state = {
     loaded: false,
     loading: false,
@@ -17,6 +19,16 @@
     renderedLanguage: "",
     loadedLanguage: "",
     loadingLanguage: "",
+    sportsMode: "news",
+    matchesLoaded: false,
+    matchesLoading: false,
+    matches: [],
+    matchesWindow: "today",
+    matchesQuery: "",
+    matchesVisibleCount: MATCHES_VISIBLE_STEP,
+    matchesGeneratedAt: "",
+    matchesStartDate: "",
+    matchesLoadedLanguage: "",
   };
 
   var TEXT = {
@@ -54,6 +66,22 @@
     articleAttribution: { ar: "المصدر والحقوق محفوظة للناشر الأصلي:", en: "Source and rights remain with the original publisher:" },
     articleExcerpt: { ar: "النص المتاح داخل الموقع", en: "Text available inside this site" },
     sourceOriginal: { ar: "المصدر الأصلي", en: "Original source" },
+    newsTab: { ar: "أخبار كرة القدم", en: "Football news" },
+    matchesTab: { ar: "المباريات", en: "Matches" },
+    today: { ar: "مباريات اليوم", en: "Today" },
+    tomorrow: { ar: "مباريات غداً", en: "Tomorrow" },
+    week: { ar: "هذا الأسبوع", en: "This week" },
+    matchesSearch: { ar: "ابحث عن فريق أو بطولة...", en: "Search a team or competition..." },
+    matchesRefresh: { ar: "تحديث المباريات", en: "Refresh matches" },
+    matchesLoading: { ar: "جاري تحميل المباريات...", en: "Loading matches..." },
+    matchesUnavailable: { ar: "تعذر تحميل المباريات حالياً. سنحاول مجدداً لاحقاً.", en: "Matches are temporarily unavailable. We will try again later." },
+    matchesEmpty: { ar: "لا توجد مباريات متاحة لهذه الفترة أو البحث.", en: "No matches are available for this period or search." },
+    matchesCount: { ar: "مباراة", en: "matches" },
+    matchTime: { ar: "الوقت", en: "Time" },
+    matchBroadcast: { ar: "القنوات الناقلة المؤكدة", en: "Verified broadcasters" },
+    matchNoBroadcast: { ar: "لم يتم التحقق من قناة ناقلة في الأردن وفلسطين ولبنان وسوريا والعراق ومصر.", en: "No broadcaster was verified in Jordan, Palestine, Lebanon, Syria, Iraq, or Egypt." },
+    matchSource: { ar: "مصدر الموعد", en: "Fixture source" },
+    matchScheduleNote: { ar: "المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث.", en: "Fixtures come from free public schedules. A channel is shown only when verified in the selected countries; broadcast rights are never guessed." },
   };
 
   function selectedLanguage() {
@@ -144,6 +172,244 @@
     }
   }
 
+  function scheduleTodayKey() {
+    var parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Asia/Amman",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(new Date());
+    var values = {};
+    parts.forEach(function (part) { if (part.type !== "literal") values[part.type] = part.value; });
+    return values.year + "-" + values.month + "-" + values.day;
+  }
+
+  function addDateKey(dateKey, days) {
+    var date = new Date(dateKey + "T12:00:00Z");
+    if (!Number.isFinite(date.getTime())) return dateKey;
+    date.setUTCDate(date.getUTCDate() + days);
+    return date.toISOString().slice(0, 10);
+  }
+
+  function formatMatchDate(value) {
+    var date = new Date(String(value || "") + "T12:00:00Z");
+    if (!Number.isFinite(date.getTime())) return String(value || "");
+    try {
+      return new Intl.DateTimeFormat(isEnglish() ? "en" : "ar", {
+        timeZone: "Asia/Amman",
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+      }).format(date);
+    } catch (error) {
+      return String(value || "");
+    }
+  }
+
+  function matchStatusText(status) {
+    var labels = {
+      scheduled: { ar: "لم تبدأ", en: "Scheduled" },
+      live: { ar: "مباشرة", en: "Live" },
+      completed: { ar: "انتهت", en: "Completed" },
+      postponed: { ar: "مؤجلة", en: "Postponed" },
+      cancelled: { ar: "ألغيت", en: "Cancelled" },
+    };
+    var item = labels[status] || labels.scheduled;
+    return isEnglish() ? item.en : item.ar;
+  }
+
+  function matchSourceText(match) {
+    var ids = Array.isArray(match.sourceIds) ? match.sourceIds : [];
+    var names = ids.map(function (id) {
+      if (id === "espn-public-soccer") return "ESPN";
+      if (id === "thesportsdb-free") return "TheSportsDB";
+      return id;
+    }).filter(Boolean);
+    return names.join(" + ") || "—";
+  }
+
+  function filteredMatches() {
+    var today = state.matchesStartDate || scheduleTodayKey();
+    var tomorrow = addDateKey(today, 1);
+    var query = cleanText(state.matchesQuery, 100).toLowerCase();
+    return state.matches.filter(function (match) {
+      var dateMatch = state.matchesWindow === "today"
+        ? match.date === today
+        : state.matchesWindow === "tomorrow"
+          ? match.date === tomorrow
+          : match.date >= today && match.date <= addDateKey(today, 7);
+      if (!dateMatch) return false;
+      if (!query) return true;
+      return [match.homeTeam, match.awayTeam, match.competition, match.country].join(" ").toLowerCase().indexOf(query) !== -1;
+    });
+  }
+
+  function renderMatchCard(match) {
+    var card = document.createElement("article");
+    card.className = "sports-match-card";
+    card.setAttribute("dir", displayDirection());
+    card.setAttribute("lang", isEnglish() ? "en" : "ar");
+
+    var top = document.createElement("div");
+    top.className = "sports-match-top";
+    var date = document.createElement("span");
+    date.className = "sports-match-date";
+    date.textContent = formatMatchDate(match.date);
+    top.appendChild(date);
+    var status = document.createElement("span");
+    status.className = "sports-match-status sports-match-status-" + cleanText(match.status, 20);
+    status.textContent = matchStatusText(match.status);
+    top.appendChild(status);
+    card.appendChild(top);
+
+    var competition = document.createElement("p");
+    competition.className = "sports-match-competition";
+    competition.textContent = cleanText(match.competition || "Football", 140);
+    card.appendChild(competition);
+
+    var teams = document.createElement("div");
+    teams.className = "sports-match-teams";
+    var home = document.createElement("strong");
+    home.textContent = cleanText(match.homeTeam, 100);
+    teams.appendChild(home);
+    var versus = document.createElement("span");
+    versus.className = "sports-match-versus";
+    versus.textContent = "vs";
+    teams.appendChild(versus);
+    var away = document.createElement("strong");
+    away.textContent = cleanText(match.awayTeam, 100);
+    teams.appendChild(away);
+    card.appendChild(teams);
+
+    var time = document.createElement("p");
+    time.className = "sports-match-time";
+    time.textContent = languageText("matchTime") + ": " + cleanText(match.time || "—", 20) + " · Asia/Amman";
+    card.appendChild(time);
+
+    var broadcast = document.createElement("div");
+    broadcast.className = "sports-match-broadcast";
+    var broadcastTitle = document.createElement("strong");
+    broadcastTitle.textContent = languageText("matchBroadcast");
+    broadcast.appendChild(broadcastTitle);
+    if (Array.isArray(match.broadcasters) && match.broadcasters.length) {
+      var list = document.createElement("ul");
+      match.broadcasters.slice(0, 8).forEach(function (entry) {
+        var listItem = document.createElement("li");
+        listItem.textContent = cleanText(entry.name, 120) + " — " + cleanText(entry.country, 60);
+        list.appendChild(listItem);
+      });
+      broadcast.appendChild(list);
+    } else {
+      var noBroadcast = document.createElement("p");
+      noBroadcast.className = "sports-match-no-broadcast";
+      noBroadcast.textContent = languageText("matchNoBroadcast");
+      broadcast.appendChild(noBroadcast);
+    }
+    card.appendChild(broadcast);
+
+    var footer = document.createElement("div");
+    footer.className = "sports-match-footer";
+    footer.textContent = languageText("matchSource") + ": " + matchSourceText(match);
+    card.appendChild(footer);
+    return card;
+  }
+
+  function renderMatches() {
+    var grid = document.getElementById("sportsMatchesGrid");
+    var empty = document.getElementById("sportsMatchesEmpty");
+    var more = document.getElementById("sportsMatchesShowMore");
+    var count = document.getElementById("sportsMatchesCount");
+    var updated = document.getElementById("sportsMatchesLastUpdated");
+    if (!grid || !empty) return;
+    renderMatchControls();
+    if (!state.matchesLoaded) return;
+    var items = filteredMatches();
+    grid.textContent = "";
+    empty.hidden = items.length > 0;
+    empty.textContent = items.length ? "" : languageText("matchesEmpty");
+    items.slice(0, state.matchesVisibleCount).forEach(function (match) { grid.appendChild(renderMatchCard(match)); });
+    if (more) {
+      more.hidden = items.length <= state.matchesVisibleCount;
+      more.textContent = languageText("showMore");
+    }
+    if (count) count.textContent = String(items.length) + " " + languageText("matchesCount");
+    if (updated) updated.textContent = state.matchesGeneratedAt ? formatDate(state.matchesGeneratedAt) : "—";
+  }
+
+  function renderMatchControls() {
+    document.querySelectorAll("[data-sports-mode]").forEach(function (button) {
+      var active = button.getAttribute("data-sports-mode") === state.sportsMode;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+      button.setAttribute("aria-selected", active ? "true" : "false");
+    });
+    document.querySelectorAll("[data-matches-window]").forEach(function (button) {
+      var active = button.getAttribute("data-matches-window") === state.matchesWindow;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    var search = document.getElementById("matchesSearch");
+    if (search) {
+      search.placeholder = languageText("matchesSearch");
+      search.setAttribute("aria-label", languageText("matchesSearch"));
+    }
+    var refresh = document.getElementById("matchesRefresh");
+    if (refresh) refresh.setAttribute("aria-label", languageText("matchesRefresh"));
+  }
+
+  function setSportsMode(mode) {
+    state.sportsMode = mode === "matches" ? "matches" : "news";
+    var newsPanel = document.getElementById("sportsNewsPanel");
+    var matchesPanel = document.getElementById("sportsMatchesPanel");
+    if (newsPanel) newsPanel.hidden = state.sportsMode !== "news";
+    if (matchesPanel) matchesPanel.hidden = state.sportsMode !== "matches";
+    renderMatchControls();
+    if (state.sportsMode === "matches") loadMatches(false);
+  }
+
+  async function loadMatches(force) {
+    if (state.matchesLoading) return;
+    if (state.matchesLoaded && !force) {
+      renderMatches();
+      return;
+    }
+    state.matchesLoading = true;
+    var status = document.getElementById("sportsMatchesStatus");
+    if (status) {
+      status.hidden = false;
+      status.classList.remove("sports-status-error");
+      status.textContent = languageText("matchesLoading");
+    }
+    try {
+      var response = await fetch(MATCHES_URL, { credentials: "same-origin", cache: "no-store" });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      var payload = await response.json();
+      if (!payload || !Array.isArray(payload.items)) throw new Error("Invalid matches payload");
+      state.matches = payload.items.filter(function (match) {
+        return match && match.homeTeam && match.awayTeam && /^\d{4}-\d{2}-\d{2}$/.test(match.date);
+      });
+      state.matchesGeneratedAt = cleanText(payload.generatedAt, 60);
+      state.matchesStartDate = /^\d{4}-\d{2}-\d{2}$/.test(payload.window && payload.window.startDate) ? payload.window.startDate : scheduleTodayKey();
+      state.matchesLoaded = true;
+      state.matchesVisibleCount = MATCHES_VISIBLE_STEP;
+      if (status) { status.hidden = true; status.textContent = ""; }
+      renderMatches();
+    } catch (error) {
+      state.matches = [];
+      state.matchesGeneratedAt = "";
+      state.matchesStartDate = "";
+      state.matchesLoaded = true;
+      if (status) {
+        status.hidden = false;
+        status.classList.add("sports-status-error");
+        status.textContent = languageText("matchesUnavailable");
+      }
+      renderMatches();
+    } finally {
+      state.matchesLoading = false;
+    }
+  }
+
   function setLanguageFields(force) {
     var lang = syncDocumentLanguage();
     if (!force && state.renderedLanguage === lang && state.loadedLanguage === lang) return;
@@ -160,10 +426,13 @@
     var refresh = document.getElementById("sportsRefresh");
     if (refresh) refresh.setAttribute("aria-label", languageText("refresh"));
     if (state.loaded && state.loadedLanguage !== lang) {
+      renderMatchControls();
+      renderMatches();
       loadSportsFeature(true);
       return;
     }
     render();
+    renderMatches();
   }
 
   function setStatus(message, isError) {
@@ -496,6 +765,33 @@
     if (refresh) refresh.addEventListener("click", function () {
       loadSportsFeature(true);
     });
+    document.querySelectorAll("[data-sports-mode]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        setSportsMode(button.getAttribute("data-sports-mode"));
+      });
+    });
+    document.querySelectorAll("[data-matches-window]").forEach(function (button) {
+      button.addEventListener("click", function () {
+        state.matchesWindow = button.getAttribute("data-matches-window") || "today";
+        state.matchesVisibleCount = MATCHES_VISIBLE_STEP;
+        renderMatches();
+      });
+    });
+    var matchesSearch = document.getElementById("matchesSearch");
+    if (matchesSearch) matchesSearch.addEventListener("input", function () {
+      state.matchesQuery = matchesSearch.value;
+      state.matchesVisibleCount = MATCHES_VISIBLE_STEP;
+      renderMatches();
+    });
+    var matchesRefresh = document.getElementById("matchesRefresh");
+    if (matchesRefresh) matchesRefresh.addEventListener("click", function () {
+      loadMatches(true);
+    });
+    var matchesMore = document.getElementById("sportsMatchesShowMore");
+    if (matchesMore) matchesMore.addEventListener("click", function () {
+      state.matchesVisibleCount += MATCHES_VISIBLE_STEP;
+      renderMatches();
+    });
   }
 
   function installLanguageBridge() {
@@ -552,6 +848,7 @@
   }
 
   window.loadSportsFeature = loadSportsFeature;
+  window.loadFootballMatches = loadMatches;
   window.refreshSportsNews = function () { loadSportsFeature(true); };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
