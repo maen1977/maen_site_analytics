@@ -4,7 +4,7 @@
 
   var VALID_PAGES = [
     "home", "devices", "softwares", "maintenance", "works",
-    "receiverSoftware", "frequencies", "sports", "worldcup2026", "contact"
+    "receiverSoftware", "frequencies", "sports", "sportsArticle", "worldcup2026", "contact"
   ];
   var eventTimers = {};
 
@@ -36,7 +36,8 @@
 
   function hashPage() {
     var value = safeText(window.location.hash).replace(/^#/, "");
-    return VALID_PAGES.indexOf(value) >= 0 ? value : "";
+    if (VALID_PAGES.indexOf(value) >= 0) return value;
+    return /^sports-news\/[a-f0-9]{8,80}$/i.test(value) && document.getElementById("sportsArticle") ? "sportsArticle" : "";
   }
 
   function currentPage() {

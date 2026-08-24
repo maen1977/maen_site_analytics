@@ -10,19 +10,21 @@ const NEWS_MAX_AGE_HOURS = 96;
 const MAX_ITEMS = 90;
 const MIN_ITEMS = 8;
 const MALA3B_DETAIL_LIMIT = 18;
+const ARTICLE_CONTENT_MAX = 1800;
 
 const EUROPE_KEYWORDS = /أوروبا|الأوروبي|الإنجليزي|الإنكليزي|الإسباني|الإيطالي|الألماني|الفرنسي|الدوري الإنجليزي|الدوري الإسباني|الدوري الإيطالي|الدوري الألماني|الدوري الفرنسي|دوري أبطال أوروبا|الدوري الأوروبي|البريميرليغ|البريميرليج|الليغا|لاليغا|لا ليغا|تشامبيونز|برشلونة|ريال مدريد|ليفربول|نيوكاسل|مانشستر|تشيلسي|أرسنال|بايرن|بوروسيا|باريس سان جيرمان|ميلان|إنتر ميلان|يوفنتوس|طرابزون|باشاك شهير|uefa|premier league|la liga|bundesliga|serie a|ligue 1/i;
-const SPORTS_TITLE_KEYWORDS = /رياضة|رياضي|كرة القدم|كرة السلة|كرة الطائرة|كرة اليد|تنس|ملاكمة|مصارعة|فورمولا|سباق|دوري|منتخب|بطولة|مباراة|فيفا|يويفا|أولمبي|ألعاب القوى|الرياضات الإلكترونية|ميسي|برشلونة|ريال مدريد|ليفربول|نيوكاسل|الزمالك|الأهلي|بيراميدز|فريق|لاعب|مدرب|شباك|الدوري|النادي|nba|fifa|uefa/i;
+const NON_FOOTBALL_KEYWORDS = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic/i;
+const FOOTBALL_KEYWORDS = /كرة القدم|كرة قدم|football|soccer|فيفا|fifa|يويفا|uefa|الدوري|مباراة|مباريات|منتخب|نادي|لاعب|مدرب|مهاجم|حارس|فريق|شباك|تشكيلة|ركلة|هدف|أهداف|انتقال|قميص|ملعب|بطولة كأس|كأس العالم|الكأس|اتحاد كرة القدم|الفيصلي|الوحدات|الرمثا|الحسين|السلط|الجزيرة|شباب الأردن|الزمالك|الأهلي|بيراميدز|برشلونة|ريال مدريد|ليفربول|مانشستر|نيوكاسل|طرابزون|باشاك شهير|ميسي|رونالدو|اتحاد جدة|نيوم|القادسية|الهلال|النصر|الشباب|التعاون|ضمك|الرائد|الخليج/i;
 
 const SOURCES = [
   {
     id: "okaz-arabic-sport",
-    name: "عكاظ - رياضة",
+    name: "عكاظ - كرة القدم",
     url: "https://www.okaz.com.sa/rssFeed/0",
     language: "ar",
     isSports(item) {
       try {
-        return /\/(?:sport|esports)\//i.test(new URL(item.url).pathname);
+        return /\/(?:sport|esports)\//i.test(new URL(item.url).pathname) && isFootballHeadline(`${item.title} ${item.description}`);
       } catch {
         return false;
       }
@@ -33,11 +35,11 @@ const SOURCES = [
   },
   {
     id: "masryalyoum-arabic-sport",
-    name: "المصري اليوم - رياضة",
+    name: "المصري اليوم - كرة القدم",
     url: "https://www.almasryalyoum.com/rss/rssfeed",
     language: "ar",
     isSports(item) {
-      return SPORTS_TITLE_KEYWORDS.test(item.title) || hasArabicToken(item.title, "صلاح");
+      return isFootballHeadline(`${item.title} ${item.description}`);
     },
     categoryFor(item) {
       return EUROPE_KEYWORDS.test(`${item.title} ${item.description} ${item.url}`) ? "europe" : "global";
@@ -45,12 +47,12 @@ const SOURCES = [
   },
   {
     id: "almala3b-jordan-sport",
-    name: "الملاعب الرياضي - الأردن",
+    name: "الملاعب الرياضي - الأردن - كرة القدم",
     url: "https://www.al-mala3b.net/rss.php",
     language: "ar",
     kind: "mala3b",
-    isSports() {
-      return true;
+    isSports(item) {
+      return isFootballHeadline(item.title);
     },
     categoryFor() {
       return "jordan";
@@ -60,6 +62,16 @@ const SOURCES = [
 
 function hasArabicToken(value, token) {
   return new RegExp(`(?:^|[^\\p{L}])${token}(?:$|[^\\p{L}])`, "iu").test(String(value ?? ""));
+}
+
+function isFootballHeadline(value) {
+  const text = String(value ?? "");
+  return !NON_FOOTBALL_KEYWORDS.test(text) && (FOOTBALL_KEYWORDS.test(text) || hasArabicToken(text, "صلاح"));
+}
+
+function extractMala3bArticleContent(html) {
+  const match = String(html ?? "").match(/<div\b[^>]*id\s*=\s*["']newscontent["'][^>]*>([\s\S]*?)<\/div>/i);
+  return match ? cleanText(match[1], ARTICLE_CONTENT_MAX) : "";
 }
 
 function decodeEntities(value) {
@@ -197,21 +209,24 @@ function toNewsItem(raw, source, overrides = {}) {
   const url = validHttpsUrl(raw.url);
   const title = cleanText(raw.title, 180);
   const summary = cleanText(overrides.summary || raw.description, 360);
+  const content = cleanText(overrides.content || raw.description, ARTICLE_CONTENT_MAX);
   const image = validHttpsUrl(overrides.image || raw.image);
   const publishedMs = overrides.publishedMs ?? raw.publishedMs;
-  if (!url || !title || !summary || !Number.isFinite(publishedMs) || publishedMs <= 0) return null;
+  if (!url || !title || !summary || !content || !Number.isFinite(publishedMs) || publishedMs <= 0) return null;
   if (/[<>]/.test(title) || /[<>]/.test(summary) || !/[\u0600-\u06FF]/.test(`${title} ${summary}`)) return null;
   const id = crypto.createHash("sha256").update(`${source.id}\n${url}\n${title}`).digest("hex").slice(0, 20);
   return {
     id,
     title,
     summary,
+    content,
+    contentType: overrides.contentType || "rss-excerpt",
     url,
     image: image || null,
     sourceId: source.id,
     sourceName: source.name,
     category: source.categoryFor(raw),
-    sport: inferSport(raw, source),
+    sport: "football",
     categories: raw.categories.slice(0, 8),
     publishedAt: new Date(publishedMs).toISOString(),
     language: source.language,
@@ -247,20 +262,30 @@ async function fetchRssSource(source) {
 
 async function fetchMala3bSource(source) {
   const indexBody = await fetchText(source.url);
-  const entries = parseMala3bIndex(indexBody, source);
+  const entries = parseMala3bIndex(indexBody, source).filter((entry) => source.isSports(entry));
   const detailed = await Promise.all(entries.map(async (entry) => {
     try {
       const body = await fetchText(entry.url);
       const dateMatch = body.match(/<span\b[^>]*class\s*=\s*["'][^"']*date[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
       const publishedMs = parseMala3bDate(dateMatch ? dateMatch[1] : "");
       const summary = metaContent(body, "og:description") || metaContent(body, "description");
+      const articleContent = extractMala3bArticleContent(body);
       const image = metaContent(body, "og:image");
-      return toNewsItem({ ...entry, description: summary, publishedMs, categories: [] }, source, { summary, publishedMs, image });
+      return toNewsItem({ ...entry, description: summary, publishedMs, categories: [] }, source, {
+        summary,
+        content: articleContent || summary,
+        contentType: articleContent ? "publisher-article" : "metadata-excerpt",
+        publishedMs,
+        image,
+      });
     } catch {
       return null;
     }
   }));
-  return detailed.filter(Boolean).filter((item) => Date.now() - Date.parse(item.publishedAt) <= NEWS_MAX_AGE_HOURS * 60 * 60 * 1000);
+  return detailed
+    .filter(Boolean)
+    .filter((item) => isFootballHeadline(`${item.title} ${item.content}`))
+    .filter((item) => Date.now() - Date.parse(item.publishedAt) <= NEWS_MAX_AGE_HOURS * 60 * 60 * 1000);
 }
 
 async function fetchSource(source) {
@@ -297,19 +322,22 @@ const categories = new Set(items.map((item) => item.category));
 const successfulSources = results.filter((result) => result.items.length > 0);
 const failedSources = results.filter((result) => result.error).map((result) => ({ id: result.source.id, error: result.error }));
 const allArabic = items.length > 0 && items.every((item) => item.language === "ar" && /[\u0600-\u06FF]/.test(`${item.title} ${item.summary}`));
+const allFootball = items.length > 0 && items.every((item) => item.sport === "football");
 
 if (
   items.length < MIN_ITEMS ||
   !categories.has("global") ||
   !categories.has("europe") ||
   !categories.has("jordan") ||
-  !allArabic
+  !allArabic ||
+  !allFootball
 ) {
   const details = JSON.stringify(
     {
       itemCount: items.length,
       categories: [...categories],
       allArabic,
+      allFootball,
       successfulSources: successfulSources.map((result) => result.source.id),
       failedSources,
     },

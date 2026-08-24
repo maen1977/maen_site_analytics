@@ -18,6 +18,7 @@ assert.ok(Array.isArray(items) && items.length >= 8 && items.length <= 90, "spor
 assert.equal(data.itemCount, items.length, "sports itemCount must match the items array");
 assert.ok(["global", "europe", "jordan"].every((category) => items.some((item) => item.category === category)), "sports dataset must cover global, Europe, and Jordan");
 assert.ok(sources.every((source) => source.ok && source.itemCount > 0 && source.feedUrl && /^https:\/\//i.test(source.feedUrl)), "every approved Arabic source must be live and non-empty");
+assert.ok(sources.every((source) => /كرة القدم/i.test(source.name)), "every sports source must be labelled football");
 
 const ids = new Set();
 const urls = new Set();
@@ -26,10 +27,13 @@ for (const item of items) {
   assert.ok(item.url && /^https:\/\//i.test(item.url) && !urls.has(item.url), "sports item URLs must be unique HTTPS URLs");
   assert.ok(sourceIds.has(item.sourceId), "sports item source must be declared");
   assert.equal(item.language, "ar", "every sports item must be marked Arabic");
+  assert.equal(item.sport, "football", "every sports item must be football");
   assert.ok(/[\u0600-\u06FF]/.test(`${item.title} ${item.summary}`), "every sports item must contain Arabic text");
+  assert.ok(item.content && item.content.length <= 1800, "every football item must have bounded internal content");
+  assert.ok(["rss-excerpt", "metadata-excerpt", "publisher-article"].includes(item.contentType), "football item has an unknown content type");
   assert.ok(["global", "europe", "jordan"].includes(item.category), "sports item has an unknown category");
   assert.ok(item.title && item.summary, "sports item title and summary are required");
-  assert.ok(!/[<>]/.test(item.title) && !/[<>]/.test(item.summary), "sports text must not contain HTML tags");
+  assert.ok(!/[<>]/.test(item.title) && !/[<>]/.test(item.summary) && !/[<>]/.test(item.content), "sports text must not contain HTML tags");
   assert.ok(!item.image || /^https:\/\//i.test(item.image), "sports image URLs must be HTTPS when present");
   if (item.image) assert.ok(allowedImageHosts.has(new URL(item.image).hostname), "sports image host is not in the CSP allowlist");
   ids.add(item.id);

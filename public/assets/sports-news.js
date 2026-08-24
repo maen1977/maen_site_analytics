@@ -14,13 +14,13 @@
   };
 
   var TEXT = {
-    nav: { ar: "الرياضة", en: "Sports" },
-    eyebrow: { ar: "أخبار الرياضة", en: "Sports News" },
-    title: { ar: "القسم الرياضي", en: "Sports Desk" },
-    intro: { ar: "أخبار الرياضة العالمية والأوروبية والأردنية في مكان واحد.", en: "Global, European, and Jordanian sports news in one place." },
+    nav: { ar: "كرة القدم", en: "Football" },
+    eyebrow: { ar: "أخبار كرة القدم", en: "Football News" },
+    title: { ar: "القسم الرياضي لكرة القدم", en: "Football Desk" },
+    intro: { ar: "أخبار كرة القدم العالمية والأوروبية والأردنية في مكان واحد.", en: "Global, European, and Jordanian football news in one place." },
     daily: { ar: "تحديث يومي", en: "Daily update" },
-    heroTitle: { ar: "آخر الأخبار الرياضية", en: "Latest sports headlines" },
-    heroIntro: { ar: "ننتقي العناوين من مصادر إخبارية موثوقة، مع رابط مباشر للمصدر الأصلي.", en: "Curated headlines from trusted news sources, with a direct link to the original publisher." },
+    heroTitle: { ar: "آخر أخبار كرة القدم", en: "Latest football news" },
+    heroIntro: { ar: "ننتقي أخبار كرة القدم من مصادر موثوقة، وتفتح كل بطاقة قارئاً داخلياً داخل الموقع.", en: "Curated football news from trusted sources; every card opens an internal reader." },
     all: { ar: "الكل", en: "All" },
     global: { ar: "عالمي", en: "Global" },
     europe: { ar: "أوروبا", en: "Europe" },
@@ -28,17 +28,25 @@
     football: { ar: "كرة القدم", en: "Football" },
     basketball: { ar: "كرة السلة", en: "Basketball" },
     other: { ar: "رياضات أخرى", en: "Other sports" },
-    search: { ar: "ابحث في الأخبار الرياضية...", en: "Search sports news..." },
+    search: { ar: "ابحث في أخبار كرة القدم...", en: "Search football news..." },
     refresh: { ar: "تحديث الأخبار", en: "Refresh news" },
-    loading: { ar: "جاري تحميل الأخبار الرياضية...", en: "Loading sports news..." },
+    loading: { ar: "جاري تحميل أخبار كرة القدم...", en: "Loading football news..." },
     updated: { ar: "آخر تحديث", en: "Last updated" },
-    read: { ar: "قراءة الخبر من المصدر", en: "Read at source" },
+    read: { ar: "فتح الخبر داخل الموقع", en: "Open internal story" },
     showMore: { ar: "عرض المزيد", en: "Show more" },
     noResults: { ar: "لا توجد أخبار مطابقة لهذا التصنيف أو البحث.", en: "No news matches this category or search." },
-    unavailable: { ar: "تعذر تحميل الأخبار حالياً. سنحاول مجدداً لاحقاً.", en: "Sports news is temporarily unavailable. We will try again later." },
+    unavailable: { ar: "تعذر تحميل أخبار كرة القدم حالياً. سنحاول مجدداً لاحقاً.", en: "Football news is temporarily unavailable. We will try again later." },
     source: { ar: "المصدر", en: "Source" },
-    sourceNote: { ar: "العناوين والملخصات العربية قصيرة، والقراءة الكاملة من المصدر الأصلي.", en: "Arabic headlines and excerpts are brief; read the full story at the original source." },
-    articles: { ar: "خبر", en: "articles" },
+    sourceNote: { ar: "يعرض القارئ الداخلي النص المتاح من الناشر مع ذكر المصدر؛ لا ننسخ المقالات الكاملة بلا ترخيص.", en: "The internal reader shows the publisher-provided text with attribution; full articles are not mirrored without permission." },
+    articles: { ar: "خبر كرة قدم", en: "football stories" },
+    articleLabel: { ar: "خبر كرة القدم", en: "Football story" },
+    articleInternal: { ar: "قراءة داخل الموقع", en: "Internal reader" },
+    backToSports: { ar: "رجوع إلى كرة القدم", en: "Back to football" },
+    articleLoading: { ar: "جاري فتح الخبر داخل الموقع...", en: "Opening the internal story..." },
+    articleMissing: { ar: "هذا الخبر غير متاح حالياً ضمن آخر تحديث.", en: "This story is not available in the latest update." },
+    articleAttribution: { ar: "المصدر والحقوق محفوظة للناشر الأصلي:", en: "Source and rights remain with the original publisher:" },
+    articleExcerpt: { ar: "النص المتاح داخل الموقع", en: "Text available inside this site" },
+    sourceOriginal: { ar: "المصدر الأصلي", en: "Original source" },
   };
 
   function isEnglish() {
@@ -142,6 +150,100 @@
     return badge;
   }
 
+  function articleIdFromHash() {
+    var match = (window.location.hash || "").match(/^#sports-news\/([a-f0-9]{8,80})$/i);
+    return match ? match[1] : "";
+  }
+
+  function setArticleStatus(message, isError) {
+    var status = document.getElementById("sportsArticleStatus");
+    if (!status) return;
+    status.textContent = message;
+    status.classList.toggle("sports-status-error", !!isError);
+    status.hidden = !message;
+  }
+
+  function renderArticle(item) {
+    var root = document.getElementById("sportsArticleContent");
+    if (!root) return;
+    root.textContent = "";
+    if (!item) {
+      setArticleStatus(languageText("articleMissing"), true);
+      return;
+    }
+    setArticleStatus("", false);
+    var article = document.createElement("article");
+    article.className = "sports-article-card";
+    article.setAttribute("dir", item.language === "ar" ? "rtl" : "ltr");
+    article.setAttribute("lang", item.language === "ar" ? "ar" : "en");
+
+    var meta = document.createElement("div");
+    meta.className = "sports-article-meta";
+    meta.textContent = cleanText(item.sourceName, 100) + " · " + formatDate(item.publishedAt);
+    article.appendChild(meta);
+
+    var title = document.createElement("h1");
+    title.textContent = cleanText(item.title, 180);
+    article.appendChild(title);
+
+    var imageUrl = validUrl(item.image);
+    if (imageUrl) {
+      var image = document.createElement("img");
+      image.className = "sports-article-image";
+      image.src = imageUrl;
+      image.alt = cleanText(item.title, 160);
+      image.loading = "eager";
+      image.decoding = "async";
+      image.referrerPolicy = "no-referrer";
+      image.addEventListener("error", function () { image.remove(); }, { once: true });
+      article.appendChild(image);
+    }
+
+    var label = document.createElement("h2");
+    label.textContent = languageText("articleExcerpt");
+    article.appendChild(label);
+    var content = document.createElement("p");
+    content.className = "sports-article-body";
+    content.textContent = cleanText(item.content || item.summary, 1800);
+    article.appendChild(content);
+
+    var attribution = document.createElement("p");
+    attribution.className = "sports-article-attribution";
+    attribution.textContent = languageText("articleAttribution") + " " + cleanText(item.sourceName, 100);
+    article.appendChild(attribution);
+
+    var sourceLink = document.createElement("a");
+    sourceLink.className = "sports-article-source-link";
+    sourceLink.href = validUrl(item.url) || "#sports";
+    sourceLink.target = "_blank";
+    sourceLink.rel = "noopener noreferrer";
+    sourceLink.textContent = languageText("sourceOriginal");
+    sourceLink.setAttribute("aria-label", languageText("sourceOriginal") + ": " + cleanText(item.title, 120));
+    article.appendChild(sourceLink);
+    root.appendChild(article);
+  }
+
+  function openArticle(itemId, replaceHistory) {
+    if (!state.loaded) {
+      setArticleStatus(languageText("articleLoading"), false);
+      loadSportsFeature(false).then(function () { openArticle(itemId, replaceHistory); });
+      return;
+    }
+    var item = state.items.find(function (entry) { return entry.id === itemId; });
+    if (!replaceHistory && item && window.history && window.history.pushState) {
+      window.history.pushState({ page: "sportsArticle", articleId: item.id }, "", "#sports-news/" + item.id);
+    }
+    if (typeof window.showPage === "function") window.showPage("sportsArticle", true);
+    renderArticle(item);
+  }
+
+  function openArticleFromHash() {
+    var itemId = articleIdFromHash();
+    if (!itemId) return false;
+    openArticle(itemId, true);
+    return true;
+  }
+
   function createCard(item, featured) {
     var article = document.createElement("article");
     article.className = featured ? "sports-card sports-card-featured" : "sports-card";
@@ -173,12 +275,14 @@
     source.textContent = cleanText(item.sourceName, 80) + " · " + formatDate(item.publishedAt);
     footer.appendChild(source);
     var link = document.createElement("a");
-    var articleUrl = validUrl(item.url);
-    link.href = articleUrl || "#sports";
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    link.href = item.id ? "#sports-news/" + item.id : "#sports";
     link.textContent = languageText("read");
     link.setAttribute("aria-label", languageText("read") + ": " + cleanText(item.title, 120));
+    link.addEventListener("click", function (event) {
+      if (!item.id) return;
+      event.preventDefault();
+      openArticle(item.id, false);
+    });
     footer.appendChild(link);
     body.appendChild(footer);
     article.appendChild(body);
@@ -245,6 +349,8 @@
         id: cleanText(item.id, 80),
         title: title,
         summary: summary,
+        content: cleanText(item.content || item.summary, 1800),
+        contentType: cleanText(item.contentType, 40) || "rss-excerpt",
         url: validUrl(item.url),
         image: validUrl(item.image),
         sourceName: cleanText(item.sourceName, 100) || "Sports source",
@@ -275,6 +381,8 @@
       state.visibleCount = VISIBLE_STEP;
       setStatus("", false);
       render();
+      var articleId = articleIdFromHash();
+      if (articleId) renderArticle(items.find(function (item) { return item.id === articleId; }));
     } catch (error) {
       state.loaded = true;
       setStatus(languageText("unavailable"), true);
@@ -313,11 +421,20 @@
     bindControls();
     setLanguageFields();
     window.addEventListener("hashchange", function () {
-      if ((window.location.hash || "").replace(/^#/, "") === "sports") loadSportsFeature(false);
+      var hash = window.location.hash || "";
+      if (hash.replace(/^#/, "") === "sports") loadSportsFeature(false);
+      else if (articleIdFromHash()) openArticleFromHash();
+    });
+    window.addEventListener("popstate", function () {
+      if (articleIdFromHash()) openArticleFromHash();
     });
     document.addEventListener("click", function (event) {
       var target = event.target && event.target.closest ? event.target.closest("#langArBtn, #langEnBtn") : null;
-      if (target) window.setTimeout(setLanguageFields, 0);
+      if (target) window.setTimeout(function () {
+        setLanguageFields();
+        var articleId = articleIdFromHash();
+        if (articleId && state.loaded) renderArticle(state.items.find(function (item) { return item.id === articleId; }));
+      }, 0);
     }, true);
     if (window.MutationObserver) {
       var observer = new MutationObserver(function () { setLanguageFields(); });
@@ -325,6 +442,7 @@
       if (document.body) observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
     }
     if ((window.location.hash || "").replace(/^#/, "") === "sports") loadSportsFeature(false);
+    else if (articleIdFromHash()) openArticleFromHash();
   }
 
   window.loadSportsFeature = loadSportsFeature;

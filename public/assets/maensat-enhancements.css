@@ -437,3 +437,112 @@
   #sports .sports-card-featured h3 { font-size: 21px; }
   #sports .sports-grid { grid-template-columns: 1fr; }
 }
+
+
+/* Internal football story reader. */
+#sportsArticle.sports-article-page {
+  background:
+    radial-gradient(circle at 85% 8%, rgba(19, 136, 255, .1), transparent 24%),
+    #f5f8fc;
+}
+
+#sportsArticle .sports-article-section {
+  max-width: 980px;
+}
+
+#sportsArticle .sports-article-content {
+  min-height: 240px;
+}
+
+#sportsArticle .sports-article-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(22px, 4vw, 48px);
+  color: #10263e;
+  border: 1px solid rgba(7, 19, 34, .1);
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgba(15, 35, 70, .1);
+}
+
+#sportsArticle .sports-article-meta {
+  margin-bottom: 14px;
+  color: #687b90;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+#sportsArticle .sports-article-card h1 {
+  margin: 0 0 24px;
+  color: #0a3156;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.25;
+  font-weight: 1000;
+}
+
+#sportsArticle .sports-article-image {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  margin: 0 0 28px;
+  object-fit: cover;
+  border-radius: 20px;
+  background: #eaf0f5;
+}
+
+#sportsArticle .sports-article-card h2 {
+  margin: 0 0 12px;
+  color: #087f8c;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+#sportsArticle .sports-article-body {
+  margin: 0;
+  color: #344f69;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 2;
+  font-weight: 650;
+}
+
+#sportsArticle .sports-article-attribution {
+  margin: 28px 0 12px;
+  padding-top: 18px;
+  color: #52667d;
+  border-top: 1px solid rgba(7, 19, 34, .1);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+#sportsArticle .sports-article-source-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  padding: 10px 16px;
+  color: #fff;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #0b5c78, #087f8c);
+  font-weight: 1000;
+  text-decoration: none;
+}
+
+#sportsArticle .sports-article-source-link:hover {
+  filter: brightness(1.08);
+}
+
+@media (max-width: 900px) {
+  #sportsArticle .sports-article-section {
+    padding: 16px 12px calc(var(--mobile-nav-height, 68px) + 28px);
+  }
+  #sportsArticle .sports-article-card {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+  #sportsArticle .sports-article-card h1 {
+    font-size: 28px;
+  }
+  #sportsArticle .sports-article-body {
+    font-size: 16px;
+    line-height: 1.9;
+  }
+}
