@@ -4,7 +4,7 @@
 
   var VALID_PAGES = [
     "home", "devices", "softwares", "maintenance", "works",
-    "receiverSoftware", "frequencies", "worldcup2026", "contact"
+    "receiverSoftware", "frequencies", "sports", "worldcup2026", "contact"
   ];
   var eventTimers = {};
 

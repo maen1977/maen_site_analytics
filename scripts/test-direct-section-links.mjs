@@ -19,6 +19,7 @@ const validPages = [
   "works",
   "receiverSoftware",
   "frequencies",
+  "sports",
   "worldcup2026",
   "contact",
 ];

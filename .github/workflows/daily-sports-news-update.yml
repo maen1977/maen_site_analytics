@@ -1,0 +1,118 @@
+name: Daily sports news update
+
+on:
+  schedule:
+    # Once every 24 hours; 05:35 UTC is about 08:35 in Jordan when UTC+3 applies.
+    - cron: '35 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: daily-sports-news-update
+  cancel-in-progress: false
+
+jobs:
+  update-sports-news:
+    name: Fetch and publish sports news
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+
+      - name: Verify Node runtime
+        run: node --version
+
+      - name: Check sports updater and dataset validator
+        run: |
+          node --check scripts/update-sports-news.mjs
+          node --check scripts/test-sports-news.mjs
+
+      - name: Update sports news dataset
+        id: sports
+        continue-on-error: true
+        run: npm run github:update-sports
+
+      - name: Validate sports news dataset
+        id: validate
+        if: ${{ always() && steps.sports.outcome == 'success' }}
+        continue-on-error: true
+        run: node scripts/test-sports-news.mjs
+
+      - name: Write sports workflow status
+        if: ${{ always() }}
+        env:
+          SPORTS_OUTCOME: ${{ steps.sports.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+        run: |
+          mkdir -p public/reports
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const sportsOutcome = process.env.SPORTS_OUTCOME || 'unknown';
+          const validateOutcome = process.env.VALIDATE_OUTCOME || 'skipped';
+          const ok = sportsOutcome === 'success' && validateOutcome === 'success';
+          const payload = {
+            ok,
+            generatedAt: new Date().toISOString(),
+            mode: 'daily-sports-news-update',
+            sportsOutcome,
+            validateOutcome,
+            note: ok
+              ? 'Sports news was fetched and validated. Headlines remain linked to their original publishers.'
+              : 'Sports news was not published because fetching or validation failed. The previous trusted dataset remains in place.'
+          };
+          fs.writeFileSync('public/reports/daily-sports-news-status.json', `${JSON.stringify(payload, null, 2)}\n`);
+          NODE
+
+      - name: Commit validated sports data
+        if: ${{ always() && steps.sports.outcome == 'success' && steps.validate.outcome == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/sports-news.json
+          if git diff --cached --quiet; then
+            echo "No sports data changes to commit."
+          else
+            git commit -m "Update daily sports news"
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+          fi
+
+      - name: Commit sports workflow status
+        if: ${{ always() }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/reports/daily-sports-news-status.json
+          if git diff --cached --quiet; then
+            echo "No sports status changes to commit."
+          else
+            git commit -m "Update sports news workflow status"
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+          fi
+
+      - name: Fail workflow if sports update failed
+        if: ${{ always() && (steps.sports.outcome == 'failure' || steps.validate.outcome == 'failure') }}
+        run: |
+          echo "Sports news update did not pass all guards. The previous dataset was retained."
+          echo "sports outcome: ${{ steps.sports.outcome }}"
+          echo "validation outcome: ${{ steps.validate.outcome }}"
+          exit 1
