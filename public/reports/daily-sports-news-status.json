@@ -1,9 +1,9 @@
 {
-  "ok": false,
-  "generatedAt": "2026-08-24T08:22:09.612Z",
-  "mode": "daily-sports-news-update",
-  "sportsOutcome": "success",
-  "translateOutcome": "failure",
-  "validateOutcome": "skipped",
-  "note": "Sports news was not published because fetching or validation failed. The previous trusted dataset remains in place."
+  "ok": true,
+  "generatedAt": "2026-08-24T11:18:00.631Z",
+  "mode": "daily-football-news-update-free-bilingual",
+  "arabicOutcome": "success",
+  "englishOutcome": "success",
+  "validateOutcome": "success",
+  "note": "Arabic and English football datasets were fetched independently and validated. Headlines remain linked to their original publishers."
 }
