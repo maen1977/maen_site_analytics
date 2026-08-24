@@ -7,14 +7,21 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(ROOT, "public/data/football-matches.json");
 const TIME_ZONE = "Asia/Amman";
 const FILGOAL_TIME_ZONE = "Africa/Cairo";
+const KOOORA_TIME_ZONE = "Asia/Riyadh";
 const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard";
 const SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/123";
 const FILGOAL_BASE = "https://www.filgoal.com/matches";
+const KOOORA_HOME = "https://www.kooora.com/";
+const BEIN_FAQ_URL = "https://www.bein.com/en/general-faq/";
+const BEIN_CHANNEL_LIST_URL = "https://www.bein.com/en/channel-list/";
+const AD_SPORTS_OFFICIAL_URL = "https://www.admn.ae/en/brand/4197607/abu-dhabi-sports";
+const ON_SPORT_OFFICIAL_URL = "https://www.facebook.com/OnTimeSports/";
 const DAYS_AHEAD = 7;
 const FETCH_TIMEOUT_MS = 20000;
 const TARGET_BROADCAST_COUNTRIES = new Set(["Jordan", "Palestine", "Lebanon", "Syria", "Iraq", "Egypt"]);
 const ACCESS_TYPES = new Set(["fta", "encrypted", "unknown"]);
 const EVIDENCE_LEVELS = new Set(["official", "editorial", "corroborated"]);
+const ARABIC_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
 
 const pad = (value) => String(value).padStart(2, "0");
 const isoDate = (date) => `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}`;
@@ -215,33 +222,44 @@ async function fetchSportsDbDay(queryDate) {
   return (payload.events || []).map((event) => toSportsDbMatch(event, queryDate)).filter(Boolean);
 }
 
-function classifyAccessType(channelName, sourceName) {
-  const channel = String(channelName || "").toLowerCase();
-  const source = String(sourceName || "").toLowerCase();
-  if (source.includes("official") && /bein\s*\.?\s*sports\s*(?:[1-9]|max|xtra)/i.test(channel) && /subscription|encrypted|paid|مشفر|مدفوع/i.test(source)) return "encrypted";
+function classifyAccessType(channelName) {
+  const channel = String(channelName || "").replace(/\s+/g, " ").trim();
+  if (/^beIN\s+SPORTS(?:\s+NEWS)?$/i.test(channel)) return "fta";
+  if (/^beIN\s+SPORTS\s+(?:[1-9]|MAX\s*[1-6])(?:\s+HD)?$/i.test(channel)) return "encrypted";
   return "unknown";
 }
 
-function broadcasterEntry({ name, country, sourceName, sourceUrl, evidenceLevel }) {
+function broadcasterEntry({ name, country, sourceName, sourceUrl, evidenceLevel, accessType, accessSourceName, accessSourceUrl }) {
   const cleanName = compact(name, 120);
   const cleanCountry = compact(country, 60);
   const cleanSourceUrl = String(sourceUrl || "");
   if (!cleanName || !TARGET_BROADCAST_COUNTRIES.has(cleanCountry) || !/^https:\/\//i.test(cleanSourceUrl)) return null;
-  const accessType = classifyAccessType(cleanName, sourceName);
-  if (!ACCESS_TYPES.has(accessType) || !EVIDENCE_LEVELS.has(evidenceLevel)) return null;
-  return {
+  const inferredAccessType = accessType || classifyAccessType(cleanName);
+  if (!ACCESS_TYPES.has(inferredAccessType) || !EVIDENCE_LEVELS.has(evidenceLevel)) return null;
+  const cleanAccessSourceUrl = String(accessSourceUrl || "");
+  if (cleanAccessSourceUrl && !/^https:\/\//i.test(cleanAccessSourceUrl)) return null;
+  const result = {
     name: cleanName,
     nameAr: cleanName,
     nameEn: cleanName,
     country: cleanCountry,
     region: cleanCountry,
-    accessType,
+    accessType: inferredAccessType,
     verified: true,
     evidenceLevel,
     sourceName: compact(sourceName, 120),
     sourceUrl: cleanSourceUrl,
     verifiedAt: new Date().toISOString(),
   };
+  const isBeinChannel = /^beIN\s+SPORTS/i.test(cleanName);
+  if (isBeinChannel && inferredAccessType !== "unknown" && !cleanAccessSourceUrl) {
+    result.accessSourceName = "beIN official FAQ and channel list";
+    result.accessSourceUrl = BEIN_FAQ_URL;
+  } else if (cleanAccessSourceUrl) {
+    result.accessSourceName = compact(accessSourceName || "Official access information", 120);
+    result.accessSourceUrl = cleanAccessSourceUrl;
+  }
+  return result;
 }
 
 async function fetchSportsDbTv(eventId) {
@@ -267,7 +285,7 @@ const FILGOAL_COMPETITION_HINTS = [
   [/الدوري الألماني/, "german-bundesliga"],
   [/الدوري الفرنسي/, "french-ligue-1"],
   [/الدوري التركي/, "turkish-super-lig"],
-  [/الدوري السعودي/, "saudi-pro-league"],
+  [/الدوري السعودي|دوري روشن السعودي/, "saudi-pro-league"],
   [/الدوري البرتغالي/, "portuguese-primeira-liga"],
   [/الدوري المصري/, "egyptian-premier-league"],
   [/دوري أبطال أوروبا/, "uefa-champions-league"],
@@ -316,6 +334,87 @@ async function fetchFilGoalDay(queryDate) {
   return parseFilGoalMatches(html, queryDate);
 }
 
+function htmlText(value) {
+  return decodeHtml(String(value || "")
+    .replace(/<br\s*\/?\s*>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")).trim();
+}
+
+function koooraDailyTitle(queryDate) {
+  const date = new Date(`${queryDate}T12:00:00Z`);
+  if (!Number.isFinite(date.getTime())) return "";
+  const parts = localDateParts(date, KOOORA_TIME_ZONE);
+  return `${parts.day} ${ARABIC_MONTHS[parts.month - 1]} ${parts.year}`;
+}
+
+function findKoooraDailyArticle(html, queryDate) {
+  const target = koooraDailyTitle(queryDate);
+  if (!target) return "";
+  const cardPattern = /<a\s+class="fco-card"\s+href="([^"]+)"[\s\S]{0,6500}?<span class="fco-card__headline-text">([\s\S]*?)<\/span>/gi;
+  let card;
+  while ((card = cardPattern.exec(html))) {
+    const headline = htmlText(card[2]);
+    if (!headline.includes("جدول مباريات اليوم") || !headline.includes(target)) continue;
+    try {
+      return new URL(decodeHtml(card[1]), KOOORA_HOME).href;
+    } catch (error) {
+      return "";
+    }
+  }
+  return "";
+}
+
+function koooraChannelAllowed(channel) {
+  return /beIN|ثمانية|on\s*time|on\s*sport|أون\s*تايم|أون\s*سبورت|أبوظبي|ابوظبي|AD\s*Sports|SSC|الكأس|Al\s*Kass/i.test(String(channel || ""));
+}
+
+function parseKoooraMatches(html, queryDate, sourceUrl) {
+  const expectedDate = koooraDailyTitle(queryDate);
+  const articleDateMatch = htmlText(html.slice(0, Math.min(html.length, 180000))).match(/جدول مباريات اليوم[\s\S]{0,180}?([0-3]?\d)\s*-\s*(0?[1-9]|1[0-2])\s*-\s*(20\d{2})/);
+  const articleDate = articleDateMatch
+    ? `${articleDateMatch[3]}-${pad(articleDateMatch[2])}-${pad(articleDateMatch[1])}`
+    : "";
+  if (!expectedDate || articleDate !== queryDate) return [];
+  const matches = [];
+  const tablePattern = /<h2[^>]*>([\s\S]*?)<\/h2>[\s\S]{0,1400}?<span class="fco-responsive-table">[\s\S]*?<table[^>]*>([\s\S]*?)<\/table>/gi;
+  let table;
+  while ((table = tablePattern.exec(html))) {
+    const competitionAr = htmlText(table[1]);
+    const rowPattern = /<tr[^>]*>([\s\S]*?)<\/tr>/gi;
+    let row;
+    while ((row = rowPattern.exec(table[2]))) {
+      const cells = [...row[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((cell) => htmlText(cell[1]));
+      if (cells.length < 3 || !/^.+\s[-–—]\s.+$/.test(cells[0])) continue;
+      const timeMatch = cells[1].match(/(\d{1,2}):(\d{2})/);
+      const channel = cells[2].replace(/\s+/g, " ").trim();
+      if (!timeMatch || !channel || !koooraChannelAllowed(channel)) continue;
+      const teams = cells[0].split(/\s[-–—]\s/).map((team) => team.trim()).filter(Boolean);
+      if (teams.length < 2) continue;
+      matches.push({
+        homeTeamAr: teams[0],
+        awayTeamAr: teams.slice(1).join(" - "),
+        date: queryDate,
+        time: `${pad(timeMatch[1])}:${timeMatch[2]}`,
+        competitionAr,
+        channel,
+        sourceUrl,
+      });
+    }
+  }
+  return matches;
+}
+
+async function fetchKoooraDay(queryDate) {
+  const homeHtml = await fetchText(KOOORA_HOME);
+  const articleUrl = findKoooraDailyArticle(homeHtml, queryDate);
+  if (!articleUrl) return [];
+  const articleHtml = await fetchText(articleUrl);
+  return parseKoooraMatches(articleHtml, queryDate, articleUrl);
+}
+
 function matchFilGoalToFixture(sourceMatch, fixtures) {
   const sourceInstant = zonedDateTimeToUtc(sourceMatch.date, sourceMatch.time, FILGOAL_TIME_ZONE);
   if (!sourceInstant) return null;
@@ -331,12 +430,37 @@ function matchFilGoalToFixture(sourceMatch, fixtures) {
   return candidates.length === 1 ? candidates[0] : null;
 }
 
+function normalizeChannelKey(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/\bhd\b/g, "")
+    .replace(/[^a-z0-9\u0600-\u06ff]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function mergeBroadcasters(...lists) {
   const unique = new Map();
   for (const entry of lists.flat()) {
     if (!entry || entry.verified !== true) continue;
-    const key = `${entry.name.toLowerCase()}|${entry.sourceUrl}`;
-    if (!unique.has(key)) unique.set(key, entry);
+    const key = normalizeChannelKey(entry.name);
+    const existing = unique.get(key);
+    if (!existing) {
+      unique.set(key, { ...entry, evidenceUrls: [entry.sourceUrl], evidenceSources: [{ name: entry.sourceName, url: entry.sourceUrl }] });
+      continue;
+    }
+    const evidenceUrls = [...new Set([...(existing.evidenceUrls || [existing.sourceUrl]), entry.sourceUrl].filter(Boolean))].slice(0, 4);
+    const sourceNames = [...new Set([existing.sourceName, entry.sourceName].filter(Boolean))];
+    const evidenceSources = [...(existing.evidenceSources || [{ name: existing.sourceName, url: existing.sourceUrl }]), { name: entry.sourceName, url: entry.sourceUrl }]
+      .filter((source, index, all) => source.url && all.findIndex((candidate) => candidate.url === source.url) === index)
+      .slice(0, 4);
+    unique.set(key, {
+      ...existing,
+      sourceName: sourceNames.join(" + "),
+      evidenceLevel: sourceNames.length > 1 ? "corroborated" : existing.evidenceLevel,
+      evidenceUrls,
+      evidenceSources,
+    });
   }
   return [...unique.values()].slice(0, 8);
 }
@@ -379,15 +503,17 @@ const endDate = isoDate(addDays(today, DAYS_AHEAD));
 const dates = Array.from({ length: DAYS_AHEAD + 1 }, (_, index) => isoDate(addDays(today, index)));
 const surroundingDates = [isoDate(addDays(today, -1)), ...dates, isoDate(addDays(today, DAYS_AHEAD + 1))];
 
-const [espnResults, sportsDbResults, filGoalResults] = await Promise.all([
+const [espnResults, sportsDbResults, filGoalResults, koooraResults] = await Promise.all([
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
   Promise.allSettled(dates.map((date) => fetchSportsDbDay(date))),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
+  Promise.allSettled([fetchKoooraDay(startDate)]),
 ]);
 
 const espnSucceeded = espnResults.filter((result) => result.status === "fulfilled");
 const sportsDbSucceeded = sportsDbResults.filter((result) => result.status === "fulfilled");
 const filGoalSucceeded = filGoalResults.filter((result) => result.status === "fulfilled");
+const koooraSucceeded = koooraResults.filter((result) => result.status === "fulfilled");
 if (!espnSucceeded.length && !sportsDbSucceeded.length) {
   throw new Error("Both match data providers failed");
 }
@@ -423,13 +549,47 @@ for (const result of filGoalSucceeded) {
   }
 }
 
+function matchKoooraToFixture(sourceMatch, fixtures) {
+  const sourceInstant = zonedDateTimeToUtc(sourceMatch.date, sourceMatch.time, KOOORA_TIME_ZONE);
+  if (!sourceInstant) return null;
+  const hint = filGoalCompetitionHint(sourceMatch.competitionAr);
+  const candidates = fixtures.filter((fixture) => {
+    const fixtureInstant = dateFromValue(fixture.start);
+    if (!fixtureInstant) return false;
+    const minutes = Math.abs(fixtureInstant.getTime() - sourceInstant.getTime()) / 60000;
+    if (minutes > 20) return false;
+    if (!hint) return true;
+    return String(fixture.seasonSlug || "").toLowerCase().includes(hint);
+  });
+  return candidates.length === 1 ? candidates[0] : null;
+}
+
+const koooraByKey = new Map();
+for (const result of koooraSucceeded) {
+  for (const sourceMatch of result.value) {
+    const fixture = matchKoooraToFixture(sourceMatch, [...merged.values()].filter((match) => match.date === sourceMatch.date));
+    if (!fixture) continue;
+    const broadcaster = broadcasterEntry({
+      name: sourceMatch.channel,
+      country: "Egypt",
+      sourceName: "Kooora daily broadcast table",
+      sourceUrl: sourceMatch.sourceUrl,
+      evidenceLevel: "editorial",
+    });
+    if (!broadcaster) continue;
+    const previous = koooraByKey.get(fixture.key) || [];
+    koooraByKey.set(fixture.key, [...previous, broadcaster]);
+  }
+}
+
 const items = [...merged.values()]
   .map((match) => {
     const tvResult = tvByKey.get(match.key);
     const sportsDbBroadcasters = tvResult?.status === "fulfilled" ? tvResult.value : [];
     const filGoalBroadcasters = filGoalByKey.get(match.key) || [];
-    const broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters);
-    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : [])])];
+    const koooraBroadcasters = koooraByKey.get(match.key) || [];
+    const broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters);
+    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : [])])];
     return {
       id: match.id,
       date: match.date,
@@ -464,10 +624,14 @@ const payload = {
   sources: [
     { id: "espn-public-soccer", name: "ESPN public soccer scoreboard", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length },
     { id: "thesportsdb-free", name: "TheSportsDB free API", ok: sportsDbSucceeded.length > 0, requestedDays: dates.length },
-    { id: "filgoal-matches", name: "FilGoal Arabic match schedule", ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
+    { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
+    { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast table", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: 1 },
+    { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
+    { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
+    { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
   ],
   broadcastCountries: [...TARGET_BROADCAST_COUNTRIES],
-  coverageNote: "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously; access type is FTA, encrypted, or unknown and is never inferred from a channel name alone.",
+  coverageNote: "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously. beIN access labels use the official FAQ/channel-list rules for the exact listed channel; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
   items,
 };
 
@@ -475,4 +639,4 @@ fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
 const temporary = `${OUTPUT}.tmp-${process.pid}`;
 fs.writeFileSync(temporary, `${JSON.stringify(payload, null, 2)}\n`);
 fs.renameSync(temporary, OUTPUT);
-console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; verified regional TV listings: ${items.filter((item) => item.broadcastStatus === "verified").length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}.`);
+console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; verified regional TV listings: ${items.filter((item) => item.broadcastStatus === "verified").length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}; Kooora matched broadcaster listings: ${[...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0)}.`);

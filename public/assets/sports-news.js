@@ -77,6 +77,7 @@
     matchesUnavailable: { ar: "تعذر تحميل المباريات حالياً. سنحاول مجدداً لاحقاً.", en: "Matches are temporarily unavailable. We will try again later." },
     matchesEmpty: { ar: "لا توجد مباريات متاحة لهذه الفترة أو البحث.", en: "No matches are available for this period or search." },
     matchesCount: { ar: "مباراة", en: "matches" },
+    matchesWithBroadcasters: { ar: "لها قناة موثقة", en: "with verified broadcaster" },
     matchTime: { ar: "الوقت", en: "Time" },
     matchBroadcast: { ar: "القنوات الناقلة حسب الدليل", en: "Broadcasters with evidence" },
     matchNoBroadcast: { ar: "لم يتم التحقق من قناة ناقلة في الأردن وفلسطين ولبنان وسوريا والعراق ومصر.", en: "No broadcaster was verified in Jordan, Palestine, Lebanon, Syria, Iraq, or Egypt." },
@@ -84,6 +85,7 @@
     broadcastEncrypted: { ar: "مشفر / مدفوع", en: "Encrypted / subscription" },
     broadcastUnknown: { ar: "نوع البث غير مؤكد", en: "Access type unverified" },
     broadcastEvidence: { ar: "الدليل", en: "Evidence" },
+    broadcastAccessEvidence: { ar: "مصدر نوع البث", en: "Access source" },
     matchSource: { ar: "مصدر الموعد", en: "Fixture source" },
     matchScheduleNote: { ar: "المواعيد من جداول عامة مجانية. نعرض القناة فقط عند التحقق منها في الدول المحددة، ولا نخمن حقوق البث أو نوع الوصول.", en: "Fixtures come from free public schedules. A channel is shown only when verified in the selected countries; broadcast rights and access type are never guessed." },
   };
@@ -228,6 +230,8 @@
       if (id === "espn-public-soccer") return "ESPN";
       if (id === "thesportsdb-free") return "TheSportsDB";
       if (id === "filgoal-matches") return "FilGoal";
+      if (id === "kooora-broadcast") return "Kooora";
+      if (id === "bein-access-rules") return "beIN official";
       return id;
     }).filter(Boolean);
     return names.join(" + ") || "—";
@@ -249,6 +253,11 @@
         return [entry.name, entry.nameAr, entry.nameEn, entry.sourceName, entry.country, entry.region].join(" ");
       }).join(" ");
       return [match.homeTeam, match.awayTeam, match.competition, match.country, broadcasterText].join(" ").toLowerCase().indexOf(query) !== -1;
+    }).sort(function (a, b) {
+      var aHasBroadcaster = Array.isArray(a.broadcasters) && a.broadcasters.length ? 1 : 0;
+      var bHasBroadcaster = Array.isArray(b.broadcasters) && b.broadcasters.length ? 1 : 0;
+      if (aHasBroadcaster !== bHasBroadcaster) return bHasBroadcaster - aHasBroadcaster;
+      return String(a.date + "T" + a.time).localeCompare(String(b.date + "T" + b.time)) || String(a.homeTeam).localeCompare(String(b.homeTeam));
     });
   }
 
@@ -282,15 +291,30 @@
     meta.className = "sports-match-broadcaster-meta";
     meta.textContent = cleanText(entry && (entry.region || entry.country), 60);
     listItem.appendChild(meta);
-    var sourceUrl = validUrl(entry && entry.sourceUrl);
-    if (sourceUrl) {
+    var evidenceSources = Array.isArray(entry && entry.evidenceSources) && entry.evidenceSources.length
+      ? entry.evidenceSources
+      : [{ name: entry && entry.sourceName, url: entry && entry.sourceUrl }];
+    evidenceSources.slice(0, 4).forEach(function (source, index) {
+      var sourceUrl = validUrl(source && source.url);
+      if (!sourceUrl) return;
       var link = document.createElement("a");
       link.className = "sports-match-broadcaster-source";
       link.href = sourceUrl;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.textContent = languageText("broadcastEvidence") + ": " + cleanText(entry.sourceName || "", 100);
+      var prefix = evidenceSources.length > 1 ? " " + String(index + 1) : "";
+      link.textContent = languageText("broadcastEvidence") + prefix + ": " + cleanText(source.name || entry.sourceName || "", 100);
       listItem.appendChild(link);
+    });
+    var accessSourceUrl = validUrl(entry && entry.accessSourceUrl);
+    if (accessSourceUrl) {
+      var accessLink = document.createElement("a");
+      accessLink.className = "sports-match-broadcaster-source sports-match-broadcaster-access-source";
+      accessLink.href = accessSourceUrl;
+      accessLink.target = "_blank";
+      accessLink.rel = "noopener noreferrer";
+      accessLink.textContent = languageText("broadcastAccessEvidence") + ": " + cleanText(entry.accessSourceName || "", 100);
+      listItem.appendChild(accessLink);
     }
     return listItem;
   }
@@ -381,7 +405,10 @@
       more.hidden = items.length <= state.matchesVisibleCount;
       more.textContent = languageText("showMore");
     }
-    if (count) count.textContent = String(items.length) + " " + languageText("matchesCount");
+    if (count) {
+      var withBroadcasters = items.filter(function (match) { return Array.isArray(match.broadcasters) && match.broadcasters.length > 0; }).length;
+      count.textContent = String(items.length) + " " + languageText("matchesCount") + " · " + String(withBroadcasters) + " " + languageText("matchesWithBroadcasters");
+    }
     if (updated) updated.textContent = state.matchesGeneratedAt ? formatDate(state.matchesGeneratedAt) : "—";
   }
 

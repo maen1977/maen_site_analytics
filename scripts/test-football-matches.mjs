@@ -46,6 +46,8 @@ assert(data.broadcastCountries.every((country) => targetCountries.has(country)),
 assert(Array.isArray(data.sources) && data.sources.some((source) => source.id === "espn-public-soccer"), "ESPN fixture source is missing");
 assert(data.sources.some((source) => source.id === "thesportsdb-free"), "TheSportsDB verification source is missing");
 assert(data.sources.some((source) => source.id === "filgoal-matches"), "FilGoal Arabic broadcaster source is missing");
+assert(data.sources.some((source) => source.id === "kooora-broadcast"), "Kooora Arabic broadcaster source is missing");
+assert(data.sources.some((source) => source.id === "bein-access-rules"), "beIN access rules source is missing");
 assert(Array.isArray(data.items) && data.items.length <= 2000, "Football matches payload is too large");
 
 const ids = new Set();
@@ -80,8 +82,24 @@ for (const item of data.items) {
     assert(typeof broadcaster.sourceName === "string" && broadcaster.sourceName.length > 0 && broadcaster.sourceName.length <= 120, "Broadcaster sourceName is invalid");
     assert(typeof broadcaster.sourceUrl === "string" && /^https:\/\//i.test(broadcaster.sourceUrl), "Broadcaster sourceUrl must be HTTPS");
     assert(hostAllowed(broadcaster.sourceUrl, allowedSourceDomains), `Broadcaster source host is not allowlisted: ${broadcaster.sourceUrl}`);
+    if (broadcaster.evidenceUrls !== undefined) {
+      assert(Array.isArray(broadcaster.evidenceUrls) && broadcaster.evidenceUrls.length >= 1 && broadcaster.evidenceUrls.length <= 4, "Broadcaster evidenceUrls must be a bounded array");
+      assert(broadcaster.evidenceUrls.every((url) => /^https:\/\//i.test(url) && hostAllowed(url, allowedSourceDomains)), "Every broadcaster evidence URL must be HTTPS and allowlisted");
+    }
+    if (broadcaster.evidenceSources !== undefined) {
+      assert(Array.isArray(broadcaster.evidenceSources) && broadcaster.evidenceSources.length >= 1 && broadcaster.evidenceSources.length <= 4, "Broadcaster evidenceSources must be a bounded array");
+      assert(broadcaster.evidenceSources.every((source) => source && typeof source.name === "string" && source.name.length > 0 && /^https:\/\//i.test(source.url) && hostAllowed(source.url, allowedSourceDomains)), "Every broadcaster evidence source must have an HTTPS allowlisted URL");
+    }
     if (broadcaster.evidenceLevel === "official") {
       assert(hostAllowed(broadcaster.sourceUrl, [...officialSourceDomains]), "Official broadcaster evidence must come from an official broadcaster domain");
+    }
+    if (broadcaster.accessType !== "unknown") {
+      assert(typeof broadcaster.accessSourceUrl === "string" && /^https:\/\//i.test(broadcaster.accessSourceUrl), "Non-unknown access type requires a separate HTTPS access source");
+      assert(hostAllowed(broadcaster.accessSourceUrl, [...officialSourceDomains]), "Non-unknown access type must cite an official broadcaster access source");
+      assert(typeof broadcaster.accessSourceName === "string" && broadcaster.accessSourceName.length > 0, "Non-unknown access type requires an access source name");
+    }
+    if (broadcaster.accessSourceUrl) {
+      assert(/^https:\/\//i.test(broadcaster.accessSourceUrl) && hostAllowed(broadcaster.accessSourceUrl, allowedSourceDomains), `Broadcaster access source is not allowlisted: ${broadcaster.accessSourceUrl}`);
     }
     assert(isIsoTimestamp(broadcaster.verifiedAt), "Broadcaster verifiedAt must be an ISO timestamp");
     verifiedBroadcasterCount += 1;

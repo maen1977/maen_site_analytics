@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-24T13:46:33.310Z",
+  "generatedAt": "2026-08-24T17:05:22.042Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-24",
@@ -26,6 +26,32 @@
       "name": "FilGoal Arabic match schedule",
       "ok": true,
       "requestedDays": 8
+    },
+    {
+      "id": "kooora-broadcast",
+      "name": "Kooora Arabic daily broadcast table",
+      "ok": true,
+      "requestedDays": 1
+    },
+    {
+      "id": "bein-access-rules",
+      "name": "beIN official FAQ and channel list",
+      "ok": true,
+      "requestedDays": 1
+    },
+    {
+      "id": "ad-sports-official",
+      "name": "Abu Dhabi Sports official brand source",
+      "ok": false,
+      "requestedDays": 0,
+      "note": "No dated public fixture listing was available"
+    },
+    {
+      "id": "on-sport-official",
+      "name": "ON Sport official public source",
+      "ok": false,
+      "requestedDays": 0,
+      "note": "No dated public fixture listing was available"
     }
   ],
   "broadcastCountries": [
@@ -36,7 +62,7 @@
     "Iraq",
     "Egypt"
   ],
-  "coverageNote": "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously; access type is FTA, encrypted, or unknown and is never inferred from a channel name alone.",
+  "coverageNote": "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously. beIN access labels use the official FAQ/channel-list rules for the exact listed channel; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
   "items": [
     {
       "id": "match-b570ffc0daf273d4068e",
@@ -1019,26 +1045,6 @@
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401877002/pachuca-atletico-de-san-luis"
     },
     {
-      "id": "match-ffe7c5966585f2a80b35",
-      "date": "2026-08-24",
-      "start": "2026-08-24T23:00:00",
-      "time": "02:00",
-      "status": "scheduled",
-      "homeTeam": "Botafogo",
-      "awayTeam": "Athletico Paranaense",
-      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/bs5mbw1733004596.png",
-      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/irzu1u1554237406.png",
-      "competition": "Brazilian Serie A",
-      "country": "Brazil",
-      "venue": "Estádio Olímpico Nilton Santos",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
-      "sourceIds": [
-        "thesportsdb-free"
-      ],
-      "sourceUrl": "https://www.thesportsdb.com/event/2398421"
-    },
-    {
       "id": "match-446bb946e7594cbdd121",
       "date": "2026-08-24",
       "start": "2026-08-23T23:00Z",
@@ -1097,6 +1103,26 @@
         "espn-public-soccer"
       ],
       "sourceUrl": ""
+    },
+    {
+      "id": "match-8ce57beda2d316d8bc81",
+      "date": "2026-08-24",
+      "start": "2026-08-24T23:00:00",
+      "time": "02:00",
+      "status": "scheduled",
+      "homeTeam": "Charleston Battery",
+      "awayTeam": "Miami FC",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/uqx34i1690266678.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ow77dj1595154153.png",
+      "competition": "American USL Championship",
+      "country": "United States",
+      "venue": "Patriots Point Soccer Complex",
+      "broadcasters": [],
+      "broadcastStatus": "not-verified",
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397278"
     },
     {
       "id": "match-5759aebd5249ddbebc3c",
@@ -2320,26 +2346,6 @@
       "sourceUrl": ""
     },
     {
-      "id": "match-7df55690ea9e017a2241",
-      "date": "2026-08-24",
-      "start": "2026-08-24T16:00Z",
-      "time": "19:00",
-      "status": "scheduled",
-      "homeTeam": "Chicago State",
-      "awayTeam": "Milwaukee",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2130.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/270.png",
-      "competition": "Football",
-      "country": "USA",
-      "venue": "Gwendolyn Brooks College Prep",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": ""
-    },
-    {
       "id": "match-44c79962279d37921428",
       "date": "2026-08-24",
       "start": "2026-08-24T16:00Z",
@@ -2357,7 +2363,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874898/hamburg-sv-sc-verl-1924"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874898"
     },
     {
       "id": "match-43cba188d7aa95943cbb",
@@ -2377,7 +2383,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874897/vfl-wolfsburg-vsg-altglienicke"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874897"
     },
     {
       "id": "match-9321fb5a08b0808d05ef",
@@ -2397,7 +2403,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874896/fc-cologne-wurzburger-kickers"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874896"
     },
     {
       "id": "match-8cac6e581e1b0cd2fc04",
@@ -2417,7 +2423,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874927/lazio-bologna"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874927"
     },
     {
       "id": "match-df7d9f133d5d40d3ca74",
@@ -2444,7 +2450,16 @@
           "evidenceLevel": "editorial",
           "sourceName": "FilGoal match schedule",
           "sourceUrl": "https://www.filgoal.com/matches/375129/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%86%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D8%AF%D8%B3%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
-          "verifiedAt": "2026-08-24T13:46:33.306Z"
+          "verifiedAt": "2026-08-24T17:05:22.032Z",
+          "evidenceUrls": [
+            "https://www.filgoal.com/matches/375129/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%86%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D8%AF%D8%B3%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
+          ],
+          "evidenceSources": [
+            {
+              "name": "FilGoal match schedule",
+              "url": "https://www.filgoal.com/matches/375129/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%86%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D9%82%D8%A7%D8%AF%D8%B3%D9%8A%D8%A9-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
+            }
+          ]
         }
       ],
       "broadcastStatus": "verified",
@@ -2452,7 +2467,7 @@
         "espn-public-soccer",
         "filgoal-matches"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401900392/al-qadsiah-neom-sc"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401900392"
     },
     {
       "id": "match-8b66ca15eb683df27c8b",
@@ -2472,7 +2487,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874505/silkeborg-if-brøndby-if"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874505"
     },
     {
       "id": "match-c21943293e63918301cd",
@@ -2492,7 +2507,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874010/djurgarden-malmo-ff"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874010"
     },
     {
       "id": "match-a243037334a1465c48d1",
@@ -2512,7 +2527,7 @@
       "sourceIds": [
         "espn-public-soccer"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401883317/fc-andorra-rc-celta-fortuna"
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401883317"
     },
     {
       "id": "match-402b61e8a0c92c70d6f0",
@@ -2574,18 +2589,35 @@
           "nameEn": "beIN SPORTS 3 HD",
           "country": "Egypt",
           "region": "Egypt",
-          "accessType": "unknown",
+          "accessType": "encrypted",
           "verified": true,
-          "evidenceLevel": "editorial",
-          "sourceName": "FilGoal match schedule",
+          "evidenceLevel": "corroborated",
+          "sourceName": "FilGoal match schedule + Kooora daily broadcast table",
           "sourceUrl": "https://www.filgoal.com/matches/375006/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A3%D9%88%D8%B3%D8%A7%D8%B3%D9%88%D9%86%D8%A7-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "verifiedAt": "2026-08-24T13:46:33.305Z"
+          "verifiedAt": "2026-08-24T17:05:22.031Z",
+          "accessSourceName": "beIN official FAQ and channel list",
+          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
+          "evidenceUrls": [
+            "https://www.filgoal.com/matches/375006/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A3%D9%88%D8%B3%D8%A7%D8%B3%D9%88%D9%86%D8%A7-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+            "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+          ],
+          "evidenceSources": [
+            {
+              "name": "FilGoal match schedule",
+              "url": "https://www.filgoal.com/matches/375006/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A3%D9%88%D8%B3%D8%A7%D8%B3%D9%88%D9%86%D8%A7-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
+            },
+            {
+              "name": "Kooora daily broadcast table",
+              "url": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+            }
+          ]
         }
       ],
       "broadcastStatus": "verified",
       "sourceIds": [
         "espn-public-soccer",
-        "filgoal-matches"
+        "filgoal-matches",
+        "kooora-broadcast"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882909/levante-osasuna"
     },
@@ -2614,7 +2646,16 @@
           "evidenceLevel": "editorial",
           "sourceName": "FilGoal match schedule",
           "sourceUrl": "https://www.filgoal.com/matches/375130/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%AD%D8%B2%D9%85-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
-          "verifiedAt": "2026-08-24T13:46:33.306Z"
+          "verifiedAt": "2026-08-24T17:05:22.032Z",
+          "evidenceUrls": [
+            "https://www.filgoal.com/matches/375130/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%AD%D8%B2%D9%85-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
+          ],
+          "evidenceSources": [
+            {
+              "name": "FilGoal match schedule",
+              "url": "https://www.filgoal.com/matches/375130/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF-%D8%A7%D9%84%D8%AD%D8%B2%D9%85-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
+            }
+          ]
         }
       ],
       "broadcastStatus": "verified",
@@ -2764,18 +2805,35 @@
           "nameEn": "beIN SPORTS 1 HD",
           "country": "Egypt",
           "region": "Egypt",
-          "accessType": "unknown",
+          "accessType": "encrypted",
           "verified": true,
-          "evidenceLevel": "editorial",
-          "sourceName": "FilGoal match schedule",
+          "evidenceLevel": "corroborated",
+          "sourceName": "FilGoal match schedule + Kooora daily broadcast table",
           "sourceUrl": "https://www.filgoal.com/matches/374409/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%88%D9%84%D8%A7%D9%85-%D8%AA%D8%B4%D9%8A%D9%84%D8%B3%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A-%D8%A7%D9%84%D9%85%D9%85%D8%AA%D8%A7%D8%B2",
-          "verifiedAt": "2026-08-24T13:46:33.305Z"
+          "verifiedAt": "2026-08-24T17:05:22.030Z",
+          "accessSourceName": "beIN official FAQ and channel list",
+          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
+          "evidenceUrls": [
+            "https://www.filgoal.com/matches/374409/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%88%D9%84%D8%A7%D9%85-%D8%AA%D8%B4%D9%8A%D9%84%D8%B3%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A-%D8%A7%D9%84%D9%85%D9%85%D8%AA%D8%A7%D8%B2",
+            "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+          ],
+          "evidenceSources": [
+            {
+              "name": "FilGoal match schedule",
+              "url": "https://www.filgoal.com/matches/374409/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%88%D9%84%D8%A7%D9%85-%D8%AA%D8%B4%D9%8A%D9%84%D8%B3%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A-%D8%A7%D9%84%D9%85%D9%85%D8%AA%D8%A7%D8%B2"
+            },
+            {
+              "name": "Kooora daily broadcast table",
+              "url": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+            }
+          ]
         }
       ],
       "broadcastStatus": "verified",
       "sourceIds": [
         "espn-public-soccer",
-        "filgoal-matches"
+        "filgoal-matches",
+        "kooora-broadcast"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879318/chelsea-fulham"
     },
@@ -2812,6 +2870,26 @@
       "competition": "Football",
       "country": "USA",
       "venue": "Michael A. Carroll Stadium",
+      "broadcasters": [],
+      "broadcastStatus": "not-verified",
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": ""
+    },
+    {
+      "id": "match-eaa79d6b8ae50749623f",
+      "date": "2026-08-24",
+      "start": "2026-08-24T19:00Z",
+      "time": "22:00",
+      "status": "scheduled",
+      "homeTeam": "Milwaukee",
+      "awayTeam": "Chicago State",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/270.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2130.png",
+      "competition": "Football",
+      "country": "USA",
+      "venue": "Engelmann Stadium",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
@@ -2899,18 +2977,35 @@
           "nameEn": "beIN SPORTS 3 HD",
           "country": "Egypt",
           "region": "Egypt",
-          "accessType": "unknown",
+          "accessType": "encrypted",
           "verified": true,
-          "evidenceLevel": "editorial",
-          "sourceName": "FilGoal match schedule",
+          "evidenceLevel": "corroborated",
+          "sourceName": "FilGoal match schedule + Kooora daily broadcast table",
           "sourceUrl": "https://www.filgoal.com/matches/375005/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%85%D8%A7%D9%84%D8%A7%D8%AC%D8%A7-%D8%AF%D9%8A%D8%A8%D9%88%D8%B1%D8%AA%D9%8A%D9%81%D9%88-%D8%A3%D9%84%D8%A7%D9%81%D9%8A%D8%B3-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "verifiedAt": "2026-08-24T13:46:33.305Z"
+          "verifiedAt": "2026-08-24T17:05:22.031Z",
+          "accessSourceName": "beIN official FAQ and channel list",
+          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
+          "evidenceUrls": [
+            "https://www.filgoal.com/matches/375005/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%85%D8%A7%D9%84%D8%A7%D8%AC%D8%A7-%D8%AF%D9%8A%D8%A8%D9%88%D8%B1%D8%AA%D9%8A%D9%81%D9%88-%D8%A3%D9%84%D8%A7%D9%81%D9%8A%D8%B3-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+            "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+          ],
+          "evidenceSources": [
+            {
+              "name": "FilGoal match schedule",
+              "url": "https://www.filgoal.com/matches/375005/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%85%D8%A7%D9%84%D8%A7%D8%AC%D8%A7-%D8%AF%D9%8A%D8%A8%D9%88%D8%B1%D8%AA%D9%8A%D9%81%D9%88-%D8%A3%D9%84%D8%A7%D9%81%D9%8A%D8%B3-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
+            },
+            {
+              "name": "Kooora daily broadcast table",
+              "url": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%95%D8%AB%D9%86%D9%8A%D9%86-24-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltfc5832fdb0806df0"
+            }
+          ]
         }
       ],
       "broadcastStatus": "verified",
       "sourceIds": [
         "espn-public-soccer",
-        "filgoal-matches"
+        "filgoal-matches",
+        "kooora-broadcast"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882910/deportivo-malaga"
     },
@@ -3047,6 +3142,26 @@
       "competition": "Football",
       "country": "USA",
       "venue": "McCarthy Stadium (Philadelphia)",
+      "broadcasters": [],
+      "broadcastStatus": "not-verified",
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": ""
+    },
+    {
+      "id": "match-121480f44c929b21dfa0",
+      "date": "2026-08-25",
+      "start": "2026-08-24T22:00Z",
+      "time": "01:00",
+      "status": "scheduled",
+      "homeTeam": "Longwood",
+      "awayTeam": "Coastal Carolina",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2344.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png",
+      "competition": "Football",
+      "country": "USA",
+      "venue": "Longwood Athletics Complex",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
@@ -3327,26 +3442,6 @@
       "competition": "Football",
       "country": "USA",
       "venue": "Sentara Park",
-      "broadcasters": [],
-      "broadcastStatus": "not-verified",
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": ""
-    },
-    {
-      "id": "match-121480f44c929b21dfa0",
-      "date": "2026-08-25",
-      "start": "2026-08-24T23:00Z",
-      "time": "02:00",
-      "status": "scheduled",
-      "homeTeam": "Longwood",
-      "awayTeam": "Coastal Carolina",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/2344.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/ncaa/500/324.png",
-      "competition": "Football",
-      "country": "USA",
-      "venue": "Longwood Athletics Complex",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
@@ -5066,8 +5161,8 @@
       "homeLogo": "",
       "awayLogo": "",
       "competition": "Football",
-      "country": "",
-      "venue": "",
+      "country": "England",
+      "venue": "Bauvill Stadium",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
@@ -14771,8 +14866,8 @@
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/131701.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/22167.png",
       "competition": "Football",
-      "country": "",
-      "venue": "",
+      "country": "Japan",
+      "venue": "Kasamatsu Stadium",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
@@ -21274,8 +21369,8 @@
       "homeLogo": "",
       "awayLogo": "",
       "competition": "Football",
-      "country": "",
-      "venue": "",
+      "country": "Portugal",
+      "venue": "Estádio Municipal de Aljustrel",
       "broadcasters": [],
       "broadcastStatus": "not-verified",
       "sourceIds": [
