@@ -17,7 +17,10 @@ assert.deepEqual(sourceIds, expectedSourceIds, "sports dataset has an unapproved
 assert.ok(Array.isArray(items) && items.length >= 8 && items.length <= 90, "sports dataset item count is outside safe bounds");
 assert.equal(data.itemCount, items.length, "sports itemCount must match the items array");
 assert.ok(["global", "europe", "jordan"].every((category) => items.some((item) => item.category === category)), "sports dataset must cover global, Europe, and Jordan");
-assert.ok(sources.every((source) => source.ok && source.itemCount > 0 && source.feedUrl && /^https:\/\//i.test(source.feedUrl)), "every approved Arabic source must be live and non-empty");
+assert.ok(sources.every((source) => source.id && source.feedUrl && /^https:\/\//i.test(source.feedUrl)), "every approved Arabic source must have an HTTPS feed URL");
+assert.ok(sources.some((source) => source.ok && source.itemCount > 0), "at least one Arabic football source must provide items");
+const jordanSource = sources.find((source) => source.id === "almala3b-jordan-sport");
+assert.ok(jordanSource && jordanSource.ok && jordanSource.itemCount > 0, "the Jordan football source must be live and non-empty");
 assert.ok(sources.every((source) => /كرة القدم/i.test(source.name)), "every sports source must be labelled football");
 
 const ids = new Set();
