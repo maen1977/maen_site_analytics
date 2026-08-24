@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const OUTPUT = path.join(ROOT, "public/data/sports-news.json");
+const OUTPUT = path.join(ROOT, "public/data/sports-news-ar.json");
 const FETCH_TIMEOUT_MS = 45_000;
 const NEWS_MAX_AGE_HOURS = 96;
 const MAX_ITEMS = 90;
@@ -13,8 +13,9 @@ const MALA3B_DETAIL_LIMIT = 18;
 const ARTICLE_CONTENT_MAX = 1800;
 
 const EUROPE_KEYWORDS = /أوروبا|الأوروبي|الإنجليزي|الإنكليزي|الإسباني|الإيطالي|الألماني|الفرنسي|الدوري الإنجليزي|الدوري الإسباني|الدوري الإيطالي|الدوري الألماني|الدوري الفرنسي|دوري أبطال أوروبا|الدوري الأوروبي|البريميرليغ|البريميرليج|الليغا|لاليغا|لا ليغا|تشامبيونز|برشلونة|ريال مدريد|ليفربول|نيوكاسل|مانشستر|تشيلسي|أرسنال|بايرن|بوروسيا|باريس سان جيرمان|ميلان|إنتر ميلان|يوفنتوس|طرابزون|باشاك شهير|uefa|premier league|la liga|bundesliga|serie a|ligue 1/i;
-const NON_FOOTBALL_KEYWORDS = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic|البرلمان|برلماني|parliament|parliamentary|وزير شؤون|minister of parliamentary/i;
-const FOOTBALL_KEYWORDS = /كرة القدم|كرة قدم|football|soccer|فيفا|fifa|يويفا|uefa|الدوري|مباراة|مباريات|منتخب|نادي|لاعب|مدرب|مهاجم|حارس|فريق|شباك|تشكيلة|ركلة|هدف|أهداف|انتقال|قميص|ملعب|بطولة كأس|كأس العالم|الكأس|اتحاد كرة القدم|الفيصلي|الوحدات|الرمثا|الحسين|السلط|الجزيرة|شباب الأردن|الزمالك|الأهلي|بيراميدز|برشلونة|ريال مدريد|ليفربول|مانشستر|نيوكاسل|طرابزون|باشاك شهير|ميسي|رونالدو|اتحاد جدة|نيوم|القادسية|الهلال|النصر|الشباب|التعاون|ضمك|الرائد|الخليج/i;
+const NON_FOOTBALL_KEYWORDS = /كرة السلة|basketball|سلة|كرة الطائرة|volleyball|الطائرة|كرة اليد|handball|تنس|tennis|ملاكمة|boxing|مصارعة|wrestling|فورمولا|formula|سباق|racing|ألعاب القوى|athletics|الرياضات الإلكترونية|رياضات إلكترونية|esports|كريكيت|cricket|غولف|golf|ركبي|rugby|أولمبي|olympic|البرلمان|برلماني|parliament|parliamentary|وزير شؤون|minister of parliamentary|الحرب|إيران|ناقلة|ميناء|وزارة|الصحة|منشآت|فيلم|أفلام|سينما|تذاكر|إيرادات/i;
+const FOOTBALL_LATIN_KEYWORDS = /football|soccer|fifa|uefa|premier league|champions league|world cup|la liga|serie a|bundesliga|ligue 1|transfermarkt/i;
+const FOOTBALL_ARABIC_TOKENS = ["كرة القدم", "كرة قدم", "فيفا", "يويفا", "الدوري", "مباراة", "مباريات", "منتخب", "نادي", "لاعب", "مدرب", "مهاجم", "حارس", "فريق", "شباك", "تشكيلة", "ركلة", "هدف", "أهداف", "انتقال", "قميص", "ملعب", "بطولة كأس", "كأس العالم", "الكأس", "اتحاد كرة القدم", "الفيصلي", "الوحدات", "الرمثا", "الحسين", "السلط", "الجزيرة", "شباب الأردن", "الزمالك", "الأهلي", "بيراميدز", "برشلونة", "ريال مدريد", "ليفربول", "مانشستر", "نيوكاسل", "طرابزون", "باشاك شهير", "ميسي", "رونالدو", "اتحاد جدة", "نيوم", "القادسية", "الهلال", "النصر", "الشباب", "التعاون", "ضمك", "الرائد", "الخليج", "صلاح"];
 
 const SOURCES = [
   {
@@ -69,7 +70,9 @@ function hasArabicToken(value, token) {
 
 function isFootballHeadline(value) {
   const text = String(value ?? "");
-  return !NON_FOOTBALL_KEYWORDS.test(text) && (FOOTBALL_KEYWORDS.test(text) || hasArabicToken(text, "صلاح"));
+  if (NON_FOOTBALL_KEYWORDS.test(text)) return false;
+  if (FOOTBALL_LATIN_KEYWORDS.test(text)) return true;
+  return FOOTBALL_ARABIC_TOKENS.some((token) => hasArabicToken(text, token));
 }
 
 function extractMala3bArticleContent(html) {

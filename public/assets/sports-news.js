@@ -1,7 +1,10 @@
 (function () {
   "use strict";
 
-  var DATA_URL = "/data/sports-news.json";
+  var DATA_URLS = {
+    ar: "/data/sports-news-ar.json",
+    en: "/data/sports-news-en.json",
+  };
   var VISIBLE_STEP = 12;
   var state = {
     loaded: false,
@@ -12,6 +15,8 @@
     visibleCount: VISIBLE_STEP,
     generatedAt: "",
     renderedLanguage: "",
+    loadedLanguage: "",
+    loadingLanguage: "",
   };
 
   var TEXT = {
@@ -90,9 +95,7 @@
   }
 
   function localizedField(item, field, fallback) {
-    if (!item) return fallback || "";
-    if (!isEnglish()) return item[field] || fallback || "";
-    return item[field + "En"] || fallback || languageText("translationPending");
+    return item && item[field] ? item[field] : (fallback || "");
   }
 
   function localizedSourceName(item) {
@@ -143,7 +146,7 @@
 
   function setLanguageFields(force) {
     var lang = syncDocumentLanguage();
-    if (!force && state.renderedLanguage === lang) return;
+    if (!force && state.renderedLanguage === lang && state.loadedLanguage === lang) return;
     state.renderedLanguage = lang;
     document.querySelectorAll("[data-sports-key]").forEach(function (element) {
       var key = element.getAttribute("data-sports-key");
@@ -156,6 +159,10 @@
     }
     var refresh = document.getElementById("sportsRefresh");
     if (refresh) refresh.setAttribute("aria-label", languageText("refresh"));
+    if (state.loaded && state.loadedLanguage !== lang) {
+      loadSportsFeature(true);
+      return;
+    }
     render();
   }
 
@@ -356,7 +363,7 @@
       var categoryMatch = state.filter === "all" || item.category === state.filter;
       if (!categoryMatch) return false;
       if (!query) return true;
-      var haystack = [item.title, item.summary, item.content, item.titleEn, item.summaryEn, item.contentEn, item.sourceName, item.sourceNameEn, item.sport, item.category].join(" ").toLowerCase();
+      var haystack = [item.title, item.summary, item.content, item.sourceName, item.sport, item.category].join(" ").toLowerCase();
       return haystack.indexOf(query) !== -1;
     });
   }
@@ -410,10 +417,7 @@
         id: cleanText(item.id, 80),
         title: title,
         summary: summary,
-        titleEn: cleanText(item.titleEn, 180) || "",
-        summaryEn: cleanText(item.summaryEn, 360) || "",
         content: cleanText(item.content || item.summary, 1800),
-        contentEn: cleanText(item.contentEn, 1800) || "",
         contentType: cleanText(item.contentType, 40) || "rss-excerpt",
         url: validUrl(item.url),
         image: validUrl(item.image),
@@ -422,26 +426,32 @@
         category: ["global", "europe", "jordan"].indexOf(item.category) >= 0 ? item.category : "global",
         sport: cleanText(item.sport, 40) || "other",
         publishedAt: cleanText(item.publishedAt, 60),
-        language: item.language === "ar" ? "ar" : "en",
+        language: item.language === "en" ? "en" : "ar",
       };
     }).filter(Boolean);
   }
 
   async function loadSportsFeature(force) {
-    if (state.loading || (state.loaded && !force)) {
+    var requestedLanguage = selectedLanguage();
+    if (state.loading) return;
+    if (state.loaded && !force && state.loadedLanguage === requestedLanguage) {
       render();
       return;
     }
     state.loading = true;
+    state.loadingLanguage = requestedLanguage;
+    state.loaded = false;
     setStatus(languageText("loading"), false);
     try {
-      var response = await fetch(DATA_URL, { credentials: "same-origin", cache: "no-store" });
+      var response = await fetch(DATA_URLS[requestedLanguage] || DATA_URLS.ar, { credentials: "same-origin", cache: "no-store" });
       if (!response.ok) throw new Error("HTTP " + response.status);
       var payload = await response.json();
       var items = normalizeItems(payload);
       if (items.length < 1) throw new Error("No valid items");
       state.items = items;
       state.generatedAt = cleanText(payload.generatedAt, 60);
+      state.loadedLanguage = requestedLanguage;
+      state.renderedLanguage = requestedLanguage;
       state.loaded = true;
       state.visibleCount = VISIBLE_STEP;
       setStatus("", false);
@@ -449,11 +459,17 @@
       var articleId = articleIdFromHash();
       if (articleId) renderArticle(items.find(function (item) { return item.id === articleId; }));
     } catch (error) {
+      state.items = [];
+      state.generatedAt = "";
+      state.loadedLanguage = requestedLanguage;
+      state.renderedLanguage = requestedLanguage;
       state.loaded = true;
       setStatus(languageText("unavailable"), true);
       render();
     } finally {
       state.loading = false;
+      state.loadingLanguage = "";
+      if (selectedLanguage() !== state.loadedLanguage) loadSportsFeature(true);
     }
   }
 

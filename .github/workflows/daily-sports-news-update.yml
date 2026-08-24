@@ -1,4 +1,4 @@
-name: Daily sports news update
+name: Daily Football News Update
 
 on:
   schedule:
@@ -14,12 +14,12 @@ defaults:
     shell: bash
 
 concurrency:
-  group: daily-sports-news-update
+  group: daily-football-news-update
   cancel-in-progress: false
 
 jobs:
-  update-sports-news:
-    name: Fetch and publish sports news
+  update-football-news:
+    name: Fetch and publish Arabic and English football news
     runs-on: ubuntu-latest
     timeout-minutes: 12
 
@@ -38,81 +38,75 @@ jobs:
       - name: Verify Node runtime
         run: node --version
 
-      - name: Check sports updater, translator, and dataset validator
+      - name: Check football updaters and validators
         run: |
           node --check scripts/update-sports-news.mjs
-          node --check scripts/translate-sports-news.mjs
+          node --check scripts/update-sports-news-en.mjs
           node --check scripts/test-sports-news.mjs
+          node --check scripts/test-sports-news-en.mjs
 
-      - name: Save previous sports dataset for translation reuse
-        if: ${{ always() }}
-        run: cp public/data/sports-news.json "$RUNNER_TEMP/sports-news-previous.json"
-
-      - name: Update sports news dataset
-        id: sports
+      - name: Update Arabic football news
+        id: arabic
         continue-on-error: true
         run: npm run github:update-sports
 
-      - name: Translate football news to English
-        id: translate
-        if: ${{ always() && steps.sports.outcome == 'success' }}
+      - name: Update English football news
+        id: english
         continue-on-error: true
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-5-mini
-          SPORTS_PREVIOUS_DATA: ${{ runner.temp }}/sports-news-previous.json
-        run: node scripts/translate-sports-news.mjs
+        run: npm run github:update-sports-en
 
-      - name: Validate sports dataset and translations
+      - name: Validate both language datasets
         id: validate
-        if: ${{ always() && steps.sports.outcome == 'success' && steps.translate.outcome == 'success' }}
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' }}
         continue-on-error: true
-        run: node scripts/test-sports-news.mjs
+        run: |
+          node scripts/test-sports-news.mjs
+          node scripts/test-sports-news-en.mjs
 
-      - name: Write sports workflow status
+      - name: Write football workflow status
         if: ${{ always() }}
         env:
-          SPORTS_OUTCOME: ${{ steps.sports.outcome }}
-          TRANSLATE_OUTCOME: ${{ steps.translate.outcome }}
+          ARABIC_OUTCOME: ${{ steps.arabic.outcome }}
+          ENGLISH_OUTCOME: ${{ steps.english.outcome }}
           VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
         run: |
           mkdir -p public/reports
           node --input-type=module <<'NODE'
           import fs from 'node:fs';
-          const sportsOutcome = process.env.SPORTS_OUTCOME || 'unknown';
-          const translateOutcome = process.env.TRANSLATE_OUTCOME || 'skipped';
+          const arabicOutcome = process.env.ARABIC_OUTCOME || 'unknown';
+          const englishOutcome = process.env.ENGLISH_OUTCOME || 'unknown';
           const validateOutcome = process.env.VALIDATE_OUTCOME || 'skipped';
-          const ok = sportsOutcome === 'success' && translateOutcome === 'success' && validateOutcome === 'success';
+          const ok = arabicOutcome === 'success' && englishOutcome === 'success' && validateOutcome === 'success';
           const payload = {
             ok,
             generatedAt: new Date().toISOString(),
-            mode: 'daily-sports-news-update',
-            sportsOutcome,
-            translateOutcome,
+            mode: 'daily-football-news-update-free-bilingual',
+            arabicOutcome,
+            englishOutcome,
             validateOutcome,
             note: ok
-              ? 'Sports news was fetched and validated. Headlines remain linked to their original publishers.'
-              : 'Sports news was not published because fetching or validation failed. The previous trusted dataset remains in place.'
+              ? 'Arabic and English football datasets were fetched independently and validated. Headlines remain linked to their original publishers.'
+              : 'Football news was not published because one language fetch or validation failed. The previous trusted datasets remain in place.'
           };
           fs.writeFileSync('public/reports/daily-sports-news-status.json', `${JSON.stringify(payload, null, 2)}\n`);
           NODE
 
-      - name: Commit validated sports data
-        if: ${{ always() && steps.sports.outcome == 'success' && steps.validate.outcome == 'success' }}
+      - name: Commit validated football data
+        if: ${{ always() && steps.arabic.outcome == 'success' && steps.english.outcome == 'success' && steps.validate.outcome == 'success' }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/sports-news.json
+          git add public/data/sports-news-ar.json public/data/sports-news-en.json
           if git diff --cached --quiet; then
-            echo "No sports data changes to commit."
+            echo "No football data changes to commit."
           else
-            git commit -m "Update daily sports news"
+            git commit -m "Update daily bilingual football news"
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
-      - name: Commit sports workflow status
+      - name: Commit football workflow status
         if: ${{ always() }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -121,17 +115,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/reports/daily-sports-news-status.json
           if git diff --cached --quiet; then
-            echo "No sports status changes to commit."
+            echo "No football status changes to commit."
           else
-            git commit -m "Update sports news workflow status"
+            git commit -m "Update football news workflow status"
             git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
           fi
 
-      - name: Fail workflow if sports update or translation failed
-        if: ${{ always() && (steps.sports.outcome == 'failure' || steps.translate.outcome == 'failure' || steps.validate.outcome == 'failure') }}
+      - name: Fail workflow if either language or validation failed
+        if: ${{ always() && (steps.arabic.outcome == 'failure' || steps.english.outcome == 'failure' || steps.validate.outcome == 'failure') }}
         run: |
-          echo "Sports news update did not pass all guards. The previous dataset was retained."
-          echo "sports outcome: ${{ steps.sports.outcome }}"
-          echo "translation outcome: ${{ steps.translate.outcome }}"
-          echo "validation outcome: ${{ steps.validate.outcome }}"
+          echo "Football news update did not pass all guards. The previous datasets were retained."
+          echo "Arabic outcome: ${{ steps.arabic.outcome }}"
+          echo "English outcome: ${{ steps.english.outcome }}"
+          echo "Validation outcome: ${{ steps.validate.outcome }}"
           exit 1
