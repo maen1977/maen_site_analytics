@@ -37,7 +37,7 @@
     noResults: { ar: "لا توجد أخبار مطابقة لهذا التصنيف أو البحث.", en: "No news matches this category or search." },
     unavailable: { ar: "تعذر تحميل الأخبار حالياً. سنحاول مجدداً لاحقاً.", en: "Sports news is temporarily unavailable. We will try again later." },
     source: { ar: "المصدر", en: "Source" },
-    sourceNote: { ar: "العناوين والملخصات قصيرة، والقراءة الكاملة من المصدر الأصلي.", en: "Headlines and excerpts are brief; read the full story at the original source." },
+    sourceNote: { ar: "العناوين والملخصات العربية قصيرة، والقراءة الكاملة من المصدر الأصلي.", en: "Arabic headlines and excerpts are brief; read the full story at the original source." },
     articles: { ar: "خبر", en: "articles" },
   };
 
@@ -145,6 +145,9 @@
   function createCard(item, featured) {
     var article = document.createElement("article");
     article.className = featured ? "sports-card sports-card-featured" : "sports-card";
+    var itemLanguage = item.language === "ar" ? "ar" : "en";
+    article.setAttribute("dir", itemLanguage === "ar" ? "rtl" : "ltr");
+    article.setAttribute("lang", itemLanguage);
     article.appendChild(createImage(item, featured));
 
     var body = document.createElement("div");
@@ -248,6 +251,7 @@
         category: ["global", "europe", "jordan"].indexOf(item.category) >= 0 ? item.category : "global",
         sport: cleanText(item.sport, 40) || "other",
         publishedAt: cleanText(item.publishedAt, 60),
+        language: item.language === "ar" ? "ar" : "en",
       };
     }).filter(Boolean);
   }

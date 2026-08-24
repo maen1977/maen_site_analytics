@@ -280,6 +280,14 @@
   padding: 18px;
 }
 
+#sports .sports-card[dir="rtl"] .sports-card-body {
+  text-align: right;
+}
+
+#sports .sports-card[dir="rtl"] .sports-card-footer {
+  direction: rtl;
+}
+
 #sports .sports-card-meta {
   display: flex;
   align-items: center;
