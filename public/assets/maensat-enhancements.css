@@ -667,30 +667,10 @@
   justify-content: space-between;
   gap: 8px;
 }
-#sports .sports-match-date,
-#sports .sports-match-status {
+#sports .sports-match-date {
   color: #54738a;
   font-size: 12px;
   font-weight: 900;
-}
-#sports .sports-match-status {
-  padding: 5px 8px;
-  color: #07546a;
-  border-radius: 999px;
-  background: #dff5ee;
-}
-#sports .sports-match-status-live { color: #7f3024; background: #fff0eb; }
-#sports .sports-match-status-completed { color: #52667d; background: #edf1f5; }
-#sports .sports-match-status-postponed,
-#sports .sports-match-status-cancelled { color: #7f3024; background: #fff0eb; }
-#sports .sports-match-competition {
-  overflow: hidden;
-  margin: 12px 0 10px;
-  color: #087f8c;
-  font-size: 13px;
-  font-weight: 900;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 #sports .sports-match-teams {
   min-height: 52px;
@@ -760,41 +740,12 @@
 #sports .sports-match-access-fta { color: #17633c; background: #e2f5e8; }
 #sports .sports-match-access-encrypted { color: #7a3e19; background: #fff0d7; }
 #sports .sports-match-access-unknown { color: #5c5f69; background: #edf0f4; }
-#sports .sports-match-broadcaster-meta {
-  display: block;
-  margin-top: 2px;
-  color: #73869a;
-  font-size: 11px;
-  font-weight: 700;
-}
-#sports .sports-match-broadcaster-source {
-  display: block;
-  margin-top: 3px;
-  color: #087f8c;
-  font-size: 11px;
-  font-weight: 900;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-#sports .sports-match-broadcaster-access-source {
-  color: #8a5a12;
-  font-size: 10px;
-}
 #sports .sports-match-no-broadcast {
   margin: 0;
   color: #7b6b59;
   font-size: 12px;
   line-height: 1.65;
   font-weight: 700;
-}
-#sports .sports-match-footer {
-  overflow: hidden;
-  margin-top: 12px;
-  color: #7b8b9a;
-  font-size: 11px;
-  font-weight: 800;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 @media (max-width: 900px) {
   #sports .sports-matches-toolbar { align-items: stretch; flex-direction: column; }

@@ -79,8 +79,8 @@
     matchesCount: { ar: "مباراة", en: "matches" },
     matchesWithBroadcasters: { ar: "لها قناة موثقة", en: "with verified broadcaster" },
     matchTime: { ar: "الوقت", en: "Time" },
-    matchBroadcast: { ar: "القنوات الناقلة حسب الدليل", en: "Broadcasters with evidence" },
-    matchNoBroadcast: { ar: "لم يتم التحقق من قناة ناقلة في الأردن وفلسطين ولبنان وسوريا والعراق ومصر.", en: "No broadcaster was verified in Jordan, Palestine, Lebanon, Syria, Iraq, or Egypt." },
+    matchBroadcast: { ar: "القناة الناقلة", en: "Broadcaster" },
+    matchNoBroadcast: { ar: "لم تُحدد قناة ناقلة لهذا الموعد.", en: "No broadcaster is listed for this fixture." },
     broadcastFta: { ar: "مجاني / FTA", en: "FTA / Free" },
     broadcastEncrypted: { ar: "مشفر / مدفوع", en: "Encrypted / subscription" },
     broadcastUnknown: { ar: "نوع البث غير مؤكد", en: "Access type unverified" },
@@ -275,35 +275,6 @@
     badge.textContent = broadcasterAccessText(entry);
     row.appendChild(badge);
     listItem.appendChild(row);
-    var meta = document.createElement("span");
-    meta.className = "sports-match-broadcaster-meta";
-    meta.textContent = cleanText(entry && (entry.region || entry.country), 60);
-    listItem.appendChild(meta);
-    var evidenceSources = Array.isArray(entry && entry.evidenceSources) && entry.evidenceSources.length
-      ? entry.evidenceSources
-      : [{ name: entry && entry.sourceName, url: entry && entry.sourceUrl }];
-    evidenceSources.slice(0, 4).forEach(function (source, index) {
-      var sourceUrl = validUrl(source && source.url);
-      if (!sourceUrl) return;
-      var link = document.createElement("a");
-      link.className = "sports-match-broadcaster-source";
-      link.href = sourceUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      var prefix = evidenceSources.length > 1 ? " " + String(index + 1) : "";
-      link.textContent = languageText("broadcastEvidence") + prefix + ": " + cleanText(source.name || entry.sourceName || "", 100);
-      listItem.appendChild(link);
-    });
-    var accessSourceUrl = validUrl(entry && entry.accessSourceUrl);
-    if (accessSourceUrl) {
-      var accessLink = document.createElement("a");
-      accessLink.className = "sports-match-broadcaster-source sports-match-broadcaster-access-source";
-      accessLink.href = accessSourceUrl;
-      accessLink.target = "_blank";
-      accessLink.rel = "noopener noreferrer";
-      accessLink.textContent = languageText("broadcastAccessEvidence") + ": " + cleanText(entry.accessSourceName || "", 100);
-      listItem.appendChild(accessLink);
-    }
     return listItem;
   }
 
@@ -320,11 +291,6 @@
     date.textContent = formatMatchDate(match.date);
     top.appendChild(date);
     card.appendChild(top);
-
-    var competition = document.createElement("p");
-    competition.className = "sports-match-competition";
-    competition.textContent = cleanText(match.competition || "Football", 140);
-    card.appendChild(competition);
 
     var teams = document.createElement("div");
     teams.className = "sports-match-teams";
@@ -364,10 +330,6 @@
     }
     card.appendChild(broadcast);
 
-    var footer = document.createElement("div");
-    footer.className = "sports-match-footer";
-    footer.textContent = languageText("matchSource") + ": " + matchSourceText(match);
-    card.appendChild(footer);
     return card;
   }
 
