@@ -20,7 +20,6 @@ const validPages = [
   "receiverSoftware",
   "frequencies",
   "sports",
-  "sportsArticle",
   "worldcup2026",
   "contact",
 ];
@@ -31,10 +30,7 @@ for (const { file, fallback } of pages) {
   const loaderPattern = new RegExp(
     `var requestedPage=\\(window\\.location\\.hash\\|\\|''\\)\\.replace\\(/\\^#\\/,''\\);var initialPage=document\\.getElementById\\(requestedPage\\)\\?requestedPage:'${escapedFallback}'`,
   );
-  const readerAwareLoaderPattern = new RegExp(
-    `var requestedPage=\\(window\\.location\\.hash\\|\\|''\\)\\.replace\\(/\\^#\\/,''\\);var articleHash=[^;]+;var initialPage=document\\.getElementById\\(requestedPage\\)\\?requestedPage:\\(articleHash\\?'sportsArticle':'${escapedFallback}'\\)`,
-  );
-  if (!loaderPattern.test(html) && !readerAwareLoaderPattern.test(html)) {
+  if (!loaderPattern.test(html)) {
     throw new Error(`${file}: load handler must prefer a valid hash and use ${fallback} only as fallback`);
   }
   if (!html.includes('/assets/maensat-enhancements.js?v=20260824-sports-v1')) {

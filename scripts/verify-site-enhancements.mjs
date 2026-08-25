@@ -10,29 +10,26 @@ const assert = (condition, message) => {
 
 const pages = [read("public/index.html"), read("public/index_phone.html")];
 const catalog = JSON.parse(read("public/data/products.json"));
-const sportsScript = read("public/assets/sports-news.js");
-const sportsWorkflow = read(".github/workflows/daily-sports-news-update.yml");
+const matchesScript = read("public/assets/football-matches.js");
+const matchesWorkflow = read(".github/workflows/daily-football-matches-update.yml");
 
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
-assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v7")), "Enhancement stylesheet missing from a page");
-assert(pages.every((html) => html.includes("/assets/sports-news.js?v=20260824-v12") && html.includes('id="sports"') && html.includes('id="sportsArticle"')), "Sports section assets missing from a page");
-assert(pages.every((html) => html.includes('data-sports-mode="news"') && html.includes('data-sports-mode="matches"') && html.includes('data-matches-window="today"') && html.includes('data-matches-window="tomorrow"') && html.includes('data-matches-window="week"')), "Football matches tabs are missing from a page");
-assert(sportsScript.includes("function localizedField") && sportsScript.includes("function installLanguageBridge"), "Football language bridge is missing");
-assert(sportsScript.includes("var DATA_URLS") && sportsScript.includes("/data/sports-news-ar.json") && sportsScript.includes("/data/sports-news-en.json"), "Independent Arabic and English football datasets are missing");
-assert(sportsScript.includes("var MATCHES_URL") && sportsScript.includes("/data/football-matches.json") && sportsScript.includes("function loadMatches") && sportsScript.includes("function setSportsMode"), "Football matches loader or mode switch is missing");
-assert(sportsScript.includes("broadcastFta") && sportsScript.includes("broadcastEncrypted") && sportsScript.includes("broadcastUnknown") && sportsScript.includes("matchesWithBroadcasters") && sportsScript.includes("matchBroadcast"), "Broadcaster access labels or schedule fields are missing");
-assert(!sportsScript.includes("matchStatusText") && !sportsScript.includes("sports-match-status") && !sportsScript.includes("match.status"), "Football match cards must not display result status");
-assert(sportsScript.includes("if (root.lang !== lang) root.lang = lang") && sportsScript.includes("if (state.renderedLanguage !== lang) setLanguageFields()"), "Sports language observer is not guarded against repeated renders");
-assert(pages.every((html) => html.includes("if(root.lang!==lang) root.lang=lang")), "Global language enhancer still writes unchanged document attributes");
-assert(!sportsScript.includes("titleEn") && !sportsScript.includes("summaryEn") && !sportsScript.includes("contentEn"), "Sports UI still depends on machine-translated fields");
-assert(sportsScript.includes("sports-article-back") && sportsScript.includes("Back to football"), "Internal football reader back button is missing");
-assert(sportsWorkflow.includes("cron: '37 0 * * *'") && sportsWorkflow.includes("update-sports-news-en.mjs") && sportsWorkflow.includes("update-football-matches.mjs") && sportsWorkflow.includes("test-football-matches.mjs") && !sportsWorkflow.includes("OPENAI_API_KEY") && !sportsWorkflow.includes("translate-sports-news.mjs"), "Free hybrid football workflow is missing");
+assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260824-sports-v8")), "Enhancement stylesheet missing from a page");
+assert(pages.every((html) => html.includes("/assets/football-matches.js?v=20260825-matches-v1") && html.includes('id="sports"') && html.includes('id="sportsMatchesPanel"')), "Football schedule assets missing from a page");
+assert(pages.every((html) => !html.includes("sportsNewsPanel") && !html.includes("sportsArticle") && !html.includes("sports-news.js") && !html.includes("data-sports-mode=")), "Football news UI or mode switch is still present");
+assert(matchesScript.includes("var MATCHES_URL") && matchesScript.includes("/data/football-matches.json") && matchesScript.includes("function loadMatches") && matchesScript.includes("function renderMatchCard"), "Football matches loader is missing");
+assert(matchesScript.includes("matchTime") && matchesScript.includes("matchBroadcast") && matchesScript.includes("broadcastFta") && matchesScript.includes("broadcastEncrypted") && matchesScript.includes("broadcastUnknown"), "Schedule time or broadcaster labels are missing");
+assert(matchesScript.includes("scheduleTodayKey") && matchesScript.includes("addDateKey(today, 7)"), "Seven-day forward schedule window is missing");
+assert(!matchesScript.includes("sports-news-ar") && !matchesScript.includes("sports-news-en") && !matchesScript.includes("renderArticle") && !matchesScript.includes("articleIdFromHash"), "Matches-only script still contains football news logic");
+assert(matchesWorkflow.includes("cron: '37 0,12 * * *'") && matchesWorkflow.includes("npm run github:update-matches") && matchesWorkflow.includes("test-football-matches.mjs") && matchesWorkflow.includes("newsCollection: false") && !matchesWorkflow.includes("update-sports-news") && !matchesWorkflow.includes("OPENAI_API_KEY"), "Matches-only twice-daily workflow is missing");
+assert(!read("package.json").includes("update-sports-news") && !read("package.json").includes("test-sports-news"), "News commands remain in package scripts");
+assert(!read("public/_headers").includes("sports-news-ar") && !read("public/_headers").includes("sports-news-en") && read("public/_headers").includes("football-matches.json"), "Football data cache headers are incorrect");
+assert(fs.existsSync(path.join(root, "public/data/football-matches.json")), "Football matches dataset missing");
+assert(!fs.existsSync(path.join(root, "public/data/sports-news-ar.json")) && !fs.existsSync(path.join(root, "public/data/sports-news-en.json")), "Football news datasets still exist");
 assert(catalog.length >= 1, "Product catalog is empty");
 assert(catalog.every((item) => item.id && item.name && item.image), "Product catalog contains an incomplete item");
 assert(fs.existsSync(path.join(root, "functions/api/track-event.js")), "Track-event endpoint missing");
 assert(read("functions/_lib/analytics.js").includes("event_type"), "Analytics event columns missing");
 assert(read("public/_headers").includes("/data/products.json"), "Product cache header missing");
-assert(read("public/_headers").includes("/data/sports-news-ar.json") && read("public/_headers").includes("/data/sports-news-en.json") && read("public/_headers").includes("/data/football-matches.json"), "Football data cache headers missing");
-assert(fs.existsSync(path.join(root, "public/data/sports-news-ar.json")) && fs.existsSync(path.join(root, "public/data/sports-news-en.json")) && fs.existsSync(path.join(root, "public/data/football-matches.json")), "Football datasets missing");
 
-console.log(`site enhancement checks passed (${catalog.length} products)`);
+console.log(`site enhancement checks passed (${catalog.length} products; matches-only sports section)`);
