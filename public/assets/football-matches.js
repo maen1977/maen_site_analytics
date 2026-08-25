@@ -7,7 +7,7 @@
     loaded: false,
     loading: false,
     matches: [],
-    matchesWindow: "today",
+    matchesWindow: "week",
     matchesQuery: "",
     matchesVisibleCount: MATCHES_VISIBLE_STEP,
     matchesGeneratedAt: "",

@@ -475,12 +475,15 @@ function parseKoooraMatches(html, queryDate, sourceUrl) {
   return matches;
 }
 
-async function fetchKoooraDay(queryDate) {
+async function fetchKoooraDays(queryDates) {
   const homeHtml = await fetchText(KOOORA_HOME);
-  const articleUrl = findKoooraDailyArticle(homeHtml, queryDate);
-  if (!articleUrl) return [];
-  const articleHtml = await fetchText(articleUrl);
-  return parseKoooraMatches(articleHtml, queryDate, articleUrl);
+  const results = await Promise.all(queryDates.map(async (queryDate) => {
+    const articleUrl = findKoooraDailyArticle(homeHtml, queryDate);
+    if (!articleUrl) return [];
+    const articleHtml = await fetchText(articleUrl);
+    return parseKoooraMatches(articleHtml, queryDate, articleUrl);
+  }));
+  return results.flat();
 }
 
 function matchFilGoalToFixture(sourceMatch, fixtures) {
@@ -567,7 +570,7 @@ const [espnResults, sportsDbResults, filGoalResults, koooraResults] = await Prom
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
   Promise.allSettled([fetchJordanLeague()]),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
-  Promise.allSettled([fetchKoooraDay(startDate)]),
+  Promise.allSettled([fetchKoooraDays(dates)]),
 ]);
 
 const espnSucceeded = espnResults.filter((result) => result.status === "fulfilled");
@@ -685,7 +688,7 @@ const payload = {
     { id: "espn-major-leagues", name: "ESPN public scoreboards for selected major leagues", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length, requestedLeagues: ESPN_MAJOR_LEAGUES.map((league) => league.id) },
     { id: "thesportsdb-jordan", name: "TheSportsDB Jordanian Pro League season", url: `https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`, ok: sportsDbSucceeded.length > 0, requestedDays: 1 },
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
-    { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast table", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: 1 },
+    { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
     { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
