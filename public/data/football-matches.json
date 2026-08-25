@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-25T07:34:02.580Z",
+  "generatedAt": "2026-08-25T07:35:31.560Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-25",
@@ -18,7 +18,7 @@
     {
       "id": "thesportsdb-free",
       "name": "TheSportsDB free API",
-      "ok": false,
+      "ok": true,
       "requestedDays": 8
     },
     {
@@ -87,6 +87,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401888614/sportivo-san-lorenzo-libertad"
+    },
+    {
+      "id": "match-6a0300a73cabd3c3a370",
+      "date": "2026-08-25",
+      "start": "2026-08-25T22:00:00",
+      "time": "01:00",
+      "homeTeam": "Deportivo Madryn",
+      "awayTeam": "Godoy Cruz",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/b2recn1626207994.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/d3c0ds1517768584.png",
+      "competition": "Argentinian Primera B Nacional",
+      "country": "Argentina",
+      "venue": "Estadio Abel Sastre",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2404929"
     },
     {
       "id": "match-0215ff21ea5652c70eb3",
@@ -619,12 +637,13 @@
       "awayTeam": "Argentinos Juniors",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/12.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Ciudad de Lanús",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401841515/argentinos-juniors-lanus"
     },
@@ -645,6 +664,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401841520/rosario-central-talleres-cordoba"
+    },
+    {
+      "id": "match-25b946a78c24ce712dd5",
+      "date": "2026-08-25",
+      "start": "2026-08-25T00:15:00",
+      "time": "03:15",
+      "homeTeam": "Talleres de Córdoba",
+      "awayTeam": "Rosario Central",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/7hum2t1769310938.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/y6q1ds1769660256.png",
+      "competition": "Argentinian Primera Division",
+      "country": "Argentina",
+      "venue": "Estadio Mario Alberto Kempes",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398039"
     },
     {
       "id": "match-d40017a6fc24580c000a",
@@ -796,7 +833,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.570Z",
+          "verifiedAt": "2026-08-25T07:35:31.549Z",
           "evidenceUrls": [
             "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76"
           ],
@@ -928,7 +965,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "FilGoal match schedule",
           "sourceUrl": "https://www.filgoal.com/matches/375133/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D9%81%D8%A7%D9%82-%D8%A7%D9%84%D9%86%D8%B5%D8%B1-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
-          "verifiedAt": "2026-08-25T07:34:02.566Z",
+          "verifiedAt": "2026-08-25T07:35:31.546Z",
           "evidenceUrls": [
             "https://www.filgoal.com/matches/375133/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%A7%D8%AA%D9%81%D8%A7%D9%82-%D8%A7%D9%84%D9%86%D8%B5%D8%B1-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
           ],
@@ -950,7 +987,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.571Z",
+          "verifiedAt": "2026-08-25T07:35:31.550Z",
           "evidenceUrls": [
             "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76"
           ],
@@ -993,7 +1030,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "FilGoal match schedule",
           "sourceUrl": "https://www.filgoal.com/matches/375134/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8-%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86",
-          "verifiedAt": "2026-08-25T07:34:02.567Z",
+          "verifiedAt": "2026-08-25T07:35:31.547Z",
           "evidenceUrls": [
             "https://www.filgoal.com/matches/375134/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%A7%D9%84%D8%B4%D8%A8%D8%A7%D8%A8-%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%84%D9%84%D9%85%D8%AD%D8%AA%D8%B1%D9%81%D9%8A%D9%86"
           ],
@@ -1015,7 +1052,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.572Z",
+          "verifiedAt": "2026-08-25T07:35:31.551Z",
           "evidenceUrls": [
             "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76"
           ],
@@ -2318,7 +2355,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.573Z",
+          "verifiedAt": "2026-08-25T07:35:31.552Z",
           "accessSourceName": "beIN official FAQ and channel list",
           "accessSourceUrl": "https://www.bein.com/en/general-faq/",
           "evidenceUrls": [
@@ -2380,7 +2417,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.573Z",
+          "verifiedAt": "2026-08-25T07:35:31.552Z",
           "accessSourceName": "beIN official FAQ and channel list",
           "accessSourceUrl": "https://www.bein.com/en/general-faq/",
           "evidenceUrls": [
@@ -2442,7 +2479,7 @@
           "evidenceLevel": "editorial",
           "sourceName": "Kooora daily broadcast table",
           "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AB%D9%84%D8%A7%D8%AB%D8%A7%D8%A1-25-%D8%A7%D9%94%D8%BA%D8%B3%D8%B7%D8%B3-2026--%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt09e353049e7fee76",
-          "verifiedAt": "2026-08-25T07:34:02.572Z",
+          "verifiedAt": "2026-08-25T07:35:31.551Z",
           "accessSourceName": "beIN official FAQ and channel list",
           "accessSourceUrl": "https://www.bein.com/en/general-faq/",
           "evidenceUrls": [
@@ -2659,6 +2696,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": ""
+    },
+    {
+      "id": "match-922176605f6a7a7d3c0b",
+      "date": "2026-08-26",
+      "start": "2026-08-26T23:30:00",
+      "time": "02:30",
+      "homeTeam": "FC Naples",
+      "awayTeam": "Union Omaha",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/d49pss1734777579.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/adjk5w1625369337.png",
+      "competition": "American USL League One",
+      "country": "United States",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397616"
     },
     {
       "id": "match-5833c4dd8ac47d3e8be8",
@@ -3353,12 +3408,13 @@
       "awayTeam": "San Telmo",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10145.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10157.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "La Quema",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401843982/san-telmo-acassuso"
     },
@@ -3407,12 +3463,13 @@
       "awayTeam": "San Miguel",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11963.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10058.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "Estadio Juan Alberto García",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401843977/san-miguel-chaco-for-ever"
     },
@@ -4091,12 +4148,13 @@
       "awayTeam": "Deportivo Morón",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11993.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10154.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera B Nacional",
       "country": "Argentina",
       "venue": "Padre Ernesto Martearena",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401843979/deportivo-moron-central-norte"
     },
@@ -4271,12 +4329,13 @@
       "awayTeam": "Pittsburgh Riverhounds",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19407.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/17827.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Southwest University Park",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401842143/pittsburgh-riverhounds-el-paso-locomotive-fc"
     },
@@ -4307,12 +4366,13 @@
       "awayTeam": "Lexington",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19408.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21822.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Isotopes Park",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401842145/lexington-new-mexico-united"
     },
@@ -6099,6 +6159,24 @@
       "sourceUrl": ""
     },
     {
+      "id": "match-1c8bc4fd14a1bdb0c4b9",
+      "date": "2026-08-28",
+      "start": "2026-08-28T22:00:00",
+      "time": "01:00",
+      "homeTeam": "Unión",
+      "awayTeam": "Sarmiento",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/btnx6q1734587495.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/xxofu71677634191.png",
+      "competition": "Argentinian Primera Division",
+      "country": "Argentina",
+      "venue": "Estadio 15 de Abril",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398055"
+    },
+    {
       "id": "match-8572f41627a8884b5015",
       "date": "2026-08-28",
       "start": "2026-08-27T22:00Z",
@@ -6313,6 +6391,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": ""
+    },
+    {
+      "id": "match-bbe41a363b8a4dd47253",
+      "date": "2026-08-28",
+      "start": "2026-08-28T23:00:00",
+      "time": "02:00",
+      "homeTeam": "Charlotte Independence",
+      "awayTeam": "AV Alta FC",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/x7m3p31718560493.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ixti4w1734778518.png",
+      "competition": "American USL League One",
+      "country": "United States",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397617"
     },
     {
       "id": "match-3a5807c6f996e65fb936",
@@ -9249,6 +9345,24 @@
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401889352/yeovil-town-barrow"
     },
     {
+      "id": "match-70eb6c8071a95b313c6f",
+      "date": "2026-08-28",
+      "start": "2026-08-28T18:45:00",
+      "time": "21:45",
+      "homeTeam": "Bohemians",
+      "awayTeam": "Sligo Rovers",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/78i24h1734625752.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/1e9wvc1602256331.png",
+      "competition": "Irish Premier Division",
+      "country": "Ireland",
+      "venue": "Dalymount Park",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398711"
+    },
+    {
       "id": "match-77f1766d82d1f866af6f",
       "date": "2026-08-28",
       "start": "2026-08-28T18:45Z",
@@ -9843,6 +9957,24 @@
       "sourceUrl": ""
     },
     {
+      "id": "match-3291f1b4dde8c33f0385",
+      "date": "2026-08-29",
+      "start": "2026-08-29T23:00:00",
+      "time": "02:00",
+      "homeTeam": "Brooklyn FC",
+      "awayTeam": "Sporting JAX",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/p4tzze1765559400.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ddj2h91744180515.png",
+      "competition": "American USL Championship",
+      "country": "United States",
+      "venue": "Maimonides Park",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397290"
+    },
+    {
       "id": "match-60ecfe3e76d5fe7672da",
       "date": "2026-08-29",
       "start": "2026-08-28T23:00Z",
@@ -9987,6 +10119,24 @@
       "sourceUrl": ""
     },
     {
+      "id": "match-9118259058f899ad34b8",
+      "date": "2026-08-29",
+      "start": "2026-08-29T23:00:00",
+      "time": "02:00",
+      "homeTeam": "Hartford Athletic",
+      "awayTeam": "Birmingham Legion",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/dhbu3l1690266780.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/8uw1mc1629299635.png",
+      "competition": "American USL Championship",
+      "country": "United States",
+      "venue": "Trinity Health Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397293"
+    },
+    {
       "id": "match-9c6ea7c4e14b8d85b2eb",
       "date": "2026-08-29",
       "start": "2026-08-28T23:00Z",
@@ -10021,6 +10171,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": ""
+    },
+    {
+      "id": "match-fdc13f7cd49ae1d64243",
+      "date": "2026-08-29",
+      "start": "2026-08-29T23:00:00",
+      "time": "02:00",
+      "homeTeam": "Lexington SC",
+      "awayTeam": "Colorado Springs Switchbacks",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/whrnkt1674118711.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/oql6wu1629304849.png",
+      "competition": "American USL Championship",
+      "country": "United States",
+      "venue": "Lexington SC Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397295"
     },
     {
       "id": "match-60dcdfc3299fad9d0747",
@@ -14837,12 +15005,13 @@
       "awayTeam": "Rhode Island FC",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/18446.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/22164.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "ONEOK Field",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401842153/rhode-island-fc-fc-tulsa"
     },
@@ -15017,12 +15186,13 @@
       "awayTeam": "Loudoun United FC",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19407.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/19410.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Southwest University Park",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401842151/loudoun-united-fc-el-paso-locomotive-fc"
     },
@@ -15215,12 +15385,13 @@
       "awayTeam": "Charleston Battery",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/18987.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9729.png",
-      "competition": "Football",
+      "competition": "American USL Championship",
       "country": "USA",
       "venue": "Cashman Field",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401842157/charleston-battery-las-vegas-lights-fc"
     },
@@ -20319,6 +20490,24 @@
       "sourceUrl": ""
     },
     {
+      "id": "match-f8c4c34d35c047349e82",
+      "date": "2026-08-31",
+      "start": "2026-08-31T22:00:00",
+      "time": "01:00",
+      "homeTeam": "Defensa y Justicia",
+      "awayTeam": "Platense",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/3guvlh1775778978.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/lbs14n1769317149.png",
+      "competition": "Argentinian Primera Division",
+      "country": "Argentina",
+      "venue": "Estadio Norberto Tito Tomaghello",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398045"
+    },
+    {
       "id": "match-5c7381382e844961c515",
       "date": "2026-08-31",
       "start": "2026-08-30T22:00Z",
@@ -20335,6 +20524,24 @@
         "espn-public-soccer"
       ],
       "sourceUrl": ""
+    },
+    {
+      "id": "match-478c52f340181a343ce2",
+      "date": "2026-08-31",
+      "start": "2026-08-31T22:00:00",
+      "time": "01:00",
+      "homeTeam": "Estudiantes de La Plata",
+      "awayTeam": "Newell's Old Boys",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/pf08dq1760634366.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/23aftf1580842633.png",
+      "competition": "Argentinian Primera Division",
+      "country": "Argentina",
+      "venue": "Estadio Jorge Luis Hirschi",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398047"
     },
     {
       "id": "match-269de98d9ebaa01ef197",
@@ -21209,12 +21416,13 @@
       "awayTeam": "Racing Club",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/9744.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/15.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Bautista Gargantini",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401841533/racing-club-independiente-rivadavia"
     },
@@ -22659,6 +22867,24 @@
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401844098/agropecuario-gimnasia-y-esgrima-jujuy"
     },
     {
+      "id": "match-a16f7a7b3d06580ac15d",
+      "date": "2026-09-01",
+      "start": "2026-09-01T00:00:00",
+      "time": "03:00",
+      "homeTeam": "Gimnasia y Esgrima de Jujuy",
+      "awayTeam": "Agropecuario",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/1jxpz51677637810.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/jt027i1766678890.png",
+      "competition": "Argentinian Primera B Nacional",
+      "country": "Argentina",
+      "venue": "Estadio 23 de Agosto",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2405036"
+    },
+    {
       "id": "match-d0b0b01aa2f937261455",
       "date": "2026-09-01",
       "start": "2026-09-01T00:00Z",
@@ -22731,6 +22957,24 @@
       "sourceUrl": ""
     },
     {
+      "id": "match-7a09454028041682c5ef",
+      "date": "2026-09-01",
+      "start": "2026-09-01T00:15:00",
+      "time": "03:15",
+      "homeTeam": "Instituto",
+      "awayTeam": "San Lorenzo",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/jup59w1578825794.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/37wke41775741605.png",
+      "competition": "Argentinian Primera Division",
+      "country": "Argentina",
+      "venue": "Estadio Juan Domingo Perón",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2398051"
+    },
+    {
       "id": "match-f935f4ae3c715878c924",
       "date": "2026-09-01",
       "start": "2026-09-01T00:15Z",
@@ -22757,12 +23001,13 @@
       "awayTeam": "Barracas Central",
       "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7767.png",
       "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10060.png",
-      "competition": "Football",
+      "competition": "Argentinian Primera Division",
       "country": "Argentina",
       "venue": "Monumental de Victoria (José Dellagiovanna)",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "thesportsdb-free"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401841537/barracas-central-tigre"
     },
