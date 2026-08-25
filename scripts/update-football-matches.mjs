@@ -8,8 +8,21 @@ const OUTPUT = path.join(ROOT, "public/data/football-matches.json");
 const TIME_ZONE = "Asia/Amman";
 const FILGOAL_TIME_ZONE = "Africa/Cairo";
 const KOOORA_TIME_ZONE = "Asia/Riyadh";
-const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports/soccer/all/scoreboard";
+const ESPN_ROOT = "https://site.api.espn.com/apis/site/v2/sports/soccer";
 const SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/123";
+const ESPN_MAJOR_LEAGUES = [
+  { id: "eng.1", key: "premier-league", name: "English Premier League", country: "England" },
+  { id: "esp.1", key: "la-liga", name: "Spanish LaLiga", country: "Spain" },
+  { id: "ita.1", key: "serie-a", name: "Italian Serie A", country: "Italy" },
+  { id: "ger.1", key: "bundesliga", name: "German Bundesliga", country: "Germany" },
+  { id: "fra.1", key: "ligue-1", name: "French Ligue 1", country: "France" },
+  { id: "ned.1", key: "eredivisie", name: "Dutch Eredivisie", country: "Netherlands" },
+  { id: "por.1", key: "primeira-liga", name: "Portuguese Primeira Liga", country: "Portugal" },
+  { id: "sco.1", key: "scottish-premiership", name: "Scottish Premiership", country: "Scotland" },
+  { id: "uefa.champions", key: "champions-league", name: "UEFA Champions League", country: "Europe" },
+  { id: "uefa.europa", key: "europa-league", name: "UEFA Europa League", country: "Europe" },
+];
+const THESPORTSDB_JORDAN_LEAGUE_ID = "5055";
 const FILGOAL_BASE = "https://www.filgoal.com/matches";
 const KOOORA_HOME = "https://www.kooora.com/";
 const BEIN_FAQ_URL = "https://www.bein.com/en/general-faq/";
@@ -202,7 +215,7 @@ async function fetchText(url) {
   return fetchWithRetry(url, "text/html,application/xhtml+xml", (response) => response.text());
 }
 
-function toEspnMatch(event, requestedDate) {
+function toEspnMatch(event, requestedDate, leagueMeta = {}) {
   const competition = event?.competitions?.[0];
   const competitors = competition?.competitors || [];
   const home = competitors.find((team) => team.homeAway === "home") || competitors[1] || {};
@@ -222,9 +235,10 @@ function toEspnMatch(event, requestedDate) {
     awayTeam: awayName,
     homeLogo: compact(home.team?.logo, 500),
     awayLogo: compact(away.team?.logo, 500),
-    competition: compact(event?.league?.name || event?.season?.displayName || "Football", 140),
+    competition: compact(leagueMeta.name || event?.league?.name || event?.season?.displayName || "Football", 140),
+    competitionKey: leagueMeta.key || leagueMeta.id || compact(event?.season?.slug, 160),
     seasonSlug: compact(event?.season?.slug, 160),
-    country: compact(event?.league?.country || competition?.venue?.address?.country || "", 80),
+    country: compact(leagueMeta.country || event?.league?.country || competition?.venue?.address?.country || "", 80),
     venue: compact(competition?.venue?.fullName || "", 140),
     status: compact(competition?.status?.type?.name || event?.status?.type?.name || "STATUS_SCHEDULED", 40),
     sourceIds: ["espn-public-soccer"],
@@ -250,6 +264,7 @@ function toSportsDbMatch(event, requestedDate) {
     homeLogo: compact(event?.strHomeTeamBadge, 500),
     awayLogo: compact(event?.strAwayTeamBadge, 500),
     competition: compact(event?.strLeague || "Football", 140),
+    competitionKey: event?.idLeague === THESPORTSDB_JORDAN_LEAGUE_ID ? "jordan-pro-league" : compact(event?.strLeague || "football", 140).toLowerCase().replace(/[^a-z0-9]+/g, "-"),
     seasonSlug: "",
     country: compact(event?.strCountry || "", 80),
     venue: compact(event?.strVenue || "", 140),
@@ -260,14 +275,19 @@ function toSportsDbMatch(event, requestedDate) {
   };
 }
 
-async function fetchEspnDay(queryDate) {
-  const payload = await fetchJson(`${ESPN_BASE}?dates=${queryDate.replaceAll("-", "")}&limit=500`);
-  return (payload.events || []).map((event) => toEspnMatch(event, queryDate)).filter(Boolean);
+async function fetchEspnLeagueDay(queryDate, league) {
+  const payload = await fetchJson(`${ESPN_ROOT}/${league.id}/scoreboard?dates=${queryDate.replaceAll("-", "")}&limit=100`);
+  return (payload.events || []).map((event) => toEspnMatch(event, queryDate, league)).filter(Boolean);
 }
 
-async function fetchSportsDbDay(queryDate) {
-  const payload = await fetchJson(`${SPORTSDB_BASE}/eventsday.php?d=${queryDate}&s=Soccer`);
-  return (payload.events || []).map((event) => toSportsDbMatch(event, queryDate)).filter(Boolean);
+async function fetchEspnDay(queryDate) {
+  const results = await Promise.allSettled(ESPN_MAJOR_LEAGUES.map((league) => fetchEspnLeagueDay(queryDate, league)));
+  return results.filter((result) => result.status === "fulfilled").flatMap((result) => result.value);
+}
+
+async function fetchJordanLeague() {
+  const payload = await fetchJson(`${SPORTSDB_BASE}/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`);
+  return (payload.events || []).map((event) => toSportsDbMatch(event, event.dateEvent || "")).filter(Boolean);
 }
 
 function classifyAccessType(channelName) {
@@ -545,7 +565,7 @@ const surroundingDates = [isoDate(addDays(today, -1)), ...dates, isoDate(addDays
 
 const [espnResults, sportsDbResults, filGoalResults, koooraResults] = await Promise.all([
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
-  Promise.allSettled(dates.map((date) => fetchSportsDbDay(date))),
+  Promise.allSettled([fetchJordanLeague()]),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
   Promise.allSettled([fetchKoooraDay(startDate)]),
 ]);
@@ -641,6 +661,7 @@ const items = [...merged.values()]
       homeLogo: match.homeLogo || "",
       awayLogo: match.awayLogo || "",
       competition: match.competition || "Football",
+      competitionKey: match.competitionKey || "football",
       country: match.country || "",
       venue: match.venue || "",
       broadcasters,
@@ -659,10 +680,10 @@ const payload = {
   generatedAt: new Date().toISOString(),
   timeZone: TIME_ZONE,
   window: { startDate, endDate, days: DAYS_AHEAD + 1 },
-  mode: "free-hybrid-fixtures-with-verified-regional-tv",
+  mode: "selected-major-leagues-and-jordan-with-verified-regional-tv",
   sources: [
-    { id: "espn-public-soccer", name: "ESPN public soccer scoreboard", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length },
-    { id: "thesportsdb-free", name: "TheSportsDB free API", ok: sportsDbSucceeded.length > 0, requestedDays: dates.length },
+    { id: "espn-major-leagues", name: "ESPN public scoreboards for selected major leagues", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length, requestedLeagues: ESPN_MAJOR_LEAGUES.map((league) => league.id) },
+    { id: "thesportsdb-jordan", name: "TheSportsDB Jordanian Pro League season", url: `https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`, ok: sportsDbSucceeded.length > 0, requestedDays: 1 },
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast table", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: 1 },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
@@ -670,7 +691,7 @@ const payload = {
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
   ],
   broadcastCountries: [...TARGET_BROADCAST_COUNTRIES],
-  coverageNote: "Fixtures are collected from free public football schedules. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously. beIN access labels use the official FAQ/channel-list rules for the exact listed channel; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
+  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously. beIN access labels use the official FAQ/channel-list rules for the exact listed channel; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
   items,
 };
 

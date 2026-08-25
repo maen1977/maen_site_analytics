@@ -181,6 +181,17 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
+#sports .sports-competition-heading {
+  grid-column: 1 / -1;
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  color: #0a3156;
+  border-inline-start: 5px solid #d6a900;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255, 210, 63, .22), rgba(255, 255, 255, .74));
+  font-size: 18px;
+  line-height: 1.3;
+}
 #sports .sports-match-card {
   min-width: 0;
   padding: 16px;
@@ -293,6 +304,7 @@
   #sports .sports-match-card { padding: 14px; }
   #sports .sports-match-teams strong { font-size: 15px; }
 }
+body.lang-en #sports .sports-competition-heading { text-align: left; border-inline-start: 0; border-inline-end: 5px solid #d6a900; }
 body.lang-en #sports .sports-match-card { text-align: left; }
 body.lang-en #sports .sports-match-teams { direction: ltr; }
 body.lang-en #sports .sports-match-broadcast ul { padding-inline-start: 18px; }

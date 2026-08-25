@@ -37,13 +37,13 @@ function isIsoTimestamp(value) {
 
 assert(data.schemaVersion === 1, "Football matches schema version must be 1");
 assert(data.timeZone === "Asia/Amman", "Football matches must use Asia/Amman timezone");
-assert(data.mode === "free-hybrid-fixtures-with-verified-regional-tv", "Football matches must use the free hybrid mode");
+assert(data.mode === "selected-major-leagues-and-jordan-with-verified-regional-tv", "Football matches must use the selected major leagues mode");
 assert(data.window && datePattern.test(data.window.startDate) && datePattern.test(data.window.endDate), "Match window dates are invalid");
 assert(data.window.days === 8, "Match window must cover today plus seven days");
 assert(Array.isArray(data.broadcastCountries) && data.broadcastCountries.length === targetCountries.size, "Broadcast country allowlist is incomplete");
 assert(data.broadcastCountries.every((country) => targetCountries.has(country)), "Broadcast country allowlist contains an unsupported country");
-assert(Array.isArray(data.sources) && data.sources.some((source) => source.id === "espn-public-soccer"), "ESPN fixture source is missing");
-assert(data.sources.some((source) => source.id === "thesportsdb-free"), "TheSportsDB verification source is missing");
+assert(Array.isArray(data.sources) && data.sources.some((source) => source.id === "espn-major-leagues"), "Selected ESPN league source is missing");
+assert(data.sources.some((source) => source.id === "thesportsdb-jordan"), "Jordanian Pro League source is missing");
 assert(data.sources.some((source) => source.id === "filgoal-matches"), "FilGoal Arabic broadcaster source is missing");
 assert(data.sources.some((source) => source.id === "kooora-broadcast"), "Kooora Arabic broadcaster source is missing");
 assert(data.sources.some((source) => source.id === "bein-access-rules"), "beIN access rules source is missing");
@@ -63,6 +63,7 @@ for (const item of data.items) {
   assert(!keys.has(key), "Duplicate match teams and date detected");
   keys.add(key);
   assert(typeof item.competition === "string" && item.competition.length > 0 && item.competition.length <= 140, "Competition is invalid");
+  assert(typeof item.competitionKey === "string" && item.competitionKey.length > 0 && item.competitionKey.length <= 80, "Competition key is invalid");
   assert(typeof item.time === "string" && /^\d{2}:\d{2}$/.test(item.time), "Match time must be HH:MM");
   assert(!Object.prototype.hasOwnProperty.call(item, "status"), "Match status must not be published");
   assert(!Object.prototype.hasOwnProperty.call(item, "broadcastStatus"), "Broadcast status must not be published as a match result state");

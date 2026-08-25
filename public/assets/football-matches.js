@@ -14,6 +14,20 @@
     renderedLanguage: "",
   };
 
+  var COMPETITIONS = {
+    "jordan-pro-league": { ar: "الدوري الأردني للمحترفين", en: "Jordanian Pro League", order: 0 },
+    "premier-league": { ar: "الدوري الإنجليزي الممتاز", en: "English Premier League", order: 1 },
+    "la-liga": { ar: "الدوري الإسباني", en: "Spanish LaLiga", order: 2 },
+    "serie-a": { ar: "الدوري الإيطالي", en: "Italian Serie A", order: 3 },
+    "bundesliga": { ar: "الدوري الألماني", en: "German Bundesliga", order: 4 },
+    "ligue-1": { ar: "الدوري الفرنسي", en: "French Ligue 1", order: 5 },
+    "champions-league": { ar: "دوري أبطال أوروبا", en: "UEFA Champions League", order: 6 },
+    "europa-league": { ar: "الدوري الأوروبي", en: "UEFA Europa League", order: 7 },
+    "eredivisie": { ar: "الدوري الهولندي", en: "Dutch Eredivisie", order: 8 },
+    "primeira-liga": { ar: "الدوري البرتغالي", en: "Portuguese Primeira Liga", order: 9 },
+    "scottish-premiership": { ar: "الدوري الإسكتلندي الممتاز", en: "Scottish Premiership", order: 10 },
+  };
+
   var TEXT = {
     nav: { ar: "المباريات", en: "Matches" },
     eyebrow: { ar: "مواعيد المباريات", en: "Match schedules" },
@@ -136,6 +150,18 @@
     } catch (error) {
       return String(value || "");
     }
+  }
+
+  function competitionDisplayName(match) {
+    var key = cleanText(match && match.competitionKey, 80);
+    var item = COMPETITIONS[key];
+    if (item) return isEnglish() ? item.en : item.ar;
+    return cleanText(match && match.competition, 140) || (isEnglish() ? "Selected competition" : "بطولة مختارة");
+  }
+
+  function competitionOrder(match) {
+    var key = cleanText(match && match.competitionKey, 80);
+    return COMPETITIONS[key] ? COMPETITIONS[key].order : 99;
   }
 
   function broadcasterAccessText(entry) {
@@ -275,8 +301,29 @@
     grid.textContent = "";
     empty.hidden = items.length > 0;
     empty.textContent = items.length ? "" : languageText("matchesEmpty");
-    items.slice(0, state.matchesVisibleCount).forEach(function (match) {
-      grid.appendChild(renderMatchCard(match));
+    var visibleItems = items.slice(0, state.matchesVisibleCount);
+    var groups = [];
+    visibleItems.forEach(function (match) {
+      var key = cleanText(match && match.competitionKey, 80) || cleanText(match && match.competition, 140) || "football";
+      var group = groups.find(function (entry) { return entry.key === key; });
+      if (!group) {
+        group = { key: key, matches: [] };
+        groups.push(group);
+      }
+      group.matches.push(match);
+    });
+    groups.sort(function (a, b) {
+      return competitionOrder(a.matches[0]) - competitionOrder(b.matches[0]) || a.key.localeCompare(b.key);
+    });
+    groups.forEach(function (group) {
+      var heading = document.createElement("h3");
+      heading.className = "sports-competition-heading";
+      heading.setAttribute("dir", displayDirection());
+      heading.textContent = competitionDisplayName(group.matches[0]);
+      grid.appendChild(heading);
+      group.matches.forEach(function (match) {
+        grid.appendChild(renderMatchCard(match));
+      });
     });
     if (more) {
       more.hidden = items.length <= state.matchesVisibleCount;
