@@ -15,7 +15,7 @@ const matchesWorkflow = read(".github/workflows/daily-football-matches-update.ym
 
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.js?v=20260824-sports-v1")), "Enhancement script missing from a page");
 assert(pages.every((html) => html.includes("/assets/maensat-enhancements.css?v=20260825-sports-v9")), "Enhancement stylesheet missing from a page");
-assert(pages.every((html) => html.includes("/assets/football-matches.js?v=20260825-matches-v3") && html.includes('id="sports"') && html.includes('id="sportsMatchesPanel"')), "Football schedule assets missing from a page");
+assert(pages.every((html) => html.includes("/assets/football-matches.js?v=20260825-matches-v4") && html.includes('id="sports"') && html.includes('id="sportsMatchesPanel"')), "Football schedule assets missing from a page");
 assert(pages.every((html) => !html.includes("sportsNewsPanel") && !html.includes("sportsArticle") && !html.includes("sports-news.js") && !html.includes("data-sports-mode=")), "Football news UI or mode switch is still present");
 assert(matchesScript.includes("var MATCHES_URL") && matchesScript.includes("/data/football-matches.json") && matchesScript.includes("function loadMatches") && matchesScript.includes("function renderMatchCard") && matchesScript.includes("sports-competition-heading") && matchesScript.includes('matchesWindow: "week"'), "Football matches loader, grouping, or week default is missing");
 assert(matchesScript.includes("matchTime") && matchesScript.includes("matchBroadcast") && matchesScript.includes("broadcastFta") && matchesScript.includes("broadcastEncrypted") && matchesScript.includes("broadcastUnknown"), "Schedule time or broadcaster labels are missing");

@@ -27,6 +27,8 @@ const FILGOAL_BASE = "https://www.filgoal.com/matches";
 const KOOORA_HOME = "https://www.kooora.com/";
 const BEIN_FAQ_URL = "https://www.bein.com/en/general-faq/";
 const BEIN_CHANNEL_LIST_URL = "https://www.bein.com/en/channel-list/";
+const BEIN_MENA_GUIDE_URL = "https://www.beinsports.com/en-mena/tv-guide";
+const BEIN_RIGHTS_COMPETITIONS = new Set(["premier-league", "la-liga", "ligue-1"]);
 const AD_SPORTS_OFFICIAL_URL = "https://www.admn.ae/en/brand/4197607/abu-dhabi-sports";
 const ON_SPORT_OFFICIAL_URL = "https://www.facebook.com/OnTimeSports/";
 const DAYS_AHEAD = 7;
@@ -511,6 +513,20 @@ function normalizeChannelKey(value) {
     .trim();
 }
 
+function beINRightsFallback(match) {
+  if (!match || !BEIN_RIGHTS_COMPETITIONS.has(match.competitionKey)) return null;
+  return broadcasterEntry({
+    name: "beIN SPORTS (MENA)",
+    country: "Jordan",
+    sourceName: "beIN SPORTS MENA guide and regional rights",
+    sourceUrl: BEIN_MENA_GUIDE_URL,
+    evidenceLevel: "official",
+    accessType: "encrypted",
+    accessSourceName: "beIN official FAQ and channel list",
+    accessSourceUrl: BEIN_FAQ_URL,
+  });
+}
+
 function mergeBroadcasters(...lists) {
   const unique = new Map();
   for (const entry of lists.flat()) {
@@ -652,8 +668,10 @@ const items = [...merged.values()]
     const sportsDbBroadcasters = tvResult?.status === "fulfilled" ? tvResult.value : [];
     const filGoalBroadcasters = filGoalByKey.get(match.key) || [];
     const koooraBroadcasters = koooraByKey.get(match.key) || [];
-    const broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters);
-    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : [])])];
+    let broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters);
+    const rightsFallback = broadcasters.length ? null : beINRightsFallback(match);
+    if (rightsFallback) broadcasters = [rightsFallback];
+    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : []), ...(rightsFallback ? ["bein-regional-rights"] : [])])];
     return {
       id: match.id,
       date: match.date,
@@ -690,11 +708,12 @@ const payload = {
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
+    { id: "bein-regional-rights", name: "beIN SPORTS MENA guide and regional rights fallback", url: BEIN_MENA_GUIDE_URL, ok: true, requestedDays: dates.length, note: "Network-level fallback for Premier League, LaLiga, and Ligue 1; exact channel number is shown only when a dated listing provides it" },
     { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
   ],
   broadcastCountries: [...TARGET_BROADCAST_COUNTRIES],
-  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. Arabic/regional broadcaster metadata is shown only when a dated match schedule is matched unambiguously. beIN access labels use the official FAQ/channel-list rules for the exact listed channel; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
+  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. Arabic/regional broadcaster metadata is shown when a dated match schedule is matched unambiguously. For Premier League, LaLiga, and Ligue 1, beIN SPORTS (MENA) may be shown as a network-level official rights fallback when no exact channel listing is available; the numbered channel is never guessed. beIN access labels use the official FAQ/channel-list rules; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
   items,
 };
 
