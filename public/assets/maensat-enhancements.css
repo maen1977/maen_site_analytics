@@ -326,15 +326,46 @@ body.lang-en #sports .sports-matches-actions { margin-inline-start: auto; }
   align-items: center;
   gap: 10px;
 }
-#sports .sports-competition-card-header { justify-content: space-between; margin-bottom: 12px; }
+#sports .sports-competition-card-header {
+  width: 100%;
+  justify-content: space-between;
+  margin: 0;
+  padding: 4px 2px 12px;
+  color: #10263e;
+  border: 0;
+  border-bottom: 1px solid rgba(7, 19, 34, .08);
+  background: transparent;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+#sports .sports-competition-card-header:hover .sports-competition-heading { color: #087f8c; }
+#sports .sports-competition-card-header:focus-visible { outline: 3px solid rgba(19, 136, 255, .2); outline-offset: 3px; border-radius: 10px; }
 #sports .sports-competition-card .sports-competition-heading {
   grid-column: auto;
   flex: 1 1 auto;
   margin: 0;
   padding: 0;
+  color: #0a3156;
   border: 0;
   background: transparent;
   font-size: clamp(18px, 2vw, 23px);
+  font-weight: 1000;
+  text-align: start;
+}
+#sports .sports-competition-card-meta { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+#sports .sports-competition-toggle-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0b5c78, #087f8c);
+  font-size: 21px;
+  font-weight: 900;
+  line-height: 1;
 }
 #sports .sports-competition-total {
   flex: 0 0 auto;
@@ -373,6 +404,7 @@ body.lang-en #sports .sports-matches-actions { margin-inline-start: auto; }
 #sports .sports-competition-more:active { transform: translateY(1px); }
 #sports .sports-competition-matches {
   display: grid;
+  padding-top: 14px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
@@ -396,3 +428,4 @@ body.lang-en #sports .sports-matches-actions { margin-inline-start: auto; }
   #sports .sports-competition-matches { grid-template-columns: 1fr; }
 }
 body.lang-en #sports .sports-competition-card .sports-competition-heading { text-align: left; border: 0; }
+body.lang-en #sports .sports-competition-card-header { text-align: left; }

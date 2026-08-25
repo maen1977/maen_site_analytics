@@ -12,6 +12,7 @@
     matchesVisibleCount: MATCHES_VISIBLE_STEP,
     competitionVisibleCounts: {},
     competitionWindows: {},
+    openCompetitions: {},
     matchesGeneratedAt: "",
     renderedLanguage: "",
   };
@@ -340,20 +341,33 @@
       card.className = "sports-competition-card";
       card.setAttribute("data-competition-card", competitionKey);
       card.setAttribute("dir", displayDirection());
-      var header = document.createElement("div");
-      header.className = "sports-competition-card-header";
-      var heading = document.createElement("h3");
+      var isOpen = state.openCompetitions[competitionKey] === true;
+      var header = document.createElement("button");
+      header.type = "button";
+      header.className = "sports-competition-card-header" + (isOpen ? " is-open" : "");
+      header.setAttribute("data-competition-toggle", competitionKey);
+      header.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      var heading = document.createElement("span");
       heading.className = "sports-competition-heading";
       heading.textContent = competitionDisplayName({ competitionKey: competitionKey });
       header.appendChild(heading);
+      var meta = document.createElement("span");
+      meta.className = "sports-competition-card-meta";
       var total = document.createElement("span");
       total.className = "sports-competition-total";
       total.textContent = String(allItems.length) + " " + languageText("matchesCount");
-      header.appendChild(total);
+      meta.appendChild(total);
+      var indicator = document.createElement("span");
+      indicator.className = "sports-competition-toggle-indicator";
+      indicator.setAttribute("aria-hidden", "true");
+      indicator.textContent = isOpen ? "−" : "+";
+      meta.appendChild(indicator);
+      header.appendChild(meta);
       card.appendChild(header);
-      renderCompetitionWindowButtons(card, competitionKey, selectedWindow);
+      if (isOpen) renderCompetitionWindowButtons(card, competitionKey, selectedWindow);
       var body = document.createElement("div");
       body.className = "sports-competition-matches";
+      body.hidden = !isOpen;
       var visibleCount = state.competitionVisibleCounts[competitionKey] || MATCHES_VISIBLE_STEP;
       items.slice(0, visibleCount).forEach(function (match) { body.appendChild(renderMatchCard(match)); });
       if (!items.length) {
@@ -441,6 +455,13 @@
 
   function bindControls() {
     document.addEventListener("click", function (event) {
+      var toggleButton = event.target && event.target.closest ? event.target.closest("[data-competition-toggle]") : null;
+      if (toggleButton) {
+        var toggleKey = toggleButton.getAttribute("data-competition-toggle") || "";
+        state.openCompetitions[toggleKey] = state.openCompetitions[toggleKey] !== true;
+        renderMatches();
+        return;
+      }
       var windowButton = event.target && event.target.closest ? event.target.closest("[data-competition-window]") : null;
       if (windowButton) {
         var competitionKey = windowButton.getAttribute("data-competition-key") || "";
