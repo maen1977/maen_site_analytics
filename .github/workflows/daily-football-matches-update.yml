@@ -68,6 +68,16 @@ jobs:
           const matchesOutcome = process.env.MATCHES_OUTCOME || 'unknown';
           const matchesValidateOutcome = process.env.MATCHES_VALIDATE_OUTCOME || 'skipped';
           const matchesPublished = matchesOutcome === 'success' && matchesValidateOutcome === 'success';
+          let matchesTotal = 0;
+          let matchesWithBroadcasters = 0;
+          try {
+            const schedule = JSON.parse(fs.readFileSync('public/data/football-matches.json', 'utf8'));
+            matchesTotal = Array.isArray(schedule.items) ? schedule.items.length : 0;
+            matchesWithBroadcasters = schedule.items.filter((item) => Array.isArray(item.broadcasters) && item.broadcasters.length > 0).length;
+          } catch {
+            // Keep status reporting available even when the schedule file is unavailable.
+          }
+          const broadcastCoveragePercent = matchesTotal ? Number((matchesWithBroadcasters / matchesTotal * 100).toFixed(2)) : 0;
           const payload = {
             ok: matchesPublished,
             generatedAt: new Date().toISOString(),
@@ -75,9 +85,12 @@ jobs:
             matchesOutcome,
             matchesValidateOutcome,
             matchesPublished,
+            matchesTotal,
+            matchesWithBroadcasters,
+            broadcastCoveragePercent,
             newsCollection: false,
             note: matchesPublished
-              ? 'Only football match times and verified broadcasters were fetched and validated. No football news is collected or published.'
+              ? 'Only football match times and verified broadcasters were fetched and validated. Coverage counters are included so low broadcaster availability is visible. No football news is collected or published.'
               : 'The match schedule or validation failed. The previous trusted schedule remains published.'
           };
           fs.writeFileSync('public/reports/football-matches-status.json', `${JSON.stringify(payload, null, 2)}\n`);

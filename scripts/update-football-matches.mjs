@@ -18,6 +18,8 @@ const AD_SPORTS_OFFICIAL_URL = "https://www.admn.ae/en/brand/4197607/abu-dhabi-s
 const ON_SPORT_OFFICIAL_URL = "https://www.facebook.com/OnTimeSports/";
 const DAYS_AHEAD = 7;
 const FETCH_TIMEOUT_MS = 20000;
+const FETCH_RETRIES = 3;
+const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const TARGET_BROADCAST_COUNTRIES = new Set(["Jordan", "Palestine", "Lebanon", "Syria", "Iraq", "Egypt"]);
 const ACCESS_TYPES = new Set(["fta", "encrypted", "unknown"]);
 const EVIDENCE_LEVELS = new Set(["official", "editorial", "corroborated"]);
@@ -67,6 +69,52 @@ function normalizeTeam(value) {
     .replace(/[^a-z0-9\u0600-\u06ff]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+const TEAM_ALIASES = new Map([
+  ["أبها", ["abha"]],
+  ["الخليج", ["al khaleej"]],
+  ["التعاون", ["al taawoun", "al taawon"]],
+  ["الفيحاء", ["al fayha"]],
+  ["الاتفاق", ["al ettifaq"]],
+  ["النصر", ["al nassr"]],
+  ["الشباب", ["al shabab"]],
+  ["الرياض", ["al riyadh"]],
+  ["فالنسيا", ["valencia"]],
+  ["ريال بيتيس", ["real betis"]],
+  ["سيلتك", ["celtic"]],
+  ["لاسك", ["lask linz", "lask"]],
+  ["نيميخن", ["nec nijmegen", "nec"]],
+  ["بودو جليمت", ["bodo glimt"]],
+]);
+
+function teamNamesMatch(sourceName, fixtureName) {
+  const source = normalizeTeam(sourceName);
+  const fixture = normalizeTeam(fixtureName);
+  if (!source || !fixture) return false;
+  if (source === fixture || source.includes(fixture) || fixture.includes(source)) return true;
+  const aliases = TEAM_ALIASES.get(source) || [];
+  if (aliases.some((alias) => {
+    const normalizedAlias = normalizeTeam(alias);
+    return normalizedAlias === fixture || normalizedAlias.includes(fixture) || fixture.includes(normalizedAlias);
+  })) return true;
+  return [...TEAM_ALIASES.entries()].some(([key, values]) => {
+    const normalizedKey = normalizeTeam(key);
+    const sourceIsAlias = values.some((alias) => normalizeTeam(alias) === source);
+    return sourceIsAlias && (normalizedKey === fixture || normalizedKey.includes(fixture) || fixture.includes(normalizedKey));
+  });
+}
+
+function fixtureHasSourceTeams(sourceMatch, fixture) {
+  const direct = teamNamesMatch(sourceMatch.homeTeamAr, fixture.homeTeam) && teamNamesMatch(sourceMatch.awayTeamAr, fixture.awayTeam);
+  const reversed = teamNamesMatch(sourceMatch.homeTeamAr, fixture.awayTeam) && teamNamesMatch(sourceMatch.awayTeamAr, fixture.homeTeam);
+  return direct || reversed;
+}
+
+function sourceCompetitionMatches(hint, fixture) {
+  if (!hint) return true;
+  const season = String(fixture.seasonSlug || "").toLowerCase();
+  return season.includes(hint) || (hint === "uefa-champions-league" && season === "playoff-round");
 }
 
 function matchKey(date, home, away) {
@@ -124,34 +172,34 @@ function zonedDateTimeToUtc(dateKey, time, timeZone) {
   return new Date(wallClock - offset * 60000);
 }
 
-async function fetchJson(url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      headers: { accept: "application/json", "user-agent": "maensat-football-matches/1.0" },
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-    return await response.json();
-  } finally {
-    clearTimeout(timer);
+async function fetchWithRetry(url, accept, parse) {
+  let lastError;
+  for (let attempt = 1; attempt <= FETCH_RETRIES; attempt += 1) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: { accept, "user-agent": "maensat-football-matches/1.0" },
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
+      return await parse(response);
+    } catch (error) {
+      lastError = error;
+      if (attempt < FETCH_RETRIES) await sleep(attempt * 1000);
+    } finally {
+      clearTimeout(timer);
+    }
   }
+  throw lastError;
+}
+
+async function fetchJson(url) {
+  return fetchWithRetry(url, "application/json", (response) => response.json());
 }
 
 async function fetchText(url) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
-  try {
-    const response = await fetch(url, {
-      signal: controller.signal,
-      headers: { accept: "text/html,application/xhtml+xml", "user-agent": "maensat-football-matches/1.0" },
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status} for ${url}`);
-    return await response.text();
-  } finally {
-    clearTimeout(timer);
-  }
+  return fetchWithRetry(url, "text/html,application/xhtml+xml", (response) => response.text());
 }
 
 function toEspnMatch(event, requestedDate) {
@@ -424,9 +472,10 @@ function matchFilGoalToFixture(sourceMatch, fixtures) {
     if (!fixtureInstant) return false;
     const minutes = Math.abs(fixtureInstant.getTime() - sourceInstant.getTime()) / 60000;
     if (minutes > 20) return false;
-    if (!hint) return true;
-    return String(fixture.seasonSlug || "").toLowerCase().includes(hint);
+    return sourceCompetitionMatches(hint, fixture);
   });
+  const namedCandidates = candidates.filter((fixture) => fixtureHasSourceTeams(sourceMatch, fixture));
+  if (namedCandidates.length === 1) return namedCandidates[0];
   return candidates.length === 1 ? candidates[0] : null;
 }
 
@@ -549,9 +598,10 @@ function matchKoooraToFixture(sourceMatch, fixtures) {
     if (!fixtureInstant) return false;
     const minutes = Math.abs(fixtureInstant.getTime() - sourceInstant.getTime()) / 60000;
     if (minutes > 20) return false;
-    if (!hint) return true;
-    return String(fixture.seasonSlug || "").toLowerCase().includes(hint);
+    return sourceCompetitionMatches(hint, fixture);
   });
+  const namedCandidates = candidates.filter((fixture) => fixtureHasSourceTeams(sourceMatch, fixture));
+  if (namedCandidates.length === 1) return namedCandidates[0];
   return candidates.length === 1 ? candidates[0] : null;
 }
 
