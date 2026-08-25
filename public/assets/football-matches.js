@@ -10,6 +10,8 @@
     matchesWindow: "week",
     matchesQuery: "",
     matchesVisibleCount: MATCHES_VISIBLE_STEP,
+    competitionVisibleCounts: {},
+    competitionWindows: {},
     matchesGeneratedAt: "",
     renderedLanguage: "",
   };
@@ -193,29 +195,43 @@
     return listItem;
   }
 
-  function filteredMatches() {
+  function matchesDateWindow(match, windowName) {
     var today = scheduleTodayKey();
     var tomorrow = addDateKey(today, 1);
     var lastDate = addDateKey(today, 7);
+    return windowName === "today"
+      ? match.date === today
+      : windowName === "tomorrow"
+        ? match.date === tomorrow
+        : match.date >= today && match.date <= lastDate;
+  }
+
+  function matchesSearchQuery(match) {
     var query = cleanText(state.matchesQuery, 100).toLowerCase();
-    return state.matches.filter(function (match) {
-      var dateMatch = state.matchesWindow === "today"
-        ? match.date === today
-        : state.matchesWindow === "tomorrow"
-          ? match.date === tomorrow
-          : match.date >= today && match.date <= lastDate;
-      if (!dateMatch) return false;
-      if (!query) return true;
-      var broadcasterText = (Array.isArray(match.broadcasters) ? match.broadcasters : []).map(function (entry) {
-        return [entry.name, entry.nameAr, entry.nameEn].join(" ");
-      }).join(" ");
-      return [match.homeTeam, match.awayTeam, broadcasterText].join(" ").toLowerCase().indexOf(query) !== -1;
-    }).sort(function (a, b) {
+    if (!query) return true;
+    var broadcasterText = (Array.isArray(match.broadcasters) ? match.broadcasters : []).map(function (entry) {
+      return [entry.name, entry.nameAr, entry.nameEn].join(" ");
+    }).join(" ");
+    return [match.homeTeam, match.awayTeam, broadcasterText].join(" ").toLowerCase().indexOf(query) !== -1;
+  }
+
+  function sortedMatches(items) {
+    return items.slice().sort(function (a, b) {
       var aHasBroadcaster = Array.isArray(a.broadcasters) && a.broadcasters.length ? 1 : 0;
       var bHasBroadcaster = Array.isArray(b.broadcasters) && b.broadcasters.length ? 1 : 0;
       if (aHasBroadcaster !== bHasBroadcaster) return bHasBroadcaster - aHasBroadcaster;
       return String(a.date + "T" + a.time).localeCompare(String(b.date + "T" + b.time)) || String(a.homeTeam).localeCompare(String(b.homeTeam));
     });
+  }
+
+  function filteredMatchesForCompetition(competitionKey, windowName) {
+    return sortedMatches(state.matches.filter(function (match) {
+      return String(match.competitionKey || "") === competitionKey && matchesDateWindow(match, windowName) && matchesSearchQuery(match);
+    }));
+  }
+
+  function allMatchesForCompetition(competitionKey) {
+    return state.matches.filter(function (match) { return String(match.competitionKey || "") === competitionKey; });
   }
 
   function renderMatchCard(match) {
@@ -288,53 +304,82 @@
     if (refresh) refresh.setAttribute("aria-label", languageText("matchesRefresh"));
   }
 
+  function renderCompetitionWindowButtons(card, competitionKey, selectedWindow) {
+    var controls = document.createElement("div");
+    controls.className = "sports-competition-windows";
+    ["today", "tomorrow", "week"].forEach(function (windowName) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "sports-competition-window" + (selectedWindow === windowName ? " active" : "");
+      button.setAttribute("data-competition-window", windowName);
+      button.setAttribute("data-competition-key", competitionKey);
+      button.setAttribute("aria-pressed", selectedWindow === windowName ? "true" : "false");
+      button.textContent = languageText(windowName);
+      controls.appendChild(button);
+    });
+    card.appendChild(controls);
+  }
+
   function renderMatches() {
     var grid = document.getElementById("sportsMatchesGrid");
     var empty = document.getElementById("sportsMatchesEmpty");
     var more = document.getElementById("sportsMatchesShowMore");
     var count = document.getElementById("sportsMatchesCount");
     var updated = document.getElementById("sportsMatchesLastUpdated");
-    if (!grid || !empty) return;
-    renderControls();
-    if (!state.loaded) return;
-    var items = filteredMatches();
+    if (!grid || !empty || !state.loaded) return;
     grid.textContent = "";
-    empty.hidden = items.length > 0;
-    empty.textContent = items.length ? "" : languageText("matchesEmpty");
-    var visibleItems = items.slice(0, state.matchesVisibleCount);
-    var groups = [];
-    visibleItems.forEach(function (match) {
-      var key = cleanText(match && match.competitionKey, 80) || cleanText(match && match.competition, 140) || "football";
-      var group = groups.find(function (entry) { return entry.key === key; });
-      if (!group) {
-        group = { key: key, matches: [] };
-        groups.push(group);
-      }
-      group.matches.push(match);
-    });
-    groups.sort(function (a, b) {
-      return competitionOrder(a.matches[0]) - competitionOrder(b.matches[0]) || a.key.localeCompare(b.key);
-    });
-    groups.forEach(function (group) {
+    var totalItems = 0;
+    var totalWithBroadcasters = 0;
+    var renderedCards = 0;
+    Object.keys(COMPETITIONS).sort(function (a, b) { return COMPETITIONS[a].order - COMPETITIONS[b].order; }).forEach(function (competitionKey) {
+      var allItems = allMatchesForCompetition(competitionKey);
+      if (!allItems.length && !state.matchesQuery) return;
+      var selectedWindow = state.competitionWindows[competitionKey] || "week";
+      var items = filteredMatchesForCompetition(competitionKey, selectedWindow);
+      var card = document.createElement("section");
+      card.className = "sports-competition-card";
+      card.setAttribute("data-competition-card", competitionKey);
+      card.setAttribute("dir", displayDirection());
+      var header = document.createElement("div");
+      header.className = "sports-competition-card-header";
       var heading = document.createElement("h3");
       heading.className = "sports-competition-heading";
-      heading.setAttribute("dir", displayDirection());
-      heading.textContent = competitionDisplayName(group.matches[0]);
-      grid.appendChild(heading);
-      group.matches.forEach(function (match) {
-        grid.appendChild(renderMatchCard(match));
-      });
+      heading.textContent = competitionDisplayName({ competitionKey: competitionKey });
+      header.appendChild(heading);
+      var total = document.createElement("span");
+      total.className = "sports-competition-total";
+      total.textContent = String(allItems.length) + " " + languageText("matchesCount");
+      header.appendChild(total);
+      card.appendChild(header);
+      renderCompetitionWindowButtons(card, competitionKey, selectedWindow);
+      var body = document.createElement("div");
+      body.className = "sports-competition-matches";
+      var visibleCount = state.competitionVisibleCounts[competitionKey] || MATCHES_VISIBLE_STEP;
+      items.slice(0, visibleCount).forEach(function (match) { body.appendChild(renderMatchCard(match)); });
+      if (!items.length) {
+        var cardEmpty = document.createElement("p");
+        cardEmpty.className = "sports-competition-empty";
+        cardEmpty.textContent = languageText("matchesEmpty");
+        body.appendChild(cardEmpty);
+      }
+      card.appendChild(body);
+      if (items.length > visibleCount) {
+        var cardMore = document.createElement("button");
+        cardMore.type = "button";
+        cardMore.className = "sports-competition-more";
+        cardMore.setAttribute("data-competition-more", competitionKey);
+        cardMore.textContent = languageText("showMore");
+        card.appendChild(cardMore);
+      }
+      grid.appendChild(card);
+      renderedCards += 1;
+      totalItems += items.length;
+      totalWithBroadcasters += items.filter(function (match) { return Array.isArray(match.broadcasters) && match.broadcasters.length > 0; }).length;
     });
-    if (more) {
-      more.hidden = items.length <= state.matchesVisibleCount;
-      more.textContent = languageText("showMore");
-    }
-    if (count) {
-      var withBroadcasters = items.filter(function (match) {
-        return Array.isArray(match.broadcasters) && match.broadcasters.length > 0;
-      }).length;
-      count.textContent = String(items.length) + " " + languageText("matchesCount") + " · " + String(withBroadcasters) + " " + languageText("matchesWithBroadcasters");
-    }
+    empty.hidden = renderedCards > 0 && totalItems > 0;
+    empty.textContent = totalItems ? "" : languageText("matchesEmpty");
+    if (more) more.hidden = true;
+    if (count) count.textContent = String(totalItems) + " " + languageText("matchesCount") + " · " + String(totalWithBroadcasters) + " " + languageText("matchesWithBroadcasters");
     if (updated) updated.textContent = state.matchesGeneratedAt ? formatDate(state.matchesGeneratedAt) : "—";
   }
 
@@ -395,12 +440,21 @@
   }
 
   function bindControls() {
-    document.querySelectorAll("[data-matches-window]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        state.matchesWindow = button.getAttribute("data-matches-window") || "today";
-        state.matchesVisibleCount = MATCHES_VISIBLE_STEP;
+    document.addEventListener("click", function (event) {
+      var windowButton = event.target && event.target.closest ? event.target.closest("[data-competition-window]") : null;
+      if (windowButton) {
+        var competitionKey = windowButton.getAttribute("data-competition-key") || "";
+        state.competitionWindows[competitionKey] = windowButton.getAttribute("data-competition-window") || "week";
+        state.competitionVisibleCounts[competitionKey] = MATCHES_VISIBLE_STEP;
         renderMatches();
-      });
+        return;
+      }
+      var moreButton = event.target && event.target.closest ? event.target.closest("[data-competition-more]") : null;
+      if (moreButton) {
+        var moreKey = moreButton.getAttribute("data-competition-more") || "";
+        state.competitionVisibleCounts[moreKey] = (state.competitionVisibleCounts[moreKey] || MATCHES_VISIBLE_STEP) + MATCHES_VISIBLE_STEP;
+        renderMatches();
+      }
     });
     var search = document.getElementById("matchesSearch");
     if (search) search.addEventListener("input", function () {
