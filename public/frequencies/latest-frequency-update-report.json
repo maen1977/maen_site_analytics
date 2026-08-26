@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-26T06:20:50.526Z",
-  "updatedAt": "2026-08-26T06:20:50.018Z",
-  "totalFrequencies": 1592,
+  "generatedAt": "2026-08-26T06:33:06.650Z",
+  "updatedAt": "2026-08-26T06:33:05.938Z",
+  "totalFrequencies": 1605,
   "removedCount": 0,
-  "candidateCount": 1662,
-  "closedCandidateCount": 2810,
+  "candidateCount": 1647,
+  "closedCandidateCount": 2814,
   "closedConsensusCount": 310,
   "successfulSourceCount": 45,
   "sourcesChecked": 67,
   "sourcesFailed": 22,
   "changes": {
-    "updated": 743,
-    "added": 5,
+    "updated": 747,
+    "added": 13,
     "removed": 0,
-    "reviewedOnly": 914,
-    "channelNamesAdded": 18,
-    "channelNamesRemoved": 189,
+    "reviewedOnly": 887,
+    "channelNamesAdded": 29,
+    "channelNamesRemoved": 225,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 914,
+    "incompleteNewSkipped": 887,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1111 من 2211 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1090 من 2195 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -46,12 +46,12 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 238,
-      "services": 2004
+      "services": 2001
     },
     {
       "satelliteGroup": "Azerspace",
       "frequencies": 81,
-      "services": 258
+      "services": 241
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -75,13 +75,13 @@
     },
     {
       "satelliteGroup": "Hellas Sat",
-      "frequencies": 90,
-      "services": 765
+      "frequencies": 103,
+      "services": 799
     },
     {
       "satelliteGroup": "Hot Bird",
       "frequencies": 212,
-      "services": 1742
+      "services": 1733
     },
     {
       "satelliteGroup": "Intelsat",
@@ -145,14 +145,14 @@
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 148,
-      "services": 707
+      "services": 704
     },
     {
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
       "frequencies": 81,
-      "services": 258
+      "services": 241
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -193,15 +193,15 @@
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 90,
-      "services": 765
+      "frequencies": 103,
+      "services": 799
     },
     {
       "satelliteGroup": "Hot Bird",
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
       "frequencies": 212,
-      "services": 1742
+      "services": 1733
     },
     {
       "satelliteGroup": "Intelsat",
@@ -366,16 +366,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-hellas",
-      "name": "LyngSat Hellas Sat 3/4",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-eutelsat-36d-express",
       "name": "LyngSat Eutelsat 36D / Express AMU1",
       "ok": false,
@@ -418,6 +408,16 @@
     {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-azerspace-1",
+      "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
