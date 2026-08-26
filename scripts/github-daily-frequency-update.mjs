@@ -109,71 +109,117 @@ async function main() {
   }
 
   const merged = mergeFrequencyData(baseline.items || [], candidates, sources, { successfulSourceCount, closedCandidates, sourceQuality, sourceResults });
-  const publishGuard = assertFrequencyPublishSafe({
-    baselineItems: baseline.items || [],
-    mergedItems: merged.items || [],
-    removedItems: merged.removedItems || [],
-    env: process.env
-  });
-  console.log(`[frequency] Publish guard passed: ${JSON.stringify(publishGuard)}`);
+  try {
+    const publishGuard = assertFrequencyPublishSafe({
+      baselineItems: baseline.items || [],
+      mergedItems: merged.items || [],
+      removedItems: merged.removedItems || [],
+      env: process.env
+    });
+    console.log(`[frequency] Publish guard passed: ${JSON.stringify(publishGuard)}`);
 
-  validateCompleteProgrammingSystems(merged.items);
+    validateCompleteProgrammingSystems(merged.items);
 
-  const payload = {
-    ok: true,
-    mode: 'github-actions-static',
-    servedFrom: 'github-actions-static-json',
-    version: FREQUENCY_DATA_VERSION,
-    updatedAt: merged.checkedAt,
-    count: merged.items.length,
-    removedCount: (merged.removedItems || []).length,
-    candidateCount: merged.candidateCount || candidates.length,
-    closedCandidateCount: merged.closedCandidateCount || closedCandidates.length,
-    closedConsensusCount: merged.closedConsensusCount || 0,
-    successfulSourceCount,
-    sourceQuality,
-    publishGuard,
-    groupCounts: buildGroupCounts(merged.items),
-    satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
-    satellitePositionPolicy: 'v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.',
-    expectedSourceServiceCounts: EXPECTED_SOURCE_SERVICE_COUNTS,
-    items: merged.items,
-    removedItems: (merged.removedItems || []).slice(0, 300),
-    reviewedOnly: merged.reviewedOnly.slice(0, 200),
-    sourceResults: sourceResults.map(r => ({
-      id: r.source && r.source.id,
-      name: r.source && r.source.name,
-      ok: Boolean(r.ok),
-      status: r.status || null,
-      candidates: (r.candidates || []).length,
-      closedCandidates: (r.closedCandidates || []).length,
-      coverageOnly: Boolean(r.coverageOnly),
-      error: r.error || null
-    })),
-    changes: merged.changes,
-    satellites: JORDAN_MENA_SATELLITES,
-    note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan after the protected missing streak when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Incomplete scans are refused before publication. Cloudflare Pages and Netlify stay as hosting layers.'
-  };
+    const payload = {
+      ok: true,
+      mode: 'github-actions-static',
+      servedFrom: 'github-actions-static-json',
+      version: FREQUENCY_DATA_VERSION,
+      updatedAt: merged.checkedAt,
+      count: merged.items.length,
+      removedCount: (merged.removedItems || []).length,
+      candidateCount: merged.candidateCount || candidates.length,
+      closedCandidateCount: merged.closedCandidateCount || closedCandidates.length,
+      closedConsensusCount: merged.closedConsensusCount || 0,
+      successfulSourceCount,
+      sourceQuality,
+      publishGuard,
+      groupCounts: buildGroupCounts(merged.items),
+      satelliteIdentityCounts: buildSatelliteIdentityCounts(merged.items),
+      satellitePositionPolicy: 'v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.',
+      expectedSourceServiceCounts: EXPECTED_SOURCE_SERVICE_COUNTS,
+      items: merged.items,
+      removedItems: (merged.removedItems || []).slice(0, 300),
+      reviewedOnly: merged.reviewedOnly.slice(0, 200),
+      sourceResults: sourceResults.map(r => ({
+        id: r.source && r.source.id,
+        name: r.source && r.source.name,
+        ok: Boolean(r.ok),
+        status: r.status || null,
+        candidates: (r.candidates || []).length,
+        closedCandidates: (r.closedCandidates || []).length,
+        coverageOnly: Boolean(r.coverageOnly),
+        error: r.error || null
+      })),
+      changes: merged.changes,
+      satellites: JORDAN_MENA_SATELLITES,
+      note: 'Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan after the protected missing streak when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Incomplete scans are refused before publication. Cloudflare Pages and Netlify stay as hosting layers.'
+    };
 
-  const report = buildFrequencyReport(payload);
-  report.generatedBy = 'github-actions';
-  report.staticDataPath = 'public/frequencies/frequency-data.json';
+    const report = buildFrequencyReport(payload);
+    report.generatedBy = 'github-actions';
+    report.staticDataPath = 'public/frequencies/frequency-data.json';
 
-  await writeJson(dataPath, payload);
-  const assets = spawnSync(process.execPath, [path.join(root, 'scripts', 'generate-frequency-assets.mjs')], { stdio: 'inherit' });
-  if (assets.status !== 0) throw new Error('Failed to generate versioned frequency assets');
-  // Keep Netlify fallback/baseline synced even though Netlify is now static-hosting only.
-  await writeJson(netlifyBaselinePath, payload);
-  await writeJson(latestReportPath, report);
+    await writeJson(dataPath, payload);
+    const assets = spawnSync(process.execPath, [path.join(root, 'scripts', 'generate-frequency-assets.mjs')], { stdio: 'inherit' });
+    if (assets.status !== 0) throw new Error('Failed to generate versioned frequency assets');
+    // Keep Netlify fallback/baseline synced even though Netlify is now static-hosting only.
+    await writeJson(netlifyBaselinePath, payload);
+    await writeJson(latestReportPath, report);
 
-  const email = await sendFrequencyUpdateEmail(report);
+    const email = await sendFrequencyUpdateEmail(report);
 
-  console.log(`[frequency] Items after update: ${payload.count}`);
-  console.log(`[frequency] Changes: ${JSON.stringify(payload.changes)}`);
-  console.log(`[frequency] Email: ${JSON.stringify(email)}`);
+    console.log(`[frequency] Items after update: ${payload.count}`);
+    console.log(`[frequency] Changes: ${JSON.stringify(payload.changes)}`);
+    console.log(`[frequency] Email: ${JSON.stringify(email)}`);
 
-  // Small machine-readable output for GitHub Actions logs.
-  console.log(JSON.stringify({ ok: true, count: payload.count, changes: payload.changes, email }, null, 2));
+    // Small machine-readable output for GitHub Actions logs.
+    console.log(JSON.stringify({ ok: true, count: payload.count, changes: payload.changes, email }, null, 2));
+  } catch (error) {
+    // A rejected scan must not erase trusted data, but it must still produce and email a daily diagnostic report.
+    const failureMessage = String(error && error.message || error || 'Unknown frequency update failure');
+    const failurePayload = {
+      ok: false,
+      mode: 'github-actions-static-scan-rejected',
+      servedFrom: 'github-actions-static-json',
+      version: FREQUENCY_DATA_VERSION,
+      updatedAt: new Date().toISOString(),
+      count: baseline.items.length,
+      removedCount: 0,
+      candidateCount: candidates.length,
+      closedCandidateCount: closedCandidates.length,
+      closedConsensusCount: 0,
+      successfulSourceCount,
+      sourceQuality,
+      groupCounts: buildGroupCounts(baseline.items),
+      satelliteIdentityCounts: buildSatelliteIdentityCounts(baseline.items),
+      items: baseline.items,
+      removedItems: [],
+      reviewedOnly: [],
+      sourceResults: sourceResults.map(r => ({
+        id: r.source && r.source.id,
+        name: r.source && r.source.name,
+        ok: Boolean(r.ok),
+        status: r.status || null,
+        candidates: (r.candidates || []).length,
+        closedCandidates: (r.closedCandidates || []).length,
+        coverageOnly: Boolean(r.coverageOnly),
+        error: r.error || null
+      })),
+      changes: { updated: 0, added: 0, removed: 0, reviewedOnly: 0, channelNamesAdded: 0, channelNamesRemoved: 0, protectedMissing: 0, missingConfirmationProtected: 0, removalSkippedReason: failureMessage },
+      satellites: JORDAN_MENA_SATELLITES,
+      note: `تم رفض نشر تحديث الترددات لأن الفحص غير مكتمل أو انكمش بشكل غير آمن. بقيت قاعدة البيانات السابقة كما هي. سبب الرفض: ${failureMessage}`
+    };
+    const failureReport = buildFrequencyReport(failurePayload);
+    failureReport.ok = false;
+    failureReport.failureReason = failureMessage;
+    failureReport.generatedBy = 'github-actions';
+    failureReport.staticDataPath = 'public/frequencies/frequency-data.json';
+    await writeJson(latestReportPath, failureReport);
+    const email = await sendFrequencyUpdateEmail(failureReport).catch(mailError => ({ sent: false, reason: String(mailError && mailError.message || mailError) }));
+    console.error(`[frequency] Update rejected; trusted baseline retained. Diagnostic email: ${JSON.stringify(email)}`);
+    process.exitCode = 1;
+  }
 }
 
 main().catch(error => {
