@@ -1,28 +1,37 @@
 {
-  "ok": false,
-  "generatedAt": "2026-08-26T05:56:57.317Z",
-  "updatedAt": "2026-08-26T05:56:57.282Z",
-  "totalFrequencies": 1570,
+  "ok": true,
+  "generatedAt": "2026-08-26T05:58:20.019Z",
+  "updatedAt": "2026-08-26T05:58:19.034Z",
+  "totalFrequencies": 1587,
   "removedCount": 0,
-  "candidateCount": 2104,
+  "candidateCount": 1774,
   "closedCandidateCount": 2810,
-  "closedConsensusCount": 0,
-  "successfulSourceCount": 44,
+  "closedConsensusCount": 310,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 23,
+  "sourcesFailed": 22,
   "changes": {
-    "updated": 0,
-    "added": 0,
+    "updated": 789,
+    "added": 17,
     "removed": 0,
-    "reviewedOnly": 0,
-    "channelNamesAdded": 0,
-    "channelNamesRemoved": 0,
+    "reviewedOnly": 968,
+    "channelNamesAdded": 57,
+    "channelNamesRemoved": 289,
+    "closedConsensusRemoved": 0,
+    "closedConsensusChannelNamesRemoved": 0,
+    "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "removalSkippedReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=785, retainedRatio=0.5, removedRows=785; retained ratio 0.5000 is below 0.75; removed 785 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review."
+    "incompleteNewSkipped": 968,
+    "incompleteExistingProtected": 0,
+    "movedChannelsRemoved": 0,
+    "movedRowsRemoved": 0,
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1166 من 2331 مرشح ناقص system/mod.",
+    "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
+    "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
   "removedItems": [],
-  "reviewedOnlyCount": 0,
+  "reviewedOnlyCount": 200,
   "groupCounts": [
     {
       "satelliteGroup": "Amos",
@@ -32,17 +41,17 @@
     {
       "satelliteGroup": "Arabsat / BADR",
       "frequencies": 120,
-      "services": 1232
+      "services": 1231
     },
     {
       "satelliteGroup": "Astra",
       "frequencies": 238,
-      "services": 2005
+      "services": 2004
     },
     {
       "satelliteGroup": "Azerspace",
-      "frequencies": 75,
-      "services": 232
+      "frequencies": 76,
+      "services": 236
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -51,18 +60,18 @@
     },
     {
       "satelliteGroup": "Eutelsat 16E",
-      "frequencies": 208,
-      "services": 1409
+      "frequencies": 211,
+      "services": 1404
     },
     {
       "satelliteGroup": "Eutelsat 36E",
-      "frequencies": 140,
-      "services": 395
+      "frequencies": 144,
+      "services": 424
     },
     {
       "satelliteGroup": "Eutelsat 9E",
       "frequencies": 77,
-      "services": 989
+      "services": 988
     },
     {
       "satelliteGroup": "Hellas Sat",
@@ -72,22 +81,22 @@
     {
       "satelliteGroup": "Hot Bird",
       "frequencies": 212,
-      "services": 1741
+      "services": 1742
     },
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 102,
-      "services": 900
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
-      "frequencies": 189,
-      "services": 1296
+      "frequencies": 197,
+      "services": 1393
     },
     {
       "satelliteGroup": "Türksat",
-      "frequencies": 62,
-      "services": 834
+      "frequencies": 63,
+      "services": 839
     },
     {
       "satelliteGroup": "Yahsat",
@@ -122,28 +131,28 @@
       "orbitalSlot": "26E",
       "satelliteName": "BADR-8",
       "frequencies": 73,
-      "services": 647
+      "services": 646
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
       "frequencies": 90,
-      "services": 1296
+      "services": 1297
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 148,
-      "services": 709
+      "services": 707
     },
     {
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
-      "frequencies": 75,
-      "services": 232
+      "frequencies": 76,
+      "services": 236
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -163,22 +172,22 @@
       "satelliteGroup": "Eutelsat 16E",
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
-      "frequencies": 208,
-      "services": 1409
+      "frequencies": 211,
+      "services": 1404
     },
     {
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
-      "frequencies": 140,
-      "services": 395
+      "frequencies": 144,
+      "services": 424
     },
     {
       "satelliteGroup": "Eutelsat 9E",
       "orbitalSlot": "9E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
       "frequencies": 77,
-      "services": 989
+      "services": 988
     },
     {
       "satelliteGroup": "Hellas Sat",
@@ -192,35 +201,35 @@
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
       "frequencies": 212,
-      "services": 1741
+      "services": 1742
     },
     {
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 102,
-      "services": 900
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "7W",
       "satelliteName": "7.0W / Eutelsat E7WA",
-      "frequencies": 34,
-      "services": 411
+      "frequencies": 40,
+      "services": 474
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "7W",
       "satelliteName": "Nilesat 201/301 + Eutelsat 7 West A",
-      "frequencies": 48,
-      "services": 368
+      "frequencies": 50,
+      "services": 407
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "8W",
       "satelliteName": "Eutelsat 8 West B",
       "frequencies": 107,
-      "services": 517
+      "services": 512
     },
     {
       "satelliteGroup": "Türksat",
@@ -233,8 +242,8 @@
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
-      "frequencies": 52,
-      "services": 821
+      "frequencies": 53,
+      "services": 826
     },
     {
       "satelliteGroup": "Yahsat",
@@ -244,7 +253,7 @@
       "services": 113
     }
   ],
-  "satellitePositionPolicy": "orbitalSlot + satelliteName aware merge",
+  "satellitePositionPolicy": "v5 merge identity = satelliteGroup + orbitalSlot + satelliteName + frequency + polarity + symbolRate. This prevents accidental merging when multiple physical satellites share one orbital position.",
   "failedSources": [
     {
       "id": "lyngsat-nilesat-7w",
@@ -367,16 +376,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-eutelsat-36d-express",
-      "name": "LyngSat Eutelsat 36D / Express AMU1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-astra-19",
       "name": "LyngSat Astra 19.2E cluster",
       "ok": false,
@@ -477,8 +476,7 @@
       "error": null
     }
   ],
-  "note": "تم رفض نشر تحديث الترددات لأن الفحص غير مكتمل أو انكمش بشكل غير آمن. بقيت قاعدة البيانات السابقة كما هي. سبب الرفض: Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=785, retainedRatio=0.5, removedRows=785; retained ratio 0.5000 is below 0.75; removed 785 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
-  "failureReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=785, retainedRatio=0.5, removedRows=785; retained ratio 0.5000 is below 0.75; removed 785 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
+  "note": "Daily GitHub Actions update: imports current trusted satellite sources, refreshes channel names, adds new approved/consensus rows, removes rows missing from the daily source scan after the protected missing streak when coverage is sufficient, and deletes rows/channels that multiple trusted sources mark as closed when no current source still confirms them. Incomplete scans are refused before publication. Cloudflare Pages and Netlify stay as hosting layers.",
   "generatedBy": "github-actions",
   "staticDataPath": "public/frequencies/frequency-data.json"
 }
