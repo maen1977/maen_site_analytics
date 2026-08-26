@@ -1680,7 +1680,9 @@ export function frequencyReportHtml(report) {
 
 export async function sendFrequencyUpdateEmail(report) {
   const apiKey = envValue("RESEND_API_KEY") || "";
-  const to = envValue("FREQUENCY_REPORT_EMAIL") || envValue("REPORT_EMAIL") || "";
+  // Use the canonical REPORT_EMAIL for both daily reports. Keep the older
+  // frequency-specific secret only as a backwards-compatible fallback.
+  const to = envValue("REPORT_EMAIL") || envValue("FREQUENCY_REPORT_EMAIL") || "";
   const from = envValue("REPORT_FROM") || "Maen Analytics <onboarding@resend.dev>";
   if (!apiKey || !to) return { sent: false, reason: "RESEND_API_KEY or REPORT_EMAIL is not configured" };
   const response = await fetch("https://api.resend.com/emails", {
