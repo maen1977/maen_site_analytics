@@ -1141,7 +1141,8 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
     movedChannelsRemoved: 0,
     movedRowsRemoved: 0,
     removalSkippedReason: "",
-    moveCleanupSkippedReason: ""
+    moveCleanupSkippedReason: "",
+    closedConsensusSkippedReason: ""
   };
   const closedConsensus = buildClosedConsensus(options.closedCandidates || [], candidateGroups);
   const sourceResults = Array.isArray(options.sourceResults) ? options.sourceResults : [];
@@ -1318,7 +1319,11 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
   }
 
   const closedRemovalEnabled = String(envValue("FREQUENCY_REMOVE_CLOSED_CONSENSUS") || "1") !== "0";
-  if (closedRemovalEnabled && closedConsensus.size) {
+  const canRemoveClosedConsensus = closedRemovalEnabled
+    && sourceQualityOk
+    && candidateGroups.size >= minCandidates
+    && successfulSourceCount >= minSuccessfulSources;
+  if (canRemoveClosedConsensus && closedConsensus.size) {
     const nextValues = [];
     for (const item of values) {
       const key = closureBaseKey(item);
@@ -1399,6 +1404,10 @@ export function mergeFrequencyData(baselineItems, sourceCandidates, sources, opt
       changes.closedConsensusRemoved += 1;
     }
     values = nextValues;
+  } else if (closedRemovalEnabled && closedConsensus.size) {
+    changes.closedConsensusSkippedReason = !sourceQualityOk
+      ? "Closed-consensus removal skipped because source quality was unsafe."
+      : "Closed-consensus removal skipped because daily source coverage was insufficient.";
   }
 
   const items = values.sort((a, b) => {
