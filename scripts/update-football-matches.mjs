@@ -97,6 +97,18 @@ const TEAM_ALIASES = new Map([
   ["الرياض", ["al riyadh"]],
   ["فالنسيا", ["valencia"]],
   ["ريال بيتيس", ["real betis"]],
+  ["ريال مدريد", ["real madrid"]],
+  ["ريال سوسيداد", ["real sociedad"]],
+  ["سيلتا فيجو", ["celta vigo", "rc celta"]],
+  ["أوساسونا", ["osasuna", "ca osasuna"]],
+  ["أتليتك بلباو", ["athletic club", "athletic bilbao", "athletic club bilbao"]],
+  ["أتلتيكو مدريد", ["atletico madrid", "athletico madrid"]],
+  ["إسبانيول", ["espanyol"]],
+  ["إشبيلية", ["sevilla"]],
+  ["فياريال", ["villarreal"]],
+  ["ليفانتي", ["levante"]],
+  ["خيتافي", ["getafe"]],
+  ["رايو فاليكانو", ["rayo vallecano"]],
   ["سيلتك", ["celtic"]],
   ["لاسك", ["lask linz", "lask"]],
   ["نيميخن", ["nec nijmegen", "nec"]],
@@ -379,22 +391,46 @@ function filGoalCompetitionHint(competition) {
   return found ? found[1] : "";
 }
 
+function extractDivBlock(html, startIndex) {
+  const openStart = html.indexOf('<div', startIndex);
+  if (openStart < 0) return null;
+  let depth = 0;
+  const tokenPattern = /<div\b[^>]*>|<\/div\s*>/gi;
+  tokenPattern.lastIndex = openStart;
+  let token;
+  while ((token = tokenPattern.exec(html))) {
+    if (/^<div\b/i.test(token[0])) depth += 1;
+    else depth -= 1;
+    if (depth === 0) return { content: html.slice(openStart, token.index + token[0].length), endIndex: token.index + token[0].length };
+  }
+  return null;
+}
+
 function parseFilGoalMatches(html, requestedDate) {
   const matches = [];
-  const cardPattern = /<div class="cin_cntnr">\s*<a href="([^"]+)"[^>]*>([\s\S]*?)<div class="match-aux">([\s\S]*?)<\/div>\s*<\/a>\s*<\/div>/g;
+  // FilGoal cards contain nested <a> elements for teams and status. Do not
+  // match from the outer anchor to its first closing tag: that can combine
+  // one match's channel with another match's URL. Split on card boundaries
+  // and read the outer match href from the beginning of each card.
+  const cardPattern = /<div class="cin_cntnr">([\s\S]*?)(?=<div class="cin_cntnr">|<\/div>\s*<div class="mc-block">|$)/g;
   let card;
   while ((card = cardPattern.exec(html))) {
-    const body = card[2];
-    const aux = card[3];
+    const cardHtml = card[1];
+    const hrefMatch = cardHtml.match(/^\s*<a href="([^"]+)"/);
+    const auxStart = cardHtml.indexOf('<div class="match-aux">');
+    const auxBlock = auxStart >= 0 ? extractDivBlock(cardHtml, auxStart) : null;
+    if (!hrefMatch || auxStart < 0 || !auxBlock) continue;
+    const body = cardHtml.slice(0, auxStart);
+    const aux = auxBlock.content;
     const teams = [...body.matchAll(/<strong>([^<]+)<\/strong>/g)].map((entry) => decodeHtml(entry[1]).replace(/\s+/g, " ").trim());
     const dateMatch = aux.match(/(\d{2})-(\d{2})-(\d{4})\s*-\s*(\d{2}:\d{2})/);
     const channelMatch = aux.match(/<span>\s*<svg><use[^>]*#fb_screen[^>]*><\/use><\/svg>\s*([^<]+)<\/span>/);
     if (!dateMatch || teams.length < 2 || !channelMatch) continue;
     const sourceDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-    if (!sourceDate || !channelMatch[1]) continue;
+    if (!sourceDate || sourceDate !== requestedDate || !channelMatch[1]) continue;
     const beforeCard = html.slice(0, card.index);
     const competitionMatch = [...beforeCard.matchAll(/<h6[^>]*>\s*<span>([^<]+)<\/span>/g)].at(-1);
-    const href = decodeHtml(card[1]);
+    const href = decodeHtml(hrefMatch[1]);
     matches.push({
       homeTeamAr: teams.at(-2),
       awayTeamAr: teams.at(-1),
@@ -510,8 +546,7 @@ function matchFilGoalToFixture(sourceMatch, fixtures) {
     return sourceCompetitionMatches(hint, fixture);
   });
   const namedCandidates = candidates.filter((fixture) => fixtureHasSourceTeams(sourceMatch, fixture));
-  if (namedCandidates.length === 1) return namedCandidates[0];
-  return candidates.length === 1 ? candidates[0] : null;
+  return namedCandidates.length === 1 ? namedCandidates[0] : null;
 }
 
 function normalizeChannelKey(value) {
@@ -643,8 +678,7 @@ function matchKoooraToFixture(sourceMatch, fixtures) {
     return sourceCompetitionMatches(hint, fixture);
   });
   const namedCandidates = candidates.filter((fixture) => fixtureHasSourceTeams(sourceMatch, fixture));
-  if (namedCandidates.length === 1) return namedCandidates[0];
-  return candidates.length === 1 ? candidates[0] : null;
+  return namedCandidates.length === 1 ? namedCandidates[0] : null;
 }
 
 const koooraByKey = new Map();
