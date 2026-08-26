@@ -13,6 +13,9 @@
     competitionVisibleCounts: {},
     competitionWindows: {},
     openCompetitions: {},
+    // LaLiga is the default landing competition for the MENA audience.
+    // renderMatches falls back to the first available competition if its data is absent.
+    activeCompetition: "la-liga",
     matchesGeneratedAt: "",
     renderedLanguage: "",
   };
@@ -331,7 +334,9 @@
     var keys = Object.keys(COMPETITIONS).sort(function (a, b) { return COMPETITIONS[a].order - COMPETITIONS[b].order; }).filter(function (key) {
       return allMatchesForCompetition(key).length > 0;
     });
-    if (!state.activeCompetition || keys.indexOf(state.activeCompetition) === -1) state.activeCompetition = keys[0] || "";
+    if (!state.activeCompetition || keys.indexOf(state.activeCompetition) === -1) {
+      state.activeCompetition = keys.indexOf("la-liga") !== -1 ? "la-liga" : (keys[0] || "");
+    }
     grid.textContent = "";
     var picker = document.createElement("div");
     picker.className = "sports-competition-picker";
