@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-26T05:58:20.019Z",
-  "updatedAt": "2026-08-26T05:58:19.034Z",
+  "generatedAt": "2026-08-26T06:12:04.618Z",
+  "updatedAt": "2026-08-26T06:12:04.113Z",
   "totalFrequencies": 1587,
   "removedCount": 0,
-  "candidateCount": 1774,
+  "candidateCount": 1577,
   "closedCandidateCount": 2810,
   "closedConsensusCount": 310,
-  "successfulSourceCount": 45,
+  "successfulSourceCount": 47,
   "sourcesChecked": 67,
-  "sourcesFailed": 22,
+  "sourcesFailed": 20,
   "changes": {
-    "updated": 789,
-    "added": 17,
+    "updated": 699,
+    "added": 0,
     "removed": 0,
-    "reviewedOnly": 968,
-    "channelNamesAdded": 57,
-    "channelNamesRemoved": 289,
+    "reviewedOnly": 878,
+    "channelNamesAdded": 1,
+    "channelNamesRemoved": 214,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 968,
+    "incompleteNewSkipped": 878,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1166 من 2331 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1075 من 2114 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -36,7 +36,7 @@
     {
       "satelliteGroup": "Amos",
       "frequencies": 5,
-      "services": 17
+      "services": 15
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -61,12 +61,12 @@
     {
       "satelliteGroup": "Eutelsat 16E",
       "frequencies": 211,
-      "services": 1404
+      "services": 1405
     },
     {
       "satelliteGroup": "Eutelsat 36E",
       "frequencies": 144,
-      "services": 424
+      "services": 399
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -91,7 +91,7 @@
     {
       "satelliteGroup": "Nilesat",
       "frequencies": 197,
-      "services": 1393
+      "services": 1394
     },
     {
       "satelliteGroup": "Türksat",
@@ -110,14 +110,14 @@
       "orbitalSlot": "4W",
       "satelliteName": "Amos 3",
       "frequencies": 2,
-      "services": 8
+      "services": 7
     },
     {
       "satelliteGroup": "Amos",
       "orbitalSlot": "4W",
       "satelliteName": "Dror 1",
       "frequencies": 3,
-      "services": 9
+      "services": 8
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -173,14 +173,14 @@
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
       "frequencies": 211,
-      "services": 1404
+      "services": 1405
     },
     {
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
       "frequencies": 144,
-      "services": 424
+      "services": 399
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -222,7 +222,7 @@
       "orbitalSlot": "7W",
       "satelliteName": "Nilesat 201/301 + Eutelsat 7 West A",
       "frequencies": 50,
-      "services": 407
+      "services": 408
     },
     {
       "satelliteGroup": "Nilesat",
@@ -376,6 +376,16 @@
       "error": null
     },
     {
+      "id": "lyngsat-eutelsat-36d-express",
+      "name": "LyngSat Eutelsat 36D / Express AMU1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
       "id": "lyngsat-astra-19",
       "name": "LyngSat Astra 19.2E cluster",
       "ok": false,
@@ -418,36 +428,6 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10806",
-      "name": "LyngSat Amos 3 10806 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10842",
-      "name": "LyngSat Amos 3 10842 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-yes-dror1-package",
-      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
