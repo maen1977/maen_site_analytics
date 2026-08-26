@@ -47,4 +47,28 @@ const overridden = assertFrequencyPublishSafe({
 assert.equal(overridden.override, true);
 assert.equal(overridden.safe, true);
 
-console.log('✓ publish guard blocks catastrophic shrink, accepts ordinary changes, enforces removal cap, and requires explicit override for exceptional shrink');
+const consensusRemoval = assertFrequencyPublishSafe({
+  baselineItems: rows(1000),
+  mergedItems: rows(400),
+  removedItems: rows(600).map((item, index) => ({
+    ...item,
+    removedReason: 'closed-by-source-consensus',
+    closedSourceCount: 2,
+    confirmationSites: ['kingofsat.net', 'dthsat.com'],
+    index
+  })),
+  env: { FREQUENCY_MIN_BASELINE_RETAIN_RATIO: '0.75', FREQUENCY_MAX_REMOVALS_PER_RUN: '250' }
+});
+assert.equal(consensusRemoval.consensusRemovalOnly, true);
+assert.equal(consensusRemoval.safe, true);
+
+const singleSourceRemoval = evaluateFrequencyPublishGuard({
+  baselineItems: rows(1000),
+  mergedItems: rows(400),
+  removedItems: rows(600).map(item => ({ ...item, removedReason: 'closed-by-source-consensus', closedSourceCount: 1 })),
+  env: { FREQUENCY_MIN_BASELINE_RETAIN_RATIO: '0.75', FREQUENCY_MAX_REMOVALS_PER_RUN: '250' }
+});
+assert.equal(singleSourceRemoval.consensusRemovalOnly, false);
+assert.equal(singleSourceRemoval.safe, false);
+
+console.log('✓ publish guard blocks untrusted shrink, accepts ordinary changes, allows only multi-site closure shrink, and requires explicit override otherwise');

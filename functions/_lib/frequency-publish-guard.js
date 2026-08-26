@@ -27,7 +27,15 @@ export function evaluateFrequencyPublishGuard({ baselineItems = [], mergedItems 
   const retainedRatio = baselineCount ? mergedCount / baselineCount : 1;
   const ratioOk = baselineCount === 0 || retainedRatio >= minRetainRatio;
   const removalsOk = baselineCount === 0 || removedRowCount <= maxRemovalsPerRun;
-  const safe = override || (ratioOk && removalsOk);
+  // A large shrink is safe only when every removed row carries the explicit
+  // multi-site closure evidence produced by buildClosedConsensus().
+  const consensusRemovalOnly = removedRowCount > 0
+    && Array.isArray(removedItems)
+    && removedItems.length === removedRowCount
+    && removedItems.every(item => item
+      && item.removedReason === 'closed-by-source-consensus'
+      && Number(item.closedSourceCount || 0) >= 2);
+  const safe = override || consensusRemovalOnly || (ratioOk && removalsOk);
   const reasons = [];
   if (!ratioOk) reasons.push(`retained ratio ${retainedRatio.toFixed(4)} is below ${minRetainRatio}`);
   if (!removalsOk) reasons.push(`removed ${removedRowCount} rows, above ${maxRemovalsPerRun}`);
@@ -45,6 +53,7 @@ export function evaluateFrequencyPublishGuard({ baselineItems = [], mergedItems 
     maxRemovalsPerRun,
     ratioOk,
     removalsOk,
+    consensusRemovalOnly,
     reasons
   };
 }
