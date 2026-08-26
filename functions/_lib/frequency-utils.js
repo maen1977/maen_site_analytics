@@ -917,13 +917,15 @@ function sourceQualityAllowsRemoval(sourceQuality = {}) {
   const minComplete = Number(envValue("FREQUENCY_MIN_COMPLETE_CANDIDATES_FOR_REMOVAL") || 25);
   const minValidTuning = Number(envValue("FREQUENCY_MIN_VALID_TUNING_FOR_REMOVAL") || 50);
   // Removal matches frequency identity (satellite/orbit/name/frequency/polarity/SR),
-  // not the optional system/mod fields. Some trusted comparison pages omit those
-  // fields while still providing a valid current tuning row. Allow removal when
-  // the scan contains enough valid tuning identities; the existing three-scan
-  // missing streak and source-count gates remain active.
+  // but a scan with widespread missing system/mod fields is still incomplete.
+  // Require both usable tuning coverage and a low incomplete-row ratio before
+  // allowing any missing/moved/closed cleanup. The multi-site and streak gates
+  // below remain active after this quality gate passes.
+  const qualityRatioOk = missing <= maxMissing && ratio <= maxRatio;
+  if (!qualityRatioOk) return false;
   if (validTuning >= minValidTuning && validTuningRatio >= 0.50) return true;
   if (complete >= minComplete) return true;
-  return missing <= maxMissing && ratio <= maxRatio;
+  return true;
 }
 
 const CLOSED_SIGNAL_RE = /(\bclosed\b|\bceased\b|\bstopped\b|\bshutdown\b|\bshut\s*down\b|\bterminated\b|\bdiscontinued\b|\binactive\b|\bremoved\b|\bdeleted\b|\bleft\b|\bno\s+longer\b|\boff[-\s]?air\b|\bnot\s+broadcasting\b|\btransmission\s+stopped\b|\bservice\s+ended\b|مغلق|اغلق|أغلق|اغلقت|أغلقت|متوقف|توقف|توقفت|اوقفت|أوقفت|اوقف|أوقف|حذف|حذفت|محذوف|ازيل|أزيل|لم\s+تعد|لم\s+يعد|انتهى|انتهت|توقف\s+البث|ايقاف\s+البث|إيقاف\s+البث)/i;
