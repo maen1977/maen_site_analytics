@@ -1,15 +1,15 @@
 {
   "ok": false,
-  "generatedAt": "2026-08-26T05:49:47.181Z",
-  "updatedAt": "2026-08-26T05:49:47.130Z",
+  "generatedAt": "2026-08-26T05:54:59.040Z",
+  "updatedAt": "2026-08-26T05:54:58.979Z",
   "totalFrequencies": 1570,
   "removedCount": 0,
-  "candidateCount": 3073,
+  "candidateCount": 2308,
   "closedCandidateCount": 2810,
   "closedConsensusCount": 0,
-  "successfulSourceCount": 55,
+  "successfulSourceCount": 48,
   "sourcesChecked": 67,
-  "sourcesFailed": 12,
+  "sourcesFailed": 19,
   "changes": {
     "updated": 0,
     "added": 0,
@@ -19,7 +19,7 @@
     "channelNamesRemoved": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "removalSkippedReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=1165, retainedRatio=0.742, removedRows=405; retained ratio 0.7420 is below 0.75; removed 405 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review."
+    "removalSkippedReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=832, retainedRatio=0.5299, removedRows=738; retained ratio 0.5299 is below 0.75; removed 738 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review."
   },
   "removedItems": [],
   "reviewedOnlyCount": 0,
@@ -317,6 +317,16 @@
       "error": null
     },
     {
+      "id": "lyngsat-eutelsat-9b",
+      "name": "LyngSat Eutelsat 9B / Ka-Sat 9A",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
       "id": "lyngsat-turksat-3a-4a-5b",
       "name": "LyngSat Türksat 3A/4A/5B",
       "ok": false,
@@ -337,8 +347,68 @@
       "error": null
     },
     {
+      "id": "lyngsat-yahsat",
+      "name": "LyngSat Al Yah 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-hellas",
+      "name": "LyngSat Hellas Sat 3/4",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-eutelsat-36d-express",
+      "name": "LyngSat Eutelsat 36D / Express AMU1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-astra-19",
+      "name": "LyngSat Astra 19.2E cluster",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-astra-28",
+      "name": "LyngSat Astra 28.2E cluster",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
       "id": "lyngsat-amos",
       "name": "LyngSat Amos 3 / Dror 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-azerspace-1",
+      "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
       "candidates": 0,
@@ -367,8 +437,8 @@
       "error": null
     }
   ],
-  "note": "تم رفض نشر تحديث الترددات لأن الفحص غير مكتمل أو انكمش بشكل غير آمن. بقيت قاعدة البيانات السابقة كما هي. سبب الرفض: Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=1165, retainedRatio=0.742, removedRows=405; retained ratio 0.7420 is below 0.75; removed 405 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
-  "failureReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=1165, retainedRatio=0.742, removedRows=405; retained ratio 0.7420 is below 0.75; removed 405 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
+  "note": "تم رفض نشر تحديث الترددات لأن الفحص غير مكتمل أو انكمش بشكل غير آمن. بقيت قاعدة البيانات السابقة كما هي. سبب الرفض: Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=832, retainedRatio=0.5299, removedRows=738; retained ratio 0.5299 is below 0.75; removed 738 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
+  "failureReason": "Refusing to publish a collapsed frequency snapshot: baseline=1570, merged=832, retainedRatio=0.5299, removedRows=738; retained ratio 0.5299 is below 0.75; removed 738 rows, above 250. Set FREQUENCY_ALLOW_PUBLISH_SHRINK=1 only after manual review.",
   "generatedBy": "github-actions",
   "staticDataPath": "public/frequencies/frequency-data.json"
 }
