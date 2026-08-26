@@ -1678,6 +1678,21 @@ export function frequencyReportHtml(report) {
   return `<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><body style="font-family:Tahoma,Arial,sans-serif;background:#f8f5ed;color:#111;line-height:1.7"><main style="max-width:860px;margin:auto;background:#fff;border-radius:22px;padding:24px"><h1>تقرير تحديث الترددات اليومي</h1><p>وقت الفحص: <b>${esc(report.generatedAt)}</b></p><table style="width:100%;border-collapse:collapse">${rows}</table>${report.changes.removalSkippedReason ? `<p><b>ملاحظة الحذف:</b> ${esc(report.changes.removalSkippedReason)}</p>` : ""}<p>${esc(report.note)}</p>${removed ? `<h2>أمثلة على ترددات حُذفت</h2><ul>${removed}</ul>` : ""}${failed ? `<h2>مصادر تحتاج مراجعة</h2><ul>${failed}</ul>` : ""}</main></body></html>`;
 }
 
+async function retrieveResendDelivery(apiKey, emailId) {
+  if (!apiKey || !emailId) return { deliveryStatus: "unknown" };
+  try {
+    const response = await fetch(`https://api.resend.com/emails/${encodeURIComponent(emailId)}`, {
+      headers: { "authorization": `Bearer ${apiKey}` }
+    });
+    const body = await response.json().catch(() => ({}));
+    return response.ok
+      ? { deliveryStatus: body.last_event || "unknown" }
+      : { deliveryStatus: "status-unavailable", deliveryStatusCode: response.status };
+  } catch (error) {
+    return { deliveryStatus: "status-unavailable", deliveryStatusError: String(error?.message || error).slice(0, 180) };
+  }
+}
+
 export async function sendFrequencyUpdateEmail(report) {
   const apiKey = envValue("RESEND_API_KEY") || "";
   // Use the canonical REPORT_EMAIL for both daily reports. Keep the older
@@ -1697,5 +1712,9 @@ export async function sendFrequencyUpdateEmail(report) {
     })
   });
   const body = await response.text().catch(() => "");
-  return { sent: response.ok, status: response.status, body: body.slice(0, 500) };
+  if (!response.ok) return { sent: false, status: response.status, body: body.slice(0, 500), deliveryStatus: "failed" };
+  let parsed = {};
+  try { parsed = JSON.parse(body); } catch {}
+  const delivery = await retrieveResendDelivery(apiKey, parsed.id);
+  return { sent: true, status: response.status, body: body.slice(0, 500), ...delivery };
 }

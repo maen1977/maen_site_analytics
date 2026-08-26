@@ -20,6 +20,21 @@ function isUsingResendDevSender() {
   return /@resend\.dev>?$/i.test(fromAddress());
 }
 
+async function retrieveResendDelivery(apiKey, emailId) {
+  if (!apiKey || !emailId) return { deliveryStatus: 'unknown' };
+  try {
+    const response = await fetch(`https://api.resend.com/emails/${encodeURIComponent(emailId)}`, {
+      headers: { authorization: `Bearer ${apiKey}` }
+    });
+    const body = await response.json().catch(() => ({}));
+    return response.ok
+      ? { deliveryStatus: body.last_event || 'unknown' }
+      : { deliveryStatus: 'status-unavailable', deliveryStatusCode: response.status };
+  } catch (error) {
+    return { deliveryStatus: 'status-unavailable', deliveryStatusError: String(error?.message || error).slice(0, 180) };
+  }
+}
+
 async function sendResendMessage({ subject, text, html }) {
   const apiKey = env('RESEND_API_KEY');
   const to = env('REPORT_EMAIL');
@@ -41,7 +56,10 @@ async function sendResendMessage({ subject, text, html }) {
     throw new Error(`Resend failed (${response.status}): ${body.slice(0, 1500)}`);
   }
 
-  return { sent: true, status: response.status, body: body.slice(0, 500) };
+  let parsed = {};
+  try { parsed = JSON.parse(body); } catch {}
+  const delivery = await retrieveResendDelivery(apiKey, parsed.id);
+  return { sent: true, status: response.status, body: body.slice(0, 500), ...delivery };
 }
 
 async function sendFailureEmail(stage, error) {
