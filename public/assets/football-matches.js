@@ -49,7 +49,7 @@
     matchesWithBroadcasters: { ar: "لها قناة", en: "with broadcaster" },
     matchTime: { ar: "الساعة", en: "Time" },
     matchBroadcast: { ar: "تُعرض على", en: "Shown on" },
-    matchNoBroadcast: { ar: "لم تُحدد القناة الناقلة بعد.", en: "Broadcaster not listed yet." },
+    matchNoBroadcast: { ar: "لم يُعلن رقم المحطة بعد.", en: "The exact channel number has not been announced yet." },
     broadcastFta: { ar: "مجاني / FTA", en: "FTA / Free" },
     broadcastEncrypted: { ar: "مشفر / مدفوع", en: "Encrypted / subscription" },
     broadcastUnknown: { ar: "نوع البث غير مؤكد", en: "Access type unverified" },
@@ -328,72 +328,71 @@
     var count = document.getElementById("sportsMatchesCount");
     var updated = document.getElementById("sportsMatchesLastUpdated");
     if (!grid || !empty || !state.loaded) return;
-    grid.textContent = "";
-    var totalItems = 0;
-    var totalWithBroadcasters = 0;
-    var renderedCards = 0;
-    Object.keys(COMPETITIONS).sort(function (a, b) { return COMPETITIONS[a].order - COMPETITIONS[b].order; }).forEach(function (competitionKey) {
-      var allItems = allMatchesForCompetition(competitionKey);
-      if (!allItems.length && !state.matchesQuery) return;
-      var selectedWindow = state.competitionWindows[competitionKey] || "week";
-      var items = filteredMatchesForCompetition(competitionKey, selectedWindow);
-      var card = document.createElement("section");
-      card.className = "sports-competition-card";
-      card.setAttribute("data-competition-card", competitionKey);
-      card.setAttribute("dir", displayDirection());
-      var isOpen = state.openCompetitions[competitionKey] === true;
-      var header = document.createElement("button");
-      header.type = "button";
-      header.className = "sports-competition-card-header" + (isOpen ? " is-open" : "");
-      header.setAttribute("data-competition-toggle", competitionKey);
-      header.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      var heading = document.createElement("span");
-      heading.className = "sports-competition-heading";
-      heading.textContent = competitionDisplayName({ competitionKey: competitionKey });
-      header.appendChild(heading);
-      var meta = document.createElement("span");
-      meta.className = "sports-competition-card-meta";
-      var total = document.createElement("span");
-      total.className = "sports-competition-total";
-      total.textContent = String(allItems.length) + " " + languageText("matchesCount");
-      meta.appendChild(total);
-      var indicator = document.createElement("span");
-      indicator.className = "sports-competition-toggle-indicator";
-      indicator.setAttribute("aria-hidden", "true");
-      indicator.textContent = isOpen ? "−" : "+";
-      meta.appendChild(indicator);
-      header.appendChild(meta);
-      card.appendChild(header);
-      if (isOpen) renderCompetitionWindowButtons(card, competitionKey, selectedWindow);
-      var body = document.createElement("div");
-      body.className = "sports-competition-matches";
-      body.hidden = !isOpen;
-      var visibleCount = state.competitionVisibleCounts[competitionKey] || MATCHES_VISIBLE_STEP;
-      items.slice(0, visibleCount).forEach(function (match) { body.appendChild(renderMatchCard(match)); });
-      if (!items.length) {
-        var cardEmpty = document.createElement("p");
-        cardEmpty.className = "sports-competition-empty";
-        cardEmpty.textContent = languageText("matchesEmpty");
-        body.appendChild(cardEmpty);
-      }
-      card.appendChild(body);
-      if (items.length > visibleCount) {
-        var cardMore = document.createElement("button");
-        cardMore.type = "button";
-        cardMore.className = "sports-competition-more";
-        cardMore.setAttribute("data-competition-more", competitionKey);
-        cardMore.textContent = languageText("showMore");
-        card.appendChild(cardMore);
-      }
-      grid.appendChild(card);
-      renderedCards += 1;
-      totalItems += items.length;
-      totalWithBroadcasters += items.filter(function (match) { return Array.isArray(match.broadcasters) && match.broadcasters.length > 0; }).length;
+    var keys = Object.keys(COMPETITIONS).sort(function (a, b) { return COMPETITIONS[a].order - COMPETITIONS[b].order; }).filter(function (key) {
+      return allMatchesForCompetition(key).length > 0;
     });
-    empty.hidden = renderedCards > 0 && totalItems > 0;
-    empty.textContent = totalItems ? "" : languageText("matchesEmpty");
+    if (!state.activeCompetition || keys.indexOf(state.activeCompetition) === -1) state.activeCompetition = keys[0] || "";
+    grid.textContent = "";
+    var picker = document.createElement("div");
+    picker.className = "sports-competition-picker";
+    picker.setAttribute("role", "tablist");
+    picker.setAttribute("aria-label", isEnglish() ? "Choose a competition" : "اختر البطولة");
+    keys.forEach(function (competitionKey) {
+      var button = document.createElement("button");
+      var selected = competitionKey === state.activeCompetition;
+      button.type = "button";
+      button.className = "sports-competition-tile" + (selected ? " active" : "");
+      button.setAttribute("data-competition-select", competitionKey);
+      button.setAttribute("role", "tab");
+      button.setAttribute("aria-selected", selected ? "true" : "false");
+      var title = document.createElement("strong");
+      title.textContent = competitionDisplayName({ competitionKey: competitionKey });
+      button.appendChild(title);
+      var tileMeta = document.createElement("span");
+      tileMeta.textContent = String(allMatchesForCompetition(competitionKey).length) + " " + languageText("matchesCount");
+      button.appendChild(tileMeta);
+      picker.appendChild(button);
+    });
+    grid.appendChild(picker);
+    var selectedKey = state.activeCompetition;
+    var selectedMatches = allMatchesForCompetition(selectedKey);
+    var selectedWindow = state.competitionWindows[selectedKey] || "week";
+    var items = filteredMatchesForCompetition(selectedKey, selectedWindow);
+    var panel = document.createElement("section");
+    panel.className = "sports-selected-competition";
+    panel.setAttribute("data-selected-competition", selectedKey);
+    panel.setAttribute("dir", displayDirection());
+    var panelTitle = document.createElement("h3");
+    panelTitle.className = "sports-selected-competition-title";
+    panelTitle.textContent = competitionDisplayName({ competitionKey: selectedKey });
+    panel.appendChild(panelTitle);
+    renderCompetitionWindowButtons(panel, selectedKey, selectedWindow);
+    var body = document.createElement("div");
+    body.className = "sports-competition-matches";
+    var visibleCount = state.competitionVisibleCounts[selectedKey] || MATCHES_VISIBLE_STEP;
+    items.slice(0, visibleCount).forEach(function (match) { body.appendChild(renderMatchCard(match)); });
+    if (!items.length) {
+      var panelEmpty = document.createElement("p");
+      panelEmpty.className = "sports-competition-empty";
+      panelEmpty.textContent = languageText("matchesEmpty");
+      body.appendChild(panelEmpty);
+    }
+    panel.appendChild(body);
+    if (items.length > visibleCount) {
+      var panelMore = document.createElement("button");
+      panelMore.type = "button";
+      panelMore.className = "sports-competition-more";
+      panelMore.setAttribute("data-competition-more", selectedKey);
+      panelMore.textContent = languageText("showMore");
+      panel.appendChild(panelMore);
+    }
+    grid.appendChild(panel);
+    empty.hidden = items.length > 0;
+    empty.textContent = items.length ? "" : languageText("matchesEmpty");
     if (more) more.hidden = true;
-    if (count) count.textContent = String(totalItems) + " " + languageText("matchesCount") + " · " + String(totalWithBroadcasters) + " " + languageText("matchesWithBroadcasters");
+    var allVisible = keys.reduce(function (sum, key) { return sum + filteredMatchesForCompetition(key, "week").length; }, 0);
+    var allWithBroadcasters = state.matches.filter(function (match) { return matchesDateWindow(match, "week") && Array.isArray(match.broadcasters) && match.broadcasters.length > 0; }).length;
+    if (count) count.textContent = String(allVisible) + " " + languageText("matchesCount") + " · " + String(allWithBroadcasters) + " " + languageText("matchesWithBroadcasters");
     if (updated) updated.textContent = state.matchesGeneratedAt ? formatDate(state.matchesGeneratedAt) : "—";
   }
 
@@ -455,6 +454,13 @@
 
   function bindControls() {
     document.addEventListener("click", function (event) {
+      var selectButton = event.target && event.target.closest ? event.target.closest("[data-competition-select]") : null;
+      if (selectButton) {
+        state.activeCompetition = selectButton.getAttribute("data-competition-select") || "";
+        state.competitionVisibleCounts[state.activeCompetition] = MATCHES_VISIBLE_STEP;
+        renderMatches();
+        return;
+      }
       var toggleButton = event.target && event.target.closest ? event.target.closest("[data-competition-toggle]") : null;
       if (toggleButton) {
         var toggleKey = toggleButton.getAttribute("data-competition-toggle") || "";

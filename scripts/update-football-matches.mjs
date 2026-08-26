@@ -524,23 +524,16 @@ function normalizeChannelKey(value) {
 }
 
 function beINRightsFallback(match) {
-  if (!match || !BEIN_RIGHTS_COMPETITIONS.has(match.competitionKey)) return null;
-  return broadcasterEntry({
-    name: "beIN SPORTS (MENA)",
-    country: "Jordan",
-    sourceName: "beIN SPORTS MENA guide and regional rights",
-    sourceUrl: BEIN_MENA_GUIDE_URL,
-    evidenceLevel: "official",
-    accessType: "encrypted",
-    accessSourceName: "beIN official FAQ and channel list",
-    accessSourceUrl: BEIN_FAQ_URL,
-  });
+  // Regional rights alone do not identify the actual receiver channel.
+  // Never publish beIN SPORTS (MENA) as if it were a numbered station.
+  return null;
 }
 
 function mergeBroadcasters(...lists) {
   const unique = new Map();
   for (const entry of lists.flat()) {
     if (!entry || entry.verified !== true) continue;
+    if (/^beIN\s+SPORTS\s*\(MENA\)$/i.test(String(entry.name || "").trim())) continue;
     const key = normalizeChannelKey(entry.name);
     const existing = unique.get(key);
     if (!existing) {
@@ -718,12 +711,11 @@ const payload = {
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
-    { id: "bein-regional-rights", name: "beIN SPORTS MENA guide and regional rights fallback", url: BEIN_MENA_GUIDE_URL, ok: true, requestedDays: dates.length, note: "Network-level fallback for Premier League, LaLiga, and Ligue 1; exact channel number is shown only when a dated listing provides it" },
     { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
   ],
   broadcastCountries: [...TARGET_BROADCAST_COUNTRIES],
-  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. Arabic/regional broadcaster metadata is shown when a dated match schedule is matched unambiguously. For Premier League, LaLiga, and Ligue 1, beIN SPORTS (MENA) may be shown as a network-level official rights fallback when no exact channel listing is available; the numbered channel is never guessed. beIN access labels use the official FAQ/channel-list rules; AD Sports, ON Sport, and Thmanyah remain unknown unless a dated source states the access type.",
+  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated match schedule identifies the exact station. If the source identifies only a network without a station number, the match remains marked as an unannounced channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
   items,
 };
 
