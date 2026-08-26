@@ -292,15 +292,25 @@ async function fetchJordanLeague() {
   return (payload.events || []).map((event) => toSportsDbMatch(event, event.dateEvent || "")).filter(Boolean);
 }
 
+function normalizeBroadcasterName(value) {
+  let channel = String(value || "").replace(/\s+/g, " ").trim();
+  channel = channel.replace(/^beIN\s+SPORTS\s+HD\s+([1-9])$/i, "beIN SPORTS $1");
+  channel = channel.replace(/^beIN\s+SPORTS\s+MAX\s*([1-6])$/i, "beIN SPORTS MAX $1");
+  channel = channel.replace(/^beIN\s+EXTRA\s*([1-9])$/i, "beIN SPORTS Extra $1");
+  channel = channel.replace(/^beIN\s+SPORTS\s+EXTRA\s*([1-9])$/i, "beIN SPORTS Extra $1");
+  channel = channel.replace(/^beIN\s+SPORTS\s+NEWS\s+HD$/i, "beIN SPORTS NEWS");
+  return compact(channel, 120);
+}
+
 function classifyAccessType(channelName) {
-  const channel = String(channelName || "").replace(/\s+/g, " ").trim();
+  const channel = normalizeBroadcasterName(channelName);
   if (/^beIN\s+SPORTS(?:\s+NEWS)?$/i.test(channel)) return "fta";
-  if (/^beIN\s+SPORTS\s+(?:[1-9]|MAX\s*[1-6])(?:\s+HD)?$/i.test(channel)) return "encrypted";
+  if (/^beIN\s+SPORTS\s+(?:[1-9]|MAX\s*[1-6]|Extra\s*[1-9])$/i.test(channel)) return "encrypted";
   return "unknown";
 }
 
 function broadcasterEntry({ name, country, sourceName, sourceUrl, evidenceLevel, accessType, accessSourceName, accessSourceUrl }) {
-  const cleanName = compact(name, 120);
+  const cleanName = normalizeBroadcasterName(name);
   const cleanCountry = compact(country, 60);
   const cleanSourceUrl = String(sourceUrl || "");
   if (!cleanName || !TARGET_BROADCAST_COUNTRIES.has(cleanCountry) || !/^https:\/\//i.test(cleanSourceUrl)) return null;
