@@ -4898,16 +4898,21 @@ function shareSite(){var shareData={title:'معن حنونة للستلايت',t
   };
   var originalSetLanguage = window.setLanguage;
   window.setLanguage=function(lang){
+    lang = lang === 'en' ? 'en' : 'ar';
+    // Always invalidate the enhanced pass: some sections are rendered after the
+    // legacy translator and must be synchronized on the first click as well.
+    window.__maenAppliedLanguage = null;
     window.maenStorageSet('siteLang', lang);
     if(typeof originalSetLanguage==='function'){
       try { originalSetLanguage(lang); } catch(e) {}
     }
     applyEnhancedLanguage(lang);
-    if(lang==='en'){
-      setTimeout(function(){applyEnhancedLanguage(lang);},0);
-      setTimeout(function(){applyEnhancedLanguage(lang);},80);
-      setTimeout(function(){applyEnhancedLanguage(lang);},220);
-    }
+    [0, 80, 220].forEach(function(delay){
+      setTimeout(function(){
+        window.__maenAppliedLanguage = null;
+        applyEnhancedLanguage(lang);
+      }, delay);
+    });
   };
   var originalOpenCart=window.storeOpenCart;
   if(typeof originalOpenCart==='function'){
