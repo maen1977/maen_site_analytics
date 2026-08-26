@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-26T06:12:04.618Z",
-  "updatedAt": "2026-08-26T06:12:04.113Z",
+  "generatedAt": "2026-08-26T06:15:47.288Z",
+  "updatedAt": "2026-08-26T06:15:46.935Z",
   "totalFrequencies": 1587,
   "removedCount": 0,
-  "candidateCount": 1577,
+  "candidateCount": 1595,
   "closedCandidateCount": 2810,
   "closedConsensusCount": 310,
-  "successfulSourceCount": 47,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 20,
+  "sourcesFailed": 22,
   "changes": {
     "updated": 699,
     "added": 0,
     "removed": 0,
-    "reviewedOnly": 878,
-    "channelNamesAdded": 1,
-    "channelNamesRemoved": 214,
+    "reviewedOnly": 896,
+    "channelNamesAdded": 2,
+    "channelNamesRemoved": 195,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 878,
+    "incompleteNewSkipped": 896,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1075 من 2114 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1093 من 2132 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -36,7 +36,7 @@
     {
       "satelliteGroup": "Amos",
       "frequencies": 5,
-      "services": 15
+      "services": 10
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -117,7 +117,7 @@
       "orbitalSlot": "4W",
       "satelliteName": "Dror 1",
       "frequencies": 3,
-      "services": 8
+      "services": 3
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -406,16 +406,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-amos",
-      "name": "LyngSat Amos 3 / Dror 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
       "ok": false,
@@ -428,6 +418,36 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10806",
+      "name": "LyngSat Amos 3 10806 V mux",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10842",
+      "name": "LyngSat Amos 3 10842 V mux",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-yes-dror1-package",
+      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
