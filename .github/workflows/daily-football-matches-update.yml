@@ -40,15 +40,19 @@ jobs:
       - name: Verify Node runtime
         run: node --version
 
+      - name: Install football data dependencies
+        run: npm ci --no-audit --no-fund
+
       - name: Check match updater and validator
         run: |
+          node --check scripts/fetch-bein-tv-guide.mjs
           node --check scripts/update-football-matches.mjs
           node --check scripts/test-football-matches.mjs
 
       - name: Update football match schedule
         id: matches
         continue-on-error: true
-        run: npm run github:update-matches
+        run: xvfb-run -a npm run github:update-matches
 
       - name: Validate football match schedule
         id: validateMatches

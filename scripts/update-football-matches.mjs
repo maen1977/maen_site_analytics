@@ -2,12 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
+import { fetchBeinTvGuide } from "./fetch-bein-tv-guide.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUTPUT = path.join(ROOT, "public/data/football-matches.json");
 const TIME_ZONE = "Asia/Amman";
 const FILGOAL_TIME_ZONE = "Africa/Cairo";
 const KOOORA_TIME_ZONE = "Asia/Riyadh";
+const BEIN_TIME_ZONE = "UTC";
 const ESPN_ROOT = "https://site.api.espn.com/apis/site/v2/sports/soccer";
 const SPORTSDB_BASE = "https://www.thesportsdb.com/api/v1/json/123";
 const ESPN_MAJOR_LEAGUES = [
@@ -109,6 +111,11 @@ const TEAM_ALIASES = new Map([
   ["ليفانتي", ["levante"]],
   ["خيتافي", ["getafe"]],
   ["رايو فاليكانو", ["rayo vallecano"]],
+  ["racing santander", ["racing club", "racing de santander"]],
+  ["deportivo", ["deportivo la coruna", "deportivo de la coruna", "deprotivo la coruna"]],
+  ["مالقة", ["malaga"]],
+  ["ألافيس", ["alaves", "deportivo alaves"]],
+  ["سيلتا فيجو", ["celta vigo", "celta de vigo", "rc celta"]],
   ["سيلتك", ["celtic"]],
   ["لاسك", ["lask linz", "lask"]],
   ["نيميخن", ["nec nijmegen", "nec"]],
@@ -307,6 +314,7 @@ async function fetchJordanLeague() {
 function normalizeBroadcasterName(value) {
   let channel = String(value || "").replace(/\s+/g, " ").trim();
   channel = channel.replace(/^beIN\s+SPORTS\s+HD\s+([1-9])$/i, "beIN SPORTS $1");
+  channel = channel.replace(/^beIN\s+SPORTS\s+([1-9])\s+HD$/i, "beIN SPORTS $1");
   channel = channel.replace(/^beIN\s+SPORTS\s+MAX\s*([1-6])$/i, "beIN SPORTS MAX $1");
   channel = channel.replace(/^beIN\s+EXTRA\s*([1-9])$/i, "beIN SPORTS Extra $1");
   channel = channel.replace(/^beIN\s+SPORTS\s+EXTRA\s*([1-9])$/i, "beIN SPORTS Extra $1");
@@ -558,6 +566,34 @@ function normalizeChannelKey(value) {
     .trim();
 }
 
+function matchBeinToFixture(sourceMatch, fixtures) {
+  const sourceInstant = zonedDateTimeToUtc(sourceMatch.date, sourceMatch.startTime, BEIN_TIME_ZONE);
+  if (!sourceInstant) return null;
+  const candidates = fixtures.filter((fixture) => {
+    if (fixture.date !== sourceMatch.date) return false;
+    if (!fixtureHasSourceTeams({ homeTeamAr: sourceMatch.homeTeamEn, awayTeamAr: sourceMatch.awayTeamEn }, fixture)) return false;
+    const fixtureInstant = dateFromValue(fixture.start);
+    if (!fixtureInstant) return false;
+    const minutes = (sourceInstant.getTime() - fixtureInstant.getTime()) / 60000;
+    return minutes >= -150 && minutes <= 180;
+  });
+  return candidates.length === 1 ? candidates[0] : null;
+}
+
+function selectBeinEntries(entries, fixture) {
+  if (!entries.length) return [];
+  const fixtureInstant = dateFromValue(fixture.start);
+  const withDistance = entries.map((entry) => {
+    const instant = zonedDateTimeToUtc(entry.date, entry.startTime, BEIN_TIME_ZONE);
+    return { entry, distance: instant && fixtureInstant ? Math.abs(instant.getTime() - fixtureInstant.getTime()) : Number.POSITIVE_INFINITY };
+  });
+  const live = withDistance.filter(({ entry }) => entry.isLive);
+  const pool = live.length ? live : withDistance.filter(({ distance }) => distance <= 150 * 60000);
+  if (!pool.length) return [];
+  const minimum = Math.min(...pool.map(({ distance }) => distance));
+  return pool.filter(({ distance }) => distance <= minimum + 5 * 60000).map(({ entry }) => entry);
+}
+
 function beINRightsFallback(match) {
   // Regional rights alone do not identify the actual receiver channel.
   // Never publish beIN SPORTS (MENA) as if it were a numbered station.
@@ -620,17 +656,19 @@ const endDate = isoDate(addDays(today, DAYS_AHEAD));
 const dates = Array.from({ length: DAYS_AHEAD + 1 }, (_, index) => isoDate(addDays(today, index)));
 const surroundingDates = [isoDate(addDays(today, -1)), ...dates, isoDate(addDays(today, DAYS_AHEAD + 1))];
 
-const [espnResults, sportsDbResults, filGoalResults, koooraResults] = await Promise.all([
+const [espnResults, sportsDbResults, filGoalResults, koooraResults, beinResults] = await Promise.all([
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
   Promise.allSettled([fetchJordanLeague()]),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
   Promise.allSettled([fetchKoooraDays(dates)]),
+  Promise.allSettled([fetchBeinTvGuide(dates)]),
 ]);
 
 const espnSucceeded = espnResults.filter((result) => result.status === "fulfilled");
 const sportsDbSucceeded = sportsDbResults.filter((result) => result.status === "fulfilled");
 const filGoalSucceeded = filGoalResults.filter((result) => result.status === "fulfilled");
 const koooraSucceeded = koooraResults.filter((result) => result.status === "fulfilled");
+const beinSucceeded = beinResults.filter((result) => result.status === "fulfilled");
 if (!espnSucceeded.length && !sportsDbSucceeded.length) {
   throw new Error("Both match data providers failed");
 }
@@ -681,6 +719,16 @@ function matchKoooraToFixture(sourceMatch, fixtures) {
   return namedCandidates.length === 1 ? namedCandidates[0] : null;
 }
 
+const beinByKey = new Map();
+for (const result of beinSucceeded) {
+  for (const sourceMatch of result.value) {
+    const fixture = matchBeinToFixture(sourceMatch, [...merged.values()]);
+    if (!fixture) continue;
+    const previous = beinByKey.get(fixture.key) || [];
+    beinByKey.set(fixture.key, [...previous, sourceMatch]);
+  }
+}
+
 const koooraByKey = new Map();
 for (const result of koooraSucceeded) {
   for (const sourceMatch of result.value) {
@@ -705,10 +753,20 @@ const items = [...merged.values()]
     const sportsDbBroadcasters = tvResult?.status === "fulfilled" ? tvResult.value : [];
     const filGoalBroadcasters = filGoalByKey.get(match.key) || [];
     const koooraBroadcasters = koooraByKey.get(match.key) || [];
-    let broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters);
+    const beinEntries = selectBeinEntries(beinByKey.get(match.key) || [], match);
+    const beinBroadcasters = beinEntries.map((entry) => broadcasterEntry({
+      name: entry.channel,
+      country: "Jordan",
+      sourceName: "beIN official MENA TV guide",
+      sourceUrl: BEIN_MENA_GUIDE_URL,
+      evidenceLevel: "official",
+      accessSourceName: "beIN official channel list",
+      accessSourceUrl: BEIN_CHANNEL_LIST_URL,
+    })).filter(Boolean);
+    let broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters, beinBroadcasters);
     const rightsFallback = broadcasters.length ? null : beINRightsFallback(match);
     if (rightsFallback) broadcasters = [rightsFallback];
-    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : []), ...(rightsFallback ? ["bein-regional-rights"] : [])])];
+    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : []), ...(beinBroadcasters.length ? ["bein-tv-guide"] : []), ...(rightsFallback ? ["bein-regional-rights"] : [])])];
     return {
       id: match.id,
       date: match.date,
@@ -744,6 +802,7 @@ const payload = {
     { id: "thesportsdb-jordan", name: "TheSportsDB Jordanian Pro League season", url: `https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`, ok: sportsDbSucceeded.length > 0, requestedDays: 1 },
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
+    { id: "bein-tv-guide", name: "beIN official MENA dynamic TV guide", url: BEIN_MENA_GUIDE_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: beinSucceeded.length > 0, requestedDays: dates.length, matchedListings: beinByKey.size, note: "The guide is rendered with JavaScript in a regular Chromium session; live or kickoff-near listings are matched by both teams, date, and time." },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
     { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
