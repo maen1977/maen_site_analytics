@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T09:03:21.246Z",
+  "generatedAt": "2026-08-27T09:19:12.367Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-27",
@@ -34,13 +34,13 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 1
+      "matchedFixtures": 0
     }
   },
   "totals": {
     "matches": 87,
-    "matchesWithBroadcasters": 1,
-    "matchesWithoutBroadcasters": 86
+    "matchesWithBroadcasters": 0,
+    "matchesWithoutBroadcasters": 87
   },
   "matches": [
     {
@@ -68,15 +68,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Barcelona",
       "awayTeam": "Athletic Club",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -84,7 +77,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-9dba7c1e5dc0d0cae1c8",

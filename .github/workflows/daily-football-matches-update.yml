@@ -113,7 +113,7 @@ jobs:
             echo "No football match data changes to commit."
           else
             git commit -m "Update football match schedule"
-            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
           fi
 
       - name: Commit match schedule workflow status
@@ -128,7 +128,7 @@ jobs:
             echo "No match schedule status changes to commit."
           else
             git commit -m "Update football match schedule status"
-            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
           fi
 
       - name: Fail workflow if the schedule or validation failed
