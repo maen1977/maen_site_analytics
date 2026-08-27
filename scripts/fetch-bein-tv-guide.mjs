@@ -1,7 +1,10 @@
 import fs from "node:fs";
 import { chromium } from "playwright-core";
 
-const GUIDE_URL = "https://www.beinsports.com/en-mena/tv-guide";
+const GUIDE_URLS = [
+  "https://www.beinsports.com/en-mena/tv-guide",
+  "https://www.beinsports.com/ar-mena/جدول-البث",
+];
 const CHROMIUM_PATHS = [process.env.CHROMIUM_PATH, "/usr/bin/google-chrome", "/usr/bin/chromium", "/usr/bin/chromium-browser"].filter(Boolean);
 const LA_LIGA_RE = /Spanish LaLiga/i;
 const CHANNEL_RE = /^beIN SPORTS (?:[1-9]|MAX\s*[1-6]|(?:Extra|XTRA)\s*[1-9])$/i;
@@ -11,14 +14,14 @@ function unique(values) { return [...new Set(values.filter(Boolean))]; }
 
 async function clickDate(page, date) {
   const day = date.slice(-2);
-  const matches = page.getByText(day, { exact: true });
-  const count = await matches.count();
+  const dateTiles = page.locator('div[tabindex="0"]').filter({ hasText: new RegExp(`(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)${day}$`) });
+  const count = await dateTiles.count();
   for (let index = 0; index < count; index += 1) {
-    if (await matches.nth(index).isVisible().catch(() => false)) {
-      await matches.nth(index).click({ force: true });
-      await page.waitForTimeout(650);
-      return true;
-    }
+    const dateTile = dateTiles.nth(index);
+    if (!(await dateTile.isVisible().catch(() => false))) continue;
+    await dateTile.click({ force: true });
+    await page.waitForTimeout(900);
+    return true;
   }
   return false;
 }
@@ -46,12 +49,18 @@ export async function fetchBeinTvGuide(queryDates) {
   if (!executablePath) throw new Error("No Chromium/Chrome executable found for beIN TV guide parser");
   const browser = await chromium.launch({ headless: false, executablePath, args: ["--no-sandbox", "--disable-dev-shm-usage"] });
   try {
-    const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, locale: "en-US", userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36" });
-    await page.goto(GUIDE_URL, { waitUntil: "domcontentloaded", timeout: 90000 });
-    await page.waitForTimeout(3500);
     const all = [];
-    for (const date of queryDates) {
-      if (await clickDate(page, date)) all.push(...await scrapeVisibleDay(page, date));
+    for (const guideUrl of GUIDE_URLS) {
+      const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, locale: "en-US", userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36" });
+      try {
+        await page.goto(guideUrl, { waitUntil: "domcontentloaded", timeout: 90000 });
+        await page.waitForTimeout(3500);
+        for (const date of queryDates) {
+          if (await clickDate(page, date)) all.push(...await scrapeVisibleDay(page, date));
+        }
+      } finally {
+        await page.close();
+      }
     }
     return unique(all.map((entry) => JSON.stringify(entry))).map((entry) => JSON.parse(entry));
   } finally {

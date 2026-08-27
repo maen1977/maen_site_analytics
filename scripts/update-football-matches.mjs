@@ -575,7 +575,8 @@ function matchBeinToFixture(sourceMatch, fixtures) {
     const fixtureInstant = dateFromValue(fixture.start);
     if (!fixtureInstant) return false;
     const minutes = (sourceInstant.getTime() - fixtureInstant.getTime()) / 60000;
-    return minutes >= -150 && minutes <= 180;
+    // beIN's guide is UTC while fixture feeds are localized; allow the full offset plus schedule drift.
+    return minutes >= -360 && minutes <= 360;
   });
   return candidates.length === 1 ? candidates[0] : null;
 }

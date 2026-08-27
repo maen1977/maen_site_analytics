@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T09:02:08.191Z",
+  "generatedAt": "2026-08-27T09:16:19.598Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-27",
@@ -34,13 +34,13 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 1
+      "matchedFixtures": 7
     }
   },
   "totals": {
     "matches": 87,
-    "matchesWithBroadcasters": 1,
-    "matchesWithoutBroadcasters": 86
+    "matchesWithBroadcasters": 7,
+    "matchesWithoutBroadcasters": 80
   },
   "matches": [
     {
@@ -93,8 +93,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Racing Santander",
       "awayTeam": "Elche",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -102,7 +109,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-9e0abe78b7a459084b59",
@@ -219,8 +226,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Alavés",
       "awayTeam": "Villarreal",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -228,7 +242,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-824a843994cf1992db18",
@@ -489,8 +503,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Levante",
       "awayTeam": "Real Betis",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 5",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -498,7 +519,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-1a82ede69a614e9d2c3e",
@@ -651,8 +672,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Real Sociedad",
       "awayTeam": "Espanyol",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -660,7 +688,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-8954d6d6d8550c4fcf10",
@@ -1029,8 +1057,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Real Madrid",
       "awayTeam": "Málaga",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 2",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1038,7 +1073,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-a2a2ab5a988cce9be0e8",
@@ -1137,8 +1172,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Deportivo",
       "awayTeam": "Valencia",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 4",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1146,7 +1188,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-96f91b32ea6ad13e6cc5",
