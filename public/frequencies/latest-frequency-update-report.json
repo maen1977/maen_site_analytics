@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-08-26T06:33:06.650Z",
-  "updatedAt": "2026-08-26T06:33:05.938Z",
+  "generatedAt": "2026-08-27T16:30:06.841Z",
+  "updatedAt": "2026-08-27T16:30:06.191Z",
   "totalFrequencies": 1605,
   "removedCount": 0,
-  "candidateCount": 1647,
-  "closedCandidateCount": 2814,
-  "closedConsensusCount": 310,
-  "successfulSourceCount": 45,
+  "candidateCount": 1568,
+  "closedCandidateCount": 2829,
+  "closedConsensusCount": 311,
+  "successfulSourceCount": 44,
   "sourcesChecked": 67,
-  "sourcesFailed": 22,
+  "sourcesFailed": 23,
   "changes": {
-    "updated": 747,
-    "added": 13,
+    "updated": 696,
+    "added": 0,
     "removed": 0,
-    "reviewedOnly": 887,
-    "channelNamesAdded": 29,
-    "channelNamesRemoved": 225,
+    "reviewedOnly": 872,
+    "channelNamesAdded": 19,
+    "channelNamesRemoved": 238,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 887,
+    "incompleteNewSkipped": 872,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1090 من 2195 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1069 من 2105 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -46,7 +46,7 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 238,
-      "services": 2001
+      "services": 1996
     },
     {
       "satelliteGroup": "Azerspace",
@@ -71,32 +71,32 @@
     {
       "satelliteGroup": "Eutelsat 9E",
       "frequencies": 77,
-      "services": 988
+      "services": 989
     },
     {
       "satelliteGroup": "Hellas Sat",
       "frequencies": 103,
-      "services": 799
+      "services": 778
     },
     {
       "satelliteGroup": "Hot Bird",
       "frequencies": 212,
-      "services": 1733
+      "services": 1726
     },
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 102,
-      "services": 904
+      "services": 905
     },
     {
       "satelliteGroup": "Nilesat",
       "frequencies": 197,
-      "services": 1394
+      "services": 1396
     },
     {
       "satelliteGroup": "Türksat",
       "frequencies": 63,
-      "services": 839
+      "services": 837
     },
     {
       "satelliteGroup": "Yahsat",
@@ -145,7 +145,7 @@
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 148,
-      "services": 704
+      "services": 699
     },
     {
       "satelliteGroup": "Azerspace",
@@ -187,28 +187,28 @@
       "orbitalSlot": "9E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
       "frequencies": 77,
-      "services": 988
+      "services": 989
     },
     {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
       "frequencies": 103,
-      "services": 799
+      "services": 778
     },
     {
       "satelliteGroup": "Hot Bird",
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
       "frequencies": 212,
-      "services": 1733
+      "services": 1726
     },
     {
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 102,
-      "services": 904
+      "services": 905
     },
     {
       "satelliteGroup": "Nilesat",
@@ -229,7 +229,7 @@
       "orbitalSlot": "8W",
       "satelliteName": "Eutelsat 8 West B",
       "frequencies": 107,
-      "services": 512
+      "services": 514
     },
     {
       "satelliteGroup": "Türksat",
@@ -243,7 +243,7 @@
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
       "frequencies": 53,
-      "services": 826
+      "services": 824
     },
     {
       "satelliteGroup": "Yahsat",
@@ -358,6 +358,16 @@
     {
       "id": "lyngsat-yahsat",
       "name": "LyngSat Al Yah 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-hellas",
+      "name": "LyngSat Hellas Sat 3/4",
       "ok": false,
       "status": 403,
       "candidates": 0,
