@@ -2,10 +2,11 @@ name: Football Match Schedule Update
 
 on:
   schedule:
-    # Twice every 24 hours at 03:37 and 15:37 Asia/Amman.
+    # Twice every 24 hours at 04:17 and 16:17 Asia/Amman.
     # GitHub Actions cron is UTC; Jordan is UTC+3 year-round,
-    # so 00:37 and 12:37 UTC run at 03:37 and 15:37 Jordan time.
-    - cron: '37 0,12 * * *'
+    # so 01:17 and 13:17 UTC run at 04:17 and 16:17 Jordan time.
+    # The non-round minute avoids the busiest top-of-hour schedule windows.
+    - cron: '17 1,13 * * *'
   workflow_dispatch:
 
 permissions:
@@ -107,7 +108,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/football-matches.json
+          git add public/data/football-matches.json public/data/football-broadcast-coverage.json
           if git diff --cached --quiet; then
             echo "No football match data changes to commit."
           else
@@ -122,7 +123,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/reports/football-matches-status.json
+          git add public/reports/football-matches-status.json public/data/football-broadcast-coverage.json
           if git diff --cached --quiet; then
             echo "No match schedule status changes to commit."
           else

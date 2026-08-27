@@ -791,6 +791,43 @@ if (!items.length && (espnSucceeded.length || sportsDbSucceeded.length)) {
   console.warn("No matches were returned for the current window; publishing an empty but valid schedule.");
 }
 
+const sourceCoverage = {
+  espn: { attempted: surroundingDates.length, succeeded: espnSucceeded.length, failed: espnResults.filter((result) => result.status === "rejected").length },
+  sportsDb: { attempted: 1, succeeded: sportsDbSucceeded.length, failed: sportsDbResults.filter((result) => result.status === "rejected").length },
+  filGoal: { attempted: dates.length, succeeded: filGoalSucceeded.length, failed: filGoalResults.filter((result) => result.status === "rejected").length, matchedListings: [...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0) },
+  kooora: { attempted: 1, succeeded: koooraSucceeded.length, failed: koooraResults.filter((result) => result.status === "rejected").length, matchedListings: [...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0) },
+  bein: { attempted: 1, succeeded: beinSucceeded.length, failed: beinResults.filter((result) => result.status === "rejected").length, matchedFixtures: beinByKey.size },
+};
+const broadcastCoverage = items.map((item) => ({
+  matchId: item.id,
+  date: item.date,
+  time: item.time,
+  competition: item.competition,
+  homeTeam: item.homeTeam,
+  awayTeam: item.awayTeam,
+  status: item.broadcasters.length ? "found" : "not_announced",
+  broadcasters: item.broadcasters.map((broadcaster) => ({
+    name: broadcaster.name,
+    sourceName: broadcaster.sourceName,
+    sourceUrl: broadcaster.sourceUrl,
+    evidenceLevel: broadcaster.evidenceLevel,
+  })),
+  searchedSources: ["ESPN fixtures", "TheSportsDB", "FilGoal Arabic", "Kooora Arabic", "beIN official MENA TV guide"],
+  note: item.broadcasters.length ? "At least one exact station number was matched to this fixture." : "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry.",
+}));
+const coverageReport = {
+  schemaVersion: 1,
+  generatedAt: new Date().toISOString(),
+  timeZone: TIME_ZONE,
+  window: { startDate, endDate, days: DAYS_AHEAD + 1 },
+  sourceCoverage,
+  totals: {
+    matches: items.length,
+    matchesWithBroadcasters: items.filter((item) => item.broadcasters.length > 0).length,
+    matchesWithoutBroadcasters: items.filter((item) => item.broadcasters.length === 0).length,
+  },
+  matches: broadcastCoverage,
+};
 const payload = {
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
@@ -816,4 +853,8 @@ fs.mkdirSync(path.dirname(OUTPUT), { recursive: true });
 const temporary = `${OUTPUT}.tmp-${process.pid}`;
 fs.writeFileSync(temporary, `${JSON.stringify(payload, null, 2)}\n`);
 fs.renameSync(temporary, OUTPUT);
-console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; matches with regional TV listings: ${items.filter((item) => item.broadcasters.length > 0).length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}; Kooora matched broadcaster listings: ${[...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0)}.`);
+const coverageOutput = path.join(path.dirname(OUTPUT), "football-broadcast-coverage.json");
+const coverageTemporary = `${coverageOutput}.tmp-${process.pid}`;
+fs.writeFileSync(coverageTemporary, `${JSON.stringify(coverageReport, null, 2)}\n`);
+fs.renameSync(coverageTemporary, coverageOutput);
+console.log(`Football matches update wrote ${items.length} matches for ${startDate} through ${endDate}; matches with regional TV listings: ${items.filter((item) => item.broadcasters.length > 0).length}; FilGoal matched broadcaster listings: ${[...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0)}; Kooora matched broadcaster listings: ${[...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0)}; beIN matched fixtures: ${beinByKey.size}; detailed coverage report: ${coverageOutput}`);
