@@ -30,6 +30,8 @@ const KOOORA_HOME = "https://www.kooora.com/";
 const BEIN_FAQ_URL = "https://www.bein.com/en/general-faq/";
 const BEIN_CHANNEL_LIST_URL = "https://www.bein.com/en/channel-list/";
 const BEIN_MENA_GUIDE_URL = "https://www.beinsports.com/en-mena/tv-guide";
+const JORDAN_TV_RIGHTS_URL = "https://petra.gov.jo/en/index.php/en/news/2027-pro-season";
+const JORDAN_FOOTBALL_ASSOCIATION_URL = "https://www.jfa.jo/";
 const BEIN_RIGHTS_COMPETITIONS = new Set(["premier-league", "la-liga", "ligue-1"]);
 const AD_SPORTS_OFFICIAL_URL = "https://www.admn.ae/en/brand/4197607/abu-dhabi-sports";
 const ON_SPORT_OFFICIAL_URL = "https://www.facebook.com/OnTimeSports/";
@@ -601,6 +603,23 @@ function beINRightsFallback(match) {
   return null;
 }
 
+function jordanRightsFallback(match) {
+  if (match.competitionKey !== "jordan-pro-league") return null;
+  // Petra reports Jordan TV's sports channel as the exclusive broadcaster
+  // of Jordanian professional competitions. No numbered sub-channel is
+  // published by the official rights source, so do not invent one.
+  return broadcasterEntry({
+    name: "Jordan Sport",
+    country: "Jordan",
+    sourceName: "Petra / Jordan Football Association rights notice",
+    sourceUrl: JORDAN_TV_RIGHTS_URL,
+    evidenceLevel: "official",
+    accessType: "fta",
+    accessSourceName: "Jordan Football Association broadcaster information",
+    accessSourceUrl: JORDAN_FOOTBALL_ASSOCIATION_URL,
+  });
+}
+
 function mergeBroadcasters(...lists) {
   const unique = new Map();
   for (const entry of lists.flat()) {
@@ -765,9 +784,9 @@ const items = [...merged.values()]
       accessSourceUrl: BEIN_CHANNEL_LIST_URL,
     })).filter(Boolean);
     let broadcasters = mergeBroadcasters(sportsDbBroadcasters, filGoalBroadcasters, koooraBroadcasters, beinBroadcasters);
-    const rightsFallback = broadcasters.length ? null : beINRightsFallback(match);
+    const rightsFallback = broadcasters.length ? null : (jordanRightsFallback(match) || beINRightsFallback(match));
     if (rightsFallback) broadcasters = [rightsFallback];
-    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : []), ...(beinBroadcasters.length ? ["bein-tv-guide"] : []), ...(rightsFallback ? ["bein-regional-rights"] : [])])];
+    const sourceIds = [...new Set([...(match.sourceIds || []), ...(filGoalBroadcasters.length ? ["filgoal-matches"] : []), ...(koooraBroadcasters.length ? ["kooora-broadcast"] : []), ...(beinBroadcasters.length ? ["bein-tv-guide"] : []), ...(rightsFallback ? [match.competitionKey === "jordan-pro-league" ? "jordan-tv-rights" : "bein-regional-rights"] : [])])];
     return {
       id: match.id,
       date: match.date,
@@ -834,7 +853,7 @@ const payload = {
   generatedAt: new Date().toISOString(),
   timeZone: TIME_ZONE,
   window: { startDate, endDate, days: DAYS_AHEAD + 1 },
-  mode: "selected-major-leagues-and-jordan-with-verified-regional-tv",
+  mode: "all-published-competitions-with-verified-regional-tv",
   sources: [
     { id: "espn-major-leagues", name: "ESPN public scoreboards for selected major leagues", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length, requestedLeagues: ESPN_MAJOR_LEAGUES.map((league) => league.id) },
     { id: "thesportsdb-jordan", name: "TheSportsDB Jordanian Pro League season", url: `https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`, ok: sportsDbSucceeded.length > 0, requestedDays: 1 },
@@ -842,11 +861,12 @@ const payload = {
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
     { id: "bein-tv-guide", name: "beIN official MENA dynamic TV guide", url: BEIN_MENA_GUIDE_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: beinSucceeded.length > 0, requestedDays: dates.length, matchedListings: beinByKey.size, note: "The guide is rendered with JavaScript in a regular Chromium session; live or kickoff-near listings are matched by both teams, date, and time." },
     { id: "bein-access-rules", name: "beIN official FAQ and channel list", url: BEIN_FAQ_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: true, requestedDays: 1 },
+    { id: "jordan-tv-rights", name: "Jordan TV sports channel rights notice", url: JORDAN_TV_RIGHTS_URL, relatedUrl: JORDAN_FOOTBALL_ASSOCIATION_URL, ok: true, requestedDays: 1, note: "Official rights notice identifies Jordan TV's sports channel as exclusive broadcaster of Jordanian professional competitions; no numbered sub-channel is stated." },
     { id: "ad-sports-official", name: "Abu Dhabi Sports official brand source", url: AD_SPORTS_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
     { id: "on-sport-official", name: "ON Sport official public source", url: ON_SPORT_OFFICIAL_URL, ok: false, requestedDays: 0, note: "No dated public fixture listing was available" },
   ],
   broadcastCountries: [...TARGET_BROADCAST_COUNTRIES],
-  coverageNote: "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated match schedule identifies the exact station. If the source identifies only a network without a station number, the match remains marked as an unannounced channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
+  coverageNote: "All competitions currently published by the site are searched: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated schedule identifies the exact station, except that the official Jordanian rights notice permits Jordan Sport as the verified league broadcaster without inventing a sub-channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
   items,
 };
 

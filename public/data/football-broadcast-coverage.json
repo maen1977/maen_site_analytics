@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T12:48:57.207Z",
+  "generatedAt": "2026-08-28T17:07:34.740Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-28",
@@ -34,13 +34,13 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 4
+      "matchedFixtures": 2
     }
   },
   "totals": {
     "matches": 94,
-    "matchesWithBroadcasters": 4,
-    "matchesWithoutBroadcasters": 90
+    "matchesWithBroadcasters": 7,
+    "matchesWithoutBroadcasters": 87
   },
   "matches": [
     {
@@ -1252,15 +1252,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Osasuna",
       "awayTeam": "Getafe",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 5",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1268,7 +1261,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-77e2d96e62f7737e2670",
@@ -1349,15 +1342,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Barcelona",
       "awayTeam": "Rayo Vallecano",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1365,7 +1351,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-35f3ee1c681542f07744",
@@ -1464,8 +1450,15 @@
       "competition": "Jordanian Pro League",
       "homeTeam": "Al-Arabi Irbid",
       "awayTeam": "Al-Salt",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1473,7 +1466,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-014339384fcf9b343020",
@@ -1482,8 +1475,15 @@
       "competition": "Jordanian Pro League",
       "homeTeam": "Al-Baqa'a",
       "awayTeam": "Dougra",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1491,7 +1491,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-539765962a28a1ffcb7a",
@@ -1500,8 +1500,15 @@
       "competition": "Jordanian Pro League",
       "homeTeam": "Al-Hussein Irbid",
       "awayTeam": "Al-Jazeera Club",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1509,7 +1516,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-970dcab573b4ace4321b",
@@ -1518,8 +1525,15 @@
       "competition": "Jordanian Pro League",
       "homeTeam": "Al-Wehdat",
       "awayTeam": "Al-Faisaly Amman",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1527,7 +1541,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-88c4305691ca7362474b",
@@ -1536,8 +1550,15 @@
       "competition": "Jordanian Pro League",
       "homeTeam": "Shabab Al-Ordon",
       "awayTeam": "Al-Ramtha",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1545,7 +1566,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-087f710cf32b429127d5",

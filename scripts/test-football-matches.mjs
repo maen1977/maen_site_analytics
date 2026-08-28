@@ -18,8 +18,10 @@ const allowedSourceDomains = [
   "adsports.ae",
   "ontimesports.com",
   "thesportsdb.com",
+  "petra.gov.jo",
+  "jfa.jo",
 ];
-const officialSourceDomains = new Set(["beinsports.com", "bein.com", "admn.ae", "adsports.ae", "ontimesports.com"]);
+const officialSourceDomains = new Set(["beinsports.com", "bein.com", "admn.ae", "adsports.ae", "ontimesports.com", "petra.gov.jo", "jfa.jo"]);
 
 function hostAllowed(url, domains) {
   try {
@@ -37,7 +39,7 @@ function isIsoTimestamp(value) {
 
 assert(data.schemaVersion === 1, "Football matches schema version must be 1");
 assert(data.timeZone === "Asia/Amman", "Football matches must use Asia/Amman timezone");
-assert(data.mode === "selected-major-leagues-and-jordan-with-verified-regional-tv", "Football matches must use the selected major leagues mode");
+assert(data.mode === "all-published-competitions-with-verified-regional-tv", "Football matches must use the all published competitions mode");
 assert(data.window && datePattern.test(data.window.startDate) && datePattern.test(data.window.endDate), "Match window dates are invalid");
 assert(data.window.days === 8, "Match window must cover today plus seven days");
 assert(Array.isArray(data.broadcastCountries) && data.broadcastCountries.length === targetCountries.size, "Broadcast country allowlist is incomplete");
@@ -47,6 +49,7 @@ assert(data.sources.some((source) => source.id === "thesportsdb-jordan"), "Jorda
 assert(data.sources.some((source) => source.id === "filgoal-matches"), "FilGoal Arabic broadcaster source is missing");
 assert(data.sources.some((source) => source.id === "kooora-broadcast"), "Kooora Arabic broadcaster source is missing");
 assert(data.sources.some((source) => source.id === "bein-access-rules"), "beIN access rules source is missing");
+assert(data.sources.some((source) => source.id === "jordan-tv-rights"), "Jordan TV rights source is missing");
 assert(Array.isArray(data.items) && data.items.length <= 2000, "Football matches payload is too large");
 
 const ids = new Set();
