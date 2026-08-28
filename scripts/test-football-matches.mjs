@@ -6,6 +6,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const data = JSON.parse(fs.readFileSync(path.join(root, "public/data/football-matches.json"), "utf8"));
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
 const targetCountries = new Set(["Jordan", "Palestine", "Lebanon", "Syria", "Iraq", "Egypt"]);
+const broadcasterCountries = new Set([...targetCountries, "United Arab Emirates", "Saudi Arabia", "Qatar"]);
 const accessTypes = new Set(["fta", "encrypted", "unknown"]);
 const evidenceLevels = new Set(["official", "editorial", "corroborated"]);
 const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -78,8 +79,8 @@ for (const item of data.items) {
     assert(typeof broadcaster.name === "string" && broadcaster.name.length > 0 && broadcaster.name.length <= 120, "Broadcaster name is invalid");
     assert(typeof broadcaster.nameAr === "string" && broadcaster.nameAr.length > 0 && broadcaster.nameAr.length <= 120, "Broadcaster Arabic name is invalid");
     assert(typeof broadcaster.nameEn === "string" && broadcaster.nameEn.length > 0 && broadcaster.nameEn.length <= 120, "Broadcaster English/brand name is invalid");
-    assert(targetCountries.has(broadcaster.country), "Broadcaster country is outside the target region");
-    assert(targetCountries.has(broadcaster.region), "Broadcaster region is outside the target region");
+    assert(broadcasterCountries.has(broadcaster.country), "Broadcaster country is outside the supported MENA broadcast region");
+    assert(broadcasterCountries.has(broadcaster.region), "Broadcaster region is outside the supported MENA broadcast region");
     assert(accessTypes.has(broadcaster.accessType), "Broadcaster accessType must be fta, encrypted, or unknown");
     assert(evidenceLevels.has(broadcaster.evidenceLevel), "Broadcaster evidenceLevel is invalid");
     assert(typeof broadcaster.sourceName === "string" && broadcaster.sourceName.length > 0 && broadcaster.sourceName.length <= 120, "Broadcaster sourceName is invalid");
