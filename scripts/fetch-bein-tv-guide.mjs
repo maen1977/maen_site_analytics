@@ -12,14 +12,31 @@ const SKIP_RE = /highlights?|review|stories|netbusters|show|weekly|analysis|hand
 function unique(values) { return [...new Set(values.filter(Boolean))]; }
 
 async function clickDate(page, date) {
-  const day = date.slice(-2);
-  const dateTiles = page.locator('div[tabindex="0"]').filter({ hasText: new RegExp(`(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)${day}$`) });
+  const day = String(Number(date.slice(-2)));
+  const weekday = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "UTC" }).format(new Date(`${date}T12:00:00Z`));
+  const target = new RegExp(`\\b${weekday}\\s*0?${day}\\b`, "i");
+  const dateTiles = page.locator('div[tabindex="0"]');
   const count = await dateTiles.count();
   for (let index = 0; index < count; index += 1) {
     const dateTile = dateTiles.nth(index);
     if (!(await dateTile.isVisible().catch(() => false))) continue;
+    const text = (await dateTile.innerText().catch(() => "")).replace(/\s+/g, " ").trim();
+    if (!target.test(text)) continue;
+    await dateTile.scrollIntoViewIfNeeded().catch(() => {});
+    const beforeText = await page.locator("body").innerText().catch(() => "");
+    const beforeClass = await dateTile.getAttribute("class").catch(() => "");
     await dateTile.click({ force: true });
-    await page.waitForTimeout(900);
+    await page.waitForTimeout(1200);
+    const afterClass = await dateTile.getAttribute("class").catch(() => "");
+    if (!afterClass.includes("bng-bg-main")) return false;
+    if (!beforeClass.includes("bng-bg-main")) {
+      try {
+        await page.waitForFunction((previousText) => document.body.innerText !== previousText, beforeText, { timeout: 15000 });
+      } catch {
+        return false;
+      }
+    }
+    await page.waitForFunction(() => document.body.innerText.split("\n").some((line) => /\s+vs\s+.+\s+-\s+/.test(line)), { timeout: 20000 }).catch(() => {});
     return true;
   }
   return false;
@@ -59,6 +76,7 @@ export async function fetchBeinTvGuide(queryDates) {
           continue;
         }
         await page.waitForTimeout(3500);
+        await page.waitForFunction(() => document.body.innerText.split("\n").some((line) => /\s+vs\s+.+\s+-\s+/.test(line)), { timeout: 20000 }).catch(() => {});
         for (const date of queryDates) {
           if (await clickDate(page, date)) all.push(...await scrapeVisibleDay(page, date));
         }
