@@ -221,10 +221,13 @@
 
   function sortedMatches(items) {
     return items.slice().sort(function (a, b) {
-      var aHasBroadcaster = Array.isArray(a.broadcasters) && a.broadcasters.length ? 1 : 0;
-      var bHasBroadcaster = Array.isArray(b.broadcasters) && b.broadcasters.length ? 1 : 0;
-      if (aHasBroadcaster !== bHasBroadcaster) return bHasBroadcaster - aHasBroadcaster;
-      return String(a.date + "T" + a.time).localeCompare(String(b.date + "T" + b.time)) || String(a.homeTeam).localeCompare(String(b.homeTeam));
+      // Chronological order is authoritative: date first, then Jordan time.
+      // Broadcaster availability must never move a later match ahead of an earlier one.
+      var aDateTime = String(a.date || "9999-12-31") + "T" + String(a.time || "99:99");
+      var bDateTime = String(b.date || "9999-12-31") + "T" + String(b.time || "99:99");
+      return aDateTime.localeCompare(bDateTime)
+        || String(a.homeTeam || "").localeCompare(String(b.homeTeam || ""))
+        || String(a.awayTeam || "").localeCompare(String(b.awayTeam || ""));
     });
   }
 

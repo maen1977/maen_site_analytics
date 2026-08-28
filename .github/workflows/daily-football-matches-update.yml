@@ -49,6 +49,7 @@ jobs:
           node --check scripts/fetch-bein-tv-guide.mjs
           node --check scripts/update-football-matches.mjs
           node --check scripts/test-football-matches.mjs
+          node --check scripts/test-football-order.mjs
 
       - name: Update football match schedule
         id: matches
@@ -59,7 +60,9 @@ jobs:
         id: validateMatches
         if: ${{ always() && steps.matches.outcome == 'success' }}
         continue-on-error: true
-        run: node scripts/test-football-matches.mjs
+        run: |
+          node scripts/test-football-matches.mjs
+          node scripts/test-football-order.mjs
 
       - name: Write match schedule workflow status
         if: ${{ always() }}
