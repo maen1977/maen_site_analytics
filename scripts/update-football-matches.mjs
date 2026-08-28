@@ -41,6 +41,7 @@ const FETCH_TIMEOUT_MS = 20000;
 const FETCH_RETRIES = 3;
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const TARGET_BROADCAST_COUNTRIES = new Set(["Jordan", "Palestine", "Lebanon", "Syria", "Iraq", "Egypt"]);
+const BROADCASTER_COUNTRIES = new Set([...TARGET_BROADCAST_COUNTRIES, "United Arab Emirates", "Saudi Arabia", "Qatar"]);
 const ACCESS_TYPES = new Set(["fta", "encrypted", "unknown"]);
 const EVIDENCE_LEVELS = new Set(["official", "editorial", "corroborated"]);
 const ARABIC_MONTHS = ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"];
@@ -336,7 +337,7 @@ function broadcasterEntry({ name, country, sourceName, sourceUrl, evidenceLevel,
   const cleanName = normalizeBroadcasterName(name);
   const cleanCountry = compact(country, 60);
   const cleanSourceUrl = String(sourceUrl || "");
-  if (!cleanName || !TARGET_BROADCAST_COUNTRIES.has(cleanCountry) || !/^https:\/\//i.test(cleanSourceUrl)) return null;
+  if (!cleanName || !BROADCASTER_COUNTRIES.has(cleanCountry) || !/^https:\/\//i.test(cleanSourceUrl)) return null;
   const inferredAccessType = accessType || classifyAccessType(cleanName);
   if (!ACCESS_TYPES.has(inferredAccessType) || !EVIDENCE_LEVELS.has(evidenceLevel)) return null;
   const cleanAccessSourceUrl = String(accessSourceUrl || "");
@@ -370,7 +371,7 @@ async function fetchSportsDbTv(eventId) {
   const sourceUrl = `https://www.thesportsdb.com/event/${encodeURIComponent(eventId)}`;
   const payload = await fetchJson(`${SPORTSDB_BASE}/lookuptv.php?id=${encodeURIComponent(eventId)}`);
   return (payload.tvevent || [])
-    .filter((entry) => TARGET_BROADCAST_COUNTRIES.has(String(entry.strCountry || "").trim()))
+    .filter((entry) => BROADCASTER_COUNTRIES.has(String(entry.strCountry || "").trim()))
     .map((entry) => broadcasterEntry({
       name: entry.strChannel,
       country: entry.strCountry,
