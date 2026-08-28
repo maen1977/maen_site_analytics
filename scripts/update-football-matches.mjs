@@ -580,9 +580,10 @@ function matchBeinToFixture(sourceMatch, fixtures) {
     if (!fixtureHasSourceTeams({ homeTeamAr: sourceMatch.homeTeamEn, awayTeamAr: sourceMatch.awayTeamEn }, fixture)) return false;
     const fixtureInstant = dateFromValue(fixture.start);
     if (!fixtureInstant) return false;
-    const minutes = (sourceInstant.getTime() - fixtureInstant.getTime()) / 60000;
-    // beIN's guide is UTC while fixture feeds are localized; allow the full offset plus schedule drift.
-    return minutes >= -360 && minutes <= 360;
+    // The guide contains live slots and replays, so kickoff time is not always the
+    // programme time. Date and both teams are the hard identity; time is used only
+    // later to choose the nearest same-day listing.
+    return true;
   });
   return candidates.length === 1 ? candidates[0] : null;
 }
@@ -595,7 +596,7 @@ function selectBeinEntries(entries, fixture) {
     return { entry, distance: instant && fixtureInstant ? Math.abs(instant.getTime() - fixtureInstant.getTime()) : Number.POSITIVE_INFINITY };
   });
   const live = withDistance.filter(({ entry }) => entry.isLive);
-  const pool = live.length ? live : withDistance.filter(({ distance }) => distance <= 150 * 60000);
+  const pool = live.length ? live : withDistance.filter(({ distance }) => distance <= 26 * 60 * 60000);
   if (!pool.length) return [];
   const minimum = Math.min(...pool.map(({ distance }) => distance));
   return pool.filter(({ distance }) => distance <= minimum + 5 * 60000).map(({ entry }) => entry);
