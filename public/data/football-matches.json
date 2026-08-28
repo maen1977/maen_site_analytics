@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T09:19:12.367Z",
+  "generatedAt": "2026-08-28T17:06:12.025Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-08-27",
-    "endDate": "2026-09-03",
+    "startDate": "2026-08-28",
+    "endDate": "2026-09-04",
     "days": 8
   },
-  "mode": "selected-major-leagues-and-jordan-with-verified-regional-tv",
+  "mode": "all-published-competitions-with-verified-regional-tv",
   "sources": [
     {
       "id": "espn-major-leagues",
@@ -55,7 +55,7 @@
       "relatedUrl": "https://www.bein.com/en/channel-list/",
       "ok": true,
       "requestedDays": 8,
-      "matchedListings": 0,
+      "matchedListings": 2,
       "note": "The guide is rendered with JavaScript in a regular Chromium session; live or kickoff-near listings are matched by both teams, date, and time."
     },
     {
@@ -65,6 +65,15 @@
       "relatedUrl": "https://www.bein.com/en/channel-list/",
       "ok": true,
       "requestedDays": 1
+    },
+    {
+      "id": "jordan-tv-rights",
+      "name": "Jordan TV sports channel rights notice",
+      "url": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+      "relatedUrl": "https://www.jfa.jo/",
+      "ok": true,
+      "requestedDays": 1,
+      "note": "Official rights notice identifies Jordan TV's sports channel as exclusive broadcaster of Jordanian professional competitions; no numbered sub-channel is stated."
     },
     {
       "id": "ad-sports-official",
@@ -91,46 +100,8 @@
     "Iraq",
     "Egypt"
   ],
-  "coverageNote": "Only selected major competitions are published: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated match schedule identifies the exact station. If the source identifies only a network without a station number, the match remains marked as an unannounced channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
+  "coverageNote": "All competitions currently published by the site are searched: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated schedule identifies the exact station, except that the official Jordanian rights notice permits Jordan Sport as the verified league broadcaster without inventing a sub-channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
   "items": [
-    {
-      "id": "match-40f7e9ab762ad001b8ba",
-      "date": "2026-08-27",
-      "start": "2026-08-27T18:30Z",
-      "time": "21:30",
-      "homeTeam": "Celta Vigo",
-      "awayTeam": "Osasuna",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/85.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Balaidos",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882924/osasuna-celta-vigo"
-    },
-    {
-      "id": "match-b7ab4b05f4d7b5dcc22e",
-      "date": "2026-08-27",
-      "start": "2026-08-27T19:00Z",
-      "time": "22:00",
-      "homeTeam": "Barcelona",
-      "awayTeam": "Athletic Club",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/83.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Spotify Camp Nou",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882921/athletic-club-barcelona"
-    },
     {
       "id": "match-9dba7c1e5dc0d0cae1c8",
       "date": "2026-08-28",
@@ -144,11 +115,37 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "El Sardineros",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "nameAr": "beIN SPORTS 3",
+          "nameEn": "beIN SPORTS 3",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "encrypted",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "verifiedAt": "2026-08-28T17:06:12.014Z",
+          "accessSourceName": "beIN official channel list",
+          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
+          "evidenceUrls": [
+            "https://www.beinsports.com/en-mena/tv-guide"
+          ],
+          "evidenceSources": [
+            {
+              "name": "beIN official MENA TV guide",
+              "url": "https://www.beinsports.com/en-mena/tv-guide"
+            }
+          ]
+        }
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882900/elche-racing-santander"
+      "sourceIds": [
+        "espn-public-soccer",
+        "bein-tv-guide"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882900"
     },
     {
       "id": "match-9e0abe78b7a459084b59",
@@ -277,9 +274,35 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Mendizorrotza",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "nameAr": "beIN SPORTS 3",
+          "nameEn": "beIN SPORTS 3",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "encrypted",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "beIN official channel list",
+          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
+          "evidenceUrls": [
+            "https://www.beinsports.com/en-mena/tv-guide"
+          ],
+          "evidenceSources": [
+            {
+              "name": "beIN official MENA TV guide",
+              "url": "https://www.beinsports.com/en-mena/tv-guide"
+            }
+          ]
+        }
+      ],
       "sourceIds": [
-        "espn-public-soccer"
+        "espn-public-soccer",
+        "bein-tv-guide"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882906/villarreal-alaves"
     },
@@ -1607,9 +1630,26 @@
       "competitionKey": "jordan-pro-league",
       "country": "Jordan",
       "venue": "Al-Hassan Stadium",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
       "sourceIds": [
-        "thesportsdb-free"
+        "thesportsdb-free",
+        "jordan-tv-rights"
       ],
       "sourceUrl": "https://www.thesportsdb.com/event/2578567"
     },
@@ -1626,9 +1666,26 @@
       "competitionKey": "jordan-pro-league",
       "country": "Jordan",
       "venue": "Petra Stadium",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
       "sourceIds": [
-        "thesportsdb-free"
+        "thesportsdb-free",
+        "jordan-tv-rights"
       ],
       "sourceUrl": "https://www.thesportsdb.com/event/2578563"
     },
@@ -1645,9 +1702,26 @@
       "competitionKey": "jordan-pro-league",
       "country": "Jordan",
       "venue": "Al-Hassan Stadium",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
       "sourceIds": [
-        "thesportsdb-free"
+        "thesportsdb-free",
+        "jordan-tv-rights"
       ],
       "sourceUrl": "https://www.thesportsdb.com/event/2578564"
     },
@@ -1664,9 +1738,26 @@
       "competitionKey": "jordan-pro-league",
       "country": "Jordan",
       "venue": "King Abdullah II Stadium",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
       "sourceIds": [
-        "thesportsdb-free"
+        "thesportsdb-free",
+        "jordan-tv-rights"
       ],
       "sourceUrl": "https://www.thesportsdb.com/event/2578565"
     },
@@ -1683,9 +1774,26 @@
       "competitionKey": "jordan-pro-league",
       "country": "Jordan",
       "venue": "King Abdullah II Stadium",
-      "broadcasters": [],
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-08-28T17:06:12.019Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
       "sourceIds": [
-        "thesportsdb-free"
+        "thesportsdb-free",
+        "jordan-tv-rights"
       ],
       "sourceUrl": "https://www.thesportsdb.com/event/2578566"
     },
@@ -1745,6 +1853,177 @@
         "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882867/celta-vigo-real-sociedad"
+    },
+    {
+      "id": "match-0fecd635a52537375779",
+      "date": "2026-09-04",
+      "start": "2026-09-04T17:00Z",
+      "time": "20:00",
+      "homeTeam": "Lyon",
+      "awayTeam": "AJ Auxerre",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Groupama Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876472/aj-auxerre-lyon"
+    },
+    {
+      "id": "match-e8d5672c721af77a6749",
+      "date": "2026-09-04",
+      "start": "2026-09-04T18:00Z",
+      "time": "21:00",
+      "homeTeam": "Sparta Rotterdam",
+      "awayTeam": "PEC Zwolle",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/151.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2565.png",
+      "competition": "Dutch Eredivisie",
+      "competitionKey": "eredivisie",
+      "country": "Netherlands",
+      "venue": "Sparta-Stadion Het Kasteel",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875621/pec-zwolle-sparta-rotterdam"
+    },
+    {
+      "id": "match-a738242d6ffe96a7b9aa",
+      "date": "2026-09-04",
+      "start": "2026-09-04T18:30Z",
+      "time": "21:30",
+      "homeTeam": "VfB Stuttgart",
+      "awayTeam": "FC Cologne",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "MHPArena",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884808/fc-cologne-vfb-stuttgart"
+    },
+    {
+      "id": "match-62ef611db8b96017be9a",
+      "date": "2026-09-04",
+      "start": "2026-09-04T18:45Z",
+      "time": "21:45",
+      "homeTeam": "Genoa",
+      "awayTeam": "Como",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
+      "competition": "Italian Serie A",
+      "competitionKey": "serie-a",
+      "country": "Italy",
+      "venue": "Stadio Luigi Ferraris",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874744/como-genoa"
+    },
+    {
+      "id": "match-1c9a104ccf51962c242c",
+      "date": "2026-09-04",
+      "start": "2026-09-04T19:00Z",
+      "time": "22:00",
+      "homeTeam": "Ipswich Town",
+      "awayTeam": "Liverpool",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Portman Road",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879288/liverpool-ipswich-town"
+    },
+    {
+      "id": "match-96090812c6f608258b53",
+      "date": "2026-09-04",
+      "start": "2026-09-04T19:00Z",
+      "time": "22:00",
+      "homeTeam": "Real Betis",
+      "awayTeam": "Real Madrid",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      "competition": "Spanish LaLiga",
+      "competitionKey": "la-liga",
+      "country": "Spain",
+      "venue": "Estadio La Cartuja",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882894/real-madrid-real-betis"
+    },
+    {
+      "id": "match-ab4d0c4e4c075a21942d",
+      "date": "2026-09-04",
+      "start": "2026-09-04T19:05Z",
+      "time": "22:05",
+      "homeTeam": "Paris Saint-Germain",
+      "awayTeam": "AS Monaco",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Parc des Princes",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876469/as-monaco-paris-saint-germain"
+    },
+    {
+      "id": "match-b94636d9a79abd6d3a2a",
+      "date": "2026-09-04",
+      "start": "2026-09-04T19:15Z",
+      "time": "22:15",
+      "homeTeam": "FC Porto",
+      "awayTeam": "Moreirense",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3696.png",
+      "competition": "Portuguese Primeira Liga",
+      "competitionKey": "primeira-liga",
+      "country": "Portugal",
+      "venue": "Estádio do Dragão",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885451/moreirense-fc-porto"
+    },
+    {
+      "id": "match-1c480cfa93787ae39982",
+      "date": "2026-09-04",
+      "start": "2026-09-04T19:15Z",
+      "time": "22:15",
+      "homeTeam": "Sporting CP",
+      "awayTeam": "C.D. Nacional",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2250.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3472.png",
+      "competition": "Portuguese Primeira Liga",
+      "competitionKey": "primeira-liga",
+      "country": "Portugal",
+      "venue": "Estádio José Alvalade",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885449/cd-nacional-sporting-cp"
     }
   ]
 }
