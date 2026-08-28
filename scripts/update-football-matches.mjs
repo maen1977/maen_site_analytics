@@ -26,6 +26,7 @@ const ESPN_MAJOR_LEAGUES = [
 ];
 const THESPORTSDB_JORDAN_LEAGUE_ID = "5055";
 const FILGOAL_BASE = "https://www.filgoal.com/matches";
+const FILGOAL_CHANNEL_RE = /(?:beIN\s+SPORTS(?:\s+(?:MAX|Extra|NEWS)?\s*[1-9])?(?:\s+HD)?|ON\s+Sport|ON\s+Time\s+Sports|Abu\s+Dhabi\s+Sports(?:\s+[1-9])?|SSC(?:\s+[1-9])?|Al\s*Kass(?:\s+[1-9])?)/i;
 const KOOORA_HOME = "https://www.kooora.com/";
 const BEIN_FAQ_URL = "https://www.bein.com/en/general-faq/";
 const BEIN_CHANNEL_LIST_URL = "https://www.bein.com/en/channel-list/";
@@ -435,9 +436,11 @@ function parseFilGoalMatches(html, requestedDate) {
     const teams = [...body.matchAll(/<strong>([^<]+)<\/strong>/g)].map((entry) => decodeHtml(entry[1]).replace(/\s+/g, " ").trim());
     const dateMatch = aux.match(/(\d{2})-(\d{2})-(\d{4})\s*-\s*(\d{2}:\d{2})/);
     const channelMatch = aux.match(/<span>\s*<svg><use[^>]*#fb_screen[^>]*><\/use><\/svg>\s*([^<]+)<\/span>/);
-    if (!dateMatch || teams.length < 2 || !channelMatch) continue;
+    const visibleChannelMatch = htmlText(aux).match(FILGOAL_CHANNEL_RE);
+    const channel = decodeHtml((channelMatch && channelMatch[1]) || (visibleChannelMatch && visibleChannelMatch[0]) || "").replace(/\s+/g, " ").trim();
+    if (!dateMatch || teams.length < 2 || !channel) continue;
     const sourceDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
-    if (!sourceDate || sourceDate !== requestedDate || !channelMatch[1]) continue;
+    if (!sourceDate || sourceDate !== requestedDate) continue;
     const beforeCard = html.slice(0, card.index);
     const competitionMatch = [...beforeCard.matchAll(/<h6[^>]*>\s*<span>([^<]+)<\/span>/g)].at(-1);
     const href = decodeHtml(hrefMatch[1]);
@@ -447,7 +450,7 @@ function parseFilGoalMatches(html, requestedDate) {
       date: sourceDate,
       time: dateMatch[4],
       competitionAr: competitionMatch ? decodeHtml(competitionMatch[1]).replace(/\s+/g, " ").trim() : "",
-      channel: decodeHtml(channelMatch[1]).replace(/\s+/g, " ").trim(),
+      channel,
       sourceUrl: new URL(href, FILGOAL_BASE).href,
       sourceDate: requestedDate,
     });
