@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-28T23:04:47.370Z",
+  "generatedAt": "2026-08-29T07:55:12.309Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-08-29",
@@ -34,13 +34,13 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 22
+      "matchedFixtures": 24
     }
   },
   "totals": {
     "matches": 119,
-    "matchesWithBroadcasters": 27,
-    "matchesWithoutBroadcasters": 92
+    "matchesWithBroadcasters": 29,
+    "matchesWithoutBroadcasters": 90
   },
   "matches": [
     {
@@ -1727,8 +1727,21 @@
       "competition": "English Premier League",
       "homeTeam": "Ipswich Town",
       "awayTeam": "Liverpool",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        },
+        {
+          "name": "beIN SPORTS Extra 9",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1736,7 +1749,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-96090812c6f608258b53",
@@ -1745,8 +1758,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Real Betis",
       "awayTeam": "Real Madrid",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -1754,7 +1774,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-ab4d0c4e4c075a21942d",
