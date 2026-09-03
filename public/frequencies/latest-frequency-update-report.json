@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-09-02T09:36:38.472Z",
-  "updatedAt": "2026-09-02T09:36:37.844Z",
-  "totalFrequencies": 1606,
+  "generatedAt": "2026-09-03T09:48:14.196Z",
+  "updatedAt": "2026-09-03T09:48:13.490Z",
+  "totalFrequencies": 1608,
   "removedCount": 0,
-  "candidateCount": 1601,
-  "closedCandidateCount": 2845,
-  "closedConsensusCount": 314,
-  "successfulSourceCount": 47,
+  "candidateCount": 1572,
+  "closedCandidateCount": 2840,
+  "closedConsensusCount": 315,
+  "successfulSourceCount": 45,
   "sourcesChecked": 67,
-  "sourcesFailed": 20,
+  "sourcesFailed": 22,
   "changes": {
-    "updated": 701,
-    "added": 0,
+    "updated": 696,
+    "added": 2,
     "removed": 0,
-    "reviewedOnly": 900,
-    "channelNamesAdded": 952,
-    "channelNamesRemoved": 179,
+    "reviewedOnly": 874,
+    "channelNamesAdded": 33,
+    "channelNamesRemoved": 223,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 900,
+    "incompleteNewSkipped": 874,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1099 من 2141 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1071 من 2109 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -46,7 +46,7 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 238,
-      "services": 1998
+      "services": 1997
     },
     {
       "satelliteGroup": "Azerspace",
@@ -65,8 +65,8 @@
     },
     {
       "satelliteGroup": "Eutelsat 36E",
-      "frequencies": 144,
-      "services": 399
+      "frequencies": 145,
+      "services": 400
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -86,7 +86,7 @@
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 102,
-      "services": 905
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
@@ -95,8 +95,8 @@
     },
     {
       "satelliteGroup": "Türksat",
-      "frequencies": 63,
-      "services": 838
+      "frequencies": 64,
+      "services": 839
     },
     {
       "satelliteGroup": "Yahsat",
@@ -145,7 +145,7 @@
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 148,
-      "services": 701
+      "services": 700
     },
     {
       "satelliteGroup": "Azerspace",
@@ -179,8 +179,8 @@
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
-      "frequencies": 144,
-      "services": 399
+      "frequencies": 145,
+      "services": 400
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -208,7 +208,7 @@
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 102,
-      "services": 905
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
@@ -242,8 +242,8 @@
       "satelliteGroup": "Türksat",
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
-      "frequencies": 53,
-      "services": 825
+      "frequencies": 54,
+      "services": 826
     },
     {
       "satelliteGroup": "Yahsat",
@@ -416,6 +416,16 @@
       "error": null
     },
     {
+      "id": "lyngsat-amos",
+      "name": "LyngSat Amos 3 / Dror 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
       "ok": false,
@@ -428,6 +438,16 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-yes-dror1-package",
+      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
