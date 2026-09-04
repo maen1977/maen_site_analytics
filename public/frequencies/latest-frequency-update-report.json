@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-09-03T09:48:14.196Z",
-  "updatedAt": "2026-09-03T09:48:13.490Z",
+  "generatedAt": "2026-09-04T09:38:06.155Z",
+  "updatedAt": "2026-09-04T09:38:05.668Z",
   "totalFrequencies": 1608,
   "removedCount": 0,
-  "candidateCount": 1572,
-  "closedCandidateCount": 2840,
-  "closedConsensusCount": 315,
-  "successfulSourceCount": 45,
+  "candidateCount": 1566,
+  "closedCandidateCount": 2828,
+  "closedConsensusCount": 314,
+  "successfulSourceCount": 43,
   "sourcesChecked": 67,
-  "sourcesFailed": 22,
+  "sourcesFailed": 24,
   "changes": {
     "updated": 696,
-    "added": 2,
+    "added": 0,
     "removed": 0,
-    "reviewedOnly": 874,
-    "channelNamesAdded": 33,
-    "channelNamesRemoved": 223,
+    "reviewedOnly": 870,
+    "channelNamesAdded": 29,
+    "channelNamesRemoved": 205,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 874,
+    "incompleteNewSkipped": 870,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1071 من 2109 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1067 من 2103 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -46,7 +46,7 @@
     {
       "satelliteGroup": "Astra",
       "frequencies": 238,
-      "services": 1997
+      "services": 2008
     },
     {
       "satelliteGroup": "Azerspace",
@@ -81,7 +81,7 @@
     {
       "satelliteGroup": "Hot Bird",
       "frequencies": 212,
-      "services": 1729
+      "services": 1731
     },
     {
       "satelliteGroup": "Intelsat",
@@ -138,14 +138,14 @@
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
       "frequencies": 90,
-      "services": 1297
+      "services": 1307
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 148,
-      "services": 700
+      "services": 701
     },
     {
       "satelliteGroup": "Azerspace",
@@ -201,7 +201,7 @@
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
       "frequencies": 212,
-      "services": 1729
+      "services": 1731
     },
     {
       "satelliteGroup": "Intelsat",
@@ -438,6 +438,26 @@
     {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10806",
+      "name": "LyngSat Amos 3 10806 V mux",
+      "ok": false,
+      "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "lyngsat-amos3-mux-10842",
+      "name": "LyngSat Amos 3 10842 V mux",
       "ok": false,
       "status": 403,
       "candidates": 0,
