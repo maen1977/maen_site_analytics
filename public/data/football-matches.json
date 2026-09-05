@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-04T16:53:50.808Z",
+  "generatedAt": "2026-09-05T05:50:45.429Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-04",
-    "endDate": "2026-09-11",
+    "startDate": "2026-09-05",
+    "endDate": "2026-09-12",
     "days": 8
   },
   "mode": "all-published-competitions-with-verified-regional-tv",
@@ -38,7 +38,7 @@
       "id": "filgoal-matches",
       "name": "FilGoal Arabic match schedule",
       "url": "https://www.filgoal.com/matches",
-      "ok": true,
+      "ok": false,
       "requestedDays": 8
     },
     {
@@ -55,7 +55,7 @@
       "relatedUrl": "https://www.bein.com/en/channel-list/",
       "ok": true,
       "requestedDays": 8,
-      "matchedListings": 39,
+      "matchedListings": 0,
       "note": "The guide is rendered with JavaScript in a regular Chromium session; live or kickoff-near listings are matched by both teams, date, and time."
     },
     {
@@ -103,313 +103,6 @@
   "coverageNote": "All competitions currently published by the site are searched: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated schedule identifies the exact station, except that the official Jordanian rights notice permits Jordan Sport as the verified league broadcaster without inventing a sub-channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
   "items": [
     {
-      "id": "match-afd31ee99fc9f70d0646",
-      "date": "2026-09-04",
-      "start": "2026-09-04T15:00:00",
-      "time": "18:00",
-      "homeTeam": "Shabab Al-Ordon",
-      "awayTeam": "Al-Ramtha",
-      "homeLogo": "https://www.thesportsdb.com/images/media/team/badge/knxyd41786985786.png",
-      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/kczgws1753204656.png",
-      "competition": "Jordanian Pro League",
-      "competitionKey": "jordan-pro-league",
-      "country": "Jordan",
-      "venue": "King Abdullah II Stadium",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "nameAr": "Jordan Sport",
-          "nameEn": "Jordan Sport",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "fta",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
-          "accessSourceName": "Jordan Football Association broadcaster information",
-          "accessSourceUrl": "https://www.jfa.jo/"
-        }
-      ],
-      "sourceIds": [
-        "thesportsdb-free",
-        "jordan-tv-rights"
-      ],
-      "sourceUrl": "https://www.thesportsdb.com/event/2578566"
-    },
-    {
-      "id": "match-0fecd635a52537375779",
-      "date": "2026-09-04",
-      "start": "2026-09-04T17:00Z",
-      "time": "20:00",
-      "homeTeam": "Lyon",
-      "awayTeam": "AJ Auxerre",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
-      "competition": "French Ligue 1",
-      "competitionKey": "ligue-1",
-      "country": "France",
-      "venue": "Groupama Stadium",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876472/aj-auxerre-lyon"
-    },
-    {
-      "id": "match-08db2f9ff017e181e7f9",
-      "date": "2026-09-04",
-      "start": "2026-09-04T17:30:00",
-      "time": "20:30",
-      "homeTeam": "Al-Wehdat",
-      "awayTeam": "Al-Faisaly Amman",
-      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/82f0fc1617889632.png",
-      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ja0udy1753205043.png",
-      "competition": "Jordanian Pro League",
-      "competitionKey": "jordan-pro-league",
-      "country": "Jordan",
-      "venue": "King Abdullah II Stadium",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "nameAr": "Jordan Sport",
-          "nameEn": "Jordan Sport",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "fta",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
-          "accessSourceName": "Jordan Football Association broadcaster information",
-          "accessSourceUrl": "https://www.jfa.jo/"
-        }
-      ],
-      "sourceIds": [
-        "thesportsdb-free",
-        "jordan-tv-rights"
-      ],
-      "sourceUrl": "https://www.thesportsdb.com/event/2578565"
-    },
-    {
-      "id": "match-e8d5672c721af77a6749",
-      "date": "2026-09-04",
-      "start": "2026-09-04T18:00Z",
-      "time": "21:00",
-      "homeTeam": "Sparta Rotterdam",
-      "awayTeam": "PEC Zwolle",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/151.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2565.png",
-      "competition": "Dutch Eredivisie",
-      "competitionKey": "eredivisie",
-      "country": "Netherlands",
-      "venue": "Sparta-Stadion Het Kasteel",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875621/pec-zwolle-sparta-rotterdam"
-    },
-    {
-      "id": "match-a738242d6ffe96a7b9aa",
-      "date": "2026-09-04",
-      "start": "2026-09-04T18:30Z",
-      "time": "21:30",
-      "homeTeam": "VfB Stuttgart",
-      "awayTeam": "FC Cologne",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
-      "competition": "German Bundesliga",
-      "competitionKey": "bundesliga",
-      "country": "Germany",
-      "venue": "MHPArena",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884808/fc-cologne-vfb-stuttgart"
-    },
-    {
-      "id": "match-62ef611db8b96017be9a",
-      "date": "2026-09-04",
-      "start": "2026-09-04T18:45Z",
-      "time": "21:45",
-      "homeTeam": "Genoa",
-      "awayTeam": "Como",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "Stadio Luigi Ferraris",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874744/como-genoa"
-    },
-    {
-      "id": "match-1c9a104ccf51962c242c",
-      "date": "2026-09-04",
-      "start": "2026-09-04T19:00Z",
-      "time": "22:00",
-      "homeTeam": "Ipswich Town",
-      "awayTeam": "Liverpool",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
-      "competition": "English Premier League",
-      "competitionKey": "premier-league",
-      "country": "England",
-      "venue": "Portman Road",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.799Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
-      "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879288/liverpool-ipswich-town"
-    },
-    {
-      "id": "match-96090812c6f608258b53",
-      "date": "2026-09-04",
-      "start": "2026-09-04T19:00Z",
-      "time": "22:00",
-      "homeTeam": "Real Betis",
-      "awayTeam": "Real Madrid",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Estadio La Cartuja",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Egypt",
-          "region": "Egypt",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "corroborated",
-          "sourceName": "FilGoal match schedule + beIN official MENA TV guide",
-          "sourceUrl": "https://www.filgoal.com/matches/375027/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%B1%D9%8A%D8%A7%D9%84-%D8%A8%D9%8A%D8%AA%D9%8A%D8%B3-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "verifiedAt": "2026-09-04T16:53:49.861Z",
-          "accessSourceName": "beIN official FAQ and channel list",
-          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
-          "evidenceUrls": [
-            "https://www.filgoal.com/matches/375027/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%B1%D9%8A%D8%A7%D9%84-%D8%A8%D9%8A%D8%AA%D9%8A%D8%B3-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "FilGoal match schedule",
-              "url": "https://www.filgoal.com/matches/375027/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%B1%D9%8A%D8%A7%D9%84-%D8%A8%D9%8A%D8%AA%D9%8A%D8%B3-%D8%B1%D9%8A%D8%A7%D9%84-%D9%85%D8%AF%D8%B1%D9%8A%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
-            },
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Egypt",
-          "region": "Egypt",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "editorial",
-          "sourceName": "Kooora daily broadcast table",
-          "sourceUrl": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-4-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2026-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt7d510764611195ab",
-          "verifiedAt": "2026-09-04T16:53:50.798Z",
-          "accessSourceName": "beIN official FAQ and channel list",
-          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
-          "evidenceUrls": [
-            "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-4-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2026-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt7d510764611195ab"
-          ],
-          "evidenceSources": [
-            {
-              "name": "Kooora daily broadcast table",
-              "url": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9-4-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2026-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/blt7d510764611195ab"
-            }
-          ]
-        }
-      ],
-      "sourceIds": [
-        "espn-public-soccer",
-        "filgoal-matches",
-        "kooora-broadcast",
-        "bein-tv-guide"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882894/real-madrid-real-betis"
-    },
-    {
-      "id": "match-ab4d0c4e4c075a21942d",
-      "date": "2026-09-04",
-      "start": "2026-09-04T19:05Z",
-      "time": "22:05",
-      "homeTeam": "Paris Saint-Germain",
-      "awayTeam": "AS Monaco",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
-      "competition": "French Ligue 1",
-      "competitionKey": "ligue-1",
-      "country": "France",
-      "venue": "Parc des Princes",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876469/as-monaco-paris-saint-germain"
-    },
-    {
-      "id": "match-b94636d9a79abd6d3a2a",
-      "date": "2026-09-04",
-      "start": "2026-09-04T19:15Z",
-      "time": "22:15",
-      "homeTeam": "FC Porto",
-      "awayTeam": "Moreirense",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3696.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio do Dragão",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885451/moreirense-fc-porto"
-    },
-    {
       "id": "match-483d3bdf3c9cb40e9ce3",
       "date": "2026-09-05",
       "start": "2026-09-05T11:30Z",
@@ -422,59 +115,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "St. James' Park",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.800Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.800Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879286/afc-bournemouth-newcastle-united"
     },
@@ -624,35 +267,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "Gtech Community Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 5",
-          "nameAr": "beIN SPORTS 5",
-          "nameEn": "beIN SPORTS 5",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.800Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879311/sunderland-brentford"
     },
@@ -669,35 +286,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "American Express Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.800Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879290/leeds-united-brighton-hove-albion"
     },
@@ -733,35 +324,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "Craven Cottage",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "nameAr": "beIN SPORTS 4",
-          "nameEn": "beIN SPORTS 4",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879289/crystal-palace-fulham"
     },
@@ -778,59 +343,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "Etihad Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879287/coventry-city-manchester-city"
     },
@@ -847,35 +362,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "The City Ground",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878780/tottenham-hotspur-nottingham-forest"
     },
@@ -911,35 +400,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "San Mamés",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 6",
-          "nameAr": "beIN SPORTS 6",
-          "nameEn": "beIN SPORTS 6",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882895/atletico-madrid-athletic-club"
     },
@@ -1006,7 +469,7 @@
           "evidenceLevel": "official",
           "sourceName": "Petra / Jordan Football Association rights notice",
           "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
           "accessSourceName": "Jordan Football Association broadcaster information",
           "accessSourceUrl": "https://www.jfa.jo/"
         }
@@ -1030,35 +493,9 @@
       "competitionKey": "ligue-1",
       "country": "France",
       "venue": "Stade Bollaert-Delelis",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 1",
-          "nameAr": "beIN SPORTS Extra 1",
-          "nameEn": "beIN SPORTS Extra 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876473/lorient-lens"
     },
@@ -1094,59 +531,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "The MKM Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.801Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878781/aston-villa-hull-city"
     },
@@ -1163,35 +550,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Estadio Municipal de Butarque",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882889/racing-santander-rayo-vallecano"
     },
@@ -1296,7 +657,7 @@
           "evidenceLevel": "official",
           "sourceName": "Petra / Jordan Football Association rights notice",
           "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
           "accessSourceName": "Jordan Football Association broadcaster information",
           "accessSourceUrl": "https://www.jfa.jo/"
         }
@@ -1358,35 +719,9 @@
       "competitionKey": "ligue-1",
       "country": "France",
       "venue": "Stade Océane",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "nameAr": "beIN SPORTS 4",
-          "nameEn": "beIN SPORTS 4",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876474/brest-le-havre-ac"
     },
@@ -1403,35 +738,9 @@
       "competitionKey": "ligue-1",
       "country": "France",
       "venue": "Allianz Riviera",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876470/le-mans-nice"
     },
@@ -1467,35 +776,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Estadio de la Cerámica",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882887/deportivo-villarreal"
     },
@@ -1607,59 +890,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "Hill Dickinson Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.802Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879291/manchester-united-everton"
     },
@@ -1714,35 +947,9 @@
       "competitionKey": "ligue-1",
       "country": "France",
       "venue": "Stade de l'Aube",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876467/strasbourg-troyes"
     },
@@ -1816,35 +1023,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Mestalla Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.803Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882888/barcelona-valencia"
     },
@@ -1918,35 +1099,9 @@
       "competitionKey": "premier-league",
       "country": "England",
       "venue": "Emirates Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.803Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879292/chelsea-arsenal"
     },
@@ -2001,35 +1156,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Mendizorrotza",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.803Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882896/osasuna-alaves"
     },
@@ -2046,35 +1175,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "La Rosaleda",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.803Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882890/levante-malaga"
     },
@@ -2129,59 +1232,9 @@
       "competitionKey": "ligue-1",
       "country": "France",
       "venue": "Stade Vélodrome",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "nameAr": "beIN SPORTS 4",
-          "nameEn": "beIN SPORTS 4",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876471/paris-fc-marseille"
     },
@@ -2198,35 +1251,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "RCDE Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.803Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882892/sevilla-espanyol"
     },
@@ -2281,35 +1308,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Estadio Coliseum",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882891/celta-vigo-getafe"
     },
@@ -2364,35 +1365,9 @@
       "competitionKey": "la-liga",
       "country": "Spain",
       "venue": "Estadio Martínez Valero",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "nameAr": "beIN SPORTS 1",
-          "nameEn": "beIN SPORTS 1",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882893/real-sociedad-elche"
     },
@@ -2409,35 +1384,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "OPAP Arena",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.804Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915452/lask-linz-aek-athens"
     },
@@ -2454,35 +1403,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Jan Breydel Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.805Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915426/aston-villa-club-brugge"
     },
@@ -2518,35 +1441,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Signal Iduna Park",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "nameAr": "beIN SPORTS 4",
-          "nameEn": "beIN SPORTS 4",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.805Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915449/villarreal-borussia-dortmund"
     },
@@ -2563,35 +1460,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Estádio do Dragão",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.805Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915425/manchester-city-fc-porto"
     },
@@ -2608,35 +1479,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Decathlon Arena - Stade Pierre-Mauroy",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.805Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915450/real-betis-lille"
     },
@@ -2653,35 +1498,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Santiago Bernabéu",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.805Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915451/internazionale-real-madrid"
     },
@@ -2698,35 +1517,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Spotify Camp Nou",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915424/feyenoord-rotterdam-barcelona"
     },
@@ -2762,35 +1555,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "MHPArena",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915448/viking-fk-vfb-stuttgart"
     },
@@ -2845,35 +1612,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Stadio Diego Armando Maradona",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915423/arsenal-napoli"
     },
@@ -2909,35 +1650,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Estádio José Alvalade",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "nameAr": "beIN SPORTS 4",
-          "nameEn": "beIN SPORTS 4",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915447/galatasaray-sporting-cp"
     },
@@ -3004,7 +1719,7 @@
           "evidenceLevel": "official",
           "sourceName": "Petra / Jordan Football Association rights notice",
           "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
           "accessSourceName": "Jordan Football Association broadcaster information",
           "accessSourceUrl": "https://www.jfa.jo/"
         }
@@ -3028,35 +1743,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Ulker Stadyumu",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915444/as-roma-fenerbahce"
     },
@@ -3073,35 +1762,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Philips Stadion",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915422/shakhtar-donetsk-psv-eindhoven"
     },
@@ -3137,35 +1800,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Giuseppe Sinigaglia",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.806Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915441/rb-leipzig-como"
     },
@@ -3182,35 +1819,9 @@
       "competitionKey": "champions-league",
       "country": "Europe",
       "venue": "Old Trafford",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "nameAr": "beIN SPORTS Extra 9",
-          "nameEn": "beIN SPORTS Extra 9",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
-          "accessSourceName": "beIN official channel list",
-          "accessSourceUrl": "https://www.bein.com/en/channel-list/",
-          "evidenceUrls": [
-            "https://www.beinsports.com/en-mena/tv-guide"
-          ],
-          "evidenceSources": [
-            {
-              "name": "beIN official MENA TV guide",
-              "url": "https://www.beinsports.com/en-mena/tv-guide"
-            }
-          ]
-        }
-      ],
+      "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer",
-        "bein-tv-guide"
+        "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401915442/sabah-fk-manchester-united"
     },
@@ -3277,7 +1888,7 @@
           "evidenceLevel": "official",
           "sourceName": "Petra / Jordan Football Association rights notice",
           "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
           "accessSourceName": "Jordan Football Association broadcaster information",
           "accessSourceUrl": "https://www.jfa.jo/"
         }
@@ -3313,7 +1924,7 @@
           "evidenceLevel": "official",
           "sourceName": "Petra / Jordan Football Association rights notice",
           "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-04T16:53:50.807Z",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
           "accessSourceName": "Jordan Football Association broadcaster information",
           "accessSourceUrl": "https://www.jfa.jo/"
         }
@@ -3418,6 +2029,686 @@
         "espn-public-soccer"
       ],
       "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882878/valencia-sevilla"
+    },
+    {
+      "id": "match-b65ea453f39c4e379969",
+      "date": "2026-09-12",
+      "start": "2026-09-12T12:00Z",
+      "time": "15:00",
+      "homeTeam": "Racing Santander",
+      "awayTeam": "Alavés",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/87.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/96.png",
+      "competition": "Spanish LaLiga",
+      "competitionKey": "la-liga",
+      "country": "Spain",
+      "venue": "El Sardineros",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882881/alaves-racing-santander"
+    },
+    {
+      "id": "match-a42f99cea57cff050494",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:00Z",
+      "time": "16:00",
+      "homeTeam": "Genoa",
+      "awayTeam": "Frosinone",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
+      "competition": "Italian Serie A",
+      "competitionKey": "serie-a",
+      "country": "Italy",
+      "venue": "Stadio Luigi Ferraris",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874991/frosinone-genoa"
+    },
+    {
+      "id": "match-5454ad05a9284367f24d",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:30Z",
+      "time": "16:30",
+      "homeTeam": "Borussia Dortmund",
+      "awayTeam": "SC Paderborn 07",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/124.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "Signal Iduna Park",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884799/sc-paderborn-07-borussia-dortmund"
+    },
+    {
+      "id": "match-6e624e5af03f99eb930d",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:30Z",
+      "time": "16:30",
+      "homeTeam": "FC Augsburg",
+      "awayTeam": "Bayer Leverkusen",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3841.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "WWK Arena",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884795/bayer-leverkusen-fc-augsburg"
+    },
+    {
+      "id": "match-8afa303bcbcaf0c4e0eb",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:30Z",
+      "time": "16:30",
+      "homeTeam": "Mainz",
+      "awayTeam": "Eintracht Frankfurt",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2950.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/125.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "MEWA ARENA",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884794/eintracht-frankfurt-mainz"
+    },
+    {
+      "id": "match-c315ac7ada2767e0e26b",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:30Z",
+      "time": "16:30",
+      "homeTeam": "SC Freiburg",
+      "awayTeam": "Borussia Mönchengladbach",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/126.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/268.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "Europa-Park Stadion",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884796/borussia-monchengladbach-sc-freiburg"
+    },
+    {
+      "id": "match-59ca86aa4eca390a337c",
+      "date": "2026-09-12",
+      "start": "2026-09-12T13:30Z",
+      "time": "16:30",
+      "homeTeam": "TSG Hoffenheim",
+      "awayTeam": "VfB Stuttgart",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/134.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "PreZero Arena",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884797/vfb-stuttgart-tsg-hoffenheim"
+    },
+    {
+      "id": "match-171c175922f0a1264a33",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:00Z",
+      "time": "17:00",
+      "homeTeam": "AFC Bournemouth",
+      "awayTeam": "Brentford",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/337.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Vitality Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879285/brentford-afc-bournemouth"
+    },
+    {
+      "id": "match-4a8d2853056d5e39d23b",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:00Z",
+      "time": "17:00",
+      "homeTeam": "Aston Villa",
+      "awayTeam": "Nottingham Forest",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/362.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/393.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Villa Park",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879284/nottingham-forest-aston-villa"
+    },
+    {
+      "id": "match-11e327a5652e77d892b2",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:00Z",
+      "time": "17:00",
+      "homeTeam": "Chelsea",
+      "awayTeam": "Hull City",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/363.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/306.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Stamford Bridge",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879283/hull-city-chelsea"
+    },
+    {
+      "id": "match-8d4cfc350c9610cda6e6",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:00Z",
+      "time": "17:00",
+      "homeTeam": "Crystal Palace",
+      "awayTeam": "Ipswich Town",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/373.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Selhurst Park",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879281/ipswich-town-crystal-palace"
+    },
+    {
+      "id": "match-19150a478aca6e7516c3",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:00Z",
+      "time": "17:00",
+      "homeTeam": "Liverpool",
+      "awayTeam": "Fulham",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Anfield",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879279/fulham-liverpool"
+    },
+    {
+      "id": "match-62418de7313c5644f7ab",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:15Z",
+      "time": "17:15",
+      "homeTeam": "Osasuna",
+      "awayTeam": "Espanyol",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/97.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/88.png",
+      "competition": "Spanish LaLiga",
+      "competitionKey": "la-liga",
+      "country": "Spain",
+      "venue": "El Sadar",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882882/espanyol-osasuna"
+    },
+    {
+      "id": "match-2e3616188db3e57e892d",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:30Z",
+      "time": "17:30",
+      "homeTeam": "C.D. Nacional",
+      "awayTeam": "Alverca",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3472.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21613.png",
+      "competition": "Portuguese Primeira Liga",
+      "competitionKey": "primeira-liga",
+      "country": "Portugal",
+      "venue": "Estádio da Madeira",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885441/alverca-cd-nacional"
+    },
+    {
+      "id": "match-62e5a22fdc285bbad360",
+      "date": "2026-09-12",
+      "start": "2026-09-12T14:30Z",
+      "time": "17:30",
+      "homeTeam": "FC Twente",
+      "awayTeam": "ADO Den Haag",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/152.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2726.png",
+      "competition": "Dutch Eredivisie",
+      "competitionKey": "eredivisie",
+      "country": "Netherlands",
+      "venue": "De Grolsch Veste",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875610/ado-den-haag-fc-twente"
+    },
+    {
+      "id": "match-c7efd0c16d26bd799bd0",
+      "date": "2026-09-12",
+      "start": "2026-09-12T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Al-Ramtha",
+      "awayTeam": "Al-Arabi Irbid",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/kczgws1753204656.png",
+      "awayLogo": "https://www.thesportsdb.com/images/media/team/badge/96ad9u1786985546.png",
+      "competition": "Jordanian Pro League",
+      "competitionKey": "jordan-pro-league",
+      "country": "Jordan",
+      "venue": "Al-Hassan Stadium",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
+      "sourceIds": [
+        "thesportsdb-free",
+        "jordan-tv-rights"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2597579"
+    },
+    {
+      "id": "match-d528db036dcd67ba25e1",
+      "date": "2026-09-12",
+      "start": "2026-09-12T15:15Z",
+      "time": "18:15",
+      "homeTeam": "Strasbourg",
+      "awayTeam": "AS Monaco",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/180.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/174.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Stade de la Meinau",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876458/as-monaco-strasbourg"
+    },
+    {
+      "id": "match-303a19b399ad6cc8a225",
+      "date": "2026-09-12",
+      "start": "2026-09-12T16:00Z",
+      "time": "19:00",
+      "homeTeam": "Lazio",
+      "awayTeam": "AC Milan",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/112.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
+      "competition": "Italian Serie A",
+      "competitionKey": "serie-a",
+      "country": "Italy",
+      "venue": "Olimpico",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874941/ac-milan-lazio"
+    },
+    {
+      "id": "match-fe6cd9ecd1a912baf1e0",
+      "date": "2026-09-12",
+      "start": "2026-09-12T16:30Z",
+      "time": "19:30",
+      "homeTeam": "Athletic Club",
+      "awayTeam": "Elche",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/93.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3751.png",
+      "competition": "Spanish LaLiga",
+      "competitionKey": "la-liga",
+      "country": "Spain",
+      "venue": "San Mamés",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882886/elche-athletic-club"
+    },
+    {
+      "id": "match-9cf7189528b03d9bca4b",
+      "date": "2026-09-12",
+      "start": "2026-09-12T16:30Z",
+      "time": "19:30",
+      "homeTeam": "FC Cologne",
+      "awayTeam": "Werder Bremen",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/122.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/137.png",
+      "competition": "German Bundesliga",
+      "competitionKey": "bundesliga",
+      "country": "Germany",
+      "venue": "RheinEnergieStadion",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884792/werder-bremen-fc-cologne"
+    },
+    {
+      "id": "match-33575d65fbc7d3bd3d8f",
+      "date": "2026-09-12",
+      "start": "2026-09-12T16:30Z",
+      "time": "19:30",
+      "homeTeam": "Tottenham Hotspur",
+      "awayTeam": "Everton",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/367.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/368.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Tottenham Hotspur Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879277/everton-tottenham-hotspur"
+    },
+    {
+      "id": "match-55f39f48ab79237665c0",
+      "date": "2026-09-12",
+      "start": "2026-09-12T16:45Z",
+      "time": "19:45",
+      "homeTeam": "Go Ahead Eagles",
+      "awayTeam": "FC Groningen",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3706.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/145.png",
+      "competition": "Dutch Eredivisie",
+      "competitionKey": "eredivisie",
+      "country": "Netherlands",
+      "venue": "De Adelaarshorst",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875609/fc-groningen-go-ahead-eagles"
+    },
+    {
+      "id": "match-c35a45e11c9f69b37cc3",
+      "date": "2026-09-12",
+      "start": "2026-09-12T17:00Z",
+      "time": "20:00",
+      "homeTeam": "Casa Pia",
+      "awayTeam": "FC Porto",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21581.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
+      "competition": "Portuguese Primeira Liga",
+      "competitionKey": "primeira-liga",
+      "country": "Portugal",
+      "venue": "Estádio Municipal de Rio Maior",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885444/fc-porto-casa-pia"
+    },
+    {
+      "id": "match-5b97740f3fe18201e34b",
+      "date": "2026-09-12",
+      "start": "2026-09-12T17:30:00",
+      "time": "20:30",
+      "homeTeam": "Al-Salt",
+      "awayTeam": "Al-Wehdat",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/5808ya1618585977.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/82f0fc1617889632.png",
+      "competition": "Jordanian Pro League",
+      "competitionKey": "jordan-pro-league",
+      "country": "Jordan",
+      "venue": "Prince Hussein Bin Abdullah II Stadium",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "nameAr": "Jordan Sport",
+          "nameEn": "Jordan Sport",
+          "country": "Jordan",
+          "region": "Jordan",
+          "accessType": "fta",
+          "verified": true,
+          "evidenceLevel": "official",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "verifiedAt": "2026-09-05T05:50:45.428Z",
+          "accessSourceName": "Jordan Football Association broadcaster information",
+          "accessSourceUrl": "https://www.jfa.jo/"
+        }
+      ],
+      "sourceIds": [
+        "thesportsdb-free",
+        "jordan-tv-rights"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2597580"
+    },
+    {
+      "id": "match-fac776285d6f0514d716",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:00Z",
+      "time": "21:00",
+      "homeTeam": "Fortuna Sittard",
+      "awayTeam": "Ajax Amsterdam",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/143.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/139.png",
+      "competition": "Dutch Eredivisie",
+      "competitionKey": "eredivisie",
+      "country": "Netherlands",
+      "venue": "Fortuna Sittard Stadion",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875608/ajax-amsterdam-fortuna-sittard"
+    },
+    {
+      "id": "match-68c0efd59e8402bfda6b",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:45Z",
+      "time": "21:45",
+      "homeTeam": "AJ Auxerre",
+      "awayTeam": "Nice",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Stade de l'Abbé-Deschamps",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876466/nice-aj-auxerre"
+    },
+    {
+      "id": "match-87005d9c09cf3773c434",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:45Z",
+      "time": "21:45",
+      "homeTeam": "Atalanta",
+      "awayTeam": "Cagliari",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2925.png",
+      "competition": "Italian Serie A",
+      "competitionKey": "serie-a",
+      "country": "Italy",
+      "venue": "New Balance Arena",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874979/cagliari-atalanta"
+    },
+    {
+      "id": "match-db124b953f859d65b6c8",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:45Z",
+      "time": "21:45",
+      "homeTeam": "Le Havre AC",
+      "awayTeam": "Angers",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3236.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7868.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Stade Océane",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876464/angers-le-havre-ac"
+    },
+    {
+      "id": "match-1c86df4a7ad50ea1ec51",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:45Z",
+      "time": "21:45",
+      "homeTeam": "Lorient",
+      "awayTeam": "Toulouse",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/273.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/179.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Stade du Moustoir - Yves Allainmat",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876461/toulouse-lorient"
+    },
+    {
+      "id": "match-0385f2c1c66640a839f3",
+      "date": "2026-09-12",
+      "start": "2026-09-12T18:45Z",
+      "time": "21:45",
+      "homeTeam": "Paris FC",
+      "awayTeam": "Lyon",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/6851.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/167.png",
+      "competition": "French Ligue 1",
+      "competitionKey": "ligue-1",
+      "country": "France",
+      "venue": "Stade Jean Bouin",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876460/lyon-paris-fc"
+    },
+    {
+      "id": "match-a6bbec87e0fcf426f088",
+      "date": "2026-09-12",
+      "start": "2026-09-12T19:00Z",
+      "time": "22:00",
+      "homeTeam": "Real Madrid",
+      "awayTeam": "Rayo Vallecano",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/101.png",
+      "competition": "Spanish LaLiga",
+      "competitionKey": "la-liga",
+      "country": "Spain",
+      "venue": "Santiago Bernabéu",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882880/rayo-vallecano-real-madrid"
+    },
+    {
+      "id": "match-1a78d8bf3f121b5f026f",
+      "date": "2026-09-12",
+      "start": "2026-09-12T19:00Z",
+      "time": "22:00",
+      "homeTeam": "SC Cambuur",
+      "awayTeam": "NEC Nijmegen",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3736.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
+      "competition": "Dutch Eredivisie",
+      "competitionKey": "eredivisie",
+      "country": "Netherlands",
+      "venue": "Kooi Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875604/nec-nijmegen-sc-cambuur"
+    },
+    {
+      "id": "match-95509cc3fbbb5da180bb",
+      "date": "2026-09-12",
+      "start": "2026-09-12T19:00Z",
+      "time": "22:00",
+      "homeTeam": "Sunderland",
+      "awayTeam": "Arsenal",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/359.png",
+      "competition": "English Premier League",
+      "competitionKey": "premier-league",
+      "country": "England",
+      "venue": "Stadium of Light",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878779/arsenal-sunderland"
+    },
+    {
+      "id": "match-3701955eec44e54657cb",
+      "date": "2026-09-12",
+      "start": "2026-09-12T19:30Z",
+      "time": "22:30",
+      "homeTeam": "Académico de Viseu",
+      "awayTeam": "Vitória de Guimaraes",
+      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21607.png",
+      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5309.png",
+      "competition": "Portuguese Primeira Liga",
+      "competitionKey": "primeira-liga",
+      "country": "Portugal",
+      "venue": "Estádio do Fontelo",
+      "broadcasters": [],
+      "sourceIds": [
+        "espn-public-soccer"
+      ],
+      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885447/vitoria-de-guimaraes-academico-de-viseu"
     }
   ]
 }
