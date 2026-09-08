@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-07T18:17:08.210Z",
+  "generatedAt": "2026-09-08T06:01:28.690Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-07",
-    "endDate": "2026-09-14",
+    "startDate": "2026-09-08",
+    "endDate": "2026-09-15",
     "days": 8
   },
   "sourceCoverage": {
@@ -22,7 +22,7 @@
       "attempted": 8,
       "succeeded": 8,
       "failed": 0,
-      "matchedListings": 1
+      "matchedListings": 0
     },
     "kooora": {
       "attempted": 1,
@@ -38,115 +38,11 @@
     }
   },
   "totals": {
-    "matches": 101,
+    "matches": 103,
     "matchesWithBroadcasters": 45,
-    "matchesWithoutBroadcasters": 56
+    "matchesWithoutBroadcasters": 58
   },
   "matches": [
-    {
-      "matchId": "match-41048ff90d9e62bf8621",
-      "date": "2026-09-07",
-      "time": "19:30",
-      "competition": "Italian Serie A",
-      "homeTeam": "Cagliari",
-      "awayTeam": "Lecce",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-fd900d76c96ccd00bc70",
-      "date": "2026-09-07",
-      "time": "20:00",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Getafe",
-      "awayTeam": "Celta Vigo",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "sourceName": "FilGoal match schedule + beIN official MENA TV guide",
-          "sourceUrl": "https://www.filgoal.com/matches/375024/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D8%AE%D9%8A%D8%AA%D8%A7%D9%81%D9%8A-%D8%B3%D9%8A%D9%84%D8%AA%D8%A7-%D9%81%D9%8A%D8%AC%D9%88-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "evidenceLevel": "corroborated"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-1abdc85fa868d6d3b73b",
-      "date": "2026-09-07",
-      "time": "21:45",
-      "competition": "Italian Serie A",
-      "homeTeam": "Udinese",
-      "awayTeam": "Lazio",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-90d54207bdd78cff26fb",
-      "date": "2026-09-07",
-      "time": "22:15",
-      "competition": "Portuguese Primeira Liga",
-      "homeTeam": "Estoril",
-      "awayTeam": "Arouca",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-889259cb1199fef3caae",
-      "date": "2026-09-07",
-      "time": "22:30",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Elche",
-      "awayTeam": "Real Sociedad",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
     {
       "matchId": "match-8f634bf3d6a2048f82d6",
       "date": "2026-09-08",
@@ -2117,8 +2013,15 @@
       "competition": "English Premier League",
       "homeTeam": "Leeds United",
       "awayTeam": "Newcastle United",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS Extra 9",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2126,7 +2029,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-1dd1347f05ecddee26c7",
@@ -2135,8 +2038,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Villarreal",
       "awayTeam": "Real Betis",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 5",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2144,7 +2054,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-7598bd18c79282b25eda",
@@ -2171,6 +2081,132 @@
       "competition": "Portuguese Primeira Liga",
       "homeTeam": "Braga",
       "awayTeam": "Estoril",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-a59b770ff3e2c00e7201",
+      "date": "2026-09-15",
+      "time": "20:00",
+      "competition": "Spanish LaLiga",
+      "homeTeam": "Rayo Vallecano",
+      "awayTeam": "Espanyol",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-98abe92fda5812dc203d",
+      "date": "2026-09-15",
+      "time": "21:00",
+      "competition": "Dutch Eredivisie",
+      "homeTeam": "Ajax Amsterdam",
+      "awayTeam": "Willem II",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-643799319cd77156bcd4",
+      "date": "2026-09-15",
+      "time": "21:00",
+      "competition": "Spanish LaLiga",
+      "homeTeam": "Alavés",
+      "awayTeam": "Valencia",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-e1b2e63b76b289696a01",
+      "date": "2026-09-15",
+      "time": "21:45",
+      "competition": "Scottish Premiership",
+      "homeTeam": "Falkirk",
+      "awayTeam": "Heart of Midlothian",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-dd571f2b74583e34c381",
+      "date": "2026-09-15",
+      "time": "21:45",
+      "competition": "Scottish Premiership",
+      "homeTeam": "Hibernian",
+      "awayTeam": "Kilmarnock",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-29e1ebc87d0f40d4b695",
+      "date": "2026-09-15",
+      "time": "21:45",
+      "competition": "Scottish Premiership",
+      "homeTeam": "Motherwell",
+      "awayTeam": "Aberdeen",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-9a3b7ae287997bc2c601",
+      "date": "2026-09-15",
+      "time": "22:30",
+      "competition": "Spanish LaLiga",
+      "homeTeam": "Elche",
+      "awayTeam": "Real Madrid",
       "status": "not_announced",
       "broadcasters": [],
       "searchedSources": [
