@@ -1,57 +1,57 @@
 {
   "ok": true,
-  "generatedAt": "2026-09-09T09:44:32.129Z",
-  "updatedAt": "2026-09-09T09:44:31.642Z",
-  "totalFrequencies": 1623,
+  "generatedAt": "2026-09-10T09:42:55.068Z",
+  "updatedAt": "2026-09-10T09:42:54.624Z",
+  "totalFrequencies": 1651,
   "removedCount": 0,
-  "candidateCount": 737,
-  "closedCandidateCount": 2850,
+  "candidateCount": 1981,
+  "closedCandidateCount": 2844,
   "closedConsensusCount": 314,
-  "successfulSourceCount": 48,
+  "successfulSourceCount": 49,
   "sourcesChecked": 67,
-  "sourcesFailed": 19,
+  "sourcesFailed": 18,
   "changes": {
-    "updated": 624,
-    "added": 0,
+    "updated": 892,
+    "added": 28,
     "removed": 0,
-    "reviewedOnly": 113,
-    "channelNamesAdded": 8,
-    "channelNamesRemoved": 1106,
+    "reviewedOnly": 1061,
+    "channelNamesAdded": 943,
+    "channelNamesRemoved": 174,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 113,
+    "incompleteNewSkipped": 1061,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 113 من 1148 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1263 من 2530 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
   "removedItems": [],
-  "reviewedOnlyCount": 113,
+  "reviewedOnlyCount": 200,
   "groupCounts": [
     {
       "satelliteGroup": "Amos",
       "frequencies": 5,
-      "services": 17
+      "services": 16
     },
     {
       "satelliteGroup": "Arabsat / BADR",
       "frequencies": 120,
-      "services": 1197
+      "services": 1234
     },
     {
       "satelliteGroup": "Astra",
       "frequencies": 250,
-      "services": 1889
+      "services": 2026
     },
     {
       "satelliteGroup": "Azerspace",
       "frequencies": 82,
-      "services": 243
+      "services": 244
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -60,33 +60,33 @@
     },
     {
       "satelliteGroup": "Eutelsat 16E",
-      "frequencies": 211,
-      "services": 1278
+      "frequencies": 236,
+      "services": 1440
     },
     {
       "satelliteGroup": "Eutelsat 36E",
       "frequencies": 145,
-      "services": 376
+      "services": 400
     },
     {
       "satelliteGroup": "Eutelsat 9E",
-      "frequencies": 77,
-      "services": 801
+      "frequencies": 80,
+      "services": 994
     },
     {
       "satelliteGroup": "Hellas Sat",
       "frequencies": 103,
-      "services": 744
+      "services": 784
     },
     {
       "satelliteGroup": "Hot Bird",
       "frequencies": 212,
-      "services": 1704
+      "services": 1732
     },
     {
       "satelliteGroup": "Intelsat",
       "frequencies": 102,
-      "services": 711
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
@@ -96,7 +96,7 @@
     {
       "satelliteGroup": "Türksat",
       "frequencies": 65,
-      "services": 664
+      "services": 844
     },
     {
       "satelliteGroup": "Yahsat",
@@ -110,7 +110,7 @@
       "orbitalSlot": "4W",
       "satelliteName": "Amos 3",
       "frequencies": 2,
-      "services": 8
+      "services": 7
     },
     {
       "satelliteGroup": "Amos",
@@ -124,7 +124,7 @@
       "orbitalSlot": "26E",
       "satelliteName": "Arabsat / BADR position",
       "frequencies": 47,
-      "services": 548
+      "services": 585
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -138,21 +138,21 @@
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
       "frequencies": 90,
-      "services": 1174
+      "services": 1305
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "28.2E",
       "satelliteName": "Astra 2E/2F/2G",
       "frequencies": 160,
-      "services": 715
+      "services": 721
     },
     {
       "satelliteGroup": "Azerspace",
       "orbitalSlot": "46E",
       "satelliteName": "Azerspace 1",
       "frequencies": 82,
-      "services": 243
+      "services": 244
     },
     {
       "satelliteGroup": "Es'hailSat",
@@ -172,50 +172,50 @@
       "satelliteGroup": "Eutelsat 16E",
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
-      "frequencies": 211,
-      "services": 1278
+      "frequencies": 236,
+      "services": 1440
     },
     {
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
       "frequencies": 145,
-      "services": 376
+      "services": 400
     },
     {
       "satelliteGroup": "Eutelsat 9E",
       "orbitalSlot": "9E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
-      "frequencies": 77,
-      "services": 801
+      "frequencies": 80,
+      "services": 994
     },
     {
       "satelliteGroup": "Hellas Sat",
       "orbitalSlot": "39E",
       "satelliteName": "Eutelsat 9B / Ka-Sat 9A",
       "frequencies": 103,
-      "services": 744
+      "services": 784
     },
     {
       "satelliteGroup": "Hot Bird",
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
       "frequencies": 212,
-      "services": 1704
+      "services": 1732
     },
     {
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
       "frequencies": 102,
-      "services": 711
+      "services": 904
     },
     {
       "satelliteGroup": "Nilesat",
       "orbitalSlot": "7W",
       "satelliteName": "7.0W / Eutelsat E7WA",
       "frequencies": 41,
-      "services": 483
+      "services": 482
     },
     {
       "satelliteGroup": "Nilesat",
@@ -229,7 +229,7 @@
       "orbitalSlot": "8W",
       "satelliteName": "Eutelsat 8 West B",
       "frequencies": 107,
-      "services": 505
+      "services": 506
     },
     {
       "satelliteGroup": "Türksat",
@@ -243,7 +243,7 @@
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
       "frequencies": 55,
-      "services": 651
+      "services": 831
     },
     {
       "satelliteGroup": "Yahsat",
@@ -326,26 +326,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-eutelsat-16a",
-      "name": "LyngSat Eutelsat 16A",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-eutelsat-9b",
-      "name": "LyngSat Eutelsat 9B / Ka-Sat 9A",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-turksat-3a-4a-5b",
       "name": "LyngSat Türksat 3A/4A/5B",
       "ok": false,
@@ -416,16 +396,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-amos",
-      "name": "LyngSat Amos 3 / Dror 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-intelsat-20",
       "name": "LyngSat Intelsat 20",
       "ok": false,
@@ -440,6 +410,26 @@
       "name": "LyngSat Azerspace 1",
       "ok": false,
       "status": 403,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "dthsat-nilesat",
+      "name": "DTHSat Nilesat 7W current channel table",
+      "ok": false,
+      "status": 404,
+      "candidates": 0,
+      "closedCandidates": 0,
+      "coverageOnly": false,
+      "error": null
+    },
+    {
+      "id": "dthsat-azerspace",
+      "name": "DTHSat Azerspace 1 46E current channel table",
+      "ok": false,
+      "status": 404,
       "candidates": 0,
       "closedCandidates": 0,
       "coverageOnly": false,
