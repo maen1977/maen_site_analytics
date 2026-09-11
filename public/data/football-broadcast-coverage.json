@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-11T06:04:44.940Z",
+  "generatedAt": "2026-09-11T17:03:08.171Z",
   "timeZone": "Asia/Amman",
   "window": {
     "startDate": "2026-09-11",
@@ -34,13 +34,13 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 47
+      "matchedFixtures": 32
     }
   },
   "totals": {
     "matches": 110,
-    "matchesWithBroadcasters": 54,
-    "matchesWithoutBroadcasters": 56
+    "matchesWithBroadcasters": 39,
+    "matchesWithoutBroadcasters": 71
   },
   "matches": [
     {
@@ -197,15 +197,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Racing Santander",
       "awayTeam": "Alavés",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -213,7 +206,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-a42f99cea57cff050494",
@@ -330,15 +323,8 @@
       "competition": "English Premier League",
       "homeTeam": "AFC Bournemouth",
       "awayTeam": "Brentford",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -346,7 +332,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-4a8d2853056d5e39d23b",
@@ -355,15 +341,8 @@
       "competition": "English Premier League",
       "homeTeam": "Aston Villa",
       "awayTeam": "Nottingham Forest",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -371,7 +350,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-11e327a5652e77d892b2",
@@ -380,15 +359,8 @@
       "competition": "English Premier League",
       "homeTeam": "Chelsea",
       "awayTeam": "Hull City",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -396,7 +368,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-8d4cfc350c9610cda6e6",
@@ -405,15 +377,8 @@
       "competition": "English Premier League",
       "homeTeam": "Crystal Palace",
       "awayTeam": "Ipswich Town",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 5",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -421,7 +386,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-19150a478aca6e7516c3",
@@ -430,15 +395,8 @@
       "competition": "English Premier League",
       "homeTeam": "Liverpool",
       "awayTeam": "Fulham",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -446,7 +404,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-62418de7313c5644f7ab",
@@ -455,15 +413,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Osasuna",
       "awayTeam": "Espanyol",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -471,7 +422,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-2e3616188db3e57e892d",
@@ -541,15 +492,8 @@
       "competition": "French Ligue 1",
       "homeTeam": "Strasbourg",
       "awayTeam": "AS Monaco",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 8",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -557,7 +501,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-303a19b399ad6cc8a225",
@@ -584,15 +528,8 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Athletic Club",
       "awayTeam": "Elche",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -600,7 +537,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-9cf7189528b03d9bca4b",
@@ -627,15 +564,8 @@
       "competition": "English Premier League",
       "homeTeam": "Tottenham Hotspur",
       "awayTeam": "Everton",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -643,7 +573,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-55f39f48ab79237665c0",
@@ -731,15 +661,8 @@
       "competition": "French Ligue 1",
       "homeTeam": "AJ Auxerre",
       "awayTeam": "Nice",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 5",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -747,7 +670,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-87005d9c09cf3773c434",
@@ -774,15 +697,8 @@
       "competition": "French Ligue 1",
       "homeTeam": "Le Havre AC",
       "awayTeam": "Angers",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -790,7 +706,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-1c86df4a7ad50ea1ec51",
@@ -799,15 +715,8 @@
       "competition": "French Ligue 1",
       "homeTeam": "Lorient",
       "awayTeam": "Toulouse",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 6",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -815,7 +724,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-0385f2c1c66640a839f3",
@@ -824,15 +733,8 @@
       "competition": "French Ligue 1",
       "homeTeam": "Paris FC",
       "awayTeam": "Lyon",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -840,7 +742,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-a6bbec87e0fcf426f088",
@@ -885,15 +787,8 @@
       "competition": "English Premier League",
       "homeTeam": "Sunderland",
       "awayTeam": "Arsenal",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
+      "status": "not_announced",
+      "broadcasters": [],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -901,7 +796,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "At least one exact station number was matched to this fixture."
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
     },
     {
       "matchId": "match-3701955eec44e54657cb",
