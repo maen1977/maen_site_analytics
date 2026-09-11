@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-10T17:02:15.478Z",
+  "generatedAt": "2026-09-11T06:04:44.940Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-10",
-    "endDate": "2026-09-17",
+    "startDate": "2026-09-11",
+    "endDate": "2026-09-18",
     "days": 8
   },
   "sourceCoverage": {
@@ -34,194 +34,15 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 42
+      "matchedFixtures": 47
     }
   },
   "totals": {
     "matches": 110,
-    "matchesWithBroadcasters": 48,
-    "matchesWithoutBroadcasters": 62
+    "matchesWithBroadcasters": 54,
+    "matchesWithoutBroadcasters": 56
   },
   "matches": [
-    {
-      "matchId": "match-4eb05b3b0ab2f33c0564",
-      "date": "2026-09-10",
-      "time": "19:00",
-      "competition": "Jordanian Pro League",
-      "homeTeam": "Al-Jazeera Club",
-      "awayTeam": "Shabab Al-Ordon",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-9226a7d5e0094932d731",
-      "date": "2026-09-10",
-      "time": "19:45",
-      "competition": "UEFA Champions League",
-      "homeTeam": "Fenerbahce",
-      "awayTeam": "AS Roma",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-57c31922947cd113c3fa",
-      "date": "2026-09-10",
-      "time": "19:45",
-      "competition": "UEFA Champions League",
-      "homeTeam": "PSV Eindhoven",
-      "awayTeam": "Shakhtar Donetsk",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-3879c9a9f904e305bd33",
-      "date": "2026-09-10",
-      "time": "22:00",
-      "competition": "UEFA Champions League",
-      "homeTeam": "Bayern Munich",
-      "awayTeam": "Bodo/Glimt",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-66693197a516276765ed",
-      "date": "2026-09-10",
-      "time": "22:00",
-      "competition": "UEFA Champions League",
-      "homeTeam": "Como",
-      "awayTeam": "RB Leipzig",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-24ec8c15802d09f832ad",
-      "date": "2026-09-10",
-      "time": "22:00",
-      "competition": "UEFA Champions League",
-      "homeTeam": "Manchester United",
-      "awayTeam": "Sabah FK",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-2d0530f3219a21ba7035",
-      "date": "2026-09-10",
-      "time": "22:00",
-      "competition": "UEFA Champions League",
-      "homeTeam": "Slavia Prague",
-      "awayTeam": "Lens",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-51b9b39d1a57a060e510",
-      "date": "2026-09-10",
-      "time": "22:15",
-      "competition": "Portuguese Primeira Liga",
-      "homeTeam": "Estrela",
-      "awayTeam": "Braga",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
     {
       "matchId": "match-d7901b162e7d62529c59",
       "date": "2026-09-11",
@@ -379,7 +200,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 9",
+          "name": "beIN SPORTS Extra 1",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -637,7 +458,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 9",
+          "name": "beIN SPORTS Extra 1",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -1128,7 +949,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 1",
+          "name": "beIN SPORTS 5",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -1615,6 +1436,12 @@
       "awayTeam": "Newcastle United",
       "status": "found",
       "broadcasters": [
+        {
+          "name": "beIN SPORTS 2",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        },
         {
           "name": "beIN SPORTS Extra 9",
           "sourceName": "beIN official MENA TV guide",
@@ -2168,8 +1995,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Levski Sofia",
       "awayTeam": "RB Salzburg",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2177,7 +2011,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-e1a67abb757a6220b0ed",
@@ -2186,8 +2020,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "OFI Crete",
       "awayTeam": "TSG Hoffenheim",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2195,7 +2036,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-a2d50733971bd25e2d8d",
@@ -2222,8 +2063,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Besiktas",
       "awayTeam": "Marseille",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2231,7 +2079,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-7eef95880c9c97c7cb53",
@@ -2240,8 +2088,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Celtic",
       "awayTeam": "Ferencvaros",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 5",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2249,7 +2104,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-bbc2d81181b081592bee",
@@ -2258,8 +2113,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Crystal Palace",
       "awayTeam": "Lech Poznan",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 4",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2267,7 +2129,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-e159ee1c14142246c843",
@@ -2276,8 +2138,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Juventus",
       "awayTeam": "NEC Nijmegen",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2285,7 +2154,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-3241b4c6b3a37c0e2566",
@@ -2294,8 +2163,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Lillestrom",
       "awayTeam": "Torreense",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS Extra 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2303,7 +2179,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-1b28f9096dd6ed3f21cc",
@@ -2312,8 +2188,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Real Sociedad",
       "awayTeam": "AFC Bournemouth",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 8",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -2321,7 +2204,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-7105a816e463bc1d8436",
@@ -2348,6 +2231,171 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Málaga",
       "awayTeam": "Villarreal",
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 6",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "At least one exact station number was matched to this fixture."
+    },
+    {
+      "matchId": "match-7ac8370f56cba8aec524",
+      "date": "2026-09-18",
+      "time": "18:00",
+      "competition": "Jordanian Pro League",
+      "homeTeam": "Al-Arabi Irbid",
+      "awayTeam": "Al-Jazeera Club",
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "At least one exact station number was matched to this fixture."
+    },
+    {
+      "matchId": "match-8524296053846d6073d2",
+      "date": "2026-09-18",
+      "time": "20:30",
+      "competition": "Jordanian Pro League",
+      "homeTeam": "Al-Wehdat",
+      "awayTeam": "Al-Ramtha",
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "Jordan Sport",
+          "sourceName": "Petra / Jordan Football Association rights notice",
+          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
+          "evidenceLevel": "official"
+        }
+      ],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "At least one exact station number was matched to this fixture."
+    },
+    {
+      "matchId": "match-a6aae4bd2250e9a43c78",
+      "date": "2026-09-18",
+      "time": "21:00",
+      "competition": "Dutch Eredivisie",
+      "homeTeam": "FC Groningen",
+      "awayTeam": "PEC Zwolle",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-65cb8248e8c277f96600",
+      "date": "2026-09-18",
+      "time": "21:30",
+      "competition": "German Bundesliga",
+      "homeTeam": "Bayern Munich",
+      "awayTeam": "1. FC Union Berlin",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-6897baf51707bb282a9e",
+      "date": "2026-09-18",
+      "time": "21:45",
+      "competition": "French Ligue 1",
+      "homeTeam": "AS Monaco",
+      "awayTeam": "Lens",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-f883644030c3f1673552",
+      "date": "2026-09-18",
+      "time": "21:45",
+      "competition": "Italian Serie A",
+      "homeTeam": "Monza",
+      "awayTeam": "Sassuolo",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-e6528fb1905f1a5ec657",
+      "date": "2026-09-18",
+      "time": "22:00",
+      "competition": "English Premier League",
+      "homeTeam": "Brentford",
+      "awayTeam": "Chelsea",
+      "status": "not_announced",
+      "broadcasters": [],
+      "searchedSources": [
+        "ESPN fixtures",
+        "TheSportsDB",
+        "FilGoal Arabic",
+        "Kooora Arabic",
+        "beIN official MENA TV guide"
+      ],
+      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+    },
+    {
+      "matchId": "match-04de04ef365153bfbe6a",
+      "date": "2026-09-18",
+      "time": "22:00",
+      "competition": "Spanish LaLiga",
+      "homeTeam": "Espanyol",
+      "awayTeam": "Elche",
       "status": "not_announced",
       "broadcasters": [],
       "searchedSources": [
