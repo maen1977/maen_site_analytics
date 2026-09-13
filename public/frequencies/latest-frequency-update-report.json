@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-09-12T09:20:55.042Z",
-  "updatedAt": "2026-09-12T09:20:54.361Z",
-  "totalFrequencies": 1651,
+  "generatedAt": "2026-09-13T10:16:46.604Z",
+  "updatedAt": "2026-09-13T10:16:46.216Z",
+  "totalFrequencies": 1654,
   "removedCount": 0,
-  "candidateCount": 1569,
-  "closedCandidateCount": 2844,
-  "closedConsensusCount": 314,
+  "candidateCount": 1568,
+  "closedCandidateCount": 2897,
+  "closedConsensusCount": 318,
   "successfulSourceCount": 43,
   "sourcesChecked": 67,
   "sourcesFailed": 24,
   "changes": {
-    "updated": 694,
-    "added": 0,
+    "updated": 691,
+    "added": 3,
     "removed": 0,
-    "reviewedOnly": 875,
-    "channelNamesAdded": 923,
-    "channelNamesRemoved": 169,
+    "reviewedOnly": 874,
+    "channelNamesAdded": 28,
+    "channelNamesRemoved": 192,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 875,
+    "incompleteNewSkipped": 874,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1072 من 2104 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1072 من 2106 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -45,8 +45,8 @@
     },
     {
       "satelliteGroup": "Astra",
-      "frequencies": 250,
-      "services": 2025
+      "frequencies": 251,
+      "services": 2042
     },
     {
       "satelliteGroup": "Azerspace",
@@ -60,8 +60,8 @@
     },
     {
       "satelliteGroup": "Eutelsat 16E",
-      "frequencies": 236,
-      "services": 1434
+      "frequencies": 237,
+      "services": 1464
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -80,8 +80,8 @@
     },
     {
       "satelliteGroup": "Hot Bird",
-      "frequencies": 212,
-      "services": 1735
+      "frequencies": 213,
+      "services": 1775
     },
     {
       "satelliteGroup": "Intelsat",
@@ -96,7 +96,7 @@
     {
       "satelliteGroup": "Türksat",
       "frequencies": 65,
-      "services": 844
+      "services": 843
     },
     {
       "satelliteGroup": "Yahsat",
@@ -137,8 +137,8 @@
       "satelliteGroup": "Astra",
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
-      "frequencies": 90,
-      "services": 1305
+      "frequencies": 91,
+      "services": 1322
     },
     {
       "satelliteGroup": "Astra",
@@ -172,8 +172,8 @@
       "satelliteGroup": "Eutelsat 16E",
       "orbitalSlot": "16E",
       "satelliteName": "Eutelsat 16A",
-      "frequencies": 236,
-      "services": 1434
+      "frequencies": 237,
+      "services": 1464
     },
     {
       "satelliteGroup": "Eutelsat 36E",
@@ -200,8 +200,8 @@
       "satelliteGroup": "Hot Bird",
       "orbitalSlot": "13E",
       "satelliteName": "Hot Bird 13F/13G",
-      "frequencies": 212,
-      "services": 1735
+      "frequencies": 213,
+      "services": 1775
     },
     {
       "satelliteGroup": "Intelsat",
@@ -243,7 +243,7 @@
       "orbitalSlot": "42E",
       "satelliteName": "Türksat position",
       "frequencies": 55,
-      "services": 831
+      "services": 830
     },
     {
       "satelliteGroup": "Yahsat",
