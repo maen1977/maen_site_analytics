@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-14T18:40:40.781Z",
+  "generatedAt": "2026-09-15T06:13:04.890Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-14",
-    "endDate": "2026-09-21",
+    "startDate": "2026-09-15",
+    "endDate": "2026-09-22",
     "days": 8
   },
   "sourceCoverage": {
@@ -22,191 +22,27 @@
       "attempted": 8,
       "succeeded": 8,
       "failed": 0,
-      "matchedListings": 1
+      "matchedListings": 0
     },
     "kooora": {
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedListings": 1
+      "matchedListings": 0
     },
     "bein": {
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 48
+      "matchedFixtures": 47
     }
   },
   "totals": {
-    "matches": 116,
-    "matchesWithBroadcasters": 53,
-    "matchesWithoutBroadcasters": 63
+    "matches": 108,
+    "matchesWithBroadcasters": 52,
+    "matchesWithoutBroadcasters": 56
   },
   "matches": [
-    {
-      "matchId": "match-e691b06001ac44a737a7",
-      "date": "2026-09-14",
-      "time": "19:30",
-      "competition": "Italian Serie A",
-      "homeTeam": "Como",
-      "awayTeam": "Parma",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-23fa8b0aee997e5ac235",
-      "date": "2026-09-14",
-      "time": "19:30",
-      "competition": "Italian Serie A",
-      "homeTeam": "Torino",
-      "awayTeam": "AS Roma",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-b7651a49f2ef88a814a0",
-      "date": "2026-09-14",
-      "time": "20:45",
-      "competition": "Portuguese Primeira Liga",
-      "homeTeam": "Rio Ave",
-      "awayTeam": "Estrela",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-2b5d306e8487ca23d075",
-      "date": "2026-09-14",
-      "time": "21:45",
-      "competition": "Italian Serie A",
-      "homeTeam": "Internazionale",
-      "awayTeam": "Udinese",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-8dd93dcfeadd0eb138bb",
-      "date": "2026-09-14",
-      "time": "22:00",
-      "competition": "English Premier League",
-      "homeTeam": "Leeds United",
-      "awayTeam": "Newcastle United",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-1dd1347f05ecddee26c7",
-      "date": "2026-09-14",
-      "time": "22:00",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Villarreal",
-      "awayTeam": "Real Betis",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 5",
-          "sourceName": "FilGoal match schedule + Kooora daily broadcast table + beIN official MENA TV guide",
-          "sourceUrl": "https://www.filgoal.com/matches/375039/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%8A%D8%A7%D8%B1%D9%8A%D8%A7%D9%84-%D8%B1%D9%8A%D8%A7%D9%84-%D8%A8%D9%8A%D8%AA%D9%8A%D8%B3-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "evidenceLevel": "corroborated"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-7598bd18c79282b25eda",
-      "date": "2026-09-14",
-      "time": "22:15",
-      "competition": "Portuguese Primeira Liga",
-      "homeTeam": "Moreirense",
-      "awayTeam": "Maritimo",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-f54b66d42eaa1dfec6ee",
-      "date": "2026-09-14",
-      "time": "22:45",
-      "competition": "Portuguese Primeira Liga",
-      "homeTeam": "Braga",
-      "awayTeam": "Estoril",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
     {
       "matchId": "match-a59b770ff3e2c00e7201",
       "date": "2026-09-15",
@@ -361,8 +197,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Ararat-Armenia",
       "awayTeam": "Sparta Prague",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 8",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -370,7 +213,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-37f4faea01e0c1ba2d6b",
@@ -432,7 +275,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 9",
+          "name": "beIN SPORTS Extra 1",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -507,7 +350,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS Extra 2",
+          "name": "beIN SPORTS Extra 3",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -550,7 +393,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS Extra 3",
+          "name": "beIN SPORTS Extra 4",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -593,7 +436,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 8",
+          "name": "beIN SPORTS 9",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
@@ -711,7 +554,7 @@
       "status": "found",
       "broadcasters": [
         {
-          "name": "beIN SPORTS 1",
+          "name": "beIN SPORTS 7",
           "sourceName": "beIN official MENA TV guide",
           "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
           "evidenceLevel": "official"
