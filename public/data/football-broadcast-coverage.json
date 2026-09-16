@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-15T17:42:04.301Z",
+  "generatedAt": "2026-09-16T06:06:48.720Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-15",
-    "endDate": "2026-09-22",
+    "startDate": "2026-09-16",
+    "endDate": "2026-09-23",
     "days": 8
   },
   "sourceCoverage": {
@@ -34,22 +34,22 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 38
+      "matchedFixtures": 45
     }
   },
   "totals": {
-    "matches": 108,
-    "matchesWithBroadcasters": 43,
-    "matchesWithoutBroadcasters": 65
+    "matches": 101,
+    "matchesWithBroadcasters": 50,
+    "matchesWithoutBroadcasters": 51
   },
   "matches": [
     {
-      "matchId": "match-a59b770ff3e2c00e7201",
-      "date": "2026-09-15",
-      "time": "20:00",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Rayo Vallecano",
-      "awayTeam": "Espanyol",
+      "matchId": "match-09fd1523c93930c2e916",
+      "date": "2026-09-16",
+      "time": "19:45",
+      "competition": "UEFA Europa League",
+      "homeTeam": "Ararat-Armenia",
+      "awayTeam": "Sparta Prague",
       "status": "found",
       "broadcasters": [
         {
@@ -69,154 +69,21 @@
       "note": "At least one exact station number was matched to this fixture."
     },
     {
-      "matchId": "match-98abe92fda5812dc203d",
-      "date": "2026-09-15",
-      "time": "21:00",
-      "competition": "Dutch Eredivisie",
-      "homeTeam": "Ajax Amsterdam",
-      "awayTeam": "Willem II",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-643799319cd77156bcd4",
-      "date": "2026-09-15",
-      "time": "21:00",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Alavés",
-      "awayTeam": "Valencia",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 6",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-e1b2e63b76b289696a01",
-      "date": "2026-09-15",
-      "time": "21:45",
-      "competition": "Scottish Premiership",
-      "homeTeam": "Falkirk",
-      "awayTeam": "Heart of Midlothian",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-dd571f2b74583e34c381",
-      "date": "2026-09-15",
-      "time": "21:45",
-      "competition": "Scottish Premiership",
-      "homeTeam": "Hibernian",
-      "awayTeam": "Kilmarnock",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-29e1ebc87d0f40d4b695",
-      "date": "2026-09-15",
-      "time": "21:45",
-      "competition": "Scottish Premiership",
-      "homeTeam": "Motherwell",
-      "awayTeam": "Aberdeen",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-9a3b7ae287997bc2c601",
-      "date": "2026-09-15",
-      "time": "22:30",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Elche",
-      "awayTeam": "Real Madrid",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-09fd1523c93930c2e916",
-      "date": "2026-09-16",
-      "time": "19:45",
-      "competition": "UEFA Europa League",
-      "homeTeam": "Ararat-Armenia",
-      "awayTeam": "Sparta Prague",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
       "matchId": "match-37f4faea01e0c1ba2d6b",
       "date": "2026-09-16",
       "time": "19:45",
       "competition": "UEFA Europa League",
       "homeTeam": "Omonia Nicosia",
       "awayTeam": "Celta Vigo",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -224,7 +91,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-00b3f7d5ffa5112d73d3",
@@ -233,8 +100,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Atlético Madrid",
       "awayTeam": "Osasuna",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 2",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -242,7 +116,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-46ee3650b29f35920351",
@@ -251,8 +125,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Deportivo",
       "awayTeam": "Sevilla",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS Extra 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -260,7 +141,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-581ec90ff10318bf4581",
@@ -269,8 +150,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "AC Milan",
       "awayTeam": "Benfica",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 1",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -278,7 +166,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-acc9f291bc67c1c9f810",
@@ -287,8 +175,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Anderlecht",
       "awayTeam": "Lyon",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 8",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -296,7 +191,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-232750db16bb7a552105",
@@ -305,8 +200,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Bayer Leverkusen",
       "awayTeam": "NK Celje",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS Extra 3",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -314,7 +216,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-3f85a5fd5cb0e4c16b8a",
@@ -341,8 +243,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Olympiacos",
       "awayTeam": "Jagiellonia Bialystok",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS Extra 4",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -350,7 +259,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-a4c232b4592daf451641",
@@ -377,8 +286,15 @@
       "competition": "UEFA Europa League",
       "homeTeam": "Sunderland",
       "awayTeam": "AZ Alkmaar",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 9",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -386,7 +302,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-4f1cc20c8d2956ad7efc",
@@ -395,8 +311,15 @@
       "competition": "Spanish LaLiga",
       "homeTeam": "Barcelona",
       "awayTeam": "Racing Santander",
-      "status": "not_announced",
-      "broadcasters": [],
+      "status": "found",
+      "broadcasters": [
+        {
+          "name": "beIN SPORTS 2",
+          "sourceName": "beIN official MENA TV guide",
+          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
+          "evidenceLevel": "official"
+        }
+      ],
       "searchedSources": [
         "ESPN fixtures",
         "TheSportsDB",
@@ -404,7 +327,7 @@
         "Kooora Arabic",
         "beIN official MENA TV guide"
       ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
+      "note": "At least one exact station number was matched to this fixture."
     },
     {
       "matchId": "match-ca3a362e5c2880f1ec90",
