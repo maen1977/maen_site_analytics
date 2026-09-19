@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T17:07:01.771Z",
+  "generatedAt": "2026-09-19T06:00:42.350Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-18",
-    "endDate": "2026-09-25",
+    "startDate": "2026-09-19",
+    "endDate": "2026-09-26",
     "days": 8
   },
   "sourceCoverage": {
@@ -22,7 +22,7 @@
       "attempted": 8,
       "succeeded": 8,
       "failed": 0,
-      "matchedListings": 0
+      "matchedListings": 2
     },
     "kooora": {
       "attempted": 1,
@@ -34,200 +34,15 @@
       "attempted": 1,
       "succeeded": 1,
       "failed": 0,
-      "matchedFixtures": 26
+      "matchedFixtures": 23
     }
   },
   "totals": {
-    "matches": 76,
-    "matchesWithBroadcasters": 30,
-    "matchesWithoutBroadcasters": 46
+    "matches": 68,
+    "matchesWithBroadcasters": 25,
+    "matchesWithoutBroadcasters": 43
   },
   "matches": [
-    {
-      "matchId": "match-7ac8370f56cba8aec524",
-      "date": "2026-09-18",
-      "time": "18:00",
-      "competition": "Jordanian Pro League",
-      "homeTeam": "Al-Arabi Irbid",
-      "awayTeam": "Al-Jazeera Club",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-8524296053846d6073d2",
-      "date": "2026-09-18",
-      "time": "20:30",
-      "competition": "Jordanian Pro League",
-      "homeTeam": "Al-Wehdat",
-      "awayTeam": "Al-Ramtha",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-a6aae4bd2250e9a43c78",
-      "date": "2026-09-18",
-      "time": "21:00",
-      "competition": "Dutch Eredivisie",
-      "homeTeam": "FC Groningen",
-      "awayTeam": "PEC Zwolle",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-65cb8248e8c277f96600",
-      "date": "2026-09-18",
-      "time": "21:30",
-      "competition": "German Bundesliga",
-      "homeTeam": "Bayern Munich",
-      "awayTeam": "1. FC Union Berlin",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-6897baf51707bb282a9e",
-      "date": "2026-09-18",
-      "time": "21:45",
-      "competition": "French Ligue 1",
-      "homeTeam": "AS Monaco",
-      "awayTeam": "Lens",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 4",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-f883644030c3f1673552",
-      "date": "2026-09-18",
-      "time": "21:45",
-      "competition": "Italian Serie A",
-      "homeTeam": "Monza",
-      "awayTeam": "Sassuolo",
-      "status": "not_announced",
-      "broadcasters": [],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "No exact station number was published by the searched sources at collection time; the next scheduled scan will retry."
-    },
-    {
-      "matchId": "match-e6528fb1905f1a5ec657",
-      "date": "2026-09-18",
-      "time": "22:00",
-      "competition": "English Premier League",
-      "homeTeam": "Brentford",
-      "awayTeam": "Chelsea",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 1",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        },
-        {
-          "name": "beIN SPORTS Extra 9",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
-    {
-      "matchId": "match-04de04ef365153bfbe6a",
-      "date": "2026-09-18",
-      "time": "22:00",
-      "competition": "Spanish LaLiga",
-      "homeTeam": "Espanyol",
-      "awayTeam": "Elche",
-      "status": "found",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
-        }
-      ],
-      "searchedSources": [
-        "ESPN fixtures",
-        "TheSportsDB",
-        "FilGoal Arabic",
-        "Kooora Arabic",
-        "beIN official MENA TV guide"
-      ],
-      "note": "At least one exact station number was matched to this fixture."
-    },
     {
       "matchId": "match-c1ad28ff0eeee9c478bb",
       "date": "2026-09-19",
@@ -1504,9 +1319,9 @@
       "broadcasters": [
         {
           "name": "beIN SPORTS 3",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
+          "sourceName": "FilGoal match schedule + beIN official MENA TV guide",
+          "sourceUrl": "https://www.filgoal.com/matches/375059/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%8A%D8%A7%D8%B1%D9%8A%D8%A7%D9%84-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+          "evidenceLevel": "corroborated"
         }
       ],
       "searchedSources": [
@@ -1619,9 +1434,9 @@
       "broadcasters": [
         {
           "name": "beIN SPORTS 2",
-          "sourceName": "beIN official MENA TV guide",
-          "sourceUrl": "https://www.beinsports.com/en-mena/tv-guide",
-          "evidenceLevel": "official"
+          "sourceName": "FilGoal match schedule + beIN official MENA TV guide",
+          "sourceUrl": "https://www.filgoal.com/matches/375058/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D8%A7%D9%84%D9%86%D8%B3%D9%8A%D8%A7-%D8%B1%D9%8A%D8%A7%D9%84-%D8%B3%D9%88%D8%B3%D9%8A%D8%AF%D8%A7%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
+          "evidenceLevel": "corroborated"
         }
       ],
       "searchedSources": [
