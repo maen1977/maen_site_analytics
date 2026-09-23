@@ -1,32 +1,32 @@
 {
   "ok": true,
-  "generatedAt": "2026-09-22T09:56:56.040Z",
-  "updatedAt": "2026-09-22T09:56:55.545Z",
-  "totalFrequencies": 1674,
+  "generatedAt": "2026-09-23T09:58:44.863Z",
+  "updatedAt": "2026-09-23T09:58:44.165Z",
+  "totalFrequencies": 1676,
   "removedCount": 0,
-  "candidateCount": 1572,
-  "closedCandidateCount": 2954,
+  "candidateCount": 1965,
+  "closedCandidateCount": 2963,
   "closedConsensusCount": 320,
-  "successfulSourceCount": 43,
+  "successfulSourceCount": 48,
   "sourcesChecked": 67,
-  "sourcesFailed": 24,
+  "sourcesFailed": 19,
   "changes": {
-    "updated": 698,
-    "added": 0,
+    "updated": 855,
+    "added": 2,
     "removed": 0,
-    "reviewedOnly": 874,
-    "channelNamesAdded": 16,
-    "channelNamesRemoved": 227,
+    "reviewedOnly": 1108,
+    "channelNamesAdded": 47,
+    "channelNamesRemoved": 210,
     "closedConsensusRemoved": 0,
     "closedConsensusChannelNamesRemoved": 0,
     "closedConsensusReviewed": 0,
     "protectedMissing": 0,
     "missingConfirmationProtected": 0,
-    "incompleteNewSkipped": 874,
+    "incompleteNewSkipped": 1108,
     "incompleteExistingProtected": 0,
     "movedChannelsRemoved": 0,
     "movedRowsRemoved": 0,
-    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1072 من 2111 مرشح ناقص system/mod.",
+    "removalSkippedReason": "لم يتم حذف الترددات الغائبة لأن جودة فحص المصادر غير آمنة: 1314 من 2535 مرشح ناقص system/mod.",
     "moveCleanupSkippedReason": "Moved-channel cleanup skipped because source quality was unsafe.",
     "closedConsensusSkippedReason": "Closed-consensus removal skipped because source quality was unsafe."
   },
@@ -36,17 +36,17 @@
     {
       "satelliteGroup": "Amos",
       "frequencies": 5,
-      "services": 16
+      "services": 15
     },
     {
       "satelliteGroup": "Arabsat / BADR",
       "frequencies": 120,
-      "services": 1233
+      "services": 1232
     },
     {
       "satelliteGroup": "Astra",
       "frequencies": 251,
-      "services": 2032
+      "services": 2035
     },
     {
       "satelliteGroup": "Azerspace",
@@ -65,8 +65,8 @@
     },
     {
       "satelliteGroup": "Eutelsat 36E",
-      "frequencies": 157,
-      "services": 413
+      "frequencies": 158,
+      "services": 439
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -85,8 +85,8 @@
     },
     {
       "satelliteGroup": "Intelsat",
-      "frequencies": 103,
-      "services": 907
+      "frequencies": 104,
+      "services": 923
     },
     {
       "satelliteGroup": "Nilesat",
@@ -117,7 +117,7 @@
       "orbitalSlot": "4W",
       "satelliteName": "Dror 1",
       "frequencies": 3,
-      "services": 9
+      "services": 8
     },
     {
       "satelliteGroup": "Arabsat / BADR",
@@ -131,14 +131,14 @@
       "orbitalSlot": "26E",
       "satelliteName": "BADR-8",
       "frequencies": 73,
-      "services": 648
+      "services": 647
     },
     {
       "satelliteGroup": "Astra",
       "orbitalSlot": "19.2E",
       "satelliteName": "Astra 1KR/1L/1M/1N/1P",
       "frequencies": 91,
-      "services": 1312
+      "services": 1315
     },
     {
       "satelliteGroup": "Astra",
@@ -179,8 +179,8 @@
       "satelliteGroup": "Eutelsat 36E",
       "orbitalSlot": "36E",
       "satelliteName": "Eutelsat 36D / Express AMU1",
-      "frequencies": 157,
-      "services": 413
+      "frequencies": 158,
+      "services": 439
     },
     {
       "satelliteGroup": "Eutelsat 9E",
@@ -207,8 +207,8 @@
       "satelliteGroup": "Intelsat",
       "orbitalSlot": "68.5E",
       "satelliteName": "Intelsat 20",
-      "frequencies": 103,
-      "services": 907
+      "frequencies": 104,
+      "services": 923
     },
     {
       "satelliteGroup": "Nilesat",
@@ -386,16 +386,6 @@
       "error": null
     },
     {
-      "id": "lyngsat-eutelsat-36d-express",
-      "name": "LyngSat Eutelsat 36D / Express AMU1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-astra-19",
       "name": "LyngSat Astra 19.2E cluster",
       "ok": false,
@@ -426,48 +416,8 @@
       "error": null
     },
     {
-      "id": "lyngsat-intelsat-20",
-      "name": "LyngSat Intelsat 20",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
       "id": "lyngsat-azerspace-1",
       "name": "LyngSat Azerspace 1",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10806",
-      "name": "LyngSat Amos 3 10806 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-amos3-mux-10842",
-      "name": "LyngSat Amos 3 10842 V mux",
-      "ok": false,
-      "status": 403,
-      "candidates": 0,
-      "closedCandidates": 0,
-      "coverageOnly": false,
-      "error": null
-    },
-    {
-      "id": "lyngsat-yes-dror1-package",
-      "name": "LyngSat Yes on Dror 1 package",
       "ok": false,
       "status": 403,
       "candidates": 0,
