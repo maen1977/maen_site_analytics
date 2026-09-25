@@ -707,6 +707,10 @@ for (const result of [...espnSucceeded, ...sportsDbSucceeded]) {
   }
 }
 
+if (!merged.size) {
+  throw new Error(`No football matches were returned for ${startDate} through ${endDate}; keeping the previous trusted schedule instead of publishing an empty schedule.`);
+}
+
 const tvCandidates = [...merged.values()].filter((match) => match.sportsDbId);
 const tvResults = await Promise.allSettled(tvCandidates.map((match) => fetchSportsDbTv(match.sportsDbId)));
 const tvByKey = new Map(tvCandidates.map((match, index) => [match.key, tvResults[index]]));
