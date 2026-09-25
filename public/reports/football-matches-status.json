@@ -1,13 +1,13 @@
 {
-  "ok": false,
-  "generatedAt": "2026-09-25T05:53:06.649Z",
+  "ok": true,
+  "generatedAt": "2026-09-25T06:01:40.922Z",
   "mode": "football-match-schedule-only",
-  "matchesOutcome": "failure",
-  "matchesValidateOutcome": "skipped",
-  "matchesPublished": false,
-  "matchesTotal": 31,
-  "matchesWithBroadcasters": 3,
-  "broadcastCoveragePercent": 9.68,
+  "matchesOutcome": "success",
+  "matchesValidateOutcome": "success",
+  "matchesPublished": true,
+  "matchesTotal": 24,
+  "matchesWithBroadcasters": 0,
+  "broadcastCoveragePercent": 0,
   "newsCollection": false,
-  "note": "The match schedule or validation failed. The previous trusted schedule remains published."
+  "note": "Only football match times and verified broadcasters were fetched and validated. Coverage counters are included so low broadcaster availability is visible. No football news is collected or published."
 }
