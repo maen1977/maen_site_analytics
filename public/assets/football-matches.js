@@ -241,6 +241,16 @@
     return state.matches.filter(function (match) { return String(match.competitionKey || "") === competitionKey; });
   }
 
+  function availableCompetitionKeys() {
+    var keys = Object.keys(COMPETITIONS);
+    state.matches.forEach(function (match) {
+      var key = cleanText(match && match.competitionKey, 80);
+      if (!key || keys.indexOf(key) !== -1) return;
+      keys.push(key);
+    });
+    return keys;
+  }
+
   function renderMatchCard(match) {
     var card = document.createElement("article");
     card.className = "sports-match-card";
@@ -334,7 +344,7 @@
     var count = document.getElementById("sportsMatchesCount");
     var updated = document.getElementById("sportsMatchesLastUpdated");
     if (!grid || !empty || !state.loaded) return;
-    var keys = Object.keys(COMPETITIONS).sort(function (a, b) { return COMPETITIONS[a].order - COMPETITIONS[b].order; }).filter(function (key) {
+    var keys = availableCompetitionKeys().sort(function (a, b) { return competitionOrder({ competitionKey: a }) - competitionOrder({ competitionKey: b }) || a.localeCompare(b); }).filter(function (key) {
       return allMatchesForCompetition(key).length > 0;
     });
     if (!state.activeCompetition || keys.indexOf(state.activeCompetition) === -1) {
