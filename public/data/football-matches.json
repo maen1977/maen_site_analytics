@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-20T16:52:26.777Z",
+  "generatedAt": "2026-09-25T06:00:05.841Z",
   "timeZone": "Asia/Amman",
   "window": {
-    "startDate": "2026-09-20",
-    "endDate": "2026-09-27",
+    "startDate": "2026-09-25",
+    "endDate": "2026-10-02",
     "days": 8
   },
   "mode": "all-published-competitions-with-verified-regional-tv",
@@ -33,6 +33,13 @@
       "url": "https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=5055&s=2026-2027",
       "ok": true,
       "requestedDays": 1
+    },
+    {
+      "id": "thesportsdb-daily",
+      "name": "TheSportsDB daily football fixtures fallback",
+      "url": "https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d=YYYY-MM-DD&s=Soccer",
+      "ok": true,
+      "requestedDays": 8
     },
     {
       "id": "filgoal-matches",
@@ -103,668 +110,460 @@
   "coverageNote": "All competitions currently published by the site are searched: Premier League, LaLiga, Serie A, Bundesliga, Ligue 1, Eredivisie, Primeira Liga, Scottish Premiership, UEFA Champions League, UEFA Europa League, and the Jordanian Pro League. A broadcaster is published only when a dated schedule identifies the exact station, except that the official Jordanian rights notice permits Jordan Sport as the verified league broadcaster without inventing a sub-channel number. AD Sports, ON Sport, OSN, and other broadcasters remain unlisted unless a dated source states the exact station.",
   "items": [
     {
-      "id": "match-0d4167a336a9e2ddfb14",
-      "date": "2026-09-20",
-      "start": "2026-09-20T10:15Z",
-      "time": "13:15",
-      "homeTeam": "Feyenoord Rotterdam",
-      "awayTeam": "FC Utrecht",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/142.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/153.png",
-      "competition": "Dutch Eredivisie",
-      "competitionKey": "eredivisie",
-      "country": "Netherlands",
-      "venue": "De Kuip",
+      "id": "match-2b972c240d1f4af54cde",
+      "date": "2026-09-25",
+      "start": "2026-09-25T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Cyprus U21",
+      "awayTeam": "Romania U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/3prdym1602247773.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/94c3xn1689198313.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Cyprus",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875596/fc-utrecht-feyenoord-rotterdam"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269518"
     },
     {
-      "id": "match-aa960833f83372fbd233",
-      "date": "2026-09-20",
-      "start": "2026-09-20T10:30Z",
-      "time": "13:30",
-      "homeTeam": "Fiorentina",
-      "awayTeam": "Napoli",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/109.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/114.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "Stadio Artemio Franchi",
+      "id": "match-548ec94a8ee4265ec8c4",
+      "date": "2026-09-25",
+      "start": "2026-09-25T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Estonia U21",
+      "awayTeam": "Faroe Islands U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/9gtchm1599575483.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/g9nazr1599571539.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Estonia",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874934/napoli-fiorentina"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269516"
     },
     {
-      "id": "match-c1ee45a7a3014b4b6a72",
-      "date": "2026-09-20",
-      "start": "2026-09-20T11:00Z",
-      "time": "14:00",
-      "homeTeam": "Celtic",
-      "awayTeam": "Rangers",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/256.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/257.png",
-      "competition": "Scottish Premiership",
-      "competitionKey": "scottish-premiership",
-      "country": "Scotland",
-      "venue": "Celtic Park",
+      "id": "match-c1adafc4c73fa3598891",
+      "date": "2026-09-25",
+      "start": "2026-09-25T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Finland U21",
+      "awayTeam": "Spain U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/ku5arf1602251895.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/7r3co61616514725.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Finland",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878375/rangers-celtic"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269517"
     },
     {
-      "id": "match-325fce9c66b3bea27e10",
-      "date": "2026-09-20",
-      "start": "2026-09-20T12:00Z",
-      "time": "15:00",
-      "homeTeam": "Getafe",
-      "awayTeam": "Málaga",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2922.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/99.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Estadio Coliseum",
+      "id": "match-25fa976a21e953b7c799",
+      "date": "2026-09-26",
+      "start": "2026-09-26T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Croatia U21",
+      "awayTeam": "Hungary U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/vvtsyu1455465317.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/mrha641616867365.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Croatia",
+      "venue": "Stadion Maksimir",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882861/malaga-getafe"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269528"
     },
     {
-      "id": "match-cc50965cb2871ad1fcfc",
-      "date": "2026-09-20",
-      "start": "2026-09-20T12:30Z",
-      "time": "15:30",
-      "homeTeam": "AZ Alkmaar",
-      "awayTeam": "Telstar",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/140.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3735.png",
-      "competition": "Dutch Eredivisie",
-      "competitionKey": "eredivisie",
-      "country": "Netherlands",
-      "venue": "AFAS Stadion",
+      "id": "match-b4547d717672f5386df5",
+      "date": "2026-09-26",
+      "start": "2026-09-26T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Latvia U21",
+      "awayTeam": "Germany U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/7266p01692679705.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ttyrrw1455465348.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Latvia",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875595/telstar-az-alkmaar"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269529"
     },
     {
-      "id": "match-cb65d6bb8a50aa8d66d1",
-      "date": "2026-09-20",
-      "start": "2026-09-20T12:30Z",
-      "time": "15:30",
-      "homeTeam": "FC Twente",
-      "awayTeam": "PSV Eindhoven",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/152.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/148.png",
-      "competition": "Dutch Eredivisie",
-      "competitionKey": "eredivisie",
-      "country": "Netherlands",
-      "venue": "De Grolsch Veste",
+      "id": "match-cfbbd74bf894cea86f40",
+      "date": "2026-09-26",
+      "start": "2026-09-26T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Ukraine U21",
+      "awayTeam": "Turkey U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/wdzpv01602253368.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/qgw2c81602247898.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Ukraine",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875593/psv-eindhoven-fc-twente"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269527"
     },
     {
-      "id": "match-c01d8525a408e8d4b301",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "AFC Bournemouth",
-      "awayTeam": "Liverpool",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/349.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/364.png",
-      "competition": "English Premier League",
-      "competitionKey": "premier-league",
-      "country": "England",
-      "venue": "Vitality Stadium",
+      "id": "match-398c4618f33bfc20bf25",
+      "date": "2026-09-27",
+      "start": "2026-09-27T01:00:00",
+      "time": "04:00",
+      "homeTeam": "New Mexico United",
+      "awayTeam": "Sacramento Republic",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/bhydtp1690267200.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/qlxpys1706283543.png",
+      "competition": "American USL Championship",
+      "competitionKey": "american-usl-championship",
+      "country": "United States",
+      "venue": "Isotopes Park",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879276/liverpool-afc-bournemouth"
+      "sourceUrl": "https://www.thesportsdb.com/event/2397347"
     },
     {
-      "id": "match-50e13ccbace934c8eba9",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "AJ Auxerre",
-      "awayTeam": "Brest",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/172.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/6997.png",
-      "competition": "French Ligue 1",
-      "competitionKey": "ligue-1",
+      "id": "match-4483d0e02480b12299f0",
+      "date": "2026-09-27",
+      "start": "2026-09-27T02:00:00",
+      "time": "05:00",
+      "homeTeam": "Monterey Bay FC",
+      "awayTeam": "Lexington SC",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/4wca4f1736267704.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/whrnkt1674118711.png",
+      "competition": "American USL Championship",
+      "competitionKey": "american-usl-championship",
+      "country": "United States",
+      "venue": "Cardinale Stadium",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397346"
+    },
+    {
+      "id": "match-0eaaca22ac655e367039",
+      "date": "2026-09-27",
+      "start": "2026-09-27T02:00:00",
+      "time": "05:00",
+      "homeTeam": "Oakland Roots",
+      "awayTeam": "Phoenix Rising",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/vzzkkj1616767958.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/lanpqo1690267344.png",
+      "competition": "American USL Championship",
+      "competitionKey": "american-usl-championship",
+      "country": "United States",
+      "venue": "Oakland-Alameda County Coliseum",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2397348"
+    },
+    {
+      "id": "match-652a4f4d0de69b3b1a2c",
+      "date": "2026-09-28",
+      "start": "2026-09-28T00:00:00",
+      "time": "03:00",
+      "homeTeam": "Gimnasia y Esgrima de Jujuy",
+      "awayTeam": "San Martín de Tucumán",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/1jxpz51677637810.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/xymq001532856832.png",
+      "competition": "Argentinian Primera B Nacional",
+      "competitionKey": "argentinian-primera-b-nacional",
+      "country": "Argentina",
+      "venue": "Estadio 23 de Agosto",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2405110"
+    },
+    {
+      "id": "match-6304c9b803dbd518c183",
+      "date": "2026-09-28",
+      "start": "2026-09-28T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Denmark U21",
+      "awayTeam": "Belarus U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/rqqqrv1455465307.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/zn4xcp1602252965.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Denmark",
+      "venue": "Parken",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269532"
+    },
+    {
+      "id": "match-b0bf81327d2d7d4b8da1",
+      "date": "2026-09-28",
+      "start": "2026-09-28T18:00:00",
+      "time": "21:00",
+      "homeTeam": "Flandria",
+      "awayTeam": "Dock Sud",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/jfai201677557874.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/zd1crc1677993995.png",
+      "competition": "Argentina Primera B Metropolitana",
+      "competitionKey": "argentina-primera-b-metropolitana",
+      "country": "Argentina",
+      "venue": "Estadio Carlos V",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2406561"
+    },
+    {
+      "id": "match-d41c0afa1227db303467",
+      "date": "2026-09-29",
+      "start": "2026-09-29T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Estonia U21",
+      "awayTeam": "France U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/9gtchm1599575483.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/2etq6r1531680230.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Estonia",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269534"
+    },
+    {
+      "id": "match-b55ea212e335bbbd83a4",
+      "date": "2026-09-29",
+      "start": "2026-09-29T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Iceland U21",
+      "awayTeam": "Switzerland U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/pfk4ua1742982322.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ih9xvn1602252862.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Iceland",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269535"
+    },
+    {
+      "id": "match-88352594307b0353bb68",
+      "date": "2026-09-29",
+      "start": "2026-09-29T18:00:00",
+      "time": "21:00",
+      "homeTeam": "Belgium U21",
+      "awayTeam": "Wales U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/rpryqt1455463105.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/08uby81602253403.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Belgium",
+      "venue": "Stade Roi Baudouin",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269533"
+    },
+    {
+      "id": "match-f15ceaf0305c5d7cc72f",
+      "date": "2026-09-30",
+      "start": "2026-09-30T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Czech Republic U21",
+      "awayTeam": "Bulgaria U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/dc4wj21654205802.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/rw7m721602253336.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Czechia",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269541"
+    },
+    {
+      "id": "match-91f5ffb97ee49ce48c8e",
+      "date": "2026-09-30",
+      "start": "2026-09-30T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Faroe Islands U21",
+      "awayTeam": "Luxembourg U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/g9nazr1599571539.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/81lyzb1713725402.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Faroe Islands",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269539"
+    },
+    {
+      "id": "match-042761a389472d6c8e67",
+      "date": "2026-09-30",
+      "start": "2026-09-30T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Portugal U21",
+      "awayTeam": "Gibraltar U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/q8df5e1599576053.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/z83cwf1602247829.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Portugal",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269540"
+    },
+    {
+      "id": "match-56d66cbddcb6b0f86703",
+      "date": "2026-10-01",
+      "start": "2026-10-01T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Armenia U21",
+      "awayTeam": "Italy U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/obo2dg1705941929.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/67anl71672949948.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Armenia",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269549"
+    },
+    {
+      "id": "match-0ba941c7fc13c8c5fee4",
+      "date": "2026-10-01",
+      "start": "2026-10-01T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Hungary U21",
+      "awayTeam": "Lithuania U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/mrha641616867365.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/jn5n7m1689197175.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Hungary",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269548"
+    },
+    {
+      "id": "match-e85f37812d2460847956",
+      "date": "2026-10-01",
+      "start": "2026-10-01T18:15:00",
+      "time": "21:15",
+      "homeTeam": "San Marino U21",
+      "awayTeam": "Spain U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/7xcaqy1602253690.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/7r3co61616514725.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "San Marino",
+      "venue": "",
+      "broadcasters": [],
+      "sourceIds": [
+        "thesportsdb-free"
+      ],
+      "sourceUrl": "https://www.thesportsdb.com/event/2269545"
+    },
+    {
+      "id": "match-d749e7f556dbcb5c7700",
+      "date": "2026-10-02",
+      "start": "2026-10-02T22:00:00",
+      "time": "01:00",
+      "homeTeam": "France U21",
+      "awayTeam": "Luxembourg U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/2etq6r1531680230.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/81lyzb1713725402.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
       "country": "France",
-      "venue": "Stade de l'Abbé-Deschamps",
+      "venue": "Stade de France",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876456/brest-aj-auxerre"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269356"
     },
     {
-      "id": "match-474726d95c34038c8914",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "Frosinone",
-      "awayTeam": "Como",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/4057.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2572.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "Stadio Benito Stirpe",
+      "id": "match-844b778eca02c33bc0ee",
+      "date": "2026-10-02",
+      "start": "2026-10-02T15:00:00",
+      "time": "18:00",
+      "homeTeam": "Andorra U21",
+      "awayTeam": "Moldova U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/so0fww1602007171.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ee63r11602252292.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
+      "country": "Andorra",
+      "venue": "",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874752/como-frosinone"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269553"
     },
     {
-      "id": "match-f7d9ad669d246ff744b0",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "Leeds United",
-      "awayTeam": "Crystal Palace",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/357.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/384.png",
-      "competition": "English Premier League",
-      "competitionKey": "premier-league",
+      "id": "match-b04d0c455e8b8a5bcee7",
+      "date": "2026-10-02",
+      "start": "2026-10-02T15:00:00",
+      "time": "18:00",
+      "homeTeam": "England U21",
+      "awayTeam": "Slovakia U21",
+      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/bjaudn1616964139.png",
+      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/bw4u5n1602253488.png",
+      "competition": "UEFA European Under-21 Championship",
+      "competitionKey": "uefa-european-under-21-championship",
       "country": "England",
-      "venue": "Elland Road",
+      "venue": "Wembley Stadium",
       "broadcasters": [],
       "sourceIds": [
-        "espn-public-soccer"
+        "thesportsdb-free"
       ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879273/crystal-palace-leeds-united"
-    },
-    {
-      "id": "match-f245ff34852798fed025",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "Manchester City",
-      "awayTeam": "Sunderland",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/382.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/366.png",
-      "competition": "English Premier League",
-      "competitionKey": "premier-league",
-      "country": "England",
-      "venue": "Etihad Stadium",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401879272/sunderland-manchester-city"
-    },
-    {
-      "id": "match-ab2588925b48840fbd89",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:00Z",
-      "time": "16:00",
-      "homeTeam": "Parma",
-      "awayTeam": "Genoa",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/115.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3263.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "Ennio Tardini",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874801/genoa-parma"
-    },
-    {
-      "id": "match-450d0d430e58a329405a",
-      "date": "2026-09-20",
-      "start": "2026-09-20T13:30Z",
-      "time": "16:30",
-      "homeTeam": "Bayer Leverkusen",
-      "awayTeam": "RB Leipzig",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/131.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/11420.png",
-      "competition": "German Bundesliga",
-      "competitionKey": "bundesliga",
-      "country": "Germany",
-      "venue": "BayArena",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884788/rb-leipzig-bayer-leverkusen"
-    },
-    {
-      "id": "match-47a6db20322445766c2f",
-      "date": "2026-09-20",
-      "start": "2026-09-20T14:15Z",
-      "time": "17:15",
-      "homeTeam": "Atlético Madrid",
-      "awayTeam": "Real Madrid",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/1068.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/86.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Riyadh Air Metropolitano",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882865/real-madrid-atletico-madrid"
-    },
-    {
-      "id": "match-12755a6714f857c5287c",
-      "date": "2026-09-20",
-      "start": "2026-09-20T14:30Z",
-      "time": "17:30",
-      "homeTeam": "Estrela",
-      "awayTeam": "Académico de Viseu",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21610.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21607.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio Municipal de Rio Maior",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885437/academico-de-viseu-estrela"
-    },
-    {
-      "id": "match-78e7fa3a3499d2276b59",
-      "date": "2026-09-20",
-      "start": "2026-09-20T14:30Z",
-      "time": "17:30",
-      "homeTeam": "Vitória de Guimaraes",
-      "awayTeam": "Moreirense",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/5309.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3696.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio D. Afonso Henriques",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885430/moreirense-vitoria-de-guimaraes"
-    },
-    {
-      "id": "match-5f636fc0fedc9e6ee60d",
-      "date": "2026-09-20",
-      "start": "2026-09-20T14:45Z",
-      "time": "17:45",
-      "homeTeam": "NEC Nijmegen",
-      "awayTeam": "Go Ahead Eagles",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/147.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3706.png",
-      "competition": "Dutch Eredivisie",
-      "competitionKey": "eredivisie",
-      "country": "Netherlands",
-      "venue": "Goffertstadion",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401875594/go-ahead-eagles-nec-nijmegen"
-    },
-    {
-      "id": "match-d1f66705f5b41e15caae",
-      "date": "2026-09-20",
-      "start": "2026-09-20T15:15Z",
-      "time": "18:15",
-      "homeTeam": "Nice",
-      "awayTeam": "Lille",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2502.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/166.png",
-      "competition": "French Ligue 1",
-      "competitionKey": "ligue-1",
-      "country": "France",
-      "venue": "Allianz Riviera",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876452"
-    },
-    {
-      "id": "match-3344d9be8cf0f064aca8",
-      "date": "2026-09-20",
-      "start": "2026-09-20T15:30Z",
-      "time": "18:30",
-      "homeTeam": "Fulham",
-      "awayTeam": "Manchester United",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/370.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/360.png",
-      "competition": "English Premier League",
-      "competitionKey": "premier-league",
-      "country": "England",
-      "venue": "Craven Cottage",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401878777"
-    },
-    {
-      "id": "match-5b5d0d0ba287339b0fc7",
-      "date": "2026-09-20",
-      "start": "2026-09-20T15:30Z",
-      "time": "18:30",
-      "homeTeam": "Schalke 04",
-      "awayTeam": "SV Elversberg",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/133.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/10388.png",
-      "competition": "German Bundesliga",
-      "competitionKey": "bundesliga",
-      "country": "Germany",
-      "venue": "Veltins Arena",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884783"
-    },
-    {
-      "id": "match-7d65c124b0b69dfe6467",
-      "date": "2026-09-20",
-      "start": "2026-09-20T16:00:00",
-      "time": "19:00",
-      "homeTeam": "Al-Baqa'a",
-      "awayTeam": "Al-Faisaly Amman",
-      "homeLogo": "https://r2.thesportsdb.com/images/media/team/badge/ng6x581625310975.png",
-      "awayLogo": "https://r2.thesportsdb.com/images/media/team/badge/ja0udy1753205043.png",
-      "competition": "Jordanian Pro League",
-      "competitionKey": "jordan-pro-league",
-      "country": "Jordan",
-      "venue": "Petra Stadium",
-      "broadcasters": [
-        {
-          "name": "Jordan Sport",
-          "nameAr": "Jordan Sport",
-          "nameEn": "Jordan Sport",
-          "country": "Jordan",
-          "region": "Jordan",
-          "accessType": "fta",
-          "verified": true,
-          "evidenceLevel": "official",
-          "sourceName": "Petra / Jordan Football Association rights notice",
-          "sourceUrl": "https://petra.gov.jo/en/index.php/en/news/2027-pro-season",
-          "verifiedAt": "2026-09-20T16:52:26.776Z",
-          "accessSourceName": "Jordan Football Association broadcaster information",
-          "accessSourceUrl": "https://www.jfa.jo/"
-        }
-      ],
-      "sourceIds": [
-        "thesportsdb-free",
-        "jordan-tv-rights"
-      ],
-      "sourceUrl": "https://www.thesportsdb.com/event/2597585"
-    },
-    {
-      "id": "match-49e51fc6724d39b4ae2e",
-      "date": "2026-09-20",
-      "start": "2026-09-20T16:00Z",
-      "time": "19:00",
-      "homeTeam": "Juventus",
-      "awayTeam": "Atalanta",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/111.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/105.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "Allianz Stadium",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874757"
-    },
-    {
-      "id": "match-77cfd30465eedc6db37d",
-      "date": "2026-09-20",
-      "start": "2026-09-20T16:30Z",
-      "time": "19:30",
-      "homeTeam": "Deportivo",
-      "awayTeam": "Real Betis",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/90.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/244.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Riazor",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882863"
-    },
-    {
-      "id": "match-660f6821160e13a35439",
-      "date": "2026-09-20",
-      "start": "2026-09-20T16:30Z",
-      "time": "19:30",
-      "homeTeam": "Villarreal",
-      "awayTeam": "Levante",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/102.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/1538.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Estadio de la Cerámica",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 3",
-          "nameAr": "beIN SPORTS 3",
-          "nameEn": "beIN SPORTS 3",
-          "country": "Egypt",
-          "region": "Egypt",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "corroborated",
-          "sourceName": "FilGoal match schedule + Kooora daily broadcast table",
-          "sourceUrl": "https://www.filgoal.com/matches/375059/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%8A%D8%A7%D8%B1%D9%8A%D8%A7%D9%84-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "verifiedAt": "2026-09-20T16:52:26.770Z",
-          "accessSourceName": "beIN official FAQ and channel list",
-          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
-          "evidenceUrls": [
-            "https://www.filgoal.com/matches/375059/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%8A%D8%A7%D8%B1%D9%8A%D8%A7%D9%84-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-            "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%94%D8%AD%D8%AF-20-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2026-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltb859f27dff0bdcb4"
-          ],
-          "evidenceSources": [
-            {
-              "name": "FilGoal match schedule",
-              "url": "https://www.filgoal.com/matches/375059/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D9%8A%D8%A7%D8%B1%D9%8A%D8%A7%D9%84-%D9%84%D9%8A%D9%81%D8%A7%D9%86%D8%AA%D9%8A-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
-            },
-            {
-              "name": "Kooora daily broadcast table",
-              "url": "https://www.kooora.com/%D9%83%D8%B1%D8%A9-%D9%82%D8%AF%D9%85/%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1/%D8%AC%D8%AF%D9%88%D9%84-%D9%85%D8%A8%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%8A%D9%88%D9%85-%D8%A7%D9%84%D8%A7%D9%94%D8%AD%D8%AF-20-%D8%B3%D8%A8%D8%AA%D9%85%D8%A8%D8%B1-2026-%D8%A7%D9%84%D9%82%D9%86%D9%88%D8%A7%D8%AA-%D8%A7%D9%84%D9%86%D8%A7%D9%82%D9%84%D8%A9-%D9%88%D8%A7%D9%84%D9%85%D8%B9%D9%84%D9%82%D9%8A%D9%86/bltb859f27dff0bdcb4"
-            }
-          ]
-        }
-      ],
-      "sourceIds": [
-        "espn-public-soccer",
-        "filgoal-matches",
-        "kooora-broadcast"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882857"
-    },
-    {
-      "id": "match-8795e05f2d9bf3f46574",
-      "date": "2026-09-20",
-      "start": "2026-09-20T17:00Z",
-      "time": "20:00",
-      "homeTeam": "Estoril",
-      "awayTeam": "Casa Pia",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/12216.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/21581.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio António Coimbra da Mota",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885436/casa-pia-estoril"
-    },
-    {
-      "id": "match-da88c688cec547e70e48",
-      "date": "2026-09-20",
-      "start": "2026-09-20T17:00Z",
-      "time": "20:00",
-      "homeTeam": "Santa Clara",
-      "awayTeam": "Braga",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/12215.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/2994.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio de São Miguel",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885432/braga-santa-clara"
-    },
-    {
-      "id": "match-479d1954356607be8126",
-      "date": "2026-09-20",
-      "start": "2026-09-20T17:30Z",
-      "time": "20:30",
-      "homeTeam": "SC Paderborn 07",
-      "awayTeam": "TSG Hoffenheim",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/3307.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/7911.png",
-      "competition": "German Bundesliga",
-      "competitionKey": "bundesliga",
-      "country": "Germany",
-      "venue": "Home Deluxe Arena",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401884782/tsg-hoffenheim-sc-paderborn-07"
-    },
-    {
-      "id": "match-e47c0829d0eb541a1de9",
-      "date": "2026-09-20",
-      "start": "2026-09-20T18:45Z",
-      "time": "21:45",
-      "homeTeam": "AC Milan",
-      "awayTeam": "Lecce",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/103.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/113.png",
-      "competition": "Italian Serie A",
-      "competitionKey": "serie-a",
-      "country": "Italy",
-      "venue": "San Siro",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401874944/lecce-ac-milan"
-    },
-    {
-      "id": "match-55eaeaaedace74b26ebe",
-      "date": "2026-09-20",
-      "start": "2026-09-20T18:45Z",
-      "time": "21:45",
-      "homeTeam": "Marseille",
-      "awayTeam": "Paris Saint-Germain",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/176.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/160.png",
-      "competition": "French Ligue 1",
-      "competitionKey": "ligue-1",
-      "country": "France",
-      "venue": "Stade Vélodrome",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401876449/paris-saint-germain-marseille"
-    },
-    {
-      "id": "match-b834b3282233e3338a3d",
-      "date": "2026-09-20",
-      "start": "2026-09-20T19:00Z",
-      "time": "22:00",
-      "homeTeam": "Valencia",
-      "awayTeam": "Real Sociedad",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/94.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/89.png",
-      "competition": "Spanish LaLiga",
-      "competitionKey": "la-liga",
-      "country": "Spain",
-      "venue": "Mestalla Stadium",
-      "broadcasters": [
-        {
-          "name": "beIN SPORTS 2",
-          "nameAr": "beIN SPORTS 2",
-          "nameEn": "beIN SPORTS 2",
-          "country": "Egypt",
-          "region": "Egypt",
-          "accessType": "encrypted",
-          "verified": true,
-          "evidenceLevel": "editorial",
-          "sourceName": "FilGoal match schedule",
-          "sourceUrl": "https://www.filgoal.com/matches/375058/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D8%A7%D9%84%D9%86%D8%B3%D9%8A%D8%A7-%D8%B1%D9%8A%D8%A7%D9%84-%D8%B3%D9%88%D8%B3%D9%8A%D8%AF%D8%A7%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A",
-          "verifiedAt": "2026-09-20T16:52:26.770Z",
-          "accessSourceName": "beIN official FAQ and channel list",
-          "accessSourceUrl": "https://www.bein.com/en/general-faq/",
-          "evidenceUrls": [
-            "https://www.filgoal.com/matches/375058/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D8%A7%D9%84%D9%86%D8%B3%D9%8A%D8%A7-%D8%B1%D9%8A%D8%A7%D9%84-%D8%B3%D9%88%D8%B3%D9%8A%D8%AF%D8%A7%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
-          ],
-          "evidenceSources": [
-            {
-              "name": "FilGoal match schedule",
-              "url": "https://www.filgoal.com/matches/375058/%D9%85%D8%A8%D8%A7%D8%B1%D8%A7%D8%A9-%D9%81%D8%A7%D9%84%D9%86%D8%B3%D9%8A%D8%A7-%D8%B1%D9%8A%D8%A7%D9%84-%D8%B3%D9%88%D8%B3%D9%8A%D8%AF%D8%A7%D8%AF-%D9%81%D9%8A-%D8%A7%D9%84%D8%AF%D9%88%D8%B1%D9%8A-%D8%A7%D9%84%D8%A5%D8%B3%D8%A8%D8%A7%D9%86%D9%8A"
-            }
-          ]
-        }
-      ],
-      "sourceIds": [
-        "espn-public-soccer",
-        "filgoal-matches"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401882858/real-sociedad-valencia"
-    },
-    {
-      "id": "match-faa320033438ed38c03c",
-      "date": "2026-09-20",
-      "start": "2026-09-20T19:30Z",
-      "time": "22:30",
-      "homeTeam": "FC Porto",
-      "awayTeam": "Benfica",
-      "homeLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/437.png",
-      "awayLogo": "https://a.espncdn.com/i/teamlogos/soccer/500/1929.png",
-      "competition": "Portuguese Primeira Liga",
-      "competitionKey": "primeira-liga",
-      "country": "Portugal",
-      "venue": "Estádio do Dragão",
-      "broadcasters": [],
-      "sourceIds": [
-        "espn-public-soccer"
-      ],
-      "sourceUrl": "https://www.espn.com/soccer/match/_/gameId/401885433/benfica-fc-porto"
+      "sourceUrl": "https://www.thesportsdb.com/event/2269554"
     }
   ]
 }

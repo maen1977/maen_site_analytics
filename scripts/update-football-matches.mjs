@@ -315,6 +315,11 @@ async function fetchJordanLeague() {
   return (payload.events || []).map((event) => toSportsDbMatch(event, event.dateEvent || "")).filter(Boolean);
 }
 
+async function fetchSportsDbDay(queryDate) {
+  const payload = await fetchJson(`${SPORTSDB_BASE}/eventsday.php?d=${encodeURIComponent(queryDate)}&s=Soccer`);
+  return (payload.events || []).map((event) => toSportsDbMatch(event, queryDate)).filter(Boolean);
+}
+
 function normalizeBroadcasterName(value) {
   let channel = String(value || "").replace(/\s+/g, " ").trim();
   channel = channel.replace(/^beIN\s+SPORTS\s+HD\s+([1-9])$/i, "beIN SPORTS $1");
@@ -681,9 +686,10 @@ const endDate = isoDate(addDays(today, DAYS_AHEAD));
 const dates = Array.from({ length: DAYS_AHEAD + 1 }, (_, index) => isoDate(addDays(today, index)));
 const surroundingDates = [isoDate(addDays(today, -1)), ...dates, isoDate(addDays(today, DAYS_AHEAD + 1))];
 
-const [espnResults, sportsDbResults, filGoalResults, koooraResults, beinResults] = await Promise.all([
+const [espnResults, sportsDbResults, sportsDbDailyResults, filGoalResults, koooraResults, beinResults] = await Promise.all([
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
   Promise.allSettled([fetchJordanLeague()]),
+  Promise.allSettled(dates.map((date) => fetchSportsDbDay(date))),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
   Promise.allSettled([fetchKoooraDays(dates)]),
   Promise.allSettled([fetchBeinTvGuide(dates)]),
@@ -691,15 +697,16 @@ const [espnResults, sportsDbResults, filGoalResults, koooraResults, beinResults]
 
 const espnSucceeded = espnResults.filter((result) => result.status === "fulfilled");
 const sportsDbSucceeded = sportsDbResults.filter((result) => result.status === "fulfilled");
+const sportsDbDailySucceeded = sportsDbDailyResults.filter((result) => result.status === "fulfilled");
 const filGoalSucceeded = filGoalResults.filter((result) => result.status === "fulfilled");
 const koooraSucceeded = koooraResults.filter((result) => result.status === "fulfilled");
 const beinSucceeded = beinResults.filter((result) => result.status === "fulfilled");
-if (!espnSucceeded.length && !sportsDbSucceeded.length) {
-  throw new Error("Both match data providers failed");
+if (!espnSucceeded.length && !sportsDbSucceeded.length && !sportsDbDailySucceeded.length) {
+  throw new Error("All football match data providers failed");
 }
 
 const merged = new Map();
-for (const result of [...espnSucceeded, ...sportsDbSucceeded]) {
+for (const result of [...espnSucceeded, ...sportsDbSucceeded, ...sportsDbDailySucceeded]) {
   for (const match of result.value) {
     if (!dates.includes(match.date)) continue;
     const current = merged.get(match.key);
@@ -823,6 +830,7 @@ if (!items.length && (espnSucceeded.length || sportsDbSucceeded.length)) {
 const sourceCoverage = {
   espn: { attempted: surroundingDates.length, succeeded: espnSucceeded.length, failed: espnResults.filter((result) => result.status === "rejected").length },
   sportsDb: { attempted: 1, succeeded: sportsDbSucceeded.length, failed: sportsDbResults.filter((result) => result.status === "rejected").length },
+  sportsDbDaily: { attempted: dates.length, succeeded: sportsDbDailySucceeded.length, failed: sportsDbDailyResults.filter((result) => result.status === "rejected").length },
   filGoal: { attempted: dates.length, succeeded: filGoalSucceeded.length, failed: filGoalResults.filter((result) => result.status === "rejected").length, matchedListings: [...filGoalByKey.values()].reduce((sum, value) => sum + value.length, 0) },
   kooora: { attempted: 1, succeeded: koooraSucceeded.length, failed: koooraResults.filter((result) => result.status === "rejected").length, matchedListings: [...koooraByKey.values()].reduce((sum, value) => sum + value.length, 0) },
   bein: { attempted: 1, succeeded: beinSucceeded.length, failed: beinResults.filter((result) => result.status === "rejected").length, matchedFixtures: beinByKey.size },
@@ -866,6 +874,7 @@ const payload = {
   sources: [
     { id: "espn-major-leagues", name: "ESPN public scoreboards for selected major leagues", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length, requestedLeagues: ESPN_MAJOR_LEAGUES.map((league) => league.id) },
     { id: "thesportsdb-jordan", name: "TheSportsDB Jordanian Pro League season", url: `https://www.thesportsdb.com/api/v1/json/123/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`, ok: sportsDbSucceeded.length > 0, requestedDays: 1 },
+    { id: "thesportsdb-daily", name: "TheSportsDB daily football fixtures fallback", url: `${SPORTSDB_BASE}/eventsday.php?d=YYYY-MM-DD&s=Soccer`, ok: sportsDbDailySucceeded.length > 0, requestedDays: dates.length },
     { id: "filgoal-matches", name: "FilGoal Arabic match schedule", url: FILGOAL_BASE, ok: filGoalSucceeded.length > 0, requestedDays: dates.length },
     { id: "kooora-broadcast", name: "Kooora Arabic daily broadcast tables", url: KOOORA_HOME, ok: koooraSucceeded.length > 0, requestedDays: dates.length },
     { id: "bein-tv-guide", name: "beIN official MENA dynamic TV guide", url: BEIN_MENA_GUIDE_URL, relatedUrl: BEIN_CHANNEL_LIST_URL, ok: beinSucceeded.length > 0, requestedDays: dates.length, matchedListings: beinByKey.size, note: "The guide is rendered with JavaScript in a regular Chromium session; live or kickoff-near listings are matched by both teams, date, and time." },
