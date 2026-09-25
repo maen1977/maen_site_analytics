@@ -42,7 +42,10 @@ assert(data.schemaVersion === 1, "Football matches schema version must be 1");
 assert(data.timeZone === "Asia/Amman", "Football matches must use Asia/Amman timezone");
 assert(data.mode === "all-published-competitions-with-verified-regional-tv", "Football matches must use the all published competitions mode");
 assert(data.window && datePattern.test(data.window.startDate) && datePattern.test(data.window.endDate), "Match window dates are invalid");
-assert(data.window.days === 8, "Match window must cover today plus seven days");
+assert(Number.isInteger(data.window.days) && data.window.days >= 1, "Match window must contain at least one published day");
+if (data.window.requestedStartDate !== undefined || data.window.requestedEndDate !== undefined) {
+  assert(datePattern.test(data.window.requestedStartDate) && datePattern.test(data.window.requestedEndDate), "Requested match window dates are invalid");
+}
 assert(Array.isArray(data.broadcastCountries) && data.broadcastCountries.length === targetCountries.size, "Broadcast country allowlist is incomplete");
 assert(data.broadcastCountries.every((country) => targetCountries.has(country)), "Broadcast country allowlist contains an unsupported country");
 assert(Array.isArray(data.sources) && data.sources.some((source) => source.id === "espn-major-leagues"), "Selected ESPN league source is missing");

@@ -310,6 +310,14 @@ async function fetchEspnDay(queryDate) {
   return results.filter((result) => result.status === "fulfilled").flatMap((result) => result.value);
 }
 
+async function fetchEspnLatestPublishedDay() {
+  const results = await Promise.allSettled(ESPN_MAJOR_LEAGUES.map(async (league) => {
+    const payload = await fetchJson(`${ESPN_ROOT}/${league.id}/scoreboard?limit=100`);
+    return (payload.events || []).map((event) => toEspnMatch(event, payload.day?.date || "", league)).filter(Boolean);
+  }));
+  return results.filter((result) => result.status === "fulfilled").flatMap((result) => result.value);
+}
+
 async function fetchJordanLeague() {
   const payload = await fetchJson(`${SPORTSDB_BASE}/eventsseason.php?id=${THESPORTSDB_JORDAN_LEAGUE_ID}&s=2026-2027`);
   return (payload.events || []).map((event) => toSportsDbMatch(event, event.dateEvent || "")).filter(Boolean);
@@ -686,8 +694,9 @@ const endDate = isoDate(addDays(today, DAYS_AHEAD));
 const dates = Array.from({ length: DAYS_AHEAD + 1 }, (_, index) => isoDate(addDays(today, index)));
 const surroundingDates = [isoDate(addDays(today, -1)), ...dates, isoDate(addDays(today, DAYS_AHEAD + 1))];
 
-const [espnResults, sportsDbResults, sportsDbDailyResults, filGoalResults, koooraResults, beinResults] = await Promise.all([
+const [espnResults, espnLatestResults, sportsDbResults, sportsDbDailyResults, filGoalResults, koooraResults, beinResults] = await Promise.all([
   Promise.allSettled(surroundingDates.map((date) => fetchEspnDay(date))),
+  Promise.allSettled([fetchEspnLatestPublishedDay()]),
   Promise.allSettled([fetchJordanLeague()]),
   Promise.allSettled(dates.map((date) => fetchSportsDbDay(date))),
   Promise.allSettled(dates.map((date) => fetchFilGoalDay(date))),
@@ -696,19 +705,24 @@ const [espnResults, sportsDbResults, sportsDbDailyResults, filGoalResults, kooor
 ]);
 
 const espnSucceeded = espnResults.filter((result) => result.status === "fulfilled");
+const espnLatestSucceeded = espnLatestResults.filter((result) => result.status === "fulfilled");
 const sportsDbSucceeded = sportsDbResults.filter((result) => result.status === "fulfilled");
 const sportsDbDailySucceeded = sportsDbDailyResults.filter((result) => result.status === "fulfilled");
 const filGoalSucceeded = filGoalResults.filter((result) => result.status === "fulfilled");
 const koooraSucceeded = koooraResults.filter((result) => result.status === "fulfilled");
 const beinSucceeded = beinResults.filter((result) => result.status === "fulfilled");
-if (!espnSucceeded.length && !sportsDbSucceeded.length && !sportsDbDailySucceeded.length) {
+const espnLatestMatches = espnLatestSucceeded.flatMap((result) => result.value);
+const hasDatedEspnMatches = espnSucceeded.some((result) => result.value.length > 0);
+if (!espnSucceeded.length && !espnLatestSucceeded.length && !sportsDbSucceeded.length && !sportsDbDailySucceeded.length) {
   throw new Error("All football match data providers failed");
 }
 
 const merged = new Map();
-for (const result of [...espnSucceeded, ...sportsDbSucceeded, ...sportsDbDailySucceeded]) {
+const allowedDates = new Set(dates);
+for (const match of espnLatestMatches) allowedDates.add(match.date);
+for (const result of [...espnSucceeded, ...sportsDbSucceeded, ...(hasDatedEspnMatches ? [] : espnLatestSucceeded), ...sportsDbDailySucceeded]) {
   for (const match of result.value) {
-    if (!dates.includes(match.date)) continue;
+    if (!allowedDates.has(match.date)) continue;
     const current = merged.get(match.key);
     merged.set(match.key, mergeMatch(current, match));
   }
@@ -717,6 +731,11 @@ for (const result of [...espnSucceeded, ...sportsDbSucceeded, ...sportsDbDailySu
 if (!merged.size) {
   throw new Error(`No football matches were returned for ${startDate} through ${endDate}; keeping the previous trusted schedule instead of publishing an empty schedule.`);
 }
+
+const publishedDateKeys = [...merged.values()].map((match) => match.date).filter(Boolean).sort();
+const publishedStartDate = publishedDateKeys[0] || startDate;
+const publishedEndDate = publishedDateKeys.at(-1) || endDate;
+const publishedDayCount = new Set(publishedDateKeys).size;
 
 const tvCandidates = [...merged.values()].filter((match) => match.sportsDbId);
 const tvResults = await Promise.allSettled(tvCandidates.map((match) => fetchSportsDbTv(match.sportsDbId)));
@@ -856,7 +875,7 @@ const coverageReport = {
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
   timeZone: TIME_ZONE,
-  window: { startDate, endDate, days: DAYS_AHEAD + 1 },
+  window: { startDate: publishedStartDate, endDate: publishedEndDate, days: publishedDayCount },
   sourceCoverage,
   totals: {
     matches: items.length,
@@ -869,7 +888,7 @@ const payload = {
   schemaVersion: 1,
   generatedAt: new Date().toISOString(),
   timeZone: TIME_ZONE,
-  window: { startDate, endDate, days: DAYS_AHEAD + 1 },
+  window: { startDate: publishedStartDate, endDate: publishedEndDate, requestedStartDate: startDate, requestedEndDate: endDate, days: publishedDayCount },
   mode: "all-published-competitions-with-verified-regional-tv",
   sources: [
     { id: "espn-major-leagues", name: "ESPN public scoreboards for selected major leagues", ok: espnSucceeded.length > 0, requestedDays: surroundingDates.length, requestedLeagues: ESPN_MAJOR_LEAGUES.map((league) => league.id) },

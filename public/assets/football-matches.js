@@ -34,6 +34,13 @@
     "scottish-premiership": { ar: "الدوري الإسكتلندي الممتاز", en: "Scottish Premiership", order: 10 },
   };
 
+  var FALLBACK_COMPETITION_NAMES = {
+    "uefa-european-under-21-championship": { ar: "بطولة أوروبا تحت 21 سنة", en: "UEFA European Under-21 Championship" },
+    "american-usl-championship": { ar: "دوري USL الأمريكي", en: "American USL Championship" },
+    "argentinian-primera-b-nacional": { ar: "الدوري الأرجنتيني الدرجة الثانية", en: "Argentinian Primera B Nacional" },
+    "argentina-primera-b-metropolitana": { ar: "الدوري الأرجنتيني متروبوليتانا", en: "Argentina Primera B Metropolitana" },
+  };
+
   var TEXT = {
     nav: { ar: "المباريات", en: "Matches" },
     eyebrow: { ar: "مواعيد المباريات", en: "Match schedules" },
@@ -162,6 +169,8 @@
     var key = cleanText(match && match.competitionKey, 80);
     var item = COMPETITIONS[key];
     if (item) return isEnglish() ? item.en : item.ar;
+    var fallbackItem = FALLBACK_COMPETITION_NAMES[key];
+    if (fallbackItem) return isEnglish() ? fallbackItem.en : fallbackItem.ar;
     return cleanText(match && match.competition, 140) || (isEnglish() ? "Selected competition" : "بطولة مختارة");
   }
 
@@ -232,9 +241,15 @@
   }
 
   function filteredMatchesForCompetition(competitionKey, windowName) {
-    return sortedMatches(state.matches.filter(function (match) {
+    var filtered = state.matches.filter(function (match) {
       return String(match.competitionKey || "") === competitionKey && matchesDateWindow(match, windowName) && matchesSearchQuery(match);
-    }));
+    });
+    if (!filtered.length && windowName === "week") {
+      filtered = state.matches.filter(function (match) {
+        return String(match.competitionKey || "") === competitionKey && matchesSearchQuery(match);
+      });
+    }
+    return sortedMatches(filtered);
   }
 
   function allMatchesForCompetition(competitionKey) {
